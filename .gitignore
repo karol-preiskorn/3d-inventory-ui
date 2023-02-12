@@ -128,11 +128,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-<<<<<<< HEAD
-.angular/cache/15.1.5
-.angular/cache/15.1.5/angular-webpack
-.angular/cache/15.1.5/babel-webpack
-=======
 # Compiled output
 /dist
 /tmp
@@ -173,4 +168,3 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
->>>>>>> 6b2dd4d (Merge remote-tracking branch 'refs/remotes/origin/master')
