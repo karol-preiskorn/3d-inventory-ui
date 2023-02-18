@@ -1,0 +1,12 @@
+<p>List of devices</p>
+<div *ngFor="let device of devices">
+
+  <h3>
+    <a
+      [title]="device.name + ' details'"
+      [routerLink]="['/devices', device.id]">
+      {{ device.name }}
+    </a>
+  </h3>
+
+</div>

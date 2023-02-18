@@ -38,5 +38,8 @@ P3lease make sure to update tests as appropriate.
 ## Next todo
 
 - add menu
-- add action menu requested rest api to neo4j/Oracle
+  - add action menu requested rest api to neo4j/Oracle
 
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
