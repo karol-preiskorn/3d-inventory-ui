@@ -1,60 +1,55 @@
 ﻿/*
 * File:        /src/app/devices.ts
-* Description: Data app list all devices. Structure data accessed vi Oracle DB/Neo4j
+* Description: Main class operating on devices. Structure data accessed vi Oracle DB/Neo4j
 * Used by:
 * Dependency:
 * HISTORY:
 * Date        By     Comments
 * ----------  -----  ---------------------------------------------------------
-* 2023-02-18  C2RLO
+* 2023-02-18  C2RLO  Init
 */
+import { v4 as uuidv4 } from 'uuid'
+import { uniqueNamesGenerator, adjectives, colors, animals } from "unique-names-generator"
+// import * as Chance from 'chance';
+import { DeviceCategory } from './deviceCategories'
+import { DeviceType } from './deviceType'
+import DeviceCategoryTypes from './deviceCategories'
 
-export interface Device {
-  id: number;
-  name: string;
-  type: string;
-  category: string;
+
+export class device {
+
+  id: string
+  name: string
+  type: string
+  category: DeviceCategoryTypes
+
+  constructor() {
+    this.id = uuidv4()
+    this.name = uniqueNamesGenerator({
+      dictionaries: [adjectives, colors, animals],
+      style: 'lowerCase',
+      separator: '-'
+    }) // big_red_donkey
+    this.type = new DeviceType().getRandom()
+    this.category = new DeviceCategory().getRandom()
+  }
+
+  print() {
+    console.log("[device]", this.id, this.name, this.type, this.category.Category);
+  }
 }
 
-
 // @TODO: #1 Generate 100 random records
-try {
-  let deviceContext = Object.assign({}, Device)
 
-  if (Device.length == 0) {
-    const randomName = uniqueNamesGenerator({
-      dictionaries: [adjectives, colors, animals],
-    }) // big_red_donkey
-    const shortName = uniqueNamesGenerator({
-      dictionaries: [adjectives, animals, colors], // colors can be omitted here as not used
-      length: 2,
-    }) // big-donkey
-    var randomDeviceTypes =
-      DeviceTypes[Math.floor(Math.random() * DeviceTypes.length)]
-    var randomDeviceCategory =
-      DeviceCategory[Math.floor(Math.random() * DeviceCategory.length)]
+export var devicesList: device[] = []
+
+try {
+  if (device.length == 0) {
+    var deviceTmp = new device()
+    devicesList.push(deviceTmp)
   }
 } catch (err) {
   console.log("🐛 Reject(Error) in sqlExecute:", err)
 }
 
-export const devices = [
-  {
-    id: 1,
-    name: 'Phone XL',
-    type: 'Telephone',
-    category: 'Mobile'
-  },
-  {
-    id: 2,
-    name: 'Phone Mini',
-    type: 'Telephone',
-    category: 'Mobile'
-  },
-  {
-    id: 3,
-    name: 'DELL',
-    type: 'RACK',
-    category: 'Server'
-  }
-];
+devicesList.forEach(element => { element.print() });

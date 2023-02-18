@@ -1,6 +1,6 @@
 ﻿/*
 * File:        /src/app/devices copy.ts
-* Description:
+* Description: Defines attribute Device Types
 * Used by:
 * Dependency:
 * HISTORY:
@@ -8,8 +8,21 @@
 * ----------  -----  ---------------------------------------------------------
 * 2023-02-18  C2RLO
 */
+/**
+ * DeviceTypes
+ *
+ * @export DeviceTypes
+ * @class DeviceTypes
+ */
+export class DeviceType {
 
-var DeviceTypes = [
+  deviceType: string
+
+  public getRandom(): string {
+    return this.deviceTypes[Math.floor(Math.random() * this.deviceTypes.length)]
+  }
+
+  deviceTypes: string [] = [
   "Bridge",
   "CoolAir",
   "Copier",
@@ -36,3 +49,5 @@ var DeviceTypes = [
   "UPS System",
   "Workstations",
 ]
+
+}

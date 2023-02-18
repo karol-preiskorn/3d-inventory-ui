@@ -29,4 +29,9 @@
     "strictTemplates": true,
     "strictPropertyInitialization": false
   }
+  // "ts-node": {
+  //   "transpileOnly": true,
+  //   "files": true,
+  //   "swc": true
+  // }
 }
