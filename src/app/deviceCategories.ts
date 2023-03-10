@@ -9,13 +9,14 @@
 * 2023-02-18  C2RLO
 */
 
-export default interface DeviceCategoryTypes {
+export interface DeviceCategoryInterfance {
   Category: string;
   Description: string;
 }
 
 export class DeviceCategory {
-  deviceCategories: DeviceCategoryTypes[] = [
+
+  deviceCategories: DeviceCategoryInterfance[] = [
     {
       Category: "Connectivity",
       Description:
@@ -33,8 +34,26 @@ export class DeviceCategory {
     },
   ]
 
-  public getRandom(): DeviceCategoryTypes {
-    return this.deviceCategories[Math.floor(Math.random() * this.deviceCategories.length)]
+  public getRandomCategory(): string {
+    return this.deviceCategories[Math.floor(Math.random() * this.deviceCategories.length)].Category
   }
 
+  findCategory(deviceCategory: DeviceCategoryInterfance, searchCategory: string) {
+    return deviceCategory.Category == searchCategory;
+  }
+
+  findCategoryImplementation(this: any, searchCategory: string): DeviceCategoryInterfance[] {
+    return this.deviceCategories.find(this.findCategory(searchCategory))
+  }
+
+  // getCat(category: string): string {
+  //   return this.deviceCategories.find((element) => element.Category === category)?.Category
+  // }
+
+  public getRandom(): DeviceCategoryInterfance {
+    return this.deviceCategories[Math.floor(Math.random() * this.deviceCategories.length)]
+  }
 }
+
+// var devicesT = new DeviceCategory()
+// var r = devicesT.findCategoryImplementation('Site')

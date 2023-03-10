@@ -1,4 +1,4 @@
-import { devices } from './devices'
+import { DevicesComponent } from './devices/devices.component'
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CubeComponent } from './cube/cube.component';

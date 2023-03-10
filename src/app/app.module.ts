@@ -1,13 +1,15 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http'
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { CubeComponent } from './cube/cube.component';
-import { ModelComponent } from './model/model.component';
-import { HomeComponent } from './home/home.component';
-import { DeviceOperationsComponent } from './device-operations/device-operations.component';
+import { ReactiveFormsModule } from '@angular/forms'
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { CubeComponent } from './cube/cube.component'
+import { DeviceOperationsComponent } from './device-operations/device-operations.component'
+import { DevicesComponent } from './devices/devices.component'
+import { HomeComponent } from './home/home.component'
+import { ModelComponent } from './model/model.component'
 
 @NgModule({
   declarations: [
@@ -15,14 +17,19 @@ import { DeviceOperationsComponent } from './device-operations/device-operations
     CubeComponent,
     ModelComponent,
     HomeComponent,
-    DeviceOperationsComponent
+    DeviceOperationsComponent,
+    DevicesComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    DevicesComponent
+  ]
 })
 export class AppModule { }

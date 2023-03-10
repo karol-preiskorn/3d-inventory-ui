@@ -1,12 +1,127 @@
-<p>List of devices</p>
-<div *ngFor="let device of devices">
+<h2>Add devices</h2>
 
-  <h3>
-    <a
-      [title]="device.name + ' details'"
-      [routerLink]="['/devices', device.id]">
-      {{ device.name }}
-    </a>
-  </h3>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <label
+        for="FormControlInput1"
+        class="form-label"
+      >Name</label>
+      <input
+        type="name"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="uuid"
+        [formControl]="nameControl"
+      >
+    </div>
 
+    <div class="col-3">
+      <label
+        for="FormControlInput1"
+        class="form-label"
+      >Type</label>
+      <select
+        class="form-select"
+        aria-label="Default select example"
+      >
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+
+    <div class="col-3">
+      <label
+        for="FormControlInput1"
+        class="form-label"
+      >Category</label>
+      <select
+        class="form-select"
+        aria-label="Default select example"
+      >
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <button
+      class="btn btn-primary"
+      type="submit"
+      (click)="addDevice()"
+    ><i class="bi bi-plus-lg"></i> Add device</button>
+  </div>
 </div>
+
+<h2>List devices</h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div
+        class="list-group"
+        id="list-tab"
+        role="tablist"
+      >
+        <a
+          *ngFor="let deviceItem of deviceList"
+          class="list-group-item list-group-item-action"
+          id="list-{{ deviceItem.id }}-list"
+          data-bs-toggle="list"
+          href="#list-{{ deviceItem.id }}"
+          role="tab"
+          aria-controls="profile"
+          [attr.aria-controls]="['list-', deviceItem.id]"
+          [title]="deviceItem.name + ' details'"
+        >
+          <div class="container text-left">
+            <div class="row">
+              <div class="col">
+                {{ deviceItem.name }}
+              </div>
+              <div class="col">
+                {{ deviceItem.category.Category }}
+              </div>
+              <div class="col">
+                {{ deviceItem.type }}
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div
+        class="tab-content"
+        id="nav-tabContent"
+      >
+        <div
+          *ngFor="let deviceItem of deviceList"
+          class="tab-pane fade"
+          role="tabpanel"
+          [attr.aria-labelledby]="['list-', deviceItem.id, '-list']"
+          id="list-{{ deviceItem.id }}"
+        >{{ deviceItem.category.Description }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const triggerTabList = document.querySelectorAll('#list-tab a')
+  triggerTabList.forEach(triggerEl => {
+    const tabTrigger = new bootstrap.Tab(triggerEl)
+
+    triggerEl.addEventListener('click', event => {
+      event.preventDefault()
+      tabTrigger.show()
+    })
+  })
+</script>
