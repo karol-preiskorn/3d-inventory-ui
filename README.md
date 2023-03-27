@@ -8,9 +8,9 @@ Project create 3d inventory on stack
 - REST
 - Docker
 
-![3d inventory ui](https://file%2B.vscode-resource.vscode-cdn.net/home/karol/GitHub/3d-inventory-angular-ui/doc/img/Screenshot%20from%202023-03-27%2008-11-29.png?version%3D1679897600359)
+![3d inventory ui](doc/img/Screenshot%20from%202023-03-27%2008-11-29.png?version%3D1679897600359)
 
-![3d inventory cube 3d](https://file%2B.vscode-resource.vscode-cdn.net/home/karol/GitHub/3d-inventory-angular-ui/doc/img/Screenshot%20from%202023-03-27%2008-15-27.png?version%3D1679897790517)
+![3d inventory cube 3d](doc/img/Screenshot%20from%202023-03-27%2008-15-27.png?version%3D1679897790517)
 
 ## Angular + Three.js
 
