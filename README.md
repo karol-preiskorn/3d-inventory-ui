@@ -8,6 +8,10 @@ Project create 3d inventory on stack
 - REST
 - Docker
 
+![3d inventory ui](https://file%2B.vscode-resource.vscode-cdn.net/home/karol/GitHub/3d-inventory-angular-ui/doc/img/Screenshot%20from%202023-03-27%2008-11-29.png?version%3D1679897600359)
+
+![3d inventory cube 3d](https://file%2B.vscode-resource.vscode-cdn.net/home/karol/GitHub/3d-inventory-angular-ui/doc/img/Screenshot%20from%202023-03-27%2008-15-27.png?version%3D1679897790517)
+
 ## Angular + Three.js
 
 This project consists of two examples:
@@ -46,14 +50,14 @@ Not forget about https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines
 - Use PascalCase for enum values.
 - Use camelCase for function names.
 - Use camelCase for property names and local variables.
-- Do not use _ as a prefix for private properties.
+- Do not use \_ as a prefix for private properties.
 - Use whole words in names when possible.
 
 ### Components
 
 - 1 file per logical component (e.g. parser, scanner, emitter, checker).
 - Do not add new files. :)
-- files with .generated.* suffix are auto-generated, do not hand-edit them.
+- files with .generated.\* suffix are auto-generated, do not hand-edit them.
 
 ### Types
 
@@ -100,4 +104,3 @@ Use JSDoc style comments for functions, interfaces, enums, and classes.
 
 - add menu
 - add action menu requested rest api to neo4j/Oracle
-

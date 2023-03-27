@@ -1,10 +1,12 @@
 import { Component } from '@angular/core'
 import { FormControl } from '@angular/forms'
-import { Device } from '../device'
+// aggregation
 import { DeviceList } from '../deviceList'
+// entity objects
+import { Device } from '../device'
 import { DeviceTypes } from '../deviceTypes'
 import { DeviceCategory } from '../deviceCategories'
-
+// services
 import { LogService } from '../log.service'
 
 @Component({
@@ -28,13 +30,20 @@ export class DeviceOperationsComponent {
     }
   }
 
+  ngOnInit(): void {
+    this.getDevices()
+  }
+
   addDevice() {
-    const deviceTmp = new Device()
-    deviceTmp.id = this.deviceList.push(deviceTmp)
+    const deviceTmp: Device = new Device()
+
+    this.deviceList.push(deviceTmp)
 
     window.alert('The device has been shared!')
-    this.logService.add('🐛 addDevice()')
+    this.logService.add('✔️ addDevice(' + deviceTmp.name + ')')
   }
+
+  getDevices(): void {}
 
   share() {
     window.alert('The device has been shared!')
