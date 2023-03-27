@@ -3,58 +3,51 @@
 <div class="container">
   <div class="row">
     <div class="col-6">
-      <label
-        for="FormControlInput1"
-        class="form-label"
-      >Name</label>
+      <label for="FormControlName" class="form-label">Name</label>
       <input
         type="name"
         class="form-control"
-        id="exampleFormControlInput1"
+        id="FormControlName"
+        aria-label="FormControlName"
         placeholder="uuid"
         [formControl]="nameControl"
-      >
+      />
     </div>
 
     <div class="col-3">
-      <label
-        for="FormControlInput1"
-        class="form-label"
-      >Type</label>
-      <select
-        class="form-select"
-        aria-label="Default select example"
-      >
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+      <label for="FormControlInputCategory" class="form-label">Category</label>
+      <select class="form-select" aria-label="FormControlInputCategory">
+        <option
+          *ngFor="
+            let item of this.deviceCategory.deviceCategories;
+            let i = index
+          "
+          [value]="item.Category"
+          [selected]="i == 2"
+        >
+          {{ item.Category }}
+        </option>
       </select>
     </div>
 
     <div class="col-3">
-      <label
-        for="FormControlInput1"
-        class="form-label"
-      >Category</label>
-      <select
-        class="form-select"
-        aria-label="Default select example"
-      >
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+      <label for="FormControlInputType" class="form-label">Type</label>
+      <select class="form-select" aria-label="FormControlInputType">
+        <option
+          *ngFor="let item of this.deviceTypes.deviceTypeList; let i = index"
+          [value]="item.DeviceType"
+          [selected]="i == 2"
+        >
+          {{ item.DeviceType }}
+        </option>
       </select>
     </div>
   </div>
 
-  <div class="col-6">
-    <button
-      class="btn btn-primary"
-      type="submit"
-      (click)="addDevice()"
-    ><i class="bi bi-plus-lg"></i> Add device</button>
+  <div class="col-6 p-2">
+    <button class="btn btn-primary" type="submit" (click)="addDevice()">
+      <i class="bi bi-plus-lg"></i> Add device
+    </button>
   </div>
 </div>
 
@@ -63,11 +56,7 @@
 <div class="container">
   <div class="row">
     <div class="col-6">
-      <div
-        class="list-group"
-        id="list-tab"
-        role="tablist"
-      >
+      <div class="list-group" id="list-tab" role="tablist">
         <a
           *ngFor="let deviceItem of deviceList"
           class="list-group-item list-group-item-action"
@@ -97,17 +86,15 @@
     </div>
 
     <div class="col-6">
-      <div
-        class="tab-content"
-        id="nav-tabContent"
-      >
+      <div class="tab-content" id="nav-tabContent">
         <div
           *ngFor="let deviceItem of deviceList"
           class="tab-pane fade"
           role="tabpanel"
           [attr.aria-labelledby]="['list-', deviceItem.id, '-list']"
           id="list-{{ deviceItem.id }}"
-        >{{ deviceItem.category.Description }}
+        >
+          {{ deviceItem.category.Description }}
         </div>
       </div>
     </div>
@@ -116,12 +103,14 @@
 
 <script>
   const triggerTabList = document.querySelectorAll('#list-tab a')
-  triggerTabList.forEach(triggerEl => {
+  triggerTabList.forEach((triggerEl) => {
     const tabTrigger = new bootstrap.Tab(triggerEl)
 
-    triggerEl.addEventListener('click', event => {
+    triggerEl.addEventListener('click', (event) => {
       event.preventDefault()
       tabTrigger.show()
     })
   })
 </script>
+
+<app-log></app-log>

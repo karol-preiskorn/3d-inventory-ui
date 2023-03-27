@@ -1,62 +1,41 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>3d inventory</title>
+    <base href="/" />
 
-<head>
-  <meta charset="utf-8">
-  <title>3d inventory</title>
-  <base href="/">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  >
-  <link
-    rel="icon"
-    type="image/x-icon"
-    href="favicon.ico"
-  >
-</head>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
 
-<body class="d-flex text-white bg-dark">
-  <div class="cover-container d-flex w-100 p-3 mx-auto flex-column">
-    <header class="mb-auto">
-      <div>
-        <h3 class="float-md-start mb-0">3d inventory</h3>
-        <nav class="nav nav-masthead justify-content-center float-md-end">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            href="/home"
-          >Home</a>
-          <a
-            class="nav-link"
-            href="/cube"
-          >Cube</a>
-          <a
-            class="nav-link"
-            href="/device-operations"
-          >Devices</a>
-          <a
-            class="nav-link"
-            href="/device-types"
-          >Device Types</a>
-          <a
-          class="nav-link"
-          href="/device-categories"
-        >Device Categories</a>
-        </nav>
-      </div>
-    </header>
-
-    <main class="md-auto">
-      <div class="container">
-        <app-root></app-root>
-      </div>
-    </main>
-
-    <footer
-      class="text-center text-md-start text-white"
-      style="vertical-align: auto;"
+  <body class="d-flex text-white bg-dark">
+    <div
+      class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column"
+      style="height: 100vh; overflow: auto"
     >
+      <header class="mb-auto">
+        <div>
+          <h3 class="float-md-start mb-0">3d inventory</h3>
+          <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link active" aria-current="page" href="/home">Home</a>
+            <a class="nav-link" href="/cube">Cube</a>
+            <a class="nav-link" href="/device-operations">Devices</a>
+            <a class="nav-link" href="/device-types">Device Types</a>
+            <a class="nav-link" href="/device-categories">Device Categories</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="md-auto">
+        <div class="container">
+          <app-root></app-root>
+        </div>
+      </main>
+
+      <footer
+        class="text-center text-md-start text-white"
+        style="vertical-align: auto"
+      >
         <div class="row d-flex align-items-center">
           <div class="col-md-7 text-center text-md-start">
             <div class="p-3">
@@ -64,28 +43,26 @@
               <a
                 class="text-white"
                 href="https://github.com/karol-preiskorn/3d-inventory"
-              >ultimasolution.pl</a>
+                >ultimasolution.pl</a
+              >
             </div>
           </div>
           <div class="col-md-5 text-center text-md-end">
-            <a
-              class="btn btn-floating m-1"
-              class="text-white"
-              role="button"
-            >
-              <i class="bi bi-github" style="font-size: 2rem; color: rgb(82, 90, 105);"></i>
+            <a class="btn btn-floating m-1" class="text-white" role="button">
+              <i
+                class="bi bi-github"
+                style="font-size: 2rem; color: rgb(82, 90, 105)"
+              ></i>
             </a>
-            <a
-              class="btn btn-floating m-1"
-              class="text-white"
-              role="button"
-            >
-              <i class="bi bi-facebook" style="font-size: 2rem; color: cornflowerblue;"></i>
+            <a class="btn btn-floating m-1" class="text-white" role="button">
+              <i
+                class="bi bi-facebook"
+                style="font-size: 2rem; color: cornflowerblue"
+              ></i>
             </a>
           </div>
         </div>
-    </footer>
-  </div>
-</body>
-
+      </footer>
+    </div>
+  </body>
 </html>

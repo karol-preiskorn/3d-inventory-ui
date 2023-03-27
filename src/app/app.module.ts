@@ -10,6 +10,7 @@ import { DeviceOperationsComponent } from './device-operations/device-operations
 import { DevicesComponent } from './devices/devices.component'
 import { HomeComponent } from './home/home.component'
 import { ModelComponent } from './model/model.component'
+import { LogComponent } from './log/log.component'
 
 @NgModule({
   declarations: [
@@ -18,18 +19,17 @@ import { ModelComponent } from './model/model.component'
     ModelComponent,
     HomeComponent,
     DeviceOperationsComponent,
-    DevicesComponent
+    DevicesComponent,
+    LogComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [
-    DevicesComponent
-  ]
+  exports: [DevicesComponent],
 })
-export class AppModule { }
+export class AppModule {}
