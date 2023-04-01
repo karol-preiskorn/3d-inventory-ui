@@ -17,10 +17,11 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "paths": {
+      "api": ["dist/api"],
+      "swagger-client": ["dist/swagger-client"]
+    },
+    "lib": ["es2018", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

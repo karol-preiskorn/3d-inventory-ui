@@ -1,3 +1,4 @@
+import { DevicesService } from './../devices.service'
 import { Component } from '@angular/core'
 import { FormControl } from '@angular/forms'
 // aggregation
@@ -8,6 +9,12 @@ import { DeviceTypes } from '../deviceTypes'
 import { DeviceCategory } from '../deviceCategories'
 // services
 import { LogService } from '../log.service'
+import { DefaultService } from 'projects/swagger-client/src/api/default.service'
+import { APIS } from 'projects/swagger-client/src/api/api'
+import { BASE_PATH } from 'swagger-client'
+
+import { Observable } from 'rxjs'
+import { ApiModule } from '../../../projects/swagger-client/src/api.module'
 
 @Component({
   selector: 'app-device-operations',
@@ -19,10 +26,15 @@ export class DeviceOperationsComponent {
   deviceTypes: DeviceTypes = new DeviceTypes()
   deviceCategory = new DeviceCategory()
 
-  nameControl = new FormControl('')
+  // nameControl = new FormControl('')
 
-  constructor(private logService: LogService) {
-    console.log('🐛 Generate devicesList')
+  constructor(private logService: LogService, api: DefaultService) {
+    console.log('🐛 1')
+    console.log(api)
+  }
+
+  ngOnInit(): void {
+    this.getDevices()
     this.logService.add('🐛 Generate devicesList')
     for (let index = 0; index < 10; index++) {
       const deviceTmp = new Device()
@@ -30,11 +42,7 @@ export class DeviceOperationsComponent {
     }
   }
 
-  ngOnInit(): void {
-    this.getDevices()
-  }
-
-  addDevice() {
+  addDevice(): void {
     const deviceTmp: Device = new Device()
 
     this.deviceList.push(deviceTmp)
@@ -43,14 +51,16 @@ export class DeviceOperationsComponent {
     this.logService.add('✔️ addDevice(' + deviceTmp.name + ')')
   }
 
-  getDevices(): void {}
+  getDevices(): void {
+    window.alert('Get devices')
+  }
 
-  share() {
+  share(): void {
     window.alert('The device has been shared!')
     this.logService.add('🐛 Share()')
   }
 
-  getDeviceType() {
+  getDeviceType(): any {
     return this.deviceTypes.get()
   }
 }
