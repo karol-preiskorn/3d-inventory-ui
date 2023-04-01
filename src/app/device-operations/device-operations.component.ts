@@ -1,14 +1,14 @@
-import { DevicesService } from './../devices.service'
+import { DevicesService } from './../services/devices.service'
 import { Component } from '@angular/core'
 import { FormControl } from '@angular/forms'
 // aggregation
-import { DeviceList } from '../deviceList'
+import { DeviceList } from './../shared/deviceList'
 // entity objects
-import { Device } from '../device'
-import { DeviceTypes } from '../deviceTypes'
-import { DeviceCategory } from '../deviceCategories'
+import { Device } from '../shared/device'
+import { DeviceTypes } from './../shared/deviceTypes'
+import { DeviceCategories } from './../shared/deviceCategories'
 // services
-import { LogService } from '../log.service'
+import { LogService } from '../services/log.service'
 import { DefaultService } from 'projects/swagger-client/src/api/default.service'
 import { APIS } from 'projects/swagger-client/src/api/api'
 import { BASE_PATH } from 'swagger-client'
@@ -24,7 +24,7 @@ import { ApiModule } from '../../../projects/swagger-client/src/api.module'
 export class DeviceOperationsComponent {
   deviceList: Device[] = []
   deviceTypes: DeviceTypes = new DeviceTypes()
-  deviceCategory = new DeviceCategory()
+  deviceCategory = new DeviceCategories()
 
   // nameControl = new FormControl('')
 

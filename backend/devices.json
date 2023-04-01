@@ -1,12 +1,6 @@
 {
   "devices": [
     {
-      "id": "3",
-      "name": "CC",
-      "type": "T2",
-      "category": "C2"
-    },
-    {
       "id": "4",
       "name": "DD",
       "type": "T2",

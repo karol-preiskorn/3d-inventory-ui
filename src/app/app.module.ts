@@ -7,14 +7,15 @@ import { Configuration } from 'projects/swagger-client/src/configuration'
 import { BASE_PATH } from 'swagger-client'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
+import { DevicesListComponent } from './components/devices-list/devices-list.component'
 import { CubeComponent } from './cube/cube.component'
 import { DeviceOperationsComponent } from './device-operations/device-operations.component'
 import { DevicesComponent } from './devices/devices.component'
 import { HomeComponent } from './home/home.component'
 import { LogComponent } from './log/log.component'
 import { ModelComponent } from './model/model.component'
-import { DevicesService } from './devices.service'
-import { DevicesListComponent } from './components/devices-list/devices-list.component'
+import { DevicesService } from './services/devices.service'
+import { LogService } from './services/log.service'
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { DevicesListComponent } from './components/devices-list/devices-list.com
   providers: [
     { provide: BASE_PATH, useValue: 'http://localhost:8080' },
     DevicesService,
+    LogService,
   ],
   bootstrap: [AppComponent],
   exports: [DevicesComponent],

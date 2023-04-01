@@ -1,13 +1,15 @@
-﻿import { Device, devicesList } from "./device"
+﻿import { Device } from './device'
 
 // @TODO #2: Create class deviceLists operated on list of devices
 // @TODO #3: Get list/Find in list
 
 export class DeviceList {
-  deviceList: Device[] = [];
+  deviceList: Device[] = []
 
   print() {
-    devicesList.forEach(element => { element.print() })
+    this.deviceList.forEach((element) => {
+      element.print()
+    })
   }
 
   get(): Device[] {

@@ -1,4 +1,4 @@
-import { Device } from './device'
+import { Device } from '../shared/device'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs'
 import { retry, catchError } from 'rxjs/operators'
@@ -53,7 +53,7 @@ export class DevicesService {
     this.devices = []
   }
 
-  errorHandl(error: { error: { message: string }; status: any; message: ny }) {
+  errorHandl(error: { error: { message: string }; status: any; message: any }) {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       // Get client-side error

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { getDateString } from '../app/utils'
+import { getDateString } from '../shared/utils'
 
 export type type_log = {
   id: number

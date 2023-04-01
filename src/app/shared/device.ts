@@ -15,14 +15,17 @@ import {
   uniqueNamesGenerator,
 } from 'unique-names-generator'
 import { v4 as uuidv4 } from 'uuid'
-import { DeviceCategory, DeviceCategoryInterfance } from './deviceCategories'
+import {
+  DeviceCategories,
+  DeviceCategoriesInterfance,
+} from './deviceCategories'
 import { DeviceTypes } from './deviceTypes'
 
 export class Device {
   id: string
   name: string
   type: string
-  category: DeviceCategoryInterfance
+  category: DeviceCategoriesInterfance
 
   constructor() {
     this.id = uuidv4()
@@ -32,7 +35,7 @@ export class Device {
       separator: '-',
     }) // big_red_donkey
     this.type = new DeviceTypes().getRandom()
-    this.category = new DeviceCategory().getRandom()
+    this.category = new DeviceCategories().getRandom()
   }
 
   print() {
@@ -64,19 +67,20 @@ export class Device {
 
 // @TODO: #1 Generate 100 random records
 //
-console.log('Generate devicesList')
-export var devicesList: Device[] = []
 
-try {
-  for (let index = 0; index < 10; index++) {
-    const deviceTmp = new Device()
-    devicesList.push(deviceTmp)
-  }
-} catch (err) {
-  console.log('🐛 Generate devicesList', err)
-}
+// console.log('Generate devicesList')
+// export const devicesList: Device[] = []
 
-console.log('Print devicesList')
-devicesList.forEach((element, i) => {
-  console.log(i + 1, element.getString())
-})
+// try {
+//   for (let index = 0; index < 10; index++) {
+//     const deviceTmp = new Device()
+//     devicesList.push(deviceTmp)
+//   }
+// } catch (err) {
+//   console.log('🐛 Generate devicesList', err)
+// }
+
+// console.log('Print devicesList')
+// devicesList.forEach((element, i) => {
+//   console.log(i + 1, element.getString())
+// })
