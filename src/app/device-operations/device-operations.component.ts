@@ -28,9 +28,8 @@ export class DeviceOperationsComponent {
 
   // nameControl = new FormControl('')
 
-  constructor(private logService: LogService, api: DefaultService) {
+  constructor(private logService: LogService) {
     console.log('🐛 1')
-    console.log(api)
   }
 
   ngOnInit(): void {
