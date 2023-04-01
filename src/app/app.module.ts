@@ -13,6 +13,8 @@ import { DevicesComponent } from './devices/devices.component'
 import { HomeComponent } from './home/home.component'
 import { LogComponent } from './log/log.component'
 import { ModelComponent } from './model/model.component'
+import { DevicesService } from './devices.service'
+import { DevicesListComponent } from './components/devices-list/devices-list.component'
 
 @NgModule({
   declarations: [
@@ -23,23 +25,28 @@ import { ModelComponent } from './model/model.component'
     DeviceOperationsComponent,
     DevicesComponent,
     LogComponent,
+    DevicesListComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    ApiModule.forRoot(getApiConfiguration),
+    // ApiModule.forRoot(getApiConfiguration),
+    ApiModule,
   ],
-  providers: [{ provide: BASE_PATH, useValue: 'http://localhost:8080' }],
+  providers: [
+    { provide: BASE_PATH, useValue: 'http://localhost:8080' },
+    DevicesService,
+  ],
   bootstrap: [AppComponent],
   exports: [DevicesComponent],
 })
 export class AppModule {}
-function getApiConfiguration(): Configuration {
-  try {
-    console.log('✳️ getApiConfiguration')
-  } catch (error) {
-    throw new Error('Function getApiConfiguration not implemented.')
-  }
-}
+// function getApiConfiguration(): Configuration {
+//   try {
+//     console.log('✳️ getApiConfiguration')
+//   } catch (error) {
+//     throw new Error('Function getApiConfiguration not implemented.')
+//   }
+// }

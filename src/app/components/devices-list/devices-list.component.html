@@ -1,0 +1,46 @@
+<div class="container wrapper">
+  <div class="row">
+    <!-- Issue table -->
+    <div class="col-md-12">
+      <div class="inner">
+        <h3>My Devices</h3>
+        <table class="table table-striped table-dark table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let device of DevicesList">
+              <th scope="row">{{ device.id }}</th>
+              <td>{{ device.name }}</td>
+              <td>{{ device.type }}</td>
+              <td>{{ device.category }}</td>
+              <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button
+                    type="button"
+                    class="btn btn-success btn-sm move-right"
+                    [routerLink]="['/edit-device/', device.id]"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm"
+                    (click)="deleteDevice(device)"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

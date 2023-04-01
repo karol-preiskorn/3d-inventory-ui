@@ -1,32 +1,37 @@
 import { DevicesComponent } from './devices/devices.component'
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { CubeComponent } from './cube/cube.component';
-import { ModelComponent } from './model/model.component';
-import { HomeComponent } from './home/home.component';
-import { DeviceOperationsComponent } from './device-operations/device-operations.component';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
+import { CubeComponent } from './cube/cube.component'
+import { ModelComponent } from './model/model.component'
+import { HomeComponent } from './home/home.component'
+import { DeviceOperationsComponent } from './device-operations/device-operations.component'
+import { DevicesListComponent } from './components/devices-list/devices-list.component'
 
 const routes: Routes = [
   {
-    path: "home",
-    component: HomeComponent
+    path: 'home',
+    component: HomeComponent,
   },
   {
-    path: "cube",
-    component: CubeComponent
+    path: 'cube',
+    component: CubeComponent,
   },
   {
-    path: "device-operations",
-    component: DeviceOperationsComponent
+    path: 'device-operations',
+    component: DeviceOperationsComponent,
   },
   {
-    path: "model",
-    component: ModelComponent
+    path: 'model',
+    component: ModelComponent,
   },
-];
+  {
+    path: 'device-list',
+    component: DevicesListComponent,
+  },
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

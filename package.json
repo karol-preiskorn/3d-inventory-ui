@@ -10,8 +10,8 @@
     "test": "ng test",
     "prepare": "husky install",
     "prettier": "prettier --check src/**/*.ts",
-    "jsonserver:bugs": "json-server --watch bugs.json",
-    "jsonserver:devices": "json-server --watch devices.json"
+    "jsonserver:bugs": "cd backend && json-server --watch bugs.json",
+    "jsonserver:devices": "cd backend && json-server --watch devices.json"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
