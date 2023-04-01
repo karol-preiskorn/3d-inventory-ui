@@ -1,6 +1,6 @@
 {
   "name": "3d-inventory-angular-ui",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +9,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "prepare": "husky install",
-    "prettier": "prettier --check src/**/*.ts"
+    "prettier": "prettier --check src/**/*.ts",
+    "jsonserver:bugs": "json-server --watch bugs.json",
+    "jsonserver:devices": "json-server --watch devices.json"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"

@@ -63,6 +63,17 @@ export class AppModule {
 }
 ```
 
+### Json serwer
+
+For testinting api run `jsonserver`.
+
+baseurl = 'http://localhost:3000';
+
+```js
+"jsonserver:bugs": "json-server --watch bugs.json",
+"jsonserver:devices": "json-server --watch devices.json"
+```
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

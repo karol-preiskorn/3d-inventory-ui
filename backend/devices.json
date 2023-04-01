@@ -1,0 +1,28 @@
+{
+  "devices": [
+    {
+      "id": "1",
+      "name": "ABA",
+      "type": "T1",
+      "category": "C1"
+    },
+    {
+      "id": "2",
+      "name": "BB",
+      "type": "T1",
+      "category": "C2"
+    },
+    {
+      "id": "3",
+      "name": "CC",
+      "type": "T2",
+      "category": "C2"
+    },
+    {
+      "id": "4",
+      "name": "DD",
+      "type": "T2",
+      "category": "C1"
+    }
+  ]
+}
