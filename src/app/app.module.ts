@@ -16,6 +16,8 @@ import { LogComponent } from './log/log.component'
 import { ModelComponent } from './model/model.component'
 import { DevicesService } from './services/devices.service'
 import { LogService } from './services/log.service'
+import { EditDeviceComponent } from './components/edit-device/edit-device.component'
+import { AddDeviceComponent } from './components/add-device/add-device.component'
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { LogService } from './services/log.service'
     DevicesComponent,
     LogComponent,
     DevicesListComponent,
+    EditDeviceComponent,
+    AddDeviceComponent,
   ],
   imports: [
     HttpClientModule,

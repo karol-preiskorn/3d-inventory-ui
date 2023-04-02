@@ -7,15 +7,16 @@
         <table class="table table-striped table-dark table-hover">
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">Id</th>
               <th scope="col">Name</th>
+              <th scope="col">Type</th>
               <th scope="col">Category</th>
+              <th scope="col">Opertions</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let device of DevicesList">
-              <th scope="row">{{ device.id }}</th>
+              <td>{{ device.id }}</td>
               <td>{{ device.name }}</td>
               <td>{{ device.type }}</td>
               <td>{{ device.category }}</td>
@@ -40,7 +41,15 @@
             </tr>
           </tbody>
         </table>
+        <button
+          type="button"
+          class="btn btn-success btn-sm move-right"
+          [routerLink]="['/add-device/']"
+        >
+          <i class="bi bi-plus-lg"></i> Add
+        </button>
       </div>
     </div>
   </div>
 </div>
+<app-log></app-log>

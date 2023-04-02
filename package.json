@@ -1,6 +1,6 @@
 {
   "name": "3d-inventory-angular-ui",
-  "version": "0.2.0",
+  "version": "0.2.3",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,7 +11,8 @@
     "prepare": "husky install",
     "prettier": "prettier --check src/**/*.ts",
     "jsonserver:bugs": "cd backend && json-server --watch bugs.json",
-    "jsonserver:devices": "cd backend && json-server --watch devices.json"
+    "jsonserver:devices": "cd backend && json-server --watch devices.json",
+    "set_opt": "export NODE_OPTIONS=--openssl-legacy-provider"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"

@@ -6,6 +6,8 @@ import { ModelComponent } from './model/model.component'
 import { HomeComponent } from './home/home.component'
 import { DeviceOperationsComponent } from './device-operations/device-operations.component'
 import { DevicesListComponent } from './components/devices-list/devices-list.component'
+import { EditDeviceComponent } from './components/edit-device/edit-device.component'
+import { AddDeviceComponent } from './components/add-device/add-device.component'
 
 const routes: Routes = [
   {
@@ -25,8 +27,16 @@ const routes: Routes = [
     component: ModelComponent,
   },
   {
-    path: 'device-list',
+    path: 'devices-list',
     component: DevicesListComponent,
+  },
+  {
+    path: 'edit-device/:id',
+    component: EditDeviceComponent,
+  },
+  {
+    path: 'add-device',
+    component: AddDeviceComponent,
   },
 ]
 

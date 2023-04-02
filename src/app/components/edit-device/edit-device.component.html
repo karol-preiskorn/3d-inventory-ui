@@ -1,0 +1,48 @@
+<div class="container wrapper wrapper2">
+  <div class="row">
+    <!-- Form -->
+    <div class="col-md-12">
+      <h3>Add Device</h3>
+      <form [formGroup]="updateDeviceForm" (ngSubmit)="submitForm()" novalidate>
+        <div class="form-group">
+          <label>Id</label>
+          <input
+            type="text"
+            formControlName="id"
+            class="form-control"
+            maxlength="20"
+          />
+        </div>
+        <div class="form-group">
+          <label>Name</label>
+          <textarea
+            class="form-control"
+            formControlName="name"
+            rows="3"
+            maxlength="50"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label>Type</label>
+          <textarea
+            class="form-control"
+            formControlName="type"
+            rows="3"
+            maxlength="50"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <textarea
+            class="form-control"
+            formControlName="category"
+            rows="3"
+            maxlength="50"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+    </div>
+  </div>
+</div>
+<app-log></app-log>
