@@ -2,7 +2,7 @@
   "devices": [
     {
       "id": "N1",
-      "name": "sadaadasdas=====",
+      "name": "sadaadasdas=====uyut",
       "type": "Desktop",
       "category": "Site"
     },
@@ -442,6 +442,34 @@
       "category": "Info",
       "component": "EditDeviceComponent.SubmitForm",
       "message": "Submit device: {\"id\":\"N1aaaaa\",\"name\":\"sadaadasdas=====\",\"type\":\"Desktop\",\"category\":\"Site\"}"
+    },
+    {
+      "id": "addce936-0d04-4a8c-9cbc-eceab4260709",
+      "date": "2023/04/11 19:28:38.39",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"N1tttt\",\"name\":\"sadaadasdas=====uyut\",\"type\":\"Desktop\",\"category\":\"Site\"}"
+    },
+    {
+      "id": "0b1de50d-72fc-4bc2-8e68-371b87c9933d",
+      "date": "2023/04/11 19:28:57.76",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: ss"
+    },
+    {
+      "id": "8c3f01d2-f427-43fe-ba28-f799c4a10851",
+      "date": "2023/04/11 19:29:00.02",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: N1"
+    },
+    {
+      "id": "fdb3511e-d79b-4744-87d0-26e9a16a14dc",
+      "date": "2023/04/11 19:29:01.33",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: sds"
     }
   ]
 }
