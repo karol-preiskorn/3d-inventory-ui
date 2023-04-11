@@ -6,51 +6,57 @@
  *
  * Date        By     Comments
  * ----------  -----  ------------------------
- * 2023-02-19	C2RLO	 add findType
+ * 2023-04-11	 C2RLO	 convert to DeviceType and DeviceTypeList
+ * 2023-02-19	 C2RLO	add findType
  * 2023-02-18  C2RLO  Init
  */
 
-/**
- * DeviceTypes
- * --
- * @export DeviceTypes
- * @class DeviceTypes
- */
-
-type deviceTypeType = {
-  DeviceType: string
+interface DeviceTypeInterfance {
+  name: string
+  description: string
 }
 
-export class DeviceTypes {
-  deviceTypeList: { DeviceType: string }[] = [
-    { DeviceType: 'Bridge' },
-    { DeviceType: 'CoolAir' },
-    { DeviceType: 'Copier' },
-    { DeviceType: 'Desktop' },
-    { DeviceType: 'Firewall' },
-    { DeviceType: 'Getaway' },
-    { DeviceType: 'Hubs' },
-    { DeviceType: 'Load Balancer' },
-    { DeviceType: 'Modem' },
-    { DeviceType: 'Multiplexer' },
-    { DeviceType: 'PDU System' },
-    { DeviceType: 'Power' },
-    { DeviceType: 'Printer' },
-    { DeviceType: 'Probe' },
-    { DeviceType: 'Repeaters' },
-    { DeviceType: 'Router' },
-    { DeviceType: 'Security Device' },
-    { DeviceType: 'Server' },
-    { DeviceType: 'Switch' },
-    { DeviceType: 'Telephone' },
-    { DeviceType: 'Terminal' },
-    { DeviceType: 'Traffic shaper' },
-    { DeviceType: 'Transceiver' },
-    { DeviceType: 'UPS System' },
-    { DeviceType: 'Workstations' },
+type DeviceTypeListType = { name: string; description: string }
+
+export class DeviceType {
+  name: string
+  description: string
+  constructor(deviceType: DeviceTypeListType) {
+    this.name = deviceType.name
+    this.description = deviceType.description
+  }
+}
+
+export class DeviceTypeDict {
+  list: DeviceType[] = [
+    { name: 'Bridge', description: '' },
+    { name: 'CoolAir', description: '' },
+    { name: 'Copier', description: '' },
+    { name: 'Desktop', description: '' },
+    { name: 'Firewall', description: '' },
+    { name: 'Getaway', description: '' },
+    { name: 'Hubs', description: '' },
+    { name: 'Load Balancer', description: '' },
+    { name: 'Modem', description: '' },
+    { name: 'Multiplexer', description: '' },
+    { name: 'PDU System', description: '' },
+    { name: 'Power', description: '' },
+    { name: 'Printer', description: '' },
+    { name: 'Probe', description: '' },
+    { name: 'Repeaters', description: '' },
+    { name: 'Router', description: '' },
+    { name: 'Security Device', description: '' },
+    { name: 'Server', description: '' },
+    { name: 'Switch', description: '' },
+    { name: 'Telephone', description: '' },
+    { name: 'Terminal', description: '' },
+    { name: 'Traffic shaper', description: '' },
+    { name: 'Transceiver', description: '' },
+    { name: 'UPS System', description: '' },
+    { name: 'Workstations', description: '' },
   ]
-  get(): { DeviceType: string }[] {
-    return this.deviceTypeList
+  get(): DeviceType[] {
+    return this.list
   }
 
   /**
@@ -58,45 +64,49 @@ export class DeviceTypes {
    * @return {*}  {string}
    * @memberof DeviceTypes
    */
-  getRandom(): string {
-    return this.deviceTypeList[
-      Math.floor(Math.random() * this.deviceTypeList.length)
-    ].DeviceType
+  public getRandom(): DeviceType {
+    return this.list[Math.floor(Math.random() * this.list.length)]
   }
   /**
-   *
+   * Find specyfic type in DevieTypeList
    *
    * @param {string} search
    * @return {*}  {string}
    * @memberof DeviceTypes
    */
-  findType(search: string): string | undefined {
-    const element = this.deviceTypeList.find((e) => e.DeviceType === search)
-    return element?.DeviceType || search // element?.DeviceType || search
+  findType(search: string): string | DeviceType {
+    const element = this.list.find((e) => e.name === search)
+    return element || search // element?.DeviceType || search
   }
 
-  findObj(obj: deviceTypeType) {
-    for (let i = 0; i < this.deviceTypeList.length; i++) {
-      if (this.deviceTypeList[i].DeviceType === obj.DeviceType) {
+  findTypeByName(obj: string) {
+    for (let i = 0; i < this.list.length; i++) {
+      if (this.list[i].name === obj) {
         console.log('-->', obj)
       }
     }
   }
 }
 
-const devicesT = new DeviceTypes()
-const f = devicesT.findType('Probe')
+const devicesT = new DeviceTypeDict()
+const f = devicesT.findTypeByName('Probe')
 console.log('-->', f)
 
-// Function loop over the array,
-// then check if the type property is equal to the property in each object of the array
-
-function findObj(arr: Array<deviceTypeType>, obj: deviceTypeType) {
+/**
+ * Function loop over the array, then check if the type property is equal to the property in each object of the array
+ *
+ * @param {Array<deviceTypeType>} arr
+ * @param {deviceTypeType} obj
+ */
+function findObjinDeviceTypes(
+  arr: Array<DeviceTypeListType>,
+  obj: DeviceTypeListType
+) {
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i].DeviceType === obj.DeviceType) {
+    if (arr[i].name === obj.name) {
       console.log('-->', obj)
     }
   }
 }
-
-findObj(devicesT.deviceTypeList, { DeviceType: 'Workstations' })
+// test findObjinDeviceTypes
+findObjinDeviceTypes(devicesT.list, { name: 'Workstations', description: '' })

@@ -1,7 +1,9 @@
 import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup } from '@angular/forms'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Device } from 'src/app/shared/device'
+import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
+import { DeviceType, DeviceTypeDict } from 'src/app/shared/deviceTypes'
 import { DevicesService } from './../../services/devices.service'
 import { LogService } from './../../services/log.service'
 
@@ -11,57 +13,91 @@ import { LogService } from './../../services/log.service'
   styleUrls: ['./edit-device.component.scss'],
 })
 export class EditDeviceComponent implements OnInit {
-  DevicesList: any = []
-  updateDeviceForm: FormGroup
+  inputId: any
+  device: Device
+
+  editForm = new FormGroup({
+    id: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    type: new FormControl('', Validators.required),
+    category: new FormControl('', Validators.required),
+  })
+
+  deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
+  deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
+  isSubmitted = false
 
   ngOnInit() {
-    this.updateForm()
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
+    this.device = this.getDevice()
   }
 
   constructor(
-    private actRoute: ActivatedRoute,
+    public activatedRoute: ActivatedRoute,
     public devicesService: DevicesService,
-    public fb: FormBuilder,
     private ngZone: NgZone,
     private router: Router,
     private logService: LogService
-  ) {
-    const id: string | null = this.actRoute.snapshot.paramMap.get('id')
-    this.devicesService.GetDevice(id).subscribe((data: Device) => {
-      this.updateDeviceForm = this.fb.group({
-        id: [data.id],
-        name: [data.name],
-        type: [data.type],
-        category: [data.category],
-      })
-    })
+  ) {}
+
+  changeId(e: any) {
+    this.id?.setValue(e.target.value, { onlySelf: true })
+  }
+  changeName(e: any) {
+    this.name?.setValue(e.target.value, { onlySelf: true })
   }
 
-  updateForm() {
-    this.logService.add({
-      message: 'Edit device: ' + this.actRoute.snapshot.paramMap.get('id'),
-      category: 'Info',
-      component: 'EditDeviceComponent.updateForm',
-    })
-    this.updateDeviceForm = this.fb.group({
-      id: [''],
-      name: [''],
-      type: [''],
-      category: [''],
-    })
+  changeType(e: any) {
+    this.type?.setValue(e.target.value, { onlySelf: true })
+  }
+  changeCategory(e: any) {
+    this.category?.setValue(e.target.value, { onlySelf: true })
+  }
+
+  // Access formcontrols getter
+
+  get id() {
+    return this.editForm.get('id')
+  }
+  get name() {
+    return this.editForm.get('name')
+  }
+  get type() {
+    return this.editForm.get('type')
+  }
+  get category() {
+    return this.editForm.get('category')
+  }
+
+  toString(data: any): string {
+    return JSON.stringify(data)
+  }
+
+  private getDevice(): any {
+    console.log(this.inputId)
+
+    return this.devicesService
+      .GetDevice(this.inputId)
+      .subscribe((data: any) => {
+        console.log('GetDevice ' + JSON.stringify(data))
+        this.device = data
+        this.editForm.setValue(data)
+      })
   }
 
   submitForm() {
-    const id: string | null = this.actRoute.snapshot.paramMap.get('id')
-    this.logService.add({
-      message: 'Edit device: ' + this.actRoute.snapshot.paramMap.get('id'),
-      category: 'Info',
-      component: 'EditDeviceComponent.SubmitForm',
-    })
-    this.devicesService
-      .UpdateDevice(id, this.updateDeviceForm.value)
-      .subscribe((res) => {
-        this.ngZone.run(() => this.router.navigateByUrl('/devices-list'))
+    if (this.editForm.valid && this.editForm.touched) {
+      this.logService.CreateLog({
+        message: 'Submit device: ' + JSON.stringify(this.editForm.value),
+        category: 'Info',
+        component: 'EditDeviceComponent.SubmitForm',
       })
+
+      this.devicesService
+        .UpdateDevice(this.inputId, this.editForm.value)
+        .subscribe(() => {
+          this.ngZone.run(() => this.router.navigateByUrl('devices-list'))
+        })
+    }
   }
 }

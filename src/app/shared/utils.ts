@@ -1,31 +1,23 @@
 ﻿/*
  * File:        /src/app/utils.ts
- * Description:
- * Used by:
+ * Description: Differest TS function shared by all Components
+ * Used by:     LogService
  * Dependency:
  *
  * Date        By     Comments
  * ----------  -----  ---------------------------------------------------------
- * 2023-03-12  C2RLO
+ * 2023-04-02	vC2RLO  Fix + and add seconds to show in LogService
+ * 2023-03-12  C2RLO  Oninit
  */
 
-function date_TO_String(date_Object: Date): string {
-  // get the year, month, date, hours, and minutes seprately and append to the string.
-  const date_String: string =
-    date_Object.getFullYear() +
-    '/' +
-    (date_Object.getMonth() + 1) +
-    '/' +
-    +date_Object.getDate() +
-    ' ' +
-    +date_Object.getHours() +
-    ':' +
-    +date_Object.getMinutes()
-  return date_String
-}
+import { format } from 'date-fns'
 
+/**
+ * Export date in format 'yyyy/MM/dd kk:mm:ss.SS'
+ *
+ * @export
+ * @return {*}  date {string} 'yyyy/MM/dd kk:mm:ss.SS'
+ */
 export function getDateString(): string {
-  const new_date: Date = new Date()
-  const date_string = date_TO_String(new_date)
-  return date_string
+  return format(new Date(), 'yyyy/MM/dd kk:mm:ss.SS')
 }

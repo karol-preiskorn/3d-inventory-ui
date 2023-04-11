@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-three": {
+    "3d-inventory-angular-ui": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,11 +20,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-three",
+            "outputPath": "dist/3d-inventory-angular-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "tsconfig.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
@@ -38,10 +38,13 @@
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap/scss/bootstrap.scss",
-              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/prismjs/themes/prism-okaidia.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/marked/marked.min.js",
+              "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js"
             ]
           },
           "configurations": {
@@ -81,10 +84,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-three:build:production"
+              "browserTarget": "3d-inventory-angular-ui:build:production"
             },
             "development": {
-              "browserTarget": "angular-three:build:development"
+              "browserTarget": "3d-inventory-angular-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -92,7 +95,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-three:build"
+            "browserTarget": "3d-inventory-angular-ui:build"
           }
         },
         "test": {
@@ -115,75 +118,18 @@
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap/scss/bootstrap.scss",
-              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/prismjs/themes/prism-okaidia.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/marked/marked.min.js",
+              "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js"
             ]
-          }
-        }
-      }
-    },
-    "swagger-client": {
-      "projectType": "library",
-      "root": "projects/swagger-client",
-      "sourceRoot": "projects/swagger-client/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/swagger-client/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/swagger-client/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/swagger-client/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "projects/swagger-client/tsconfig.spec.json",
-            "polyfills": ["zone.js", "zone.js/testing"]
-          }
-        }
-      }
-    },
-    "api": {
-      "projectType": "library",
-      "root": "projects/api",
-      "sourceRoot": "projects/api/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/api/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/api/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/api/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "projects/api/tsconfig.spec.json",
-            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }
     }
   },
-  "defaultProject": "angular-three"
+  "defaultProject": "3d-inventory-angular-ui"
 }

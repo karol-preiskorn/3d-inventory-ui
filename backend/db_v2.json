@@ -1,0 +1,447 @@
+{
+  "devices": [
+    {
+      "id": "N1",
+      "name": "sadaadasdas=====",
+      "type": "Desktop",
+      "category": "Site"
+    },
+    {
+      "id": "sds",
+      "name": "fsdfs1sfs",
+      "type": "Firewall",
+      "category": "Facility"
+    },
+    {
+      "id": "Device 2",
+      "name": "3d3ddd33332 new values  ",
+      "type": "Getaway",
+      "category": "Facility"
+    },
+    {
+      "id": "asdas",
+      "name": "aa-aaa2sd",
+      "type": "Desktop",
+      "category": "Facility"
+    },
+    {
+      "id": "ss",
+      "name": "ssasccadsadssds",
+      "type": "Getaway",
+      "category": "Site"
+    },
+    {
+      "id": "NewDevice",
+      "name": "New device ",
+      "type": "",
+      "category": ""
+    },
+    {
+      "id": "New device 2",
+      "name": "New device 2",
+      "type": "Multiplexer",
+      "category": "Facility"
+    }
+  ],
+  "logs": [
+    {
+      "id": "bb0e7705-e615-47fe-8275-f65bd23f4262",
+      "date": "2023/04/07 07:41:02.65",
+      "category": "Info",
+      "component": "EditDeviceComponent.UpdateForm",
+      "message": "Update device: N1 {\"id\":\"\",\"name\":\"\",\"type\":\"\",\"category\":\"\"}"
+    },
+    {
+      "id": "c71eb764-e282-4429-9055-fce0a99f6186",
+      "date": "2023/04/07 07:41:06.91",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"Test Values 1aaa assaasdasss\",\"type\":\"CoolAir\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "46f62669-613d-47e0-98cd-070d92641109",
+      "date": "2023/04/07 07:43:31.07",
+      "category": "Info",
+      "component": "EditDeviceComponent.UpdateForm",
+      "message": "Update device: wqeqeqwe null {\"id\":\"\",\"name\":\"\",\"type\":\"\",\"category\":\"\"}"
+    },
+    {
+      "id": "bf0e1d40-b042-4f0c-bc02-bb75e1e10b2e",
+      "date": "2023/04/07 07:43:33.01",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: wqeqeqwe {\"id\":\"wqeqeqwe\",\"name\":\"qwqwqwqe2as\",\"type\":\"Firewall\",\"category\":\"qww\"}"
+    },
+    {
+      "id": "bb268971-65a4-42db-b547-b58828d1d265",
+      "date": "2023/04/07 07:43:33.06",
+      "category": "info",
+      "component": "ListComponent",
+      "message": "Load data jonsonserver"
+    },
+    {
+      "id": "82ff5f44-27d7-4b2c-a4ae-30566abd7ef9",
+      "date": "2023/04/07 07:44:19.88",
+      "category": "info",
+      "component": "ListComponent",
+      "message": "Load data jonsonserver"
+    },
+    {
+      "id": "952ac230-763d-42b3-ad1f-b6247384ec5c",
+      "date": "2023/04/07 07:46:12.04",
+      "category": "Info",
+      "component": "EditDeviceComponent.UpdateForm",
+      "message": "Update device: Device 2 {\"id\":\"\",\"name\":\"\",\"type\":\"\",\"category\":\"\"}"
+    },
+    {
+      "id": "906767f8-8b04-4cf2-ab49-b323b4aba049",
+      "date": "2023/04/07 07:46:13.99",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: Device 2 {\"id\":\"Device 2\",\"name\":\"3d3ddd33332asd\",\"type\":\"Modem\",\"category\":\"Server\"}"
+    },
+    {
+      "id": "0330075f-587e-4af4-b7ba-6ac07a22404f",
+      "date": "2023/04/07 07:57:06.51",
+      "category": "Info",
+      "component": "EditDeviceComponent.UpdateForm",
+      "message": "Update device: N1"
+    },
+    {
+      "id": "e7dad871-8afd-46dd-b46f-aa9c30f02b77",
+      "date": "2023/04/07 07:57:09.02",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"Test Values 1aaa assaasdasss\",\"type\":\"CoolAir\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "5175b5fc-4816-4b90-9555-4e73ea978510",
+      "date": "2023/04/07 08:07:51.52",
+      "category": "Info",
+      "component": "EditDeviceComponent.UpdateForm",
+      "message": "Update device: asdas"
+    },
+    {
+      "id": "e2a78113-a6f7-4d46-8f09-e6548223b161",
+      "date": "2023/04/07 08:07:55.16",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: asdas {\"id\":\"asdas\",\"name\":\"aa-aaa2sd\",\"type\":\"Desktop\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "c843c831-032c-42f1-afd8-ae49d7d08700",
+      "date": "2023/04/07 08:43:24.95",
+      "category": "Info",
+      "component": "EditDeviceComponent.UpdateForm",
+      "message": "Update device: N1"
+    },
+    {
+      "id": "fb4f72bf-0778-49c7-97c1-27045532f020",
+      "date": "2023/04/07 08:43:26.69",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"Test Values 1aaa assaasdasss\",\"type\":\"CoolAir\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "c88f7b44-8985-4737-a477-6436418aca90",
+      "date": "2023/04/07 08:43:46.02",
+      "category": "Info",
+      "component": "EditDeviceComponent.UpdateForm",
+      "message": "Update device: ss"
+    },
+    {
+      "id": "836f8ed2-b200-4af6-82d9-bb16453632c4",
+      "date": "2023/04/07 08:43:48.30",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: ss {\"id\":\"ss\",\"name\":\"ssasccadsadssds\",\"type\":\"Getaway\",\"category\":\"Site\"}"
+    },
+    {
+      "id": "02fbc9aa-fd63-4e9a-828a-d3075941fd45",
+      "date": "2023/04/08 05:22:39.79",
+      "category": "Info",
+      "component": "EditDeviceComponent.UpdateForm",
+      "message": "Update device: N1"
+    },
+    {
+      "id": "971f6457-066b-4941-bfa3-5152272f8b46",
+      "date": "2023/04/08 05:22:43.06",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"Test Values 1aaa assaasdasss\",\"type\":\"CoolAir\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "29313453-570b-49b9-9894-cfc9d1450202",
+      "date": "2023/04/08 07:47:21.30",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: ss"
+    },
+    {
+      "id": "6394fbd7-918e-4073-9428-547b107b1c1f",
+      "date": "2023/04/08 07:51:52.30",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: ss"
+    },
+    {
+      "id": "5e58c56d-aac5-4d35-ad3a-39ee76b584fa",
+      "date": "2023/04/08 08:32:21.11",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"\",\"name\":\"\",\"type\":\"\",\"category\":\"\"}"
+    },
+    {
+      "id": "9daca47a-176e-487c-ac8c-f08afcc5b8cf",
+      "date": "2023/04/08 08:32:47.71",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"\",\"name\":\"\",\"type\":\"\",\"category\":\"\"}"
+    },
+    {
+      "id": "9d760358-973a-40ba-9cff-5e26dcac108d",
+      "date": "2023/04/08 09:28:34.16",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: sds {\"id\":\"sds\",\"name\":\"fsdfs1sfs\",\"type\":\"Firewall\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "461e28c7-e15f-463b-92ee-2d509b96a122",
+      "date": "2023/04/08 09:28:57.84",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"\",\"type\":\"PDU System\",\"category\":\"\"}"
+    },
+    {
+      "id": "ddf94073-4523-40cf-8b85-0f68c1a45362",
+      "date": "2023/04/08 09:32:18.08",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"\",\"type\":\"PDU System\",\"category\":\"\"}"
+    },
+    {
+      "id": "8397545f-9f4b-45c9-bf7e-0ec82f157265",
+      "date": "2023/04/08 09:39:36.10",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: sds {\"id\":\"sds\",\"name\":\"fsdfs1sfs\",\"type\":\"Firewall\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "3ef08038-f124-48c6-b43f-0e47309712da",
+      "date": "2023/04/08 09:39:47.91",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: sds {\"id\":\"sds\",\"name\":\"fsdfs1sfs\",\"type\":\"Firewall\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "ab703cee-1315-448b-b03e-7d334e1e798f",
+      "date": "2023/04/08 09:40:12.29",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"\",\"type\":\"PDU System\",\"category\":\"\"}"
+    },
+    {
+      "id": "5ea3965b-8ea2-418a-a12c-27dd0c3772c2",
+      "date": "2023/04/08 09:42:45.23",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"\",\"type\":\"PDU System\",\"category\":\"\"}"
+    },
+    {
+      "id": "e81ba7c5-711f-4c16-8452-74789788b2ab",
+      "date": "2023/04/08 09:42:59.49",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: Device 2 {\"id\":\"Device 2\",\"name\":\"3d3ddd33332asd\",\"type\":\"Printer\",\"category\":\"Server\"}"
+    },
+    {
+      "id": "022dd4dd-eb43-4259-9583-e74c6e810bb2",
+      "date": "2023/04/08 09:43:16.19",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: Device 2 {\"id\":\"Device 2\",\"name\":\"3d3ddd33332asd\",\"type\":\"Printer\",\"category\":\"Server\"}"
+    },
+    {
+      "id": "0a1568cd-dab5-49ea-bf0d-74054f630b30",
+      "date": "2023/04/08 09:43:58.65",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"\",\"type\":\"PDU System\",\"category\":\"\"}"
+    },
+    {
+      "id": "c4d77008-daca-4929-bcc8-28036b69cd82",
+      "date": "2023/04/08 10:03:50.74",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"\",\"type\":\"PDU System\",\"category\":\"\"}"
+    },
+    {
+      "id": "87c08d42-4806-45f6-b4f6-15838fc6688f",
+      "date": "2023/04/08 10:04:03.86",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"\",\"type\":\"PDU System\",\"category\":\"\"}"
+    },
+    {
+      "id": "820a9551-757e-47d1-916f-d7ff81c73e59",
+      "date": "2023/04/08 10:06:15.58",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"\",\"type\":\"PDU System\",\"category\":\"\"}"
+    },
+    {
+      "id": "9cf96a47-3431-447b-a653-564b78a10860",
+      "date": "2023/04/08 10:06:27.66",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"\",\"type\":\"PDU System\",\"category\":\"\"}"
+    },
+    {
+      "id": "6fa3d84e-b88e-4440-8d47-5b3a5b77a9a9",
+      "date": "2023/04/09 10:02:01.50",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"\",\"type\":\"PDU System\",\"category\":\"\"}"
+    },
+    {
+      "id": "2a2b3bea-ff05-4882-ab31-d057b700f4c7",
+      "date": "2023/04/09 10:03:03.80",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: sds {\"id\":\"sds\",\"name\":\"fsdfs1sfs\",\"type\":\"Firewall\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "5fbbc303-244c-4a2a-8510-51255e8b0dc2",
+      "date": "2023/04/10 12:31:30.95",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"\",\"type\":\"PDU System\",\"category\":\"\"}"
+    },
+    {
+      "id": "e771f0cb-45d8-4f42-a30c-0686f521fd4b",
+      "date": "2023/04/10 12:32:11.90",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"\",\"type\":\"Desktop\",\"category\":\"\"}"
+    },
+    {
+      "id": "77bef1b7-ac7b-406d-8e86-abab74ccad3d",
+      "date": "2023/04/10 12:43:22.41",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"N1\",\"name\":\"\",\"type\":\"Desktop\",\"category\":\"\"}"
+    },
+    {
+      "id": "80fb67b3-d35f-46e9-a994-4af4070adbe8",
+      "date": "2023/04/10 12:44:47.42",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: N1 {\"id\":\"\",\"name\":\"\",\"type\":\"\",\"category\":\"\"}"
+    },
+    {
+      "id": "3c34500e-bd00-452b-8a30-2aed012f05b0",
+      "date": "2023/04/11 05:02:21.41",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"N1aaaa\",\"name\":\"sada\",\"type\":\"Desktop\",\"category\":\"Site\"}"
+    },
+    {
+      "id": "834d5e64-b803-4197-b264-5b11366ffb98",
+      "date": "2023/04/11 05:04:56.91",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"sdssss\",\"name\":\"fsdfs1sfs\",\"type\":\"Firewall\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "f247d4e7-77a7-4890-853a-5be057534ae8",
+      "date": "2023/04/11 05:07:55.08",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"N1ssssss\",\"name\":\"sada\",\"type\":\"Desktop\",\"category\":\"Site\"}"
+    },
+    {
+      "id": "637f2f43-cae2-4b7d-ae4e-19c515cc30cd",
+      "date": "2023/04/11 05:14:44.75",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"Device 3\",\"name\":\"3d3ddd33332asd\",\"type\":\"Printer\",\"category\":\"Server\"}"
+    },
+    {
+      "id": "eff439cc-36d9-4303-8c98-9290db354c94",
+      "date": "2023/04/11 05:15:24.50",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"Device 2\",\"name\":\"3d3ddd33332 new values\",\"type\":\"Printer\",\"category\":\"Server\"}"
+    },
+    {
+      "id": "c2d1d6a9-8cb4-4e37-b1eb-c426252f60a0",
+      "date": "2023/04/11 05:15:33.15",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"Device 2\",\"name\":\"3d3ddd33332 new values\",\"type\":\"Printer\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "35ec4f0e-9494-4ef6-80c8-76b7c16329a5",
+      "date": "2023/04/11 05:15:38.50",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"Device 2\",\"name\":\"3d3ddd33332 new values\",\"type\":\"Getaway\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "e97e68d9-9ae6-4419-8dd6-085186201435",
+      "date": "2023/04/11 05:16:06.00",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"Device 2\",\"name\":\"3d3ddd33332 new values\",\"type\":\"Getaway\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "35aa5c40-6be3-46e0-b080-12082b85f840",
+      "date": "2023/04/11 05:18:14.87",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"Device 2\",\"name\":\"3d3ddd33332 new values  \",\"type\":\"Getaway\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "9f2b9efd-404c-4242-bf80-f6c551fce255",
+      "date": "2023/04/11 05:20:41.61",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"NEW1\",\"name\":\"sada\",\"type\":\"Desktop\",\"category\":\"Site\"}"
+    },
+    {
+      "id": "f4e35909-333f-4103-98fa-17164dcbc0d4",
+      "date": "2023/04/11 05:54:46.03",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: N1"
+    },
+    {
+      "id": "c4c12795-ce9f-4617-bb1a-e5aa937ce943",
+      "date": "2023/04/11 05:55:18.11",
+      "category": "Info",
+      "component": "AddDevice",
+      "message": "Added device: [object Object]"
+    },
+    {
+      "id": "95ed29b5-6715-4aa5-a241-26d0443db728",
+      "date": "2023/04/11 05:56:54.10",
+      "category": "Info",
+      "component": "AddDevice",
+      "message": "Added device: [object Object]"
+    },
+    {
+      "id": "390b861e-8d59-4936-8a43-559ead66faf9",
+      "date": "2023/04/11 07:43:17.79",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"N1aaaa\",\"name\":\"sadaadasdas\",\"type\":\"Desktop\",\"category\":\"Site\"}"
+    },
+    {
+      "id": "fcba5eb6-cd33-46f3-9eaf-633f911c9de9",
+      "date": "2023/04/11 07:43:38.52",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"N1aaaaa\",\"name\":\"sadaadasdas=====\",\"type\":\"Desktop\",\"category\":\"Site\"}"
+    }
+  ]
+}

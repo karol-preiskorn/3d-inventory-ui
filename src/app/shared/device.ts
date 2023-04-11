@@ -15,30 +15,16 @@ import {
   uniqueNamesGenerator,
 } from 'unique-names-generator'
 import { v4 as uuidv4 } from 'uuid'
-import {
-  DeviceCategories,
-  DeviceCategoriesInterfance,
-} from './deviceCategories'
-import { DeviceTypes } from './deviceTypes'
+import { DeviceCategory, DeviceCategoryDict } from './deviceCategories'
+import { DeviceType, DeviceTypeDict } from './deviceTypes'
 
 export class Device {
   id: string
-  name: string
-  type: string
-  category: DeviceCategoriesInterfance
+  name?: string | null
+  type: DeviceType
+  category: DeviceCategory
 
-  constructor() {
-    this.id = uuidv4()
-    this.name = uniqueNamesGenerator({
-      dictionaries: [adjectives, colors, animals],
-      style: 'lowerCase',
-      separator: '-',
-    }) // big_red_donkey
-    this.type = new DeviceTypes().getRandom()
-    this.category = new DeviceCategories().getRandom()
-  }
-
-  print() {
+  public print(): void {
     console.log(
       '-->[device] id: ' +
         this.id +
@@ -47,11 +33,11 @@ export class Device {
         ', type: ' +
         this.type +
         ', category: ' +
-        this.category.Category
+        this.category.name
     )
   }
 
-  getString(): string {
+  public getString(): string {
     return (
       '-->[device] id: ' +
       this.id +
@@ -60,27 +46,19 @@ export class Device {
       ', type: ' +
       this.type +
       ', category: ' +
-      this.category.Category
+      this.category.name
     )
   }
+
+  public generate(): void {
+    this.id = uuidv4()
+    this.name = uniqueNamesGenerator({
+      dictionaries: [adjectives, colors, animals],
+      style: 'lowerCase',
+      separator: '-',
+    }) // big_red_donkey
+
+    this.type = new DeviceTypeDict().getRandom()
+    this.category = new DeviceCategoryDict().getRandom()
+  }
 }
-
-// @TODO: #1 Generate 100 random records
-//
-
-// console.log('Generate devicesList')
-// export const devicesList: Device[] = []
-
-// try {
-//   for (let index = 0; index < 10; index++) {
-//     const deviceTmp = new Device()
-//     devicesList.push(deviceTmp)
-//   }
-// } catch (err) {
-//   console.log('🐛 Generate devicesList', err)
-// }
-
-// console.log('Print devicesList')
-// devicesList.forEach((element, i) => {
-//   console.log(i + 1, element.getString())
-// })

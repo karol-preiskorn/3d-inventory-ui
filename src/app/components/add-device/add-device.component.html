@@ -3,7 +3,7 @@
     <!-- Form -->
     <div class="col-md-12">
       <h3>Add Issue</h3>
-      <form [formGroup]="DeviceForm" (ngSubmit)="submitForm()" novalidate>
+      <form [formGroup]="addForm" (ngSubmit)="submitForm()">
         <div class="form-group">
           <label>Id</label>
           <input
@@ -18,27 +18,39 @@
           <textarea
             class="form-control"
             formControlName="name"
-            rows="3"
+            rows="2"
             maxlength="50"
           ></textarea>
         </div>
         <div class="form-group">
           <label>Type</label>
-          <textarea
-            class="form-control"
+          <select
+            (change)="changeType($event)"
             formControlName="type"
-            rows="3"
-            maxlength="50"
-          ></textarea>
+            id="type"
+            class="form-control"
+          >
+            <option *ngFor="let data of deviceTypeDict.list; let i = index">
+              {{ data.name }}
+            </option>
+          </select>
+          <!-- error block -->
+          <div class="invalid-feedback" *ngIf="isSubmitted && type?.invalid">
+            <sup>*</sup>Please provide Type name
+          </div>
         </div>
         <div class="form-group">
           <label>Category</label>
-          <textarea
-            class="form-control"
+          <select
+            (change)="changeCategory($event)"
             formControlName="category"
-            rows="3"
-            maxlength="50"
-          ></textarea>
+            id="category"
+            class="form-control"
+          >
+            <option *ngFor="let data of deviceCategoryDict.list; let i = index">
+              {{ data.name }}
+            </option>
+          </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

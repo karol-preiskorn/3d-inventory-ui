@@ -1,0 +1,11 @@
+﻿## POST
+
+POST http://localhost:3000/logs HTTP/1.1
+content-type: application/json
+
+{
+  "date": "Wed, 21 Oct 2015 18:27:50 GMT",
+  "category": "Red",
+  "component": "Comp",
+  "message": "Init2"
+}

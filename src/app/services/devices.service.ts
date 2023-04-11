@@ -10,8 +10,6 @@ import { Injectable } from '@angular/core'
 export class DevicesService {
   baseurl = 'http://localhost:3000'
 
-  devices: Device[] = []
-
   constructor(private http: HttpClient) {}
   // Http Headers
   httpOptions = {
@@ -20,12 +18,6 @@ export class DevicesService {
     }),
   }
 
-  /**
-   *
-   *
-   * @return {*}  {Observable<Device>}
-   * @memberof DevicesService
-   */
   GetDevices(): Observable<Device> {
     return this.http
       .get<Device>(this.baseurl + '/devices/')
@@ -38,13 +30,6 @@ export class DevicesService {
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  /**
-   *
-   *
-   * @param {{ id: string }} { id }
-   * @return {*}  {Observable<Device>}
-   * @memberof DevicesService
-   */
   DeleteDevice(id: string): Observable<Device> {
     return this.http
       .delete<Device>(this.baseurl + '/devices/' + id, this.httpOptions)
@@ -71,14 +56,6 @@ export class DevicesService {
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
-  }
-
-  add(device: Device) {
-    this.devices.push(device)
-  }
-
-  clear() {
-    this.devices = []
   }
 
   errorHandl(error: { error: { message: string }; status: any; message: any }) {

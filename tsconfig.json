@@ -17,10 +17,7 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "es2022",
-    "paths": {
-      "api": ["dist/api"],
-      "swagger-client": ["dist/swagger-client"]
-    },
+    "paths": {},
     "lib": ["es2022", "dom"]
   },
   "angularCompilerOptions": {
@@ -29,5 +26,7 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
     "strictPropertyInitialization": false
-  }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/test.ts", "src/**/*.spec.ts", "src/app/file-to-exclude.ts"]
 }
