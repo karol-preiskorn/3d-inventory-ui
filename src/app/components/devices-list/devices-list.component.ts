@@ -29,16 +29,18 @@ export class DevicesListComponent implements OnInit {
     })
   }
 
-  deleteDevice(data: { id: any }) {
-    const index: any = this.DevicesList.map((x: any) => {
-      return x.id
-    }).indexOf(data.id)
+  deleteDevice(id: string) {
     this.logService.CreateLog({
-      message: 'Delete device: ' + data.id,
+      message: 'Delete device: ' + id,
       category: 'Info',
       component: 'DevicesListComponent',
     })
+    return this.devicesService.DeleteDevice(id).subscribe((data: any) => {
+      // console.log(data)
+      this.router.navigate(['/devices-list/'])
+    })
   }
+
   AddForm() {
     this.router.navigateByUrl('/add-device')
   }
