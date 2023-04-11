@@ -8,7 +8,15 @@ Project create 3d inventory on stack
 - REST
 - Docker
 
-![3d inventory ui](doc/img/Screenshot%20from%202023-03-27%2008-11-29.png?version%3D1679897600359)
+## List devices
+
+![](doc/img/Screenshot%202023-04-11%20at%2007-51-03%203d%20inventory.png)
+
+## Edit device
+
+![](doc/img/Screenshot%202023-04-11%20at%2007-50-36%203d%20inventory.png)
+
+## Bulid 3d inventory
 
 ![3d inventory cube 3d](doc/img/Screenshot%20from%202023-03-27%2008-15-27.png?version%3D1679897790517)
 
@@ -74,13 +82,22 @@ baseurl = 'http://localhost:3000';
 "jsonserver:devices": "json-server --watch devices.json"
 ```
 
+### Classes
+
+- Device
+- DeviceType
+- DeviceTypeDict
+- Category (FIXIT: chceck definition)
+- CategoryType
+- CategotyTypeDict
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 P3lease make sure to update tests as appropriate.
 
-## Code guidelines
+# Code guidelines
 
 Not forget about https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines
 
@@ -143,5 +160,6 @@ Use JSDoc style comments for functions, interfaces, enums, and classes.
 
 ## Next todo
 
-- add menu
-- add action menu requested rest api to neo4j/Oracle
+- [ ] move types and categories list to database
+- [ ] customize start environment variables outside git commits
+- [ ]
