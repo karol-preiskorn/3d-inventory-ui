@@ -158,8 +158,9 @@ Use JSDoc style comments for functions, interfaces, enums, and classes.
 - When stating a rule, the subject should be in the singular (e.g. "An external module cannot..." instead of "External modules cannot...").
 - Use present tense.
 
-## Next todo
+## Next TODO
 
-- [ ] move types and categories list to database
-- [ ] customize start environment variables outside git commits
-- [ ]
+- [ ] TODO: #13 create services for types and categories and move this list to database
+- [ ] TODO: #12 customize start environment variables outside git commits
+- [ ] FIXME: #11 fix delete
+- [ ] TODO: #10 add clone device

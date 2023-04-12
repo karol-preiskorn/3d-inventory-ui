@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs'
 import { retry, catchError } from 'rxjs/operators'
 import { Injectable } from '@angular/core'
+import { LogService } from './log.service'
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { Injectable } from '@angular/core'
 export class DevicesService {
   baseurl = 'http://localhost:3000'
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private logService: LogService) {}
   // Http Headers
   httpOptions = {
     headers: new HttpHeaders({
@@ -67,7 +68,13 @@ export class DevicesService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
-    console.log(errorMessage)
+    console.log(JSON.stringify(errorMessage))
+    this.logService.CreateLog({
+      message: 'Error service device: ' + JSON.stringify(error.message),
+      category: 'Error',
+      component: 'DeviceService.errorHandl',
+    })
+
     return throwError(() => {
       return errorMessage
     })

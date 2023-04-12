@@ -3,5 +3,6 @@
     "Interfance",
     "PDU",
     "uuidv"
-  ]
+  ],
+  "todo-tree.tree.showCountsInTree": true
 }

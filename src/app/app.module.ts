@@ -18,6 +18,7 @@ import { DevicesService } from './services/devices.service'
 import { LogService } from './services/log.service'
 import { MarkdownModule } from 'ngx-markdown'
 import { MarkdownReadmeComponent } from './markdown-readme/markdown-readme.component'
+import { HttpClientXsrfModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -40,6 +41,10 @@ import { MarkdownReadmeComponent } from './markdown-readme/markdown-readme.compo
     NgxPaginationModule,
     ReactiveFormsModule,
     MarkdownModule.forRoot(),
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'My-Xsrf-Cookie',
+      headerName: 'My-Xsrf-Header',
+    }),
   ],
   providers: [DevicesService, LogService],
   bootstrap: [AppComponent],

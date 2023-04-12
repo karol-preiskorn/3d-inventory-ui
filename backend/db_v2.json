@@ -1,45 +1,9 @@
 {
   "devices": [
     {
-      "id": "N1",
-      "name": "sadaadasdas=====",
-      "type": "Desktop",
-      "category": "Site"
-    },
-    {
-      "id": "sds",
-      "name": "fsdfs1sfs",
-      "type": "Firewall",
-      "category": "Facility"
-    },
-    {
-      "id": "Device 2",
-      "name": "3d3ddd33332 new values  ",
-      "type": "Getaway",
-      "category": "Facility"
-    },
-    {
-      "id": "asdas",
-      "name": "aa-aaa2sd",
-      "type": "Desktop",
-      "category": "Facility"
-    },
-    {
-      "id": "ss",
-      "name": "ssasccadsadssds",
-      "type": "Getaway",
-      "category": "Site"
-    },
-    {
-      "id": "NewDevice",
-      "name": "New device ",
-      "type": "",
-      "category": ""
-    },
-    {
-      "id": "New device 2",
-      "name": "New device 2",
-      "type": "Multiplexer",
+      "id": 1,
+      "name": "12123123",
+      "type": "Hubs",
       "category": "Facility"
     }
   ],
@@ -442,6 +406,160 @@
       "category": "Info",
       "component": "EditDeviceComponent.SubmitForm",
       "message": "Submit device: {\"id\":\"N1aaaaa\",\"name\":\"sadaadasdas=====\",\"type\":\"Desktop\",\"category\":\"Site\"}"
+    },
+    {
+      "id": "addce936-0d04-4a8c-9cbc-eceab4260709",
+      "date": "2023/04/11 19:28:38.39",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"N1tttt\",\"name\":\"sadaadasdas=====uyut\",\"type\":\"Desktop\",\"category\":\"Site\"}"
+    },
+    {
+      "id": "0b1de50d-72fc-4bc2-8e68-371b87c9933d",
+      "date": "2023/04/11 19:28:57.76",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: ss"
+    },
+    {
+      "id": "8c3f01d2-f427-43fe-ba28-f799c4a10851",
+      "date": "2023/04/11 19:29:00.02",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: N1"
+    },
+    {
+      "id": "fdb3511e-d79b-4744-87d0-26e9a16a14dc",
+      "date": "2023/04/11 19:29:01.33",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: sds"
+    },
+    {
+      "id": "22ab2c00-fd50-4b47-a4da-a8aaf709b92a",
+      "date": "2023/04/11 20:42:16.47",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: N1"
+    },
+    {
+      "id": "cbccd0ea-512d-482d-9fa1-99d1d35ec9bd",
+      "date": "2023/04/11 20:42:17.67",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: N1"
+    },
+    {
+      "id": "933e63f8-024e-40f7-a297-9199cda78822",
+      "date": "2023/04/11 20:42:18.65",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: N1"
+    },
+    {
+      "id": "0733718d-1689-4971-b3a8-c6eeb88c85ef",
+      "date": "2023/04/11 20:42:40.17",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: N1"
+    },
+    {
+      "id": "ff39af71-7889-4ccb-a0c2-e162631668af",
+      "date": "2023/04/11 20:44:27.31",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: N1"
+    },
+    {
+      "id": "577b230d-ea14-42b9-80bf-049c38da08b4",
+      "date": "2023/04/11 20:44:27.85",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: N1"
+    },
+    {
+      "id": "967304ec-7ed6-4d02-8442-ace44ccfef48",
+      "date": "2023/04/11 20:44:29.32",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: N1"
+    },
+    {
+      "id": "0b603c93-91c8-4420-b626-2b8d90c8a13a",
+      "date": "2023/04/11 20:50:16.51",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: [object Object]"
+    },
+    {
+      "id": "5d7e3aaa-2e16-4704-b7ab-4de0bfcdbfa0",
+      "date": "2023/04/11 20:52:01.69",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: N1"
+    },
+    {
+      "id": "b0d2ef35-53d2-411c-a0de-a7558dfb6101",
+      "date": "2023/04/11 20:52:39.82",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: ss"
+    },
+    {
+      "id": "0cd043df-9431-46f7-8c5c-c402b02d1416",
+      "date": "2023/04/11 20:53:48.55",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: asdas"
+    },
+    {
+      "id": "f71dabaa-43ec-40c7-9f80-2116cb920093",
+      "date": "2023/04/11 20:54:51.83",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: sds"
+    },
+    {
+      "id": "c4fad6ea-a911-4086-8243-222c400dbfaf",
+      "date": "2023/04/11 21:17:42.98",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"NewDevice\",\"name\":\"New device \",\"type\":\"Firewall\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "85dd512d-6cf7-4ffa-b177-4318006248ba",
+      "date": "2023/04/11 21:18:06.72",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: NewDevice"
+    },
+    {
+      "id": "a6a1e598-d3c8-43a5-8d22-500c33a61e57",
+      "date": "2023/04/12 07:56:07.78",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: Device 2"
+    },
+    {
+      "id": "35800215-3f9a-4110-bdb0-160cd0d4359b",
+      "date": "2023/04/12 07:58:39.75",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: New device 2"
+    },
+    {
+      "id": "9c9f1dcc-d2bd-46f9-8b23-a62ce57c4536",
+      "date": "2023/04/12 07:59:42.95",
+      "category": "Info",
+      "component": "AddDevice",
+      "message": "Added device: [object Object]"
+    },
+    {
+      "id": "37996608-ff77-4e97-adb2-e109ff25226e",
+      "date": "2023/04/12 07:59:52.94",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"12312312\",\"name\":\"12123123\",\"type\":\"Hubs\",\"category\":\"Facility\"}"
     }
   ]
 }
