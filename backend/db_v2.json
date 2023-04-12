@@ -1,15 +1,9 @@
 {
   "devices": [
     {
-      "id": "Device 2",
-      "name": "3d3ddd33332 new values  ",
-      "type": "Getaway",
-      "category": "Facility"
-    },
-    {
-      "id": "New device 2",
-      "name": "New device 2",
-      "type": "Multiplexer",
+      "id": 1,
+      "name": "12123123",
+      "type": "Hubs",
       "category": "Facility"
     }
   ],
@@ -538,6 +532,34 @@
       "category": "Info",
       "component": "DevicesListComponent",
       "message": "Delete device: NewDevice"
+    },
+    {
+      "id": "a6a1e598-d3c8-43a5-8d22-500c33a61e57",
+      "date": "2023/04/12 07:56:07.78",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: Device 2"
+    },
+    {
+      "id": "35800215-3f9a-4110-bdb0-160cd0d4359b",
+      "date": "2023/04/12 07:58:39.75",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: New device 2"
+    },
+    {
+      "id": "9c9f1dcc-d2bd-46f9-8b23-a62ce57c4536",
+      "date": "2023/04/12 07:59:42.95",
+      "category": "Info",
+      "component": "AddDevice",
+      "message": "Added device: [object Object]"
+    },
+    {
+      "id": "37996608-ff77-4e97-adb2-e109ff25226e",
+      "date": "2023/04/12 07:59:52.94",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"12312312\",\"name\":\"12123123\",\"type\":\"Hubs\",\"category\":\"Facility\"}"
     }
   ]
 }

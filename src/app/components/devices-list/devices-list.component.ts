@@ -36,7 +36,8 @@ export class DevicesListComponent implements OnInit {
       component: 'DevicesListComponent',
     })
     return this.devicesService.DeleteDevice(id).subscribe((data: any) => {
-      // console.log(data)
+      console.log(data)
+      this.loadDevices()
       this.router.navigate(['/devices-list/'])
     })
   }
