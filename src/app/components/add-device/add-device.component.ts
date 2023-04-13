@@ -1,12 +1,11 @@
 import { Component, NgZone, OnInit } from '@angular/core'
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { Device } from 'src/app/shared/device'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
-import { DeviceType, DeviceTypeDict } from 'src/app/shared/deviceTypes'
+import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 import { LogService } from '../../services/log.service'
 import { DevicesService } from './../../services/devices.service'
-import { LogComponent } from 'src/app/log/log.component'
 
 @Component({
   selector: 'app-add-device',
@@ -20,7 +19,7 @@ export class AddDeviceComponent implements OnInit {
     type: FormControl<string | null>
     category: FormControl<string | null>
   }> = new FormGroup({
-    id: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    id: new FormControl('', [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     type: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required),
@@ -60,12 +59,18 @@ export class AddDeviceComponent implements OnInit {
   get category() {
     return this.addForm.get('category')
   }
+  toString(data: any): string {
+    return JSON.stringify(data)
+  }
 
+  get f() {
+    return this.addForm.controls
+  }
   submitForm() {
     this.devicesService.CreateDevice(this.device).subscribe((res) => {
       console.log('Device added!')
       this.logService.CreateLog({
-        message: 'Added device: ' + this.addForm.value,
+        message: 'Added device: ' + this.toString(this.addForm.value),
         category: 'Info',
         component: 'AddDevice',
       })

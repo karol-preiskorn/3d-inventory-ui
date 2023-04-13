@@ -1,60 +1,120 @@
-<div class="container wrapper wrapper2">
+<div class="container">
   <div class="row">
-    <!-- Form -->
     <div class="col-md-12">
-      <h3>Add Issue</h3>
-      <form [formGroup]="addForm" (ngSubmit)="submitForm()">
-        <div class="form-group">
+      <h3>Add Device</h3>
+      <form
+        [formGroup]="addForm"
+        (ngSubmit)="submitForm()"
+        class="g-3 needs-validation"
+        novalidate
+      >
+        <div class="form-group mb-3">
           <label>Id</label>
           <input
             type="text"
             formControlName="id"
-            class="form-control"
+            [ngClass]="{
+              'is-invalid': this.addForm.controls.id.status != 'VALID',
+              'form-control': true
+            }"
             maxlength="20"
+            minlength="4"
+            required
           />
+          <div *ngIf="f.id.errors" class="invalid-feedback">
+            <div *ngIf="f.id.errors.required">Id is required</div>
+            <div *ngIf="f.id.errors.minlength">
+              Id must be at least 4 characters
+            </div>
+          </div>
+          <div class="valid-feedback">Looks good!</div>
         </div>
-        <div class="form-group">
+
+        <div class="form-group mb-3">
           <label>Name</label>
           <textarea
-            class="form-control"
+            [ngClass]="{
+              'is-invalid': this.addForm.controls.name.status != 'VALID',
+              'form-control': true
+            }"
             formControlName="name"
             rows="2"
+            minlength="4"
             maxlength="50"
+            required
           ></textarea>
-        </div>
-        <div class="form-group">
-          <label>Type</label>
-          <select
-            (change)="changeType($event)"
-            formControlName="type"
-            id="type"
-            class="form-control"
+          <div
+            *ngIf="this.addForm.controls.name.errors"
+            class="invalid-feedback"
           >
-            <option *ngFor="let data of deviceTypeDict.list; let i = index">
-              {{ data.name }}
-            </option>
-          </select>
-          <!-- error block -->
-          <div class="invalid-feedback" *ngIf="isSubmitted && type?.invalid">
-            <sup>*</sup>Please provide Type name
+            <div *ngIf="this.addForm.controls.name.errors.required">
+              Id is required
+            </div>
+            <div *ngIf="this.addForm.controls.name.errors.minlength">
+              Id must be at least 4 characters
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label>Category</label>
-          <select
-            (change)="changeCategory($event)"
-            formControlName="category"
-            id="category"
-            class="form-control"
-          >
-            <option *ngFor="let data of deviceCategoryDict.list; let i = index">
-              {{ data.name }}
-            </option>
-          </select>
+
+        <div class="row">
+          <div class="col">
+            <div class="form-group mb-3">
+              <label>Type</label>
+              <select
+                (change)="changeType($event)"
+                formControlName="type"
+                id="type"
+                class="form-select"
+                aria-label="type"
+              >
+                <option></option>
+                <option *ngFor="let data of deviceTypeDict.list; let i = index">
+                  {{ data.name }}
+                </option>
+              </select>
+              <div class="invalid-feedback">Please provide a valid type.</div>
+              <!-- error block -->
+              <div
+                class="invalid-feedback"
+                *ngIf="isSubmitted && addForm.get('type')?.hasError"
+              >
+                <sup>*</sup>Please provide Type name
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group mb-3">
+              <label>Category</label>
+              <select
+                (change)="changeCategory($event)"
+                formControlName="category"
+                id="category"
+                class="form-select"
+                aria-label="category"
+              >
+                <option></option>
+                <option
+                  *ngFor="let data of deviceCategoryDict.list; let i = index"
+                >
+                  {{ data.name }}
+                </option>
+              </select>
+            </div>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+
+        <p>Form Status: {{ addForm.status }}</p>
+        <p>Form Values: {{ toString(addForm.value) }}</p>
+        <button
+          type="submit"
+          [disabled]="!(addForm.valid && addForm.touched)"
+          class="btn btn-primary mb-3"
+        >
+          Submit
+        </button>
       </form>
     </div>
   </div>
-  <app-log></app-log>
 </div>
+
+<app-log></app-log>

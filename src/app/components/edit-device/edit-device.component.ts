@@ -17,7 +17,7 @@ export class EditDeviceComponent implements OnInit {
   device: Device
 
   editForm = new FormGroup({
-    id: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    id: new FormControl('', [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     type: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required),
@@ -81,10 +81,12 @@ export class EditDeviceComponent implements OnInit {
       .subscribe((data: any) => {
         console.log('GetDevice ' + JSON.stringify(data))
         this.device = data
-        this.editForm.setValue(data)
+        //this.editForm.setValue(data)
       })
   }
-
+  get f() {
+    return this.editForm.controls
+  }
   submitForm() {
     if (this.editForm.valid && this.editForm.touched) {
       this.logService.CreateLog({

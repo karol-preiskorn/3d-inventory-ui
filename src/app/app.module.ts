@@ -19,6 +19,7 @@ import { LogService } from './services/log.service'
 import { MarkdownModule } from 'ngx-markdown'
 import { MarkdownReadmeComponent } from './markdown-readme/markdown-readme.component'
 import { HttpClientXsrfModule } from '@angular/common/http'
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { HttpClientXsrfModule } from '@angular/common/http'
       cookieName: 'My-Xsrf-Cookie',
       headerName: 'My-Xsrf-Header',
     }),
+    BsDropdownModule.forRoot(),
   ],
   providers: [DevicesService, LogService],
   bootstrap: [AppComponent],

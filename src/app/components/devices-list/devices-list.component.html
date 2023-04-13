@@ -14,7 +14,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let device of DevicesList">
+            <tr
+              *ngFor="
+                let device of DevicesList
+                  | paginate
+                    : {
+                        id: 'devicePagination',
+                        itemsPerPage: 5,
+                        currentPage: p2
+                      }
+              "
+            >
               <td>{{ device.id }}</td>
               <td>{{ device.name }}</td>
               <td>{{ device.type }}</td>
@@ -48,7 +58,7 @@
         </table>
         <button
           type="button"
-          class="btn btn-success btn-sm move-right"
+          class="btn btn-success btn-sm move-right mb-3"
           (click)="AddForm()"
         >
           <i class="bi bi-plus-lg"></i> Add
@@ -57,4 +67,8 @@
     </div>
   </div>
 </div>
+<pagination-controls
+  (pageChange)="p2 = $event"
+  id="devicePagination"
+></pagination-controls>
 <app-log></app-log>

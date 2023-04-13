@@ -2,9 +2,27 @@
   "devices": [
     {
       "id": 1,
-      "name": "12123123",
-      "type": "Hubs",
+      "name": "sadasdasd",
+      "type": "Desktop",
       "category": "Facility"
+    },
+    {
+      "id": 2,
+      "name": "asdasdasd",
+      "type": "Firewall",
+      "category": "Facility"
+    },
+    {
+      "id": 3,
+      "name": "asdasda",
+      "type": "Copier",
+      "category": "Facility"
+    },
+    {
+      "id": 4,
+      "name": "werwerw",
+      "type": "Copier",
+      "category": "Site"
     }
   ],
   "logs": [
@@ -560,6 +578,174 @@
       "category": "Info",
       "component": "EditDeviceComponent.SubmitForm",
       "message": "Submit device: {\"id\":\"12312312\",\"name\":\"12123123\",\"type\":\"Hubs\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "94849d4c-68b7-4a29-bcba-a3cf1687da5c",
+      "date": "2023/04/13 05:10:00.78",
+      "category": "Info",
+      "component": "AddDevice",
+      "message": "Added device: [object Object]"
+    },
+    {
+      "id": "ed89f4cd-4d78-42cb-b3e1-27e697fa10fc",
+      "date": "2023/04/13 05:10:04.36",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: 2"
+    },
+    {
+      "id": "ddd18d9c-f75c-4c79-afda-c5dfa0333809",
+      "date": "2023/04/13 05:10:26.09",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"1234\",\"name\":\"12123123\",\"type\":\"Getaway\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "fb2df942-8274-4908-a538-a75419058af5",
+      "date": "2023/04/13 20:06:38.86",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"22\",\"name\":\"12123123c\",\"type\":\"Getaway\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "a2654cb7-f81b-433b-b5d9-d8ab8e1210e5",
+      "date": "2023/04/13 20:07:14.12",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":1,\"name\":\"12123123c\",\"type\":\"Power\",\"category\":\"Site\"}"
+    },
+    {
+      "id": "a3fbb039-ab07-4633-b95d-997ec3b4078d",
+      "date": "2023/04/13 20:25:47.47",
+      "category": "Info",
+      "component": "AddDevice",
+      "message": "Added device: [object Object]"
+    },
+    {
+      "id": "4be7b19d-980a-4b36-bb60-c34d036548f9",
+      "date": "2023/04/13 20:26:07.46",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"sadasd\",\"name\":\"asdasdasd\",\"type\":\"Firewall\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "54339d73-6471-48ec-9917-fedfd89aadd4",
+      "date": "2023/04/13 20:28:27.83",
+      "category": "Info",
+      "component": "AddDevice",
+      "message": "Added device: [object Object]"
+    },
+    {
+      "id": "3889ebbc-7998-4713-8ac5-33ab804ee924",
+      "date": "2023/04/13 20:29:22.86",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"asdasdd\",\"name\":\"asdasda\",\"type\":\"Copier\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "79e50392-a533-4ba3-ae62-45d806f76da7",
+      "date": "2023/04/13 20:29:35.55",
+      "category": "Info",
+      "component": "AddDevice",
+      "message": "Added device: [object Object]"
+    },
+    {
+      "id": "f8c5939b-f67e-4ab4-93dd-4fb12d837e63",
+      "date": "2023/04/13 20:30:29.15",
+      "category": "Info",
+      "component": "AddDevice",
+      "message": "Added device: [object Object]"
+    },
+    {
+      "id": "db1e6dd1-8bbc-4731-8a23-db05d1bc70ec",
+      "date": "2023/04/13 20:33:21.93",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: 4"
+    },
+    {
+      "id": "014c0f42-a39a-426d-a328-03cfd4fc993c",
+      "date": "2023/04/13 20:33:23.37",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: 5"
+    },
+    {
+      "id": "b1cf5b19-39e9-44a7-bd1b-91bc26c12c16",
+      "date": "2023/04/13 20:33:35.79",
+      "category": "Info",
+      "component": "AddDevice",
+      "message": "Added device: [object Object]"
+    },
+    {
+      "id": "382cf754-0ddd-4928-acc4-5bd47354fb23",
+      "date": "2023/04/13 20:33:54.40",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: 4"
+    },
+    {
+      "id": "de9affad-907a-41be-a5a5-b97ba5d1eecb",
+      "date": "2023/04/13 20:34:04.91",
+      "category": "Info",
+      "component": "AddDevice",
+      "message": "Added device: {\"id\":\"aaa\",\"name\":\"aaaaaaa\",\"type\":\"Copier\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "b8fbf645-fe72-4036-8560-24c57314c907",
+      "date": "2023/04/13 20:35:49.92",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: 4"
+    },
+    {
+      "id": "9809fe75-af62-4bd7-9ce5-5fada323745c",
+      "date": "2023/04/13 20:35:52.45",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: 4"
+    },
+    {
+      "id": "537e4b6e-7abf-4541-b5fa-4aa930f0f847",
+      "date": "2023/04/13 20:35:55.06",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: 4"
+    },
+    {
+      "id": "4011f76c-4fdb-4adf-ae02-406fed48d8c4",
+      "date": "2023/04/13 20:35:57.09",
+      "category": "Info",
+      "component": "DevicesListComponent",
+      "message": "Delete device: 4"
+    },
+    {
+      "id": "63b93a82-f371-455e-a364-d7aff6f834c4",
+      "date": "2023/04/13 20:38:02.24",
+      "category": "Info",
+      "component": "AddDevice",
+      "message": "Added device: {\"id\":\"asdasdasdadsasdasdas\",\"name\":\"asdasdasdasdasdasdasdd\",\"type\":\"CoolAir\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "ae4adc72-0cf3-4977-9755-cb11f3006fd1",
+      "date": "2023/04/13 20:42:49.72",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"aaa\",\"name\":\"aaaa\",\"type\":\"Desktop\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "7aedc47a-efd4-42e5-9278-3d3f413632f6",
+      "date": "2023/04/13 20:55:57.24",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"daasdas\",\"name\":\"sadasdasd\",\"type\":\"Desktop\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "b8fca2b3-b84b-4d9f-9e36-38d0e401583b",
+      "date": "2023/04/13 20:56:47.04",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"wwww\",\"name\":\"werwerw\",\"type\":\"Copier\",\"category\":\"Site\"}"
     }
   ]
 }
