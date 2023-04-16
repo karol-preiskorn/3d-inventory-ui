@@ -21,6 +21,7 @@ import { DeviceType, DeviceTypeDict } from './deviceTypes'
 export class Device {
   id: string
   name?: string | null
+  dimensions?: string | null
   type: DeviceType
   category: DeviceCategory
 
@@ -30,6 +31,8 @@ export class Device {
         this.id +
         ', name: ' +
         this.name +
+        ', dimensions: ' +
+        this.dimensions +
         ', type: ' +
         this.type +
         ', category: ' +
@@ -43,6 +46,8 @@ export class Device {
       this.id +
       ', name: ' +
       this.name +
+      ', dimensions: ' +
+      this.dimensions +
       ', type: ' +
       this.type +
       ', category: ' +
