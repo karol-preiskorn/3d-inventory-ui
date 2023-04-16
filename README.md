@@ -2,11 +2,13 @@
 
 Project create 3d inventory on stack
 
-- Angular
-- Tree
-- Neo4j/Oracle
-- REST
+- Angular 15+
+- Tree 150+
+- Neo4j/Oracle - Oracle
+- REST - prepared in
 - Docker
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=0000000&machine=premiumLinux&devcontainer_path=.devcontainer%2Fdevcontainer.json&location=WestUs2)
 
 ## List devices
 
@@ -20,7 +22,7 @@ Project create 3d inventory on stack
 
 ![3d inventory cube 3d](doc/img/Screenshot%20from%202023-03-27%2008-15-27.png?version%3D1679897790517)
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=0000000&machine=premiumLinux&devcontainer_path=.devcontainer%2Fdevcontainer.json&location=WestUs2)
+![First test with create object in tree.js](doc/img/Screenshot%20from%202023-04-16%2012-54-30.png)
 
 ## Angular + Three.js
 

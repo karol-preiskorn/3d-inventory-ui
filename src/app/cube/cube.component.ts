@@ -4,7 +4,7 @@
  * Todo:
  *   [ ] add cube
  *   [ ] add cube from Angular
- *   [ ] add cube with deninied in Ng parameters.
+ *   [ ] add cube with defined in Ng parameters.
  * Used by:
  * Dependency:
  *
@@ -58,6 +58,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
   private material = new THREE.MeshBasicMaterial({
     map: this.loader.load(this.texture),
   })
+
   // material.env = envTexture
 
   private cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material)
@@ -95,6 +96,18 @@ export class CubeComponent implements OnInit, AfterViewInit {
     }
   }
 
+  addFloor() {
+    const geometry = new THREE.BoxGeometry(100, 100, 1)
+    const object = new THREE.Mesh(
+      geometry,
+      new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff })
+    )
+    console.log(
+      JSON.stringify(object.position) + JSON.stringify(object.rotation)
+    )
+    this.scene.add(object)
+  }
+
   addLight() {
     const light = new THREE.DirectionalLight(0xffffff, 1)
     light.position.set(1, 1, 1).normalize()
@@ -125,7 +138,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     //this.scene.add(this.cube)
     this.addCubes()
     console.log(JSON.stringify(this.cube.rotation))
-
+    this.addFloor()
     //*Camera
     const aspectRatio = this.getAspectRatio()
     this.camera = new THREE.PerspectiveCamera(
@@ -134,7 +147,9 @@ export class CubeComponent implements OnInit, AfterViewInit {
       this.nearClippingPlane,
       this.farClippingPlane
     )
-    this.camera.position.z = this.cameraZ
+    this.camera.position.z = 1000
+    this.camera.position.x = 10
+    //this.cameraZ +
   }
 
   private getAspectRatio() {
