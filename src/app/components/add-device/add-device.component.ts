@@ -47,11 +47,23 @@ export class AddDeviceComponent implements OnInit {
       category: [''],
     })
   }
+  changeId(e: any) {
+    this.id?.setValue(e.target.value, { onlySelf: true })
+  }
+  changeName(e: any) {
+    this.name?.setValue(e.target.value, { onlySelf: true })
+  }
   changeType(e: any) {
     this.type?.setValue(e.target.value, { onlySelf: true })
   }
   changeCategory(e: any) {
     this.category?.setValue(e.target.value, { onlySelf: true })
+  }
+  get id() {
+    return this.addForm.get('id')
+  }
+  get name() {
+    return this.addForm.get('name')
   }
   get type() {
     return this.addForm.get('type')

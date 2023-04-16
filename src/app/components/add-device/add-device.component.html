@@ -105,13 +105,23 @@
 
         <p>Form Status: {{ addForm.status }}</p>
         <p>Form Values: {{ toString(addForm.value) }}</p>
-        <button
-          type="submit"
-          [disabled]="!(addForm.valid && addForm.touched)"
-          class="btn btn-primary mb-3"
-        >
-          Submit
-        </button>
+        <div class="form-group mb-3">
+          <button
+            type="submit"
+            [disabled]="!(addForm.valid && addForm.touched)"
+            class="btn btn-primary mb-3"
+          >
+            Submit
+          </button>
+          <div class="form-group mb-3"></div>
+          <button
+            type="submit"
+            [disabled]="!(addForm.valid && addForm.touched)"
+            class="btn btn-primary mb-3"
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   </div>

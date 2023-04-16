@@ -81,7 +81,7 @@ export class EditDeviceComponent implements OnInit {
       .subscribe((data: any) => {
         console.log('GetDevice ' + JSON.stringify(data))
         this.device = data
-        //this.editForm.setValue(data)
+        this.editForm.setValue(data)
       })
   }
   get f() {

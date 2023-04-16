@@ -2,13 +2,13 @@
   "devices": [
     {
       "id": 1,
-      "name": "sadasdasd",
+      "name": "sadasdasd FG",
       "type": "Desktop",
       "category": "Facility"
     },
     {
       "id": 2,
-      "name": "asdasdasd",
+      "name": "asdasdasdaaa",
       "type": "Firewall",
       "category": "Facility"
     },
@@ -23,6 +23,18 @@
       "name": "werwerw",
       "type": "Copier",
       "category": "Site"
+    },
+    {
+      "id": 5,
+      "name": "ssss",
+      "type": "Desktop",
+      "category": "Facility"
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
     }
   ],
   "logs": [
@@ -746,6 +758,55 @@
       "category": "Info",
       "component": "EditDeviceComponent.SubmitForm",
       "message": "Submit device: {\"id\":\"wwww\",\"name\":\"werwerw\",\"type\":\"Copier\",\"category\":\"Site\"}"
+    },
+    {
+      "id": "1856e12f-f16e-4134-a409-02de992bcf5b",
+      "date": "2023/04/13 21:30:58.53",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"2aaa\",\"name\":\"asdasdasdaaa\",\"type\":\"Firewall\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "c2025526-f03c-48de-b9ae-ca079a5856b2",
+      "date": "2023/04/13 21:31:17.82",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":1,\"name\":\"sadasdasd\",\"type\":\"Switch\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "50af9061-23e9-46ba-9622-076d9c32fcbc",
+      "date": "2023/04/13 21:31:40.37",
+      "category": "Info",
+      "component": "AddDevice",
+      "message": "Added device: {\"id\":\"aaaa\",\"name\":\"asdasd\",\"type\":\"CoolAir\",\"category\":\"Site\"}"
+    },
+    {
+      "id": "5e0931c0-5017-4afe-ae0d-4db1f079b3d1",
+      "date": "2023/04/13 21:31:59.08",
+      "category": "Info",
+      "component": "AddDevice",
+      "message": "Added device: {\"id\":\"aasdas\",\"name\":\"aasdasd\",\"type\":\"Repeaters\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "1309fd9c-2d1a-41b9-95ac-848478508762",
+      "date": "2023/04/13 21:37:03.70",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"ssss\",\"name\":\"ssss\",\"type\":\"Desktop\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "410e202f-18ff-4907-bae2-ade4f79a02e6",
+      "date": "2023/04/13 21:37:27.48",
+      "category": "Info",
+      "component": "AddDevice",
+      "message": "Added device: {\"id\":\"aaaaa\",\"name\":\"asdasdasdadsadssad\",\"type\":\"Bridge\",\"category\":\"Connectivity\"}"
+    },
+    {
+      "id": "87be356e-a8d4-4dad-84ec-dbfd05d99f81",
+      "date": "2023/04/15 18:48:46.78",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":1,\"name\":\"sadasdasd FG\",\"type\":\"Desktop\",\"category\":\"Facility\"}"
     }
   ]
 }
