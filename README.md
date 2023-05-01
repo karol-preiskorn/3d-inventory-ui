@@ -14,7 +14,7 @@ Project create 3d inventory. A simple solution that allows you to build a spatia
 
 ## Data Model
 
-![Data Model](doc/img/Screenshot%20from%202023-05-01%2008-40-25.png)
+![Data Model](src/assets/img/Screenshot%20from%202023-05-01%2008-40-25.png)
 
 ### Classes
 
@@ -29,17 +29,17 @@ Project create 3d inventory. A simple solution that allows you to build a spatia
 
 ### List devices
 
-![](doc/img/Screenshot%202023-04-11%20at%2007-51-03%203d%20inventory.png)
+![](src/assets/img/Screenshot%202023-04-11%20at%2007-51-03%203d%20inventory.png)
 
 ### Edit device
 
-![](doc/img/Screenshot%202023-04-11%20at%2007-50-36%203d%20inventory.png)
+![](src/assets/img/Screenshot%202023-04-11%20at%2007-50-36%203d%20inventory.png)
 
 ### View 3d inventory
 
 View inventory in [three.js](https://threejs.org/) framework.
 
-![3d inventory cube 3d](doc/img/Screenshot%20from%202023-05-01%2008-29-25.png)
+![3d inventory cube 3d](src/assets/img/Screenshot%20from%202023-05-01%2008-29-25.png)
 
 ## About Angular + Three.js
 

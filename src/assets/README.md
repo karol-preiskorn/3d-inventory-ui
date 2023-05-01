@@ -1,27 +1,49 @@
 # 3d inventory
 
-Project create 3d inventory on stack
+Project create 3d inventory. A simple solution that allows you to build a spatial and database representation of all types of warehouses and server rooms.
 
-- Angular
-- Tree
-- Neo4j/Oracle
-- REST
-- Docker
+## Technology stack
 
-![3d inventory ui](doc/img/Screenshot%20from%202023-03-27%2008-11-29.png?version%3D1679897600359)
-
-![3d inventory cube 3d](doc/img/Screenshot%20from%202023-03-27%2008-15-27.png?version%3D1679897790517)
+- `Angular` 15+ (as a corpo framwork)
+- `Tree` 150+ (as best graph framework)
+- `Neo4j`/`Oracle` - Oracle as database
+- `REST` - prepared API in use in Swagger
+- `Docker`/`OpenShift` as containers
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=0000000&machine=premiumLinux&devcontainer_path=.devcontainer%2Fdevcontainer.json&location=WestUs2)
 
-## Angular + Three.js
+## Data Model
 
-This project consists of two examples:
+![Data Model](https://github.com/karol-preiskorn/3d-inventory-angular-ui/raw/master/doc/img/Screenshot%20from%202023-05-01%2008-40-25.png)
 
-1. [Tutorial to render 3D Cube in Angular + Three.js](https://srivastavaanurag79.medium.com/hello-cube-your-first-three-js-scene-in-angular-176c44b9c6c0)
-2. [Tutorial to render 3D Model in Angular + Three.js](https://srivastavaanurag79.medium.com/3d-model-three-js-scene-in-angular-7bcbc0d00c31)
+### Classes
 
-We'll learn the fundamentals of Three.js and integrate the Three.js scene in Angular.
+- Device
+- DeviceType
+- DeviceTypeDict
+- Category (FIXIT: chceck definition)
+- CategoryType
+- CategotyTypeDict
+
+## Functions
+
+### List devices
+
+![List devices](https://github.com/karol-preiskorn/3d-inventory-angular-ui/raw/master/src/assets/img/Screenshot%202023-04-11%20at%2007-51-03%203d%20inventory.png)
+
+### Edit device
+
+![Edit device](src/assets/img/Screenshot%202023-04-11%20at%2007-50-36%203d%20inventory.png)
+
+### View 3d inventory
+
+View inventory in [three.js](https://threejs.org/) framework.
+
+![3d inventory cube 3d](src/assets/img/Screenshot%20from%202023-05-01%2008-29-25.png)
+
+## About Angular + Three.js
+
+This project bild from this example contain `three.js` in `Angular` [Tutorial to render 3D Cube in Angular + Three.js](https://srivastavaanurag79.medium.com/hello-cube-your-first-three-js-scene-in-angular-176c44b9c6c0).
 
 ## Usage
 
@@ -63,85 +85,35 @@ export class AppModule {
 }
 ```
 
-### Json serwer
+### Json server
 
-For testinting api run `jsonserver`.
+For testing UI API run `jsonserver`.
 
-baseurl = 'http://localhost:3000';
+In `npm` run script:
 
 ```js
-"jsonserver:bugs": "json-server --watch bugs.json",
 "jsonserver:devices": "json-server --watch devices.json"
+```
+
+Server `url`:
+
+```json
+baseurl = 'http://localhost:3000';
 ```
 
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-P3lease make sure to update tests as appropriate.
+Please make sure to update tests as appropriate.
 
-## Code guidelines
+### Code guidelines
 
-Not forget about https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines
+Not forget about https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines and copy here [MANIFEST.md](MANIFEST.md)
 
-### Names
+## Next TODO
 
-- Use PascalCase for type names.
-- Do not use I as a prefix for interface names.
-- Use PascalCase for enum values.
-- Use camelCase for function names.
-- Use camelCase for property names and local variables.
-- Do not use \_ as a prefix for private properties.
-- Use whole words in names when possible.
-
-### Components
-
-- 1 file per logical component (e.g. parser, scanner, emitter, checker).
-- Do not add new files. :)
-- files with .generated.\* suffix are auto-generated, do not hand-edit them.
-
-### Types
-
-- Do not export types/functions unless you need to share it across multiple components.
-- Do not introduce new types/values to the global namespace.
-- Shared types should be defined in types.ts.
-- Within a file, type definitions should come first.
-
-### null and undefined
-
-- Use undefined. Do not use null.
-
-### General Assumptions
-
-- Consider objects like Nodes, Symbols, etc. as immutable outside the component that created them. Do not change them.
-- Consider arrays as immutable by default after creation.
-
-### Classes
-
-For consistency, do not use classes in the core compiler pipeline. Use function closures instead.
-
-### Flags
-
-More than 2 related Boolean properties on a type should be turned into a flag.
-
-### Comments
-
-Use JSDoc style comments for functions, interfaces, enums, and classes.
-
-### Strings
-
-- Use double quotes for strings.
-- All strings visible to the user need to be localized (make an entry in diagnosticMessages.json).
-
-### Diagnostic Messages
-
-- Use a period at the end of a sentence.
-- Use indefinite articles for indefinite entities.
-- Definite entities should be named (this is for a variable name, type name, etc..).
-- When stating a rule, the subject should be in the singular (e.g. "An external module cannot..." instead of "External modules cannot...").
-- Use present tense.
-
-## Next todo
-
-- add menu
-- add action menu requested rest api to neo4j/Oracle
+- [ ] TODO: #13 create services for types and categories and move this list to database
+- [ ] TODO: #12 customize start environment variables outside git commits
+- [ ] FIXME: #11 fix delete
+- [ ] TODO: #10 add clone device

@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/3d-inventory-angular-ui",
+            "outputPath": "dist/3d-inventory-angular-ui/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -127,9 +127,66 @@
               "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js"
             ]
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/3d-inventory-angular-ui/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "3d-inventory-angular-ui:build:development",
+              "serverTarget": "3d-inventory-angular-ui:server:development"
+            },
+            "production": {
+              "browserTarget": "3d-inventory-angular-ui:build:production",
+              "serverTarget": "3d-inventory-angular-ui:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": ["/"]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "3d-inventory-angular-ui:build:production",
+              "serverTarget": "3d-inventory-angular-ui:server:production"
+            },
+            "development": {
+              "browserTarget": "3d-inventory-angular-ui:build:development",
+              "serverTarget": "3d-inventory-angular-ui:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
-  },
-  "defaultProject": "3d-inventory-angular-ui"
+  }
 }

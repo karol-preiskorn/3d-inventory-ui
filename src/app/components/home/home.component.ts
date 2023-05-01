@@ -12,9 +12,12 @@ export class HomeComponent {
   constructor(private http: HttpClient) {}
 
   async ngOnInit() {
-    this.md = await this.http
+    this.http
       .get('/assets/README.md', { responseType: 'text' })
-      .toPromise()
+      .subscribe((data: string) => {
+        console.log('Get Markdown ' + JSON.stringify(data))
+        this.md = data
+      })
   }
 
   onLoad(data: any) {

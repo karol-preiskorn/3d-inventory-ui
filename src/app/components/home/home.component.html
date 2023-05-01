@@ -1,2 +1,6 @@
-<p>README</p>
-<pre>{{ md }}</pre>
+<markdown
+  [srcRelativeLink]="true"
+  [data]="md"
+  (load)="onLoad($event)"
+  (error)="onError($event)"
+></markdown>
