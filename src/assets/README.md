@@ -1,6 +1,6 @@
 # 3d inventory
 
-Project create 3d inventory. A simple solution that allows you to build a spatial and database representation of all types of warehouses and server rooms.
+Project create **3d inventory**. A simple solution that allows you to build a spatial and database representation of all types of warehouses and server rooms.
 
 ## Technology stack
 
@@ -16,14 +16,16 @@ Project create 3d inventory. A simple solution that allows you to build a spatia
 
 ![Data Model](https://github.com/karol-preiskorn/3d-inventory-angular-ui/raw/master/doc/img/Screenshot%20from%202023-05-01%2008-40-25.png)
 
-### Classes
+### Data Classes
 
-- Device
-- DeviceType
-- DeviceTypeDict
-- Category (FIXIT: chceck definition)
-- CategoryType
-- CategotyTypeDict
+Data structures and relations
+
+- `Device`
+- `DeviceType`
+- `DeviceTypeDict`
+- `Category` (FIXIT: chceck definition)
+- `CategoryType`
+- `CategotyTypeDict`
 
 ## Functions
 
@@ -33,13 +35,13 @@ Project create 3d inventory. A simple solution that allows you to build a spatia
 
 ### Edit device
 
-![Edit device](src/assets/img/Screenshot%202023-04-11%20at%2007-50-36%203d%20inventory.png)
+![Edit device](https://github.com/karol-preiskorn/3d-inventory-angular-ui/raw/master/src/assets/img/Screenshot%202023-04-11%20at%2007-50-36%203d%20inventory.png)
 
 ### View 3d inventory
 
 View inventory in [three.js](https://threejs.org/) framework.
 
-![3d inventory cube 3d](src/assets/img/Screenshot%20from%202023-05-01%2008-29-25.png)
+![3d inventory cube 3d](https://github.com/karol-preiskorn/3d-inventory-angular-ui/raw/master/src/assets/img/Screenshot%20from%202023-05-01%2008-29-25.png)
 
 ## About Angular + Three.js
 
@@ -47,15 +49,35 @@ This project bild from this example contain `three.js` in `Angular` [Tutorial to
 
 ## Usage
 
+To run UI:
+
 ```bash
-git clone <this-repo>
-
-npm install
-ng serve
-
-localhost:4200 will render cube
-localhost:4200/model will render 3D model
+git clone git@github.com:karol-preiskorn/3d-inventory-angular-ui.git && npm install -y && npm start
 ```
+
+### Useful scripts
+
+`npm` scripts details
+
+#### npm run dev:ssr
+
+Similar to ng serve, which offers live reload during development, but uses server-side rendering. The application runs in watch mode and refreshes the browser after every change. This command is slower than the actual ng serve command.
+
+#### ng build && ng run app-name:server
+
+Builds both the server script and the application in production mode. Use this command when you want to build the project for deployment.
+
+#### npm run serve:ssr
+
+Starts the server script for serving the application locally with server-side rendering. It uses the build artifacts created by ng run build:ssr, so make sure you have run that command as well.
+
+**NOTE**
+serve:ssr is not intended to be used to serve your application in production,
+but only for testing the server-side rendered application locally.
+
+#### npm run prerender
+
+Used to prerender an application's pages. Read more about prerendering here.
 
 ### Swagger client
 
@@ -112,6 +134,8 @@ Please make sure to update tests as appropriate.
 Not forget about https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines and copy here [MANIFEST.md](MANIFEST.md)
 
 ## Next TODO
+
+Develop and bugfix [_task_](https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues) in GitHub:
 
 - [ ] TODO: #13 create services for types and categories and move this list to database
 - [ ] TODO: #12 customize start environment variables outside git commits

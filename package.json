@@ -43,6 +43,7 @@
     "@compodoc/compodoc": "^1.1.19",
     "@ng-bootstrap/ng-bootstrap": "^14.1.0",
     "@nguniversal/express-engine": "^15.2.1",
+    "@octokit/rest": "^19.0.7",
     "@popperjs/core": "^2.11.7",
     "@types/lodash": "^4.14.194",
     "bootstrap": "^5.2.3",

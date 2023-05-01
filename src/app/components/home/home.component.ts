@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
+import { Octokit } from '@octokit/rest'
 
 @Component({
   selector: 'app-home',
@@ -26,5 +27,16 @@ export class HomeComponent {
 
   onError(data: any) {
     console.log(this.md)
+  }
+
+  getIssues() {
+    octokit
+      .paginate(octokit.rest.issues.listForRepo, {
+        owner: 'octokit',
+        repo: 'rest.js',
+      })
+      .then((issues) => {
+        // issues is an array of all issue objects
+      })
   }
 }
