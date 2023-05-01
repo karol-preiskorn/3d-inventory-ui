@@ -1,22 +1,22 @@
 ﻿/*
  * File:        /src/app/DeviceTypes.ts
  * Description: Defines attribute Device Type list
- * @memberof DeviceTypes
+ * @memberof    DeviceTypes
  * Dependency:
  *
  * Date        By     Comments
  * ----------  -----  ------------------------
- * 2023-04-11	 C2RLO	 convert to DeviceType and DeviceTypeList
+ * 2023-04-11	 C2RLO	convert to DeviceType and DeviceTypeList
  * 2023-02-19	 C2RLO	add findType
  * 2023-02-18  C2RLO  Init
  */
 
-interface DeviceTypeInterfance {
+export interface DeviceTypeInterfance {
   name: string
   description: string
 }
 
-type DeviceTypeListType = { name: string; description: string }
+export type DeviceTypeListType = { name: string; description: string }
 
 export class DeviceType {
   name: string
@@ -68,7 +68,7 @@ export class DeviceTypeDict {
     return this.list[Math.floor(Math.random() * this.list.length)]
   }
   /**
-   * Find specyfic type in DevieTypeList
+   * Find specific type in DeviceTypeList
    *
    * @param {string} search
    * @return {*}  {string}
@@ -87,26 +87,3 @@ export class DeviceTypeDict {
     }
   }
 }
-
-const devicesT = new DeviceTypeDict()
-const f = devicesT.findTypeByName('Probe')
-console.log('-->', f)
-
-/**
- * Function loop over the array, then check if the type property is equal to the property in each object of the array
- *
- * @param {Array<deviceTypeType>} arr
- * @param {deviceTypeType} obj
- */
-function findObjinDeviceTypes(
-  arr: Array<DeviceTypeListType>,
-  obj: DeviceTypeListType
-) {
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i].name === obj.name) {
-      console.log('-->', obj)
-    }
-  }
-}
-// test findObjinDeviceTypes
-findObjinDeviceTypes(devicesT.list, { name: 'Workstations', description: '' })

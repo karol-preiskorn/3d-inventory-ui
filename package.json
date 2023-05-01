@@ -52,6 +52,7 @@
     "prismjs": "^1.29.0",
     "rxjs": "~7.8.0",
     "three": "^0.151.3",
+    "three-orbitcontrols-ts": "^0.1.2",
     "tslib": "^2.5.0",
     "zone.js": "~0.13.0"
   },
@@ -90,6 +91,7 @@
     "source-map-loader": "^4.0.1",
     "typescript": "~4.9.5",
     "unique-names-generator": "^4.7.1",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "vite": "^4.2.1"
   }
 }

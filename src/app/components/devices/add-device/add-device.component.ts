@@ -4,8 +4,8 @@ import { Router } from '@angular/router'
 import { Device } from 'src/app/shared/device'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
-import { LogService } from '../../services/log.service'
-import { DevicesService } from './../../services/devices.service'
+import { LogService } from 'src/app/services/log.service'
+import { DevicesService } from 'src/app/services/devices.service'
 
 @Component({
   selector: 'app-add-device',

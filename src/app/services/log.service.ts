@@ -32,9 +32,9 @@ export class LogService {
     }),
   }
 
-  GetLogs(): Observable<Log> {
+  GetLogs(): Observable<Log[]> {
     return this.http
-      .get<Log>(this.baseurl + '/logs?_sort=date&_order=desc')
+      .get<Log[]>(this.baseurl + '/logs?_sort=date&_order=desc')
       .pipe(retry(1), catchError(this.errorHandl))
   }
 

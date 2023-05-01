@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Device } from 'src/app/shared/device'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceType, DeviceTypeDict } from 'src/app/shared/deviceTypes'
-import { DevicesService } from './../../services/devices.service'
-import { LogService } from './../../services/log.service'
+import { DevicesService } from 'src/app/services/devices.service'
+import { LogService } from 'src/app/services/log.service'
 
 @Component({
   selector: 'app-edit-device',

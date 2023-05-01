@@ -69,11 +69,11 @@ export class DevicesService {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
     console.log(JSON.stringify(errorMessage))
-    this.logService.CreateLog({
-      message: 'Error service device: ' + JSON.stringify(error.message),
-      category: 'Error',
-      component: 'DeviceService.errorHandl',
-    })
+    // logService.CreateLog({
+    //   message: 'Error service device: ' + JSON.stringify(error.message),
+    //   category: 'Error',
+    //   component: 'DeviceService.errorHandl',
+    // })
 
     return throwError(() => {
       return errorMessage

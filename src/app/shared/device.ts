@@ -15,15 +15,17 @@ import {
   uniqueNamesGenerator,
 } from 'unique-names-generator'
 import { v4 as uuidv4 } from 'uuid'
-import { DeviceCategory, DeviceCategoryDict } from './deviceCategories'
-import { DeviceType, DeviceTypeDict } from './deviceTypes'
+
+interface Position {
+  x: number
+  y: number
+  h: number
+}
 
 export class Device {
   id: string
   name?: string | null
-  dimensions?: string | null
-  type: DeviceType
-  category: DeviceCategory
+  position?: Position | null
 
   public print(): void {
     console.log(
@@ -31,12 +33,8 @@ export class Device {
         this.id +
         ', name: ' +
         this.name +
-        ', dimensions: ' +
-        this.dimensions +
-        ', type: ' +
-        this.type +
-        ', category: ' +
-        this.category.name
+        ', position: ' +
+        this.position
     )
   }
 
@@ -46,12 +44,8 @@ export class Device {
       this.id +
       ', name: ' +
       this.name +
-      ', dimensions: ' +
-      this.dimensions +
-      ', type: ' +
-      this.type +
-      ', category: ' +
-      this.category.name
+      ', position: ' +
+      this.position
     )
   }
 
@@ -62,8 +56,5 @@ export class Device {
       style: 'lowerCase',
       separator: '-',
     }) // big_red_donkey
-
-    this.type = new DeviceTypeDict().getRandom()
-    this.category = new DeviceCategoryDict().getRandom()
   }
 }

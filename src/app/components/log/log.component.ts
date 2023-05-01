@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { Log, LogService } from '../services/log.service'
+import { Subscription } from 'rxjs'
+import { Log, LogService } from 'src/app/services/log.service'
 
 @Component({
   selector: 'app-log',
@@ -20,8 +21,8 @@ export class LogComponent implements OnInit {
     this.loadLog()
   }
 
-  loadLog() {
-    return this.logService.GetLogs().subscribe((data: any) => {
+  loadLog(): Subscription {
+    return this.logService.GetLogs().subscribe((data: Log[]) => {
       // data.sort(function (a: any, b: any) {
       //   if (a.date < b.date) return -1
       //   if (a.date > b.date) return 1

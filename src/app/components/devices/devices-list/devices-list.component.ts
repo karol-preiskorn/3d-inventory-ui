@@ -1,8 +1,8 @@
 import { Component, NgZone, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { LogService } from '../../services/log.service'
-import { Device } from '../../shared/device'
-import { DevicesService } from './../../services/devices.service'
+import { LogService } from 'src/app/services/log.service'
+import { Device } from 'src/app/shared/device'
+import { DevicesService } from 'src/app/services/devices.service'
 
 @Component({
   selector: 'app-devices-list',
