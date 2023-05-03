@@ -3,7 +3,7 @@
   "ignorePaths": [],
   "dictionaryDefinitions": [],
   "dictionaries": [],
-  "words": [],
+  "words": ["compodoc"],
   "ignoreWords": [],
   "import": []
 }

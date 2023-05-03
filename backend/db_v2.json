@@ -2,9 +2,9 @@
   "devices": [
     {
       "id": 1,
-      "name": "sadasdasd FG",
-      "type": "Desktop",
-      "category": "Facility"
+      "name": "saaaa",
+      "type": "Modem",
+      "category": "Site"
     },
     {
       "id": 2,
@@ -807,6 +807,13 @@
       "category": "Info",
       "component": "EditDeviceComponent.SubmitForm",
       "message": "Submit device: {\"id\":1,\"name\":\"sadasdasd FG\",\"type\":\"Desktop\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "21d9fe1a-0499-4012-846a-82d6fed770f4",
+      "date": "2023/05/01 20:12:06.69",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":1,\"name\":\"saaaa\",\"type\":\"Modem\",\"category\":\"Site\"}"
     }
   ]
 }

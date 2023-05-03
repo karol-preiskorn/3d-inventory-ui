@@ -1,13 +1,14 @@
 ﻿/*
- * File:        /src/app/shared/device copy.ts
+ * File:        /src/app/shared/model.ts
  * Description:
  * Used by:
- * Dependency:
+ * Dependency: If any operation will be on dimensions? Class or interfance.
  *
  * Model -< Device
- * Date         By        Comments
- * ----------   -------   ------------------------------
- * 2023-04-30   C2RLO
+ *
+ * Date         By     Comments
+ * ----------   -----  ------------------------------
+ * 2023-04-30   C2RLO  Init
  */
 
 import {
@@ -20,29 +21,31 @@ import { v4 as uuidv4 } from 'uuid'
 import { DeviceCategory, DeviceCategoryDict } from './deviceCategories'
 import { DeviceType, DeviceTypeDict } from './deviceTypes'
 
-interface Dimensions {
-  w: number
-  h: number
-  d: number
+interface Dimension {
+  width: number
+  height: number
+  deep: number
+}
+
+interface Texture {
+  front: string
+  back: string
+  side: string
+  top: string
+  botom: string
 }
 
 export class Model {
   id: string
   name?: string | null
-  dimensions: Dimensions | null
-  bitmaps: {
-    front: string
-    back: string
-    side: string
-    top: string
-    botom: string
-  }
+  dimensions: Dimension | null
+  texture?: Texture | null
   type: DeviceType
   category: DeviceCategory
 
   public print(): void {
     console.log(
-      '-->[device model] id: ' +
+      '[model] id: ' +
         this.id +
         ', name: ' +
         this.name +
@@ -54,22 +57,34 @@ export class Model {
         this.category.name
     )
   }
-
   public getString(): string {
     return (
-      '-->[device model] id: ' +
+      '[model] id: ' +
       this.id +
       ', name: ' +
       this.name +
-      ', dimensions: ' +
-      this.dimensions +
-      ', type: ' +
+      ', dimensions: (' +
+      this.dimensions?.width +
+      'x' +
+      this.dimensions?.height +
+      'x' +
+      this.dimensions?.deep +
+      '), type: ' +
       this.type +
       ', category: ' +
       this.category.name
     )
   }
-
+  public getDimentionsString(): string {
+    return (
+      this.dimensions?.width +
+      'x' +
+      this.dimensions?.height +
+      'x' +
+      this.dimensions?.deep +
+      ')'
+    )
+  }
   public generate(): void {
     this.id = uuidv4()
     this.name = uniqueNamesGenerator({
@@ -77,7 +92,6 @@ export class Model {
       style: 'lowerCase',
       separator: '-',
     }) // big-red-donkey
-
     this.type = new DeviceTypeDict().getRandom()
     this.category = new DeviceCategoryDict().getRandom()
   }

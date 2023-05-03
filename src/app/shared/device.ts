@@ -1,6 +1,6 @@
 ﻿/*
- * File:        /src/app/devices.ts
- * Description: Main class operating on devices. Structure data accessed vi Oracle DB/Neo4j
+ * File:        /src/app/device.ts
+ * Description: Main class operating on device. Structure data accessed vi Oracle DB/Neo4j
  * Used by:
  * Dependency:
  *
@@ -26,7 +26,6 @@ export class Device {
   id: string
   name?: string | null
   position?: Position | null
-
   public print(): void {
     console.log(
       '-->[device] id: ' +

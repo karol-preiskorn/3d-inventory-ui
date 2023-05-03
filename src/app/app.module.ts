@@ -14,7 +14,6 @@ import { DevicesListComponent } from './components/devices/devices-list/devices-
 import { EditDeviceComponent } from './components/devices/edit-device/edit-device.component'
 import { HomeComponent } from './components/home/home.component'
 import { LogComponent } from './components/log/log.component'
-import { MarkdownReadmeComponent } from './components/markdown-readme/markdown-readme.component'
 import { AddModelComponent } from './components/models/add-model/add-model.component'
 import { EditModelComponent } from './components/models/edit-model/edit-model.component'
 import { ModelsListComponent } from './components/models/models-list/models-list.component'
@@ -30,7 +29,6 @@ import { LogService } from './services/log.service'
     EditDeviceComponent,
     HomeComponent,
     LogComponent,
-    MarkdownReadmeComponent,
     ModelsListComponent,
     AddModelComponent,
     EditModelComponent,
