@@ -24,7 +24,7 @@ import { DeviceType, DeviceTypeDict } from './deviceTypes'
 interface Dimension {
   width: number
   height: number
-  deep: number
+  depth: number
 }
 
 interface Texture {
@@ -37,9 +37,9 @@ interface Texture {
 
 export class Model {
   id: string
-  name?: string | null
-  dimensions: Dimension | null
-  texture?: Texture | null
+  name: string
+  dimension: Dimension
+  texture: Texture
   type: DeviceType
   category: DeviceCategory
 
@@ -50,7 +50,7 @@ export class Model {
         ', name: ' +
         this.name +
         ', dimensions: ' +
-        this.dimensions +
+        this.getDimensionsString() +
         ', type: ' +
         this.type +
         ', category: ' +
@@ -63,25 +63,22 @@ export class Model {
       this.id +
       ', name: ' +
       this.name +
-      ', dimensions: (' +
-      this.dimensions?.width +
-      'x' +
-      this.dimensions?.height +
-      'x' +
-      this.dimensions?.deep +
-      '), type: ' +
+      ', dimensions: ' +
+      this.getDimensionsString() +
+      ', type: ' +
       this.type +
       ', category: ' +
       this.category.name
     )
   }
-  public getDimentionsString(): string {
+  public getDimensionsString(): string {
     return (
-      this.dimensions?.width +
-      'x' +
-      this.dimensions?.height +
-      'x' +
-      this.dimensions?.deep +
+      '(width: ' +
+      this.dimension?.width +
+      ', height: ' +
+      this.dimension?.height +
+      ', deep: ' +
+      this.dimension?.depth +
       ')'
     )
   }

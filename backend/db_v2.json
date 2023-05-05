@@ -1,4 +1,24 @@
 {
+  "models": [
+    {
+      "id": 1,
+      "name": "saaaaasdasdsa",
+      "dimension": {
+        "width": 1,
+        "height": 2,
+        "depth": 3
+      },
+      "texture": {
+        "front": "aaa",
+        "back": "string",
+        "side": "string",
+        "top": "string",
+        "botom": "string"
+      },
+      "type": "Copier",
+      "category": "Facility"
+    }
+  ],
   "devices": [
     {
       "id": 1,
@@ -814,6 +834,27 @@
       "category": "Info",
       "component": "EditDeviceComponent.SubmitForm",
       "message": "Submit device: {\"id\":1,\"name\":\"saaaa\",\"type\":\"Modem\",\"category\":\"Site\"}"
+    },
+    {
+      "id": "8b961ccd-2031-477e-b36e-225995f9e62e",
+      "date": "2023/05/03 11:01:02.18",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":1,\"name\":\"saaaa\",\"type\":\"CoolAir\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "89412642-b239-4534-acbf-a9fe5a3d5949",
+      "date": "2023/05/03 11:01:55.61",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":1,\"name\":\"saaaaasdasd\",\"type\":\"Copier\",\"category\":\"Site\"}"
+    },
+    {
+      "id": "27c8cbb5-b241-4753-b394-88ad45d78729",
+      "date": "2023/05/03 13:17:04.48",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\"id\":\"1aaaa\",\"name\":\"saaaaasdasdsa\",\"type\":\"Copier\",\"category\":\"Facility\"}"
     }
   ]
 }

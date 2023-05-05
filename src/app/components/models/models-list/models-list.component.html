@@ -28,7 +28,16 @@
             >
               <td>{{ model.id }}</td>
               <td>{{ model.name }}</td>
-              <td>{{ model.getDimentionsString() }}</td>
+              <td>
+                {{
+                  'width: ' +
+                    model.dimension.width +
+                    ', height: ' +
+                    model.dimension.height +
+                    ', deep: ' +
+                    model.dimension.depth
+                }}
+              </td>
               <td>{{ model.type }}</td>
               <td>{{ model.category }}</td>
               <td>

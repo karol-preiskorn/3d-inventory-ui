@@ -35,7 +35,7 @@ export class ModelsListComponent implements OnInit {
     return this.modelsService.DeleteModel(id).subscribe((data: any) => {
       console.log(data)
       this.loadModels()
-      this.router.navigate(['/models-list/'])
+      this.router.navigate(['/models-list'])
     })
   }
   AddForm() {
@@ -43,7 +43,7 @@ export class ModelsListComponent implements OnInit {
   }
   EditForm(model: Model) {
     this.selectedModel = model
-    this.router.navigate(['/edit-model/', model.id])
+    this.router.navigate(['/edit-model', model.id])
     // this.ngZone.run(() => this.router.navigateByUrl(`edit-device/${id}`))
   }
 }

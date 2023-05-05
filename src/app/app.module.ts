@@ -17,7 +17,9 @@ import { LogComponent } from './components/log/log.component'
 import { AddModelComponent } from './components/models/add-model/add-model.component'
 import { EditModelComponent } from './components/models/edit-model/edit-model.component'
 import { ModelsListComponent } from './components/models/models-list/models-list.component'
+
 import { DevicesService } from './services/devices.service'
+import { ModelsService } from './services/models.service'
 import { LogService } from './services/log.service'
 
 @NgModule({
@@ -48,7 +50,7 @@ import { LogService } from './services/log.service'
     }),
     BsDropdownModule.forRoot(),
   ],
-  providers: [DevicesService, LogService],
+  providers: [DevicesService, ModelsService, LogService],
   bootstrap: [AppComponent],
   exports: [],
 })

@@ -1,8 +1,145 @@
-import { Component } from '@angular/core'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
+import { LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
+import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
+import { Model } from 'src/app/shared/model'
 
 @Component({
   selector: 'app-edit-model',
   templateUrl: './edit-model.component.html',
   styleUrls: ['./edit-model.component.scss'],
 })
-export class EditModelComponent {}
+export class EditModelComponent implements OnInit {
+  inputId: any
+  model: Model
+
+  editForm = new FormGroup({
+    id: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    dimension: new FormGroup({
+      width: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+      height: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+      depth: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+    }),
+    texture: new FormGroup({
+      front: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+      back: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      side: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      top: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      botom: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+    }),
+    type: new FormControl('', Validators.required),
+    category: new FormControl('', Validators.required),
+  })
+
+  deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
+  deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
+  isSubmitted = false
+
+  ngOnInit() {
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
+    this.model = this.getModel(this.inputId)
+  }
+
+  constructor(
+    public activatedRoute: ActivatedRoute,
+    public modelsService: ModelsService,
+    private ngZone: NgZone,
+    private router: Router,
+    private logService: LogService
+  ) {}
+
+  changeId(e: any) {
+    this.id?.setValue(e.target.value, { onlySelf: true })
+  }
+  changeName(e: any) {
+    this.name?.setValue(e.target.value, { onlySelf: true })
+  }
+
+  changeType(e: any) {
+    this.type?.setValue(e.target.value, { onlySelf: true })
+  }
+  changeCategory(e: any) {
+    this.category?.setValue(e.target.value, { onlySelf: true })
+  }
+
+  // Access Form Controls getter
+  get id() {
+    return this.editForm.get('id')
+  }
+  get name() {
+    return this.editForm.get('name')
+  }
+  get type() {
+    return this.editForm.get('type')
+  }
+  get category() {
+    return this.editForm.get('category')
+  }
+  toString(data: any): string {
+    return JSON.stringify(data)
+  }
+  private getModel(id: string): any {
+    return this.modelsService
+      .GetModel(this.inputId)
+      .subscribe((data: Model) => {
+        console.log('GetModel ' + JSON.stringify(data))
+        this.model = data
+        this.editForm.setValue({
+          id: data.id,
+          name: data.name,
+          dimension: {
+            width: data.dimension.width.toString(),
+            height: data.dimension.height.toString(),
+            depth: data.dimension.depth.toString(),
+          },
+          texture: {
+            front: data.texture.front,
+            back: data.texture.back,
+            side: data.texture.side,
+            top: data.texture.top,
+            botom: data.texture.botom,
+          },
+          type: data.type.name,
+          category: data.category.name,
+        })
+      })
+  }
+  get f() {
+    return this.editForm.controls
+  }
+  submitForm() {
+    if (this.editForm.valid && this.editForm.touched) {
+      this.logService.CreateLog({
+        message:
+          'Submit device: ' + JSON.stringify(this.editForm.value, null, 2),
+        category: 'Info',
+        component: 'EditDeviceComponent.SubmitForm',
+      })
+
+      this.modelsService
+        .UpdateModel(this.inputId, this.editForm.value)
+        .subscribe(() => {
+          this.ngZone.run(() => this.router.navigateByUrl('models-list'))
+        })
+    }
+  }
+}

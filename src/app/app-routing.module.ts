@@ -6,6 +6,8 @@ import { DevicesListComponent } from 'src/app/components/devices/devices-list/de
 import { EditDeviceComponent } from 'src/app/components/devices/edit-device/edit-device.component'
 import { AddDeviceComponent } from 'src/app/components/devices/add-device/add-device.component'
 import { ModelsListComponent } from './components/models/models-list/models-list.component'
+import { AddModelComponent } from './components/models/add-model/add-model.component'
+import { EditModelComponent } from './components/models/edit-model/edit-model.component'
 const routes: Routes = [
   {
     path: '',
@@ -20,10 +22,7 @@ const routes: Routes = [
     path: 'cube',
     component: CubeComponent,
   },
-  {
-    path: 'models-list',
-    component: ModelsListComponent,
-  },
+
   {
     path: 'devices-list',
     component: DevicesListComponent,
@@ -35,6 +34,18 @@ const routes: Routes = [
   {
     path: 'add-device',
     component: AddDeviceComponent,
+  },
+  {
+    path: 'models-list',
+    component: ModelsListComponent,
+  },
+  {
+    path: 'edit-model/:id',
+    component: EditModelComponent,
+  },
+  {
+    path: 'add-model',
+    component: AddModelComponent,
   },
 ]
 
