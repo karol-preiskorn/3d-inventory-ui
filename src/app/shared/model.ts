@@ -40,8 +40,9 @@ export class Model {
   name: string
   dimension: Dimension
   texture: Texture
-  type: DeviceType
-  category: DeviceCategory
+  // TODO: transform deviceType to single object with id, version, name, description from dictionary
+  type: string
+  category: string
 
   public print(): void {
     console.log(
@@ -54,7 +55,7 @@ export class Model {
         ', type: ' +
         this.type +
         ', category: ' +
-        this.category.name
+        this.category
     )
   }
   public getString(): string {
@@ -68,7 +69,7 @@ export class Model {
       ', type: ' +
       this.type +
       ', category: ' +
-      this.category.name
+      this.category
     )
   }
   public getDimensionsString(): string {
@@ -89,7 +90,7 @@ export class Model {
       style: 'lowerCase',
       separator: '-',
     }) // big-red-donkey
-    this.type = new DeviceTypeDict().getRandom()
-    this.category = new DeviceCategoryDict().getRandom()
+    this.type = new DeviceTypeDict().getRandomName()
+    this.category = new DeviceCategoryDict().getRandomName()
   }
 }

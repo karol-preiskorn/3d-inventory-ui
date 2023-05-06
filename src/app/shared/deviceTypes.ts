@@ -67,6 +67,10 @@ export class DeviceTypeDict {
   public getRandom(): DeviceType {
     return this.list[Math.floor(Math.random() * this.list.length)]
   }
+
+  public getRandomName(): string {
+    return this.list[Math.floor(Math.random() * this.list.length)].name
+  }
   /**
    * Find specific type in DeviceTypeList
    *

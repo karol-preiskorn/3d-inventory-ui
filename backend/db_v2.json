@@ -4,9 +4,9 @@
       "id": 1,
       "name": "saaaaasdasdsa",
       "dimension": {
-        "width": 1,
-        "height": 2,
-        "depth": 3
+        "width": "1",
+        "height": "2",
+        "depth": "3"
       },
       "texture": {
         "front": "aaa",
@@ -15,8 +15,8 @@
         "top": "string",
         "botom": "string"
       },
-      "type": "Copier",
-      "category": "Facility"
+      "type": "Router",
+      "category": "Connectivity"
     }
   ],
   "devices": [
@@ -855,6 +855,13 @@
       "category": "Info",
       "component": "EditDeviceComponent.SubmitForm",
       "message": "Submit device: {\"id\":\"1aaaa\",\"name\":\"saaaaasdasdsa\",\"type\":\"Copier\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "10a68b9e-a549-425a-87a9-3396569740e0",
+      "date": "2023/05/06 19:01:36.54",
+      "category": "Info",
+      "component": "EditDeviceComponent.SubmitForm",
+      "message": "Submit device: {\n  \"id\": 1,\n  \"name\": \"saaaaasdasdsa\",\n  \"dimension\": {\n    \"width\": \"1\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"aaa\",\n    \"back\": \"string\",\n    \"side\": \"string\",\n    \"top\": \"string\",\n    \"botom\": \"string\"\n  },\n  \"type\": \"Router\",\n  \"category\": \"Connectivity\"\n}"
     }
   ]
 }

@@ -55,6 +55,10 @@ export class DeviceCategoryDict {
   public getRandom(): DeviceCategory {
     return this.list[Math.floor(Math.random() * this.list.length)]
   }
+
+  public getRandomName(): string {
+    return this.list[Math.floor(Math.random() * this.list.length)].name
+  }
 }
 
 // var devicesT = new DeviceCategory()

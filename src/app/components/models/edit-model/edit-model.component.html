@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col-md-12">
       <h3>Edit Model</h3>
-
       <form [formGroup]="editForm" (ngSubmit)="submitForm()">
         <div class="form-group mb-3">
           <label for="form-id" class="form-label">Id</label>
@@ -29,7 +28,6 @@
             {{ this.editForm.controls.id.status }}
           </p>
         </div>
-
         <div class="form-group mb-3">
           <label for="form-name" class="form-label">Name</label>
           <textarea
@@ -56,7 +54,6 @@
             </div>
           </div>
         </div>
-
         <div class="row" formGroupName="dimension">
           <div class="col">
             <div class="form-group mb-3">
@@ -190,6 +187,199 @@
             </div>
           </div>
         </div>
+        <div class="row" formGroupName="texture">
+          <div class="col">
+            <div class="form-group mb-3">
+              <label for="front" class="form-label">Front</label>
+              <input
+                type="text"
+                formControlName="front"
+                id="front"
+                [ngClass]="{
+                  'is-invalid':
+                    this.editForm.controls.texture.controls.front.status !=
+                    'VALID',
+                  'form-control': true
+                }"
+              />
+              <div
+                *ngIf="this.editForm.controls.texture.controls.front.errors"
+                class="invalid-feedback"
+              >
+                <div
+                  *ngIf="
+                    this.editForm.controls.texture.controls.front.errors
+                      .required
+                  "
+                >
+                  Width is required
+                </div>
+                <div
+                  *ngIf="
+                    this.editForm.controls.texture.controls.front.errors
+                      .minlength
+                  "
+                >
+                  Width must be at least 1 number.
+                </div>
+              </div>
+              <p>
+                Value: {{ editForm.value.texture?.front }} -
+                {{ this.editForm.controls.texture.controls.front.status }}
+              </p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group mb-3">
+              <label for="back" class="form-label">Back</label>
+              <input
+                type="text"
+                formControlName="back"
+                id="back"
+                [ngClass]="{
+                  'is-invalid':
+                    this.editForm.controls.texture.controls.back.status !=
+                    'VALID',
+                  'form-control': true
+                }"
+              />
+              <div
+                *ngIf="this.editForm.controls.texture.controls.back.errors"
+                class="invalid-feedback"
+              >
+                <div
+                  *ngIf="
+                    this.editForm.controls.texture.controls.back.errors.required
+                  "
+                >
+                  back side is required
+                </div>
+                <div
+                  *ngIf="
+                    this.editForm.controls.texture.controls.back.errors
+                      .minlength
+                  "
+                >
+                  back must be at least 1 number
+                </div>
+              </div>
+              <p>
+                Value: {{ editForm.value.texture?.back }} -
+                {{ this.editForm.controls.texture.controls.back.status }}
+              </p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group mb-3">
+              <label for="depth" class="form-label">Side</label>
+              <input
+                type="text"
+                formControlName="side"
+                id="side"
+                [ngClass]="{
+                  'is-invalid':
+                    this.editForm.controls.texture.status != 'VALID',
+                  'form-control': true
+                }"
+              />
+              <div
+                *ngIf="this.editForm.controls.texture.controls.side.errors"
+                class="invalid-feedback"
+              >
+                <div
+                  *ngIf="
+                    this.editForm.controls.texture.controls.side.errors.required
+                  "
+                >
+                  side is required
+                </div>
+                <div
+                  *ngIf="
+                    this.editForm.controls.texture.controls.side.errors
+                      .minlength
+                  "
+                >
+                  side must be at least 1 number
+                </div>
+              </div>
+              <p>
+                Value: {{ this.editForm.controls.texture.value.side }} -
+                {{ this.editForm.controls.texture.controls.side.status }}
+              </p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group mb-3">
+              <label for="top" class="form-label">Top</label>
+              <input
+                type="text"
+                formControlName="top"
+                id="top"
+                [ngClass]="{
+                  'is-invalid':
+                    this.editForm.controls.texture.controls.top.status !=
+                    'VALID',
+                  'form-control': true
+                }"
+              />
+              <div
+                *ngIf="this.editForm.controls.texture.controls.side.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="this.editForm.controls.texture.controls.top.errors">
+                  Top is required
+                </div>
+                <div *ngIf="this.editForm.controls.texture.controls.top.errors">
+                  Top must be at least 1 number
+                </div>
+              </div>
+              <p>
+                Value: {{ this.editForm.controls.texture.value.top }} -
+                {{ this.editForm.controls.texture.controls.top.status }}
+              </p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group mb-3">
+              <label for="botom" class="form-label">Botom</label>
+              <input
+                type="text"
+                formControlName="botom"
+                id="botom"
+                [ngClass]="{
+                  'is-invalid':
+                    this.editForm.controls.texture.status != 'VALID',
+                  'form-control': true
+                }"
+              />
+              <div
+                *ngIf="this.editForm.controls.texture.controls.botom.errors"
+                class="invalid-feedback"
+              >
+                <div
+                  *ngIf="
+                    this.editForm.controls.texture.controls.botom.errors
+                      .required
+                  "
+                >
+                  Botom is required
+                </div>
+                <div
+                  *ngIf="
+                    this.editForm.controls.texture.controls.botom.errors
+                      .minlength
+                  "
+                >
+                  Botom must be at least 2 characters
+                </div>
+              </div>
+              <p>
+                Value: {{ this.editForm.controls.texture.value.botom }} -
+                {{ this.editForm.controls.texture.controls.botom.status }}
+              </p>
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="col">
             <div class="form-group mb-3">
@@ -229,7 +419,6 @@
             </div>
           </div>
         </div>
-
         <div class="form-group mb-3">
           <button
             type="submit"

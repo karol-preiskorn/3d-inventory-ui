@@ -34,17 +34,11 @@ export class EditModelComponent implements OnInit {
       ]),
     }),
     texture: new FormGroup({
-      front: new FormControl('', [
-        Validators.required,
-        Validators.minLength(1),
-      ]),
-      back: new FormControl('', [Validators.required, Validators.minLength(1)]),
-      side: new FormControl('', [Validators.required, Validators.minLength(1)]),
-      top: new FormControl('', [Validators.required, Validators.minLength(1)]),
-      botom: new FormControl('', [
-        Validators.required,
-        Validators.minLength(1),
-      ]),
+      front: new FormControl('', null),
+      back: new FormControl('', null),
+      side: new FormControl('', null),
+      top: new FormControl('', null),
+      botom: new FormControl('', null),
     }),
     type: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required),
@@ -118,8 +112,8 @@ export class EditModelComponent implements OnInit {
             top: data.texture.top,
             botom: data.texture.botom,
           },
-          type: data.type.name,
-          category: data.category.name,
+          type: data.type,
+          category: data.category,
         })
       })
   }

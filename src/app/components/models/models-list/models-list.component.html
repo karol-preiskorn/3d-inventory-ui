@@ -9,6 +9,7 @@
               <th scope="col">Id</th>
               <th scope="col">Name</th>
               <th scope="col">Dimensions</th>
+              <th scope="col">Textures</th>
               <th scope="col">Type</th>
               <th scope="col">Category</th>
               <th scope="col">Operations</th>
@@ -37,6 +38,13 @@
                     ', deep: ' +
                     model.dimension.depth
                 }}
+              </td>
+              <td>
+                {{ 'front: ' + model.texture.front }}<br />
+                {{ 'back: ' + model.texture.back }}<br />
+                {{ 'side: ' + model.texture.side }}<br />
+                {{ 'top: ' + model.texture.top }}<br />
+                {{ 'botom: ' + model.texture.botom }}
               </td>
               <td>{{ model.type }}</td>
               <td>{{ model.category }}</td>
