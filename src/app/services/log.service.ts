@@ -4,16 +4,18 @@ import { Observable, catchError, retry, throwError } from 'rxjs'
 import { getDateString } from '../shared/utils'
 import { v4 as uuidv4 } from 'uuid'
 
-export class Log {
-  id: string
-  date: string
-  category: string
-  component: string
-  message: string
+export interface Log {
+  id: string // logs uuid4
+  date: string // datetime
+  object?: string | null // obiects uuid4
+  operation: string // Edit, Delete, Create, Update
+  component: string // [device, model, category]
+  message: string // obiect json
 }
 
-export class LogInput {
-  category: string
+export interface LogIn {
+  object?: string | null
+  operation: string
   component: string
   message: string
 }
@@ -23,27 +25,31 @@ export class LogInput {
 })
 export class LogService {
   baseurl = 'http://localhost:3000'
-
   constructor(private http: HttpClient) {}
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   }
-
   GetLogs(): Observable<Log[]> {
     return this.http
       .get<Log[]>(this.baseurl + '/logs?_sort=date&_order=desc')
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
+  // for objects list log
+  GetObjectLogs(id: string): Observable<Log[]> {
+    return this.http
+      .get<Log[]>(
+        this.baseurl + '/logs?object=' + id + '_sort=date&_order=desc'
+      )
+      .pipe(retry(1), catchError(this.errorHandl))
+  }
   GetLog(id: string | null): Observable<Log> {
     return this.http
       .get<Log>(this.baseurl + '/logs/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
   DeleteLog(id: string): Observable<Log> {
     return this.http
       .delete<Log>(this.baseurl + '/logs/' + id, this.httpOptions)
@@ -51,11 +57,12 @@ export class LogService {
   }
 
   // POST
-  CreateLog(data: any): Observable<Log> {
+  CreateLog(data: LogIn): Observable<Log> {
     const log: Log = {
       id: uuidv4(),
       date: getDateString(),
-      category: data.category,
+      object: data.object,
+      operation: data.operation,
       component: data.component,
       message: data.message,
     }
@@ -65,18 +72,15 @@ export class LogService {
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  addLog(data: LogInput) {
-    this.http.post(`${this.baseurl}/logs`, data).subscribe(
-      (data) => {
+  addLog(data: LogIn) {
+    this.http.post(`${this.baseurl}/logs`, data).subscribe({
+      next: (d) =>
         console.log(
           'POST addLog -> Log Request is successful ',
-          JSON.stringify(data)
-        )
-      },
-      (error) => {
-        console.log('Error addLog', error)
-      }
-    )
+          JSON.stringify(d)
+        ),
+      error: (e) => console.log('Error addLog', e),
+    })
   }
 
   postLog(data: Log): Observable<Log> {

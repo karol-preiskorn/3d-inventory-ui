@@ -8,9 +8,9 @@
             <tr>
               <th scope="col">Id</th>
               <th scope="col">Name</th>
+              <th scope="col">Position</th>
               <th scope="col">Type</th>
               <th scope="col">Category</th>
-              <th scope="col">Opertions</th>
             </tr>
           </thead>
           <tbody>
@@ -27,6 +27,7 @@
             >
               <td>{{ device.id }}</td>
               <td>{{ device.name }}</td>
+              <td>{{ device.position }}</td>
               <td>{{ device.type }}</td>
               <td>{{ device.category }}</td>
               <td>
@@ -51,6 +52,14 @@
                   >
                     Delete
                   </button>
+                  <button
+                    type="button"
+                    id="clone-device"
+                    class="btn btn-info btn-sm"
+                    (click)="CloneDevice(device.id)"
+                  >
+                    Clone
+                  </button>
                 </div>
               </td>
             </tr>
@@ -66,9 +75,10 @@
       </div>
     </div>
   </div>
+  <pagination-controls
+    (pageChange)="p2 = $event"
+    id="devicePagination"
+  ></pagination-controls>
 </div>
-<pagination-controls
-  (pageChange)="p2 = $event"
-  id="devicePagination"
-></pagination-controls>
+
 <app-log></app-log>

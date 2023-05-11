@@ -94,9 +94,9 @@ export class AddDeviceComponent implements OnInit {
     this.devicesService.CreateDevice(this.device).subscribe((res) => {
       console.log('Device added!')
       this.logService.CreateLog({
-        message: 'Added device: ' + this.toString(this.addForm.value),
-        category: 'Info',
-        component: 'AddDevice',
+        operation: 'Create',
+        component: 'Device',
+        message: this.toString(this.addForm.value),
       })
       this.ngZone.run(() => this.router.navigateByUrl('/devices-list'))
     })

@@ -7,8 +7,9 @@
           <thead>
             <tr>
               <th scope="col">Date</th>
-              <th scope="col">Category</th>
+              <th scope="col">Object</th>
               <th scope="col">Component</th>
+              <th scope="col">Operation</th>
               <th scope="col">Message</th>
             </tr>
           </thead>
@@ -22,8 +23,9 @@
               "
             >
               <td>{{ log.date }}</td>
-              <td>{{ log.category }}</td>
+              <td>{{ log.object }}</td>
               <td>{{ log.component }}</td>
+              <td>{{ log.operation }}</td>
               <td>{{ log.message }}</td>
             </tr>
           </tbody>
@@ -31,8 +33,8 @@
       </div>
     </div>
   </div>
+  <pagination-controls
+    (pageChange)="p = $event"
+    id="logPagination"
+  ></pagination-controls>
 </div>
-<pagination-controls
-  (pageChange)="p = $event"
-  id="logPagination"
-></pagination-controls>

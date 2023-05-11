@@ -1,31 +1,41 @@
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
-import { Model } from 'src/app/shared/model'
-import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
-import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 import { LogService } from 'src/app/services/log.service'
 import { ModelsService } from 'src/app/services/models.service'
-
+import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
+import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
+import { Model } from 'src/app/shared/model'
 @Component({
   selector: 'app-add-model',
   templateUrl: './add-model.component.html',
   styleUrls: ['./add-model.component.scss'],
 })
 export class AddModelComponent implements OnInit {
-  addForm: FormGroup<{
-    id: FormControl<string | null>
-    name: FormControl<string | null>
-    dimensions: FormControl<string | null>
-    type: FormControl<string | null>
-    category: FormControl<string | null>
-  }> = new FormGroup({
+  addForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    dimensions: new FormControl('', [
-      Validators.required,
-      Validators.minLength(4),
-    ]),
+    dimension: new FormGroup({
+      width: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+      height: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+      depth: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
+    }),
+    texture: new FormGroup({
+      front: new FormControl('', null),
+      back: new FormControl('', null),
+      side: new FormControl('', null),
+      top: new FormControl('', null),
+      botom: new FormControl('', null),
+    }),
     type: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required),
   })
@@ -48,7 +58,18 @@ export class AddModelComponent implements OnInit {
     this.addForm = this.formBulider.group({
       id: [''],
       name: [''],
-      dimensions: [''],
+      dimension: this.formBulider.group({
+        width: [''],
+        height: [''],
+        depth: [''],
+      }),
+      texture: this.formBulider.group({
+        front: [''],
+        back: [''],
+        side: [''],
+        top: [''],
+        botom: [''],
+      }),
       type: [''],
       category: [''],
     })
@@ -58,9 +79,6 @@ export class AddModelComponent implements OnInit {
   }
   changeName(e: any) {
     this.name?.setValue(e.target.value, { onlySelf: true })
-  }
-  changeDimensions(e: any) {
-    this.dimensions?.setValue(e.target.value, { onlySelf: true })
   }
   changeType(e: any) {
     this.type?.setValue(e.target.value, { onlySelf: true })
@@ -74,9 +92,13 @@ export class AddModelComponent implements OnInit {
   get name() {
     return this.addForm.get('name')
   }
-  get dimensions() {
-    return this.addForm.get('dimensions')
+  get width() {
+    return this.addForm.get('width')
   }
+  get height() {
+    return this.addForm.get('height')
+  }
+
   get type() {
     return this.addForm.get('type')
   }
@@ -91,13 +113,16 @@ export class AddModelComponent implements OnInit {
   }
   submitForm() {
     this.modelsService.CreateModel(this.model).subscribe((res) => {
-      console.log('Model added!')
-      this.logService.CreateLog({
-        message: 'Added device: ' + this.toString(this.addForm.value),
-        category: 'Info',
-        component: 'AddDevice',
-      })
-      this.ngZone.run(() => this.router.navigateByUrl('/models-list'))
+      console.log('Submit Model: ' + JSON.stringify(res))
+      this.logService
+        .CreateLog({
+          message: JSON.stringify(res),
+          operation: 'Create',
+          component: 'Model',
+        })
+        .subscribe(() => {
+          this.ngZone.run(() => this.router.navigateByUrl('/models-list'))
+        })
     })
   }
 }

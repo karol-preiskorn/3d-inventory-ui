@@ -72,6 +72,22 @@ export class Model {
       this.category
     )
   }
+  public json(): string {
+    return (
+      '{ "id": "' +
+      this.id +
+      '", "name": "' +
+      this.name +
+      '", "dimensions": {' +
+      this.getDimensionsString() +
+      '", "type": "' +
+      this.type +
+      '", "category": "' +
+      this.category +
+      '"}'
+    )
+  }
+
   public getDimensionsString(): string {
     return (
       '(width: ' +
@@ -83,6 +99,10 @@ export class Model {
       ')'
     )
   }
+  public getDimensionsJson(): string {
+    return JSON.stringify(this.dimension)
+  }
+
   public generate(): void {
     this.id = uuidv4()
     this.name = uniqueNamesGenerator({

@@ -1,11 +1,11 @@
 import { Component, NgZone, OnInit } from '@angular/core'
-import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
-import { Device } from 'src/app/shared/device'
-import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
-import { DeviceType, DeviceTypeDict } from 'src/app/shared/deviceTypes'
 import { DevicesService } from 'src/app/services/devices.service'
 import { LogService } from 'src/app/services/log.service'
+import { Device } from 'src/app/shared/device'
+import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
+import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 
 @Component({
   selector: 'app-edit-device',
@@ -90,10 +90,10 @@ export class EditDeviceComponent implements OnInit {
   submitForm() {
     if (this.editForm.valid && this.editForm.touched) {
       this.logService.CreateLog({
-        message:
-          'Submit device: ' + JSON.stringify(this.editForm.value, null, 2),
-        category: 'Info',
-        component: 'EditDeviceComponent.SubmitForm',
+        message: JSON.stringify(this.editForm.value, null, 2),
+        operation: 'Update',
+        component: 'Device',
+        object: this.editForm.value.id,
       })
 
       this.devicesService

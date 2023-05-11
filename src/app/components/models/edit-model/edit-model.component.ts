@@ -7,6 +7,19 @@ import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 import { Model } from 'src/app/shared/model'
 
+interface ModelForm {
+  id: FormControl<string | null>
+  name: FormControl<string | null>
+  dimension: {
+    width: FormControl<string>
+    height: FormControl<string>
+    depth: FormControl<string>
+  }
+  texture: FormGroup<string>
+  type: FormControl<string>
+  category: FormControl<string>
+}
+
 @Component({
   selector: 'app-edit-model',
   templateUrl: './edit-model.component.html',
@@ -123,10 +136,10 @@ export class EditModelComponent implements OnInit {
   submitForm() {
     if (this.editForm.valid && this.editForm.touched) {
       this.logService.CreateLog({
-        message:
-          'Submit device: ' + JSON.stringify(this.editForm.value, null, 2),
-        category: 'Info',
-        component: 'EditDeviceComponent.SubmitForm',
+        object: this.editForm.value.id,
+        operation: 'Update',
+        component: 'Model',
+        message: JSON.stringify(this.editForm.value, null, 2),
       })
 
       this.modelsService

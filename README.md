@@ -115,5 +115,7 @@ Not forget about https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines 
 
 - [ ] TODO: #13 create services for types and categories and move this list to database
 - [ ] TODO: #12 customize start environment variables outside git commits
-- [ ] FIXME: #11 fix delete
-- [ ] TODO: #10 add clone device
+- [x] FIXME: #11 fix delete
+- [ ] TODO: #10 add clone device )
+- [ ] TODO: #19 Add UUID4 for Model and Device to log all operation
+- [ ] BUGFIX: #20 Fix synchronize refresh list of models
