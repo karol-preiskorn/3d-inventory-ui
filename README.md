@@ -18,14 +18,19 @@ Project create 3d inventory. A simple solution that allows you to build a spatia
 
 ### Classes
 
-- Device
-- DeviceType
-- DeviceTypeDict
-- Category (FIXIT: chceck definition)
-- CategoryType
-- CategotyTypeDict
+- Models
+- Devices
+- Connections (planned)
+- Attributes (planned)
+- Types
+- Categories
+- Logs
 
 ## Functions
+
+- Reactive forms
+- 3D representation
+- Dynamic attributes
 
 ### List devices
 
@@ -48,13 +53,17 @@ This project bild from this example contain `three.js` in `Angular` [Tutorial to
 ## Usage
 
 ```bash
+# clone repo
 git clone <this-repo>
-
+# install
 npm install
-ng serve
-
-localhost:4200 will render cube
-localhost:4200/model will render 3D model
+# run
+npm run start
+# or
+npm run start:json-server
+npm run start:ng
+# goto
+localhost:4200
 ```
 
 ### Swagger client
@@ -113,9 +122,4 @@ Not forget about https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines 
 
 ## Next TODO
 
-- [ ] TODO: #13 create services for types and categories and move this list to database
-- [ ] TODO: #12 customize start environment variables outside git commits
-- [x] FIXME: #11 fix delete
-- [ ] TODO: #10 add clone device )
-- [ ] TODO: #19 Add UUID4 for Model and Device to log all operation
-- [ ] BUGFIX: #20 Fix synchronize refresh list of models
+[https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues](https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues)
