@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-
+import { HttpClientModule } from '@angular/common/http'
 import { AddModelComponent } from './add-model.component'
 
 describe('AddModelComponent', () => {
@@ -8,7 +8,7 @@ describe('AddModelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddModelComponent],
+      declarations: [AddModelComponent, HttpClientModule],
     }).compileComponents()
 
     fixture = TestBed.createComponent(AddModelComponent)

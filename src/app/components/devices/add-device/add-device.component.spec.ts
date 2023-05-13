@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-
+import { HttpClientModule } from '@angular/common/http'
 import { AddDeviceComponent } from './add-device.component'
 
 describe('AddDeviceComponent', () => {
@@ -8,7 +8,7 @@ describe('AddDeviceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddDeviceComponent],
+      declarations: [AddDeviceComponent, HttpClientModule],
     }).compileComponents()
 
     fixture = TestBed.createComponent(AddDeviceComponent)

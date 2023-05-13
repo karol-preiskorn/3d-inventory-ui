@@ -1,34 +1,43 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine', '@angular/cli'],
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-firefox-launcher'),
+      require('karma-jsdom-launcher'),
       require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
-      // require('@angular/cli/plugins/karma')
+      require('karma-coverage'),
+      require('@angular-devkit/build-angular/plugins/karma'),
     ],
-    preprocessors: {
-      './src/*spec.ts': ['@angular/cli'],
-    },
+    // preprocessors: {
+    //   './src/test.ts': ['@angular-devkit/build-angular'],
+    // },
     client: {
-      clearContext: false, // leave Jasmine Spec Runner output visible in browser
+      clearContext: false,
+      random: false,
+      oneFailurePerSpec: true,
+      failFast: true,
+      timeoutInterval: 1000,
     },
-    coverageIstanbulReporter: {
-      reports: ['html', 'lcovonly'],
-      fixWebpackSourcePaths: true,
+    coverageReporter: {
+      dir: './coverage',
+      subdir: '.',
+      reporters: [{ type: 'html' }, { type: 'text-summary' }],
     },
     angularCli: {
       environment: 'dev',
+    },
+    jasmineHtmlReporter: {
+      suppressAll: true,
+      suppressFailed: false,
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Firefox'],
-    singleRun: false,
+    browsers: ['jsdom'],
+    singleRun: true,
+    restartOnFileChange: true,
   })
 }

@@ -1,4 +1,8 @@
-import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http'
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpClientXsrfModule,
+} from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser'
@@ -17,29 +21,29 @@ import { LogComponent } from './components/log/log.component'
 import { AddModelComponent } from './components/models/add-model/add-model.component'
 import { EditModelComponent } from './components/models/edit-model/edit-model.component'
 import { ModelsListComponent } from './components/models/models-list/models-list.component'
+import { RouterTestingModule } from '@angular/router/testing'
 
 import { DevicesService } from './services/devices.service'
-import { ModelsService } from './services/models.service'
 import { LogService } from './services/log.service'
+import { ModelsService } from './services/models.service'
 
 @NgModule({
   declarations: [
     AddDeviceComponent,
+    AddModelComponent,
     AppComponent,
     CubeComponent,
     DevicesListComponent,
     EditDeviceComponent,
+    EditModelComponent,
     HomeComponent,
     LogComponent,
     ModelsListComponent,
-    AddModelComponent,
-    EditModelComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    HttpClientModule,
     NgxPaginationModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -49,8 +53,9 @@ import { LogService } from './services/log.service'
       headerName: 'My-Xsrf-Header',
     }),
     BsDropdownModule.forRoot(),
+    RouterTestingModule,
   ],
-  providers: [DevicesService, ModelsService, LogService],
+  providers: [DevicesService, ModelsService, LogService, HttpClient],
   bootstrap: [AppComponent],
   exports: [],
 })

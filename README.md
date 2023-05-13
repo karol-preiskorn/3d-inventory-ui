@@ -6,7 +6,7 @@ Project create 3d inventory. A simple solution that allows you to build a spatia
 
 - `Angular` 15+ (as a corpo framework)
 - `Tree` 150+ (as best graph framework)
-- `Neo4j`/`Oracle` - Oracle as database (for development json server)
+- `Neo4j`/`Oracle`/`jsonserver` - Oracle as database (for development json server -> rest oracle -> rest neo4j)
 - `REST` - prepared API in use in Swagger
 - `Docker`/`OpenShift` as containers
 
@@ -34,7 +34,8 @@ Project create 3d inventory. A simple solution that allows you to build a spatia
 
 ### Future ideas
 
-Docker -> Github Pages --> AWS EC2
+- [ ] Docker -> Github Pages --> AWS EC2
+- [ ] For development json server -> rest oracle -> rest neo4j
 
 ### List devices
 
