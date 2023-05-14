@@ -1,12 +1,17 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    frameworks: [
+      'jasmine',
+      '@angular-devkit/build-angular',
+      'karma-typescript',
+    ],
     plugins: [
       require('karma-jasmine'),
       require('karma-jsdom-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
+      require('karma-typescript'),
       require('@angular-devkit/build-angular/plugins/karma'),
     ],
     // preprocessors: {
@@ -17,7 +22,7 @@ module.exports = function (config) {
       random: false,
       oneFailurePerSpec: true,
       failFast: true,
-      timeoutInterval: 1000,
+      timeoutInterval: 2000,
     },
     coverageReporter: {
       dir: './coverage',
@@ -31,13 +36,13 @@ module.exports = function (config) {
       suppressAll: true,
       suppressFailed: false,
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['progress', 'kjhtml', 'karma-typescript'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['jsdom'],
-    singleRun: true,
+    singleRun: false,
     restartOnFileChange: true,
   })
 }

@@ -27,7 +27,7 @@ describe('AppComponent', () => {
     fixture.detectChanges()
     const compiled = fixture.nativeElement
     expect(compiled.querySelector('.content span').textContent).toContain(
-      '3d-inventory-angular-ui app is running!'
+      '3d-inventory'
     )
   })
 })

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { HttpClientModule } from '@angular/common/http'
+import { NgxPaginationModule } from 'ngx-pagination'
 import { LogComponent } from './log.component'
 
 describe('LogComponent', () => {
@@ -8,7 +9,8 @@ describe('LogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LogComponent, HttpClientModule],
+      declarations: [LogComponent],
+      imports: [HttpClientModule, NgxPaginationModule],
     }).compileComponents()
 
     fixture = TestBed.createComponent(LogComponent)

@@ -1,11 +1,11 @@
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
+import { DevicesService } from 'src/app/services/devices.service'
+import { LogService } from 'src/app/services/log.service'
 import { Device } from 'src/app/shared/device'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
-import { LogService } from 'src/app/services/log.service'
-import { DevicesService } from 'src/app/services/devices.service'
 
 @Component({
   selector: 'app-add-device',
@@ -16,16 +16,13 @@ export class AddDeviceComponent implements OnInit {
   addForm: FormGroup<{
     id: FormControl<string | null>
     name: FormControl<string | null>
-    dimensions: FormControl<string | null>
+    width: FormControl<string | null>
     type: FormControl<string | null>
     category: FormControl<string | null>
   }> = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    dimensions: new FormControl('', [
-      Validators.required,
-      Validators.minLength(4),
-    ]),
+    width: new FormControl('', [Validators.required, Validators.minLength(4)]),
     type: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required),
   })
@@ -48,7 +45,7 @@ export class AddDeviceComponent implements OnInit {
     this.addForm = this.formBulider.group({
       id: [''],
       name: [''],
-      dimensions: [''],
+      width: [''],
       type: [''],
       category: [''],
     })
@@ -59,9 +56,7 @@ export class AddDeviceComponent implements OnInit {
   changeName(e: any) {
     this.name?.setValue(e.target.value, { onlySelf: true })
   }
-  changeDimensions(e: any) {
-    this.dimensions?.setValue(e.target.value, { onlySelf: true })
-  }
+
   changeType(e: any) {
     this.type?.setValue(e.target.value, { onlySelf: true })
   }

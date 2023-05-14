@@ -12,6 +12,7 @@ export class HomeComponent {
   githubIssuesUrl =
     'https://api.github.com/karol-preiskorn/3d-inventory-angular-ui/issues'
   githubIssuesUrl2 = 'https://api.github.com/repositories/600698591/issues'
+  // TODO: get this form .env
   authToken =
     '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'
   baseUrl = 'https://api.github.com'
@@ -33,24 +34,24 @@ export class HomeComponent {
     this.http
       .get('/assets/README.md', { responseType: 'text' })
       .subscribe((data: string) => {
-        console.log('Get Markdown ' + JSON.stringify(data))
+        // console.log('Get Markdown ' + JSON.stringify(data))
         this.md = data
       })
 
-    await this.http
-      .get(this.githubIssuesUrl, this.httpOptions)
-      .subscribe((data) => {
-        console.log('Get Issues ' + JSON.stringify(data))
-        this.issues = data
-      })
+    // await this.http
+    //   .get(this.githubIssuesUrl, this.httpOptions)
+    //   .subscribe((data) => {
+    //     console.log('Get Issues ' + JSON.stringify(data))
+    //     this.issues = data
+    //   })
   }
 
   onLoad(data: unknown) {
-    console.log(this.md + ' ' + data)
+    // console.log(this.md + ' ' + data)
   }
 
   onError(data: unknown) {
-    console.log(this.md + ' ' + data)
+    // console.log(this.md + ' ' + data)
   }
 
   async getIssues() {

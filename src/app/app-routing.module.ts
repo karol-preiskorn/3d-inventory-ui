@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { CubeComponent } from 'src/app/components/cube/cube.component'
-import { HomeComponent } from 'src/app/components/home/home.component'
+import { AddDeviceComponent } from 'src/app/components/devices/add-device/add-device.component'
 import { DevicesListComponent } from 'src/app/components/devices/devices-list/devices-list.component'
 import { EditDeviceComponent } from 'src/app/components/devices/edit-device/edit-device.component'
-import { AddDeviceComponent } from 'src/app/components/devices/add-device/add-device.component'
-import { ModelsListComponent } from './components/models/models-list/models-list.component'
+import { HomeComponent } from './components/home/home.component'
 import { AddModelComponent } from './components/models/add-model/add-model.component'
 import { EditModelComponent } from './components/models/edit-model/edit-model.component'
+import { ModelsListComponent } from './components/models/models-list/models-list.component'
+
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: '/home',
     pathMatch: 'full',
   },
+  { path: '**', component: HomeComponent },
   {
     path: 'home',
     component: HomeComponent,
@@ -22,7 +24,6 @@ const routes: Routes = [
     path: 'cube',
     component: CubeComponent,
   },
-
   {
     path: 'devices-list',
     component: DevicesListComponent,
@@ -50,11 +51,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, {
-      initialNavigation: 'enabledBlocking',
-    }),
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

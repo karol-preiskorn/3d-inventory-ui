@@ -26,6 +26,12 @@
     "strictPropertyInitialization": false,
     "target": "ES2022"
   },
-  "exclude": ["dist", "release", "node_modules"],
-  "include": ["src/**/*.spec.ts", "src/**/*.ts"]
+  "exclude": [
+    "dist",
+    "release",
+    "node_modules",
+    "src/test.ts",
+    "src/**/*.spec.ts"
+  ],
+  "include": ["src/**/*.ts", "src/**/*.d.ts"]
 }

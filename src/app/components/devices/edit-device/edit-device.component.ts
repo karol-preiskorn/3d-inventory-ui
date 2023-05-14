@@ -20,6 +20,7 @@ export class EditDeviceComponent implements OnInit {
     id: new FormControl('', [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     type: new FormControl('', Validators.required),
+    width: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required),
   })
 

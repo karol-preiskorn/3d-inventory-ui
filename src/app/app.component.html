@@ -1,1 +1,53 @@
-<router-outlet></router-outlet>
+<header>
+  <div>
+    <nav class="nav nav-masthead float-end">
+      <a
+        class="nav-link"
+        routerLink="/home"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Home</a
+      >
+      <a
+        class="nav-link"
+        routerLink="/cube"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Cube</a
+      >
+      <a
+        class="nav-link"
+        routerLink="/devices-list"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Devices</a
+      >
+      <a
+        class="nav-link"
+        routerLink="/models-list"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Models</a
+      >
+      <a
+        class="nav-link"
+        routerLink="/device-types"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Device Types</a
+      >
+      <a
+        class="nav-link"
+        routerLink="/device-categories"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Device Categories</a
+      >
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="container" style="max-width: 1920px">
+    <router-outlet></router-outlet>
+  </div>
+</main>

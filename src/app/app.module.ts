@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { RouterTestingModule } from '@angular/router/testing'
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
 import { MarkdownModule } from 'ngx-markdown'
 import { NgxPaginationModule } from 'ngx-pagination'
@@ -21,8 +22,6 @@ import { LogComponent } from './components/log/log.component'
 import { AddModelComponent } from './components/models/add-model/add-model.component'
 import { EditModelComponent } from './components/models/edit-model/edit-model.component'
 import { ModelsListComponent } from './components/models/models-list/models-list.component'
-import { RouterTestingModule } from '@angular/router/testing'
-
 import { DevicesService } from './services/devices.service'
 import { LogService } from './services/log.service'
 import { ModelsService } from './services/models.service'
@@ -53,10 +52,9 @@ import { ModelsService } from './services/models.service'
       headerName: 'My-Xsrf-Header',
     }),
     BsDropdownModule.forRoot(),
-    RouterTestingModule,
   ],
   providers: [DevicesService, ModelsService, LogService, HttpClient],
   bootstrap: [AppComponent],
-  exports: [],
+  exports: [LogComponent],
 })
 export class AppModule {}
