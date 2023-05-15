@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Input } from '@angular/core'
 import { Subscription } from 'rxjs'
 import { Log, LogService } from 'src/app/services/log.service'
 
@@ -10,6 +10,8 @@ import { Log, LogService } from 'src/app/services/log.service'
 export class LogComponent implements OnInit {
   LogList: Log[] = []
 
+  @Input() component = ''
+
   p = 1
   hideWhenNoLog = false
   noData = false
@@ -18,17 +20,14 @@ export class LogComponent implements OnInit {
   constructor(public logService: LogService) {}
 
   ngOnInit() {
-    this.loadLog()
+    this.loadComponentLog(this.component)
   }
-
-  loadLog(): Subscription {
-    return this.logService.GetLogs().subscribe((data: Log[]) => {
-      // data.sort(function (a: any, b: any) {
-      //   if (a.date < b.date) return -1
-      //   if (a.date > b.date) return 1
-      //   return 0
-      // })
-      this.LogList = data
-    })
+  loadComponentLog(id: string): Subscription {
+    return this.logService
+      .GetComponentLogs(this.component)
+      .subscribe((data: Log[]) => {
+        console.log('id: ' + data)
+        this.LogList = data
+      })
   }
 }

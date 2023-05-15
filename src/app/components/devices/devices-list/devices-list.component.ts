@@ -11,6 +11,7 @@ import { DevicesService } from 'src/app/services/devices.service'
 export class DevicesListComponent implements OnInit {
   DevicesList: any = []
   selectedDevice: Device
+  component = 'Device'
   p2 = 1
   ngOnInit() {
     this.loadDevices()

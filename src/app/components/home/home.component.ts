@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { MarkdownService } from 'ngx-markdown'
 
 @Component({
   selector: 'app-home',

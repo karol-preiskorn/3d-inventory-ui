@@ -38,7 +38,15 @@ export class LogService {
   }
 
   // for objects list log
-  GetObjectLogs(id: string): Observable<Log[]> {
+  GetComponentLogs(id: string): Observable<Log[]> {
+    return this.http
+      .get<Log[]>(
+        this.baseurl + '/logs?component=' + id + '&_sort=date&_order=desc'
+      )
+      .pipe(retry(1), catchError(this.errorHandl))
+  }
+
+  GetDevicesLogs(id: string): Observable<Log[]> {
     return this.http
       .get<Log[]>(
         this.baseurl + '/logs?object=' + id + '_sort=date&_order=desc'

@@ -13,6 +13,8 @@ export class ModelsListComponent implements OnInit {
   ModelsList: Model[] = []
   selectedModel: Model
   page = 1
+  component = 'Model'
+
   ngOnInit() {
     this.loadModels()
   }

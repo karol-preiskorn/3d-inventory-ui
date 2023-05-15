@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
+import { RouterModule, Routes, provideRouter } from '@angular/router'
 import { CubeComponent } from 'src/app/components/cube/cube.component'
 import { AddDeviceComponent } from 'src/app/components/devices/add-device/add-device.component'
 import { DevicesListComponent } from 'src/app/components/devices/devices-list/devices-list.component'
@@ -10,12 +10,7 @@ import { EditModelComponent } from './components/models/edit-model/edit-model.co
 import { ModelsListComponent } from './components/models/models-list/models-list.component'
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full',
-  },
-  { path: '**', component: HomeComponent },
+  // { path: '**', component: DevicesListComponent },
   {
     path: 'home',
     component: HomeComponent,
@@ -51,7 +46,14 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(
+      routes,
+      { enableTracing: false } // <-- debugging purposes only
+    ),
+    // other imports here
+  ],
   exports: [RouterModule],
+  providers: [provideRouter(routes)],
 })
 export class AppRoutingModule {}

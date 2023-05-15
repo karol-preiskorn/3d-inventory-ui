@@ -1,10 +1,18 @@
 <header>
-  <div>
-    <nav class="nav nav-masthead float-end">
+  <nav class="navbar navbar-dark bg-dark navbar-expand-sm p-2">
+    <div class="container-fluid nav nav-pills">
+      <a
+        class="navbar-brand nav-link"
+        id="title"
+        routerLink="/home"
+        routerLinkActive="active fluffy"
+        ariaCurrentWhenActive="page"
+        >3d inventory</a
+      >
       <a
         class="nav-link"
         routerLink="/home"
-        routerLinkActive="active"
+        routerLinkActive="active fluffy"
         ariaCurrentWhenActive="page"
         >Home</a
       >
@@ -30,21 +38,44 @@
         >Models</a
       >
       <a
-        class="nav-link"
+        class="nav-link disabled"
         routerLink="/device-types"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
-        >Device Types</a
+        >Connections</a
       >
       <a
-        class="nav-link"
+        class="nav-link disabled"
+        routerLink="/device-types"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Attributes</a
+      >
+      <a
+        class="nav-link disabled"
+        routerLink="/device-types"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Types</a
+      >
+      <a
+        class="nav-link disabled"
         routerLink="/device-categories"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
-        >Device Categories</a
+        >Categories</a
       >
-    </nav>
-  </div>
+      <form class="d-flex">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
 </header>
 <main>
   <div class="container" style="max-width: 1920px">
