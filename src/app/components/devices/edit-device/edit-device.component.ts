@@ -6,7 +6,8 @@ import { LogService } from 'src/app/services/log.service'
 import { Device } from 'src/app/shared/device'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
-
+import { Model } from 'src/app/shared/model'
+import { ModelsList } from 'src/app/shared/modelsList'
 @Component({
   selector: 'app-edit-device',
   templateUrl: './edit-device.component.html',
@@ -15,13 +16,17 @@ import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 export class EditDeviceComponent implements OnInit {
   inputId: any
   device: Device
-
+  model: Model
+  modelsList: ModelsList
   editForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    type: new FormControl('', Validators.required),
-    width: new FormControl('', Validators.required),
-    category: new FormControl('', Validators.required),
+    model_id: new FormControl('', Validators.required),
+    position: new FormGroup({
+      x: new FormControl('', Validators.required),
+      y: new FormControl('', Validators.required),
+      h: new FormControl('', Validators.required),
+    }),
   })
 
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
@@ -31,6 +36,7 @@ export class EditDeviceComponent implements OnInit {
   ngOnInit() {
     this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
     this.device = this.getDevice()
+    // TODO: get modelsList here
   }
 
   constructor(
@@ -48,11 +54,8 @@ export class EditDeviceComponent implements OnInit {
     this.name?.setValue(e.target.value, { onlySelf: true })
   }
 
-  changeType(e: any) {
-    this.type?.setValue(e.target.value, { onlySelf: true })
-  }
-  changeCategory(e: any) {
-    this.category?.setValue(e.target.value, { onlySelf: true })
+  changeModel(e: any) {
+    this.model.id = e.target.value
   }
 
   // Access formcontrols getter

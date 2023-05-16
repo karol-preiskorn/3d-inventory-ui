@@ -24,7 +24,8 @@ interface Position {
 
 export class Device {
   id: string
-  name?: string | null
+  name: string | null
+  model_id: string
   position?: Position | null
   public print(): void {
     console.log(
@@ -48,12 +49,15 @@ export class Device {
     )
   }
 
-  public generate(): void {
+  // TODO: move it to deviceList
+  public constructor() {
     this.id = uuidv4()
     this.name = uniqueNamesGenerator({
       dictionaries: [adjectives, colors, animals],
       style: 'lowerCase',
       separator: '-',
     }) // big_red_donkey
+    // get list all models and select random id
+    this.model_id = uuidv4()
   }
 }
