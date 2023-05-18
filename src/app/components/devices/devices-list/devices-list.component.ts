@@ -40,23 +40,22 @@ export class DevicesListComponent implements OnInit {
       this.router.navigate(['/devices-list/'])
     })
   }
-
   CloneDevice(id: string) {
     const id_new: string = this.devicesService.CloneDevice(id)
-    this.logService.CreateLog({
-      message: id + ' -> ' + id_new,
-      operation: 'Clone',
-      component: 'Device',
-    })
+    this.logService
+      .CreateLog({
+        message: id + ' -> ' + id_new,
+        operation: 'Clone',
+        component: 'Device',
+      })
+      .subscribe(() => {
+        this.ngZone.run(() => this.router.navigateByUrl('/devices-list'))
+      })
     this.loadDevices()
-
-    this.router.navigate(['/devices-list'])
   }
-
   AddForm() {
     this.router.navigateByUrl('/add-device')
   }
-
   EditForm(device: Device) {
     this.selectedDevice = device
     this.router.navigate(['/edit-device/', device.id])

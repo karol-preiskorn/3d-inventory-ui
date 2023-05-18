@@ -137,10 +137,7 @@
                 }"
               >
                 <option
-                  *ngFor="
-                    let categoryObj of modelsList.modelsList;
-                    let i = index
-                  "
+                  *ngFor="let categoryObj of this.modelsList; let i = index"
                 >
                   {{ categoryObj.name }}
                 </option>
@@ -175,4 +172,4 @@
     </div>
   </div>
 </div>
-<app-log></app-log>
+<app-log [component]="component"></app-log>

@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "update": "npm update && npm upgrade",
-    "build": "ng build && npm run postbuild",
-    "postbuild": "cp -f README.md src/assets",
+    "build": "ng build && cp -f README.md src/assets",
     "compodoc:build": "compodoc -p tsconfig.doc.json",
     "compodoc:build-and-serve": "compodoc -p tsconfig.doc.json -s",
     "compodoc:serve": "compodoc -s",
@@ -16,7 +15,7 @@
     "set_opt": "export NODE_OPTIONS=--openssl-legacy-provider",
     "start:all": "concurrently -c \"bgBlue.bold,bgMagenta.bold\" --prefix \"{time}-{pid}\"  \"npm:start:ng\" \"npm:start:json-server\" --kill-others",
     "start:json-server": "cd backend && json-server --watch db_v2.json",
-    "start": "ng serve --watch",
+    "start": "ng serve --poll=2000  --watch",
     "test": "ng test",
     "test:nyc": "nyc --reporter=html --produce-source-map --reporter=text npm test",
     "dev:ssr": "ng run 3d-inventory-angular-ui:serve-ssr",

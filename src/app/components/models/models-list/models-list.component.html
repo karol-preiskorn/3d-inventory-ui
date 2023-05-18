@@ -30,16 +30,15 @@
               <td>{{ model.id }}</td>
               <td>{{ model.name }}</td>
               <td>
-                {{
-                  'width: ' +
-                    model.dimension.width +
-                    ', height: ' +
+                ({{
+                  model.dimension.width +
+                    ', ' +
                     model.dimension.height +
-                    ', deep: ' +
+                    ', ' +
                     model.dimension.depth
-                }}
+                }})
               </td>
-              <td>
+              <td style="font-size: small">
                 <a href="{{ model.texture.front }}">front</a>,
                 <a href="{{ model.texture.back }}">back</a>,
                 <a href="{{ model.texture.side }}">side</a>,
@@ -98,5 +97,4 @@
     id="modelPagination"
   ></pagination-controls>
 </div>
-
 <app-log [component]="component"></app-log>

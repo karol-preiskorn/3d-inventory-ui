@@ -25,6 +25,7 @@ import { ModelsListComponent } from './components/models/models-list/models-list
 import { DevicesService } from './services/devices.service'
 import { LogService } from './services/log.service'
 import { ModelsService } from './services/models.service'
+import { TooltipModule } from 'ngx-bootstrap/tooltip'
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ModelsService } from './services/models.service'
       headerName: 'My-Xsrf-Header',
     }),
     BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
   ],
   providers: [DevicesService, ModelsService, LogService, HttpClient],
   bootstrap: [AppComponent],

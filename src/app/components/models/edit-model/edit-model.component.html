@@ -11,7 +11,7 @@
                 type="text"
                 formControlName="id"
                 id="form-id"
-                maxlength="20"
+                maxlength="100"
                 minlength="1"
                 required
                 [ngClass]="{
@@ -19,16 +19,17 @@
                   'form-control': true
                 }"
               />
-              <div *ngIf="f.id.errors" class="invalid-feedback">
-                <div *ngIf="f.id.errors.required">Id is required</div>
-                <div *ngIf="f.id.errors.minlength">
+              <div
+                *ngIf="this.editForm.controls.id.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="this.editForm.controls.id.errors.required">
+                  Id is required
+                </div>
+                <div *ngIf="this.editForm.controls.id.errors.minlength">
                   Id must be at least 4 characters
                 </div>
               </div>
-              <p>
-                Value: {{ editForm.value.id }} -
-                {{ this.editForm.controls.id.status }}
-              </p>
             </div>
           </div>
           <div class="col">
@@ -43,7 +44,7 @@
                 minlength="4"
                 id="name"
                 maxlength="255"
-              />{{ editForm.value.name }} />
+              />
               <div
                 *ngIf="this.editForm.controls.name.errors"
                 class="invalid-feedback"
@@ -97,10 +98,6 @@
                   Width must be at least 1 number.
                 </div>
               </div>
-              <p>
-                Value: {{ editForm.value.dimension?.width }} -
-                {{ this.editForm.controls.dimension.controls.width.status }}
-              </p>
             </div>
           </div>
           <div class="col">
@@ -141,10 +138,6 @@
                   Height must be at least 1 number
                 </div>
               </div>
-              <p>
-                Value: {{ editForm.value.dimension?.height }} -
-                {{ this.editForm.controls.dimension.controls.height.status }}
-              </p>
             </div>
           </div>
           <div class="col">
@@ -184,10 +177,6 @@
                   Depth must be at least 1 number
                 </div>
               </div>
-              <p>
-                Value: {{ this.editForm.controls.dimension.value.depth }} -
-                {{ this.editForm.controls.dimension.controls.depth.status }}
-              </p>
             </div>
           </div>
         </div>
@@ -227,10 +216,6 @@
                   Width must be at least 1 number.
                 </div>
               </div>
-              <p>
-                Value: {{ editForm.value.texture?.front }} -
-                {{ this.editForm.controls.texture.controls.front.status }}
-              </p>
             </div>
           </div>
           <div class="col">
@@ -267,10 +252,6 @@
                   back must be at least 1 number
                 </div>
               </div>
-              <p>
-                Value: {{ editForm.value.texture?.back }} -
-                {{ this.editForm.controls.texture.controls.back.status }}
-              </p>
             </div>
           </div>
           <div class="col">
@@ -306,10 +287,6 @@
                   side must be at least 1 number
                 </div>
               </div>
-              <p>
-                Value: {{ this.editForm.controls.texture.value.side }} -
-                {{ this.editForm.controls.texture.controls.side.status }}
-              </p>
             </div>
           </div>
           <div class="col">
@@ -337,10 +314,6 @@
                   Top must be at least 1 number
                 </div>
               </div>
-              <p>
-                Value: {{ this.editForm.controls.texture.value.top }} -
-                {{ this.editForm.controls.texture.controls.top.status }}
-              </p>
             </div>
           </div>
           <div class="col">
@@ -377,10 +350,6 @@
                   Botom must be at least 2 characters
                 </div>
               </div>
-              <p>
-                Value: {{ this.editForm.controls.texture.value.botom }} -
-                {{ this.editForm.controls.texture.controls.botom.status }}
-              </p>
             </div>
           </div>
         </div>
@@ -428,26 +397,31 @@
             type="submit"
             [disabled]="!(editForm.valid && editForm.touched)"
             class="btn btn-primary"
+            tooltip="Update device."
           >
             Update
           </button>
-          <div
-            *ngIf="!(editForm.valid && editForm.touched)"
-            class="-valid-feedback"
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="this.DeleteForm()"
+            tooltip="Delete device."
           >
-            Form is invalid
-          </div>
+            <i class="bi bi-minus-lg"></i>Delete
+          </button>
           <div
             *ngIf="editForm.valid && editForm.touched"
-            class="-invalid-feedback"
+            class="invalid-feedback"
           >
             Form is valid
           </div>
-          <p>Form Status: {{ editForm.status }}</p>
-          <p>Form Values: {{ toString(editForm.value) }}</p>
+          <p>
+            Form Status: {{ editForm.status }}. Form Values:
+            {{ toString(editForm.value) }}
+          </p>
         </div>
       </form>
     </div>
   </div>
 </div>
-<app-log></app-log>
+<app-log [component]="component"></app-log>

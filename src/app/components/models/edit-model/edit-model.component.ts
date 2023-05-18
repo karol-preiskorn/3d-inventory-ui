@@ -28,6 +28,7 @@ interface ModelForm {
 export class EditModelComponent implements OnInit {
   inputId: any
   model: Model
+  component = ''
 
   editForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -64,6 +65,7 @@ export class EditModelComponent implements OnInit {
   ngOnInit() {
     this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
     this.model = this.getModel(this.inputId)
+    this.component = this.inputId
   }
 
   constructor(
@@ -73,22 +75,18 @@ export class EditModelComponent implements OnInit {
     private router: Router,
     private logService: LogService
   ) {}
-
   changeId(e: any) {
     this.id?.setValue(e.target.value, { onlySelf: true })
   }
   changeName(e: any) {
     this.name?.setValue(e.target.value, { onlySelf: true })
   }
-
   changeType(e: any) {
     this.type?.setValue(e.target.value, { onlySelf: true })
   }
   changeCategory(e: any) {
     this.category?.setValue(e.target.value, { onlySelf: true })
   }
-
-  // Access Form Controls getter
   get id() {
     return this.editForm.get('id')
   }
@@ -130,8 +128,16 @@ export class EditModelComponent implements OnInit {
         })
       })
   }
-  get f() {
-    return this.editForm.controls
+  DeleteForm() {
+    this.logService.CreateLog({
+      object: this.editForm.value.id,
+      operation: 'Delete',
+      component: 'Model',
+      message: JSON.stringify(this.editForm.value, null, 2),
+    })
+    this.modelsService.DeleteModel(this.inputId).subscribe(() => {
+      this.ngZone.run(() => this.router.navigateByUrl('models-list'))
+    })
   }
   submitForm() {
     if (this.editForm.valid && this.editForm.touched) {
@@ -141,7 +147,6 @@ export class EditModelComponent implements OnInit {
         component: 'Model',
         message: JSON.stringify(this.editForm.value, null, 2),
       })
-
       this.modelsService
         .UpdateModel(this.inputId, this.editForm.value)
         .subscribe(() => {

@@ -9,8 +9,7 @@
               <th scope="col">Id</th>
               <th scope="col">Name</th>
               <th scope="col">Position</th>
-              <th scope="col">Type</th>
-              <th scope="col">Category</th>
+              <th scope="col">Model</th>
             </tr>
           </thead>
           <tbody>
@@ -27,9 +26,11 @@
             >
               <td>{{ device.id }}</td>
               <td>{{ device.name }}</td>
-              <td>{{ device.position }}</td>
-              <td>{{ device.type }}</td>
-              <td>{{ device.category }}</td>
+              <td>
+                ({{ device.position.x }}, {{ device.position.y }},
+                {{ device.position.h }})
+              </td>
+              <td>{{ device.model_id }}</td>
               <td>
                 <div
                   class="btn-group"
@@ -80,5 +81,4 @@
     id="devicePagination"
   ></pagination-controls>
 </div>
-
 <app-log [component]="component"></app-log>

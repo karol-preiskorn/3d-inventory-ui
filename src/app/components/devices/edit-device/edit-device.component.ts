@@ -8,6 +8,8 @@ import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 import { Model } from 'src/app/shared/model'
 import { ModelsList } from 'src/app/shared/modelsList'
+import { ModelsService } from 'src/app/services/models.service'
+
 @Component({
   selector: 'app-edit-device',
   templateUrl: './edit-device.component.html',
@@ -17,7 +19,8 @@ export class EditDeviceComponent implements OnInit {
   inputId: any
   device: Device
   model: Model
-  modelsList: ModelsList
+  component = ''
+  modelsList: Model[]
   editForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -28,58 +31,50 @@ export class EditDeviceComponent implements OnInit {
       h: new FormControl('', Validators.required),
     }),
   })
-
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   isSubmitted = false
-
   ngOnInit() {
     this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
     this.device = this.getDevice()
-    // TODO: get modelsList here
+    this.loadModels()
+    this.component = this.inputId
   }
-
   constructor(
     public activatedRoute: ActivatedRoute,
     public devicesService: DevicesService,
     private ngZone: NgZone,
     private router: Router,
-    private logService: LogService
+    private logService: LogService,
+    private modelsService: ModelsService
   ) {}
-
+  loadModels() {
+    return this.modelsService.GetModels().subscribe((data: any) => {
+      this.modelsList = data
+    })
+  }
   changeId(e: any) {
     this.id?.setValue(e.target.value, { onlySelf: true })
   }
   changeName(e: any) {
     this.name?.setValue(e.target.value, { onlySelf: true })
   }
-
   changeModel(e: any) {
     this.model.id = e.target.value
   }
-
-  // Access formcontrols getter
-
   get id() {
     return this.editForm.get('id')
   }
   get name() {
     return this.editForm.get('name')
   }
-  get type() {
-    return this.editForm.get('type')
+  get _model() {
+    return this.editForm.get('model')
   }
-  get category() {
-    return this.editForm.get('category')
-  }
-
   toString(data: any): string {
     return JSON.stringify(data)
   }
-
   private getDevice(): any {
-    console.log(this.inputId)
-
     return this.devicesService
       .GetDevice(this.inputId)
       .subscribe((data: any) => {
@@ -87,9 +82,6 @@ export class EditDeviceComponent implements OnInit {
         this.device = data
         this.editForm.setValue(data)
       })
-  }
-  get f() {
-    return this.editForm.controls
   }
   submitForm() {
     if (this.editForm.valid && this.editForm.touched) {
@@ -99,11 +91,12 @@ export class EditDeviceComponent implements OnInit {
         component: 'Device',
         object: this.editForm.value.id,
       })
-
       this.devicesService
         .UpdateDevice(this.inputId, this.editForm.value)
         .subscribe(() => {
-          this.ngZone.run(() => this.router.navigateByUrl('devices-list'))
+          this.ngZone.run(() =>
+            this.router.navigateByUrl('/edit-device/' + this.inputId)
+          )
         })
     }
   }

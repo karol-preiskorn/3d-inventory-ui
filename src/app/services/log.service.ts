@@ -37,7 +37,6 @@ export class LogService {
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  // for objects list log
   GetComponentLogs(id: string): Observable<Log[]> {
     return this.http
       .get<Log[]>(
@@ -46,18 +45,20 @@ export class LogService {
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  GetDevicesLogs(id: string): Observable<Log[]> {
+  GetObjectsLogs(id: string): Observable<Log[]> {
     return this.http
       .get<Log[]>(
-        this.baseurl + '/logs?object=' + id + '_sort=date&_order=desc'
+        this.baseurl + '/logs?object=' + id + '&_sort=date&_order=desc'
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
-  GetLog(id: string | null): Observable<Log> {
+
+  GetLogId(id: string | null): Observable<Log> {
     return this.http
       .get<Log>(this.baseurl + '/logs/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
+
   DeleteLog(id: string): Observable<Log> {
     return this.http
       .delete<Log>(this.baseurl + '/logs/' + id, this.httpOptions)
