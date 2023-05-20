@@ -1,41 +1,104 @@
 # 3d inventory
 
+1. [3d inventory](#3d-inventory)
+   1. [Description](#description)
+   2. [Technology stack](#technology-stack)
+   3. [Data Model](#data-model)
+      1. [Entity](#entity)
+      2. [Logical](#logical)
+      3. [Data Classes and attributes](#data-classes-and-attributes)
+   4. [Functionality](#functionality)
+      1. [Future ideas](#future-ideas)
+      2. [List devices](#list-devices)
+      3. [Edit device](#edit-device)
+      4. [Application view](#application-view)
+         1. [Angular + Three.js](#angular--threejs)
+   5. [Usage](#usage)
+      1. [Swagger client to generate API structures](#swagger-client-to-generate-api-structures)
+      2. [Json server](#json-server)
+      3. [Run app](#run-app)
+   6. [Contributing](#contributing)
+   7. [Next tasks TODO](#next-tasks-todo)
+
+## Description
+
 Project create 3d inventory. A simple solution that allows you to build a spatial and database representation of all types of warehouses and server rooms.
 
 ## Technology stack
 
 - `Angular` 15+ (as a corpo framework)
 - `Tree` 150+ (as best graph framework)
-- `Neo4j`/`Oracle`/`jsonserver` - Oracle as database (for development json server -> rest oracle -> rest neo4j)
+- <`Neo4j`|`Oracle`|`jsonserver`> - Oracle as database (for development `json server` -> rest oracle -> rest neo4j)
 - `REST` - prepared API in use in Swagger
-- `Docker`/`OpenShift` as containers
+- <`Docker`|`OpenShift`> as containers
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=0000000&machine=premiumLinux&devcontainer_path=.devcontainer%2Fdevcontainer.json&location=WestUs2)
 
 ## Data Model
 
-![drawing](src/assets/img/Screenshot%20from%202023-05-01%2008-40-25.png)
+### Entity
 
-### Classes
+![](src/assets/img/Screenshot%20from%202023-05-20%2016-54-30.png)
 
-- Models
-- Devices
-- Connections (planned)
-- Attributes (planned)
-- Types
-- Categories
-- Logs
+### Logical
 
-## Functions
+![](src/assets/img/Screenshot%20from%202023-05-20%2017-20-39.png)
 
-- Reactive forms
-- 3D representation
-- Dynamic attributes
+### Data Classes and attributes
+
+- MODELS
+  - ID (UUID4)
+  - NAME
+  - DIMENSION
+    - X
+    - Y
+    - H
+- DEVICES
+  - ID (UUID4)
+  - NAME
+  - MODEL_ID
+  - POSITION
+    - X
+    - Y
+    - H
+- CONNECTION
+  - ID (UUID4)
+  - TO_DEVICE_ID
+  - FROM_DEVICE_ID
+- ATTRIBUTES
+  - ID (UUID4)
+  - DEVICE_ID
+  - MODEL_ID
+  - CONNECTION_ID
+  - ATTRIBUTE_TYPE_ID
+  - VALUE
+- ATTRIBUTES_TYPES
+  - ID (UUID4)
+  - NAME
+  - DESCRIPTION
+  - COMPONENTS (list of values)
+- LOGS
+  - ID (UUID4)
+  - DATETIME
+  - OBJECT_ID (UUID4)
+  - OPERATION
+  - COMPONENT
+  - MESSAGE
+
+## Functionality
+
+- Reactive forms in Angular 15+
+- 3D representation in three.js 150+
+- Dynamic define attributes to components:
+  - DEVICES
+  - MODELS
+  - FLOORS
+  - CONNECTIONS
 
 ### Future ideas
 
-- [ ] Docker -> Github Pages --> AWS EC2
-- [ ] For development json server -> rest oracle -> rest neo4j
+- [ ] Docker -> serve application in Github Pages --> AWS EC2
+- [ ] For development json server -> rest Oracle -> rest Neo4j
 
 ### List devices
 
@@ -45,13 +108,13 @@ Project create 3d inventory. A simple solution that allows you to build a spatia
 
 ![](src/assets/img/Screenshot%202023-04-11%20at%2007-50-36%203d%20inventory.png)
 
-### View 3d inventory
+### Application view
 
-View inventory in [three.js](https://threejs.org/) framework.
+View in 3d inventory use [three.js](https://threejs.org/) framework.
 
-![drawing](src/assets/img/Screenshot%20from%202023-05-01%2008-29-25.png)
+![Example random generated blocks in floor](src/assets/img/Screenshot%20from%202023-05-01%2008-29-25.png)
 
-## About Angular + Three.js
+#### Angular + Three.js
 
 This project bild from this example contain `three.js` in `Angular` [Tutorial to render 3D Cube in Angular + Three.js](https://srivastavaanurag79.medium.com/hello-cube-your-first-three-js-scene-in-angular-176c44b9c6c0).
 
@@ -71,7 +134,7 @@ npm run start:ng
 localhost:4200
 ```
 
-### Swagger client
+### Swagger client to generate API structures
 
 ```js
 ng generate library swagger-client
@@ -115,16 +178,28 @@ Server `url`:
 baseurl = 'http://localhost:3000';
 ```
 
+### Run app
+
+The api json-server must be running for the application to work.
+
+```bash
+npm start
+```
+
+or run all:
+
+```bash
+"start:all": "concurrently -c \"bgBlue.bold,bgMagenta.bold\" --prefix \"{time}-{pid}\"  \"npm:start:ng\" \"npm:start:json-server\" --kill-others",
+```
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
-### Code guidelines
+Not forget about [code guide-lines](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines).
 
-Not forget about https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines and copy here [MANIFEST.md](MANIFEST.md)
-
-## Next TODO
+## Next tasks TODO
 
 [https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues](https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues)

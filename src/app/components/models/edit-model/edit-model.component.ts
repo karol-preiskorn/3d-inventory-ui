@@ -19,7 +19,6 @@ interface ModelForm {
   type: FormControl<string>
   category: FormControl<string>
 }
-
 @Component({
   selector: 'app-edit-model',
   templateUrl: './edit-model.component.html',
@@ -67,7 +66,6 @@ export class EditModelComponent implements OnInit {
     this.model = this.getModel(this.inputId)
     this.component = this.inputId
   }
-
   constructor(
     public activatedRoute: ActivatedRoute,
     public modelsService: ModelsService,

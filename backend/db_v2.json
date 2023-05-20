@@ -2,10 +2,10 @@
   "models": [
     {
       "id": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "name": "Server 1a",
+      "name": "Server New Refresh",
       "dimension": {
-        "width": "2",
-        "height": "1",
+        "width": "14",
+        "height": "2",
         "depth": "3"
       },
       "texture": {
@@ -15,8 +15,8 @@
         "top": "/assets/r710-2.5-nobezel__29341.png",
         "botom": "/assets/r710-2.5-nobezel__29341.png"
       },
-      "type": "Server",
-      "category": "Site"
+      "type": "Desktop",
+      "category": "Facility"
     },
     {
       "id": "e13aea31-cce3-4877-ba29-740f8392ddd2",
@@ -703,6 +703,294 @@
       "operation": "Delete",
       "component": "Device",
       "message": "890e431e-ffb8-4c20-905d-92659207fe88"
+    },
+    {
+      "id": "abd9b7e1-9727-4392-956c-254a4dc2a637",
+      "date": "2023/05/19 07:02:48.24",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server 1a\",\n  \"dimension\": {\n    \"width\": \"2\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Site\"\n}"
+    },
+    {
+      "id": "34c40de4-4e53-47d7-8ba0-ed0e4df974a6",
+      "date": "2023/05/19 07:17:02.63",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"2\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Site\"\n}"
+    },
+    {
+      "id": "78bc4c25-1388-495c-a219-57df740e168f",
+      "date": "2023/05/19 07:18:27.38",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"2\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Site\"\n}"
+    },
+    {
+      "id": "547544b7-6187-4c94-b1aa-d9d9e88b6c9c",
+      "date": "2023/05/19 07:21:25.93",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"2\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "7d3e34b7-6195-4fb9-878f-84108c590010",
+      "date": "2023/05/19 07:23:07.31",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"3\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "3d4d73bc-4287-4e34-b29e-705fe9a58069",
+      "date": "2023/05/19 07:24:06.50",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"4\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "75a18933-3663-4849-b6e5-606d0e7bd648",
+      "date": "2023/05/19 07:34:25.83",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"5\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "c82f453a-d14b-425e-8a27-91cc8f20b7ff",
+      "date": "2023/05/19 07:36:01.26",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"6\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "56316218-bad2-46ff-96d0-c22aafedb2fe",
+      "date": "2023/05/19 07:36:41.82",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"7\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "e96e979a-1e4a-40ec-8349-58182ad6382f",
+      "date": "2023/05/19 07:38:16.23",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"8\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "bf2438cd-ada1-4233-9909-35f086d9f2f6",
+      "date": "2023/05/19 07:42:08.59",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "0dfe4e17-88c1-4eb1-9dcc-c88a4c70efd2",
+      "date": "2023/05/19 07:42:09.95",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "530636d9-1794-4b48-a93f-0aec51883b03",
+      "date": "2023/05/19 07:42:15.74",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "ba6b6495-ee33-4755-9533-30e5f11c4df5",
+      "date": "2023/05/19 07:42:16.25",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "bf744125-4c59-43ed-8e90-c4e39aae5f9b",
+      "date": "2023/05/19 07:42:16.44",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "15a01f71-dd09-477b-a142-0772382d51fb",
+      "date": "2023/05/19 07:42:16.63",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "37a96bf6-f893-417f-bc2f-d0b955a61d27",
+      "date": "2023/05/19 07:42:19.16",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "7f09cb14-8426-46e7-993a-828f49391d4c",
+      "date": "2023/05/19 07:42:21.93",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "f7a59211-5207-4ad5-adc8-46e2be144adc",
+      "date": "2023/05/19 07:42:28.26",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "e8f096b6-5a38-4022-8739-e9398a75c9e1",
+      "date": "2023/05/19 07:50:06.76",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"11\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "1c5698c4-9e0a-4656-993e-b976fbc6a6d0",
+      "date": "2023/05/19 08:25:58.77",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"12\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "3f49dd87-c3a0-4381-aaa2-51041f5c2c7c",
+      "date": "2023/05/19 08:26:16.04",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"12\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "48404d34-5e8a-4394-913a-004f79b053a8",
+      "date": "2023/05/19 08:30:47.50",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"13\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "d7ce700f-4010-4a89-b1f5-b4cfe50c122a",
+      "date": "2023/05/19 08:33:14.97",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"14\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "1150b968-2abc-43d8-a979-46f508cbeae9",
+      "date": "2023/05/19 08:33:22.53",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"14\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "6fe35b71-4c3b-4e47-a76c-b4f211b500c4",
+      "date": "2023/05/19 17:11:58.35",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"14\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "9cf13d48-7fb3-496c-af3c-876c70b6c5d3",
+      "date": "2023/05/19 17:11:59.84",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"14\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "8f6e7fdc-ea68-4d55-b7cf-6e4006c3c277",
+      "date": "2023/05/19 17:12:00.54",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"14\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "356db95e-0c00-4bb3-80a0-8781068c80dd",
+      "date": "2023/05/19 17:12:01.11",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"14\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "45e0dc3c-5907-42ae-8ee8-25142d45a53d",
+      "date": "2023/05/19 17:12:06.11",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"14\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "d33fa4db-785f-4e24-af63-388a275e5886",
+      "date": "2023/05/19 17:13:42.90",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Model",
+      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"14\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"Desktop\",\n  \"category\": \"Facility\"\n}"
+    },
+    {
+      "id": "a04af0bd-6d21-464b-adde-6de4ec7f2d1f",
+      "date": "2023/05/19 17:15:57.42",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Device",
+      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server New Refresh\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}"
+    },
+    {
+      "id": "31b7929d-cdf3-4d17-999a-abdcd20c1e38",
+      "date": "2023/05/19 17:16:00.43",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Device",
+      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server New Refresh\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}"
+    },
+    {
+      "id": "78cf6275-8b4f-4885-838e-dbffe978e7e3",
+      "date": "2023/05/19 17:17:13.56",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Device",
+      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}"
+    },
+    {
+      "id": "cc11f30e-3a02-4f83-bb69-b12ac69a9e25",
+      "date": "2023/05/19 17:17:28.26",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Device",
+      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}"
+    },
+    {
+      "id": "0a113e22-e231-4df3-ae5b-e420cfe9370a",
+      "date": "2023/05/19 17:17:29.66",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Device",
+      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}"
     }
   ]
 }
