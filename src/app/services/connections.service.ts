@@ -3,79 +3,87 @@ import { Injectable, NgZone } from '@angular/core'
 import { Observable, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 import { v4 as uuidv4 } from 'uuid'
-import { Device } from '../shared/device'
+import { Connection } from '../shared/connection'
 import { LogService } from './log.service'
 import { Router } from '@angular/router'
+import * as dotenv from 'dotenv'
 
 @Injectable({
   providedIn: 'root',
 })
-export class DevicesService {
-  baseurl = 'http://localhost:3000'
-
+export class ConnectionsService {
+  baseurl: string | undefined = 'http://localhost:3000'
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
-  ) {}
-  // Http Headers
+  ) {
+    dotenv.config()
+  }
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   }
 
-  GetDevices(): Observable<Device> {
+  GetConnections(): Observable<Connection> {
     return this.http
-      .get<Device>(this.baseurl + '/devices/')
+      .get<Connection>(process.env.BASEURL + '/connections/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  GetDevice(id: string | null): Observable<Device> {
+  GetConnection(id: string | null): Observable<Connection> {
     return this.http
-      .get<Device>(this.baseurl + '/devices/' + id, this.httpOptions)
+      .get<Connection>(
+        process.env.BASEURL + '/connections/' + id,
+        this.httpOptions
+      )
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  DeleteDevice(id: string): Observable<Device> {
+  DeleteConnection(id: string): Observable<Connection> {
     return this.http
-      .delete<Device>(this.baseurl + '/devices/' + id, this.httpOptions)
+      .delete<Connection>(
+        process.env.BASEURL + '/connections/' + id,
+        this.httpOptions
+      )
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   // POST
-  CreateDevice(data: Device): Observable<Device> {
+  CreateConnection(data: Connection): Observable<Connection> {
     return this.http
-      .post<Device>(
-        this.baseurl + '/devices/',
+      .post<Connection>(
+        process.env.BASEURL + '/connections/',
         JSON.stringify(data),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  CloneDevice(id: string): string {
+  CloneConnection(id: string): string {
     const id_uuid: string = uuidv4()
-    this.GetDevice(id).subscribe((value: Device) => {
-      console.log('Get Device: ' + JSON.stringify(value))
+    this.GetConnection(id).subscribe((value: Connection) => {
+      console.log('Get Connections: ' + JSON.stringify(value))
       value.id = id_uuid
-      this.CreateDevice(value).subscribe({
+      this.CreateConnection(value).subscribe({
         next: (v) => {
-          console.log('Create Device: ' + JSON.stringify(v))
-          this.ngZone.run(() => this.router.navigateByUrl('/devices-list'))
+          console.log('Create Connections: ' + JSON.stringify(v))
+          this.ngZone.run(() => this.router.navigateByUrl('/connections-list'))
         },
         complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('/devices-list')),
+          this.ngZone.run(() => this.router.navigateByUrl('/connections-list')),
       })
     })
     return id_uuid
   }
   // PUT
-  UpdateDevice(id: string | null, data: any): Observable<Device> {
+  UpdateConnection(id: string | null, data: any): Observable<Connection> {
     return this.http
-      .put<Device>(
-        this.baseurl + '/devices/' + id,
+      .put<Connection>(
+        process.env.BASEURL + '/connections/' + id,
         JSON.stringify(data),
         this.httpOptions
       )
@@ -93,9 +101,9 @@ export class DevicesService {
     }
     console.log(JSON.stringify(errorMessage))
     // logService.CreateLog({
-    //   message: 'Error service device: ' + JSON.stringify(error.message),
+    //   message: 'Error service Connections: ' + JSON.stringify(error.message),
     //   category: 'Error',
-    //   component: 'DeviceService.errorHandl',
+    //   component: 'ConnectionService.errorHandl',
     // })
 
     return throwError(() => {

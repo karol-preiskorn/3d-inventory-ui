@@ -3,101 +3,96 @@ import { Injectable, NgZone } from '@angular/core'
 import { Observable, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 import { v4 as uuidv4 } from 'uuid'
-import { Device } from '../shared/device'
+import { AttributeDictionary } from '../shared/attributeDictionary'
 import { LogService } from './log.service'
 import { Router } from '@angular/router'
+import * as dotenv from 'dotenv'
 
 @Injectable({
   providedIn: 'root',
 })
-export class DevicesService {
-  baseurl = 'http://localhost:3000'
-
+export class AttributeDictionaryService {
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
-  ) {}
-  // Http Headers
+  ) {
+    dotenv.config()
+  }
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   }
-
-  GetDevices(): Observable<Device> {
+  GetAttributeDictionaries(): Observable<AttributeDictionary> {
     return this.http
-      .get<Device>(this.baseurl + '/devices/')
+      .get<AttributeDictionary>(process.env.BASEURL + '/attributes/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
-  GetDevice(id: string | null): Observable<Device> {
+  GetAttributeDictionary(id: string | null): Observable<AttributeDictionary> {
     return this.http
-      .get<Device>(this.baseurl + '/devices/' + id, this.httpOptions)
+      .get<AttributeDictionary>(
+        process.env.BASEURL + '/attributes/' + id,
+        this.httpOptions
+      )
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
-  DeleteDevice(id: string): Observable<Device> {
+  DeleteAttributeDictionary(id: string): Observable<AttributeDictionary> {
     return this.http
-      .delete<Device>(this.baseurl + '/devices/' + id, this.httpOptions)
+      .delete<AttributeDictionary>(
+        process.env.BASEURL + '/attributes/' + id,
+        this.httpOptions
+      )
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
-  // POST
-  CreateDevice(data: Device): Observable<Device> {
+  CreateAttributeDictionary(
+    data: AttributeDictionary
+  ): Observable<AttributeDictionary> {
     return this.http
-      .post<Device>(
-        this.baseurl + '/devices/',
+      .post<AttributeDictionary>(
+        process.env.BASEURL + '/attributes/',
         JSON.stringify(data),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
-  CloneDevice(id: string): string {
+  CloneAttributeDictionary(id: string): string {
     const id_uuid: string = uuidv4()
-    this.GetDevice(id).subscribe((value: Device) => {
-      console.log('Get Device: ' + JSON.stringify(value))
+    this.GetAttributeDictionary(id).subscribe((value: AttributeDictionary) => {
+      console.log('Get attributes: ' + JSON.stringify(value))
       value.id = id_uuid
-      this.CreateDevice(value).subscribe({
+      this.CreateAttributeDictionary(value).subscribe({
         next: (v) => {
-          console.log('Create Device: ' + JSON.stringify(v))
-          this.ngZone.run(() => this.router.navigateByUrl('/devices-list'))
+          console.log('Create attributes: ' + JSON.stringify(v))
+          this.ngZone.run(() => this.router.navigateByUrl('/attributes-list'))
         },
         complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('/devices-list')),
+          this.ngZone.run(() => this.router.navigateByUrl('/attributes-list')),
       })
     })
     return id_uuid
   }
-  // PUT
-  UpdateDevice(id: string | null, data: any): Observable<Device> {
+  UpdateAttributeDictionary(
+    id: string | null,
+    data: AttributeDictionary
+  ): Observable<AttributeDictionary> {
     return this.http
-      .put<Device>(
-        this.baseurl + '/devices/' + id,
+      .put<AttributeDictionary>(
+        process.env.BASEURL + '/attributes/' + id,
         JSON.stringify(data),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
   errorHandl(error: { error: { message: string }; status: any; message: any }) {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
-      // Get client-side error
       errorMessage = error.error.message
     } else {
-      // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
     console.log(JSON.stringify(errorMessage))
-    // logService.CreateLog({
-    //   message: 'Error service device: ' + JSON.stringify(error.message),
-    //   category: 'Error',
-    //   component: 'DeviceService.errorHandl',
-    // })
-
     return throwError(() => {
       return errorMessage
     })

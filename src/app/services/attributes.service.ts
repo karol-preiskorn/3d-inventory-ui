@@ -3,79 +3,86 @@ import { Injectable, NgZone } from '@angular/core'
 import { Observable, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 import { v4 as uuidv4 } from 'uuid'
-import { Device } from '../shared/device'
+import { Attribute } from '../shared/attribute'
 import { LogService } from './log.service'
 import { Router } from '@angular/router'
+import * as dotenv from 'dotenv'
 
 @Injectable({
   providedIn: 'root',
 })
-export class DevicesService {
-  baseurl = 'http://localhost:3000'
-
+export class AttributesService {
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
-  ) {}
-  // Http Headers
+  ) {
+    dotenv.config()
+  }
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   }
 
-  GetDevices(): Observable<Device> {
+  GetAttributes(): Observable<Attribute> {
     return this.http
-      .get<Device>(this.baseurl + '/devices/')
+      .get<Attribute>(process.env.BASEURL + '/attributes/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  GetDevice(id: string | null): Observable<Device> {
+  GetAttribute(id: string | null): Observable<Attribute> {
     return this.http
-      .get<Device>(this.baseurl + '/devices/' + id, this.httpOptions)
+      .get<Attribute>(
+        process.env.BASEURL + '/attributes/' + id,
+        this.httpOptions
+      )
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  DeleteDevice(id: string): Observable<Device> {
+  DeleteAttributes(id: string): Observable<Attribute> {
     return this.http
-      .delete<Device>(this.baseurl + '/devices/' + id, this.httpOptions)
+      .delete<Attribute>(
+        process.env.BASEURL + '/attributes/' + id,
+        this.httpOptions
+      )
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   // POST
-  CreateDevice(data: Device): Observable<Device> {
+  CreateAttributes(data: Attribute): Observable<Attribute> {
     return this.http
-      .post<Device>(
-        this.baseurl + '/devices/',
+      .post<Attribute>(
+        process.env.BASEURL + '/attributes/',
         JSON.stringify(data),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  CloneDevice(id: string): string {
+  CloneAttributes(id: string): string {
     const id_uuid: string = uuidv4()
-    this.GetDevice(id).subscribe((value: Device) => {
-      console.log('Get Device: ' + JSON.stringify(value))
+    this.GetAttribute(id).subscribe((value: Attribute) => {
+      console.log('Get attributes: ' + JSON.stringify(value))
       value.id = id_uuid
-      this.CreateDevice(value).subscribe({
+      this.CreateAttributes(value).subscribe({
         next: (v) => {
-          console.log('Create Device: ' + JSON.stringify(v))
-          this.ngZone.run(() => this.router.navigateByUrl('/devices-list'))
+          console.log('Create attributes: ' + JSON.stringify(v))
+          this.ngZone.run(() => this.router.navigateByUrl('/attributes-list'))
         },
         complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('/devices-list')),
+          this.ngZone.run(() => this.router.navigateByUrl('/attributes-list')),
       })
     })
     return id_uuid
   }
   // PUT
-  UpdateDevice(id: string | null, data: any): Observable<Device> {
+  UpdateAttributes(id: string | null, data: Attribute): Observable<Attribute> {
     return this.http
-      .put<Device>(
-        this.baseurl + '/devices/' + id,
+      .put<Attribute>(
+        process.env.BASEURL + '/attributes/' + id,
         JSON.stringify(data),
         this.httpOptions
       )
@@ -93,9 +100,9 @@ export class DevicesService {
     }
     console.log(JSON.stringify(errorMessage))
     // logService.CreateLog({
-    //   message: 'Error service device: ' + JSON.stringify(error.message),
+    //   message: 'Error service attributes: ' + JSON.stringify(error.message),
     //   category: 'Error',
-    //   component: 'DeviceService.errorHandl',
+    //   component: 'attributeservice.errorHandl',
     // })
 
     return throwError(() => {

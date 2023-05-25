@@ -3,86 +3,78 @@ import { Injectable, NgZone } from '@angular/core'
 import { Observable, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 import { v4 as uuidv4 } from 'uuid'
-import { Device } from '../shared/device'
-import { LogService } from './log.service'
+import { Floor } from '../shared/floor'
+import { LogService, Log } from './log.service'
 import { Router } from '@angular/router'
+import * as dotenv from 'dotenv'
 
 @Injectable({
   providedIn: 'root',
 })
-export class DevicesService {
-  baseurl = 'http://localhost:3000'
-
+export class FloorsService {
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
-  ) {}
-  // Http Headers
+  ) {
+    dotenv.config()
+  }
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   }
-
-  GetDevices(): Observable<Device> {
+  GetFloors(): Observable<Floor> {
     return this.http
-      .get<Device>(this.baseurl + '/devices/')
+      .get<Floor>(process.env.BASEURL + '/floor/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
-  GetDevice(id: string | null): Observable<Device> {
+  GetFloor(id: string | null): Observable<Floor> {
     return this.http
-      .get<Device>(this.baseurl + '/devices/' + id, this.httpOptions)
+      .get<Floor>(process.env.BASEURL + '/floor/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
-  DeleteDevice(id: string): Observable<Device> {
+  DeleteFloor(id: string): Observable<Floor> {
     return this.http
-      .delete<Device>(this.baseurl + '/devices/' + id, this.httpOptions)
+      .delete<Floor>(process.env.BASEURL + '/floor/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
-  // POST
-  CreateDevice(data: Device): Observable<Device> {
+  CreateFloor(data: Floor): Observable<Floor> {
     return this.http
-      .post<Device>(
-        this.baseurl + '/devices/',
+      .post<Floor>(
+        process.env.BASEURL + '/floor/',
         JSON.stringify(data),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
-  CloneDevice(id: string): string {
+  CloneFloor(id: string): string {
     const id_uuid: string = uuidv4()
-    this.GetDevice(id).subscribe((value: Device) => {
-      console.log('Get Device: ' + JSON.stringify(value))
+    this.GetFloor(id).subscribe((value: Floor) => {
+      console.log('Get Floor: ' + JSON.stringify(value))
       value.id = id_uuid
-      this.CreateDevice(value).subscribe({
+      this.CreateFloor(value).subscribe({
         next: (v) => {
-          console.log('Create Device: ' + JSON.stringify(v))
-          this.ngZone.run(() => this.router.navigateByUrl('/devices-list'))
+          console.log('Create Floor: ' + JSON.stringify(v))
+          this.ngZone.run(() => this.router.navigateByUrl('/floor-list'))
         },
         complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('/devices-list')),
+          this.ngZone.run(() => this.router.navigateByUrl('/floor-list')),
       })
     })
     return id_uuid
   }
-  // PUT
-  UpdateDevice(id: string | null, data: any): Observable<Device> {
+  UpdateFloor(id: string | null, data: any): Observable<Floor> {
     return this.http
-      .put<Device>(
-        this.baseurl + '/devices/' + id,
+      .put<Floor>(
+        process.env.BASEURL + '/floor/' + id,
         JSON.stringify(data),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
-  errorHandl(error: { error: { message: string }; status: any; message: any }) {
+  errorHandl(error: { error: { message: string }; status: any; message: Log }) {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       // Get client-side error
@@ -92,12 +84,6 @@ export class DevicesService {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
     console.log(JSON.stringify(errorMessage))
-    // logService.CreateLog({
-    //   message: 'Error service device: ' + JSON.stringify(error.message),
-    //   category: 'Error',
-    //   component: 'DeviceService.errorHandl',
-    // })
-
     return throwError(() => {
       return errorMessage
     })

@@ -1,21 +1,19 @@
 ﻿/*
- * File:        /src/app/shared/floor.ts
- * Description: Definie floor 2d plan of servers rooms
+ * File:        /src/app/shared/connection.ts
+ * Description:
  * Used by:
  * Dependency:
  *
  * Date         By        Comments
  * ----------   -------   ------------------------------
- * 2023-05-16   C2RLO
+ * 2023-05-21   C2RLO
  */
 import { v4 as uuidv4 } from 'uuid'
-export class Floor {
+
+export class Connection {
   id: string
-  name: string
-  adress: string
-  x: number
-  y: number
-  h: number
+  device_id_to: string
+  device_id_from: string
 
   constructor() {
     this.id = uuidv4()
