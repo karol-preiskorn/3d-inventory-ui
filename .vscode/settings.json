@@ -8,5 +8,6 @@
     "Phong",
     "uuidv"
   ],
-  "todo-tree.tree.showCountsInTree": true
+  "todo-tree.tree.showCountsInTree": true,
+  "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${profileName}${separator}${appName} ${separator} [Branch: karol-preiskorn/issue13]"
 }

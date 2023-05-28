@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component'
 import { AddModelComponent } from './components/models/add-model/add-model.component'
 import { EditModelComponent } from './components/models/edit-model/edit-model.component'
 import { ModelsListComponent } from './components/models/models-list/models-list.component'
+import { AttributeDictionaryListComponent } from './components/attributes-dictionary/attribute-dictionary-list/attribute-dictionary-list.component'
 
 const routes: Routes = [
   // { path: '**', component: DevicesListComponent },
@@ -41,6 +42,18 @@ const routes: Routes = [
   },
   {
     path: 'add-model',
+    component: AddModelComponent,
+  },
+  {
+    path: 'attribute-dictionary-list',
+    component: AttributeDictioanryListComponent,
+  },
+  {
+    path: 'edit-attributes/:id',
+    component: EditModelComponent,
+  },
+  {
+    path: 'add-attributes',
     component: AddModelComponent,
   },
 ]
