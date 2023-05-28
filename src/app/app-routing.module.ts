@@ -46,7 +46,7 @@ const routes: Routes = [
   },
   {
     path: 'attribute-dictionary-list',
-    component: AttributeDictioanryListComponent,
+    component: AttributeDictionaryListComponent,
   },
   {
     path: 'edit-attributes/:id',
