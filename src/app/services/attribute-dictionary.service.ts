@@ -7,6 +7,7 @@ import { AttributeDictionary } from '../shared/attributeDictionary'
 import { LogService } from './log.service'
 import { Router } from '@angular/router'
 import * as dotenv from 'dotenv'
+import { env } from 'node:process'
 
 @Injectable({
   providedIn: 'root',
@@ -27,13 +28,13 @@ export class AttributeDictionaryService {
   }
   GetAttributeDictionaries(): Observable<AttributeDictionary> {
     return this.http
-      .get<AttributeDictionary>(process.env.BASEURL + '/attributes/')
+      .get<AttributeDictionary>(env.BASEURL + '/attributes/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
   GetAttributeDictionary(id: string | null): Observable<AttributeDictionary> {
     return this.http
       .get<AttributeDictionary>(
-        process.env.BASEURL + '/attributes/' + id,
+        env.BASEURL + '/attributes/' + id,
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
@@ -41,7 +42,7 @@ export class AttributeDictionaryService {
   DeleteAttributeDictionary(id: string): Observable<AttributeDictionary> {
     return this.http
       .delete<AttributeDictionary>(
-        process.env.BASEURL + '/attributes/' + id,
+        env.BASEURL + '/attributes/' + id,
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
@@ -51,7 +52,7 @@ export class AttributeDictionaryService {
   ): Observable<AttributeDictionary> {
     return this.http
       .post<AttributeDictionary>(
-        process.env.BASEURL + '/attributes/',
+        env.BASEURL + '/attributes/',
         JSON.stringify(data),
         this.httpOptions
       )
@@ -79,7 +80,7 @@ export class AttributeDictionaryService {
   ): Observable<AttributeDictionary> {
     return this.http
       .put<AttributeDictionary>(
-        process.env.BASEURL + '/attributes/' + id,
+        env.BASEURL + '/attributes/' + id,
         JSON.stringify(data),
         this.httpOptions
       )

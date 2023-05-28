@@ -7,6 +7,7 @@ import { Floor } from '../shared/floor'
 import { LogService, Log } from './log.service'
 import { Router } from '@angular/router'
 import * as dotenv from 'dotenv'
+import { env } from 'node:process'
 
 @Injectable({
   providedIn: 'root',
@@ -27,23 +28,23 @@ export class FloorsService {
   }
   GetFloors(): Observable<Floor> {
     return this.http
-      .get<Floor>(process.env.BASEURL + '/floor/')
+      .get<Floor>(env.BASEURL + '/floor/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
   GetFloor(id: string | null): Observable<Floor> {
     return this.http
-      .get<Floor>(process.env.BASEURL + '/floor/' + id, this.httpOptions)
+      .get<Floor>(env.BASEURL + '/floor/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   DeleteFloor(id: string): Observable<Floor> {
     return this.http
-      .delete<Floor>(process.env.BASEURL + '/floor/' + id, this.httpOptions)
+      .delete<Floor>(env.BASEURL + '/floor/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   CreateFloor(data: Floor): Observable<Floor> {
     return this.http
       .post<Floor>(
-        process.env.BASEURL + '/floor/',
+        env.BASEURL + '/floor/',
         JSON.stringify(data),
         this.httpOptions
       )
@@ -68,7 +69,7 @@ export class FloorsService {
   UpdateFloor(id: string | null, data: any): Observable<Floor> {
     return this.http
       .put<Floor>(
-        process.env.BASEURL + '/floor/' + id,
+        env.BASEURL + '/floor/' + id,
         JSON.stringify(data),
         this.httpOptions
       )

@@ -5,7 +5,6 @@ import { AttributeDictionaryService } from 'src/app/services/attribute-dictionar
 import { LogService } from 'src/app/services/log.service'
 import { Model } from 'src/app/shared/model'
 import { AttributeDictionary } from 'src/app/shared/attributeDictionary'
-import { Attribute } from 'src/app/shared/attribute'
 
 @Component({
   selector: 'app-attribute-dictionary-list',
@@ -14,7 +13,8 @@ import { Attribute } from 'src/app/shared/attribute'
 })
 export class AttributeDictionaryListComponent implements OnInit {
   ModelsList: Model[] = []
-  selectedModel: Model
+  AttributeDictionaryList: AttributeDictionary[] = []
+
   selectedAttributeDictionary: AttributeDictionary
   page = 1
   component = 'AttributeDictionary'
@@ -72,9 +72,9 @@ export class AttributeDictionaryListComponent implements OnInit {
   AddForm() {
     this.router.navigateByUrl('/add-model')
   }
-  EditForm(model: Model) {
-    this.selectedModel = model
-    this.router.navigate(['/edit-model', model.id])
+  EditForm(attributeDictionary: AttributeDictionary) {
+    this.selectedAttributeDictionary = attributeDictionary
+    this.router.navigate(['/edit-attribute-dictionary', this.selectedAttributeDictionary.id])
     // this.ngZone.run(() => this.router.navigateByUrl(`edit-device/${id}`))
   }
 }

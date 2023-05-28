@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes, provideRouter } from '@angular/router'
-import { CubeComponent } from 'src/app/components/cube/cube.component'
+import { CubeComponent } from './components/cube/cube.component'
 import { AddDeviceComponent } from 'src/app/components/devices/add-device/add-device.component'
 import { DevicesListComponent } from 'src/app/components/devices/devices-list/devices-list.component'
 import { EditDeviceComponent } from 'src/app/components/devices/edit-device/edit-device.component'
+import { AttributeDictionaryListComponent } from './components/attributes-dictionary/attribute-dictionary-list/attribute-dictionary-list.component'
 import { HomeComponent } from './components/home/home.component'
 import { AddModelComponent } from './components/models/add-model/add-model.component'
 import { EditModelComponent } from './components/models/edit-model/edit-model.component'
 import { ModelsListComponent } from './components/models/models-list/models-list.component'
-import { AttributeDictionaryListComponent } from './components/attributes-dictionary/attribute-dictionary-list/attribute-dictionary-list.component'
 
 const routes: Routes = [
   // { path: '**', component: DevicesListComponent },
@@ -47,14 +47,6 @@ const routes: Routes = [
   {
     path: 'attribute-dictionary-list',
     component: AttributeDictionaryListComponent,
-  },
-  {
-    path: 'edit-attributes/:id',
-    component: EditModelComponent,
-  },
-  {
-    path: 'add-attributes',
-    component: AddModelComponent,
   },
 ]
 

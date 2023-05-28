@@ -7,7 +7,6 @@ import { NgModule } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { RouterTestingModule } from '@angular/router/testing'
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
 import { MarkdownModule } from 'ngx-markdown'
 import { NgxPaginationModule } from 'ngx-pagination'
@@ -26,6 +25,8 @@ import { DevicesService } from './services/devices.service'
 import { LogService } from './services/log.service'
 import { ModelsService } from './services/models.service'
 import { TooltipModule } from 'ngx-bootstrap/tooltip'
+import { AttributeDictionaryListComponent } from './components/attributes-dictionary/attribute-dictionary-list/attribute-dictionary-list.component'
+import { AttributeDictionaryService } from './services/attribute-dictionary.service'
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip'
     HomeComponent,
     LogComponent,
     ModelsListComponent,
+    AttributeDictionaryListComponent
   ],
   imports: [
     AppRoutingModule,
@@ -55,7 +57,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip'
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
   ],
-  providers: [DevicesService, ModelsService, LogService, HttpClient],
+  providers: [DevicesService, ModelsService, LogService, HttpClient, AttributeDictionaryService],
   bootstrap: [AppComponent],
   exports: [LogComponent],
 })

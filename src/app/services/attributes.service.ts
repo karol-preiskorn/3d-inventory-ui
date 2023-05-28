@@ -7,6 +7,7 @@ import { Attribute } from '../shared/attribute'
 import { LogService } from './log.service'
 import { Router } from '@angular/router'
 import * as dotenv from 'dotenv'
+import { env } from 'node:process'
 
 @Injectable({
   providedIn: 'root',
@@ -29,14 +30,14 @@ export class AttributesService {
 
   GetAttributes(): Observable<Attribute> {
     return this.http
-      .get<Attribute>(process.env.BASEURL + '/attributes/')
+      .get<Attribute>(env.BASEURL + '/attributes/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   GetAttribute(id: string | null): Observable<Attribute> {
     return this.http
       .get<Attribute>(
-        process.env.BASEURL + '/attributes/' + id,
+        env.BASEURL + '/attributes/' + id,
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
@@ -45,7 +46,7 @@ export class AttributesService {
   DeleteAttributes(id: string): Observable<Attribute> {
     return this.http
       .delete<Attribute>(
-        process.env.BASEURL + '/attributes/' + id,
+        env.BASEURL + '/attributes/' + id,
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
@@ -55,7 +56,7 @@ export class AttributesService {
   CreateAttributes(data: Attribute): Observable<Attribute> {
     return this.http
       .post<Attribute>(
-        process.env.BASEURL + '/attributes/',
+        env.BASEURL + '/attributes/',
         JSON.stringify(data),
         this.httpOptions
       )
@@ -82,7 +83,7 @@ export class AttributesService {
   UpdateAttributes(id: string | null, data: Attribute): Observable<Attribute> {
     return this.http
       .put<Attribute>(
-        process.env.BASEURL + '/attributes/' + id,
+        env.BASEURL + '/attributes/' + id,
         JSON.stringify(data),
         this.httpOptions
       )
