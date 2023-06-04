@@ -12,7 +12,7 @@ import { Model } from 'src/app/shared/model'
 export class ModelsListComponent implements OnInit {
   ModelsList: Model[] = []
   selectedModel: Model
-  page = 1
+  modelPagination = 1
   component = 'Model'
 
   ngOnInit() {
@@ -30,7 +30,7 @@ export class ModelsListComponent implements OnInit {
       this.ModelsList = data
     })
   }
-  deleteModel(id: string) {
+  DeleteModel(id: string) {
     this.logService.CreateLog({
       message: id,
       object: id,
@@ -62,7 +62,7 @@ export class ModelsListComponent implements OnInit {
   AddForm() {
     this.router.navigateByUrl('add-model')
   }
-  EditForm(model: Model) {
+  EditModel(model: Model) {
     this.selectedModel = model
     this.router.navigate(['/edit-model', model.id])
     // this.ngZone.run(() => this.router.navigateByUrl(`edit-device/${id}`))

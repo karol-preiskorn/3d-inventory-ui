@@ -7,7 +7,6 @@ import { Device } from 'src/app/shared/device'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 import { Model } from 'src/app/shared/model'
-import { ModelsList } from 'src/app/shared/modelsList'
 import { ModelsService } from 'src/app/services/models.service'
 
 @Component({

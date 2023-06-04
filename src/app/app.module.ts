@@ -25,10 +25,17 @@ import { DevicesService } from './services/devices.service'
 import { LogService } from './services/log.service'
 import { ModelsService } from './services/models.service'
 import { TooltipModule } from 'ngx-bootstrap/tooltip'
+
 import { AttributeDictionaryListComponent } from './components/attribute-dictionary/attribute-dictionary-list/attribute-dictionary-list.component'
 import { AttributeDictionaryService } from './services/attribute-dictionary.service';
 import { AddAttributeDictionaryComponent } from './components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component';
 import { EditAttributeDictionaryComponent } from './components/attribute-dictionary/edit-attribute-dictionary/edit-attribute-dictionary.component'
+
+import { AttributeListComponent } from './components/attribute/attribute-list/attribute-list.component'
+import { AttributeService } from './services/attribute.service'
+import { AddAttributeComponent } from './components/attribute/add-attribute/add-attribute.component'
+import { EditAttributeComponent } from './components/attribute/edit-attribute/edit-attribute.component'
+
 
 @NgModule({
   declarations: [
@@ -44,7 +51,10 @@ import { EditAttributeDictionaryComponent } from './components/attribute-diction
     ModelsListComponent,
     AttributeDictionaryListComponent,
     AddAttributeDictionaryComponent,
-    EditAttributeDictionaryComponent
+    EditAttributeDictionaryComponent,
+    AttributeListComponent,
+    //AddAttributeComponent,
+    //EditAttributeComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -61,7 +71,14 @@ import { EditAttributeDictionaryComponent } from './components/attribute-diction
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
   ],
-  providers: [DevicesService, ModelsService, LogService, HttpClient, AttributeDictionaryService],
+  providers: [
+    DevicesService,
+    ModelsService,
+    LogService,
+    HttpClient,
+    AttributeDictionaryService,
+    AttributeService
+  ],
   bootstrap: [AppComponent],
   exports: [LogComponent],
 })

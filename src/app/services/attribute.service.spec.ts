@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing'
 
-import { AttributesService } from './attributes.service'
+import { AttributeService } from './attribute.service'
 
 describe('AttributesService', () => {
   let service: AttributesService
 
   beforeEach(() => {
     TestBed.configureTestingModule({})
-    service = TestBed.inject(AttributesService)
+    service = TestBed.inject(AttributeService)
   })
 
   it('should be created', () => {

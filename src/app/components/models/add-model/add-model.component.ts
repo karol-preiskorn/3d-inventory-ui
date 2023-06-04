@@ -12,7 +12,7 @@ import { Model } from 'src/app/shared/model'
   styleUrls: ['./add-model.component.scss'],
 })
 export class AddModelComponent implements OnInit {
-  addForm = new FormGroup({
+  form = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     dimension: new FormGroup({
@@ -55,13 +55,13 @@ export class AddModelComponent implements OnInit {
   ) {}
 
   addDevice() {
-    this.addForm = this.formBulider.group({
-      id: [''],
-      name: [''],
+    this.form = this.formBulider.group({
+      id: [uuidv4(), [Validators.required, Validators.minLength(36)]],
+      name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
       dimension: this.formBulider.group({
-        width: [''],
-        height: [''],
-        depth: [''],
+        width: ['1', [Validators.required]],
+        height: ['1', [Validators.required]],
+        depth: ['1', [Validators.required]],
       }),
       texture: this.formBulider.group({
         front: [''],
@@ -70,8 +70,8 @@ export class AddModelComponent implements OnInit {
         top: [''],
         botom: [''],
       }),
-      type: [''],
-      category: [''],
+      type: ['', [Validators.required]],
+      category: ['', [Validators.required]],
     })
   }
   changeId(e: any) {
@@ -87,33 +87,30 @@ export class AddModelComponent implements OnInit {
     this.category?.setValue(e.target.value, { onlySelf: true })
   }
   get id() {
-    return this.addForm.get('id')
+    return this.form.get('id')
   }
   get name() {
-    return this.addForm.get('name')
+    return this.form.get('name')
   }
   get width() {
-    return this.addForm.get('width')
+    return this.form.get('width')
   }
   get height() {
-    return this.addForm.get('height')
+    return this.form.get('height')
   }
 
   get type() {
-    return this.addForm.get('type')
+    return this.form.get('type')
   }
   get category() {
-    return this.addForm.get('category')
+    return this.form.get('category')
   }
   toString(data: any): string {
     return JSON.stringify(data)
   }
-  get f() {
-    return this.addForm.controls
-  }
   submitForm() {
     this.modelsService.CreateModel(this.model).subscribe((res) => {
-      console.log('Submit Model: ' + JSON.stringify(this.addForm.value))
+      console.log('Submit Model: ' + JSON.stringify(this.form.value))
       this.logService
         .CreateLog({
           message: JSON.stringify(res),
@@ -126,3 +123,7 @@ export class AddModelComponent implements OnInit {
     })
   }
 }
+function uuidv4(): any {
+  throw new Error('Function not implemented.')
+}
+

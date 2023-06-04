@@ -8,9 +8,15 @@ import { AttributeDictionaryListComponent } from './components/attribute-diction
 import { EditAttributeDictionaryComponent } from './components/attribute-dictionary/edit-attribute-dictionary/edit-attribute-dictionary.component'
 import { CubeComponent } from './components/cube/cube.component'
 import { HomeComponent } from './components/home/home.component'
+
 import { AddModelComponent } from './components/models/add-model/add-model.component'
 import { EditModelComponent } from './components/models/edit-model/edit-model.component'
 import { ModelsListComponent } from './components/models/models-list/models-list.component'
+
+import { AddAttributeComponent } from  './components/attribute/add-attribute/add-attribute.component'
+import { AttributeListComponent } from './components/attribute/attribute-list/attribute-list.component'
+import { EditAttributeComponent } from './components/attribute/edit-attribute/edit-attribute.component'
+
 
 const routes: Routes = [
   // { path: '**', component: DevicesListComponent },
@@ -57,6 +63,18 @@ const routes: Routes = [
   {
     path: 'edit-attribute-dictionary/:id',
     component: EditAttributeDictionaryComponent,
+  },
+  {
+    path: 'attribute-list',
+    component: AttributeListComponent,
+  },
+  {
+    path: 'add-attribute',
+    component: AddAttributeComponent,
+  },
+  {
+    path: 'edit-attribute/:id',
+    component: EditAttributeComponent,
   },
 ]
 

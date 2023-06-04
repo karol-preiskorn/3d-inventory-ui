@@ -127,26 +127,58 @@
       "operation": "Update",
       "component": "Attribute Dictionary",
       "message": "{\"id\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"name\":\"Attribute 2\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"model\"}"
+    },
+    {
+      "id": "c526037a-9185-44c6-bb81-b6d36085e5d2",
+      "date": "2023/06/04 13:15:05.58",
+      "object": "b324c94f-58a7-4e2e-a566-207024cb3485",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"name\":\"Attribute Device \",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"device\"}"
+    },
+    {
+      "id": "85dfb106-a7f6-4b00-ba95-4a540582081b",
+      "date": "2023/06/04 13:15:31.99",
+      "object": "70728826-94ef-4610-b171-bfcda02976b6",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"name\":\"Attribute Bridge Connectivity\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"model\"}"
+    },
+    {
+      "id": "019c506f-24f6-45a8-8df1-7cd8750645ab",
+      "date": "2023/06/04 13:16:09.32",
+      "object": "e802a1de-9a13-4ac9-b148-b503ec304383",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"name\":\"Attribute Brigde Connectivity no 2\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"model\"}"
+    },
+    {
+      "id": "b16ca036-7f23-4f79-a347-8afb65cd35f7",
+      "date": "2023/06/04 13:16:21.11",
+      "object": "70728826-94ef-4610-b171-bfcda02976b6",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"name\":\"Attribute Bridge Connectivity no. 1\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"model\"}"
     }
   ],
   "models": [
     {
-      "category": "Facility",
-      "dimension": {
-        "depth": "3",
-        "height": "2",
-        "width": "14"
-      },
       "id": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
       "name": "Server New Refresh",
-      "texture": {
-        "back": "/assets/r710-2.5-nobezel__29341.png",
-        "botom": "/assets/r710-2.5-nobezel__29341.png",
-        "front": "/assets/r710-2.5-nobezel__29341.png",
-        "side": "/assets/r710-2.5-nobezel__29341.png",
-        "top": "/assets/r710-2.5-nobezel__29341.png"
+      "dimension": {
+        "width": "14",
+        "height": "3",
+        "depth": "3"
       },
-      "type": "Desktop"
+      "texture": {
+        "front": "/assets/r710-2.5-nobezel__29341.png",
+        "back": "/assets/r710-2.5-nobezel__29341.png",
+        "side": "/assets/r710-2.5-nobezel__29341.png",
+        "top": "/assets/r710-2.5-nobezel__29341.png",
+        "botom": "/assets/r710-2.5-nobezel__29341.png"
+      },
+      "type": "Bridge",
+      "category": "Connectivity"
     },
     {
       "category": "Site",
@@ -188,59 +220,24 @@
   "attribute-dictionary": [
     {
       "id": "e802a1de-9a13-4ac9-b148-b503ec304383",
-      "name": "Attribute Dictionary Element 1",
+      "name": "Attribute Brigde Connectivity no 2",
       "type": "Bridge",
       "category": "Connectivity",
       "component": "model"
     },
     {
       "id": "70728826-94ef-4610-b171-bfcda02976b6",
-      "name": "Attribute 2",
+      "name": "Attribute Bridge Connectivity no. 1",
       "type": "Bridge",
       "category": "Connectivity",
       "component": "model"
     },
     {
       "id": "b324c94f-58a7-4e2e-a566-207024cb3485",
-      "name": "asdsdadasdasdasda",
-      "type": "CoolAir",
-      "category": "model",
-      "component": "model"
-    },
-    {
-      "id": "234254d6-4485-49b1-b006-34b11e7c6655",
-      "name": "ssdssasdasd",
-      "type": "CoolAir",
-      "category": "Site",
-      "component": "model"
-    },
-    {
-      "id": "51835c1a-23ca-4bef-bc9b-038317207f73",
-      "name": "asdasdasd",
-      "type": "Copier",
+      "name": "Attribute Device ",
+      "type": "Bridge",
       "category": "Connectivity",
-      "component": "connection"
-    },
-    {
-      "id": "012747f9-6e54-42ea-801f-2da370296cab",
-      "name": "dasdasd",
-      "type": "Copier",
-      "category": "Facility",
-      "component": "connection"
-    },
-    {
-      "id": "eb5d6e8b-80f9-4ca7-b245-2c4a8cdf1eb2",
-      "name": "sdfssfsdfsdfsdf",
-      "type": "Copier",
-      "category": "Site",
-      "component": "connection"
-    },
-    {
-      "id": "98a07008-c344-41da-9929-df9c9e58e4a5",
-      "name": "aaasdad",
-      "type": "Copier",
-      "category": "model",
-      "component": "model"
+      "component": "device"
     }
   ]
 }

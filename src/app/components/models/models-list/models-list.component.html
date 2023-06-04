@@ -57,7 +57,7 @@
                     type="button"
                     class="btn btn-success btn-sm move-right"
                     id="edit-device"
-                    (click)="EditForm(model)"
+                    (click)="EditModel(model)"
                   >
                     Edit
                   </button>
@@ -65,7 +65,7 @@
                     type="button"
                     id="delete-device"
                     class="btn btn-danger btn-sm"
-                    (click)="deleteModel(model.id)"
+                    (click)="DeleteModel(model.id)"
                   >
                     Delete
                   </button>
@@ -93,7 +93,7 @@
     </div>
   </div>
   <pagination-controls
-    (pageChange)="page = $event"
+    (pageChange)="modelPagination = $event"
     id="modelPagination"
   ></pagination-controls>
 </div>

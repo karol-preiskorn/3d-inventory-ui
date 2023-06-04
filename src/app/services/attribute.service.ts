@@ -7,10 +7,12 @@ import { Attribute } from '../shared/attribute'
 import { LogService } from './log.service'
 import { Router } from '@angular/router'
 import { EnviromentService } from './enviroment.service'
+
+
 @Injectable({
   providedIn: 'root',
 })
-export class AttributesService {
+export class AttributeService {
   enviromentServiceClass = new EnviromentService()
   BASEURL = this.enviromentServiceClass.get('BASEURL')
   constructor(
@@ -18,78 +20,67 @@ export class AttributesService {
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
-  ) {
-
-  }
-
+  ) { }
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   }
-
   GetAttributes(): Observable<Attribute> {
     return this.http
-      .get<Attribute>(this.BASEURL + '/attributes/')
+      .get<Attribute>(this.BASEURL + '/attribute/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
   GetAttribute(id: string | null): Observable<Attribute> {
     return this.http
       .get<Attribute>(
-        this.BASEURL + '/attributes/' + id,
+        this.BASEURL + '/attribute/' + id,
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
-  DeleteAttributes(id: string): Observable<Attribute> {
+  DeleteAttribute(id: string): Observable<Attribute> {
     return this.http
       .delete<Attribute>(
-        this.BASEURL + '/attributes/' + id,
+        this.BASEURL + '/attribute/' + id,
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
-  // POST
-  CreateAttributes(data: Attribute): Observable<Attribute> {
+  CreateAttribute(data: Attribute): Observable<Attribute> {
     return this.http
       .post<Attribute>(
-        this.BASEURL + '/attributes/',
+        this.BASEURL + '/attribute/',
         JSON.stringify(data),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
-  CloneAttributes(id: string): string {
+  CloneAttribute(id: string): string {
     const id_uuid: string = uuidv4()
     this.GetAttribute(id).subscribe((value: Attribute) => {
-      console.log('Get attributes: ' + JSON.stringify(value))
+      console.log('Get attribute: ' + JSON.stringify(value))
       value.id = id_uuid
-      this.CreateAttributes(value).subscribe({
+      this.CreateAttribute(value).subscribe({
         next: (v) => {
-          console.log('Create attributes: ' + JSON.stringify(v))
-          this.ngZone.run(() => this.router.navigateByUrl('attributes-list'))
+          console.log('Create attribute: ' + JSON.stringify(v))
+          this.ngZone.run(() => this.router.navigateByUrl('attribute-list'))
         },
         complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('attributes-list')),
+          this.ngZone.run(() => this.router.navigateByUrl('attribute-list')),
       })
     })
     return id_uuid
   }
-  // PUT
-  UpdateAttributes(id: string | null, data: Attribute): Observable<Attribute> {
+  UpdateAttribute(id: string | null, data: Attribute): Observable<Attribute> {
     return this.http
       .put<Attribute>(
-        this.BASEURL + '/attributes/' + id,
+        this.BASEURL + '/attribute/' + id,
         JSON.stringify(data),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
   errorHandl(error: { error: { message: string }; status: any; message: any }) {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
@@ -100,12 +91,6 @@ export class AttributesService {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
     console.log(JSON.stringify(errorMessage))
-    // logService.CreateLog({
-    //   message: 'Error service attributes: ' + JSON.stringify(error.message),
-    //   category: 'Error',
-    //   component: 'attributeservice.errorHandl',
-    // })
-
     return throwError(() => {
       return errorMessage
     })

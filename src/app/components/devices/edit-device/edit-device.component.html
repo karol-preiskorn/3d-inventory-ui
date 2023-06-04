@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <h3>Edit Device</h3>
-      <form [formGroup]="editForm" (ngSubmit)="submitForm()">
+      <form [formGroup]="form" (ngSubmit)="submitForm()">
         <div class="row">
           <div class="col">
             <div class="form-group mb-3">
@@ -12,27 +12,22 @@
                 type="text"
                 formControlName="id"
                 id="id"
-                required
-                [ngClass]="{
-                  'is-invalid': this.editForm.controls.id.status != 'VALID',
-                  'form-control': true
-                }"
                 readonly
               />
               <div
-                *ngIf="this.editForm.controls.id.errors"
+                *ngIf="this.form.controls.id.errors"
                 class="invalid-feedback"
               >
-                <div *ngIf="this.editForm.controls.id.errors.required">
+                <div *ngIf="this.form.controls.id.errors.required">
                   Id is required
                 </div>
-                <div *ngIf="this.editForm.controls.id.errors.minlength">
+                <div *ngIf="this.form.controls.id.errors.minlength">
                   Id must be at least 4 characters
                 </div>
               </div>
               <p>
-                Value: {{ editForm.value.id }} -
-                {{ this.editForm.controls.id.status }}
+                Value: {{ form.value.id }} -
+                {{ this.form.controls.id.status }}
               </p>
             </div>
           </div>
@@ -41,7 +36,7 @@
               <label for="name" class="form-label">Name</label>
               <input
                 [ngClass]="{
-                  'is-invalid': this.editForm.controls.name.status != 'VALID',
+                  'is-invalid': this.form.controls.name.status != 'VALID',
                   'form-control': true
                 }"
                 formControlName="name"
@@ -51,13 +46,13 @@
                 maxlength="255"
               />
               <div
-                *ngIf="this.editForm.controls.name.errors"
+                *ngIf="this.form.controls.name.errors"
                 class="invalid-feedback"
               >
-                <div *ngIf="this.editForm.controls.name.errors.required">
+                <div *ngIf="this.form.controls.name.errors.required">
                   Name is required
                 </div>
-                <div *ngIf="this.editForm.controls.name.errors.minlength">
+                <div *ngIf="this.form.controls.name.errors.minlength">
                   Name must be at least 4 characters
                 </div>
               </div>
@@ -76,7 +71,7 @@
                 required
                 [ngClass]="{
                   'is-invalid':
-                    this.editForm.controls.position.controls.x.status !=
+                    this.form.controls.position.controls.x.status !=
                     'VALID',
                   'form-control': true
                 }"
@@ -94,7 +89,7 @@
                 required
                 [ngClass]="{
                   'is-invalid':
-                    this.editForm.controls.position.controls.y.status !=
+                    this.form.controls.position.controls.y.status !=
                     'VALID',
                   'form-control': true
                 }"
@@ -112,7 +107,7 @@
                 required
                 [ngClass]="{
                   'is-invalid':
-                    this.editForm.controls.position.controls.h.status !=
+                    this.form.controls.position.controls.h.status !=
                     'VALID',
                   'form-control': true
                 }"
@@ -132,7 +127,7 @@
                 required
                 [ngClass]="{
                   'is-invalid':
-                    this.editForm.controls.model_id.status != 'VALID',
+                    this.form.controls.model_id.status != 'VALID',
                   'form-control': true
                 }"
               >
@@ -148,25 +143,25 @@
         <div class="form-group mb-3">
           <button
             type="submit"
-            [disabled]="!(editForm.valid && editForm.touched)"
+            [disabled]="!(form.valid && form.touched)"
             class="btn btn-primary"
           >
             Update
           </button>
           <div
-            *ngIf="!(editForm.valid && editForm.touched)"
+            *ngIf="!(form.valid && form.touched)"
             class="-valid-feedback"
           >
             Form is invalid
           </div>
           <div
-            *ngIf="editForm.valid && editForm.touched"
+            *ngIf="form.valid && form.touched"
             class="-invalid-feedback"
           >
             Form is valid
           </div>
-          <p>Form Status: {{ editForm.status }}</p>
-          <p>Form Values: {{ toString(editForm.value) }}</p>
+          <p>Form Status: {{ form.status }}</p>
+          <p>Form Values: {{ toString(form.value) }}</p>
         </div>
       </form>
     </div>
