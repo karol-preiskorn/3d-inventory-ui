@@ -3,23 +3,25 @@ import { Injectable, NgZone } from '@angular/core'
 import { Observable, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 import { v4 as uuidv4 } from 'uuid'
-import { AttributeDictionary } from '../shared/attributeDictionary'
+import { AttributeDictionary } from '../shared/attribute-dictionary'
 import { LogService } from './log.service'
 import { Router } from '@angular/router'
-import * as dotenv from 'dotenv'
-import { env } from 'node:process'
+import { EnviromentService } from './enviroment.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AttributeDictionaryService {
+
+  enviromentServiceClass = new EnviromentService()
+  BASEURL = this.enviromentServiceClass.get('BASEURL')?.value
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
   ) {
-    dotenv.config()
+
   }
   httpOptions = {
     headers: new HttpHeaders({
@@ -28,13 +30,13 @@ export class AttributeDictionaryService {
   }
   GetAttributeDictionaries(): Observable<AttributeDictionary> {
     return this.http
-      .get<AttributeDictionary>(env.BASEURL + '/attributes/')
+      .get<AttributeDictionary>(this.BASEURL + '/attribute-dictionary/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
   GetAttributeDictionary(id: string | null): Observable<AttributeDictionary> {
     return this.http
       .get<AttributeDictionary>(
-        env.BASEURL + '/attributes/' + id,
+        this.BASEURL + '/attribute-dictionary/' + id,
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
@@ -42,7 +44,7 @@ export class AttributeDictionaryService {
   DeleteAttributeDictionary(id: string): Observable<AttributeDictionary> {
     return this.http
       .delete<AttributeDictionary>(
-        env.BASEURL + '/attributes/' + id,
+        this.BASEURL + '/attribute-dictionary/' + id,
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
@@ -52,7 +54,7 @@ export class AttributeDictionaryService {
   ): Observable<AttributeDictionary> {
     return this.http
       .post<AttributeDictionary>(
-        env.BASEURL + '/attributes/',
+        this.BASEURL + '/attribute-dictionary/',
         JSON.stringify(data),
         this.httpOptions
       )
@@ -66,10 +68,10 @@ export class AttributeDictionaryService {
       this.CreateAttributeDictionary(value).subscribe({
         next: (v) => {
           console.log('Create attributes: ' + JSON.stringify(v))
-          this.ngZone.run(() => this.router.navigateByUrl('/attributes-list'))
+          this.ngZone.run(() => this.router.navigateByUrl('/attribute-dictionary-list'))
         },
         complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('/attributes-list')),
+          this.ngZone.run(() => this.router.navigateByUrl('/attribute-dictionary-list')),
       })
     })
     return id_uuid
@@ -80,7 +82,7 @@ export class AttributeDictionaryService {
   ): Observable<AttributeDictionary> {
     return this.http
       .put<AttributeDictionary>(
-        env.BASEURL + '/attributes/' + id,
+        this.BASEURL + '/attributes/' + id,
         JSON.stringify(data),
         this.httpOptions
       )

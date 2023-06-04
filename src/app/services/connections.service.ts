@@ -6,20 +6,21 @@ import { v4 as uuidv4 } from 'uuid'
 import { Connection } from '../shared/connection'
 import { LogService } from './log.service'
 import { Router } from '@angular/router'
-import * as dotenv from 'dotenv'
-import { env } from 'node:process'
+import { EnviromentService } from './enviroment.service'
 @Injectable({
   providedIn: 'root',
 })
 export class ConnectionsService {
-  baseurl: string | undefined = 'http://localhost:3000'
+  enviromentServiceClass = new EnviromentService()
+  BASEURL = this.enviromentServiceClass.get('BASEURL')
+
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
-    private router: Router
+    private router: Router,
+    private enviromentService: EnviromentService
   ) {
-    dotenv.config()
   }
 
   httpOptions = {
@@ -30,14 +31,14 @@ export class ConnectionsService {
 
   GetConnections(): Observable<Connection> {
     return this.http
-      .get<Connection>(env.BASEURL + '/connections/')
+      .get<Connection>(this.enviromentService.get('BASEURL') + '/connections/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   GetConnection(id: string | null): Observable<Connection> {
     return this.http
       .get<Connection>(
-        env.BASEURL + '/connections/' + id,
+        this.BASEURL + '/connections/' + id,
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
@@ -46,7 +47,7 @@ export class ConnectionsService {
   DeleteConnection(id: string): Observable<Connection> {
     return this.http
       .delete<Connection>(
-        env.BASEURL + '/connections/' + id,
+        this.BASEURL + '/connections/' + id,
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
@@ -56,7 +57,7 @@ export class ConnectionsService {
   CreateConnection(data: Connection): Observable<Connection> {
     return this.http
       .post<Connection>(
-        env.BASEURL + '/connections/',
+        this.BASEURL + '/connections/',
         JSON.stringify(data),
         this.httpOptions
       )
@@ -83,7 +84,7 @@ export class ConnectionsService {
   UpdateConnection(id: string | null, data: any): Observable<Connection> {
     return this.http
       .put<Connection>(
-        env.BASEURL + '/connections/' + id,
+        this.BASEURL + '/connections/' + id,
         JSON.stringify(data),
         this.httpOptions
       )

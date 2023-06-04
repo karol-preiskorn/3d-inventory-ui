@@ -6,20 +6,21 @@ import { v4 as uuidv4 } from 'uuid'
 import { Floor } from '../shared/floor'
 import { LogService, Log } from './log.service'
 import { Router } from '@angular/router'
-import * as dotenv from 'dotenv'
-import { env } from 'node:process'
+import { EnviromentService } from './enviroment.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class FloorsService {
+  enviromentServiceClass = new EnviromentService()
+  BASEURL = this.enviromentServiceClass.get('BASEURL')
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
   ) {
-    dotenv.config()
+
   }
   httpOptions = {
     headers: new HttpHeaders({
@@ -28,23 +29,23 @@ export class FloorsService {
   }
   GetFloors(): Observable<Floor> {
     return this.http
-      .get<Floor>(env.BASEURL + '/floor/')
+      .get<Floor>(this.BASEURL + '/floor/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
   GetFloor(id: string | null): Observable<Floor> {
     return this.http
-      .get<Floor>(env.BASEURL + '/floor/' + id, this.httpOptions)
+      .get<Floor>(this.BASEURL + '/floor/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   DeleteFloor(id: string): Observable<Floor> {
     return this.http
-      .delete<Floor>(env.BASEURL + '/floor/' + id, this.httpOptions)
+      .delete<Floor>(this.BASEURL + '/floor/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   CreateFloor(data: Floor): Observable<Floor> {
     return this.http
       .post<Floor>(
-        env.BASEURL + '/floor/',
+        this.BASEURL + '/floor/',
         JSON.stringify(data),
         this.httpOptions
       )
@@ -69,7 +70,7 @@ export class FloorsService {
   UpdateFloor(id: string | null, data: any): Observable<Floor> {
     return this.http
       .put<Floor>(
-        env.BASEURL + '/floor/' + id,
+        this.BASEURL + '/floor/' + id,
         JSON.stringify(data),
         this.httpOptions
       )

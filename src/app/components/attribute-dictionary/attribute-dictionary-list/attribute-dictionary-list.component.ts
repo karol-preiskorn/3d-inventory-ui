@@ -1,10 +1,8 @@
 import { Component, NgZone, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { ModelsService } from 'src/app/services/models.service'
 import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
 import { LogService } from 'src/app/services/log.service'
-import { Model } from 'src/app/shared/model'
-import { AttributeDictionary } from 'src/app/shared/attributeDictionary'
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
 
 @Component({
   selector: 'app-attribute-dictionary-list',
@@ -12,9 +10,7 @@ import { AttributeDictionary } from 'src/app/shared/attributeDictionary'
   styleUrls: ['./attribute-dictionary-list.component.scss'],
 })
 export class AttributeDictionaryListComponent implements OnInit {
-  ModelsList: Model[] = []
-  AttributeDictionaryList: AttributeDictionary[] = []
-
+  attributeDictionaryList: AttributeDictionary[] = []
   selectedAttributeDictionary: AttributeDictionary
   page = 1
   component = 'AttributeDictionary'
@@ -24,17 +20,15 @@ export class AttributeDictionaryListComponent implements OnInit {
   }
   constructor(
     public attributeDictionaryService: AttributeDictionaryService,
-    public modelsService: ModelsService,
     private logService: LogService,
     private router: Router,
-
     private ngZone: NgZone
   ) {}
   loadAttributeDictionary() {
     return this.attributeDictionaryService
       .GetAttributeDictionaries()
       .subscribe((data: any) => {
-        this.ModelsList = data
+        this.attributeDictionaryList = data
       })
   }
   deleteAttributeDictionary(id: string) {
@@ -49,7 +43,7 @@ export class AttributeDictionaryListComponent implements OnInit {
       .subscribe((data: any) => {
         console.log(data)
         this.loadAttributeDictionary()
-        this.router.navigate(['/models-list'])
+        this.router.navigate(['/attribute-dictionary-list'])
       })
   }
 
@@ -63,14 +57,13 @@ export class AttributeDictionaryListComponent implements OnInit {
         component: 'AttributeDictionary',
       })
       .subscribe(() => {
-        this.ngZone.run(() => this.router.navigateByUrl('models-list'))
+        this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))
       })
     this.loadAttributeDictionary()
-    this.router.navigate(['/models-list'])
+    this.router.navigate(['/attribute-dictionary-list'])
   }
-
   AddForm() {
-    this.router.navigateByUrl('/add-model')
+    this.router.navigateByUrl('/add-attribute-dictionary')
   }
   EditForm(attributeDictionary: AttributeDictionary) {
     this.selectedAttributeDictionary = attributeDictionary
