@@ -60,7 +60,7 @@ export class ModelsListComponent implements OnInit {
   }
 
   AddForm() {
-    this.router.navigateByUrl('/add-model')
+    this.router.navigateByUrl('add-model')
   }
   EditForm(model: Model) {
     this.selectedModel = model

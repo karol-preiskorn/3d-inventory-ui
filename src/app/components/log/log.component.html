@@ -18,7 +18,7 @@
               *ngFor="
                 let log of LogList
                   | paginate
-                    : { id: 'logPagination', itemsPerPage: 5, currentPage: p };
+                    : { id: 'logPagination', itemsPerPage: 5, currentPage: pageLog };
                 let i = index
               "
             >
@@ -34,7 +34,7 @@
     </div>
   </div>
   <pagination-controls
-    (pageChange)="p = $event"
+    (pageChange)="pageLog = $event"
     id="logPagination"
   ></pagination-controls>
 </div>

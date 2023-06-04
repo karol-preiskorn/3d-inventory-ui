@@ -4,115 +4,83 @@
       <h3>Add Attribute Dictionary</h3>
       <form [formGroup]="addForm" (ngSubmit)="submitForm()">
         <div class="form-group mb-3">
-          <label for="form-id" class="form-label">Id</label>
-          <input
-            type="text"
-            formControlName="id"
-            id="form-id"
-            required
-            [ngClass]="{
-              'is-invalid': this.addForm.controls.id.status != 'VALID',
-              'form-control': true
-            }"
-          />
+          <label for="id" class="form-label">Id</label>
+          <input type="text" formControlName="id" id="id" required readonly class="form-control" />
           <div *ngIf="this.addForm.controls.id.errors" class="invalid-feedback">
-            <div *ngIf="this.addForm.controls.id.errors.required">Id is required</div>
-            <div *ngIf="this.addForm.controls.id.errors.minlength">
-              Id must be at least 4 characters
-            </div>
+            <div *ngIf="this.addForm.controls.id.errors.required"> Id is required </div>
+            <div *ngIf="this.addForm.controls.id.errors.minlength"> Id must be at least 4 characters </div>
           </div>
         </div>
         <div class="form-group mb-3">
-          <label for="form-name" class="form-label">Name</label>
-          <textarea
-            [ngClass]="{
+          <label for="name" class="form-label">Name</label>
+          <textarea [ngClass]="{
               'is-invalid': this.addForm.controls.name.status != 'VALID',
               'form-control': true
-            }"
-            formControlName="name"
-            rows="2"
-            minlength="4"
-            id="form-name"
-            maxlength="50"
-            >{{ addForm.value.name }}</textarea
-          >
-          <div
-            *ngIf="this.addForm.controls.name.errors"
-            class="invalid-feedback"
-          >
-            <div *ngIf="this.addForm.controls.name.errors.required">
-              Name is required
-            </div>
-            <div *ngIf="this.addForm.controls.name.errors.minlength">
-              Name must be at least 4 characters
-            </div>
+            }" formControlName="name" id="name"
+            required >{{ this.addForm.value.name }}</textarea>
+          <div *ngIf="this.addForm.controls.name.errors" class="invalid-feedback">
+            <div *ngIf="this.addForm.controls.name.errors.required"> Attribute name is required </div>
+            <div *ngIf="this.addForm.controls.name.errors.minlength"> Attribute name must be at least 6 characters </div>
           </div>
         </div>
-
         <div class="row">
           <div class="col">
             <div class="form-group mb-3">
-              <label for="form-type" class="form-label">Type</label>
-              <select
-                (change)="changeType($event)"
-                formControlName="type"
-                class="form-control"
-                id="form-type"
-              >
-                <option
-                  *ngFor="let typeObj of deviceTypeDict.list; let i = index"
-                >
+              <label for="type" class="form-label">Type</label>
+              <select (change)="changeType($event)" formControlName="type" class="form-control" id="type">
+                <option *ngFor="let typeObj of deviceTypeDict.list; let i = index">
                   {{ typeObj.name }}
                 </option>
               </select>
+              <div *ngIf="this.addForm.controls.category.errors" class="invalid-feedback">
+                <div *ngIf="this.addForm.controls.category.errors.required">Category is required</div>
+              </div>
+              <div>
+              {{ this.toString(this.addForm.controls.category.dirty) }}
+            </div>
             </div>
           </div>
           <div class="col">
             <div class="form-group mb-3">
-              <label for="form-category" class="form-label">Category</label>
-              <select
-                (change)="changeCategory($event)"
-                formControlName="category"
-                class="form-control"
-                id="form-category"
-              >
-                <option
-                  *ngFor="
+              <label for="category" class="form-label">Category</label>
+              <select (change)="changeCategory($event)" formControlName="category" class="form-control"
+                id="category">
+                <option *ngFor="
                     let categoryObj of deviceCategoryDict.list;
                     let i = index
-                  "
-                >
+                  ">
                   {{ categoryObj.name }}
                 </option>
               </select>
+              <div *ngIf="this.addForm.controls.category.errors" class="invalid-feedback">
+                <div *ngIf="this.addForm.controls.category.errors.required">Category is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group mb-3">
+              <label for="component" class="form-label">Component</label>
+              <select (change)="changeCategory($event)" formControlName="component" class="form-control"
+                id="component">
+                <option *ngFor="
+                    let componentObj of componentDictionary.list;
+                    let i = index
+                  ">
+                  {{ componentObj.name }}
+                </option>
+              </select>
+              <div *ngIf="this.addForm.controls.component.errors" class="invalid-feedback">
+                <div *ngIf="this.addForm.controls.component.errors.required">Component is required</div>
+              </div>
             </div>
           </div>
         </div>
         <div class="form-group mb-3">
-          <button
-            type="submit"
-            [disabled]="!(addForm.valid && addForm.touched)"
-            class="btn btn-primary"
-          >
-            Add model
-          </button>
-          <div
-            *ngIf="!(addForm.valid && addForm.touched)"
-            class="-valid-feedback"
-          >
-            Form is invalid
-          </div>
-          <div
-            *ngIf="addForm.valid && addForm.touched"
-            class="-invalid-feedback"
-          >
-            Form is valid
-          </div>
-          <p>Form Status: {{ addForm.status }}</p>
-          <p>Form Values: {{ toString(addForm.value) }}</p>
+          <button type="submit" [disabled]="!(this.addForm.valid && this.addForm.touched)" class="btn btn-primary"> Add
+            model </button>
+          <div *ngIf="!(this.addForm.valid && this.addForm.touched)" class="invalid-feedback"> Form is invalid </div>
         </div>
       </form>
     </div>
   </div>
 </div>
-<app-log></app-log>

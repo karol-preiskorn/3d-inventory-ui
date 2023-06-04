@@ -6,11 +6,11 @@ import { v4 as uuidv4 } from 'uuid'
 
 export interface Log {
   id: string // logs uuid4
-  date: string // datetime
-  object?: string | null // obiects uuid4
+  date: string // date-time
+  object?: string | null // objects uuid4
   operation: string // Edit, Delete, Create, Update
   component: string // [device, model, category]
-  message: string // obiect json
+  message: string // object json
 }
 
 export interface LogIn {
@@ -37,18 +37,18 @@ export class LogService {
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  GetComponentLogs(id: string): Observable<Log[]> {
+  GetComponentLogs(component: string): Observable<Log[]> {
     return this.http
       .get<Log[]>(
-        this.baseurl + '/logs?component=' + id + '&_sort=date&_order=desc'
+        this.baseurl + '/logs?component=' + component + '&_sort=date&_order=desc'
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  GetObjectsLogs(id: string): Observable<Log[]> {
+  GetObjectsLogs(object: string): Observable<Log[]> {
     return this.http
       .get<Log[]>(
-        this.baseurl + '/logs?object=' + id + '&_sort=date&_order=desc'
+        this.baseurl + '/logs?object=' + object + '&_sort=date&_order=desc'
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
@@ -75,14 +75,14 @@ export class LogService {
       component: data.component,
       message: data.message,
     }
-    this.addLog(log)
+    //this.addLog(log)
     return this.http
       .post<Log>(`${this.baseurl}/logs`, log, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  addLog(data: LogIn) {
-    this.http.post(`${this.baseurl}/logs`, data).subscribe({
+  addLog(data: Log) {
+    return this.http.post(`${this.baseurl}/logs`, data).subscribe({
       next: (d) =>
         console.log(
           'POST addLog -> Log Request is successful ',

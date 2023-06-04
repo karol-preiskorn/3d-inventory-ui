@@ -94,7 +94,7 @@ export class EditDeviceComponent implements OnInit {
       this.devicesService
         .UpdateDevice(this.inputId, this.editForm.value)
         .subscribe(() => {
-          this.ngZone.run(() => this.router.navigateByUrl('/device-list/'))
+          this.ngZone.run(() => this.router.navigateByUrl('/devices-list'))
         })
     }
   }

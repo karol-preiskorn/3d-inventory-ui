@@ -1,34 +1,13 @@
 {
-  "attribute-dictionary": [
-    {
-      "category": "CATEGORY-1",
-      "component": "Model",
-      "id": "e802a1de-9a13-4ac9-b148-b503ec304383",
-      "name": "Attr 1",
-      "type": "TYPE-1"
-    },
-    {
-      "id": "zPWJOQE"
-    },
-    {
-      "id": "aQJtB_x"
-    },
-    {
-      "id": "Zmy7dM3"
-    },
-    {
-      "id": "w0WgRDd"
-    }
-  ],
   "devices": [
     {
       "id": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "model_id": "Server 1b",
       "name": "Device 1abcd",
+      "model_id": "Server New Refresh",
       "position": {
-        "h": "3",
-        "x": "4",
-        "y": "4"
+        "x": "8",
+        "y": "5",
+        "h": "3"
       }
     },
     {
@@ -63,12 +42,12 @@
     },
     {
       "id": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f",
-      "model_id": "Server 1a",
       "name": "Device 1abcd",
+      "model_id": "Server 1a",
       "position": {
-        "h": "3",
-        "x": "2",
-        "y": "3"
+        "x": "4",
+        "y": "3",
+        "h": "3"
       }
     },
     {
@@ -94,896 +73,60 @@
   ],
   "logs": [
     {
-      "component": "Model",
-      "date": "2023/05/15 20:27:25.21",
-      "id": "e802a1de-9a13-4ac9-b148-b503ec30438e",
-      "message": "{\n  \"id\": \"fb8c046\",\n  \"name\": \"Server 1asssss\",\n  \"dimension\": {\n    \"width\": \"2\",\n    \"height\": \"1\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"Server\",\n  \"category\": \"Facility\"\n}",
-      "object": "fb8c046",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/15 20:48:10.15",
-      "id": "5e2b4016-e941-4a9f-8f1e-540655925bb7",
-      "message": "{\n  \"id\": \"fb8c046a\",\n  \"name\": \"Server 1asssssd\",\n  \"dimension\": {\n    \"width\": \"2\",\n    \"height\": \"1\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"Switch\",\n  \"category\": \"Connectivity\"\n}",
-      "object": "fb8c046a",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/17 08:26:14.82",
-      "id": "86e3b40e-2112-4268-9b7e-223852f51f3a",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1a\",\n  \"model_id\": \"fb8c046a-9be9-446b-8797-4ad0a97b2344\",\n  \"position\": {\n    \"x\": 1,\n    \"y\": 2,\n    \"h\": 1\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/18 20:38:29.58",
-      "id": "87d4a884-6e9c-45f2-9b48-8c143e18daa1",
-      "message": "{\n  \"id\": \"fb8c046a-9be9-446b-8797-4ad0a97b2344\",\n  \"name\": \"Server 1asssssd\",\n  \"dimension\": {\n    \"width\": \"3\",\n    \"height\": \"1\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"Switch\",\n  \"category\": \"Connectivity\"\n}",
-      "object": "fb8c046a-9be9-446b-8797-4ad0a97b2344",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/18 20:40:16.97",
-      "id": "76a9d6df-34d5-42eb-b3a9-7f4fbd8851cc",
-      "message": "{\n  \"id\": \"fb8c046a-9be9-446b-8797-4ad0a97b2344\",\n  \"name\": \"Server 1asssssd\",\n  \"dimension\": {\n    \"width\": \"3\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Connectivity\"\n}",
-      "object": "fb8c046a-9be9-446b-8797-4ad0a97b2344",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/18 21:41:07.76",
-      "id": "01cb2397-7e5e-41b8-ab58-f131210f8231",
-      "message": "{\n  \"id\": \"fb8c046a-9be9-446b-8797-4ad0a97b2344\",\n  \"name\": \"Server 1asssssd ss\",\n  \"dimension\": {\n    \"width\": \"3\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Connectivity\"\n}",
-      "object": "fb8c046a-9be9-446b-8797-4ad0a97b2344",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/18 22:14:34.63",
-      "id": "1a0331f1-2bc2-4ade-85ef-f5db5db80322",
-      "message": "{\n  \"id\": \"fb8c046a-9be9-446b-8797-4ad0a97b2344\",\n  \"name\": \"Server 1asssssd ss\",\n  \"dimension\": {\n    \"width\": \"3\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "fb8c046a-9be9-446b-8797-4ad0a97b2344",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 22:24:14.60",
-      "id": "7c3308c8-21a7-477d-b2e7-240647ab740f",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1a\",\n  \"model_id\": \"fb8c046a-9be9-446b-8797-4ad0a97b2344\",\n  \"position\": {\n    \"x\": \"2\",\n    \"y\": 2,\n    \"h\": 1\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 22:26:40.04",
-      "id": "63f0b306-2bc3-4c75-9f3c-4a4e8e0a5178",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1ab\",\n  \"model_id\": \"fb8c046a-9be9-446b-8797-4ad0a97b2344\",\n  \"position\": {\n    \"x\": \"2\",\n    \"y\": 2,\n    \"h\": 1\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 22:32:51.41",
-      "id": "4a2df0f2-dff5-48d1-9bd7-64893f6f05b7",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abc\",\n  \"model_id\": \"fb8c046a-9be9-446b-8797-4ad0a97b2344\",\n  \"position\": {\n    \"x\": \"2\",\n    \"y\": 2,\n    \"h\": 1\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 22:33:03.96",
-      "id": "dd4896a9-4ea6-46d0-965a-6f6905f2466e",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abc\",\n  \"model_id\": \"fb8c046a-9be9-446b-8797-4ad0a97b2344\",\n  \"position\": {\n    \"x\": \"2\",\n    \"y\": 2,\n    \"h\": \"2\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 22:33:53.51",
-      "id": "231aa72d-2a66-46ef-bb0a-84b642248a07",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"fb8c046a-9be9-446b-8797-4ad0a97b2344\",\n  \"position\": {\n    \"x\": \"2\",\n    \"y\": 2,\n    \"h\": \"2\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 22:34:05.06",
-      "id": "a4f1f08a-5e9d-4d11-b035-8c34843e9e1b",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"2\",\n    \"y\": 2,\n    \"h\": \"2\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/18 22:34:35.02",
-      "id": "2350dc4d-5738-44ca-bf03-c67f91a1d8d2",
-      "message": "{\n  \"id\": \"fb8c046a-9be9-446b-8797-4ad0a97b2344\",\n  \"name\": \"Server 1asssssd ss\",\n  \"dimension\": {\n    \"width\": \"3\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"Load Balancer\",\n  \"category\": \"Facility\"\n}",
-      "object": "fb8c046a-9be9-446b-8797-4ad0a97b2344",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/18 22:40:20.50",
-      "id": "696de1af-834c-4364-8b3d-9890a09c4bd7",
-      "message": "{\n  \"id\": \"fb8c046a-9be9-446b-8797-4ad0a97b2344\",\n  \"name\": \"Server 1asssssd ss\",\n  \"dimension\": {\n    \"width\": \"3\",\n    \"height\": \"4\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"Load Balancer\",\n  \"category\": \"Facility\"\n}",
-      "object": "fb8c046a-9be9-446b-8797-4ad0a97b2344",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 22:40:29.89",
-      "id": "4e39a6e5-4a57-46a2-a99f-5ed336a6c604",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"2\",\n    \"y\": 2,\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 22:41:27.57",
-      "id": "69d95771-efa8-4b0f-834a-56761820b2f6",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"2\",\n    \"y\": \"3\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 22:41:38.65",
-      "id": "3fa237ed-cf0f-48a2-84d0-618e96ff47aa",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"2\",\n    \"y\": \"3\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 22:47:40.21",
-      "id": "84913441-9735-422d-842a-b1fdbad52319",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1a\",\n  \"position\": {\n    \"x\": \"2\",\n    \"y\": \"3\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 22:47:46.16",
-      "id": "869d0554-3a77-473e-b3aa-5b89fb438f23",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1a\",\n  \"position\": {\n    \"x\": \"2\",\n    \"y\": \"3\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 22:49:44.67",
-      "id": "4217d66a-c677-4cc9-8c0c-7cb415bc9dde",
-      "message": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5 -> 5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
-      "operation": "Clone"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:00:21.35",
-      "id": "8cee7f3a-824c-456e-b779-926f2d259105",
-      "message": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5 -> be5bb617-a614-435f-bf66-8768d0aba0c8",
-      "operation": "Clone"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:00:24.47",
-      "id": "7273d1d6-93ef-4045-bbe3-4019d2a1ee14",
-      "message": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5 -> 5f8abd81-0d35-47c4-8277-3d6bbbe185f0",
-      "operation": "Clone"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:01:21.40",
-      "id": "1ad3807d-93db-4142-a5c2-7900423a210d",
-      "message": "be5bb617-a614-435f-bf66-8768d0aba0c8 -> 255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f",
-      "operation": "Clone"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:01:44.85",
-      "id": "7a5d65a8-801f-4707-ab71-42d35e8de822",
-      "message": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f -> b04452d1-a271-4a4a-a543-087b8effd74b",
-      "operation": "Clone"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:01:50.42",
-      "id": "13bd32d9-2e3b-42c9-a915-1be5b003ea61",
-      "message": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f -> 34c3b304-463f-4958-b045-3237f7030838",
-      "operation": "Clone"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:01:52.76",
-      "id": "e967d652-82e9-4fba-a6ed-02b96124ec85",
-      "message": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f -> 890e431e-ffb8-4c20-905d-92659207fe88",
-      "operation": "Clone"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:02:12.86",
-      "id": "c103e6ae-28b6-4b9b-8259-f820d54bc23e",
-      "message": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f -> b4ee268e-ea80-489e-89a1-5d2c10387805",
-      "operation": "Clone"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:02:14.57",
-      "id": "b9c38563-c8f6-4456-80ec-50ba7144965b",
-      "message": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0 -> d31cc26b-d50b-4ce8-94d6-dbabe89e0b59",
-      "operation": "Clone"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:02:15.64",
-      "id": "6a4a6361-d001-4080-963e-ee0b3a1e38d0",
-      "message": "be5bb617-a614-435f-bf66-8768d0aba0c8 -> 3e071295-e917-4bce-9b0f-4b9903d88201",
-      "operation": "Clone"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:02:16.19",
-      "id": "2e90d105-2917-44f3-98b8-dbfeee98d17c",
-      "message": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a -> 0aba5218-74d8-49de-afb2-c7e179ec448c",
-      "operation": "Clone"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:02:16.67",
-      "id": "99e7cf0b-31e6-49a1-901e-a91af6047848",
-      "message": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5 -> 10adaea0-8f4b-4742-b2e1-648af468b61a",
-      "operation": "Clone"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:02:23.32",
-      "id": "22287dc4-d7f1-4f2c-b52f-e50105dce3d9",
-      "message": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5 -> bcc8ea94-72fe-4359-a477-9c9b0bf2cf5a",
-      "operation": "Clone"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:02:26.92",
-      "id": "b1f1704e-63cd-4c15-aacb-6eb74505c4ad",
-      "message": "10adaea0-8f4b-4742-b2e1-648af468b61a -> b585470f-91b3-4427-b710-0e6741062fc5",
-      "operation": "Clone"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:02:33.09",
-      "id": "0a1b9dfd-73fc-47e5-8472-2929f9f4e019",
-      "message": "bcc8ea94-72fe-4359-a477-9c9b0bf2cf5a -> e2a8ea78-f6db-4658-b49f-6b426c520961",
-      "operation": "Clone"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:02:35.18",
-      "id": "55db5ce7-6733-4b65-8ac4-1535691740d3",
-      "message": "b585470f-91b3-4427-b710-0e6741062fc5 -> da6a4ccd-3855-4a9b-91ec-1ae7e8e9ea77",
-      "operation": "Clone"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/18 23:10:28.49",
-      "id": "63b78495-bb5f-4c6d-9f99-bfc7b3ddc0c2",
-      "message": "{\n  \"id\": \"fb8c046a-9be9-446b-8797-4ad0a97b2344\",\n  \"name\": \"Server 1asssssd ss\",\n  \"dimension\": {\n    \"width\": \"3\",\n    \"height\": \"4\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"Hubs\",\n  \"category\": \"Facility\"\n}",
-      "object": "fb8c046a-9be9-446b-8797-4ad0a97b2344",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/18 23:17:22.78",
-      "id": "9998ba9f-9dc9-4874-a7de-128a04d280a4",
-      "message": "{\n  \"id\": \"fb8c046a-9be9-446b-8797-4ad0a97b2344\",\n  \"name\": \"Server 1asssssd ss\",\n  \"dimension\": {\n    \"width\": \"3\",\n    \"height\": \"1\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"Hubs\",\n  \"category\": \"Facility\"\n}",
-      "object": "fb8c046a-9be9-446b-8797-4ad0a97b2344",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/18 23:34:59.48",
-      "id": "0242af45-9305-4cc3-a8c8-61a3e8d7bcc2",
-      "message": "{\n  \"id\": \"fb8c046a-9be9-446b-8797-4ad0a97b2344\",\n  \"name\": \"Server 1asssssd ss\",\n  \"dimension\": {\n    \"width\": \"3\",\n    \"height\": \"1\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"Hubs\",\n  \"category\": \"Facility\"\n}",
-      "object": "fb8c046a-9be9-446b-8797-4ad0a97b2344",
-      "operation": "Delete"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:45:49.60",
-      "id": "f64d503a-e6eb-4441-98bf-95f436ddd18f",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1a\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"3\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:45:58.22",
-      "id": "254bde6c-da88-41b1-b267-625276071317",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1a\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"3\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:12.88",
-      "id": "1b9630ca-3020-4de1-9abc-d1c4eabea72d",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1a\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"3\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:18.93",
-      "id": "881233a4-567e-4573-bf12-5c044be93148",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1a\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"3\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:20.89",
-      "id": "1f90505e-49de-4740-9b44-e0124fe1a006",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"3\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:21.37",
-      "id": "941ab3be-a483-4f4a-bac6-3f0c1945f71b",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"3\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:34.82",
-      "id": "5b12ad61-e23b-4da1-b5ab-6d10b09caf9d",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:35.68",
-      "id": "a2f4ed48-964d-4dc1-b4b5-3ef14cc6ed3e",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:35.87",
-      "id": "63bcb1f8-40b4-4e35-afd7-0e0543e646b0",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:36.08",
-      "id": "54a68367-f0b3-4a2e-a619-0fa5a6f0eb28",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:36.29",
-      "id": "bd5b7145-da80-4752-a857-823a1b33b092",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:36.49",
-      "id": "973f1426-67ce-4946-bf90-df18531440b5",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:36.69",
-      "id": "d9a6f195-159a-464c-beaf-6f7871b48f3f",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:36.90",
-      "id": "de851571-0ee9-4e75-9085-42a0ebfd26fe",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:37.09",
-      "id": "990ba295-8c7a-41bb-9384-c70f9d506d00",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:37.30",
-      "id": "9c35ae89-20a6-453a-ba17-ea1fd122e229",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:37.50",
-      "id": "f0a1520c-34e5-45ab-ba66-eeadddd84eb3",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:37.70",
-      "id": "9fb336b8-729c-4503-902e-058cb5fdea34",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:37.91",
-      "id": "ee564bcd-f751-4aca-9905-571aa5fb6a16",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:39.40",
-      "id": "13f3cb0a-22fb-48d2-b7fa-8c6033b5965c",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:39.64",
-      "id": "27c0fa88-51d8-47d1-8255-aefdd2922297",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:39.86",
-      "id": "2447dd89-886e-4e38-bfe5-1111869e7eb0",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:43.07",
-      "id": "5da60c66-61ff-451d-a87a-ec0179f3a068",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:46.80",
-      "id": "37e28e5a-a5fa-485f-9578-d030b4ea4573",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:46:47.02",
-      "id": "9c329563-d855-44d3-94e4-a7e4180a5da9",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:47:21.39",
-      "id": "ac445f4d-562d-4bb5-8668-332b0436eda5",
-      "message": "da6a4ccd-3855-4a9b-91ec-1ae7e8e9ea77",
-      "object": "da6a4ccd-3855-4a9b-91ec-1ae7e8e9ea77",
-      "operation": "Delete"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:47:22.51",
-      "id": "b463464a-1cf7-4a27-ad77-499b78a18625",
-      "message": "e2a8ea78-f6db-4658-b49f-6b426c520961",
-      "object": "e2a8ea78-f6db-4658-b49f-6b426c520961",
-      "operation": "Delete"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:47:26.57",
-      "id": "526c088d-d3e4-4b12-8534-664126d10687",
-      "message": "d31cc26b-d50b-4ce8-94d6-dbabe89e0b59",
-      "object": "d31cc26b-d50b-4ce8-94d6-dbabe89e0b59",
-      "operation": "Delete"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:47:27.89",
-      "id": "4ea78bea-0e34-4fac-ba5d-150ee9f94168",
-      "message": "3e071295-e917-4bce-9b0f-4b9903d88201",
-      "object": "3e071295-e917-4bce-9b0f-4b9903d88201",
-      "operation": "Delete"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:47:29.02",
-      "id": "9965ea1e-0c4c-4dfe-a1dc-0d355413ee24",
-      "message": "0aba5218-74d8-49de-afb2-c7e179ec448c",
-      "object": "0aba5218-74d8-49de-afb2-c7e179ec448c",
-      "operation": "Delete"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:47:30.62",
-      "id": "244b8604-5150-4cbe-8c29-e2ac0fe4f1df",
-      "message": "10adaea0-8f4b-4742-b2e1-648af468b61a",
-      "object": "10adaea0-8f4b-4742-b2e1-648af468b61a",
-      "operation": "Delete"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:47:31.75",
-      "id": "8979a2a0-1c8c-48c6-ba36-6719ac2068d2",
-      "message": "bcc8ea94-72fe-4359-a477-9c9b0bf2cf5a",
-      "object": "bcc8ea94-72fe-4359-a477-9c9b0bf2cf5a",
-      "operation": "Delete"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:47:33.47",
-      "id": "950fd610-4f40-4e62-a2fb-cf9d2875b425",
-      "message": "b585470f-91b3-4427-b710-0e6741062fc5",
-      "object": "b585470f-91b3-4427-b710-0e6741062fc5",
-      "operation": "Delete"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:47:40.24",
-      "id": "069f2a96-d1f7-4497-b782-2762c3d0f1ab",
-      "message": "b4ee268e-ea80-489e-89a1-5d2c10387805",
-      "object": "b4ee268e-ea80-489e-89a1-5d2c10387805",
-      "operation": "Delete"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/18 23:47:41.41",
-      "id": "dcf955dc-d17b-4bed-a591-0bd9acb63e74",
-      "message": "890e431e-ffb8-4c20-905d-92659207fe88",
-      "object": "890e431e-ffb8-4c20-905d-92659207fe88",
-      "operation": "Delete"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:02:48.24",
-      "id": "abd9b7e1-9727-4392-956c-254a4dc2a637",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server 1a\",\n  \"dimension\": {\n    \"width\": \"2\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Site\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:17:02.63",
-      "id": "34c40de4-4e53-47d7-8ba0-ed0e4df974a6",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"2\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Site\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:18:27.38",
-      "id": "78bc4c25-1388-495c-a219-57df740e168f",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"2\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Site\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:21:25.93",
-      "id": "547544b7-6187-4c94-b1aa-d9d9e88b6c9c",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"2\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:23:07.31",
-      "id": "7d3e34b7-6195-4fb9-878f-84108c590010",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"3\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:24:06.50",
-      "id": "3d4d73bc-4287-4e34-b29e-705fe9a58069",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"4\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:34:25.83",
-      "id": "75a18933-3663-4849-b6e5-606d0e7bd648",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"5\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:36:01.26",
-      "id": "c82f453a-d14b-425e-8a27-91cc8f20b7ff",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"6\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:36:41.82",
-      "id": "56316218-bad2-46ff-96d0-c22aafedb2fe",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"7\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:38:16.23",
-      "id": "e96e979a-1e4a-40ec-8349-58182ad6382f",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"8\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:42:08.59",
-      "id": "bf2438cd-ada1-4233-9909-35f086d9f2f6",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:42:09.95",
-      "id": "0dfe4e17-88c1-4eb1-9dcc-c88a4c70efd2",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:42:15.74",
-      "id": "530636d9-1794-4b48-a93f-0aec51883b03",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:42:16.25",
-      "id": "ba6b6495-ee33-4755-9533-30e5f11c4df5",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:42:16.44",
-      "id": "bf744125-4c59-43ed-8e90-c4e39aae5f9b",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:42:16.63",
-      "id": "15a01f71-dd09-477b-a142-0772382d51fb",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:42:19.16",
-      "id": "37a96bf6-f893-417f-bc2f-d0b955a61d27",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:42:21.93",
-      "id": "7f09cb14-8426-46e7-993a-828f49391d4c",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:42:28.26",
-      "id": "f7a59211-5207-4ad5-adc8-46e2be144adc",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"9\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 07:50:06.76",
-      "id": "e8f096b6-5a38-4022-8739-e9398a75c9e1",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"11\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 08:25:58.77",
-      "id": "1c5698c4-9e0a-4656-993e-b976fbc6a6d0",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"12\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 08:26:16.04",
-      "id": "3f49dd87-c3a0-4381-aaa2-51041f5c2c7c",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"12\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 08:30:47.50",
-      "id": "48404d34-5e8a-4394-913a-004f79b053a8",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"13\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 08:33:14.97",
-      "id": "d7ce700f-4010-4a89-b1f5-b4cfe50c122a",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"14\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 08:33:22.53",
-      "id": "1150b968-2abc-43d8-a979-46f508cbeae9",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"14\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 17:11:58.35",
-      "id": "6fe35b71-4c3b-4e47-a76c-b4f211b500c4",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"14\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 17:11:59.84",
-      "id": "9cf13d48-7fb3-496c-af3c-876c70b6c5d3",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"14\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 17:12:00.54",
-      "id": "8f6e7fdc-ea68-4d55-b7cf-6e4006c3c277",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"14\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 17:12:01.11",
-      "id": "356db95e-0c00-4bb3-80a0-8781068c80dd",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"14\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 17:12:06.11",
-      "id": "45e0dc3c-5907-42ae-8ee8-25142d45a53d",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"14\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"CoolAir\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Model",
-      "date": "2023/05/19 17:13:42.90",
-      "id": "d33fa4db-785f-4e24-af63-388a275e5886",
-      "message": "{\n  \"id\": \"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\n  \"name\": \"Server New Refresh\",\n  \"dimension\": {\n    \"width\": \"14\",\n    \"height\": \"2\",\n    \"depth\": \"3\"\n  },\n  \"texture\": {\n    \"front\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"back\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"side\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"top\": \"/assets/r710-2.5-nobezel__29341.png\",\n    \"botom\": \"/assets/r710-2.5-nobezel__29341.png\"\n  },\n  \"type\": \"Desktop\",\n  \"category\": \"Facility\"\n}",
-      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/19 17:15:57.42",
-      "id": "a04af0bd-6d21-464b-adde-6de4ec7f2d1f",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server New Refresh\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/19 17:16:00.43",
-      "id": "31b7929d-cdf3-4d17-999a-abdcd20c1e38",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server New Refresh\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/19 17:17:13.56",
-      "id": "78cf6275-8b4f-4885-838e-dbffe978e7e3",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/19 17:17:28.26",
-      "id": "cc11f30e-3a02-4f83-bb69-b12ac69a9e25",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "component": "Device",
-      "date": "2023/05/19 17:17:29.66",
-      "id": "0a113e22-e231-4df3-ae5b-e420cfe9370a",
-      "message": "{\n  \"id\": \"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\n  \"name\": \"Device 1abcd\",\n  \"model_id\": \"Server 1b\",\n  \"position\": {\n    \"x\": \"4\",\n    \"y\": \"4\",\n    \"h\": \"3\"\n  }\n}",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update"
-    },
-    {
-      "id": "33b7454b-840d-4e67-8515-1f64c1c5eda4",
-      "date": "2023/05/30 21:50:00.84",
+      "id": "e3252919-9c9e-4a00-8d4b-5d1a8150bf4f",
+      "date": "2023/06/03 23:36:20.94",
+      "object": "51835c1a-23ca-4bef-bc9b-038317207f73",
       "operation": "Create",
       "component": "Attribute Dictionary",
-      "message": "{\"id\":\"zPWJOQE\"}"
+      "message": "{\"id\":\"51835c1a-23ca-4bef-bc9b-038317207f73\",\"name\":\"asdasdasd\",\"type\":\"Copier\",\"category\":\"Connectivity\",\"component\":\"connection\"}"
     },
     {
-      "id": "87afe137-3dc1-4d84-a80c-e697589125aa",
-      "date": "2023/05/30 21:50:02.70",
+      "id": "31bd5547-1685-4a66-b8e9-d7f0cda3708e",
+      "date": "2023/06/03 23:36:34.82",
+      "object": "012747f9-6e54-42ea-801f-2da370296cab",
       "operation": "Create",
       "component": "Attribute Dictionary",
-      "message": "{\"id\":\"aQJtB_x\"}"
+      "message": "{\"id\":\"012747f9-6e54-42ea-801f-2da370296cab\",\"name\":\"dasdasd\",\"type\":\"Copier\",\"category\":\"Facility\",\"component\":\"connection\"}"
     },
     {
-      "id": "656cfe6f-efec-44ad-aa49-75c7d327634a",
-      "date": "2023/05/30 21:59:55.66",
+      "id": "83862a52-1435-4c36-9534-8e2a1c62c111",
+      "date": "2023/06/03 23:37:36.89",
+      "object": "eb5d6e8b-80f9-4ca7-b245-2c4a8cdf1eb2",
       "operation": "Create",
       "component": "Attribute Dictionary",
-      "message": "{\"id\":\"Zmy7dM3\"}"
+      "message": "{\"id\":\"eb5d6e8b-80f9-4ca7-b245-2c4a8cdf1eb2\",\"name\":\"sdfssfsdfsdfsdf\",\"type\":\"Copier\",\"category\":\"Site\",\"component\":\"connection\"}"
     },
     {
-      "id": "08f9ce7c-a442-4b83-8c3d-2223de57fb87",
-      "date": "2023/05/30 21:59:58.89",
+      "id": "4d08b834-9ce5-417a-889f-4c6a100c3a92",
+      "date": "2023/06/04 10:07:53.92",
+      "object": "98a07008-c344-41da-9929-df9c9e58e4a5",
       "operation": "Create",
       "component": "Attribute Dictionary",
-      "message": "{\"id\":\"w0WgRDd\"}"
+      "message": "{\"id\":\"98a07008-c344-41da-9929-df9c9e58e4a5\",\"name\":\"aaasdad\",\"type\":\"Copier\",\"category\":\"model\",\"component\":\"model\"}"
+    },
+    {
+      "id": "70642fa0-8b80-4599-b6ad-123cb93048c0",
+      "date": "2023/06/04 12:55:01.83",
+      "object": "e802a1de-9a13-4ac9-b148-b503ec304383",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"name\":\"Attr 1\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"model\"}"
+    },
+    {
+      "id": "acc39218-a1b2-457d-8975-3d0ed2800550",
+      "date": "2023/06/04 12:55:41.66",
+      "object": "e802a1de-9a13-4ac9-b148-b503ec304383",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"name\":\"Attribute Dictionary Element 1\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"model\"}"
+    },
+    {
+      "id": "cad9a925-e4e2-4f11-9ef9-b290417e9acb",
+      "date": "2023/06/04 12:56:45.62",
+      "object": "70728826-94ef-4610-b171-bfcda02976b6",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"name\":\"Attribute 2\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"model\"}"
     }
   ],
   "models": [
@@ -1040,6 +183,64 @@
         "top": "/assets/r710-2.5-nobezel__29341.png"
       },
       "type": "Server"
+    }
+  ],
+  "attribute-dictionary": [
+    {
+      "id": "e802a1de-9a13-4ac9-b148-b503ec304383",
+      "name": "Attribute Dictionary Element 1",
+      "type": "Bridge",
+      "category": "Connectivity",
+      "component": "model"
+    },
+    {
+      "id": "70728826-94ef-4610-b171-bfcda02976b6",
+      "name": "Attribute 2",
+      "type": "Bridge",
+      "category": "Connectivity",
+      "component": "model"
+    },
+    {
+      "id": "b324c94f-58a7-4e2e-a566-207024cb3485",
+      "name": "asdsdadasdasdasda",
+      "type": "CoolAir",
+      "category": "model",
+      "component": "model"
+    },
+    {
+      "id": "234254d6-4485-49b1-b006-34b11e7c6655",
+      "name": "ssdssasdasd",
+      "type": "CoolAir",
+      "category": "Site",
+      "component": "model"
+    },
+    {
+      "id": "51835c1a-23ca-4bef-bc9b-038317207f73",
+      "name": "asdasdasd",
+      "type": "Copier",
+      "category": "Connectivity",
+      "component": "connection"
+    },
+    {
+      "id": "012747f9-6e54-42ea-801f-2da370296cab",
+      "name": "dasdasd",
+      "type": "Copier",
+      "category": "Facility",
+      "component": "connection"
+    },
+    {
+      "id": "eb5d6e8b-80f9-4ca7-b245-2c4a8cdf1eb2",
+      "name": "sdfssfsdfsdfsdf",
+      "type": "Copier",
+      "category": "Site",
+      "component": "connection"
+    },
+    {
+      "id": "98a07008-c344-41da-9929-df9c9e58e4a5",
+      "name": "aaasdad",
+      "type": "Copier",
+      "category": "model",
+      "component": "model"
     }
   ]
 }

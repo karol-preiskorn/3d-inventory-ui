@@ -49,7 +49,7 @@ export class DevicesListComponent implements OnInit {
         component: 'Device',
       })
       .subscribe(() => {
-        this.ngZone.run(() => this.router.navigateByUrl('/devices-list'))
+        this.ngZone.run(() => this.router.navigateByUrl('devices-list'))
       })
     this.loadDevices()
   }
@@ -58,6 +58,6 @@ export class DevicesListComponent implements OnInit {
   }
   EditForm(device: Device) {
     this.selectedDevice = device
-    this.router.navigate(['/edit-device/', device.id])
+    this.router.navigate(['edit-device/', device.id])
   }
 }

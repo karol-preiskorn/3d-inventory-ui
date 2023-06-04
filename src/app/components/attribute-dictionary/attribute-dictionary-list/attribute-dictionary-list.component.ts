@@ -13,7 +13,7 @@ export class AttributeDictionaryListComponent implements OnInit {
   attributeDictionaryList: AttributeDictionary[] = []
   selectedAttributeDictionary: AttributeDictionary
   page = 1
-  component = 'AttributeDictionary'
+  component = 'Attribute Dictionary'
 
   ngOnInit() {
     this.loadAttributeDictionary()
@@ -59,15 +59,15 @@ export class AttributeDictionaryListComponent implements OnInit {
       .subscribe(() => {
         this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))
       })
-    this.loadAttributeDictionary()
-    this.router.navigate(['/attribute-dictionary-list'])
+    // this.loadAttributeDictionary()
+    // this.router.navigate(['/attribute-dictionary-list'])
   }
   AddForm() {
-    this.router.navigateByUrl('/add-attribute-dictionary')
+    this.router.navigateByUrl('add-attribute-dictionary')
   }
   EditForm(attributeDictionary: AttributeDictionary) {
     this.selectedAttributeDictionary = attributeDictionary
-    this.router.navigate(['/edit-attribute-dictionary', this.selectedAttributeDictionary.id])
+    this.router.navigate(['edit-attribute-dictionary', this.selectedAttributeDictionary.id])
     // this.ngZone.run(() => this.router.navigateByUrl(`edit-device/${id}`))
   }
 }

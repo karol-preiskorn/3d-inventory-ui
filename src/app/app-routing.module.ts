@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes, provideRouter } from '@angular/router'
-import { CubeComponent } from './components/cube/cube.component'
 import { AddDeviceComponent } from 'src/app/components/devices/add-device/add-device.component'
 import { DevicesListComponent } from 'src/app/components/devices/devices-list/devices-list.component'
 import { EditDeviceComponent } from 'src/app/components/devices/edit-device/edit-device.component'
-import { AttributeDictionaryListComponent } from './components/attribute-dictionary/attribute-dictionary-list/attribute-dictionary-list.component'
 import { AddAttributeDictionaryComponent } from './components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component'
+import { AttributeDictionaryListComponent } from './components/attribute-dictionary/attribute-dictionary-list/attribute-dictionary-list.component'
+import { EditAttributeDictionaryComponent } from './components/attribute-dictionary/edit-attribute-dictionary/edit-attribute-dictionary.component'
+import { CubeComponent } from './components/cube/cube.component'
 import { HomeComponent } from './components/home/home.component'
 import { AddModelComponent } from './components/models/add-model/add-model.component'
 import { EditModelComponent } from './components/models/edit-model/edit-model.component'
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'add-attribute-dictionary',
     component: AddAttributeDictionaryComponent,
+  },
+  {
+    path: 'edit-attribute-dictionary/:id',
+    component: EditAttributeDictionaryComponent,
   },
 ]
 

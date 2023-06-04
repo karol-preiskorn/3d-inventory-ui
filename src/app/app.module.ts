@@ -27,7 +27,8 @@ import { ModelsService } from './services/models.service'
 import { TooltipModule } from 'ngx-bootstrap/tooltip'
 import { AttributeDictionaryListComponent } from './components/attribute-dictionary/attribute-dictionary-list/attribute-dictionary-list.component'
 import { AttributeDictionaryService } from './services/attribute-dictionary.service';
-import { AddAttributeDictionaryComponent } from './components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component'
+import { AddAttributeDictionaryComponent } from './components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component';
+import { EditAttributeDictionaryComponent } from './components/attribute-dictionary/edit-attribute-dictionary/edit-attribute-dictionary.component'
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AddAttributeDictionaryComponent } from './components/attribute-dictiona
     LogComponent,
     ModelsListComponent,
     AttributeDictionaryListComponent,
-    AddAttributeDictionaryComponent
+    AddAttributeDictionaryComponent,
+    EditAttributeDictionaryComponent
   ],
   imports: [
     AppRoutingModule,

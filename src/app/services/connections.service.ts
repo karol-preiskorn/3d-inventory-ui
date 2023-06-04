@@ -72,10 +72,10 @@ export class ConnectionsService {
       this.CreateConnection(value).subscribe({
         next: (v) => {
           console.log('Create Connections: ' + JSON.stringify(v))
-          this.ngZone.run(() => this.router.navigateByUrl('/connections-list'))
+          this.ngZone.run(() => this.router.navigateByUrl('connections-list'))
         },
         complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('/connections-list')),
+          this.ngZone.run(() => this.router.navigateByUrl('connections-list')),
       })
     })
     return id_uuid

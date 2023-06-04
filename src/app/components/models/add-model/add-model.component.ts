@@ -113,7 +113,7 @@ export class AddModelComponent implements OnInit {
   }
   submitForm() {
     this.modelsService.CreateModel(this.model).subscribe((res) => {
-      console.log('Submit Model: ' + JSON.stringify(res))
+      console.log('Submit Model: ' + JSON.stringify(this.addForm.value))
       this.logService
         .CreateLog({
           message: JSON.stringify(res),
@@ -121,7 +121,7 @@ export class AddModelComponent implements OnInit {
           component: 'Model',
         })
         .subscribe(() => {
-          this.ngZone.run(() => this.router.navigateByUrl('/models-list'))
+          this.ngZone.run(() => this.router.navigateByUrl('models-list'))
         })
     })
   }

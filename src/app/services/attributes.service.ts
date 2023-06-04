@@ -71,10 +71,10 @@ export class AttributesService {
       this.CreateAttributes(value).subscribe({
         next: (v) => {
           console.log('Create attributes: ' + JSON.stringify(v))
-          this.ngZone.run(() => this.router.navigateByUrl('/attributes-list'))
+          this.ngZone.run(() => this.router.navigateByUrl('attributes-list'))
         },
         complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('/attributes-list')),
+          this.ngZone.run(() => this.router.navigateByUrl('attributes-list')),
       })
     })
     return id_uuid

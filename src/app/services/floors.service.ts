@@ -59,10 +59,10 @@ export class FloorsService {
       this.CreateFloor(value).subscribe({
         next: (v) => {
           console.log('Create Floor: ' + JSON.stringify(v))
-          this.ngZone.run(() => this.router.navigateByUrl('/floor-list'))
+          this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
         },
         complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('/floor-list')),
+          this.ngZone.run(() => this.router.navigateByUrl('floor-list')),
       })
     })
     return id_uuid

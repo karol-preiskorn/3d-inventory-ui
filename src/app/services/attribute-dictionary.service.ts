@@ -68,10 +68,10 @@ export class AttributeDictionaryService {
       this.CreateAttributeDictionary(value).subscribe({
         next: (v) => {
           console.log('Create attributes: ' + JSON.stringify(v))
-          this.ngZone.run(() => this.router.navigateByUrl('/attribute-dictionary-list'))
+          this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))
         },
         complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('/attribute-dictionary-list')),
+          this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list')),
       })
     })
     return id_uuid
@@ -82,7 +82,7 @@ export class AttributeDictionaryService {
   ): Observable<AttributeDictionary> {
     return this.http
       .put<AttributeDictionary>(
-        this.BASEURL + '/attributes/' + id,
+        this.BASEURL + '/attribute-dictionary/' + id,
         JSON.stringify(data),
         this.httpOptions
       )

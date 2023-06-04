@@ -17,6 +17,11 @@ export class DeviceCategory {
 export class DeviceCategoryDict {
   list: DeviceCategory[] = [
     {
+      name: '-',
+      description:
+        '-',
+    },
+    {
       name: 'Connectivity',
       description:
         'Data centers often have multiple fiber connections to the internet provided by multiple carriers.',

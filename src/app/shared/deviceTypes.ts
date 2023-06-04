@@ -29,6 +29,7 @@ export class DeviceType {
 
 export class DeviceTypeDict {
   list: DeviceType[] = [
+    { name: '-', description: '' },
     { name: 'Bridge', description: '' },
     { name: 'CoolAir', description: '' },
     { name: 'Copier', description: '' },

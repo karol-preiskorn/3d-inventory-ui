@@ -63,10 +63,10 @@ export class DevicesService {
       this.CreateDevice(value).subscribe({
         next: (v) => {
           console.log('Create Device: ' + JSON.stringify(v))
-          this.ngZone.run(() => this.router.navigateByUrl('/devices-list'))
+          this.ngZone.run(() => this.router.navigateByUrl('devices-list'))
         },
         complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('/devices-list')),
+          this.ngZone.run(() => this.router.navigateByUrl('devices-list')),
       })
     })
     return id_uuid
