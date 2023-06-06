@@ -29,7 +29,7 @@ export class AddAttributeDictionaryComponent implements OnInit {
   componentDictionary: ComponentDictionary = new ComponentDictionary()
   logComponent = 'AttributeDictionary'
   ngOnInit() {
-    this.addAttributeDictionary()
+    this.formAttributeDictionary()
   }
   constructor(
     public formBulider: FormBuilder,
@@ -39,7 +39,7 @@ export class AddAttributeDictionaryComponent implements OnInit {
     private logService: LogService
   ) {}
 
-  addAttributeDictionary() {
+  formAttributeDictionary() {
     this.addForm = this.formBulider.group({
       id: [uuidv4(), [Validators.required, Validators.minLength(36)]],
       name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],

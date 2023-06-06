@@ -7,10 +7,10 @@
           <thead>
             <tr>
               <th scope="col">Id</th>
-              <th scope="col">Name</th>
-              <th scope="col">Category</th>
-              <th scope="col">Type</th>
-              <th scope="col">Component</th>
+              <th scope="col">DeviceId</th>
+              <th scope="col">ModelId</th>
+              <th scope="col">ConnectionId</th>
+              <th scope="col">Value</th>
             </tr>
           </thead>
           <tbody>
@@ -20,22 +20,22 @@
                     : {
                         id: 'attributeDictionaryPagination',
                         itemsPerPage: 5,
-                        currentPage: page
+                        currentPage: attributePage
                       }
               ">
               <td>{{ attribute.id }}</td>
-              <td>{{ attribute.name }}</td>
-              <td>{{ attribute.category }}</td>
-              <td>{{ attribute.type }}</td>
-              <td>{{ attribute.component }}</td>
+              <td>{{ attribute.deviceId }}</td>
+              <td>{{ attribute.modelId }}</td>
+              <td>{{ attribute.connectionId }}</td>
+              <td>{{ attribute.value }}</td>
               <td>
                 <div class="btn-group" role="group" aria-label="attribute-operations">
                   <button type="button" class="btn btn-success btn-sm move-right" id="edit-attribute"
-                    (click)="this.EditAttribute(attribute.id)"> Edit </button>
+                    (click)="EditAttribute(attribute)"> Edit </button>
                   <button type="button" id="delete-attribute" class="btn btn-danger btn-sm"
-                    (click)="this.DeleteAttribute(attribute.id)"> Delete </button>
+                    (click)="DeleteAttribute(attribute.id)"> Delete </button>
                   <button type="button" id="clone-attribute" class="btn btn-info btn-sm"
-                    (click)="this.CloneAttribute(attribute.id)"> Clone </button>
+                    (click)="CloneAttribute(attribute.id)"> Clone </button>
                 </div>
               </td>
             </tr>

@@ -12,7 +12,7 @@ import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
 export class AttributeDictionaryListComponent implements OnInit {
   attributeDictionaryList: AttributeDictionary[] = []
   selectedAttributeDictionary: AttributeDictionary
-  page = 1
+  attributeDictionaryPage = 1
   component = 'Attribute Dictionary'
 
   ngOnInit() {

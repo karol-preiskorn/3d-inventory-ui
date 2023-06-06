@@ -6,20 +6,20 @@ import { v4 as uuidv4 } from 'uuid'
 import { Connection } from '../shared/connection'
 import { LogService } from './log.service'
 import { Router } from '@angular/router'
-import { EnviromentService } from './enviroment.service'
+import { EnvironmentService } from './environment.service'
 @Injectable({
   providedIn: 'root',
 })
 export class ConnectionsService {
-  enviromentServiceClass = new EnviromentService()
-  BASEURL = this.enviromentServiceClass.get('BASEURL')
+  environmentServiceClass = new EnvironmentService()
+  BASEURL = this.environmentServiceClass.get('BASEURL')
 
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router,
-    private enviromentService: EnviromentService
+    private environmentService: EnvironmentService
   ) {
   }
 
@@ -31,7 +31,7 @@ export class ConnectionsService {
 
   GetConnections(): Observable<Connection> {
     return this.http
-      .get<Connection>(this.enviromentService.get('BASEURL') + '/connections/')
+      .get<Connection>(this.environmentService.get('BASEURL') + '/connections/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
 

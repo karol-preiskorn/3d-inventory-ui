@@ -36,6 +36,8 @@ import { AttributeService } from './services/attribute.service'
 import { AddAttributeComponent } from './components/attribute/add-attribute/add-attribute.component'
 import { EditAttributeComponent } from './components/attribute/edit-attribute/edit-attribute.component'
 
+import { EnvironmentService } from './services/environment.service'
+
 
 @NgModule({
   declarations: [
@@ -77,7 +79,8 @@ import { EditAttributeComponent } from './components/attribute/edit-attribute/ed
     LogService,
     HttpClient,
     AttributeDictionaryService,
-    AttributeService
+    AttributeService,
+    EnvironmentService,
   ],
   bootstrap: [AppComponent],
   exports: [LogComponent],

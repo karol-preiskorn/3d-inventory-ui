@@ -20,7 +20,7 @@
 		"prettier": "prettier --check src/**/*.ts",
 		"start:all": "concurrently -c \"bgBlue.bold,bgMagenta.bold\" --prefix \"{time}-{pid}\"  \"npm:start:ng\" \"npm:start:json-server\" --kill-others",
 		"start:json-server": "cd backend && json-server --watch db_v2.json",
-		"start": "ng serve --poll=2000  --watch",
+		"start": "ng serve --poll=10000  --watch",
 		"test": "ng test",
 		"test:nyc": "nyc --reporter=html --produce-source-map --reporter=text npm test",
 		"test:e2e": "ng e2e",

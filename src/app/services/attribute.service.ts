@@ -1,31 +1,33 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
 import { Observable, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 import { v4 as uuidv4 } from 'uuid'
 import { Attribute } from '../shared/attribute'
+import { EnvironmentService } from './environment.service'
 import { LogService } from './log.service'
-import { Router } from '@angular/router'
-import { EnviromentService } from './enviroment.service'
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class AttributeService {
-  enviromentServiceClass = new EnviromentService()
-  BASEURL = this.enviromentServiceClass.get('BASEURL')
+  environmentService = new EnvironmentService()
+  BASEURL = this.environmentService.get('BASEURL')
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
-    private router: Router
+    private router: Router,
+
   ) { }
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   }
+
   GetAttributes(): Observable<Attribute> {
     return this.http
       .get<Attribute>(this.BASEURL + '/attribute/')

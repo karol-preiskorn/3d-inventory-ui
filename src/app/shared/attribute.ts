@@ -12,9 +12,9 @@ import { v4 as uuidv4 } from 'uuid'
 
 export class Attribute {
   id: string
-  device_id: string
-  model_id: string
-  connection_id: string
+  deviceId: string
+  modelId: string
+  connectionId: string
   value: string
 
   constructor() {

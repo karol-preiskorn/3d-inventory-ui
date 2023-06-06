@@ -4,6 +4,7 @@ import { ModelsService } from 'src/app/services/models.service'
 import { LogService } from 'src/app/services/log.service'
 import { Model } from 'src/app/shared/model'
 
+
 @Component({
   selector: 'app-models-list',
   templateUrl: './models-list.component.html',
@@ -12,8 +13,8 @@ import { Model } from 'src/app/shared/model'
 export class ModelsListComponent implements OnInit {
   ModelsList: Model[] = []
   selectedModel: Model
-  modelPagination = 1
-  component = 'Model'
+  modelPage = 1
+  logComponent = 'Model'
 
   ngOnInit() {
     this.loadModels()
@@ -59,7 +60,7 @@ export class ModelsListComponent implements OnInit {
     this.router.navigate(['/models-list'])
   }
 
-  AddForm() {
+  AddModel() {
     this.router.navigateByUrl('add-model')
   }
   EditModel(model: Model) {

@@ -16,11 +16,8 @@
           </div>
           <div class="col">
             <div class="form-group mb-3">
-              <label for="name" class="form-label">Name</label>
-              <textarea [ngClass]="{
-              'is-invalid': this.form.controls.name.status != 'VALID',
-              'form-control': true
-            }" formControlName="name" id="name" required>{{ this.form.value.name }}</textarea>
+              <label for="deviceid" class="form-label">DeviceId</label>
+              <input formControlName="deviceid" id="deviceid" required>{{ this.form.value.deviceId }}
               <div *ngIf="this.form.controls.name.errors" class="invalid-feedback">
                 <div *ngIf="this.form.controls.name.errors.required"> Attribute name is required </div>
                 <div *ngIf="this.form.controls.name.errors.minlength"> Attribute name must be at least 6 characters

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core'
+import { Component, OnInit, Input } from '@angular/core'
 import { Subscription } from 'rxjs'
 import { Log, LogService } from 'src/app/services/log.service'
 

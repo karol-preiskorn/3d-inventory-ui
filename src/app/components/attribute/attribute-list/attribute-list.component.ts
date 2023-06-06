@@ -42,7 +42,7 @@ export class AttributeListComponent implements OnInit {
       .DeleteAttribute(id)
       .subscribe((data: any) => {
         console.log(data)
-        this.loadAttributeDictionary()
+        this.LoadAttribute()
         this.router.navigate(['/attribute-dictionary-list'])
       })
   }

@@ -6,14 +6,14 @@ import { v4 as uuidv4 } from 'uuid'
 import { Floor } from '../shared/floor'
 import { LogService, Log } from './log.service'
 import { Router } from '@angular/router'
-import { EnviromentService } from './enviroment.service'
+import { EnvironmentService } from './environment.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class FloorsService {
-  enviromentServiceClass = new EnviromentService()
-  BASEURL = this.enviromentServiceClass.get('BASEURL')
+  environmentServiceClass = new EnvironmentService()
+  BASEURL = this.environmentServiceClass.get('BASEURL')
   constructor(
     private http: HttpClient,
     private logService: LogService,

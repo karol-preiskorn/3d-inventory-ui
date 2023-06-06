@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing'
 import { AttributeService } from './attribute.service'
 
 describe('AttributesService', () => {
-  let service: AttributesService
+  let service: AttributeService
 
   beforeEach(() => {
     TestBed.configureTestingModule({})

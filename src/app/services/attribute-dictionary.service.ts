@@ -6,15 +6,15 @@ import { v4 as uuidv4 } from 'uuid'
 import { AttributeDictionary } from '../shared/attribute-dictionary'
 import { LogService } from './log.service'
 import { Router } from '@angular/router'
-import { EnviromentService } from './enviroment.service'
+import { EnvironmentService } from './environment.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AttributeDictionaryService {
 
-  enviromentServiceClass = new EnviromentService()
-  BASEURL = this.enviromentServiceClass.get('BASEURL')?.value
+  environmentServiceClass = new EnvironmentService()
+  BASEURL = this.environmentServiceClass.get('BASEURL')?.value
   constructor(
     private http: HttpClient,
     private logService: LogService,

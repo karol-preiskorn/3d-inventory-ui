@@ -17,15 +17,21 @@ import { v4 as uuidv4 } from 'uuid'
 })
 export class EditAttributeComponent implements OnInit {
   inputId: any
-  form: any
+  form  = new FormGroup({
+    id: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    type: new FormControl('', [Validators.required]),
+    category: new FormControl('', [Validators.required]),
+    component: new FormControl('', [Validators.required, Validators.minLength(4)])
+  })
   attribute: Attribute
   isSubmitted = false
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   componentDictionary: ComponentDictionary = new ComponentDictionary()
-  logComponent = ''
+  logComponent: any
   ngOnInit() {
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')?.toString
     this.attribute = this.getAttribute(this.inputId)
     this.logComponent = this.inputId
     this.setAttributeForm()
@@ -41,10 +47,10 @@ export class EditAttributeComponent implements OnInit {
         this.attribute = data
         this.form.setValue({
           id: data.id,
-          name: data.name,
-          type: data.type,
-          category: data.category,
-          component: data.component,
+          deviceId: data.deviceId,
+          modelId: data.modelId,
+          connectionId: data.connectionId,
+          value: data.value,
         })
       })
   }
@@ -60,10 +66,10 @@ export class EditAttributeComponent implements OnInit {
   setAttributeForm() {
     this.form = this.formBulider.group({
       id: ['', [Validators.required, Validators.minLength(36)]],
-      name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
-      type: [null, [Validators.required]],
-      category: [null, [Validators.required]],
-      component: [null, [Validators.required]],
+      deviceId: ['', [Validators.nullValidator]],
+      modelId: [null, [Validators.nullValidator]],
+      connectionId: [null, [Validators.nullValidator]],
+      value: [null, [Validators.required]],
     })
   }
   changeId(e: any) {

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 @Injectable({
   providedIn: 'root'
 })
-export class EnviromentService {
+export class EnvironmentService {
   private data = [{
     name: "BASEURL", value: "http://localhost:3000"
   }];
