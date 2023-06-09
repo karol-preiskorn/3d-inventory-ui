@@ -17,7 +17,7 @@ import { v4 as uuidv4 } from 'uuid'
   styleUrls: ['./add-attribute.component.scss']
 })
 export class AddAttributeComponent implements OnInit {
-  form  = new FormGroup({
+  formAddAttribute = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     type: new FormControl('', [Validators.required]),
@@ -25,7 +25,7 @@ export class AddAttributeComponent implements OnInit {
     component: new FormControl('', [Validators.required, Validators.minLength(4)])
   })
 
-  attributeDictionary: AttributeDictionary
+  attribute: Attribute
   isSubmitted = false
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
@@ -43,43 +43,43 @@ export class AddAttributeComponent implements OnInit {
     private logService: LogService
   ) { }
   formAttribute() {
-    this.form = this.formBulider.group({
+    this.formAddAttribute = this.formBulider.group({
       id: [uuidv4(), [Validators.required, Validators.minLength(36)]],
-      name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
-      type: ['', [Validators.required]],
-      category: ['', [Validators.required]],
-      component: ['', [Validators.required]],
+      deviceId: [''],
+      modelId: [''],
+      connectionId: [''],
+      value: ['', [Validators.required]],
     })
   }
   changeId(e: any) {
-    this.id?.setValue(e.target.value, { onlySelf: true })
+    this.attribute?.setValue(e.target.value, { onlySelf: true })
   }
-  changeName(e: any) {
-    this.name?.setValue(e.target.value, { onlySelf: true })
+  changeDeviceId(e: any) {
+    this.deviceId?.setValue(e.target.value, { onlySelf: true })
   }
-  changeType(e: any) {
-    this.type?.setValue(e.target.value, { onlySelf: true })
+  changeModelId(e: any) {
+    this.modelId?.setValue(e.target.value, { onlySelf: true })
   }
-  changeCategory(e: any) {
-    this.category?.setValue(e.target.value, { onlySelf: true })
+  changeConnectionId(e: any) {
+    this.connectionId?.setValue(e.target.value, { onlySelf: true })
   }
-  changeComponent(e: any) {
-    this.component?.setValue(e.target.value, { onlySelf: true })
+  changeValue(e: any) {
+    this.value?.setValue(e.target.value, { onlySelf: true })
   }
   get id() {
-    return this.form.get('id')
+    return this.formAddAttribute.get('id')
   }
-  get name() {
-    return this.form.get('name')
+  get deviceId() {
+    return this.formAddAttribute.get('deviceId')
   }
-  get type() {
-    return this.form.get('type')
+  get modelId() {
+    return this.formAddAttribute.get('modelId')
   }
-  get category() {
-    return this.form.get('category')
+  get connectionId() {
+    return this.formAddAttribute.get('connectionId')
   }
-  get component() {
-    return this.form.get('component')
+  get value() {
+    return this.formAddAttribute.get('value')
   }
   toString(data: any): string {
     return JSON.stringify(data)

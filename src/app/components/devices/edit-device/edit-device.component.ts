@@ -34,7 +34,7 @@ export class EditDeviceComponent implements OnInit {
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   isSubmitted = false
   ngOnInit() {
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')?.toString
     this.device = this.getDevice()
     this.loadModels()
     this.component = this.inputId
@@ -93,7 +93,7 @@ export class EditDeviceComponent implements OnInit {
       this.devicesService
         .UpdateDevice(this.inputId, this.form.value)
         .subscribe(() => {
-          this.ngZone.run(() => this.router.navigateByUrl('/devices-list'))
+          this.ngZone.run(() => this.router.navigateByUrl('devices-list'))
         })
     }
   }
