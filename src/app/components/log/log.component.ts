@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core'
+import { Component, OnInit, Input } from '@angular/core'
 import { Subscription } from 'rxjs'
 import { Log, LogService } from 'src/app/services/log.service'
 
@@ -10,30 +10,29 @@ import { Log, LogService } from 'src/app/services/log.service'
 export class LogComponent implements OnInit {
   LogList: Log[] = []
   @Input() component = ''
-  p = 1
+  pageLog = 1
   hideWhenNoLog = false
   noData = false
   preLoader = false
   private sub: any
   constructor(public logService: LogService) {}
   ngOnInit() {
-    if (this.component == 'Model' || this.component == 'Device') {
+    if (this.component == 'Model' || this.component == 'Device' || this.component == 'Attribute Dictionary') {
+      // load list context
       this.loadComponentLog(this.component)
     } else {
+      // load id context
       this.loadObjectsLog(this.component)
     }
   }
   ngOnChanges() {
     console.log('LogComponent.ngOnChanges: ' + this.component)
-    if (this.component == 'Model' || this.component == 'Device') {
+    if (this.component == 'Model' || this.component == 'Device' || this.component == 'Attribute Dictionary') {
       this.loadComponentLog(this.component)
     } else {
       this.loadObjectsLog(this.component)
     }
   }
-  // ngOnDestroy(): void {
-  //   this.sub.ngUnsubscribe()
-  // }
   loadComponentLog(id: string): Subscription {
     return this.logService
       .GetComponentLogs(this.component)

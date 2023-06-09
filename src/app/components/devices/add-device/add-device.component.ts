@@ -93,7 +93,7 @@ export class AddDeviceComponent implements OnInit {
         component: 'Device',
         message: this.toString(this.addForm.value),
       })
-      this.ngZone.run(() => this.router.navigateByUrl('/devices-list'))
+      this.ngZone.run(() => this.router.navigateByUrl('devices-list'))
     })
   }
 }

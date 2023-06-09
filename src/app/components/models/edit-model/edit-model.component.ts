@@ -66,13 +66,40 @@ export class EditModelComponent implements OnInit {
     this.model = this.getModel(this.inputId)
     this.component = this.inputId
   }
+
+  private getModel(id: string): any {
+    return this.modelsService
+      .GetModel(this.inputId)
+      .subscribe((data: Model) => {
+        console.log('GetModel ' + JSON.stringify(data))
+        this.model = data
+        this.editForm.setValue({
+          id: data.id,
+          name: data.name,
+          dimension: {
+            width: data.dimension.width.toString(),
+            height: data.dimension.height.toString(),
+            depth: data.dimension.depth.toString(),
+          },
+          texture: {
+            front: data.texture.front,
+            back: data.texture.back,
+            side: data.texture.side,
+            top: data.texture.top,
+            botom: data.texture.botom,
+          },
+          type: data.type,
+          category: data.category,
+        })
+      })
+  }
   constructor(
     public activatedRoute: ActivatedRoute,
     public modelsService: ModelsService,
     private ngZone: NgZone,
     private router: Router,
     private logService: LogService
-  ) {}
+  ) { }
   changeId(e: any) {
     this.id?.setValue(e.target.value, { onlySelf: true })
   }
@@ -100,32 +127,7 @@ export class EditModelComponent implements OnInit {
   toString(data: any): string {
     return JSON.stringify(data)
   }
-  private getModel(id: string): any {
-    return this.modelsService
-      .GetModel(this.inputId)
-      .subscribe((data: Model) => {
-        console.log('GetModel ' + JSON.stringify(data))
-        this.model = data
-        this.editForm.setValue({
-          id: data.id,
-          name: data.name,
-          dimension: {
-            width: data.dimension.width.toString(),
-            height: data.dimension.height.toString(),
-            depth: data.dimension.depth.toString(),
-          },
-          texture: {
-            front: data.texture.front,
-            back: data.texture.back,
-            side: data.texture.side,
-            top: data.texture.top,
-            botom: data.texture.botom,
-          },
-          type: data.type,
-          category: data.category,
-        })
-      })
-  }
+
   DeleteForm() {
     this.logService.CreateLog({
       object: this.editForm.value.id,

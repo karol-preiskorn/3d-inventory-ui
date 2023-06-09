@@ -4,6 +4,7 @@ import { ModelsService } from 'src/app/services/models.service'
 import { LogService } from 'src/app/services/log.service'
 import { Model } from 'src/app/shared/model'
 
+
 @Component({
   selector: 'app-models-list',
   templateUrl: './models-list.component.html',
@@ -12,8 +13,8 @@ import { Model } from 'src/app/shared/model'
 export class ModelsListComponent implements OnInit {
   ModelsList: Model[] = []
   selectedModel: Model
-  page = 1
-  component = 'Model'
+  modelPage = 1
+  logComponent = 'Model'
 
   ngOnInit() {
     this.loadModels()
@@ -30,7 +31,7 @@ export class ModelsListComponent implements OnInit {
       this.ModelsList = data
     })
   }
-  deleteModel(id: string) {
+  DeleteModel(id: string) {
     this.logService.CreateLog({
       message: id,
       object: id,
@@ -59,10 +60,10 @@ export class ModelsListComponent implements OnInit {
     this.router.navigate(['/models-list'])
   }
 
-  AddForm() {
-    this.router.navigateByUrl('/add-model')
+  AddModel() {
+    this.router.navigateByUrl('add-model')
   }
-  EditForm(model: Model) {
+  EditModel(model: Model) {
     this.selectedModel = model
     this.router.navigate(['/edit-model', model.id])
     // this.ngZone.run(() => this.router.navigateByUrl(`edit-device/${id}`))

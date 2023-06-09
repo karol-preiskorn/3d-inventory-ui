@@ -60,10 +60,10 @@ export class ModelsService {
       this.CreateModel(value).subscribe({
         next: (v) => {
           console.log('Create Model: ' + JSON.stringify(v))
-          this.ngZone.run(() => this.router.navigateByUrl('/models-list'))
+          this.ngZone.run(() => this.router.navigateByUrl('models-list'))
         },
         complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('/models-list')),
+          this.ngZone.run(() => this.router.navigateByUrl('models-list')),
       })
     })
     console.log('Get after Model: ' + JSON.stringify(this.model))

@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { Device } from '../shared/device'
 import { LogService } from './log.service'
 import { Router } from '@angular/router'
+
 @Injectable({
   providedIn: 'root',
 })
@@ -56,16 +57,16 @@ export class DevicesService {
 
   CloneDevice(id: string): string {
     const id_uuid: string = uuidv4()
-    const o = this.GetDevice(id).subscribe((value: Device) => {
+    this.GetDevice(id).subscribe((value: Device) => {
       console.log('Get Device: ' + JSON.stringify(value))
       value.id = id_uuid
       this.CreateDevice(value).subscribe({
         next: (v) => {
           console.log('Create Device: ' + JSON.stringify(v))
-          this.ngZone.run(() => this.router.navigateByUrl('/devices-list'))
+          this.ngZone.run(() => this.router.navigateByUrl('devices-list'))
         },
         complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('/devices-list')),
+          this.ngZone.run(() => this.router.navigateByUrl('devices-list')),
       })
     })
     return id_uuid

@@ -7,7 +7,6 @@ import { Device } from 'src/app/shared/device'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 import { Model } from 'src/app/shared/model'
-import { ModelsList } from 'src/app/shared/modelsList'
 import { ModelsService } from 'src/app/services/models.service'
 
 @Component({
@@ -21,7 +20,7 @@ export class EditDeviceComponent implements OnInit {
   model: Model
   component = ''
   modelsList: Model[]
-  editForm = new FormGroup({
+  form = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     model_id: new FormControl('', Validators.required),
@@ -35,7 +34,7 @@ export class EditDeviceComponent implements OnInit {
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   isSubmitted = false
   ngOnInit() {
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')?.toString
     this.device = this.getDevice()
     this.loadModels()
     this.component = this.inputId
@@ -63,13 +62,13 @@ export class EditDeviceComponent implements OnInit {
     this.model.id = e.target.value
   }
   get id() {
-    return this.editForm.get('id')
+    return this.form.get('id')
   }
   get name() {
-    return this.editForm.get('name')
+    return this.form.get('name')
   }
   get _model() {
-    return this.editForm.get('model')
+    return this.form.get('model')
   }
   toString(data: any): string {
     return JSON.stringify(data)
@@ -80,21 +79,21 @@ export class EditDeviceComponent implements OnInit {
       .subscribe((data: any) => {
         console.log('GetDevice ' + JSON.stringify(data))
         this.device = data
-        this.editForm.setValue(data)
+        this.form.setValue(data)
       })
   }
   submitForm() {
-    if (this.editForm.valid && this.editForm.touched) {
+    if (this.form.valid && this.form.touched) {
       this.logService.CreateLog({
-        message: JSON.stringify(this.editForm.value, null, 2),
+        message: JSON.stringify(this.form.value, null, 2),
         operation: 'Update',
         component: 'Device',
-        object: this.editForm.value.id,
+        object: this.form.value.id,
       })
       this.devicesService
-        .UpdateDevice(this.inputId, this.editForm.value)
+        .UpdateDevice(this.inputId, this.form.value)
         .subscribe(() => {
-          this.ngZone.run(() => this.router.navigateByUrl('/device-list/'))
+          this.ngZone.run(() => this.router.navigateByUrl('devices-list'))
         })
     }
   }

@@ -1,0 +1,10 @@
+﻿/node_modules
+node_modules/**
+**/node_modules/**
+/dist
+/coverage
+.git
+.github
+.husky
+.vscode
+target

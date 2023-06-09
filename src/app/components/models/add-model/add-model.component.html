@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <h3>Add Model</h3>
-      <form [formGroup]="addForm" (ngSubmit)="submitForm()">
+      <form [formGroup]="form" (ngSubmit)="submitForm()">
         <div class="form-group mb-3">
           <label for="form-id" class="form-label">Id</label>
           <input
@@ -13,26 +13,26 @@
             minlength="1"
             required
             [ngClass]="{
-              'is-invalid': this.addForm.controls.id.status != 'VALID',
+              'is-invalid': this.form.controls.id.status != 'VALID',
               'form-control': true
             }"
           />
-          <div *ngIf="f.id.errors" class="invalid-feedback">
-            <div *ngIf="f.id.errors.required">Id is required</div>
-            <div *ngIf="f.id.errors.minlength">
+          <div *ngIf="this.form.controls.id.errors" class="invalid-feedback">
+            <div *ngIf="this.form.controls.id.errors.required">Id is required</div>
+            <div *ngIf="this.form.controls.id.errors.minlength">
               Id must be at least 4 characters
             </div>
           </div>
           <p>
-            Value: {{ addForm.value.id }} -
-            {{ this.addForm.controls.id.status }}
+            Value: {{ form.value.id }} -
+            {{ this.form.controls.id.status }}
           </p>
         </div>
         <div class="form-group mb-3">
           <label for="form-name" class="form-label">Name</label>
           <textarea
             [ngClass]="{
-              'is-invalid': this.addForm.controls.name.status != 'VALID',
+              'is-invalid': this.form.controls.name.status != 'VALID',
               'form-control': true
             }"
             formControlName="name"
@@ -40,16 +40,16 @@
             minlength="4"
             id="form-name"
             maxlength="50"
-            >{{ addForm.value.name }}</textarea
+            >{{ form.value.name }}</textarea
           >
           <div
-            *ngIf="this.addForm.controls.name.errors"
+            *ngIf="this.form.controls.name.errors"
             class="invalid-feedback"
           >
-            <div *ngIf="this.addForm.controls.name.errors.required">
+            <div *ngIf="this.form.controls.name.errors.required">
               Name is required
             </div>
-            <div *ngIf="this.addForm.controls.name.errors.minlength">
+            <div *ngIf="this.form.controls.name.errors.minlength">
               Name must be at least 4 characters
             </div>
           </div>
@@ -67,18 +67,18 @@
                 required
                 [ngClass]="{
                   'is-invalid':
-                    this.addForm.controls.dimension.controls.width.status !=
+                    this.form.controls.dimension.controls.width.status !=
                     'VALID',
                   'form-control': true
                 }"
               />
               <div
-                *ngIf="this.addForm.controls.dimension.controls.width.errors"
+                *ngIf="this.form.controls.dimension.controls.width.errors"
                 class="invalid-feedback"
               >
                 <div
                   *ngIf="
-                    this.addForm.controls.dimension.controls.width.errors
+                    this.form.controls.dimension.controls.width.errors
                       .required
                   "
                 >
@@ -86,7 +86,7 @@
                 </div>
                 <div
                   *ngIf="
-                    this.addForm.controls.dimension.controls.width.errors
+                    this.form.controls.dimension.controls.width.errors
                       .minlength
                   "
                 >
@@ -94,8 +94,8 @@
                 </div>
               </div>
               <p>
-                Value: {{ addForm.value.dimension?.width }} -
-                {{ this.addForm.controls.dimension.controls.width.status }}
+                Value: {{ form.value.dimension?.width }} -
+                {{ this.form.controls.dimension.controls.width.status }}
               </p>
             </div>
           </div>
@@ -111,18 +111,18 @@
                 required
                 [ngClass]="{
                   'is-invalid':
-                    this.addForm.controls.dimension.controls.height.status !=
+                    this.form.controls.dimension.controls.height.status !=
                     'VALID',
                   'form-control': true
                 }"
               />
               <div
-                *ngIf="this.addForm.controls.dimension.controls.height.errors"
+                *ngIf="this.form.controls.dimension.controls.height.errors"
                 class="invalid-feedback"
               >
                 <div
                   *ngIf="
-                    this.addForm.controls.dimension.controls.height.errors
+                    this.form.controls.dimension.controls.height.errors
                       .required
                   "
                 >
@@ -130,7 +130,7 @@
                 </div>
                 <div
                   *ngIf="
-                    this.addForm.controls.dimension.controls.height.errors
+                    this.form.controls.dimension.controls.height.errors
                       .minlength
                   "
                 >
@@ -138,8 +138,8 @@
                 </div>
               </div>
               <p>
-                Value: {{ addForm.value.dimension?.height }} -
-                {{ this.addForm.controls.dimension.controls.height.status }}
+                Value: {{ form.value.dimension?.height }} -
+                {{ this.form.controls.dimension.controls.height.status }}
               </p>
             </div>
           </div>
@@ -155,17 +155,17 @@
                 required
                 [ngClass]="{
                   'is-invalid':
-                    this.addForm.controls.dimension.status != 'VALID',
+                    this.form.controls.dimension.status != 'VALID',
                   'form-control': true
                 }"
               />
               <div
-                *ngIf="this.addForm.controls.dimension.controls.depth.errors"
+                *ngIf="this.form.controls.dimension.controls.depth.errors"
                 class="invalid-feedback"
               >
                 <div
                   *ngIf="
-                    this.addForm.controls.dimension.controls.depth.errors
+                    this.form.controls.dimension.controls.depth.errors
                       .required
                   "
                 >
@@ -173,7 +173,7 @@
                 </div>
                 <div
                   *ngIf="
-                    this.addForm.controls.dimension.controls.depth.errors
+                    this.form.controls.dimension.controls.depth.errors
                       .minlength
                   "
                 >
@@ -181,8 +181,8 @@
                 </div>
               </div>
               <p>
-                Value: {{ this.addForm.controls.dimension.value.depth }} -
-                {{ this.addForm.controls.dimension.controls.depth.status }}
+                Value: {{ this.form.controls.dimension.value.depth }} -
+                {{ this.form.controls.dimension.controls.depth.status }}
               </p>
             </div>
           </div>
@@ -197,25 +197,25 @@
                 id="front"
                 [ngClass]="{
                   'is-invalid':
-                    this.addForm.controls.texture.controls.front.status !=
+                    this.form.controls.texture.controls.front.status !=
                     'VALID',
                   'form-control': true
                 }"
               />
               <div
-                *ngIf="this.addForm.controls.texture.controls.front.errors"
+                *ngIf="this.form.controls.texture.controls.front.errors"
                 class="invalid-feedback"
               >
                 <div
                   *ngIf="
-                    this.addForm.controls.texture.controls.front.errors.required
+                    this.form.controls.texture.controls.front.errors.required
                   "
                 >
                   Width is required
                 </div>
                 <div
                   *ngIf="
-                    this.addForm.controls.texture.controls.front.errors
+                    this.form.controls.texture.controls.front.errors
                       .minlength
                   "
                 >
@@ -223,8 +223,8 @@
                 </div>
               </div>
               <p>
-                Value: {{ addForm.value.texture?.front }} -
-                {{ this.addForm.controls.texture.controls.front.status }}
+                Value: {{ form.value.texture?.front }} -
+                {{ this.form.controls.texture.controls.front.status }}
               </p>
             </div>
           </div>
@@ -237,33 +237,33 @@
                 id="back"
                 [ngClass]="{
                   'is-invalid':
-                    this.addForm.controls.texture.controls.back.status !=
+                    this.form.controls.texture.controls.back.status !=
                     'VALID',
                   'form-control': true
                 }"
               />
               <div
-                *ngIf="this.addForm.controls.texture.controls.back.errors"
+                *ngIf="this.form.controls.texture.controls.back.errors"
                 class="invalid-feedback"
               >
                 <div
                   *ngIf="
-                    this.addForm.controls.texture.controls.back.errors.required
+                    this.form.controls.texture.controls.back.errors.required
                   "
                 >
                   back side is required
                 </div>
                 <div
                   *ngIf="
-                    this.addForm.controls.texture.controls.back.errors.minlength
+                    this.form.controls.texture.controls.back.errors.minlength
                   "
                 >
                   back must be at least 1 number
                 </div>
               </div>
               <p>
-                Value: {{ addForm.value.texture?.back }} -
-                {{ this.addForm.controls.texture.controls.back.status }}
+                Value: {{ form.value.texture?.back }} -
+                {{ this.form.controls.texture.controls.back.status }}
               </p>
             </div>
           </div>
@@ -275,32 +275,32 @@
                 formControlName="side"
                 id="side"
                 [ngClass]="{
-                  'is-invalid': this.addForm.controls.texture.status != 'VALID',
+                  'is-invalid': this.form.controls.texture.status != 'VALID',
                   'form-control': true
                 }"
               />
               <div
-                *ngIf="this.addForm.controls.texture.controls.side.errors"
+                *ngIf="this.form.controls.texture.controls.side.errors"
                 class="invalid-feedback"
               >
                 <div
                   *ngIf="
-                    this.addForm.controls.texture.controls.side.errors.required
+                    this.form.controls.texture.controls.side.errors.required
                   "
                 >
                   side is required
                 </div>
                 <div
                   *ngIf="
-                    this.addForm.controls.texture.controls.side.errors.minlength
+                    this.form.controls.texture.controls.side.errors.minlength
                   "
                 >
                   side must be at least 1 number
                 </div>
               </div>
               <p>
-                Value: {{ this.addForm.controls.texture.value.side }} -
-                {{ this.addForm.controls.texture.controls.side.status }}
+                Value: {{ this.form.controls.texture.value.side }} -
+                {{ this.form.controls.texture.controls.side.status }}
               </p>
             </div>
           </div>
@@ -313,25 +313,25 @@
                 id="top"
                 [ngClass]="{
                   'is-invalid':
-                    this.addForm.controls.texture.controls.top.status !=
+                    this.form.controls.texture.controls.top.status !=
                     'VALID',
                   'form-control': true
                 }"
               />
               <div
-                *ngIf="this.addForm.controls.texture.controls.side.errors"
+                *ngIf="this.form.controls.texture.controls.side.errors"
                 class="invalid-feedback"
               >
-                <div *ngIf="this.addForm.controls.texture.controls.top.errors">
+                <div *ngIf="this.form.controls.texture.controls.top.errors">
                   Top is required
                 </div>
-                <div *ngIf="this.addForm.controls.texture.controls.top.errors">
+                <div *ngIf="this.form.controls.texture.controls.top.errors">
                   Top must be at least 1 number
                 </div>
               </div>
               <p>
-                Value: {{ this.addForm.controls.texture.value.top }} -
-                {{ this.addForm.controls.texture.controls.top.status }}
+                Value: {{ this.form.controls.texture.value.top }} -
+                {{ this.form.controls.texture.controls.top.status }}
               </p>
             </div>
           </div>
@@ -343,24 +343,24 @@
                 formControlName="botom"
                 id="botom"
                 [ngClass]="{
-                  'is-invalid': this.addForm.controls.texture.status != 'VALID',
+                  'is-invalid': this.form.controls.texture.status != 'VALID',
                   'form-control': true
                 }"
               />
               <div
-                *ngIf="this.addForm.controls.texture.controls.botom.errors"
+                *ngIf="this.form.controls.texture.controls.botom.errors"
                 class="invalid-feedback"
               >
                 <div
                   *ngIf="
-                    this.addForm.controls.texture.controls.botom.errors.required
+                    this.form.controls.texture.controls.botom.errors.required
                   "
                 >
                   Botom is required
                 </div>
                 <div
                   *ngIf="
-                    this.addForm.controls.texture.controls.botom.errors
+                    this.form.controls.texture.controls.botom.errors
                       .minlength
                   "
                 >
@@ -368,8 +368,8 @@
                 </div>
               </div>
               <p>
-                Value: {{ this.addForm.controls.texture.value.botom }} -
-                {{ this.addForm.controls.texture.controls.botom.status }}
+                Value: {{ this.form.controls.texture.value.botom }} -
+                {{ this.form.controls.texture.controls.botom.status }}
               </p>
             </div>
           </div>
@@ -416,25 +416,25 @@
         <div class="form-group mb-3">
           <button
             type="submit"
-            [disabled]="!(addForm.valid && addForm.touched)"
+            [disabled]="!(form.valid && form.touched)"
             class="btn btn-primary"
           >
             Add model
           </button>
           <div
-            *ngIf="!(addForm.valid && addForm.touched)"
+            *ngIf="!(form.valid && form.touched)"
             class="-valid-feedback"
           >
             Form is invalid
           </div>
           <div
-            *ngIf="addForm.valid && addForm.touched"
+            *ngIf="form.valid && form.touched"
             class="-invalid-feedback"
           >
             Form is valid
           </div>
-          <p>Form Status: {{ addForm.status }}</p>
-          <p>Form Values: {{ toString(addForm.value) }}</p>
+          <p>Form Status: {{ form.status }}</p>
+          <p>Form Values: {{ toString(form.value) }}</p>
         </div>
       </form>
     </div>
