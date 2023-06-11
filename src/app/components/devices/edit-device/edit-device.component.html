@@ -46,8 +46,8 @@
         <div class="col">
           <div class="form-group mb-3">
             <label for="modelId" class="form-label">Model</label>
-            <select (change)="changeModel($event)" formControlName="modelId" class="form-control" id="modelId" required>
-              <option *ngFor="let modelObj of this.modelList; let i = index">
+            <select (change)="changeModelId($event)" formControlName="modelId" class="form-control" id="modelId" required>
+              <option *ngFor="let modelObj of this.modelList; let i = index" value="{{ modelObj.id }}">
                 {{ modelObj.name }}
               </option>
             </select>

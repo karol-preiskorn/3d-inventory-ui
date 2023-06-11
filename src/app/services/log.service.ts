@@ -65,7 +65,6 @@ export class LogService {
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  // POST
   CreateLog(data: LogIn): Observable<Log> {
     const log: Log = {
       id: uuidv4(),
@@ -75,7 +74,8 @@ export class LogService {
       component: data.component,
       message: data.message,
     }
-    //this.addLog(log)
+    console.log('CreateLog(' + JSON.stringify(log) + ')')
+    // this.addLog(log)
     return this.http
       .post<Log>(`${this.baseurl}/logs`, log, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
@@ -103,7 +103,6 @@ export class LogService {
     return body || {}
   }
 
-  // PUT
   UpdateLog(id: string | null, data: any): Observable<Log> {
     return this.http
       .put<Log>(

@@ -17,6 +17,7 @@ export class LogComponent implements OnInit {
   private sub: any
   constructor(public logService: LogService) {}
   ngOnInit() {
+    console.log('LogComponent.ngOnInit: ' + this.component)
     if (this.component == 'Model' || this.component == 'Device' || this.component == 'Attribute Dictionary' || this.component == 'Connection') {
       // load list context
       this.loadComponentLog(this.component)
@@ -35,9 +36,9 @@ export class LogComponent implements OnInit {
   }
   loadComponentLog(id: string): Subscription {
     return this.logService
-      .GetComponentLogs(this.component)
+      .GetComponentLogs(this.component.toLowerCase())
       .subscribe((data: Log[]) => {
-        console.log('loadComponentLog(' + id + '): ' + JSON.stringify(data))
+        console.log('loadComponentLog(' + this.component.toLowerCase() + '): ' + JSON.stringify(data))
         this.LogList = data
       })
   }

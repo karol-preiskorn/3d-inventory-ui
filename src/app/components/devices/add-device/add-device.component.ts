@@ -90,7 +90,7 @@ export class AddDeviceComponent implements OnInit {
       console.log('Device added!')
       this.logService.CreateLog({
         operation: 'Create',
-        component: 'Device',
+        component: 'Devices',
         message: this.toString(this.addForm.value),
       })
       this.ngZone.run(() => this.router.navigateByUrl('device-list'))

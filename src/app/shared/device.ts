@@ -24,9 +24,9 @@ interface Position {
 
 export class Device {
   id: string
-  name: string | null
-  model_id: string
-  position?: Position | null
+  name: string
+  modelId: string
+  position: Position
   public print(): void {
     console.log(
       '-->[device] id: ' +
@@ -58,6 +58,6 @@ export class Device {
       separator: '-',
     }) // big_red_donkey
     // get list all models and select random id
-    this.model_id = uuidv4()
+    this.modelId = uuidv4()
   }
 }

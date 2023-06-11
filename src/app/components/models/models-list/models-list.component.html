@@ -6,7 +6,6 @@
         <table class="table table-striped table-dark table-hover">
           <thead>
             <tr>
-              <th scope="col">Id</th>
               <th scope="col">Name</th>
               <th scope="col">Dimensions</th>
               <th scope="col">Textures</th>
@@ -16,17 +15,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="
-                let model of ModelsList
-                  | paginate
+            <tr *ngFor="let model of ModelsList | paginate
                     : {
                         id: 'modelListPagination',
                         itemsPerPage: 5,
                         currentPage: modelListPage
                       }
               ">
-              <td>{{ model.id }}</td>
-              <td>{{ model.name }}</td>
+              <td tooltip="{{ model.id }}">{{ model.name }}</td>
               <td> ({{ model.dimension.width +
                     ', ' +
                     model.dimension.height +

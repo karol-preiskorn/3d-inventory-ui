@@ -23,17 +23,17 @@
     {
       "id": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
       "name": "Device 1",
-      "model_id": "Server New Refresh",
+      "modelId": "850819ca-305e-45e8-ac14-32271aad0ee7",
       "position": {
         "x": "8",
-        "y": "6",
-        "h": "3"
+        "y": "8",
+        "h": "8"
       }
     },
     {
       "id": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
       "name": "Device 2",
-      "model_id": "Server 1a",
+      "modelId": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
       "position": {
         "x": "2",
         "y": "3",
@@ -43,7 +43,7 @@
     {
       "id": "be5bb617-a614-435f-bf66-8768d0aba0c8",
       "name": "Device 3",
-      "model_id": "Server 1a",
+      "modelId": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
       "position": {
         "x": "2",
         "y": "3",
@@ -53,7 +53,7 @@
     {
       "id": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0",
       "name": "Device 4",
-      "model_id": "Server 1a",
+      "modelId": "850819ca-305e-45e8-ac14-32271aad0ee7",
       "position": {
         "x": "2",
         "y": "3",
@@ -63,7 +63,7 @@
     {
       "id": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f",
       "name": "Device 5",
-      "model_id": "Server 1a",
+      "modelId": "482e0849-2241-4ef3-b316-cdf844befbda",
       "position": {
         "x": "1",
         "y": "5",
@@ -72,7 +72,7 @@
     },
     {
       "id": "b04452d1-a271-4a4a-a543-087b8effd74b",
-      "model_id": "Server 1a",
+      "modelId": "82c77905-2118-4c38-85a5-e04728c8dbbe",
       "name": "Device 1abcd",
       "position": {
         "h": "3",
@@ -82,7 +82,7 @@
     },
     {
       "id": "34c3b304-463f-4958-b045-3237f7030838",
-      "model_id": "Server 1a",
+      "modelId": "82c77905-2118-4c38-85a5-e04728c8dbbe",
       "name": "Device 1abcd",
       "position": {
         "h": "3",
@@ -227,6 +227,36 @@
       "operation": "Update",
       "component": "Attribute Dictionary",
       "message": "{\"id\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"name\":\"Attribute Brigde Connectivity no 2\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"model\"}"
+    },
+    {
+      "id": "8c3ac2f4-1570-4fa3-92cc-51cfbca60bb1",
+      "date": "2023/06/11 15:49:37.74",
+      "object": "e802a1de-9a13-4ac9-b148-b503ec304383",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"name\":\"Attribute Brigde Connectivity no 2\",\"type\":\"Copier\",\"category\":\"Connectivity\",\"component\":\"model\"}"
+    },
+    {
+      "id": "47b6c46c-b19d-4888-9066-08d23100e391",
+      "date": "2023/06/11 15:55:10.48",
+      "object": "e802a1de-9a13-4ac9-b148-b503ec304383",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"name\":\"Attribute Brigde Connectivity no 2\",\"type\":\"Copier\",\"category\":\"Facility\",\"component\":\"attribute\"}"
+    },
+    {
+      "id": "fb97f3ff-e87c-48a9-b9f0-57f2f2ef59ad",
+      "date": "2023/06/11 15:55:30.51",
+      "operation": "Clone",
+      "component": "Model",
+      "message": "850819ca-305e-45e8-ac14-32271aad0ee7 -> 482e0849-2241-4ef3-b316-cdf844befbda"
+    },
+    {
+      "id": "d0ae4ae9-cc5d-4624-a70e-c5d68c77e879",
+      "date": "2023/06/11 15:55:41.11",
+      "operation": "Clone",
+      "component": "Model",
+      "message": "850819ca-305e-45e8-ac14-32271aad0ee7 -> 82c77905-2118-4c38-85a5-e04728c8dbbe"
     }
   ],
   "models": [
@@ -235,8 +265,8 @@
       "name": "Model 1",
       "dimension": {
         "width": "14",
-        "height": "3",
-        "depth": "3"
+        "height": "15",
+        "depth": "10"
       },
       "texture": {
         "front": "/assets/r710-2.5-nobezel__29341.png",
@@ -253,7 +283,7 @@
       "name": "Model 2",
       "dimension": {
         "width": "2",
-        "height": "1",
+        "height": "4",
         "depth": "3"
       },
       "texture": {
@@ -283,15 +313,51 @@
       },
       "type": "Server",
       "category": "Facility"
+    },
+    {
+      "id": "482e0849-2241-4ef3-b316-cdf844befbda",
+      "name": "Model 4",
+      "dimension": {
+        "width": "3",
+        "height": "3",
+        "depth": "3"
+      },
+      "texture": {
+        "front": "/assets/r710-2.5-nobezel__29341.png",
+        "back": "/assets/r710-2.5-nobezel__29341.png",
+        "side": "/assets/r710-2.5-nobezel__29341.png",
+        "top": "/assets/r710-2.5-nobezel__29341.png",
+        "botom": "/assets/r710-2.5-nobezel__29341.png"
+      },
+      "type": "Server",
+      "category": "Facility"
+    },
+    {
+      "id": "82c77905-2118-4c38-85a5-e04728c8dbbe",
+      "name": "Model 5",
+      "dimension": {
+        "width": "2",
+        "height": "2",
+        "depth": "2"
+      },
+      "texture": {
+        "front": "/assets/r710-2.5-nobezel__29341.png",
+        "back": "/assets/r710-2.5-nobezel__29341.png",
+        "side": "/assets/r710-2.5-nobezel__29341.png",
+        "top": "/assets/r710-2.5-nobezel__29341.png",
+        "botom": "/assets/r710-2.5-nobezel__29341.png"
+      },
+      "type": "Server",
+      "category": "Facility"
     }
   ],
   "attribute-dictionary": [
     {
       "id": "e802a1de-9a13-4ac9-b148-b503ec304383",
       "name": "Attribute Brigde Connectivity no 2",
-      "type": "Bridge",
-      "category": "Connectivity",
-      "component": "model"
+      "type": "Copier",
+      "category": "Facility",
+      "component": "attribute"
     },
     {
       "id": "70728826-94ef-4610-b171-bfcda02976b6",

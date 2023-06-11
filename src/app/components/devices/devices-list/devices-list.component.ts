@@ -1,8 +1,13 @@
 import { Component, NgZone, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
+
 import { LogService } from 'src/app/services/log.service'
+
 import { Device } from 'src/app/shared/device'
 import { DeviceService } from 'src/app/services/device.service'
+
+import { Model } from 'src/app/shared/model'
+import { ModelsService } from 'src/app/services/models.service'
 
 @Component({
   selector: 'app-device-list',
@@ -10,34 +15,43 @@ import { DeviceService } from 'src/app/services/device.service'
   styleUrls: ['./devices-list.component.scss'],
 })
 export class DeviceListComponent implements OnInit {
-  DevicesList: any = []
+  DeviceList: Device[]
+  ModelList: Model[]
   selectedDevice: Device
   component = 'Device'
   deviceListPage = 1
   ngOnInit() {
     this.loadDevices()
+    this.loadModels()
   }
   constructor(
-    public devicesService: DeviceService,
+    private devicesService: DeviceService,
+    private modelsService: ModelsService,
     private logService: LogService,
     private router: Router,
     private ngZone: NgZone
   ) {}
   loadDevices() {
     return this.devicesService.GetDevices().subscribe((data: any) => {
-      this.DevicesList = data
+      this.DeviceList = data
     })
   }
-  deleteDevice(id: string) {
+  loadModels() {
+    return this.modelsService.GetModels().subscribe((data: any) => {
+      this.ModelList = data
+    })
+  }
+  DeleteDevice(id: string) {
     this.logService.CreateLog({
       message: id,
       object: id,
       operation: 'Delete',
-      component: 'Device',
+      component: 'Devices',
     })
     return this.devicesService.DeleteDevice(id).subscribe((data: any) => {
       console.log(data)
       this.loadDevices()
+      this.loadModels()
       this.router.navigate(['/device-list/'])
     })
   }
@@ -47,7 +61,7 @@ export class DeviceListComponent implements OnInit {
       .CreateLog({
         message: id + ' -> ' + id_new,
         operation: 'Clone',
-        component: 'Device',
+        component: 'Devices',
       })
       .subscribe(() => {
         this.ngZone.run(() => this.router.navigateByUrl('device-list'))
@@ -60,5 +74,11 @@ export class DeviceListComponent implements OnInit {
   EditForm(device: Device) {
     this.selectedDevice = device
     this.router.navigate(['edit-device/', device.id])
+  }
+  findModelName(id: string) {
+    const name: Model | undefined = this.ModelList.find((e) => e.id === id)
+    console.log('findModelName: ' + name);
+
+    return name?.name
   }
 }
