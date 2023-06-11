@@ -13,9 +13,8 @@ import { Model } from 'src/app/shared/model'
 export class ModelsListComponent implements OnInit {
   ModelsList: Model[] = []
   selectedModel: Model
-  modelPage = 1
-  logComponent = 'Model'
-
+  modelListPage = 1
+  component = 'Model'
   ngOnInit() {
     this.loadModels()
   }
@@ -23,7 +22,6 @@ export class ModelsListComponent implements OnInit {
     public modelsService: ModelsService,
     private logService: LogService,
     private router: Router,
-
     private ngZone: NgZone
   ) {}
   loadModels() {
@@ -59,13 +57,12 @@ export class ModelsListComponent implements OnInit {
     this.loadModels()
     this.router.navigate(['/models-list'])
   }
-
   AddModel() {
     this.router.navigateByUrl('add-model')
   }
   EditModel(model: Model) {
     this.selectedModel = model
-    this.router.navigate(['/edit-model', model.id])
+    this.router.navigate(['edit-model', model.id])
     // this.ngZone.run(() => this.router.navigateByUrl(`edit-device/${id}`))
   }
 }

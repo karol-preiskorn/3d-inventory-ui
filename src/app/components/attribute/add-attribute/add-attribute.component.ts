@@ -1,14 +1,25 @@
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
-import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
-import { AttributeService } from 'src/app/services/attribute.service'
+
 import { LogService } from 'src/app/services/log.service'
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
 import { ComponentDictionary } from 'src/app/shared/component-dictionary'
-import { Attribute } from 'src/app/shared/attribute'
+
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
+
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
+
+import { Attribute } from 'src/app/shared/attribute'
+import { AttributeService } from 'src/app/services/attribute.service'
+
+import { Connection } from 'src/app/shared/connection'
+
+import { Device } from 'src/app/shared/device'
+
+import { Model } from 'src/app/shared/model'
+
 import { v4 as uuidv4 } from 'uuid'
 
 @Component({
@@ -18,19 +29,25 @@ import { v4 as uuidv4 } from 'uuid'
 })
 export class AddAttributeComponent implements OnInit {
   formAddAttribute = new FormGroup({
-    id: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    type: new FormControl('', [Validators.required]),
-    category: new FormControl('', [Validators.required]),
-    component: new FormControl('', [Validators.required, Validators.minLength(4)])
+    id: new FormControl('', [Validators.required, Validators.minLength(36)]),
+    deviceId: new FormControl(''),
+    modelId: new FormControl(''),
+    connectionId: new FormControl(''),
+    attributeTypeId: new FormControl(''),
+    value: new FormControl('', [Validators.required])
   })
 
   attribute: Attribute
+  deviceList: Device[]
+  modelList: Model[]
+  connectionList: Connection[]
+
   isSubmitted = false
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   componentDictionary: ComponentDictionary = new ComponentDictionary()
   logComponent = 'Attribute'
+
   ngOnInit() {
     this.formAttribute()
   }
@@ -48,11 +65,9 @@ export class AddAttributeComponent implements OnInit {
       deviceId: [''],
       modelId: [''],
       connectionId: [''],
+      attributeTypeId: ['', [Validators.required]],
       value: ['', [Validators.required]],
     })
-  }
-  changeId(e: any) {
-    this.attribute?.setValue(e.target.value, { onlySelf: true })
   }
   changeDeviceId(e: any) {
     this.deviceId?.setValue(e.target.value, { onlySelf: true })
@@ -85,16 +100,15 @@ export class AddAttributeComponent implements OnInit {
     return JSON.stringify(data)
   }
   submitForm() {
-    this.attributeService.CreateAttribute(this.form.value as Attribute)
+    this.attributeService.CreateAttribute(this.formAddAttribute.value as Attribute)
       .subscribe(() => {
         this.logService
           .CreateLog({
-            object: this.form.get('id')?.value,
-            message: this.toString(this.form.value),
+            object: this.formAddAttribute.get('id')?.value,
+            message: this.toString(this.formAddAttribute.value),
             operation: 'Create',
             component: 'Attribute',
-          })
-          .subscribe(() => {
+          }).subscribe(() => {
             this.ngZone.run(() => this.router.navigateByUrl('attribute-list'))
           })
       })

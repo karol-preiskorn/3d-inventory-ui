@@ -2,22 +2,23 @@ import { Component, NgZone, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { LogService } from 'src/app/services/log.service'
 import { Device } from 'src/app/shared/device'
-import { DevicesService } from 'src/app/services/devices.service'
+import { DeviceService } from 'src/app/services/device.service'
+
 @Component({
-  selector: 'app-devices-list',
+  selector: 'app-device-list',
   templateUrl: './devices-list.component.html',
   styleUrls: ['./devices-list.component.scss'],
 })
-export class DevicesListComponent implements OnInit {
+export class DeviceListComponent implements OnInit {
   DevicesList: any = []
   selectedDevice: Device
   component = 'Device'
-  p2 = 1
+  deviceListPage = 1
   ngOnInit() {
     this.loadDevices()
   }
   constructor(
-    public devicesService: DevicesService,
+    public devicesService: DeviceService,
     private logService: LogService,
     private router: Router,
     private ngZone: NgZone
@@ -37,7 +38,7 @@ export class DevicesListComponent implements OnInit {
     return this.devicesService.DeleteDevice(id).subscribe((data: any) => {
       console.log(data)
       this.loadDevices()
-      this.router.navigate(['/devices-list/'])
+      this.router.navigate(['/device-list/'])
     })
   }
   CloneDevice(id: string) {
@@ -49,7 +50,7 @@ export class DevicesListComponent implements OnInit {
         component: 'Device',
       })
       .subscribe(() => {
-        this.ngZone.run(() => this.router.navigateByUrl('devices-list'))
+        this.ngZone.run(() => this.router.navigateByUrl('device-list'))
       })
     this.loadDevices()
   }

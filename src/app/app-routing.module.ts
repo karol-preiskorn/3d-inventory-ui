@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes, provideRouter } from '@angular/router'
 import { AddDeviceComponent } from 'src/app/components/devices/add-device/add-device.component'
-import { DevicesListComponent } from 'src/app/components/devices/devices-list/devices-list.component'
+import { DeviceListComponent } from 'src/app/components/devices/devices-list/devices-list.component'
 import { EditDeviceComponent } from 'src/app/components/devices/edit-device/edit-device.component'
 import { AddAttributeDictionaryComponent } from './components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component'
 import { AttributeDictionaryListComponent } from './components/attribute-dictionary/attribute-dictionary-list/attribute-dictionary-list.component'
@@ -19,7 +19,7 @@ import { EditAttributeComponent } from './components/attribute/edit-attribute/ed
 
 
 const routes: Routes = [
-  // { path: '**', component: DevicesListComponent },
+  // { path: '**', component: DeviceListComponent },
   {
     path: 'home',
     component: HomeComponent,
@@ -29,8 +29,8 @@ const routes: Routes = [
     component: CubeComponent,
   },
   {
-    path: 'devices-list',
-    component: DevicesListComponent,
+    path: 'device-list',
+    component: DeviceListComponent,
   },
   {
     path: 'edit-device/:id',

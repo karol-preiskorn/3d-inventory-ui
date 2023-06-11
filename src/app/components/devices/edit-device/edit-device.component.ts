@@ -1,7 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
-import { DevicesService } from 'src/app/services/devices.service'
+import { DeviceService } from 'src/app/services/device.service'
 import { LogService } from 'src/app/services/log.service'
 import { Device } from 'src/app/shared/device'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
@@ -41,7 +41,7 @@ export class EditDeviceComponent implements OnInit {
   }
   constructor(
     public activatedRoute: ActivatedRoute,
-    public devicesService: DevicesService,
+    public devicesService: DeviceService,
     private ngZone: NgZone,
     private router: Router,
     private logService: LogService,
@@ -93,7 +93,7 @@ export class EditDeviceComponent implements OnInit {
       this.devicesService
         .UpdateDevice(this.inputId, this.form.value)
         .subscribe(() => {
-          this.ngZone.run(() => this.router.navigateByUrl('devices-list'))
+          this.ngZone.run(() => this.router.navigateByUrl('device-list'))
         })
     }
   }

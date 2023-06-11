@@ -35,10 +35,6 @@
             <div class="form-group mb-3">
               <label for="name" class="form-label">Name</label>
               <input
-                [ngClass]="{
-                  'is-invalid': this.form.controls.name.status != 'VALID',
-                  'form-control': true
-                }"
                 formControlName="name"
                 minlength="4"
                 id="name"
@@ -69,12 +65,6 @@
                 class="form-control"
                 id="x"
                 required
-                [ngClass]="{
-                  'is-invalid':
-                    this.form.controls.position.controls.x.status !=
-                    'VALID',
-                  'form-control': true
-                }"
               />
             </div>
           </div>
@@ -87,12 +77,6 @@
                 class="form-control"
                 id="y"
                 required
-                [ngClass]="{
-                  'is-invalid':
-                    this.form.controls.position.controls.y.status !=
-                    'VALID',
-                  'form-control': true
-                }"
               />
             </div>
           </div>
@@ -105,12 +89,6 @@
                 class="form-control"
                 id="h"
                 required
-                [ngClass]="{
-                  'is-invalid':
-                    this.form.controls.position.controls.h.status !=
-                    'VALID',
-                  'form-control': true
-                }"
               />
             </div>
           </div>
@@ -125,11 +103,6 @@
                 class="form-control"
                 id="model_id"
                 required
-                [ngClass]="{
-                  'is-invalid':
-                    this.form.controls.model_id.status != 'VALID',
-                  'form-control': true
-                }"
               >
                 <option
                   *ngFor="let categoryObj of this.modelsList; let i = index"

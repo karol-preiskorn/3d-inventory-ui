@@ -2,13 +2,21 @@
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
-import { AttributeService } from 'src/app/services/attribute.service'
+
 import { LogService } from 'src/app/services/log.service'
 import { ComponentDictionary } from 'src/app/shared/component-dictionary'
+
+import { Attribute } from 'src/app/shared/attribute'
+import { AttributeService } from 'src/app/services/attribute.service'
+
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
-import { Attribute } from 'src/app/shared/attribute'
-import { v4 as uuidv4 } from 'uuid'
+
+import { Device } from 'src/app/shared/device'
+import { DeviceService } from 'src/app/services/device.service'
+
+import { Model } from 'src/app/shared/model'
+import { ModelsService } from 'src/app/services/models.service'
 
 @Component({
   selector: 'app-edit-attribute',
@@ -25,15 +33,17 @@ export class EditAttributeComponent implements OnInit {
     value: new FormControl('', [Validators.required])
   })
   attribute: Attribute
+  deviceDictionary: Device[]
+  modelDictionary: Model[]
   isSubmitted = false
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   componentDictionary: ComponentDictionary = new ComponentDictionary()
-  componentLog: any
+  component = ''
   ngOnInit() {
     this.inputId = this.activatedRoute.snapshot.paramMap.get('id')?.toString
     this.attribute = this.getAttribute(this.inputId)
-    this.componentLog = this.inputId
+    this.component = this.inputId
   }
   private getInput() {
     return this.activatedRoute.snapshot.paramMap.get('id')
@@ -52,18 +62,20 @@ export class EditAttributeComponent implements OnInit {
     private ngZone: NgZone,
     private router: Router,
     public activatedRoute: ActivatedRoute,
-    public attributeService: AttributeService,
+    private attributeService: AttributeService,
+    private deviceService: DeviceService,
+    private modelService: ModelsService,
     private logService: LogService
   ) { }
 
 
-  // changeDeviceId(e: any) {
-  //   this.deviceId?.setValue(e.target.value, { onlySelf: true })
-  // }
-  // changeModelId(e: any) {
-  //   this.modelId?.setValue(e.target.value, { onlySelf: true })
-  // }
-  // changeConnectionId(e: any) {
+  changeDeviceId(e: any) {
+    this.deviceId?.setValue(e.target.value, { onlySelf: true })
+  }
+  changeModelId(e: any) {
+    this.modelId?.setValue(e.target.value, { onlySelf: true })
+  }
+  // changeC(e: any) {
   //   this.connectionId?.setValue(e.target.value, { onlySelf: true })
   // }
   // changeValue(e: any) {
@@ -81,11 +93,24 @@ export class EditAttributeComponent implements OnInit {
   get connectionId() {
     return this.formEditAttribute.get('connectionId')
   }
+  get attributeDictionaryId() {
+    return this.formEditAttribute.get('attributeDictioanryId')
+  }
   get value() {
     return this.formEditAttribute.get('value')
   }
   toString(data: any): string {
     return JSON.stringify(data)
+  }
+  getDeviceList() {
+    return this.deviceService.GetDevices().subscribe((data: any) => {
+      this.deviceDictionary = data
+    })
+  }
+  getModelList() {
+    return this.modelService.GetModels().subscribe((data: any) => {
+      this.modelDictionary = data
+    })
   }
   submitForm() {
     this.attributeService.UpdateAttribute(this.inputId, this.formEditAttribute.value as Attribute)

@@ -20,9 +20,9 @@
                 let model of ModelsList
                   | paginate
                     : {
-                        id: 'modelPagination',
+                        id: 'modelListPagination',
                         itemsPerPage: 5,
-                        currentPage: modelPage
+                        currentPage: modelListPage
                       }
               ">
               <td>{{ model.id }}</td>
@@ -58,6 +58,6 @@
       </div>
     </div>
   </div>
-  <pagination-controls (pageChange)="modelPage = $event" id="modelPagination"></pagination-controls>
+  <pagination-controls (pageChange)="modelListPage = $event" id="modelListPagination"></pagination-controls>
 </div>
-<app-log [component]="logComponent"></app-log>
+<app-log [component]="component"></app-log>

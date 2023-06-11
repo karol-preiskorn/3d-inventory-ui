@@ -18,7 +18,7 @@
                 let attribute of attributeList
                   | paginate
                     : {
-                        id: 'attributeDictionaryPagination',
+                        id: 'attributeListPagination',
                         itemsPerPage: 5,
                         currentPage: attributePage
                       }
@@ -29,23 +29,30 @@
               <td>{{ attribute.connectionId }}</td>
               <td>{{ attribute.value }}</td>
               <td>
-                <div class="btn-group" role="group" aria-label="attribute-operations">
-                  <button type="button" class="btn btn-success btn-sm move-right" id="edit-attribute"
-                    (click)="EditAttribute(attribute)"> Edit </button>
-                  <button type="button" id="delete-attribute" class="btn btn-danger btn-sm"
+                <div class="btn-group" role="group"
+                  aria-label="attribute-operations">
+                  <button type="button"
+                    class="btn btn-success btn-sm move-right"
+                    id="edit-attribute" (click)="EditAttribute(attribute)"> Edit
+                  </button>
+                  <button type="button" id="delete-attribute"
+                    class="btn btn-danger btn-sm"
                     (click)="DeleteAttribute(attribute.id)"> Delete </button>
-                  <button type="button" id="clone-attribute" class="btn btn-info btn-sm"
+                  <button type="button" id="clone-attribute"
+                    class="btn btn-info btn-sm"
                     (click)="CloneAttribute(attribute.id)"> Clone </button>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
-        <button type="button" class="btn btn-success btn-sm move-right mb-3" (click)="AddAttribute()">
+        <button type="button" class="btn btn-success btn-sm move-right mb-3"
+          (click)="AddAttribute()">
           <i class="bi bi-plus-lg"></i> Add </button>
       </div>
     </div>
   </div>
-  <pagination-controls (pageChange)="attributePage = $event" id="attributePagination"></pagination-controls>
+  <pagination-controls (pageChange)="attributePage = $event"
+    id="attributeListPagination"></pagination-controls>
 </div>
 <app-log [component]="component"></app-log>

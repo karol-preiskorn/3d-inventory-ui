@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { HttpClientModule } from '@angular/common/http'
-import { DevicesListComponent } from './devices-list.component'
+import { DeviceListComponent } from './device-list.component'
 import { NgxPaginationModule } from 'ngx-pagination'
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
 
-describe('DevicesListComponent', () => {
-  let component: DevicesListComponent
-  let fixture: ComponentFixture<DevicesListComponent>
+describe('DeviceListComponent', () => {
+  let component: DeviceListComponent
+  let fixture: ComponentFixture<DeviceListComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DevicesListComponent],
+      declarations: [DeviceListComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [HttpClientModule, NgxPaginationModule],
     }).compileComponents()
 
-    fixture = TestBed.createComponent(DevicesListComponent)
+    fixture = TestBed.createComponent(DeviceListComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

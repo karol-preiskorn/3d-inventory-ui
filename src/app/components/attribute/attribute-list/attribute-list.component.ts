@@ -23,7 +23,7 @@ export class AttributeListComponent implements OnInit {
     private logService: LogService,
     private router: Router,
     private ngZone: NgZone
-  ) {}
+  ) { }
   LoadAttribute() {
     return this.attributeService
       .GetAttributes()
@@ -31,7 +31,7 @@ export class AttributeListComponent implements OnInit {
         this.attributeList = data
       })
   }
-  DeleteAttribute(id: string) {
+  DeleteAttribute(id: any) {
     this.logService.CreateLog({
       message: id,
       object: id,
@@ -46,7 +46,7 @@ export class AttributeListComponent implements OnInit {
         this.router.navigate(['/attribute-dictionary-list'])
       })
   }
-  async CloneAttribute(id: string) {
+  async CloneAttribute(id: any) {
     const id_new: string =
       this.attributeService.CloneAttribute(id)
     this.logService

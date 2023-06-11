@@ -1,7 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
-import { DevicesService } from 'src/app/services/devices.service'
+import { DeviceService } from 'src/app/services/device.service'
 import { LogService } from 'src/app/services/log.service'
 import { Device } from 'src/app/shared/device'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
@@ -37,7 +37,7 @@ export class AddDeviceComponent implements OnInit {
     public formBulider: FormBuilder,
     private ngZone: NgZone,
     private router: Router,
-    public devicesService: DevicesService,
+    public devicesService: DeviceService,
     private logService: LogService
   ) {}
 
@@ -93,7 +93,7 @@ export class AddDeviceComponent implements OnInit {
         component: 'Device',
         message: this.toString(this.addForm.value),
       })
-      this.ngZone.run(() => this.router.navigateByUrl('devices-list'))
+      this.ngZone.run(() => this.router.navigateByUrl('device-list'))
     })
   }
 }

@@ -20,7 +20,7 @@
                     : {
                         id: 'devicePagination',
                         itemsPerPage: 5,
-                        currentPage: p2
+                        currentPage: deviceListPage
                       }
               "
             >
@@ -77,7 +77,7 @@
     </div>
   </div>
   <pagination-controls
-    (pageChange)="p2 = $event"
+    (pageChange)="deviceListPage = $event"
     id="devicePagination"
   ></pagination-controls>
 </div>
