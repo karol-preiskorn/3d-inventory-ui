@@ -1,52 +1,72 @@
 {
+  "connections": [
+    {
+      "id": "f1f5abce-d4aa-4108-af4c-dfd2ade5a814",
+      "name": "con  2",
+      "deviceIdTo": "2 Device 1abcd",
+      "deviceIdFrom": "1 Device 1abcd"
+    },
+    {
+      "id": "80ed734c-0910-42bb-83f0-acdd23aadc43",
+      "name": "Connection 2",
+      "deviceIdTo": "4 Device 1abcd",
+      "deviceIdFrom": "3 Device 1abcd"
+    },
+    {
+      "id": "97cd7051-974f-4405-9127-9abf1465966d",
+      "name": "Connection 3",
+      "deviceIdTo": "3 Device 4",
+      "deviceIdFrom": "1 Device 2"
+    }
+  ],
   "devices": [
     {
       "id": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "name": "Device 1abcd",
+      "name": "Device 1",
       "model_id": "Server New Refresh",
       "position": {
         "x": "8",
-        "y": "5",
+        "y": "6",
         "h": "3"
       }
     },
     {
       "id": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "name": "Device 2",
       "model_id": "Server 1a",
-      "name": "Device 1abcd",
       "position": {
-        "h": "3",
         "x": "2",
-        "y": "3"
+        "y": "3",
+        "h": "3"
       }
     },
     {
       "id": "be5bb617-a614-435f-bf66-8768d0aba0c8",
+      "name": "Device 3",
       "model_id": "Server 1a",
-      "name": "Device 1abcd",
       "position": {
-        "h": "3",
         "x": "2",
-        "y": "3"
+        "y": "3",
+        "h": "3"
       }
     },
     {
       "id": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0",
+      "name": "Device 4",
       "model_id": "Server 1a",
-      "name": "Device 1abcd",
       "position": {
-        "h": "3",
         "x": "2",
-        "y": "3"
+        "y": "3",
+        "h": "3"
       }
     },
     {
       "id": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f",
-      "name": "Device 1abcd",
+      "name": "Device 5",
       "model_id": "Server 1a",
       "position": {
-        "x": "4",
-        "y": "3",
+        "x": "1",
+        "y": "5",
         "h": "3"
       }
     },
@@ -159,12 +179,60 @@
       "operation": "Update",
       "component": "Attribute Dictionary",
       "message": "{\"id\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"name\":\"Attribute Bridge Connectivity no. 1\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"model\"}"
+    },
+    {
+      "id": "2db22c1f-2c84-44d1-abe5-bb2a1d269e93",
+      "date": "2023/06/11 12:12:59.27",
+      "object": "580c4a6a-e65a-4265-bb2c-118264f43efb",
+      "operation": "Create",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"580c4a6a-e65a-4265-bb2c-118264f43efb\",\"name\":\"adadadasda\",\"deviceIdTo\":\"2 Device 1abcd\",\"deviceIdFrom\":\"1 Device 1abcd\"}"
+    },
+    {
+      "id": "e1cf2277-eca3-4b31-92c8-3e90f1b5a331",
+      "date": "2023/06/11 12:25:04.02",
+      "object": "3cb254f0-f775-4454-83b1-5b51771a7c56",
+      "operation": "Create",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"3cb254f0-f775-4454-83b1-5b51771a7c56\",\"name\":\"Connection 2\",\"deviceIdTo\":\"6 Device 1abcd\",\"deviceIdFrom\":\"5 Device 1abcd\"}"
+    },
+    {
+      "id": "7586222e-c4e5-4482-bfbd-c8318580a6d0",
+      "date": "2023/06/11 13:16:40.99",
+      "object": "f1f5abce-d4aa-4108-af4c-dfd2ade5a814",
+      "operation": "Create",
+      "component": "Connection",
+      "message": "{\"id\":\"f1f5abce-d4aa-4108-af4c-dfd2ade5a814\",\"name\":\"con  2\",\"deviceIdTo\":\"2 Device 1abcd\",\"deviceIdFrom\":\"1 Device 1abcd\"}"
+    },
+    {
+      "id": "bdd112c1-4a97-4138-8b10-9abaca920854",
+      "date": "2023/06/11 13:43:43.43",
+      "object": "80ed734c-0910-42bb-83f0-acdd23aadc43",
+      "operation": "Create",
+      "component": "Connection",
+      "message": "{\"id\":\"80ed734c-0910-42bb-83f0-acdd23aadc43\",\"name\":\"Connection 2\",\"deviceIdTo\":\"4 Device 1abcd\",\"deviceIdFrom\":\"3 Device 1abcd\"}"
+    },
+    {
+      "id": "d5358a5a-ddaf-4135-8774-6ecc797f5095",
+      "date": "2023/06/11 14:12:12.93",
+      "object": "97cd7051-974f-4405-9127-9abf1465966d",
+      "operation": "Create",
+      "component": "Connection",
+      "message": "{\"id\":\"97cd7051-974f-4405-9127-9abf1465966d\",\"name\":\"Connection 3\",\"deviceIdTo\":\"3 Device 4\",\"deviceIdFrom\":\"1 Device 2\"}"
+    },
+    {
+      "id": "15c0ec1e-c5e5-4607-ab05-9c7988859076",
+      "date": "2023/06/11 14:15:52.51",
+      "object": "e802a1de-9a13-4ac9-b148-b503ec304383",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"name\":\"Attribute Brigde Connectivity no 2\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"model\"}"
     }
   ],
   "models": [
     {
       "id": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "name": "Server New Refresh",
+      "name": "Model 1",
       "dimension": {
         "width": "14",
         "height": "3",
@@ -181,40 +249,40 @@
       "category": "Connectivity"
     },
     {
-      "category": "Site",
-      "dimension": {
-        "depth": "3",
-        "height": "1",
-        "width": "2"
-      },
       "id": "e13aea31-cce3-4877-ba29-740f8392ddd2",
-      "name": "Server 1b",
-      "texture": {
-        "back": "/assets/r710-2.5-nobezel__29341.png",
-        "botom": "/assets/r710-2.5-nobezel__29341.png",
-        "front": "/assets/r710-2.5-nobezel__29341.png",
-        "side": "/assets/r710-2.5-nobezel__29341.png",
-        "top": "/assets/r710-2.5-nobezel__29341.png"
+      "name": "Model 2",
+      "dimension": {
+        "width": "2",
+        "height": "1",
+        "depth": "3"
       },
-      "type": "Router"
+      "texture": {
+        "front": "/assets/r710-2.5-nobezel__29341.png",
+        "back": "/assets/r710-2.5-nobezel__29341.png",
+        "side": "/assets/r710-2.5-nobezel__29341.png",
+        "top": "/assets/r710-2.5-nobezel__29341.png",
+        "botom": "/assets/r710-2.5-nobezel__29341.png"
+      },
+      "type": "Router",
+      "category": "Site"
     },
     {
-      "category": "Site",
-      "dimension": {
-        "depth": "3",
-        "height": "1",
-        "width": "2"
-      },
       "id": "850819ca-305e-45e8-ac14-32271aad0ee7",
-      "name": "Server 1a",
-      "texture": {
-        "back": "/assets/r710-2.5-nobezel__29341.png",
-        "botom": "/assets/r710-2.5-nobezel__29341.png",
-        "front": "/assets/r710-2.5-nobezel__29341.png",
-        "side": "/assets/r710-2.5-nobezel__29341.png",
-        "top": "/assets/r710-2.5-nobezel__29341.png"
+      "name": "Model 3",
+      "dimension": {
+        "width": "2",
+        "height": "2",
+        "depth": "2"
       },
-      "type": "Server"
+      "texture": {
+        "front": "/assets/r710-2.5-nobezel__29341.png",
+        "back": "/assets/r710-2.5-nobezel__29341.png",
+        "side": "/assets/r710-2.5-nobezel__29341.png",
+        "top": "/assets/r710-2.5-nobezel__29341.png",
+        "botom": "/assets/r710-2.5-nobezel__29341.png"
+      },
+      "type": "Server",
+      "category": "Facility"
     }
   ],
   "attribute-dictionary": [

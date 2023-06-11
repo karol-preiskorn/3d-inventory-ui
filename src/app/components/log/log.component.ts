@@ -17,7 +17,7 @@ export class LogComponent implements OnInit {
   private sub: any
   constructor(public logService: LogService) {}
   ngOnInit() {
-    if (this.component == 'Model' || this.component == 'Device' || this.component == 'Attribute Dictionary') {
+    if (this.component == 'Model' || this.component == 'Device' || this.component == 'Attribute Dictionary' || this.component == 'Connection') {
       // load list context
       this.loadComponentLog(this.component)
     } else {
@@ -27,7 +27,7 @@ export class LogComponent implements OnInit {
   }
   ngOnChanges() {
     console.log('LogComponent.ngOnChanges: ' + this.component)
-    if (this.component == 'Model' || this.component == 'Device' || this.component == 'Attribute Dictionary') {
+    if (this.component == 'Model' || this.component == 'Device' || this.component == 'Attribute Dictionary' || this.component == 'Connection') {
       this.loadComponentLog(this.component)
     } else {
       this.loadObjectsLog(this.component)

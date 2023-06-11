@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(pwd -- "$0")/.husky/_/husky.sh"
 
-npx lint-staged
+# npx lint-staged

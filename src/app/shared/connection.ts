@@ -12,8 +12,9 @@ import { v4 as uuidv4 } from 'uuid'
 
 export class Connection {
   id: string
-  device_id_to: string
-  device_id_from: string
+  name: string
+  deviceIdTo: string
+  deviceIdFrom: string
 
   constructor() {
     this.id = uuidv4()

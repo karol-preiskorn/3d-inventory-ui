@@ -19,7 +19,7 @@ export class EditDeviceComponent implements OnInit {
   device: Device
   model: Model
   component = ''
-  modelsList: Model[]
+  modelList: Model[]
   form = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -34,7 +34,7 @@ export class EditDeviceComponent implements OnInit {
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   isSubmitted = false
   ngOnInit() {
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')?.toString
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
     this.device = this.getDevice()
     this.loadModels()
     this.component = this.inputId
@@ -49,7 +49,7 @@ export class EditDeviceComponent implements OnInit {
   ) {}
   loadModels() {
     return this.modelsService.GetModels().subscribe((data: any) => {
-      this.modelsList = data
+      this.modelList = data
     })
   }
   changeId(e: any) {

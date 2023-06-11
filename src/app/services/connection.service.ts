@@ -7,12 +7,13 @@ import { Connection } from '../shared/connection'
 import { LogService } from './log.service'
 import { Router } from '@angular/router'
 import { EnvironmentService } from './environment.service'
+
 @Injectable({
   providedIn: 'root',
 })
-export class ConnectionsService {
+export class ConnectionService {
   environmentServiceClass = new EnvironmentService()
-  BASEURL = this.environmentServiceClass.get('BASEURL')
+  BASEURL = this.environmentServiceClass.get('BASEURL')?.value
 
   constructor(
     private http: HttpClient,
@@ -21,6 +22,7 @@ export class ConnectionsService {
     private router: Router,
     private environmentService: EnvironmentService
   ) {
+    this.BASEURL = this.environmentServiceClass.get('BASEURL')?.value
   }
 
   httpOptions = {
@@ -31,36 +33,25 @@ export class ConnectionsService {
 
   GetConnections(): Observable<Connection> {
     return this.http
-      .get<Connection>(this.environmentService.get('BASEURL') + '/connections/')
+      .get<Connection>(this.BASEURL + '/connections/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   GetConnection(id: string | null): Observable<Connection> {
     return this.http
-      .get<Connection>(
-        this.BASEURL + '/connections/' + id,
-        this.httpOptions
-      )
+      .get<Connection>(this.BASEURL + '/connections/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   DeleteConnection(id: string): Observable<Connection> {
     return this.http
-      .delete<Connection>(
-        this.BASEURL + '/connections/' + id,
-        this.httpOptions
-      )
+      .delete<Connection>(this.BASEURL + '/connections/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  // POST
   CreateConnection(data: Connection): Observable<Connection> {
     return this.http
-      .post<Connection>(
-        this.BASEURL + '/connections/',
-        JSON.stringify(data),
-        this.httpOptions
-      )
+      .post<Connection>(this.BASEURL + '/connections/', JSON.stringify(data), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -74,20 +65,15 @@ export class ConnectionsService {
           console.log('Create Connections: ' + JSON.stringify(v))
           this.ngZone.run(() => this.router.navigateByUrl('connections-list'))
         },
-        complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('connections-list')),
+        complete: () => this.ngZone.run(() => this.router.navigateByUrl('connections-list')),
       })
     })
     return id_uuid
   }
-  // PUT
+
   UpdateConnection(id: string | null, data: any): Observable<Connection> {
     return this.http
-      .put<Connection>(
-        this.BASEURL + '/connections/' + id,
-        JSON.stringify(data),
-        this.httpOptions
-      )
+      .put<Connection>(this.BASEURL + '/connections/' + id, JSON.stringify(data), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
