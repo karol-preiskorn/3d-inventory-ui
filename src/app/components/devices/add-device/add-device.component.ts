@@ -56,13 +56,13 @@ export class AddDeviceComponent implements OnInit {
   changeName(e: any) {
     this.name?.setValue(e.target.value, { onlySelf: true })
   }
-
   changeType(e: any) {
     this.type?.setValue(e.target.value, { onlySelf: true })
   }
   changeCategory(e: any) {
     this.category?.setValue(e.target.value, { onlySelf: true })
   }
+
   get id() {
     return this.addForm.get('id')
   }
@@ -85,6 +85,7 @@ export class AddDeviceComponent implements OnInit {
   get f() {
     return this.addForm.controls
   }
+  
   submitForm() {
     this.devicesService.CreateDevice(this.device).subscribe((res) => {
       console.log('Device added!')

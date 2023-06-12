@@ -15,8 +15,8 @@ import { ModelsService } from 'src/app/services/models.service'
   styleUrls: ['./devices-list.component.scss'],
 })
 export class DeviceListComponent implements OnInit {
-  DeviceList: Device[]
-  ModelList: Model[]
+  deviceList: Device[]
+  modelList: Model[]
   selectedDevice: Device
   component = 'Device'
   deviceListPage = 1
@@ -33,12 +33,12 @@ export class DeviceListComponent implements OnInit {
   ) {}
   loadDevices() {
     return this.devicesService.GetDevices().subscribe((data: any) => {
-      this.DeviceList = data
+      this.deviceList = data
     })
   }
   loadModels() {
     return this.modelsService.GetModels().subscribe((data: any) => {
-      this.ModelList = data
+      this.modelList = data
     })
   }
   DeleteDevice(id: string) {
@@ -46,7 +46,7 @@ export class DeviceListComponent implements OnInit {
       message: id,
       object: id,
       operation: 'Delete',
-      component: 'Devices',
+      component: 'Device',
     })
     return this.devicesService.DeleteDevice(id).subscribe((data: any) => {
       console.log(data)
@@ -61,7 +61,7 @@ export class DeviceListComponent implements OnInit {
       .CreateLog({
         message: id + ' -> ' + id_new,
         operation: 'Clone',
-        component: 'Devices',
+        component: 'Device',
       })
       .subscribe(() => {
         this.ngZone.run(() => this.router.navigateByUrl('device-list'))
@@ -76,8 +76,10 @@ export class DeviceListComponent implements OnInit {
     this.router.navigate(['edit-device/', device.id])
   }
   findModelName(id: string) {
-    const name: Model | undefined = this.ModelList.find((e) => e.id === id)
-    console.log('findModelName: ' + name);
+    const nameEmpty: Model = new Model()
+    nameEmpty.name
+    const name: Model = this.modelList.find((e) => e.id === id) || nameEmpty
+    console.log('findModelName: ' + name?.name);
 
     return name?.name
   }

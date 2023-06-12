@@ -93,6 +93,7 @@ export class EditDeviceComponent implements OnInit {
   }
   submitForm() {
     if (this.form.valid && this.form.touched) {
+      console.log('submitForm(): ' + JSON.stringify(this.form.value, null, 2))
       this.logService.CreateLog({
         message: JSON.stringify(this.form.value, null, 2),
         operation: 'Update',
