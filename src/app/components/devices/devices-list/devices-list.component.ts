@@ -18,7 +18,7 @@ export class DeviceListComponent implements OnInit {
   deviceList: Device[]
   modelList: Model[]
   selectedDevice: Device
-  component = 'Device'
+  component = 'Devices'
   deviceListPage = 1
   ngOnInit() {
     this.loadDevices()
@@ -46,7 +46,7 @@ export class DeviceListComponent implements OnInit {
       message: id,
       object: id,
       operation: 'Delete',
-      component: 'Device',
+      component: this.component,
     })
     return this.devicesService.DeleteDevice(id).subscribe((data: any) => {
       console.log(data)
@@ -55,13 +55,13 @@ export class DeviceListComponent implements OnInit {
       this.router.navigate(['/device-list/'])
     })
   }
-  CloneDevice(id: string) {
+  CloneDevice(id: string | null) {
     const id_new: string = this.devicesService.CloneDevice(id)
     this.logService
       .CreateLog({
         message: id + ' -> ' + id_new,
         operation: 'Clone',
-        component: 'Device',
+        component: this.component,
       })
       .subscribe(() => {
         this.ngZone.run(() => this.router.navigateByUrl('device-list'))
@@ -79,7 +79,7 @@ export class DeviceListComponent implements OnInit {
     const nameEmpty: Model = new Model()
     nameEmpty.name
     const name: Model = this.modelList.find((e) => e.id === id) || nameEmpty
-    console.log('findModelName: ' + name?.name);
+    //console.log('findModelName: ' + name?.name);
 
     return name?.name
   }

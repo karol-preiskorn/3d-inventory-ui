@@ -21,9 +21,11 @@
               ">
               <td tooltip="{{ device.id }}">{{ device.name }}</td>
               <td>
-                ({{ device.position.x }}, {{ device.position.y }}, {{ device.position.h }})
+                ({{ device.position.x }}, {{ device.position.y }}, {{
+                device.position.h }})
               </td>
-              <td tooltip="{{ device.modelId }}">{{ this.findModelName(device.modelId) }}</td>
+              <td tooltip="{{ device.modelId }}">{{
+                this.findModelName(device.modelId) }}</td>
               <td>
                 <div class="btn-group" role="group"
                   aria-label="device-operations">

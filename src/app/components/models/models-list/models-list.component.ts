@@ -14,7 +14,7 @@ export class ModelsListComponent implements OnInit {
   ModelsList: Model[] = []
   selectedModel: Model
   modelListPage = 1
-  component = 'Model'
+  component = 'Models'
   ngOnInit() {
     this.loadModels()
   }
@@ -34,7 +34,7 @@ export class ModelsListComponent implements OnInit {
       message: id,
       object: id,
       operation: 'Delete',
-      component: 'Model',
+      component: 'Models',
     })
     return this.modelsService.DeleteModel(id).subscribe((data: any) => {
       console.log(data)
@@ -49,7 +49,7 @@ export class ModelsListComponent implements OnInit {
       .CreateLog({
         message: id + ' -> ' + id_new,
         operation: 'Clone',
-        component: 'Model',
+        component: 'Models',
       })
       .subscribe(() => {
         this.ngZone.run(() => this.router.navigateByUrl('models-list'))

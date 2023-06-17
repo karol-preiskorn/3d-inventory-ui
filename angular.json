@@ -129,6 +129,9 @@
               "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js"
             ]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

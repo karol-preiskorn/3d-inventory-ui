@@ -1,7 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
-import { LogService } from 'src/app/services/log.service'
+import { LogIn, LogService } from 'src/app/services/log.service'
 import { ModelsService } from 'src/app/services/models.service'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
@@ -132,7 +132,7 @@ export class EditModelComponent implements OnInit {
     this.logService.CreateLog({
       object: this.editForm.value.id,
       operation: 'Delete',
-      component: 'Model',
+      component: 'Models',
       message: JSON.stringify(this.editForm.value, null, 2),
     })
     this.modelsService.DeleteModel(this.inputId).subscribe(() => {
@@ -141,16 +141,20 @@ export class EditModelComponent implements OnInit {
   }
   submitForm() {
     if (this.editForm.valid && this.editForm.touched) {
-      this.logService.CreateLog({
-        object: this.editForm.value.id,
+      this.ngZone.run(() => this.router.navigateByUrl('models-list'))
+      const log: LogIn = {
+        message: JSON.stringify(this.editForm.value) as string,
         operation: 'Update',
-        component: 'Model',
-        message: JSON.stringify(this.editForm.value, null, 2),
+        component: 'Models',
+        object: this.editForm.value.id,
+      }
+      this.logService.CreateLog(log).subscribe(() => {
+        console.log(JSON.stringify(log))
       })
       this.modelsService
         .UpdateModel(this.inputId, this.editForm.value)
         .subscribe(() => {
-          this.ngZone.run(() => this.router.navigateByUrl('models-list'))
+          this.router.navigate(['edit-model/', this.model.id])
         })
     }
   }

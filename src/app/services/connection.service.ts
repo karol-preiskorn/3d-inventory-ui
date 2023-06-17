@@ -13,7 +13,7 @@ import { EnvironmentService } from './environment.service'
 })
 export class ConnectionService {
   environmentServiceClass = new EnvironmentService()
-  BASEURL = this.environmentServiceClass.get('BASEURL')?.value
+  BASEURL = this.environmentServiceClass.getSettings('BASEURL')
 
   constructor(
     private http: HttpClient,
@@ -22,7 +22,7 @@ export class ConnectionService {
     private router: Router,
     private environmentService: EnvironmentService
   ) {
-    this.BASEURL = this.environmentServiceClass.get('BASEURL')?.value
+    this.BASEURL = this.environmentServiceClass.getSettings('BASEURL')
   }
 
   httpOptions = {
@@ -32,9 +32,7 @@ export class ConnectionService {
   }
 
   GetConnections(): Observable<Connection> {
-    return this.http
-      .get<Connection>(this.BASEURL + '/connections/')
-      .pipe(retry(1), catchError(this.errorHandl))
+    return this.http.get<Connection>(this.BASEURL + '/connections/').pipe(retry(1), catchError(this.errorHandl))
   }
 
   GetConnection(id: string | null): Observable<Connection> {

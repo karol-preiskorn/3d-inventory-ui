@@ -59,6 +59,7 @@
         <div *ngIf="!(form.valid && form.touched)" class="valid-feedback">Form is invalid</div>
         <div *ngIf="form.valid && form.touched" class="invalid-feedback">Form is valid</div>
         <p>Form Status: {{ form.status }} Values: {{ toString(form.value) }}</p>
+        <p>{{ action }}</p>
       </div>
     </form>
   </div>

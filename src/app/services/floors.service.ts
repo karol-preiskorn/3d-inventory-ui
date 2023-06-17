@@ -13,7 +13,7 @@ import { EnvironmentService } from './environment.service'
 })
 export class FloorsService {
   environmentServiceClass = new EnvironmentService()
-  BASEURL = this.environmentServiceClass.get('BASEURL')
+  BASEURL = this.environmentServiceClass.getSettings('BASEURL')
   constructor(
     private http: HttpClient,
     private logService: LogService,

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Subscription } from 'rxjs'
 import { Log, LogService } from 'src/app/services/log.service'
+import { EnvironmentService } from 'src/app/services/environment.service'
 
 @Component({
   selector: 'app-log',
@@ -10,44 +11,39 @@ import { Log, LogService } from 'src/app/services/log.service'
 export class LogComponent implements OnInit {
   LogList: Log[] = []
   @Input() component = ''
+
   pageLog = 1
   hideWhenNoLog = false
   noData = false
   preLoader = false
   private sub: any
-  constructor(public logService: LogService) {}
-  ngOnInit() {
-    console.log('LogComponent.ngOnInit: ' + this.component)
-    if (this.component == 'Model' || this.component == 'Device' || this.component == 'Attribute Dictionary' || this.component == 'Connection') {
-      // load list context
+  constructor(public logService: LogService, private environmentService: EnvironmentService) {}
+  loadLog(context: string) {
+    console.log(this.environmentService.isApiSettings(this.component))
+    if (this.environmentService.isApiSettings(this.component)) {
+      console.log(context + '.loadComponentLog: ' + this.component)
       this.loadComponentLog(this.component)
     } else {
-      // load id context
+      console.log(context + '.loadObjectLog: ' + this.component)
       this.loadObjectsLog(this.component)
     }
+  }
+  ngOnInit() {
+    this.loadLog('ngOnInit')
   }
   ngOnChanges() {
-    console.log('LogComponent.ngOnChanges: ' + this.component)
-    if (this.component == 'Model' || this.component == 'Device' || this.component == 'Attribute Dictionary' || this.component == 'Connection') {
-      this.loadComponentLog(this.component)
-    } else {
-      this.loadObjectsLog(this.component)
-    }
+    this.loadLog('ngOnChanges')
   }
   loadComponentLog(id: string): Subscription {
-    return this.logService
-      .GetComponentLogs(this.component.toLowerCase())
-      .subscribe((data: Log[]) => {
-        console.log('loadComponentLog(' + this.component.toLowerCase() + '): ' + JSON.stringify(data))
-        this.LogList = data
-      })
+    return this.logService.GetComponentLogs(id).subscribe((data: Log[]) => {
+      console.log('LogComponent.loadComponentLog(' + id + '): ' + JSON.stringify(data))
+      this.LogList = data
+    })
   }
   loadObjectsLog(id: string): Subscription {
-    return this.logService
-      .GetObjectsLogs(this.component)
-      .subscribe((data: Log[]) => {
-        console.log('loadObjectsLog(' + id + '): ' + JSON.stringify(data))
-        this.LogList = data
-      })
+    return this.logService.GetObjectsLogs(id).subscribe((data: Log[]) => {
+      console.log('LogComponent.loadObjectsLog(' + id + '): ' + JSON.stringify(data))
+      this.LogList = data
+    })
   }
 }

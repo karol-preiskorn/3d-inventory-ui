@@ -13,7 +13,7 @@ export class AttributeListComponent implements OnInit {
   attributeList: Attribute[] = []
   selectedAttribute: Attribute
   attributePage = 1
-  component = 'Attribute List'
+  component = 'Attributes'
 
   ngOnInit() {
     this.LoadAttribute()
@@ -36,7 +36,7 @@ export class AttributeListComponent implements OnInit {
       message: id,
       object: id,
       operation: 'Delete',
-      component: 'AttributeDictionary',
+      component: 'Attributes',
     })
     return this.attributeService
       .DeleteAttribute(id)
@@ -60,7 +60,7 @@ export class AttributeListComponent implements OnInit {
       })
   }
   AddAttribute() {
-    this.router.navigateByUrl('add-attributes')
+    this.router.navigateByUrl('add-attribute')
   }
   EditAttribute(attribute: Attribute) {
     this.selectedAttribute = attribute

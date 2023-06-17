@@ -11,15 +11,16 @@ import { Router } from '@angular/router'
   providedIn: 'root',
 })
 export class DeviceService {
-  baseurl = 'http://localhost:3000'
+  private baseurl = 'http://localhost:3000'
+  private objectName = 'devices'
 
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
-  ) {}
-  // Http Headers
+  ) { }
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -28,34 +29,33 @@ export class DeviceService {
 
   GetDevices(): Observable<Device> {
     return this.http
-      .get<Device>(this.baseurl + '/devices/')
+      .get<Device>(this.baseurl + '/' + this.objectName + '/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   GetDevice(id: string | null): Observable<Device> {
     return this.http
-      .get<Device>(this.baseurl + '/devices/' + id, this.httpOptions)
+      .get<Device>(this.baseurl + '/' + this.objectName + '/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  DeleteDevice(id: string): Observable<Device> {
+  DeleteDevice(id: string | null): Observable<Device> {
     return this.http
-      .delete<Device>(this.baseurl + '/devices/' + id, this.httpOptions)
+      .delete<Device>(this.baseurl + '/' + this.objectName + '/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  // POST
   CreateDevice(data: Device): Observable<Device> {
     return this.http
       .post<Device>(
-        this.baseurl + '/devices/',
+        this.baseurl + '/' + this.objectName + '/',
         JSON.stringify(data),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  CloneDevice(id: string): string {
+  CloneDevice(id: string | null): string {
     const id_uuid: string = uuidv4()
     this.GetDevice(id).subscribe((value: Device) => {
       console.log('Get Device: ' + JSON.stringify(value))
@@ -75,7 +75,7 @@ export class DeviceService {
   UpdateDevice(id: string | null, data: any): Observable<Device> {
     return this.http
       .put<Device>(
-        this.baseurl + '/devices/' + id,
+        this.baseurl + '/' + this.objectName + '/' + id,
         JSON.stringify(data),
         this.httpOptions
       )

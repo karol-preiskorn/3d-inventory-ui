@@ -1,6 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 
 import { LogService } from 'src/app/services/log.service'
 import { ComponentDictionary } from 'src/app/shared/component-dictionary'
@@ -14,11 +14,14 @@ import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 import { Attribute } from 'src/app/shared/attribute'
 import { AttributeService } from 'src/app/services/attribute.service'
 
-import { Connection } from 'src/app/shared/connection'
-
 import { Device } from 'src/app/shared/device'
+import { DeviceService } from 'src/app/services/device.service'
 
 import { Model } from 'src/app/shared/model'
+import { ModelsService } from 'src/app/services/models.service'
+
+import { Connection } from 'src/app/shared/connection'
+import { ConnectionService } from 'src/app/services/connection.service'
 
 import { v4 as uuidv4 } from 'uuid'
 
@@ -33,30 +36,39 @@ export class AddAttributeComponent implements OnInit {
     deviceId: new FormControl(''),
     modelId: new FormControl(''),
     connectionId: new FormControl(''),
-    attributeTypeId: new FormControl(''),
+    attributeDictionaryId: new FormControl(''),
     value: new FormControl('', [Validators.required])
   })
 
   attribute: Attribute
-  deviceList: Device[]
-  modelList: Model[]
-  connectionList: Connection[]
+  deviceDictionary: Device[]
+  modelDictionary: Model[]
+  connectionDictionary: Connection[]
+  attributeDictionary: AttributeDictionary[]
 
   isSubmitted = false
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   componentDictionary: ComponentDictionary = new ComponentDictionary()
-  logComponent = 'Attribute'
+  component = 'Attributes'
 
   ngOnInit() {
     this.formAttribute()
+    this.getDeviceList()
+    this.getModelList()
+    this.getConnectionList()
+    this.getAttributeDictionaryList()
   }
   constructor(
     public formBulider: FormBuilder,
     private ngZone: NgZone,
     private router: Router,
-    private attributeDictionaryService: AttributeDictionaryService,
+    public activatedRoute: ActivatedRoute,
     private attributeService: AttributeService,
+    private deviceService: DeviceService,
+    private modelService: ModelsService,
+    private connectionService: ConnectionService,
+    private attributeDictionaryService: AttributeDictionaryService,
     private logService: LogService
   ) { }
   formAttribute() {
@@ -65,9 +77,12 @@ export class AddAttributeComponent implements OnInit {
       deviceId: [''],
       modelId: [''],
       connectionId: [''],
-      attributeTypeId: ['', [Validators.required]],
+      attributeDictionaryId: [''],
       value: ['', [Validators.required]],
     })
+  }
+  changeId(e: any) {
+    this.id?.setValue(e.target.value, { onlySelf: true })
   }
   changeDeviceId(e: any) {
     this.deviceId?.setValue(e.target.value, { onlySelf: true })
@@ -77,6 +92,9 @@ export class AddAttributeComponent implements OnInit {
   }
   changeConnectionId(e: any) {
     this.connectionId?.setValue(e.target.value, { onlySelf: true })
+  }
+  changeAttributeDictionaryId(e: any) {
+    this.attributeDictionaryId?.setValue(e.target.value, { onlySelf: true })
   }
   changeValue(e: any) {
     this.value?.setValue(e.target.value, { onlySelf: true })
@@ -93,11 +111,34 @@ export class AddAttributeComponent implements OnInit {
   get connectionId() {
     return this.formAddAttribute.get('connectionId')
   }
+  get attributeDictionaryId() {
+    return this.formAddAttribute.get('attributeDictionaryId')
+  }
   get value() {
     return this.formAddAttribute.get('value')
   }
   toString(data: any): string {
     return JSON.stringify(data)
+  }
+  getDeviceList() {
+    return this.deviceService.GetDevices().subscribe((data: any) => {
+      this.deviceDictionary = data
+    })
+  }
+  getModelList() {
+    return this.modelService.GetModels().subscribe((data: any) => {
+      this.modelDictionary = data
+    })
+  }
+  getConnectionList() {
+    return this.connectionService.GetConnections().subscribe((data: any) => {
+      this.connectionDictionary = data
+    })
+  }
+  getAttributeDictionaryList() {
+    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: any) => {
+      this.connectionDictionary = data
+    })
   }
   submitForm() {
     this.attributeService.CreateAttribute(this.formAddAttribute.value as Attribute)
@@ -107,7 +148,7 @@ export class AddAttributeComponent implements OnInit {
             object: this.formAddAttribute.get('id')?.value,
             message: this.toString(this.formAddAttribute.value),
             operation: 'Create',
-            component: 'Attribute',
+            component: 'Attributes',
           }).subscribe(() => {
             this.ngZone.run(() => this.router.navigateByUrl('attribute-list'))
           })

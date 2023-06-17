@@ -18,6 +18,12 @@ import { DeviceService } from 'src/app/services/device.service'
 import { Model } from 'src/app/shared/model'
 import { ModelsService } from 'src/app/services/models.service'
 
+import { Connection } from 'src/app/shared/connection'
+import { ConnectionService } from 'src/app/services/connection.service'
+
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
+
 @Component({
   selector: 'app-edit-attribute',
   templateUrl: './edit-attribute.component.html',
@@ -32,9 +38,13 @@ export class EditAttributeComponent implements OnInit {
     connectionId: new FormControl(''),
     value: new FormControl('', [Validators.required])
   })
+
   attribute: Attribute
   deviceDictionary: Device[]
   modelDictionary: Model[]
+  connectionDictionary: Connection[]
+  attributeDictionary: AttributeDictionary[]
+
   isSubmitted = false
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
@@ -43,6 +53,10 @@ export class EditAttributeComponent implements OnInit {
   ngOnInit() {
     this.inputId = this.activatedRoute.snapshot.paramMap.get('id')?.toString
     this.attribute = this.getAttribute(this.inputId)
+    this.getDeviceList()
+    this.getModelList()
+    this.getConnectionList()
+    this.getAttributeDictionaryList()
     this.component = this.inputId
   }
   private getInput() {
@@ -65,9 +79,10 @@ export class EditAttributeComponent implements OnInit {
     private attributeService: AttributeService,
     private deviceService: DeviceService,
     private modelService: ModelsService,
+    private connectionService: ConnectionService,
+    private attributeDictionaryService: AttributeDictionaryService,
     private logService: LogService
   ) { }
-
 
   changeDeviceId(e: any) {
     this.deviceId?.setValue(e.target.value, { onlySelf: true })
@@ -75,12 +90,6 @@ export class EditAttributeComponent implements OnInit {
   changeModelId(e: any) {
     this.modelId?.setValue(e.target.value, { onlySelf: true })
   }
-  // changeC(e: any) {
-  //   this.connectionId?.setValue(e.target.value, { onlySelf: true })
-  // }
-  // changeValue(e: any) {
-  //   this.value?.setValue(e.target.value, { onlySelf: true })
-  // }
   get id() {
     return this.formEditAttribute.get('id')
   }
@@ -112,6 +121,16 @@ export class EditAttributeComponent implements OnInit {
       this.modelDictionary = data
     })
   }
+  getConnectionList() {
+    return this.connectionService.GetConnections().subscribe((data: any) => {
+      this.connectionDictionary = data
+    })
+  }
+  getAttributeDictionaryList() {
+    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: any) => {
+      this.connectionDictionary = data
+    })
+  }
   submitForm() {
     this.attributeService.UpdateAttribute(this.inputId, this.formEditAttribute.value as Attribute)
       .subscribe(() => {
@@ -120,7 +139,7 @@ export class EditAttributeComponent implements OnInit {
             object: this.formEditAttribute.get('id')?.value,
             message: this.toString(this.formEditAttribute.value),
             operation: 'Update',
-            component: 'Attribute',
+            component: 'Attributes',
           })
           .subscribe(() => {
             this.ngZone.run(() => this.router.navigateByUrl('attribute-list'))

@@ -7,9 +7,10 @@
           <thead>
             <tr>
               <th scope="col">Id</th>
-              <th scope="col">DeviceId</th>
-              <th scope="col">ModelId</th>
-              <th scope="col">ConnectionId</th>
+              <th scope="col">Device</th>
+              <th scope="col">Model</th>
+              <th scope="col">Connection</th>
+              <th scope="col">Attribute Dictionary</th>
               <th scope="col">Value</th>
             </tr>
           </thead>
@@ -27,6 +28,7 @@
               <td>{{ attribute.deviceId }}</td>
               <td>{{ attribute.modelId }}</td>
               <td>{{ attribute.connectionId }}</td>
+              <td>{{ attribute.attributeDictionaryId }}</td>
               <td>{{ attribute.value }}</td>
               <td>
                 <div class="btn-group" role="group"

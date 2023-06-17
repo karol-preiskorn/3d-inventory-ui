@@ -96,11 +96,7 @@ export class ModelsService {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
     console.log(JSON.stringify(errorMessage))
-    // logService.CreateLog({
-    //   message: 'Error service Model: ' + JSON.stringify(error.message),
-    //   category: 'Error',
-    //   component: 'ModelService.errorHandl',
-    // })
+
     return throwError(() => {
       return errorMessage
     })

@@ -115,7 +115,7 @@ export class AddModelComponent implements OnInit {
         .CreateLog({
           message: JSON.stringify(res),
           operation: 'Create',
-          component: 'Model',
+          component: 'Models',
         })
         .subscribe(() => {
           this.ngZone.run(() => this.router.navigateByUrl('models-list'))

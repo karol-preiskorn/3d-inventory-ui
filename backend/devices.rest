@@ -4,8 +4,10 @@ POST http://localhost:3000/logs HTTP/1.1
 content-type: application/json
 
 {
-  "date": "Wed, 21 Oct 2015 18:27:50 GMT",
-  "category": "Red",
-  "component": "Comp",
-  "message": "Init2"
+  "id": "2d9d190c-2dbe-4311-b16c-7f86c1a3cf50",
+  "date": "2023/06/14 23:10:17.67",
+  "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+  "operation": "Update",
+  "component": "Devices ",
+  "message": " - 2 - "
 }

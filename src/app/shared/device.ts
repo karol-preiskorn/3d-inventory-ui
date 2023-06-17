@@ -17,9 +17,9 @@ import {
 import { v4 as uuidv4 } from 'uuid'
 
 interface Position {
-  x: number
-  y: number
-  h: number
+  x: string
+  y: string
+  h: string
 }
 
 export class Device {
@@ -27,25 +27,22 @@ export class Device {
   name: string
   modelId: string
   position: Position
-  public print(): void {
+
+  print(): void {
     console.log(
-      '-->[device] id: ' +
-        this.id +
-        ', name: ' +
-        this.name +
-        ', position: ' +
-        this.position
+      this.makeDeviceString()
     )
   }
 
-  public getString(): string {
-    return (
-      '-->[device] id: ' +
-      this.id +
-      ', name: ' +
-      this.name +
-      ', position: ' +
-      this.position
+  makeDeviceString(): string {
+    return '-->[device] id: ' + this.id +
+      ', name: ' + this.name +
+      ', position: (' + this.position.x + ', ' + this.position.y + ', ' + this.position.h + ')'
+  }
+
+  getString(): string {
+    this.print()
+    return (this.makeDeviceString()
     )
   }
 

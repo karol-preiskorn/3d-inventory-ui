@@ -14,7 +14,7 @@ import { LogService } from './log.service'
 })
 export class AttributeService {
   environmentService = new EnvironmentService()
-  BASEURL = this.environmentService.get('BASEURL')
+  BASEURL = this.environmentService.getSettings('BASEURL')
   constructor(
     private http: HttpClient,
     private logService: LogService,
@@ -30,13 +30,13 @@ export class AttributeService {
 
   GetAttributes(): Observable<Attribute> {
     return this.http
-      .get<Attribute>(this.BASEURL + '/attribute/')
+      .get<Attribute>(this.BASEURL + '/attributes/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
   GetAttribute(id: string | null): Observable<Attribute> {
     return this.http
       .get<Attribute>(
-        this.BASEURL + '/attribute/' + id,
+        this.BASEURL + '/attributes/' + id,
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
@@ -44,7 +44,7 @@ export class AttributeService {
   DeleteAttribute(id: string): Observable<Attribute> {
     return this.http
       .delete<Attribute>(
-        this.BASEURL + '/attribute/' + id,
+        this.BASEURL + '/attributes/' + id,
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
@@ -52,7 +52,7 @@ export class AttributeService {
   CreateAttribute(data: Attribute): Observable<Attribute> {
     return this.http
       .post<Attribute>(
-        this.BASEURL + '/attribute/',
+        this.BASEURL + '/attributes/',
         JSON.stringify(data),
         this.httpOptions
       )
@@ -77,7 +77,7 @@ export class AttributeService {
   UpdateAttribute(id: string | null, data: Attribute): Observable<Attribute> {
     return this.http
       .put<Attribute>(
-        this.BASEURL + '/attribute/' + id,
+        this.BASEURL + '/attributes/' + id,
         JSON.stringify(data),
         this.httpOptions
       )

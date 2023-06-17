@@ -12,17 +12,14 @@ import { EnvironmentService } from './environment.service'
   providedIn: 'root',
 })
 export class AttributeDictionaryService {
-
   environmentServiceClass = new EnvironmentService()
-  BASEURL = this.environmentServiceClass.get('BASEURL')?.value
+  BASEURL = this.environmentServiceClass.getSettings('BASEURL')
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
-  ) {
-
-  }
+  ) {}
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -35,29 +32,17 @@ export class AttributeDictionaryService {
   }
   GetAttributeDictionary(id: string | null): Observable<AttributeDictionary> {
     return this.http
-      .get<AttributeDictionary>(
-        this.BASEURL + '/attribute-dictionary/' + id,
-        this.httpOptions
-      )
+      .get<AttributeDictionary>(this.BASEURL + '/attribute-dictionary/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   DeleteAttributeDictionary(id: string): Observable<AttributeDictionary> {
     return this.http
-      .delete<AttributeDictionary>(
-        this.BASEURL + '/attribute-dictionary/' + id,
-        this.httpOptions
-      )
+      .delete<AttributeDictionary>(this.BASEURL + '/attribute-dictionary/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
-  CreateAttributeDictionary(
-    data: AttributeDictionary
-  ): Observable<AttributeDictionary> {
+  CreateAttributeDictionary(data: AttributeDictionary): Observable<AttributeDictionary> {
     return this.http
-      .post<AttributeDictionary>(
-        this.BASEURL + '/attribute-dictionary/',
-        JSON.stringify(data),
-        this.httpOptions
-      )
+      .post<AttributeDictionary>(this.BASEURL + '/attribute-dictionary/', JSON.stringify(data), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   CloneAttributeDictionary(id: string): string {
@@ -70,22 +55,14 @@ export class AttributeDictionaryService {
           console.log('Create attributes: ' + JSON.stringify(v))
           this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))
         },
-        complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list')),
+        complete: () => this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list')),
       })
     })
     return id_uuid
   }
-  UpdateAttributeDictionary(
-    id: string | null,
-    data: AttributeDictionary
-  ): Observable<AttributeDictionary> {
+  UpdateAttributeDictionary(id: string | null, data: AttributeDictionary): Observable<AttributeDictionary> {
     return this.http
-      .put<AttributeDictionary>(
-        this.BASEURL + '/attribute-dictionary/' + id,
-        JSON.stringify(data),
-        this.httpOptions
-      )
+      .put<AttributeDictionary>(this.BASEURL + '/attribute-dictionary/' + id, JSON.stringify(data), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   errorHandl(error: { error: { message: string }; status: any; message: any }) {
