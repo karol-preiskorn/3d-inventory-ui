@@ -24,6 +24,9 @@ import { Connection } from 'src/app/shared/connection'
 import { ConnectionService } from 'src/app/services/connection.service'
 
 import { v4 as uuidv4 } from 'uuid'
+import { Subscription } from 'rxjs'
+
+import Validation from 'src/app/shared/validation'
 
 @Component({
   selector: 'app-add-attribute',
@@ -31,14 +34,17 @@ import { v4 as uuidv4 } from 'uuid'
   styleUrls: ['./add-attribute.component.scss']
 })
 export class AddAttributeComponent implements OnInit {
+
+  valid: Validation = new Validation()
+
   formAddAttribute = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(36)]),
-    deviceId: new FormControl(''),
-    modelId: new FormControl(''),
-    connectionId: new FormControl(''),
-    attributeDictionaryId: new FormControl(''),
+    deviceId: new FormControl('', this.valid.atLeastOneValidator),
+    modelId: new FormControl('', this.valid.atLeastOneValidator),
+    connectionId: new FormControl('', this.valid.atLeastOneValidator),
+    attributeDictionaryId: new FormControl('', this.valid.atLeastOneValidator),
     value: new FormControl('', [Validators.required])
-  })
+  }, { validators: this.valid.atLeastOneValidator })
 
   attribute: Attribute
   deviceDictionary: Device[]
@@ -74,12 +80,12 @@ export class AddAttributeComponent implements OnInit {
   formAttribute() {
     this.formAddAttribute = this.formBulider.group({
       id: [uuidv4(), [Validators.required, Validators.minLength(36)]],
-      deviceId: [''],
-      modelId: [''],
-      connectionId: [''],
-      attributeDictionaryId: [''],
-      value: ['', [Validators.required]],
-    })
+      deviceId: ['', this.valid.atLeastOneValidator],
+      modelId: ['', this.valid.atLeastOneValidator],
+      connectionId: ['', this.valid.atLeastOneValidator],
+      attributeDictionaryId: ['', this.valid.atLeastOneValidator],
+      value: ['', [Validators.required, this.valid.atLeastOneValidator]],
+    }, { validators: this.valid.atLeastOneValidator })
   }
   changeId(e: any) {
     this.id?.setValue(e.target.value, { onlySelf: true })
@@ -120,27 +126,27 @@ export class AddAttributeComponent implements OnInit {
   toString(data: any): string {
     return JSON.stringify(data)
   }
-  getDeviceList() {
+  getDeviceList(): Subscription {
     return this.deviceService.GetDevices().subscribe((data: any) => {
       this.deviceDictionary = data
     })
   }
-  getModelList() {
+  getModelList(): Subscription {
     return this.modelService.GetModels().subscribe((data: any) => {
       this.modelDictionary = data
     })
   }
-  getConnectionList() {
+  getConnectionList(): Subscription {
     return this.connectionService.GetConnections().subscribe((data: any) => {
       this.connectionDictionary = data
     })
   }
-  getAttributeDictionaryList() {
+  getAttributeDictionaryList(): Subscription {
     return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: any) => {
       this.attributeDictionary = data
     })
   }
-  submitForm() {
+  submitForm(): void {
     this.attributeService.CreateAttribute(this.formAddAttribute.value as Attribute)
       .subscribe(() => {
         this.logService

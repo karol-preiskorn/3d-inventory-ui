@@ -5,5 +5,7 @@
   "singleQuote": true,
   "bracketSameLine": true,
   "printWidth": 120,
-  "proseWrap": "preserve"
+  "proseWrap": "preserve",
+  "bracketSpacing": false,
+  "arrowParens": "always"
 }

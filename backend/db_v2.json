@@ -292,6 +292,94 @@
       "operation": "Update",
       "component": "Attributes",
       "message": "{\"id\":\"97d9a503-f009-4ff6-9b1c-2ec30e52ef78\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"connectionId\":\"80ed734c-0910-42bb-83f0-acdd23aadc43\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"Value of attribute 1\"}"
+    },
+    {
+      "id": "3894b80a-288e-48a8-b932-5e1ba07123c5",
+      "date": "2023/06/18 10:45:32.19",
+      "object": "9777f19b-e527-4067-bedd-12bcdc54858d",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"9777f19b-e527-4067-bedd-12bcdc54858d\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"\",\"value\":\"hhhhhhh\"}"
+    },
+    {
+      "id": "0b9abb3a-0b2c-46ff-bae8-864b780b4feb",
+      "date": "2023/06/18 10:50:39.62",
+      "object": "9777f19b-e527-4067-bedd-12bcdc54858d",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"9777f19b-e527-4067-bedd-12bcdc54858d\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"\",\"value\":\"hhhhhhh\"}"
+    },
+    {
+      "id": "89a10c3a-4d73-4208-af17-8852038f31a4",
+      "date": "2023/06/18 14:14:25.88",
+      "object": "c5c144d7-b1d9-4aee-b794-a2f55a2016d0",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"c5c144d7-b1d9-4aee-b794-a2f55a2016d0\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"connectionId\":\"80ed734c-0910-42bb-83f0-acdd23aadc43\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"aaaaaa\"}"
+    },
+    {
+      "id": "d8dbe99b-5c63-42e8-9f13-dfa12a113f42",
+      "date": "2023/06/18 14:27:19.78",
+      "object": "97d9a503-f009-4ff6-9b1c-2ec30e52ef78",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"97d9a503-f009-4ff6-9b1c-2ec30e52ef78\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"connectionId\":\"80ed734c-0910-42bb-83f0-acdd23aadc43\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"Value of attribute 1\"}"
+    },
+    {
+      "id": "9e45e5c6-1aed-428e-8398-3c1e850a82cf",
+      "date": "2023/06/18 14:32:42.73",
+      "object": "97d9a503-f009-4ff6-9b1c-2ec30e52ef78",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"97d9a503-f009-4ff6-9b1c-2ec30e52ef78\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"850819ca-305e-45e8-ac14-32271aad0ee7\",\"connectionId\":\"80ed734c-0910-42bb-83f0-acdd23aadc43\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"Value of attribute 12\"}"
+    },
+    {
+      "id": "09377732-e2ae-434c-9aeb-6d1f8dca0bb6",
+      "date": "2023/06/18 20:50:56.54",
+      "object": "97d9a503-f009-4ff6-9b1c-2ec30e52ef78",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"97d9a503-f009-4ff6-9b1c-2ec30e52ef78\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"\",\"value\":\"Value of attribute 12\"}"
+    },
+    {
+      "id": "7c4f1ee5-2f98-4dcc-b3ab-f2ce588a0914",
+      "date": "2023/06/18 20:51:08.35",
+      "object": "c5c144d7-b1d9-4aee-b794-a2f55a2016d0",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"c5c144d7-b1d9-4aee-b794-a2f55a2016d0\",\"deviceId\":\"\",\"modelId\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"connectionId\":\"\",\"attributeDictionaryId\":\"\",\"value\":\"aaaaaa\"}"
+    },
+    {
+      "id": "c1eaddcc-813d-41a8-b73d-63f286fdd137",
+      "date": "2023/06/18 20:51:37.42",
+      "object": "9777f19b-e527-4067-bedd-12bcdc54858d",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"9777f19b-e527-4067-bedd-12bcdc54858d\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"f1f5abce-d4aa-4108-af4c-dfd2ade5a814\",\"attributeDictionaryId\":\"\",\"value\":\"Value of attribute connection\"}"
+    },
+    {
+      "id": "bd136eb5-0cbd-4e1b-96a5-b7fc027a8363",
+      "date": "2023/06/18 21:00:25.46",
+      "object": "97d9a503-f009-4ff6-9b1c-2ec30e52ef78",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"97d9a503-f009-4ff6-9b1c-2ec30e52ef78\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"\",\"value\":\"Value of attribute Device 3\"}"
+    },
+    {
+      "id": "3b4c507e-64b4-4a0d-a5bf-1db2075d188f",
+      "date": "2023/06/18 21:00:36.89",
+      "object": "9777f19b-e527-4067-bedd-12bcdc54858d",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"9777f19b-e527-4067-bedd-12bcdc54858d\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"f1f5abce-d4aa-4108-af4c-dfd2ade5a814\",\"attributeDictionaryId\":\"\",\"value\":\"Value of attribute connection 2\"}"
+    },
+    {
+      "id": "99a2277c-4749-4077-8599-4355b71dc344",
+      "date": "2023/06/18 21:00:58.38",
+      "object": "c5c144d7-b1d9-4aee-b794-a2f55a2016d0",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"c5c144d7-b1d9-4aee-b794-a2f55a2016d0\",\"deviceId\":\"\",\"modelId\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"connectionId\":\"\",\"attributeDictionaryId\":\"\",\"value\":\"Value attribute Model 1\"}"
     }
   ],
   "models": [
@@ -413,10 +501,26 @@
     {
       "id": "97d9a503-f009-4ff6-9b1c-2ec30e52ef78",
       "deviceId": "be5bb617-a614-435f-bf66-8768d0aba0c8",
-      "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
-      "connectionId": "80ed734c-0910-42bb-83f0-acdd23aadc43",
-      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
-      "value": "Value of attribute 1"
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "",
+      "value": "Value of attribute Device 3"
+    },
+    {
+      "id": "9777f19b-e527-4067-bedd-12bcdc54858d",
+      "deviceId": "",
+      "modelId": "",
+      "connectionId": "f1f5abce-d4aa-4108-af4c-dfd2ade5a814",
+      "attributeDictionaryId": "",
+      "value": "Value of attribute connection 2"
+    },
+    {
+      "id": "c5c144d7-b1d9-4aee-b794-a2f55a2016d0",
+      "deviceId": "",
+      "modelId": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "connectionId": "",
+      "attributeDictionaryId": "",
+      "value": "Value attribute Model 1"
     }
   ]
 }
