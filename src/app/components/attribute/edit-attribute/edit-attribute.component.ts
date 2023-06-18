@@ -31,11 +31,13 @@ import { AttributeDictionaryService } from 'src/app/services/attribute-dictionar
 })
 export class EditAttributeComponent implements OnInit {
   inputId: any
+
   formEditAttribute = new FormGroup({
     id: new FormControl('', [Validators.required]),
     deviceId: new FormControl(''),
     modelId: new FormControl(''),
     connectionId: new FormControl(''),
+    attributeDictionaryId: new FormControl(''),
     value: new FormControl('', [Validators.required])
   })
 
@@ -45,13 +47,15 @@ export class EditAttributeComponent implements OnInit {
   connectionDictionary: Connection[]
   attributeDictionary: AttributeDictionary[]
 
-  isSubmitted = false
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   componentDictionary: ComponentDictionary = new ComponentDictionary()
+
   component = ''
+  isSubmitted = false
+
   ngOnInit() {
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')?.toString
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
     this.attribute = this.getAttribute(this.inputId)
     this.getDeviceList()
     this.getModelList()
@@ -66,7 +70,7 @@ export class EditAttributeComponent implements OnInit {
     return this.attributeService
       .GetAttribute(this.inputId)
       .subscribe((data: any) => {
-        console.log('GetAttribute(' + this.inputId + ') => ' + JSON.stringify(data))
+        console.log('EditAttributeComponent.GetAttribute(' + this.inputId + ') => ' + JSON.stringify(data))
         this.attribute = data
         this.formEditAttribute.setValue(data)
       })
@@ -84,11 +88,23 @@ export class EditAttributeComponent implements OnInit {
     private logService: LogService
   ) { }
 
+  changeId(e: any) {
+    this.id?.setValue(e.target.value, { onlySelf: true })
+  }
   changeDeviceId(e: any) {
     this.deviceId?.setValue(e.target.value, { onlySelf: true })
   }
   changeModelId(e: any) {
     this.modelId?.setValue(e.target.value, { onlySelf: true })
+  }
+  changeConnectionId(e: any) {
+    this.connectionId?.setValue(e.target.value, { onlySelf: true })
+  }
+  changeAttributeDictionaryId(e: any) {
+    this.attributeDictionaryId?.setValue(e.target.value, { onlySelf: true })
+  }
+  changeValue(e: any) {
+    this.value?.setValue(e.target.value, { onlySelf: true })
   }
   get id() {
     return this.formEditAttribute.get('id')
@@ -103,7 +119,7 @@ export class EditAttributeComponent implements OnInit {
     return this.formEditAttribute.get('connectionId')
   }
   get attributeDictionaryId() {
-    return this.formEditAttribute.get('attributeDictioanryId')
+    return this.formEditAttribute.get('attributeDictionaryId')
   }
   get value() {
     return this.formEditAttribute.get('value')
@@ -128,7 +144,7 @@ export class EditAttributeComponent implements OnInit {
   }
   getAttributeDictionaryList() {
     return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: any) => {
-      this.connectionDictionary = data
+      this.attributeDictionary = data
     })
   }
   submitForm() {

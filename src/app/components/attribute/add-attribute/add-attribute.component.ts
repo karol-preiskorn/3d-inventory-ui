@@ -137,7 +137,7 @@ export class AddAttributeComponent implements OnInit {
   }
   getAttributeDictionaryList() {
     return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: any) => {
-      this.connectionDictionary = data
+      this.attributeDictionary = data
     })
   }
   submitForm() {

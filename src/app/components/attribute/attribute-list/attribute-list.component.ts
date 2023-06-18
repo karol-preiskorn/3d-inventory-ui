@@ -64,6 +64,6 @@ export class AttributeListComponent implements OnInit {
   }
   EditAttribute(attribute: Attribute) {
     this.selectedAttribute = attribute
-    this.router.navigate(['edit-attributes', this.selectedAttribute.id])
+    this.router.navigate(['edit-attribute', this.selectedAttribute.id])
   }
 }

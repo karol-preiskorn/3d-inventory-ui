@@ -252,6 +252,46 @@
       "operation": "Create",
       "component": "Attributes",
       "message": "{\"id\":\"97d9a503-f009-4ff6-9b1c-2ec30e52ef78\",\"deviceId\":\"\",\"modelId\":\"Model 3\",\"connectionId\":\"\",\"attributeDictionaryId\":\"\",\"value\":\"csdasdadadsa\"}"
+    },
+    {
+      "id": "e1a269c5-3192-4ae9-b477-16a98ad91108",
+      "date": "2023/06/17 23:47:34.07",
+      "object": "e802a1de-9a13-4ac9-b148-b503ec304383",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"name\":\"Attribute Brigde Connectivity no 2\",\"type\":\"Desktop\",\"category\":\"Facility\",\"component\":\"attribute\"}"
+    },
+    {
+      "id": "a5e142be-907a-4e8a-a732-204fb1537f30",
+      "date": "2023/06/18 09:19:22.35",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Models",
+      "message": "{\"id\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"name\":\"Model 1\",\"dimension\":{\"width\":\"1\",\"height\":\"2\",\"depth\":\"2\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"Bridge\",\"category\":\"Connectivity\"}"
+    },
+    {
+      "id": "4230f7ed-5c64-4b80-8b76-3adc871c7439",
+      "date": "2023/06/18 09:44:03.04",
+      "object": "97d9a503-f009-4ff6-9b1c-2ec30e52ef78",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"97d9a503-f009-4ff6-9b1c-2ec30e52ef78\",\"deviceId\":\"\",\"modelId\":\"Model 3\",\"connectionId\":\"\",\"attributeDictionaryId\":\"\",\"value\":\"Value of attribute 1\"}"
+    },
+    {
+      "id": "37c301cc-e1d7-48ef-acf0-8f378560e386",
+      "date": "2023/06/18 09:44:55.92",
+      "object": "850819ca-305e-45e8-ac14-32271aad0ee7",
+      "operation": "Update",
+      "component": "Models",
+      "message": "{\"id\":\"850819ca-305e-45e8-ac14-32271aad0ee7\",\"name\":\"Model 3\",\"dimension\":{\"width\":\"2\",\"height\":\"3\",\"depth\":\"2\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"Server\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "5ab60542-cd0a-4dc0-8453-e5419f1928dd",
+      "date": "2023/06/18 10:05:21.42",
+      "object": "97d9a503-f009-4ff6-9b1c-2ec30e52ef78",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"97d9a503-f009-4ff6-9b1c-2ec30e52ef78\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"connectionId\":\"80ed734c-0910-42bb-83f0-acdd23aadc43\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"Value of attribute 1\"}"
     }
   ],
   "models": [
@@ -261,7 +301,7 @@
       "dimension": {
         "width": "1",
         "height": "2",
-        "depth": "1"
+        "depth": "2"
       },
       "texture": {
         "front": "/assets/r710-2.5-nobezel__29341.png",
@@ -296,7 +336,7 @@
       "name": "Model 3",
       "dimension": {
         "width": "2",
-        "height": "2",
+        "height": "3",
         "depth": "2"
       },
       "texture": {
@@ -350,7 +390,7 @@
     {
       "id": "e802a1de-9a13-4ac9-b148-b503ec304383",
       "name": "Attribute Brigde Connectivity no 2",
-      "type": "Copier",
+      "type": "Desktop",
       "category": "Facility",
       "component": "attribute"
     },
@@ -372,11 +412,11 @@
   "attributes": [
     {
       "id": "97d9a503-f009-4ff6-9b1c-2ec30e52ef78",
-      "deviceId": "",
-      "modelId": "Model 3",
-      "connectionId": "",
-      "attributeDictionaryId": "",
-      "value": "csdasdadadsa"
+      "deviceId": "be5bb617-a614-435f-bf66-8768d0aba0c8",
+      "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
+      "connectionId": "80ed734c-0910-42bb-83f0-acdd23aadc43",
+      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
+      "value": "Value of attribute 1"
     }
   ]
 }

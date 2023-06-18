@@ -14,8 +14,7 @@
                 <div *ngIf="this.formEditAttribute.controls.id.errors.required">
                   Id is required
                 </div>
-                <div
-                  *ngIf="this.formEditAttribute.controls.id.errors.minlength">
+                <div *ngIf="this.formEditAttribute.controls.id.errors.minlength">
                   Id must be at least 36 characters
                 </div>
               </div>
@@ -27,17 +26,18 @@
               <select (change)="changeDeviceId($event)"
                 formControlName="deviceId" class="form-control" id="deviceId">
                 <option
-                  *ngFor="let deviceObj of deviceDictionary; let i = index">
+                  *ngFor="let deviceObj of deviceDictionary; let i = index" value="{{ deviceObj.id }}">
                   {{ deviceObj.name }}
                 </option>
               </select>
               <div *ngIf="this.formEditAttribute.controls.deviceId.errors"
                 class="invalid-feedback">
-                <div *ngIf="
-                    this.formEditAttribute.controls.deviceId.errors.required
-                  ">
+                <div *ngIf="this.formEditAttribute.controls.deviceId.errors.required">
                   deviceId is required
                 </div>
+              </div>
+              <div>
+                {{ this.toString(this.formEditAttribute.controls.deviceId.value)  }}
               </div>
             </div>
           </div>
@@ -46,7 +46,7 @@
               <label for="modelId" class="form-label">Model Id</label>
               <select (change)="changeModelId($event)" formControlName="type"
                 class="form-control" id="type">
-                <option *ngFor="let modelObj of modelDictionary; let i = index">
+                <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj.id }}">
                   {{ modelObj.name }}
                 </option>
               </select>
@@ -54,12 +54,56 @@
                 class="invalid-feedback">
                 <div
                   *ngIf="this.formEditAttribute.controls.modelId.errors.required">
-                  Category is required
+                  modelId is required
                 </div>
               </div>
               <div>
-                {{ this.toString(this.formEditAttribute.controls.modelId.value)
-                }}
+                {{ this.toString(this.formEditAttribute.controls.modelId.value) }}
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group mb-2">
+              <label for="connectionId" class="form-label">Connection Id</label>
+              <select (change)="changeConnectionId($event)"
+                formControlName="type" class="form-control" id="type">
+                <option
+                  *ngFor="let connectionObj of connectionDictionary; let i = index" value="{{ connectionObj.id }}">
+                  {{ connectionObj.name }}
+                </option>
+              </select>
+              <div *ngIf="this.formEditAttribute.controls.connectionId.errors"
+                class="invalid-feedback">
+                <div
+                  *ngIf="this.formEditAttribute.controls.connectionId.errors.required">
+                  connectionId is required
+                </div>
+              </div>
+              <div>
+                {{ this.toString(this.formEditAttribute.controls.connectionId.value) }}
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group mb-2">
+              <label for="connectionId" class="form-label">Attribute Dictionary Id</label>
+              <select (change)="changeAttributeDictionaryId($event)"
+                formControlName="type" class="form-control" id="type">
+                <option
+                  *ngFor="let attributeDictionaryObj of attributeDictionary; let i = index" value="{{ attributeDictionaryObj.id }}">
+                  {{ attributeDictionaryObj.name }}
+                </option>
+              </select>
+              <div
+                *ngIf="this.formEditAttribute.controls.attributeDictionaryId.errors"
+                class="invalid-feedback">
+                <div
+                  *ngIf="this.formEditAttribute.controls.attributeDictionaryId.errors.required">
+                  attributeDictionaryId is required
+                </div>
+              </div>
+              <div>
+                {{  this.toString(this.formEditAttribute.controls.attributeDictionaryId.value)  }}
               </div>
             </div>
           </div>
@@ -68,16 +112,17 @@
           <div class="col">
             <div class="form-group mb-2">
               <label for="value" class="form-label">Value</label>
-              <input type="text" formControlName="value" id="id" required readonly
+              <input type="text" formControlName="value" id="id" required
                 class="form-control" />
               <div *ngIf="this.formEditAttribute.controls.value.errors"
                 class="invalid-feedback">
-                <div *ngIf="this.formEditAttribute.controls.value.errors.required">
-                  Id is required
+                <div
+                  *ngIf="this.formEditAttribute.controls.value.errors.required">
+                  Value is required
                 </div>
                 <div
                   *ngIf="this.formEditAttribute.controls.value.errors.minlength">
-                  Id must be at least 36 characters
+                  Value must be at least 36 characters
                 </div>
               </div>
             </div>
@@ -89,7 +134,7 @@
               <button type="submit" [disabled]="
               !(this.formEditAttribute.valid && this.formEditAttribute.touched)
             " class="btn btn-primary">
-                Update
+                Update attribute
               </button>
               <div *ngIf="
               !(this.formEditAttribute.valid && this.formEditAttribute.touched)
