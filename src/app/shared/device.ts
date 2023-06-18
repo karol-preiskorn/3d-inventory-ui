@@ -47,7 +47,7 @@ export class Device {
   }
 
   // TODO: move it to deviceList
-  public constructor() {
+  public generate() {
     this.id = uuidv4()
     this.name = uniqueNamesGenerator({
       dictionaries: [adjectives, colors, animals],

@@ -20,7 +20,7 @@ export class AttributeDictionary {
 
   //TODO: problem with generate id during create object
   //TODO: unify all definition entity as class | interfance or
-  constructor() {
+  generate() {
     this.id = uuidv4()
   }
 }

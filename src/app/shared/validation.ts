@@ -8,30 +8,46 @@
  * Used by:     src/app/components/attribute-dictionary/add-attribute-dictionary
  * Dependency:
  *
- * Date         By        Comments
- * ----------   -------   ------------------------------
- * 2023-06-03   C2RLO     Init
+ * Date        By      Comments
+ * ----------  ------  ------------------------------
+ * 2023-06-18	 C2RLO	 Add atLeastOneValidator
+ * 2023-06-03  C2RLO   Init
  */
 
-
-import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms'
 
 export default class Validation {
   static match(controlName: string, checkControlName: string): ValidatorFn {
     return (controls: AbstractControl) => {
-      const control = controls.get(controlName);
-      const checkControl = controls.get(checkControlName);
+      const control = controls.get(controlName)
+      const checkControl = controls.get(checkControlName)
 
       if (checkControl?.errors && !checkControl.errors['matching']) {
-        return null;
+        return null
       }
 
       if (control?.value !== checkControl?.value) {
-        controls.get(checkControlName)?.setErrors({ matching: true });
-        return { matching: true };
+        controls.get(checkControlName)?.setErrors({ matching: true })
+        return { matching: true }
       } else {
-        return null;
+        return null
       }
-    };
+    }
+  }
+
+  atLeastOneValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    let i = 0
+    if (control.get('deviceId')?.value != '') i++
+    if (control.get('modelId')?.value != '') i++
+    if (control.get('connectionId')?.value != '') i++
+    if (control.get('attributeDictionaryId')?.value != '') i++
+    console.log('count Ids => ' + i)
+    if (i > 1 || i == 0) {
+      return { atLeastOneValidator: true }
+    } else if (i == 1) {
+      return null
+    } else {
+      return { atLeastOneValidator: true }
+    }
   }
 }

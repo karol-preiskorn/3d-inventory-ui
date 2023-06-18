@@ -2,24 +2,9 @@
   <div class="row">
     <div class="col-md-12">
       <h3>Edit Attribute</h3>
+      <div>{{ this.toString(this.formEditAttribute.controls.id.value)  }}</div>
       <form [formGroup]="formEditAttribute" (ngSubmit)="submitForm()">
         <div class="row">
-          <div class="col">
-            <div class="form-group mb-2">
-              <label for="id" class="form-label">Id</label>
-              <input type="text" formControlName="id" id="id" required readonly
-                class="form-control" />
-              <div *ngIf="this.formEditAttribute.controls.id.errors"
-                class="invalid-feedback">
-                <div *ngIf="this.formEditAttribute.controls.id.errors.required">
-                  Id is required
-                </div>
-                <div *ngIf="this.formEditAttribute.controls.id.errors.minlength">
-                  Id must be at least 36 characters
-                </div>
-              </div>
-            </div>
-          </div>
           <div class="col">
             <div class="form-group mb-3">
               <label for="deviceId" class="form-label">Device Id</label>
@@ -44,8 +29,8 @@
           <div class="col">
             <div class="form-group mb-2">
               <label for="modelId" class="form-label">Model Id</label>
-              <select (change)="changeModelId($event)" formControlName="type"
-                class="form-control" id="type">
+              <select (change)="changeModelId($event)" formControlName="modelId"
+                class="form-control" id="modelId">
                 <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj.id }}">
                   {{ modelObj.name }}
                 </option>
@@ -66,7 +51,7 @@
             <div class="form-group mb-2">
               <label for="connectionId" class="form-label">Connection Id</label>
               <select (change)="changeConnectionId($event)"
-                formControlName="type" class="form-control" id="type">
+                formControlName="connectionId" class="form-control" id="connectionId">
                 <option
                   *ngFor="let connectionObj of connectionDictionary; let i = index" value="{{ connectionObj.id }}">
                   {{ connectionObj.name }}
@@ -88,7 +73,7 @@
             <div class="form-group mb-2">
               <label for="connectionId" class="form-label">Attribute Dictionary Id</label>
               <select (change)="changeAttributeDictionaryId($event)"
-                formControlName="type" class="form-control" id="type">
+                formControlName="attributeDictionaryId" class="form-control" id="attributeDictionaryId">
                 <option
                   *ngFor="let attributeDictionaryObj of attributeDictionary; let i = index" value="{{ attributeDictionaryObj.id }}">
                   {{ attributeDictionaryObj.name }}
@@ -131,16 +116,17 @@
         <div class="row">
           <div class="col">
             <div class="form-group mb-3">
-              <button type="submit" [disabled]="
-              !(this.formEditAttribute.valid && this.formEditAttribute.touched)
-            " class="btn btn-primary">
+              <button type="submit" [disabled]="!(this.formEditAttribute.valid && this.formEditAttribute.touched)"
+              class="btn btn-primary">
                 Update attribute
               </button>
-              <div *ngIf="
-              !(this.formEditAttribute.valid && this.formEditAttribute.touched)
-            " class="invalid-feedback">
+              <div *ngIf="!(this.formEditAttribute.valid && this.formEditAttribute.touched)" class="invalid-feedback">
                 Form is invalid
               </div>
+              <div>atLeastOneValidator: {{ formEditAttribute.hasError('atLeastOneValidator') }} </div>
+              <div>formEditAttribute.value: {{ toString(formEditAttribute.value) }}</div>
+              <div>this.formEditAttribute.valid: {{ toString(this.formEditAttribute.valid) }}</div>
+              <div>this.formEditAttribute.touched: {{ toString(this.formEditAttribute.touched) }}</div>
             </div>
           </div>
         </div>

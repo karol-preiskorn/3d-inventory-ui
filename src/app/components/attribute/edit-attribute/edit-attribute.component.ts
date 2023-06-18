@@ -24,6 +24,8 @@ import { ConnectionService } from 'src/app/services/connection.service'
 import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
 import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
 
+import Validation from 'src/app/shared/validation'
+
 @Component({
   selector: 'app-edit-attribute',
   templateUrl: './edit-attribute.component.html',
@@ -31,6 +33,7 @@ import { AttributeDictionaryService } from 'src/app/services/attribute-dictionar
 })
 export class EditAttributeComponent implements OnInit {
   inputId: any
+  valid: Validation = new Validation()
 
   formEditAttribute = new FormGroup({
     id: new FormControl('', [Validators.required]),
@@ -39,7 +42,7 @@ export class EditAttributeComponent implements OnInit {
     connectionId: new FormControl(''),
     attributeDictionaryId: new FormControl(''),
     value: new FormControl('', [Validators.required])
-  })
+  }, { validators: this.valid.atLeastOneValidator })
 
   attribute: Attribute
   deviceDictionary: Device[]
@@ -129,21 +132,29 @@ export class EditAttributeComponent implements OnInit {
   }
   getDeviceList() {
     return this.deviceService.GetDevices().subscribe((data: any) => {
+      let tmp = new Device()
+      data.unshift(tmp)
       this.deviceDictionary = data
     })
   }
   getModelList() {
     return this.modelService.GetModels().subscribe((data: any) => {
+      let tmp = new Model()
+      data.unshift(tmp)
       this.modelDictionary = data
     })
   }
   getConnectionList() {
     return this.connectionService.GetConnections().subscribe((data: any) => {
+      let tmp = new Connection()
+      data.unshift(tmp)
       this.connectionDictionary = data
     })
   }
   getAttributeDictionaryList() {
     return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: any) => {
+      let tmp = new AttributeDictionary()
+      data.unshift(tmp)
       this.attributeDictionary = data
     })
   }

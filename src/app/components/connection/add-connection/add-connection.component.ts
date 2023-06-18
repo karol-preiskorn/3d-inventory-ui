@@ -18,7 +18,7 @@ import { LogService } from 'src/app/services/log.service'
   styleUrls: ['./add-connection.component.scss']
 })
 export class AddConnectionComponent implements OnInit {
-  addConnectionFrom = new FormGroup({
+  addConnectionForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(36)]),
     name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]),
     deviceIdTo: new FormControl('', Validators.required),
@@ -45,7 +45,7 @@ export class AddConnectionComponent implements OnInit {
   ) { }
 
   formConnection() {
-    this.addConnectionFrom = this.formBulider.group({
+    this.addConnectionForm = this.formBulider.group({
       id: [uuidv4(), [Validators.required, Validators.minLength(36)]],
       name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
       deviceIdTo: ['', [Validators.required]],
@@ -67,16 +67,16 @@ export class AddConnectionComponent implements OnInit {
   }
 
   get id() {
-    return this.addConnectionFrom.get('id')
+    return this.addConnectionForm.get('id')
   }
   get name() {
-    return this.addConnectionFrom.get('name')
+    return this.addConnectionForm.get('name')
   }
   get deviceIdTo() {
-    return this.addConnectionFrom.get('deviceIdTo')
+    return this.addConnectionForm.get('deviceIdTo')
   }
   get deviceIdFrom() {
-    return this.addConnectionFrom.get('deviceIdFrom')
+    return this.addConnectionForm.get('deviceIdFrom')
   }
 
   toString(data: any): string {
@@ -90,12 +90,12 @@ export class AddConnectionComponent implements OnInit {
   }
 
   submitForm() {
-    this.connectionService.CreateConnection(this.addConnectionFrom.value as Connection)
+    this.connectionService.CreateConnection(this.addConnectionForm.value as Connection)
       .subscribe(() => {
         this.logService
           .CreateLog({
-            object: this.addConnectionFrom.get('id')?.value,
-            message: this.toString(this.addConnectionFrom.value),
+            object: this.addConnectionForm.get('id')?.value,
+            message: this.toString(this.addConnectionForm.value),
             operation: 'Create',
             component: 'Connection',
           })

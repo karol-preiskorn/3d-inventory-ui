@@ -16,7 +16,7 @@ export class Connection {
   deviceIdTo: string
   deviceIdFrom: string
 
-  constructor() {
+  generate() {
     this.id = uuidv4()
   }
 }
