@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<relationalModel class="oracle.dbtools.crest.model.design.relational.RelationalDesign" name="3d-inventory" id="65A71321-1988-4781-04DF-10C5D7C949D0" mainViewID="20E55AB6-D089-2C90-042D-3F88F559319D">
+<createdBy>karol</createdBy>
+<createdTime>2022-10-31 23:06:52 UTC</createdTime>
+<comment><![CDATA[Project create 3d inventory. A simple solution that allows you to build a spatial and database representation of all types of warehouses and server rooms.]]></comment>
+<notes><![CDATA[Project Inventory od computers devices like datacenters, networks, clouds infra]]></notes>
+<ownerDesignName>model</ownerDesignName>
+<shouldBeOpen>true</shouldBeOpen>
+<selectedRDBMSSite>01F6E6D1-21D0-CFBD-ABDD-3988D1813575</selectedRDBMSSite>
+<redirectConnectionStamp class="oracle.dbtools.crest.imports.DBConnectionStamp">
+<connName>REST@ORLACLPDB1</connName>
+<connUser>REST</connUser>
+<connType>1</connType>
+<syncSelected>-1</syncSelected>
+</redirectConnectionStamp>
+<useConnectionUser>true</useConnectionUser>
+</relationalModel>

@@ -1,0 +1,86 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="27D81119-D02F-FE58-CECF-3E9F61B75E72" schemaObject="2E57B3AC-A335-158D-F66B-1F85FCBC80E9" name="ATTRIBUTE_TYPES">
+<createdBy>karol</createdBy>
+<createdTime>2022-11-01 23:47:11 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<ordsAlias>at</ordsAlias>
+<useDDLTransformationScript>true</useDDLTransformationScript>
+<abbreviation>AT</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="1573A9B6-FC01-B8F4-C7C0-92C8CEC1FD06">
+<createdBy>karol</createdBy>
+<createdTime>2022-11-01 23:50:32 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_ATTRIBUTE_TYPES_ATTRIBUTE_TYPE_ID</notNullConstraintName>
+</Column>
+<Column name="NAME" id="7B04ADB1-6274-4304-A5C0-5BD0E57DE379">
+<createdBy>karol</createdBy>
+<createdTime>2022-11-01 23:50:32 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CATEGORY" id="0F4396FE-72A8-F5B9-1153-A116AEB15FC3">
+<createdBy>karol</createdBy>
+<createdTime>2022-11-01 23:51:40 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TYPE" id="9284B9FE-250C-A2BF-11B5-6B5DABE457C0">
+<createdBy>karol</createdBy>
+<createdTime>2023-04-30 16:20:58 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COMPONENT" id="7005451D-C2B4-C391-B902-F19ABFC7F518">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 14:31:19 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<sourceType>Manual</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>4</use>
+<collectionType>C4B5C766-560F-EACF-8907-1DA45C3F2857</collectionType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<defaultHelpText>List of component applications where we can definie attributes wir category and types.</defaultHelpText>
+<defaultLabel>Component</defaultLabel>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E941FFD7-F289-E50A-AD34-C35D211F98E1" name="ATTRIBUTE_TYPES_PK">
+<createdBy>karol</createdBy>
+<createdTime>2022-11-01 23:52:49 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1573A9B6-FC01-B8F4-C7C0-92C8CEC1FD06"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

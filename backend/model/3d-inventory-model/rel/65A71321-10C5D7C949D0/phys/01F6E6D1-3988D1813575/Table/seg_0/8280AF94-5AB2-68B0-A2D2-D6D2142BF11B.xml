@@ -1,0 +1,82 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="DEVICES" directorySegmentName="seg_0" id="8280AF94-5AB2-68B0-A2D2-D6D2142BF11B">
+<createdBy>karol</createdBy>
+<createdTime>2022-10-31 23:08:19 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<schemaObject>2E57B3AC-A335-158D-F66B-1F85FCBC80E9</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<tableSpace>USERS</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<user>964258D7-2E36-9C7D-E22B-5B27F93C9262</user>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ID" id="2B154004-7826-C65D-ECA8-38258F5DF47F">
+<createdBy>karol</createdBy>
+<createdTime>2022-10-31 23:08:19 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="POSITION.y" id="9DC7771D-9A15-4608-8188-0D130D0FC9CA">
+<createdBy>karol</createdBy>
+<createdTime>2023-06-19 07:04:43 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="POSITION.h" id="D4E98997-A38E-7BD3-2FE3-834451B4F136">
+<createdBy>karol</createdBy>
+<createdTime>2023-06-19 07:04:43 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="POSITION.x" id="D7536EA0-C1E2-9A63-C017-90CDF0676A46">
+<createdBy>karol</createdBy>
+<createdTime>2023-06-19 07:04:43 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MODELS_ID" id="DC38A3E2-29C8-F64D-0F50-798F4EC6EE9F">
+<createdBy>karol</createdBy>
+<createdTime>2022-10-31 23:08:19 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="POSITION" id="E30F5183-2F84-A1B7-5916-2A8D6AD6D7F9">
+<createdBy>karol</createdBy>
+<createdTime>2022-10-31 23:08:19 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="NAME" id="EE9B94BB-F301-24CF-CA60-F570F9B29615">
+<createdBy>karol</createdBy>
+<createdTime>2022-10-31 23:08:19 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DEVICES_ID_PARENT_IDX" id="51A39A34-3257-48C3-D23B-AF91B8201509">
+<createdBy>karol</createdBy>
+<createdTime>2022-11-01 07:01:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<tableSpace>USERS</tableSpace>
+<user>964258D7-2E36-9C7D-E22B-5B27F93C9262</user>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DEVICES_NAME_IDX" id="AC0E9688-2049-9517-9DAD-984C01BD2468">
+<createdBy>karol</createdBy>
+<createdTime>2022-11-01 07:01:53 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<tableSpace>USERS</tableSpace>
+<user>964258D7-2E36-9C7D-E22B-5B27F93C9262</user>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="DEVICES_MODELS_FK" id="61ACEA59-7637-E94A-93D3-6CA41B21EBAC">
+<createdBy>karol</createdBy>
+<createdTime>2023-06-19 07:04:43 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="DEVICES_PK" id="40653B75-0001-D29B-6CE6-1505F0DA09BC">
+<createdBy>karol</createdBy>
+<createdTime>2022-10-31 23:18:48 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev20c>

@@ -1,0 +1,108 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="94FB98D3-E3F0-5BA6-A6CD-151A409F35BC" schemaObject="2E57B3AC-A335-158D-F66B-1F85FCBC80E9" name="CONNECTIONS">
+<createdBy>karol</createdBy>
+<createdTime>2022-11-01 07:24:16 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<ordsAlias>c</ordsAlias>
+<useDDLTransformationScript>true</useDDLTransformationScript>
+<abbreviation>C</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="5DA64AFD-87A4-719D-638F-116B7FD0E8B5">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 12:36:39 UTC</createdTime>
+<commentInRDBMS><![CDATA[Identify connection]]></commentInRDBMS>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>2</use>
+<distinctType>F2E1BC9B-52D3-32BF-58AE-5C84A23F10F7</distinctType>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_C_ID</notNullConstraintName>
+</Column>
+<Column name="DEVICES_ID_TO" id="FA3AFAA3-7471-DE79-90C4-54DFF9BDB209">
+<createdBy>karol</createdBy>
+<createdTime>2022-11-01 07:26:49 UTC</createdTime>
+<commentInRDBMS><![CDATA[universal device identity ]]></commentInRDBMS>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<defaultLabel>Device Id To</defaultLabel>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_C_FROM</notNullConstraintName>
+<associations>
+<colAssociation fkAssociation="D016605E-51B6-C611-6F28-0B341C1E294C" referredColumn="2B154004-7826-C65D-ECA8-38258F5DF47F"/>
+</associations>
+</Column>
+<Column name="DEVICES_ID_FROM" directorySegmentName="seg_0" id="5BA77C3B-CCBC-29A0-461B-14034388B854">
+<createdBy>karol</createdBy>
+<createdTime>2022-11-01 07:26:49 UTC</createdTime>
+<commentInRDBMS><![CDATA[universal device identity ]]></commentInRDBMS>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<defaultLabel>Device Id From</defaultLabel>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_C_TO</notNullConstraintName>
+<associations>
+<colAssociation fkAssociation="2666E63A-7108-2204-92E9-86BF360DB491" referredColumn="2B154004-7826-C65D-ECA8-38258F5DF47F"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="653F44C2-5857-2C68-68FB-07D2CA1AA33B" name="CONNECTIONS_PK">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 12:36:39 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5DA64AFD-87A4-719D-638F-116B7FD0E8B5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="445D3EBB-A3C5-A69C-B556-350BA3F12B51" name="CONNECTIONS_FROM_TO_IDX">
+<createdBy>karol</createdBy>
+<createdTime>2023-04-30 16:14:37 UTC</createdTime>
+<comment><![CDATA[Connection index.]]></comment>
+<ownerDesignName>model</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FA3AFAA3-7471-DE79-90C4-54DFF9BDB209"/>
+<colUsage columnID="5BA77C3B-CCBC-29A0-461B-14034388B854"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C4CC5C00-14BD-79D1-967B-EDDE64B52067" name="CONNECTIONS_DEVICES_TO_FK">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 12:39:46 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FA3AFAA3-7471-DE79-90C4-54DFF9BDB209"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8F35327F-A805-DFD9-AFEC-F5B47D5C7606" name="CONNECTIONS_DEVICES_FROM_FK">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 12:42:53 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5BA77C3B-CCBC-29A0-461B-14034388B854"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,139 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="09728C7E-8420-330A-0C0A-2E3E5142B27F" name="MODELS">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 11:51:50 UTC</createdTime>
+<generatorID>CAF7683B-83E7-055A-EC26-47FA0E5555F6</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>M</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="5D070DEF-81E8-74FD-07D6-B9AB943D7A3C">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 11:51:50 UTC</createdTime>
+<commentInRDBMS><![CDATA[universal device identity ]]></commentInRDBMS>
+<generatorID>115FA11B-0E2B-73D9-A4FC-ECDB6571B98D</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>2</use>
+<distinctType>F2E1BC9B-52D3-32BF-58AE-5C84A23F10F7</distinctType>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="NAME" id="45FE9A21-83E9-3C62-3EC0-252953487876">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 11:51:50 UTC</createdTime>
+<generatorID>110ED1F7-AFCC-7CCA-D4EB-E0065DB4F272</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="DIMENSION" id="0EDAC9EC-546D-3CC9-44A9-43ECB090B636">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 11:51:50 UTC</createdTime>
+<generatorID>D782D3FF-A6EB-2A34-33CF-B67131DA8E65</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>F72C39E0-D1CA-8821-2AD7-A1E95A37D3D1</structuredType>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<nestedAttributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<nestedAttribute name="DIMENSION.x" directorySegmentName="seg_0" id="3C1984DB-1630-61E3-9A07-59468CF79D43">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 11:51:50 UTC</createdTime>
+<generatorID>D277F5CD-48CB-3383-1335-DBCFFCE4E6D5</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>0EDAC9EC-546D-3CC9-44A9-43ECB090B636</parentObject>
+<structAttributeID>FC7DDF81-06B8-40F5-BC74-F6A6953685DD</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,0,0</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="DIMENSION.y" directorySegmentName="seg_0" id="5B09C7DA-699A-14D4-3EF6-606727234BF3">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 11:51:50 UTC</createdTime>
+<generatorID>98BEED66-11A5-88D1-9055-81E4AE6E7CE0</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>0EDAC9EC-546D-3CC9-44A9-43ECB090B636</parentObject>
+<structAttributeID>944731C5-08C0-50AE-5330-A2DF8947C677</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,0,0</ownDataTypeParameters>
+</nestedAttribute>
+<nestedAttribute name="DIMENSION.h" directorySegmentName="seg_0" id="EB44AB36-6F6D-335C-4536-3E2C2EEBF8A2">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 11:51:50 UTC</createdTime>
+<generatorID>35388682-98D2-7D1F-AF52-9FE05A9CD109</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>0EDAC9EC-546D-3CC9-44A9-43ECB090B636</parentObject>
+<structAttributeID>98249AAC-4D4D-D4D0-FC94-D3CA66212FCB</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,0,0</ownDataTypeParameters>
+</nestedAttribute>
+</nestedAttributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="96EBAC45-558D-5E2E-B976-BEA70E61EF59" name="MODELS PK">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 11:51:50 UTC</createdTime>
+<generatorID>60882945-4CD2-9B88-9778-624AA3551BAC</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>5D070DEF-81E8-74FD-07D6-B9AB943D7A3C</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

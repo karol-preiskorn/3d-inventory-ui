@@ -1,0 +1,109 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="0E58A366-F7FE-B8F1-CE5A-CA3456F861CD" name="ATTRIBUTE_DICTIONARY">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 11:51:50 UTC</createdTime>
+<generatorID>27D81119-D02F-FE58-CECF-3E9F61B75E72</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>AD</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="DF0A97C1-A477-8FC5-001F-E97AD38C4FF2">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 11:51:50 UTC</createdTime>
+<generatorID>1573A9B6-FC01-B8F4-C7C0-92C8CEC1FD06</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>2</use>
+<distinctType>F2E1BC9B-52D3-32BF-58AE-5C84A23F10F7</distinctType>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="NAME" id="444D3B8F-813B-5634-6E62-00B67DA02E6E">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 11:51:50 UTC</createdTime>
+<generatorID>7B04ADB1-6274-4304-A5C0-5BD0E57DE379</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CATEGORY" id="32AA1EE3-4B06-9CE5-1305-972EA5DA7743">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 11:51:50 UTC</createdTime>
+<generatorID>0F4396FE-72A8-F5B9-1153-A116AEB15FC3</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TYPE" id="42993F8B-469B-0F4E-659B-22BCC62C01E2">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 11:51:50 UTC</createdTime>
+<generatorID>9284B9FE-250C-A2BF-11B5-6B5DABE457C0</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="COMPONENT" id="4A8583FC-EE0E-61B6-28E9-AE898640879A">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 14:50:27 UTC</createdTime>
+<generatorID>7005451D-C2B4-C391-B902-F19ABFC7F518</generatorID>
+<notes><![CDATA[List of componets where this atribute can apply]]></notes>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<sourceType>Manual</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>4</use>
+<collectionType>C4B5C766-560F-EACF-8907-1DA45C3F2857</collectionType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="364819A9-5E6F-CF6F-2AF3-DE3A64B14F99" name="ATTRIBUTE TYPES PK">
+<createdBy>karol</createdBy>
+<createdTime>2023-05-20 11:51:50 UTC</createdTime>
+<generatorID>E941FFD7-F289-E50A-AD34-C35D211F98E1</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>DF0A97C1-A477-8FC5-001F-E97AD38C4FF2</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

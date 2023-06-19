@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="3d-inventory-model" id="7D81E16B-7634-631D-A636-7D9DC2C9E745" version="3.5">
+<createdBy>karol</createdBy>
+<createdTime>2022-10-31 23:03:38 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>7D81E16B-7634-631D-A636-7D9DC2C9E745</designId>
+<usedDesignStorageDescriptors>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="EB8EE60E-FA1E-4DCC-E6B1-73EB77D73A34">
+<designStoragePath>/</designStoragePath>
+</designDescr>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="B43506E1-3A2B-F6F1-5C54-2E6C4F14B9AF">
+<designStoragePath>/home/karol/Github/oracle-restfull/sql/UltimaInventory</designStoragePath>
+</designDescr>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="A75C46CA-CDEA-1706-5A29-B3994FF6258E">
+<designStoragePath>/</designStoragePath>
+</designDescr>
+</usedDesignStorageDescriptors>
+</OSDM_Design>

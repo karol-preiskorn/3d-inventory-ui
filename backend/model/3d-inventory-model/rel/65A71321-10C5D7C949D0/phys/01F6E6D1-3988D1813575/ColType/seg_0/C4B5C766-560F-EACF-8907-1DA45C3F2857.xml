@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<CollectionTypeProxyOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.CollectionTypeProxyOraclev10g" name="COMPONENTS" directorySegmentName="seg_0" id="C4B5C766-560F-EACF-8907-1DA45C3F2857">
+<createdBy>karol</createdBy>
+<createdTime>2023-06-19 07:04:43 UTC</createdTime>
+<comment><![CDATA[All entity comonents ]]></comment>
+<ownerDesignName>model</ownerDesignName>
+</CollectionTypeProxyOraclev10g>

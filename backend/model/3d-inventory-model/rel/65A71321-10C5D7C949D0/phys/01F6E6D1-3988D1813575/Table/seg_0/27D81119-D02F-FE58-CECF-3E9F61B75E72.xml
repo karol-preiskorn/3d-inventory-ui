@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="ATTRIBUTE_TYPES" directorySegmentName="seg_0" id="27D81119-D02F-FE58-CECF-3E9F61B75E72">
+<createdBy>karol</createdBy>
+<createdTime>2023-06-19 07:04:43 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<schemaObject>2E57B3AC-A335-158D-F66B-1F85FCBC80E9</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="CATEGORY" id="0F4396FE-72A8-F5B9-1153-A116AEB15FC3">
+<createdBy>karol</createdBy>
+<createdTime>2023-06-19 07:04:43 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ID" id="1573A9B6-FC01-B8F4-C7C0-92C8CEC1FD06">
+<createdBy>karol</createdBy>
+<createdTime>2023-06-19 07:04:43 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="COMPONENT" id="7005451D-C2B4-C391-B902-F19ABFC7F518">
+<createdBy>karol</createdBy>
+<createdTime>2023-06-19 07:04:43 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="NAME" id="7B04ADB1-6274-4304-A5C0-5BD0E57DE379">
+<createdBy>karol</createdBy>
+<createdTime>2023-06-19 07:04:43 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TYPE" id="9284B9FE-250C-A2BF-11B5-6B5DABE457C0">
+<createdBy>karol</createdBy>
+<createdTime>2023-06-19 07:04:43 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="ATTRIBUTE_TYPES_PK" id="E941FFD7-F289-E50A-AD34-C35D211F98E1">
+<createdBy>karol</createdBy>
+<createdTime>2023-06-19 07:04:43 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev20c>

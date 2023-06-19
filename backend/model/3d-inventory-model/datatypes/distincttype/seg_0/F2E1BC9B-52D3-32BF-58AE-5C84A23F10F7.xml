@@ -1,0 +1,12 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<DistinctType class="oracle.dbtools.crest.model.design.datatypes.DistinctType" name="UUID" directorySegmentName="seg_0" id="F2E1BC9B-52D3-32BF-58AE-5C84A23F10F7">
+<createdBy>karol</createdBy>
+<createdTime>2023-04-30 16:23:21 UTC</createdTime>
+<comment><![CDATA[UUIDv4 as ID for records]]></comment>
+<ownerDesignName>model</ownerDesignName>
+<predefined>false</predefined>
+<logicalDataType>LOGDT024</logicalDataType>
+<precision>0</precision>
+<scale>0</scale>
+<size>50</size>
+</DistinctType>

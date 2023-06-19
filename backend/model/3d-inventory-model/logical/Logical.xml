@@ -1,0 +1,9 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="2AFACF62-3AB9-FB10-A4F3-CB8BC231B80E" mainViewID="46A17C5E-F98A-7CB3-1E98-55FA325524E7">
+<createdBy>karol</createdBy>
+<createdTime>2022-10-31 23:03:38 UTC</createdTime>
+<comment><![CDATA[Project create 3d inventory. A simple solution that allows you to build a spatial and database representation of all types of warehouses and server rooms.]]></comment>
+<notes><![CDATA[Project create 3d inventory. A simple solution that allows you to build a spatial and database representation of all types of warehouses and server rooms.]]></notes>
+<ownerDesignName>model</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>

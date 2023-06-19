@@ -1,0 +1,42 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StructuredType class="oracle.dbtools.crest.model.design.datatypes.StructuredType" name="Position" directorySegmentName="seg_0" id="F72C39E0-D1CA-8821-2AD7-A1E95A37D3D1">
+<createdBy>karol</createdBy>
+<createdTime>2022-10-31 23:03:38 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<visible>false</visible>
+<predefined>true</predefined>
+<final>false</final>
+<instantiable>true</instantiable>
+<attributes itemClass="oracle.dbtools.crest.model.design.datatypes.TypeElement">
+<Attribute name="x" id="FC7DDF81-06B8-40F5-BC74-F6A6953685DD">
+<createdBy>karol</createdBy>
+<createdTime>2023-04-30 15:57:08 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<mandatory>false</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<scale>0</scale>
+<type>LOGDT019</type>
+</Attribute>
+<Attribute name="y" id="944731C5-08C0-50AE-5330-A2DF8947C677">
+<createdBy>karol</createdBy>
+<createdTime>2023-04-30 15:57:32 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<mandatory>false</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<scale>0</scale>
+<type>LOGDT019</type>
+</Attribute>
+<Attribute name="h" id="98249AAC-4D4D-D4D0-FC94-D3CA66212FCB">
+<createdBy>karol</createdBy>
+<createdTime>2023-04-30 15:57:54 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<mandatory>false</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<scale>0</scale>
+<type>LOGDT019</type>
+</Attribute>
+</attributes>
+</StructuredType>
