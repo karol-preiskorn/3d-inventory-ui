@@ -35,12 +35,18 @@ export default class Validation {
     }
   }
 
+  /**
+   * One of deviceId, modelId and connectionId have to set
+   *
+   * @param {AbstractControl} control
+   * @type {ValidatorFn}
+   * @memberof Validation
+   */
   atLeastOneValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     let i = 0
     if (control.get('deviceId')?.value != '') i++
     if (control.get('modelId')?.value != '') i++
     if (control.get('connectionId')?.value != '') i++
-    if (control.get('attributeDictionaryId')?.value != '') i++
     console.log('count Ids => ' + i)
     if (i > 1 || i == 0) {
       return { atLeastOneValidator: true }

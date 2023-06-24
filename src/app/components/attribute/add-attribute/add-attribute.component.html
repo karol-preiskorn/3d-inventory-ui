@@ -2,91 +2,100 @@
   <div class="row">
     <div class="col-md-12">
       <h3>Add Attribute</h3>
-      <a class="icon-link" href="#">
-        <svg class="bi" aria-hidden="true">
-          <use xlink:href="#box-seam"></use>
-        </svg>
-        {{ this.toString(this.formAddAttribute.controls.id.value) }}
-      </a>
+      <i class="bi bi-columns"></i>
+      <span class="text-primary d-inline-flex focus-ring py-1 px-2 text-decoration-none">
+        {{ this.toString(this.formAddAttribute.controls.id.value) }}</span
+      >
       <form [formGroup]="formAddAttribute" (ngSubmit)="submitForm()">
-        <div class="row">
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="deviceId" class="form-label">Device Id</label>
-              <select (change)="changeDeviceId($event)" formControlName="deviceId" class="form-control" id="deviceId">
-                <option *ngFor="let deviceObj of deviceDictionary; let i = index" value="{{ deviceObj.id }}">
-                  {{ deviceObj.name }}
-                </option>
-              </select>
-              <div *ngIf="this.formAddAttribute.controls.deviceId.errors" class="invalid-feedback">
-                <div *ngIf="this.formAddAttribute.controls.deviceId.errors.required">
-                  deviceId is required</div>
+        <div class="row g-3">
+          <div class="col border">
+            <div class="row g-3">
+              <div class="col">
+                <div class="form-group">
+                  <label for="deviceId" class="form-label">Device</label>
+                  <select
+                    (change)="changeDeviceId($event)"
+                    formControlName="deviceId"
+                    class="form-select"
+                    id="deviceId">
+                    <option *ngFor="let deviceObj of deviceDictionary; let i = index" value="{{ deviceObj.id }}">
+                      {{ deviceObj.name }}
+                    </option>
+                  </select>
+                  <div>
+                    {{ this.toString(this.formAddAttribute.controls.deviceId.value) }}
+                  </div>
+                </div>
               </div>
-              <div>
-                {{ this.toString(this.formAddAttribute.controls.deviceId.value)
-                }}
+              <div class="col">
+                <div class="form-group mb-2">
+                  <label for="modelId" class="form-label">Model</label>
+                  <select
+                    (change)="changeModelId($event)"
+                    formControlName="modelId"
+                    class="form-select"
+                    id="modelId">
+                    <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj.id }}">
+                      {{ modelObj.name }}
+                    </option>
+                  </select>
+                  <div *ngIf="this.formAddAttribute.controls.modelId.errors">
+                    <div *ngIf="this.formAddAttribute.controls.modelId.errors.required">modelId is required</div>
+                  </div>
+                  <div>
+                    {{ this.toString(this.formAddAttribute.controls.modelId.value) }}
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group mb-2">
+                  <label for="connectionId" class="form-label">Connection</label>
+                  <select
+                    (change)="changeConnectionId($event)"
+                    formControlName="connectionId"
+                    class="form-select"
+                    id="connectionId">
+                    <option
+                      *ngFor="let connectionObj of connectionDictionary; let i = index"
+                      value="{{ connectionObj.id }}">
+                      {{ connectionObj.name }}
+                    </option>
+                  </select>
+                  <div *ngIf="this.formAddAttribute.controls.connectionId.errors">
+                    <div *ngIf="this.formAddAttribute.controls.connectionId.errors.required">
+                      connectionId is required
+                    </div>
+                  </div>
+                  <div>
+                    {{ this.toString(this.formAddAttribute.controls.connectionId.value) }}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           <div class="col">
             <div class="form-group mb-2">
-              <label for="modelId" class="form-label">Model Id</label>
-              <select (change)="changeModelId($event)" formControlName="modelId" class="form-control" id="modelId">
-                <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj.id }}">
-                  {{ modelObj.name }}
-                </option>
-              </select>
-              <div *ngIf="this.formAddAttribute.controls.modelId.errors" class="invalid-feedback">
-                <div *ngIf="this.formAddAttribute.controls.modelId.errors.required">
-                  modelId is required</div>
-              </div>
-              <div>
-                {{ this.toString(this.formAddAttribute.controls.modelId.value)
-                }}
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group mb-2">
-              <label for="connectionId" class="form-label">Connection Id</label>
-              <select (change)="changeConnectionId($event)" formControlName="connectionId" class="form-control" id="connectionId">
-                <option *ngFor="let connectionObj of connectionDictionary; let i = index"
-                  value="{{ connectionObj.id }}">
-                  {{ connectionObj.name }}
-                </option>
-              </select>
-              <div *ngIf="this.formAddAttribute.controls.connectionId.errors" class="invalid-feedback">
-                <div *ngIf="this.formAddAttribute.controls.connectionId.errors.required">
-                  connectionId is required</div>
-              </div>
-              <div>
-                {{
-                this.toString(this.formAddAttribute.controls.connectionId.value)
-                }}
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group mb-2">
-              <label for="attributeDictionaryId" class="form-label">Attribute Dictionary
-                Id</label>
-              <select (change)="changeAttributeDictionaryId($event)" formControlName="attributeDictionaryId" class="form-control"
+              <label for="attributeDictionaryId" class="form-label">Attribute Dictionary Id</label>
+              <select
+                (change)="changeAttributeDictionaryId($event)"
+                formControlName="attributeDictionaryId"
+                class="form-select"
                 id="attributeDictionaryId">
-                <option *ngFor="let attributeDictionaryObj of attributeDictionary; let i = index"
+                <option
+                  *ngFor="let attributeDictionaryObj of attributeDictionary; let i = index"
                   value="{{ attributeDictionaryObj.id }}">
                   {{ attributeDictionaryObj.name }}
                 </option>
               </select>
-              <div *ngIf="this.formAddAttribute.controls.attributeDictionaryId.errors" class="invalid-feedback">
+              <div *ngIf="this.formAddAttribute.controls.attributeDictionaryId.errors">
                 <div *ngIf="this.formAddAttribute.controls.attributeDictionaryId.errors.required">
                   attributeDictionaryId is required
                 </div>
               </div>
               <div>
-                {{
-                this.toString(this.formAddAttribute.controls.attributeDictionaryId.value)
-                }}
+                {{ this.toString(this.formAddAttribute.controls.attributeDictionaryId.value) }}
               </div>
+              <div class="invalid-feedback">Please select a valid state.</div>
             </div>
           </div>
         </div>
@@ -94,13 +103,19 @@
           <div class="col">
             <div class="form-group mb-2">
               <label for="value" class="form-label">Value</label>
-              <input type="text" formControlName="value" id="id" required class="form-control" />
-              <div *ngIf="this.formAddAttribute.controls.value.errors" class="invalid-feedback">
-                <div *ngIf="this.formAddAttribute.controls.value.errors.required">
-                  attributeDictionaryId is required
-                </div>
-                <div *ngIf="this.formAddAttribute.controls.value.errors.minlength">
-                  attributeDictionaryId must be at least 36 characters
+              <input
+                type="text"
+                formControlName="value"
+                id="id"
+                required
+                class="form-control" />
+
+              <div class="invalid-feedback">Please select a valid state.</div>
+
+              <div *ngIf="formAddAttribute.get('value')?.invalid">
+                <div *ngIf="formAddAttribute.get('value')?.errors?.['required']">Value is required.</div>
+                <div *ngIf="formAddAttribute.get('value')?.errors?.['minlength']">
+                  Value must be at least 6 characters long.
                 </div>
               </div>
             </div>
@@ -109,21 +124,23 @@
         <div class="row">
           <div class="col">
             <div class="form-group mb-3">
-              <button type="submit" [disabled]="!(this.formAddAttribute.valid && this.formAddAttribute.touched)"
+              <button
+                type="submit"
+                [disabled]="!(this.formAddAttribute.valid && this.formAddAttribute.touched)"
                 class="btn btn-primary">
                 Add attribute
               </button>
-              <div *ngIf="!(this.formAddAttribute.valid && this.formAddAttribute.touched)" class="invalid-feedback">
-                Form is invalid
-              </div>
-              <span class="text-danger" *ngIf="formAddAttribute.hasError('atLeastOneValidator')"> Fill
-                one of Id first </span>
-              <div>atLeastOneValidator: {{
-                formAddAttribute.hasError('atLeastOneValidator') }}
-              </div>
+              <div *ngIf="!(this.formAddAttribute.valid && this.formAddAttribute.touched)">Form is invalid</div>
+              <span class="text-danger" *ngIf="formAddAttribute.hasError('atLeastOneValidator')">
+                Fill one of Device, Model or Connection first.
+              </span>
               <div>
                 {{ toString(formAddAttribute.value) }}
               </div>
+              <div>
+                {{ formAddAttribute.hasError('atLeastOneValidator') }}
+              </div>
+
             </div>
           </div>
         </div>

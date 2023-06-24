@@ -132,28 +132,28 @@ export class EditAttributeComponent implements OnInit {
   }
   getDeviceList() {
     return this.deviceService.GetDevices().subscribe((data: any) => {
-      let tmp = new Device()
+      const tmp = new Device()
       data.unshift(tmp)
       this.deviceDictionary = data
     })
   }
   getModelList() {
     return this.modelService.GetModels().subscribe((data: any) => {
-      let tmp = new Model()
+      const tmp = new Model()
       data.unshift(tmp)
       this.modelDictionary = data
     })
   }
   getConnectionList() {
     return this.connectionService.GetConnections().subscribe((data: any) => {
-      let tmp = new Connection()
+      const tmp = new Connection()
       data.unshift(tmp)
       this.connectionDictionary = data
     })
   }
   getAttributeDictionaryList() {
     return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: any) => {
-      let tmp = new AttributeDictionary()
+      const tmp = new AttributeDictionary()
       data.unshift(tmp)
       this.attributeDictionary = data
     })

@@ -18,7 +18,7 @@ export class EnvironmentService {
     { component: 'Logs', api: 'logs' },
     { component: 'Attributes', api: 'attributes' },
     { component: 'Attribute Dictionary', api: 'attribute-dictionary' },
-    { component: 'Connections', api: 'connections' },
+    { component: 'Connection', api: 'connections' },
   ]
 
   getSettings(name: string): string | undefined {

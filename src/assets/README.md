@@ -1,24 +1,24 @@
 # 3d inventory
 
-1. [3d inventory](#3d-inventory)
-   1. [Description](#description)
-   2. [Technology stack](#technology-stack)
-   3. [Data Model](#data-model)
-      1. [Entity](#entity)
-      2. [Logical](#logical)
-      3. [Data Classes and attributes](#data-classes-and-attributes)
-   4. [Functionality](#functionality)
-      1. [Future ideas](#future-ideas)
-      2. [List devices](#list-devices)
-      3. [Edit device](#edit-device)
-      4. [Application view](#application-view)
-         1. [Angular + Three.js](#angular--threejs)
-   5. [Usage](#usage)
-      1. [Swagger client to generate API structures](#swagger-client-to-generate-api-structures)
-      2. [Json server](#json-server)
-      3. [Run app](#run-app)
-   6. [Contributing](#contributing)
-   7. [Next tasks TODO](#next-tasks-todo)
+- [3d inventory](#3d-inventory)
+  - [Description](#description)
+  - [Technology stack](#technology-stack)
+  - [Data Model](#data-model)
+    - [Entity](#entity)
+    - [Logical](#logical)
+    - [Data Classes and attributes](#data-classes-and-attributes)
+  - [Functionality](#functionality)
+    - [Future ideas](#future-ideas)
+    - [List devices](#list-devices)
+    - [Edit device](#edit-device)
+    - [Application view](#application-view)
+      - [Angular + Three.js](#angular--threejs)
+  - [Usage](#usage)
+    - [Swagger client to generate API structures](#swagger-client-to-generate-api-structures)
+    - [Json server](#json-server)
+    - [Run app](#run-app)
+  - [Contributing](#contributing)
+  - [Next tasks TODO](#next-tasks-todo)
 
 ## Description
 
@@ -38,7 +38,7 @@ Project create `3d inventory`. A simple solution that allows you to build a spat
 
 ### Entity
 
-![](src/assets/img/Screenshot%20from%202023-05-20%2016-54-30.png)
+![](assets/img/Screenshot%20from%202023-05-20%2016-54-30.png)
 
 ### Logical
 

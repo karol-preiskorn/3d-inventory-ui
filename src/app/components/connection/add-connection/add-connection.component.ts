@@ -85,6 +85,8 @@ export class AddConnectionComponent implements OnInit {
 
   getDeviceList() {
     return this.deviceService.GetDevices().subscribe((data: any) => {
+      const tmp = new Device()
+      data.unshift(tmp)
       this.deviceList = data
     })
   }

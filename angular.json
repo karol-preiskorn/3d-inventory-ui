@@ -38,11 +38,11 @@
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap/scss/bootstrap.scss",
-              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.scss",
               "node_modules/prismjs/themes/prism-okaidia.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
               "node_modules/marked/marked.min.js",
               "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js"
             ]
@@ -120,11 +120,11 @@
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap/scss/bootstrap.scss",
-              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.scss",
               "node_modules/prismjs/themes/prism-okaidia.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
               "node_modules/marked/marked.min.js",
               "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js"
             ]
