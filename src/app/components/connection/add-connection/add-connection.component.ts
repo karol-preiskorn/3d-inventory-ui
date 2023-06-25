@@ -91,6 +91,10 @@ export class AddConnectionComponent implements OnInit {
     })
   }
 
+  gotoDevice(deviceId: string) {
+    this.router.navigate(['edit-device/', deviceId])
+  }
+
   submitForm() {
     this.connectionService.CreateConnection(this.addConnectionForm.value as Connection)
       .subscribe(() => {

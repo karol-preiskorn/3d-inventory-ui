@@ -85,7 +85,7 @@ export class AddDeviceComponent implements OnInit {
   get f() {
     return this.addForm.controls
   }
-  
+
   submitForm() {
     this.devicesService.CreateDevice(this.device).subscribe((res) => {
       console.log('Device added!')

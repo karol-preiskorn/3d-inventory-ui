@@ -16,9 +16,9 @@ import { DeviceService } from 'src/app/services/device.service'
 })
 export class ConnectionListComponent implements OnInit {
   connectionList: Connection[] = []
-  selectedConnection: Connection
+  selectedConnection: Connection = new Connection()
   connectionListPage = 1
-  deviceList: Device[]
+  deviceList: Device[] = []
   component = 'Connection'
 
   ngOnInit() {
@@ -52,6 +52,10 @@ export class ConnectionListComponent implements OnInit {
     let tmp: Device = new Device()
     tmp = this.deviceList.find((e: Device): boolean => e.id === id) || tmp
     return tmp.name
+  }
+
+  gotoDevice(deviceId: string) {
+    this.router.navigate(['edit-device/', deviceId])
   }
 
   deleteConnection(id: string) {
