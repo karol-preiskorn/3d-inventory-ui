@@ -16,7 +16,7 @@ export interface DeviceTypeInterfance {
   description: string
 }
 
-export type DeviceTypeListType = { name: string; description: string }
+export type DeviceTypeListType = {name: string; description: string}
 
 export class DeviceType {
   name: string
@@ -29,32 +29,32 @@ export class DeviceType {
 
 export class DeviceTypeDict {
   list: DeviceType[] = [
-    { name: '-', description: '' },
-    { name: 'Bridge', description: '' },
-    { name: 'CoolAir', description: '' },
-    { name: 'Copier', description: '' },
-    { name: 'Desktop', description: '' },
-    { name: 'Firewall', description: '' },
-    { name: 'Getaway', description: '' },
-    { name: 'Hubs', description: '' },
-    { name: 'Load Balancer', description: '' },
-    { name: 'Modem', description: '' },
-    { name: 'Multiplexer', description: '' },
-    { name: 'PDU System', description: '' },
-    { name: 'Power', description: '' },
-    { name: 'Printer', description: '' },
-    { name: 'Probe', description: '' },
-    { name: 'Repeaters', description: '' },
-    { name: 'Router', description: '' },
-    { name: 'Security Device', description: '' },
-    { name: 'Server', description: '' },
-    { name: 'Switch', description: '' },
-    { name: 'Telephone', description: '' },
-    { name: 'Terminal', description: '' },
-    { name: 'Traffic shaper', description: '' },
-    { name: 'Transceiver', description: '' },
-    { name: 'UPS System', description: '' },
-    { name: 'Workstations', description: '' },
+    {name: '', description: ''},
+    {name: 'Bridge', description: ''},
+    {name: 'CoolAir', description: ''},
+    {name: 'Copier', description: ''},
+    {name: 'Desktop', description: ''},
+    {name: 'Firewall', description: ''},
+    {name: 'Getaway', description: ''},
+    {name: 'Hubs', description: ''},
+    {name: 'Load Balancer', description: ''},
+    {name: 'Modem', description: ''},
+    {name: 'Multiplexer', description: ''},
+    {name: 'PDU System', description: ''},
+    {name: 'Power', description: ''},
+    {name: 'Printer', description: ''},
+    {name: 'Probe', description: ''},
+    {name: 'Repeaters', description: ''},
+    {name: 'Router', description: ''},
+    {name: 'Security Device', description: ''},
+    {name: 'Server', description: ''},
+    {name: 'Switch', description: ''},
+    {name: 'Telephone', description: ''},
+    {name: 'Terminal', description: ''},
+    {name: 'Traffic shaper', description: ''},
+    {name: 'Transceiver', description: ''},
+    {name: 'UPS System', description: ''},
+    {name: 'Workstations', description: ''},
   ]
   get(): DeviceType[] {
     return this.list

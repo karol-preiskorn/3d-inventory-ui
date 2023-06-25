@@ -17,14 +17,12 @@ export class DeviceCategory {
 export class DeviceCategoryDict {
   list: DeviceCategory[] = [
     {
-      name: '-',
-      description:
-        '-',
+      name: '',
+      description: '',
     },
     {
       name: 'Connectivity',
-      description:
-        'Data centers often have multiple fiber connections to the internet provided by multiple carriers.',
+      description: 'Data centers often have multiple fiber connections to the internet provided by multiple carriers.',
     },
     {
       name: 'Facility',
@@ -46,10 +44,7 @@ export class DeviceCategoryDict {
     return deviceCategory.name == searchCategory
   }
 
-  findCategoryImplementation(
-    this: any,
-    searchCategory: string
-  ): DeviceCategoryDict[] {
+  findCategoryImplementation(this: any, searchCategory: string): DeviceCategoryDict[] {
     return this.deviceCategories.find(this.findCategory(searchCategory))
   }
 

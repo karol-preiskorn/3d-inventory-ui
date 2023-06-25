@@ -19,6 +19,7 @@ interface ModelForm {
   type: FormControl<string>
   category: FormControl<string>
 }
+
 @Component({
   selector: 'app-edit-model',
   templateUrl: './edit-model.component.html',
@@ -29,7 +30,7 @@ export class EditModelComponent implements OnInit {
   model: Model
   component = ''
 
-  editForm = new FormGroup({
+  editModelForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     dimension: new FormGroup({
@@ -61,11 +62,13 @@ export class EditModelComponent implements OnInit {
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   isSubmitted = false
 
-  ngOnInit() {
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
-    this.model = this.getModel(this.inputId)
-    this.component = this.inputId
-  }
+  constructor(
+    public activatedRoute: ActivatedRoute,
+    public modelsService: ModelsService,
+    private ngZone: NgZone,
+    private router: Router,
+    private logService: LogService
+  ) { }
 
   private getModel(id: string): any {
     return this.modelsService
@@ -73,7 +76,7 @@ export class EditModelComponent implements OnInit {
       .subscribe((data: Model) => {
         console.log('GetModel ' + JSON.stringify(data))
         this.model = data
-        this.editForm.setValue({
+        this.editModelForm.setValue({
           id: data.id,
           name: data.name,
           dimension: {
@@ -93,13 +96,13 @@ export class EditModelComponent implements OnInit {
         })
       })
   }
-  constructor(
-    public activatedRoute: ActivatedRoute,
-    public modelsService: ModelsService,
-    private ngZone: NgZone,
-    private router: Router,
-    private logService: LogService
-  ) { }
+
+  ngOnInit() {
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
+    this.model = this.getModel(this.inputId)
+    this.component = this.inputId
+  }
+
   changeId(e: any) {
     this.id?.setValue(e.target.value, { onlySelf: true })
   }
@@ -113,16 +116,16 @@ export class EditModelComponent implements OnInit {
     this.category?.setValue(e.target.value, { onlySelf: true })
   }
   get id() {
-    return this.editForm.get('id')
+    return this.editModelForm.get('id')
   }
   get name() {
-    return this.editForm.get('name')
+    return this.editModelForm.get('name')
   }
   get type() {
-    return this.editForm.get('type')
+    return this.editModelForm.get('type')
   }
   get category() {
-    return this.editForm.get('category')
+    return this.editModelForm.get('category')
   }
   toString(data: any): string {
     return JSON.stringify(data)
@@ -130,29 +133,29 @@ export class EditModelComponent implements OnInit {
 
   DeleteForm() {
     this.logService.CreateLog({
-      object: this.editForm.value.id,
+      object: this.editModelForm.value.id,
       operation: 'Delete',
       component: 'Models',
-      message: JSON.stringify(this.editForm.value, null, 2),
+      message: JSON.stringify(this.editModelForm.value, null, 2),
     })
     this.modelsService.DeleteModel(this.inputId).subscribe(() => {
       this.ngZone.run(() => this.router.navigateByUrl('models-list'))
     })
   }
   submitForm() {
-    if (this.editForm.valid && this.editForm.touched) {
+    if (this.editModelForm.valid && this.editModelForm.touched) {
       this.ngZone.run(() => this.router.navigateByUrl('models-list'))
       const log: LogIn = {
-        message: JSON.stringify(this.editForm.value) as string,
+        message: JSON.stringify(this.editModelForm.value) as string,
         operation: 'Update',
         component: 'Models',
-        object: this.editForm.value.id,
+        object: this.editModelForm.value.id,
       }
       this.logService.CreateLog(log).subscribe(() => {
         console.log(JSON.stringify(log))
       })
       this.modelsService
-        .UpdateModel(this.inputId, this.editForm.value)
+        .UpdateModel(this.inputId, this.editModelForm.value)
         .subscribe(() => {
           this.router.navigate(['edit-model/', this.model.id])
         })

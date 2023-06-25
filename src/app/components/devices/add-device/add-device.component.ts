@@ -1,6 +1,8 @@
 import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
+import { v4 as uuidv4 } from 'uuid'
+
 import { DeviceService } from 'src/app/services/device.service'
 import { LogService } from 'src/app/services/log.service'
 import { Device } from 'src/app/shared/device'
@@ -13,41 +15,33 @@ import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
   styleUrls: ['./add-device.component.scss'],
 })
 export class AddDeviceComponent implements OnInit {
-  addForm: FormGroup<{
-    id: FormControl<string | null>
-    name: FormControl<string | null>
-    width: FormControl<string | null>
-    type: FormControl<string | null>
-    category: FormControl<string | null>
-  }> = new FormGroup({
-    id: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    width: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    type: new FormControl('', Validators.required),
-    category: new FormControl('', Validators.required),
-  })
+  addDeviceForm: FormGroup
   device: Device
   isSubmitted = false
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
-  ngOnInit() {
-    this.addDevice()
-  }
+
   constructor(
-    public formBulider: FormBuilder,
+    private formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router,
     public devicesService: DeviceService,
     private logService: LogService
   ) {}
+  ngOnInit() {
+    this.addDevice()
+  }
 
   addDevice() {
-    this.addForm = this.formBulider.group({
-      id: [''],
-      name: [''],
-      width: [''],
-      type: [''],
-      category: [''],
+    this.addDeviceForm = this.formBuilder.group({
+      id: [uuidv4(), [Validators.required, Validators.minLength(36)]],
+      name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
+      modelId: ['', Validators.required],
+      position: this.formBuilder.group({
+        x: ['', Validators.required],
+        y: ['', Validators.required],
+        h: ['', Validators.required],
+      }),
     })
   }
   changeId(e: any) {
@@ -56,43 +50,53 @@ export class AddDeviceComponent implements OnInit {
   changeName(e: any) {
     this.name?.setValue(e.target.value, { onlySelf: true })
   }
-  changeType(e: any) {
-    this.type?.setValue(e.target.value, { onlySelf: true })
+  changeModelId(e: any) {
+    this.modelId?.setValue(e.target.value, { onlySelf: true })
   }
-  changeCategory(e: any) {
-    this.category?.setValue(e.target.value, { onlySelf: true })
+  changeX(e: any) {
+    this.x?.setValue(e.target.value, { onlySelf: true })
+  }
+  changeY(e: any) {
+    this.y?.setValue(e.target.value, { onlySelf: true })
+  }
+  changeH(e: any) {
+    this.h?.setValue(e.target.value, { onlySelf: true })
   }
 
   get id() {
-    return this.addForm.get('id')
+    return this.addDeviceForm.get('id')
   }
   get name() {
-    return this.addForm.get('name')
+    return this.addDeviceForm.get('name')
   }
-  get dimensions() {
-    return this.addForm.get('dimensions')
+  get modelId() {
+    return this.addDeviceForm.get('modelId')
   }
-  get type() {
-    return this.addForm.get('type')
+  get position() {
+    return this.addDeviceForm.get('position')?.get('x')
   }
-  get category() {
-    return this.addForm.get('category')
+  get x() {
+    return this.addDeviceForm.get('x')
+  }
+  get y() {
+    return this.addDeviceForm.get('y')
+  }
+  get h() {
+    return this.addDeviceForm.get('h')
   }
   toString(data: any): string {
     return JSON.stringify(data)
   }
-
   get f() {
-    return this.addForm.controls
+    return this.addDeviceForm.controls
   }
-
   submitForm() {
     this.devicesService.CreateDevice(this.device).subscribe((res) => {
       console.log('Device added!')
       this.logService.CreateLog({
         operation: 'Create',
         component: 'Devices',
-        message: this.toString(this.addForm.value),
+        message: this.toString(this.addDeviceForm.value),
       })
       this.ngZone.run(() => this.router.navigateByUrl('device-list'))
     })

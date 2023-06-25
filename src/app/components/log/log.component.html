@@ -11,6 +11,7 @@
               <th scope="col">Component</th>
               <th scope="col">Operation</th>
               <th scope="col">Message</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -20,10 +21,15 @@
                 let i = index
               ">
               <td>{{ log.date }}</td>
-              <td>{{ log.object }}</td>
+              <td>{{ findNameInMessage(log.message) }}<div class="logmessage">{{ log.object }}</div></td>
               <td>{{ log.component }}</td>
               <td>{{ log.operation }}</td>
               <td class="logmessage">{{ log.message }}</td>
+              <td>                  <button type="button" id="delete-device"
+                class="btn btn-danger btn-sm"
+                (click)="DeleteLog(log.id)">
+                Delete
+              </button></td>
             </tr>
           </tbody>
         </table>

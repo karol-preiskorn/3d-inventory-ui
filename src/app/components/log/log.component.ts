@@ -1,7 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, OnInit, Input, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
+
 import { Log, LogService } from 'src/app/services/log.service'
+
 import { EnvironmentService } from 'src/app/services/environment.service'
+
 
 @Component({
   selector: 'app-log',
@@ -17,7 +21,9 @@ export class LogComponent implements OnInit {
   noData = false
   preLoader = false
   private sub: any
-  constructor(public logService: LogService, private environmentService: EnvironmentService) {}
+  constructor(public logService: LogService, private environmentService: EnvironmentService,
+    private router: Router,
+    private ngZone: NgZone) { }
   loadLog(context: string) {
     console.log(this.environmentService.isApiSettings(this.component))
     if (this.environmentService.isApiSettings(this.component)) {
@@ -31,7 +37,7 @@ export class LogComponent implements OnInit {
   ngOnInit() {
     this.loadLog('ngOnInit')
   }
-  ngOnChanges() {
+  OnChanges() {
     this.loadLog('ngOnChanges')
   }
   loadComponentLog(id: string): Subscription {
@@ -44,6 +50,19 @@ export class LogComponent implements OnInit {
     return this.logService.GetObjectsLogs(id).subscribe((data: Log[]) => {
       console.log('LogComponent.loadObjectsLog(' + id + '): ' + JSON.stringify(data))
       this.LogList = data
+    })
+  }
+  findNameInMessage(message: string): string {
+    const jsonObject = JSON.parse(message)
+    console.log(typeof jsonObject)
+    return jsonObject.name
+  }
+
+  DeleteLog(id: string) {
+    return this.logService.DeleteLog(id).subscribe((data: any) => {
+      console.log(data)
+      this.OnChanges()
+      // this.router.navigate(['/log-list/'])
     })
   }
 }
