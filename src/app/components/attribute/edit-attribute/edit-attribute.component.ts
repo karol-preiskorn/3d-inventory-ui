@@ -137,6 +137,10 @@ export class EditAttributeComponent implements OnInit {
       this.deviceDictionary = data
     })
   }
+  findDeviceName(id: string){
+      return this.deviceDictionary.find((e) => e.id === id)?.name
+    }
+
   getModelList() {
     return this.modelService.GetModels().subscribe((data: any) => {
       const tmp = new Model()

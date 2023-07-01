@@ -1,5 +1,5 @@
 import {Component, NgZone, OnInit} from '@angular/core'
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
+import {FormControl, FormGroup, Validators} from '@angular/forms'
 import {Router} from '@angular/router'
 import {v4 as uuidv4} from 'uuid'
 
@@ -15,43 +15,53 @@ import {Model} from 'src/app/shared/model'
   styleUrls: ['./add-model.component.scss'],
 })
 export class AddModelComponent implements OnInit {
-  addModelForm: FormGroup
+  addModelForm = new FormGroup({
+    id: new FormControl(uuidv4(), [Validators.required, Validators.minLength(4)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    dimension: new FormGroup({
+      width: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(6),
+        Validators.pattern('^[0-9]*$'),
+      ]),
+      height: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(6),
+        Validators.pattern('^[0-9]*$'),
+      ]),
+      depth: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(6),
+        Validators.pattern('^[0-9]*$'),
+      ]),
+    }),
+    texture: new FormGroup({
+      front: new FormControl('', null),
+      back: new FormControl('', null),
+      side: new FormControl('', null),
+      top: new FormControl('', null),
+      botom: new FormControl('', null),
+    }),
+    type: new FormControl('', Validators.required),
+    category: new FormControl('', Validators.required),
+  })
   model: Model
   isSubmitted = false
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
 
   constructor(
-    public formBulider: FormBuilder,
     private ngZone: NgZone,
     private router: Router,
     public modelsService: ModelsService,
     private logService: LogService
   ) {}
 
-  addDevice() {
-    this.addModelForm = this.formBulider.group({
-      id: [uuidv4(), [Validators.required, Validators.minLength(36)]],
-      name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
-      dimension: this.formBulider.group({
-        width: ['1', [Validators.required]],
-        height: ['1', [Validators.required]],
-        depth: ['1', [Validators.required]],
-      }),
-      texture: this.formBulider.group({
-        front: [''],
-        back: [''],
-        side: [''],
-        top: [''],
-        botom: [''],
-      }),
-      type: ['', [Validators.required]],
-      category: ['', [Validators.required]],
-    })
-  }
-
   ngOnInit() {
-    this.addDevice()
+    this.isSubmitted = false
   }
 
   changeId(e: any) {
@@ -61,9 +71,6 @@ export class AddModelComponent implements OnInit {
     this.name?.setValue(e.target.value, {onlySelf: true})
   }
 
-  changeDimension(e: any) {
-    this.dimension?.setValue(e.target.value, {onlySelf: true})
-  }
   changeWidth(e: any) {
     this.width?.setValue(e.target.value as never, {onlySelf: true})
   }
@@ -74,9 +81,6 @@ export class AddModelComponent implements OnInit {
     this.depth?.setValue(e.target.value as never, {onlySelf: true})
   }
 
-  changeTexture(e: any) {
-    this.texture?.setValue(e.target.value as never, {onlySelf: true})
-  }
   changeFront(e: any) {
     this.front?.setValue(e.target.value as never, {onlySelf: true})
   }
@@ -107,36 +111,30 @@ export class AddModelComponent implements OnInit {
     return this.addModelForm.get('name')
   }
 
-  get dimension() {
-    return this.addModelForm.get('dimension')
-  }
   get width() {
-    return this.addModelForm.get('width')
+    return this.addModelForm.get('dimension.width')
   }
   get height() {
-    return this.addModelForm.get('height')
+    return this.addModelForm.get('dimension.height')
   }
   get depth() {
-    return this.addModelForm.get('depth')
+    return this.addModelForm.get('dimension.depth')
   }
 
-  get texture() {
-    return this.addModelForm.get('texture')
-  }
   get front() {
-    return this.addModelForm.get('front')
+    return this.addModelForm.get('texture.front')
   }
   get back() {
-    return this.addModelForm.get('back')
+    return this.addModelForm.get('texture.back')
   }
   get side() {
-    return this.addModelForm.get('side')
+    return this.addModelForm.get('texture.side')
   }
   get top() {
-    return this.addModelForm.get('top')
+    return this.addModelForm.get('texture.top')
   }
   get botom() {
-    return this.addModelForm.get('botom')
+    return this.addModelForm.get('texture.botom')
   }
 
   get type() {
@@ -144,10 +142,6 @@ export class AddModelComponent implements OnInit {
   }
   get category() {
     return this.addModelForm.get('category')
-  }
-
-  toString(data: any): string {
-    return JSON.stringify(data)
   }
 
   submitForm() {

@@ -15,7 +15,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="
+            <tr
+              *ngFor="
                 let attribute of attributeList
                   | paginate
                     : {
@@ -24,37 +25,58 @@
                         currentPage: attributePage
                       }
               ">
-              <td>{{ attribute.id }}</td>
-              <td>{{ attribute.deviceId }}</td>
-              <td>{{ attribute.modelId }}</td>
-              <td>{{ attribute.connectionId }}</td>
-              <td>{{ attribute.attributeDictionaryId }}</td>
+              <td class="logmessage">{{ attribute.id }}</td>
+              <td>
+                {{ findDeviceName(attribute.deviceId) }}
+                <div class="logmessage">{{ attribute.deviceId }}</div>
+              </td>
+              <td>
+                {{ findModelName(attribute.modelId) }}
+                <div class="logmessage">{{ attribute.modelId }}</div>
+              </td>
+              <td>
+                {{ findConnectionName(attribute.connectionId) }}
+                <div class="logmessage">{{ attribute.connectionId }}</div>
+              </td>
+              <td>
+                {{ findAttributeDictionary(attribute.attributeDictionaryId) }}
+                <div class="logmessage">{{ attribute.attributeDictionaryId }}</div>
+              </td>
               <td>{{ attribute.value }}</td>
               <td>
-                <div class="btn-group" role="group"
-                  aria-label="attribute-operations">
-                  <button type="button"
+                <div class="btn-group" role="group" aria-label="attribute-operations">
+                  <button
+                    type="button"
                     class="btn btn-success btn-sm move-right"
-                    id="edit-attribute" (click)="EditAttribute(attribute)"> Edit
+                    id="edit-attribute"
+                    (click)="EditAttribute(attribute)">
+                    Edit
                   </button>
-                  <button type="button" id="delete-attribute"
+                  <button
+                    type="button"
+                    id="delete-attribute"
                     class="btn btn-danger btn-sm"
-                    (click)="DeleteAttribute(attribute.id)"> Delete </button>
-                  <button type="button" id="clone-attribute"
+                    (click)="DeleteAttribute(attribute.id)">
+                    Delete
+                  </button>
+                  <button
+                    type="button"
+                    id="clone-attribute"
                     class="btn btn-info btn-sm"
-                    (click)="CloneAttribute(attribute.id)"> Clone </button>
+                    (click)="CloneAttribute(attribute.id)">
+                    Clone
+                  </button>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
-        <button type="button" class="btn btn-success btn-sm move-right mb-3"
-          (click)="AddAttribute()">
-          <i class="bi bi-plus-lg"></i> Add </button>
+        <button type="button" class="btn btn-success btn-sm move-right mb-3" (click)="AddAttribute()">
+          <i class="bi bi-plus-lg"></i> Add
+        </button>
       </div>
     </div>
   </div>
-  <pagination-controls (pageChange)="attributePage = $event"
-    id="attributeListPagination"></pagination-controls>
+  <pagination-controls (pageChange)="attributePage = $event" id="attributeListPagination"></pagination-controls>
 </div>
 <app-log [component]="component"></app-log>

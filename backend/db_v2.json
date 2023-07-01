@@ -327,6 +327,54 @@
       "operation": "Create",
       "component": "Attributes",
       "message": "{\"id\":\"d611e8c0-8f8d-4160-b9cb-e7987d2e2169\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"value\":\"1\"}"
+    },
+    {
+      "id": "7a8dce26-148a-4a00-a052-862330c62692",
+      "date": "2023/07/01 16:16:43.03",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Models",
+      "message": "{\"id\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"name\":\"Model 1\",\"dimension\":{\"width\":\"1\",\"height\":\"2\",\"depth\":\"2\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"CoolAir\",\"category\":\"Connectivity\"}"
+    },
+    {
+      "id": "4873a7e1-cb11-4046-b640-13a6bee8f44c",
+      "date": "2023/07/01 16:16:49.86",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "operation": "Update",
+      "component": "Models",
+      "message": "{\"id\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"name\":\"Model 1\",\"dimension\":{\"width\":\"1\",\"height\":\"2\",\"depth\":\"2\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"CoolAir\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "5cf51606-91c7-41e4-8a75-b9d94ac7d97c",
+      "date": "2023/07/01 16:17:14.03",
+      "object": "482e0849-2241-4ef3-b316-cdf844befbda",
+      "operation": "Update",
+      "component": "Models",
+      "message": "{\"id\":\"482e0849-2241-4ef3-b316-cdf844befbda\",\"name\":\"Model 4\",\"dimension\":{\"width\":\"3\",\"height\":\"4\",\"depth\":\"3\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"Server\",\"category\":\"Facility\"}"
+    },
+    {
+      "id": "3363368c-97ca-4842-aebb-93ac167fd722",
+      "date": "2023/07/01 16:24:02.73",
+      "object": "3fbad21f-dc2a-4fe4-ba05-e1510189dbdb",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"3fbad21f-dc2a-4fe4-ba05-e1510189dbdb\",\"deviceId\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"11dsasdasd\"}"
+    },
+    {
+      "id": "7da3c59e-75d5-4754-8e77-8072d428a8e2",
+      "date": "2023/07/01 16:49:20.91",
+      "object": "f66e88bc-e2b9-4706-9164-03adbd4a1b11",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"f66e88bc-e2b9-4706-9164-03adbd4a1b11\",\"deviceId\":\"\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"connectionId\":\"\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"2\"}"
+    },
+    {
+      "id": "740f97d0-5681-4cfa-8e46-59a5ec36aecf",
+      "date": "2023/07/01 16:49:30.06",
+      "object": "e39a1f92-e797-4219-ba6d-63efd1742c29",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"e39a1f92-e797-4219-ba6d-63efd1742c29\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"fd5ece0f-9626-47cf-ad12-3e94a5a14015\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"3\"}"
     }
   ],
   "models": [
@@ -345,8 +393,8 @@
         "top": "/assets/r710-2.5-nobezel__29341.png",
         "botom": "/assets/r710-2.5-nobezel__29341.png"
       },
-      "type": "Bridge",
-      "category": "Connectivity"
+      "type": "CoolAir",
+      "category": "Facility"
     },
     {
       "id": "e13aea31-cce3-4877-ba29-740f8392ddd2",
@@ -389,7 +437,7 @@
       "name": "Model 4",
       "dimension": {
         "width": "3",
-        "height": "3",
+        "height": "4",
         "depth": "3"
       },
       "texture": {
@@ -444,5 +492,30 @@
       "component": "device"
     }
   ],
-  "attributes": []
+  "attributes": [
+    {
+      "id": "3fbad21f-dc2a-4fe4-ba05-e1510189dbdb",
+      "deviceId": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "70728826-94ef-4610-b171-bfcda02976b6",
+      "value": "11dsasdasd"
+    },
+    {
+      "id": "f66e88bc-e2b9-4706-9164-03adbd4a1b11",
+      "deviceId": "",
+      "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
+      "connectionId": "",
+      "attributeDictionaryId": "70728826-94ef-4610-b171-bfcda02976b6",
+      "value": "2"
+    },
+    {
+      "id": "e39a1f92-e797-4219-ba6d-63efd1742c29",
+      "deviceId": "",
+      "modelId": "",
+      "connectionId": "fd5ece0f-9626-47cf-ad12-3e94a5a14015",
+      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
+      "value": "3"
+    }
+  ]
 }

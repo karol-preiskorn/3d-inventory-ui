@@ -16,6 +16,7 @@
                 required
                 [ngClass]="{
                   'is-invalid': this.editModelForm.controls.id.status != 'VALID',
+                  'is-valid': this.editModelForm.controls.id.status == 'VALID',
                   'form-control': true
                 }" />
               <div *ngIf="this.editModelForm.controls.id.errors" class="invalid-feedback">
@@ -30,6 +31,7 @@
               <input
                 [ngClass]="{
                   'is-invalid': this.editModelForm.controls.name.status != 'VALID',
+                  'is-valid': this.editModelForm.controls.name.status == 'VALID',
                   'form-control': true
                 }"
                 formControlName="name"
@@ -56,6 +58,7 @@
                 required
                 [ngClass]="{
                   'is-invalid': this.editModelForm.controls.dimension.controls.width.status != 'VALID',
+                  'is-valid': this.editModelForm.controls.dimension.controls.width.status == 'VALID',
                   'form-control': true
                 }" />
               <div *ngIf="this.editModelForm.controls.dimension.controls.width.errors" class="invalid-feedback">
@@ -64,6 +67,9 @@
                 </div>
                 <div *ngIf="this.editModelForm.controls.dimension.controls.width.errors.minlength">
                   Width must be at least 1 number.
+                </div>
+                <div *ngIf="this.editModelForm.controls.dimension.controls.width.errors.maxlength">
+                  Height must be at less 6 number
                 </div>
               </div>
             </div>
@@ -80,6 +86,7 @@
                 required
                 [ngClass]="{
                   'is-invalid': this.editModelForm.controls.dimension.controls.height.status != 'VALID',
+                  'is-valid': this.editModelForm.controls.dimension.controls.height.status == 'VALID',
                   'form-control': true
                 }" />
               <div *ngIf="this.editModelForm.controls.dimension.controls.height.errors" class="invalid-feedback">
@@ -88,6 +95,9 @@
                 </div>
                 <div *ngIf="this.editModelForm.controls.dimension.controls.height.errors.minlength">
                   Height must be at least 1 number
+                </div>
+                <div *ngIf="this.editModelForm.controls.dimension.controls.height.errors.maxlength">
+                  Height must be at less 6 number
                 </div>
               </div>
             </div>
@@ -103,7 +113,8 @@
                 minlength="1"
                 required
                 [ngClass]="{
-                  'is-invalid': this.editModelForm.controls.dimension.status != 'VALID',
+                  'is-invalid': this.editModelForm.controls.dimension.controls.depth.status != 'VALID',
+                  'is-valid': this.editModelForm.controls.dimension.controls.depth.status == 'VALID',
                   'form-control': true
                 }" />
               <div *ngIf="this.editModelForm.controls.dimension.controls.depth.errors" class="invalid-feedback">
@@ -112,6 +123,9 @@
                 </div>
                 <div *ngIf="this.editModelForm.controls.dimension.controls.depth.errors.minlength">
                   Depth must be at least 1 number
+                </div>
+                <div *ngIf="this.editModelForm.controls.dimension.controls.depth.errors.maxlength">
+                  Height must be at less 6 number
                 </div>
               </div>
             </div>

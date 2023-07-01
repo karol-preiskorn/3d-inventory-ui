@@ -37,14 +37,20 @@ export class EditModelComponent implements OnInit {
       width: new FormControl('', [
         Validators.required,
         Validators.minLength(1),
+        Validators.maxLength(6),
+        Validators.pattern("^[0-9]*$"),
       ]),
       height: new FormControl('', [
         Validators.required,
         Validators.minLength(1),
+        Validators.maxLength(6),
+        Validators.pattern("^[0-9]*$"),
       ]),
       depth: new FormControl('', [
         Validators.required,
         Validators.minLength(1),
+        Validators.maxLength(6),
+        Validators.pattern("^[0-9]*$"),
       ]),
     }),
     texture: new FormGroup({
