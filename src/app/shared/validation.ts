@@ -56,4 +56,13 @@ export default class Validation {
       return { atLeastOneValidator: true }
     }
   }
+
+  numberValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    if (isNaN(control?.value)) {
+      return {
+        number: true
+      }
+    }
+    return null;
+  }
 }

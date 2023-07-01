@@ -12,6 +12,7 @@ import { Model } from 'src/app/shared/model'
 import { ModelsService } from 'src/app/services/models.service'
 
 import { LogIn, LogService } from 'src/app/services/log.service'
+import Validation from 'src/app/shared/validation'
 
 @Component({
   selector: 'app-edit-device',
@@ -19,6 +20,7 @@ import { LogIn, LogService } from 'src/app/services/log.service'
   styleUrls: ['./edit-device.component.scss'],
 })
 export class EditDeviceComponent implements OnInit {
+  valid: Validation = new Validation()
   inputId = ''
   device: Device = new Device()
   model: Model = new Model()
@@ -29,9 +31,9 @@ export class EditDeviceComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     modelId: new FormControl('', Validators.required),
     position: new FormGroup({
-      x: new FormControl('', Validators.required),
-      y: new FormControl('', Validators.required),
-      h: new FormControl('', Validators.required),
+      x: new FormControl('', [Validators.required, this.valid.numberValidator]),
+      y: new FormControl('', [Validators.required, this.valid.numberValidator]),
+      h: new FormControl('', [Validators.required, this.valid.numberValidator]),
     }),
   })
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
