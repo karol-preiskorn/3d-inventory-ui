@@ -399,6 +399,14 @@
       "operation": "Update",
       "component": "Devices",
       "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Deva\",\"modelId\":\"850819ca-305e-45e8-ac14-32271aad0ee7\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"11\"}}"
+    },
+    {
+      "id": "d96a4acf-88df-476d-a9c3-73c092d0a872",
+      "date": "2023/07/02 11:17:48.36",
+      "object": "06a26870-fb7e-455f-8eea-3c1adaf610aa",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"06a26870-fb7e-455f-8eea-3c1adaf610aa\",\"deviceId\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"1\"}"
     }
   ],
   "models": [
@@ -540,6 +548,14 @@
       "connectionId": "",
       "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
       "value": "3"
+    },
+    {
+      "id": "06a26870-fb7e-455f-8eea-3c1adaf610aa",
+      "deviceId": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "70728826-94ef-4610-b171-bfcda02976b6",
+      "value": "1"
     }
   ]
 }

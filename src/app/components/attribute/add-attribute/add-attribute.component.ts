@@ -36,7 +36,7 @@ import Validation from 'src/app/shared/validation'
 export class AddAttributeComponent implements OnInit {
   valid: Validation = new Validation()
 
-  formAddAttribute = new FormGroup(
+  addAttributeFrom = new FormGroup(
     {
       id: new FormControl('', [Validators.required, Validators.minLength(36)]),
       deviceId: new FormControl('', this.valid.atLeastOneValidator),
@@ -80,7 +80,7 @@ export class AddAttributeComponent implements OnInit {
     private logService: LogService
   ) {}
   formAttribute() {
-    this.formAddAttribute = this.formBulider.group(
+    this.addAttributeFrom = this.formBulider.group(
       {
         id: [uuidv4(), [Validators.required, Validators.minLength(36)]],
         deviceId: [''],
@@ -111,22 +111,22 @@ export class AddAttributeComponent implements OnInit {
     this.value?.setValue(e.target.value, {onlySelf: true})
   }
   get id() {
-    return this.formAddAttribute.get('id')
+    return this.addAttributeFrom.get('id')
   }
   get deviceId() {
-    return this.formAddAttribute.get('deviceId')
+    return this.addAttributeFrom.get('deviceId')
   }
   get modelId() {
-    return this.formAddAttribute.get('modelId')
+    return this.addAttributeFrom.get('modelId')
   }
   get connectionId() {
-    return this.formAddAttribute.get('connectionId')
+    return this.addAttributeFrom.get('connectionId')
   }
   get attributeDictionaryId() {
-    return this.formAddAttribute.get('attributeDictionaryId')
+    return this.addAttributeFrom.get('attributeDictionaryId')
   }
   get value() {
-    return this.formAddAttribute.get('value')
+    return this.addAttributeFrom.get('value')
   }
   toString(data: any): string {
     return JSON.stringify(data)
@@ -158,11 +158,11 @@ export class AddAttributeComponent implements OnInit {
     })
   }
   submitForm(): void {
-    this.attributeService.CreateAttribute(this.formAddAttribute.value as Attribute).subscribe(() => {
+    this.attributeService.CreateAttribute(this.addAttributeFrom.value as Attribute).subscribe(() => {
       this.logService
         .CreateLog({
-          object: this.formAddAttribute.get('id')?.value,
-          message: this.toString(this.formAddAttribute.value),
+          object: this.addAttributeFrom.get('id')?.value,
+          message: this.toString(this.addAttributeFrom.value),
           operation: 'Create',
           component: 'Attributes',
         })

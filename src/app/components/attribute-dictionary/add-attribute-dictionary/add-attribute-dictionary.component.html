@@ -1,86 +1,124 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h3>Add Attribute Dictionary</h3>
-      <form [formGroup]="addForm" (ngSubmit)="submitForm()">
-        <div class="form-group mb-3">
-          <label for="id" class="form-label">Id</label>
-          <input type="text" formControlName="id" id="id" required readonly class="form-control" />
-          <div *ngIf="this.addForm.controls.id.errors" class="invalid-feedback">
-            <div *ngIf="this.addForm.controls.id.errors.required"> Id is required </div>
-            <div *ngIf="this.addForm.controls.id.errors.minlength"> Id must be at least 4 characters </div>
-          </div>
-        </div>
-        <div class="form-group mb-3">
-          <label for="name" class="form-label">Name</label>
-          <textarea [ngClass]="{
-              'is-invalid': this.addForm.controls.name.status != 'VALID',
-              'form-control': true
-            }" formControlName="name" id="name"
-            required >{{ this.addForm.value.name }}</textarea>
-          <div *ngIf="this.addForm.controls.name.errors" class="invalid-feedback">
-            <div *ngIf="this.addForm.controls.name.errors.required"> Attribute name is required </div>
-            <div *ngIf="this.addForm.controls.name.errors.minlength"> Attribute name must be at least 6 characters </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="type" class="form-label">Type</label>
-              <select (change)="changeType($event)" formControlName="type" class="form-control" id="type">
-                <option *ngFor="let typeObj of deviceTypeDict.list; let i = index">
-                  {{ typeObj.name }}
-                </option>
-              </select>
-              <div *ngIf="this.addForm.controls.category.errors" class="invalid-feedback">
-                <div *ngIf="this.addForm.controls.category.errors.required">Category is required</div>
-              </div>
-              <div>
-              {{ this.toString(this.addForm.controls.category.dirty) }}
-            </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="category" class="form-label">Category</label>
-              <select (change)="changeCategory($event)" formControlName="category" class="form-control"
-                id="category">
-                <option *ngFor="
-                    let categoryObj of deviceCategoryDict.list;
-                    let i = index
-                  ">
-                  {{ categoryObj.name }}
-                </option>
-              </select>
-              <div *ngIf="this.addForm.controls.category.errors" class="invalid-feedback">
-                <div *ngIf="this.addForm.controls.category.errors.required">Category is required</div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="component" class="form-label">Component</label>
-              <select (change)="changeCategory($event)" formControlName="component" class="form-control"
-                id="component">
-                <option *ngFor="
-                    let componentObj of componentDictionary.list;
-                    let i = index
-                  ">
-                  {{ componentObj.name }}
-                </option>
-              </select>
-              <div *ngIf="this.addForm.controls.component.errors" class="invalid-feedback">
-                <div *ngIf="this.addForm.controls.component.errors.required">Component is required</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group mb-3">
-          <button type="submit" [disabled]="!(this.addForm.valid && this.addForm.touched)" class="btn btn-primary"> Add
-            model </button>
-          <div *ngIf="!(this.addForm.valid && this.addForm.touched)" class="invalid-feedback"> Form is invalid </div>
-        </div>
-      </form>
+  <h3>Add Attribute Dictionary</h3>
+  <form [formGroup]="addAttributeDictionaryForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
+    <div class="form-group mb-3">
+      <label for="id" class="form-label">Id</label>
+      <input
+        type="text"
+        formControlName="id"
+        id="id"
+        required
+        readonly
+        [ngClass]="{
+          'is-invalid': this.addAttributeDictionaryForm.controls.id.status != 'VALID',
+          'is-valid': this.addAttributeDictionaryForm.controls.id.status == 'VALID',
+          'form-select': true
+        }" />
+      <div *ngIf="this.addAttributeDictionaryForm.controls.id.errors" class="invalid-feedback">
+        <div *ngIf="this.addAttributeDictionaryForm.controls.id.errors.required">Id is required</div>
+        <div *ngIf="this.addAttributeDictionaryForm.controls.id.errors.minlength">Id must be at least 4 characters</div>
+      </div>
     </div>
-  </div>
+    <div class="form-group mb-3">
+      <label for="name" class="form-label">Name</label>
+      <textarea
+        [ngClass]="{
+          'is-invalid': this.addAttributeDictionaryForm.controls.name.status != 'VALID',
+          'is-valid': this.addAttributeDictionaryForm.controls.name.status == 'VALID',
+          'form-select': true
+        }"
+        formControlName="name"
+        id="name"
+        required
+        >{{ this.addAttributeDictionaryForm.value.name }}</textarea
+      >
+      <div *ngIf="this.addAttributeDictionaryForm.controls.name.errors" class="invalid-feedback">
+        <div *ngIf="this.addAttributeDictionaryForm.controls.name.errors.required">Attribute name is required</div>
+        <div *ngIf="this.addAttributeDictionaryForm.controls.name.errors.minlength">
+          Attribute name must be at least 6 characters
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group mb-3">
+          <label for="type" class="form-label">Type</label>
+          <select
+            (change)="changeType($event)"
+            formControlName="type"
+            [ngClass]="{
+              'is-invalid': this.addAttributeDictionaryForm.controls.type.status != 'VALID',
+              'is-valid': this.addAttributeDictionaryForm.controls.type.status == 'VALID',
+              'form-select': true
+            }"
+            id="type">
+            <option *ngFor="let typeObj of deviceTypeDict.list; let i = index">
+              {{ typeObj.name }}
+            </option>
+          </select>
+          <div *ngIf="this.addAttributeDictionaryForm.controls.type.errors" class="invalid-feedback">
+            <div *ngIf="this.addAttributeDictionaryForm.controls.type.errors.required">Category is required</div>
+          </div>
+          <div>
+            {{ this.toString(this.addAttributeDictionaryForm.controls.type.dirty) }}
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select
+            (change)="changeCategory($event)"
+            formControlName="category"
+            id="category"
+            [ngClass]="{
+              'is-invalid': this.addAttributeDictionaryForm.controls.category.status != 'VALID',
+              'is-valid': this.addAttributeDictionaryForm.controls.category.status == 'VALID',
+              'form-select': true
+            }">
+            <option *ngFor="let categoryObj of deviceCategoryDict.list; let i = index">
+              {{ categoryObj.name }}
+            </option>
+          </select>
+          <div *ngIf="this.addAttributeDictionaryForm.controls.category.errors" class="invalid-feedback">
+            <div *ngIf="this.addAttributeDictionaryForm.controls.category.errors.required">Category is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group mb-3">
+          <label for="component" class="form-label">Component</label>
+          <select
+            (change)="changeCategory($event)"
+            formControlName="component"
+            [ngClass]="{
+              'is-invalid': this.addAttributeDictionaryForm.controls.component.status != 'VALID',
+              'is-valid': this.addAttributeDictionaryForm.controls.component.status == 'VALID',
+              'form-select': true
+            }"
+            id="component">
+            <option *ngFor="let componentObj of componentDictionary.list; let i = index">
+              {{ componentObj.name }}
+            </option>
+          </select>
+          <div *ngIf="this.addAttributeDictionaryForm.controls.component.errors" class="invalid-feedback">
+            <div *ngIf="this.addAttributeDictionaryForm.controls.component.errors.required">Component is required</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <button
+        type="submit"
+        [disabled]="!(this.addAttributeDictionaryForm.valid && this.addAttributeDictionaryForm.touched)"
+        class="btn btn-primary">
+        Add model
+      </button>
+      <div
+        *ngIf="!(this.addAttributeDictionaryForm.valid && this.addAttributeDictionaryForm.touched)"
+        class="invalid-feedback">
+        Form is invalid
+      </div>
+    </div>
+  </form>
 </div>

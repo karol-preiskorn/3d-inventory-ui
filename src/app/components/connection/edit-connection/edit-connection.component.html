@@ -1,106 +1,111 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h3>Edit Connection</h3>
-      {{ this.toString(this.EditConnectionForm.controls.id.value) }}
-      <form [formGroup]="EditConnectionForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
-        <div class="row">
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="name" class="form-label">Name</label>
-              <input
-                formControlName="name"
-                id="name"
-                class="form-control"
-                [ngClass]="{
-                  'is-invalid': this.EditConnectionForm.controls.name.status != 'VALID',
-                  'is-valid': this.EditConnectionForm.controls.name.status == 'VALID',
-                  'form-control': true
-                }"
-                value="{{ this.EditConnectionForm.value.name }}" />
-              <div class="valid-feedback">Looks good!</div>
-              <div class="invalid-feedback">Please choose a name 6 char len.</div>
-
-              <div *ngIf="EditConnectionForm.get('name')?.invalid">
-                <div *ngIf="EditConnectionForm.get('name')?.errors?.['required']">Name is required.</div>
-                <div *ngIf="EditConnectionForm.get('name')?.errors?.['minlength']">
-                  Name must be at least 6 characters long.
-                </div>
-              </div>
-              <div
-                *ngIf="
-                  (EditConnectionForm.get('name')?.dirty || EditConnectionForm.get('name')?.touched) &&
-                  EditConnectionForm.get('name')?.invalid
-                ">
-                Please provide connection name.
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="deviceIdFrom" class="form-label">Device From</label>
-              <select
-                (change)="changeDeviceFrom($event)"
-                formControlName="deviceIdFrom"
-                [ngClass]="{
-                  'is-invalid': this.EditConnectionForm.controls.deviceIdFrom.status != 'VALID',
-                  'is-valid': this.EditConnectionForm.controls.deviceIdFrom.status == 'VALID',
-                  'form-select': true
-                }"
-                id="deviceIdFrom">
-                <option
-                  *ngFor="let deviceFromObj of deviceList; let i = index"
-                  [value]="deviceFromObj.id"
-                  [selected]="deviceFromObj.id === this.connection.deviceIdFrom">
-                  {{ deviceFromObj.name }}
-                </option>
-              </select>
-              <div *ngIf="this.EditConnectionForm.get('deviceIdFrom')?.invalid">Device Id From is required</div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="deviceIdTo" class="form-label">Device To</label>
-              <select
-                (change)="changeDeviceTo($event)"
-                formControlName="deviceIdTo"
-                [ngClass]="{
-                  'is-invalid': this.EditConnectionForm.controls.deviceIdTo.status != 'VALID',
-                  'is-valid': this.EditConnectionForm.controls.deviceIdTo.status == 'VALID',
-                  'form-select': true
-                }"
-                id="deviceIdTo">
-                <option
-                  *ngFor="let deviceToObj of deviceList; let i = index"
-                  [value]="deviceToObj.id"
-                  [selected]="deviceToObj.id === this.connection.deviceIdTo">
-                  {{ deviceToObj.name }}
-                </option>
-              </select>
-              <div *ngIf="this.EditConnectionForm.controls.deviceIdTo.errors">
-                <div *ngIf="this.EditConnectionForm.controls.deviceIdTo.errors.required">Device Id To is required</div>
-              </div>
-              <div>
-                {{ this.toString(this.EditConnectionForm.controls.deviceIdTo.hasError) }}
-              </div>
-            </div>
-          </div>
-        </div>
+  <h3>Edit Connection</h3>
+  {{ this.toString(this.editConnectionForm.controls.id.value) }}
+  <form [formGroup]="editConnectionForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
+    <div class="row">
+      <div class="col">
         <div class="form-group mb-3">
-          <button
-            type="submit"
-            [disabled]="!(this.EditConnectionForm.valid && this.EditConnectionForm.touched)"
-            class="btn btn-primary">
-            <i class="bi bi-pencil-square"></i> Edit connection
-          </button>
-          <div *ngIf="!(this.EditConnectionForm.valid && this.EditConnectionForm.touched)" class="invalid-feedback">
-            Form is invalid
+          <label for="name" class="form-label">Name</label>
+          <input
+            formControlName="name"
+            id="name"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': this.editConnectionForm.controls.name.status != 'VALID',
+              'is-valid': this.editConnectionForm.controls.name.status == 'VALID',
+              'form-control': true
+            }"
+            value="{{ this.editConnectionForm.value.name }}" />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please choose a name 6 char len.</div>
+
+          <div *ngIf="editConnectionForm.get('name')?.invalid">
+            <div *ngIf="editConnectionForm.get('name')?.errors?.['required']">Name is required.</div>
+            <div *ngIf="editConnectionForm.get('name')?.errors?.['minlength']">
+              Name must be at least 6 characters long.
+            </div>
+          </div>
+          <div
+            *ngIf="
+              (editConnectionForm.get('name')?.dirty || editConnectionForm.get('name')?.touched) &&
+              editConnectionForm.get('name')?.invalid
+            ">
+            Please provide connection name.
           </div>
         </div>
-      </form>
+      </div>
     </div>
-  </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group mb-3">
+          <label for="deviceIdFrom" class="form-label">Device From</label>
+          <select
+            (change)="changeDeviceFrom($event)"
+            formControlName="deviceIdFrom"
+            [ngClass]="{
+              'is-invalid': this.editConnectionForm.controls.deviceIdFrom.status != 'VALID',
+              'is-valid': this.editConnectionForm.controls.deviceIdFrom.status == 'VALID',
+              'form-select': true
+            }"
+            id="deviceIdFrom">
+            <option
+              *ngFor="let deviceFromObj of deviceList; let i = index"
+              [value]="deviceFromObj.id"
+              [selected]="deviceFromObj.id === this.connection.deviceIdFrom">
+              {{ deviceFromObj.name }}
+            </option>
+          </select>
+          <div *ngIf="this.editConnectionForm.controls.deviceIdFrom.errors" class="invalid-feedback">
+            <div *ngIf="this.editConnectionForm.controls.deviceIdFrom.errors.required">
+              attributeDictionaryId is required
+            </div>
+          </div>
+          <div class="log-message">
+            {{ this.toString(this.editConnectionForm.controls.deviceIdFrom.value) }}
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group mb-3">
+          <label for="deviceIdTo" class="form-label">Device To</label>
+          <select
+            (change)="changeDeviceTo($event)"
+            formControlName="deviceIdTo"
+            [ngClass]="{
+              'is-invalid': this.editConnectionForm.controls.deviceIdTo.status != 'VALID',
+              'is-valid': this.editConnectionForm.controls.deviceIdTo.status == 'VALID',
+              'form-select': true
+            }"
+            id="deviceIdTo">
+            <option
+              *ngFor="let deviceToObj of deviceList; let i = index"
+              [value]="deviceToObj.id"
+              [selected]="deviceToObj.id === this.connection.deviceIdTo">
+              {{ deviceToObj.name }}
+            </option>
+          </select>
+          <div *ngIf="this.editConnectionForm.controls.deviceIdTo.errors" class="invalid-feedback">
+            <div *ngIf="this.editConnectionForm.controls.deviceIdTo.errors.required">
+              attributeDictionaryId is required
+            </div>
+          </div>
+          <div class="log-message">
+            {{ this.toString(this.editConnectionForm.controls.deviceIdTo.value) }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <button
+        type="submit"
+        [disabled]="!(this.editConnectionForm.valid && this.editConnectionForm.touched)"
+        class="btn btn-primary">
+        <i class="bi bi-pencil-square"></i> Edit connection
+      </button>
+      <div *ngIf="!(this.editConnectionForm.valid && this.editConnectionForm.touched)" class="invalid-feedback">
+        Form is invalid
+      </div>
+    </div>
+  </form>
 </div>
 <app-log [component]="component"></app-log>

@@ -20,7 +20,7 @@ import { LogService } from 'src/app/services/log.service'
 export class EditConnectionComponent implements OnInit {
   inputId: any
 
-  EditConnectionForm = new FormGroup({
+  editConnectionForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(36)]),
     name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]),
     deviceIdTo: new FormControl('', Validators.required),
@@ -53,7 +53,7 @@ export class EditConnectionComponent implements OnInit {
   ) { }
 
   formConnection() {
-    this.EditConnectionForm = this.formBulider.group({
+    this.editConnectionForm = this.formBulider.group({
       id: [uuidv4(), [Validators.required, Validators.minLength(36)]],
       name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
       deviceIdTo: ['', [Validators.required]],
@@ -79,16 +79,16 @@ export class EditConnectionComponent implements OnInit {
   }
 
   get id() {
-    return this.EditConnectionForm.get('id')
+    return this.editConnectionForm.get('id')
   }
   get name() {
-    return this.EditConnectionForm.get('name')
+    return this.editConnectionForm.get('name')
   }
   get deviceIdTo() {
-    return this.EditConnectionForm.get('deviceIdTo')
+    return this.editConnectionForm.get('deviceIdTo')
   }
   get deviceIdFrom() {
-    return this.EditConnectionForm.get('deviceIdFrom')
+    return this.editConnectionForm.get('deviceIdFrom')
   }
 
   toString(data: any): string {
@@ -109,17 +109,17 @@ export class EditConnectionComponent implements OnInit {
       .subscribe((data: any) => {
         console.log('EditConnectionComponent.connectionService.GetConnection(' + this.inputId + ') => ' + JSON.stringify(data))
         this.connection = data
-        this.EditConnectionForm.setValue(data)
+        this.editConnectionForm.setValue(data)
       })
   }
 
   submitForm() {
-    this.connectionService.UpdateConnection(this.inputId, this.EditConnectionForm.value as Connection)
+    this.connectionService.UpdateConnection(this.inputId, this.editConnectionForm.value as Connection)
       .subscribe(() => {
         this.logService
           .CreateLog({
-            object: this.EditConnectionForm.get('id')?.value,
-            message: this.toString(this.EditConnectionForm.value),
+            object: this.editConnectionForm.get('id')?.value,
+            message: this.toString(this.editConnectionForm.value),
             operation: 'Update',
             component: 'Connection',
           })

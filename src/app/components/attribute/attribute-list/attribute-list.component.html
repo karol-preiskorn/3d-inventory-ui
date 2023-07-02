@@ -25,22 +25,18 @@
                         currentPage: attributePage
                       }
               ">
-              <td class="logmessage">{{ attribute.id }}</td>
+              <td><div tooltip="{{ attribute.id }}">#</div></td>
               <td>
-                {{ findDeviceName(attribute.deviceId) }}
-                <div class="logmessage">{{ attribute.deviceId }}</div>
+                <div tooltip="{{ attribute.deviceId }}">{{ findDeviceName(attribute.deviceId) }}</div>
               </td>
               <td>
-                {{ findModelName(attribute.modelId) }}
-                <div class="logmessage">{{ attribute.modelId }}</div>
+                <div tooltip="{{ attribute.modelId }}">{{ findModelName(attribute.modelId) }}</div>
               </td>
               <td>
-                {{ findConnectionName(attribute.connectionId) }}
-                <div class="logmessage">{{ attribute.connectionId }}</div>
+                <div tooltip="{{ attribute.connectionId }}">{{ findConnectionName(attribute.connectionId) }}</div>
               </td>
               <td>
-                {{ findAttributeDictionary(attribute.attributeDictionaryId) }}
-                <div class="logmessage">{{ attribute.attributeDictionaryId }}</div>
+                <div tooltip="{{ attribute.attributeDictionaryId }}">{{ findAttributeDictionary(attribute.attributeDictionaryId) }}</div>
               </td>
               <td>{{ attribute.value }}</td>
               <td>

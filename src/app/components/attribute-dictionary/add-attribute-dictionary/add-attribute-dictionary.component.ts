@@ -15,13 +15,15 @@ import { v4 as uuidv4 } from 'uuid'
   styleUrls: ['./add-attribute-dictionary.component.scss']
 })
 export class AddAttributeDictionaryComponent implements OnInit {
-  addForm = new FormGroup({
+
+  addAttributeDictionaryForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(10)]),
     name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]),
     type: new FormControl(null, Validators.required),
     category: new FormControl(null, Validators.required),
     component: new FormControl(null, Validators.required),
   })
+
   attributeDictionary: AttributeDictionary
   isSubmitted = false
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
@@ -31,6 +33,7 @@ export class AddAttributeDictionaryComponent implements OnInit {
   ngOnInit() {
     this.formAttributeDictionary()
   }
+
   constructor(
     public formBulider: FormBuilder,
     private ngZone: NgZone,
@@ -40,7 +43,7 @@ export class AddAttributeDictionaryComponent implements OnInit {
   ) {}
 
   formAttributeDictionary() {
-    this.addForm = this.formBulider.group({
+    this.addAttributeDictionaryForm = this.formBulider.group({
       id: [uuidv4(), [Validators.required, Validators.minLength(36)]],
       name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
       type: [null, [Validators.required]],
@@ -48,46 +51,58 @@ export class AddAttributeDictionaryComponent implements OnInit {
       component: [null, [Validators.required]],
     })
   }
+
   changeId(e: any) {
     this.id?.setValue(e.target.value, { onlySelf: true })
   }
+
   changeName(e: any) {
     this.name?.setValue(e.target.value, { onlySelf: true })
   }
+
   changeType(e: any) {
     this.type?.setValue(e.target.value, { onlySelf: true })
   }
+
   changeCategory(e: any) {
     this.category?.setValue(e.target.value, { onlySelf: true })
   }
+
   changeComponent(e: any) {
     this.component?.setValue(e.target.value, { onlySelf: true })
   }
+
   get id() {
-    return this.addForm.get('id')
+    return this.addAttributeDictionaryForm.get('id')
   }
+
   get name() {
-    return this.addForm.get('name')
+    return this.addAttributeDictionaryForm.get('name')
   }
+
   get type() {
-    return this.addForm.get('type')
+    return this.addAttributeDictionaryForm.get('type')
   }
+
   get category() {
-    return this.addForm.get('category')
+    return this.addAttributeDictionaryForm.get('category')
   }
+
   get component() {
-    return this.addForm.get('component')
+    return this.addAttributeDictionaryForm.get('component')
   }
+
   toString(data: any): string {
     return JSON.stringify(data)
   }
+
   submitForm() {
-    this.attributeDictionaryService.CreateAttributeDictionary(this.addForm.value as AttributeDictionary)
+    this.attributeDictionaryService.CreateAttributeDictionary(this.addAttributeDictionaryForm.value as AttributeDictionary)
       .subscribe(() => {
         this.logService
           .CreateLog({
-            object: this.addForm.get('id')?.value,
-            message: this.toString(this.addForm.value),
+            object: this.addAttributeDictionaryForm.get('id')?.value,
+            message: this.toString(this.addAttributeDictionaryForm.value),
             operation: 'Create',
             component: 'Attribute Dictionary',
           })
