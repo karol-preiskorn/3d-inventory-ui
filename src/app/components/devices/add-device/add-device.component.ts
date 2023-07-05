@@ -1,13 +1,19 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
-import { v4 as uuidv4 } from 'uuid'
+import {Component, NgZone, OnInit} from '@angular/core'
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
+import {Router} from '@angular/router'
+import {v4 as uuidv4} from 'uuid'
 
-import { DeviceService } from 'src/app/services/device.service'
-import { LogService } from 'src/app/services/log.service'
-import { Device } from 'src/app/shared/device'
-import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
-import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
+import {Device} from 'src/app/shared/device'
+import {DeviceService} from 'src/app/services/device.service'
+
+import {LogService} from 'src/app/services/log.service'
+import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
+import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
+
+import {Model} from 'src/app/shared/model'
+import {ModelsService} from 'src/app/services/models.service'
+
+import Validation from 'src/app/shared/validation'
 
 @Component({
   selector: 'app-add-device',
@@ -15,81 +21,108 @@ import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
   styleUrls: ['./add-device.component.scss'],
 })
 export class AddDeviceComponent implements OnInit {
-  addDeviceForm: FormGroup
+
   device: Device
   isSubmitted = false
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
+  model: Model = new Model()
+  modelList: Model[]
+  valid: Validation = new Validation()
+
+  addDeviceForm = new FormGroup({
+    id: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    modelId: new FormControl('', Validators.required),
+    position: new FormGroup({
+      x: new FormControl('', [Validators.required, this.valid.numberValidator]),
+      y: new FormControl('', [Validators.required, this.valid.numberValidator]),
+      h: new FormControl('', [Validators.required, this.valid.numberValidator]),
+    }),
+  })
 
   constructor(
     private formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router,
     public devicesService: DeviceService,
+    private modelService: ModelsService,
     private logService: LogService
   ) {}
+
   ngOnInit() {
-    this.addDevice()
+    this.loadModels()
   }
 
-  addDevice() {
-    this.addDeviceForm = this.formBuilder.group({
-      id: [uuidv4(), [Validators.required, Validators.minLength(36)]],
-      name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
-      modelId: ['', Validators.required],
-      position: this.formBuilder.group({
-        x: ['', Validators.required],
-        y: ['', Validators.required],
-        h: ['', Validators.required],
-      }),
+  loadModels() {
+    const tmp: Model = new Model()
+    return this.modelService.GetModels().subscribe((data: any) => {
+      this.modelList = data
+      this.modelList.unshift(tmp)
     })
   }
+
   changeId(e: any) {
-    this.id?.setValue(e.target.value, { onlySelf: true })
+    this.id?.setValue(e.target.value, {onlySelf: true})
   }
+
   changeName(e: any) {
-    this.name?.setValue(e.target.value, { onlySelf: true })
+    this.name?.setValue(e.target.value, {onlySelf: true})
   }
-  changeModelId(e: any) {
-    this.modelId?.setValue(e.target.value, { onlySelf: true })
-  }
+
   changeX(e: any) {
-    this.x?.setValue(e.target.value, { onlySelf: true })
+    this.x?.setValue(e.target.value, {onlySelf: true})
   }
+
   changeY(e: any) {
-    this.y?.setValue(e.target.value, { onlySelf: true })
+    this.y?.setValue(e.target.value, {onlySelf: true})
   }
+
   changeH(e: any) {
-    this.h?.setValue(e.target.value, { onlySelf: true })
+    this.h?.setValue(e.target.value, {onlySelf: true})
+  }
+
+  changeModelId(e: any) {
+    this.modelId?.setValue(e.target.value, {onlySelf: true})
   }
 
   get id() {
     return this.addDeviceForm.get('id')
   }
+
   get name() {
     return this.addDeviceForm.get('name')
   }
+
+  get x() {
+    return this.addDeviceForm.get('position')?.get('x')
+  }
+
+  get y() {
+    return this.addDeviceForm.get('position')?.get('y')
+  }
+
+  get h() {
+    return this.addDeviceForm.get('position')?.get('h')
+  }
+
   get modelId() {
     return this.addDeviceForm.get('modelId')
   }
-  get position() {
-    return this.addDeviceForm.get('position')?.get('x')
-  }
-  get x() {
-    return this.addDeviceForm.get('x')
-  }
-  get y() {
-    return this.addDeviceForm.get('y')
-  }
-  get h() {
-    return this.addDeviceForm.get('h')
-  }
+
   toString(data: any): string {
     return JSON.stringify(data)
   }
+
+  /**
+   * @description shortcut for html template
+   * @readonly
+   * @memberof AddDeviceComponent
+   */
   get f() {
     return this.addDeviceForm.controls
   }
+
   submitForm() {
     this.devicesService.CreateDevice(this.device).subscribe((res) => {
       console.log('Device added!')

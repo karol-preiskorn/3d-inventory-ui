@@ -1,7 +1,5 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h3>Add Connection</h3>
+      <h2><i class="bi bi-ethernet"></i> Add Connection</h2>
       <i class="bi bi-window-plus"></i>
       {{ this.toString(this.addConnectionForm.controls.id.value) }}
       <form [formGroup]="addConnectionForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
@@ -92,5 +90,3 @@
         </div>
       </form>
     </div>
-  </div>
-</div>

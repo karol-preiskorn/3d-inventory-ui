@@ -1,116 +1,105 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h3>Add Device</h3>
-      <form [formGroup]="addDeviceForm" (ngSubmit)="submitForm()" class="g-3 needs-validation" novalidate>
-        <div class="form-group mb-3">
-          <label>Id</label>
-          <input
-            type="text"
-            formControlName="id"
-            [ngClass]="{
-              'is-invalid': this.addDeviceForm.controls.id.status != 'VALID',
-              'form-control': true
-            }"
-            maxlength="20"
-            minlength="4"
-            required />
-          <div *ngIf="f.id.errors" class="invalid-feedback">
-            <div *ngIf="f.id.errors.required">Id is required</div>
-            <div *ngIf="f.id.errors.minlength">Id must be at least 4 characters</div>
-          </div>
-          <div class="valid-feedback">Looks good!</div>
-        </div>
-
-        <div class="form-group mb-3">
-          <label>Name</label>
-          <textarea
-            formControlName="name"
-            rows="2"
-            minlength="4"
-            maxlength="50"
-            required
-              [ngClass]="{
-                'is-invalid': this.addDeviceForm.controls.name.status != 'VALID',
-                'is-valid': this.addDeviceForm.controls.name.status == 'VALID',
-                'form-select': true
-              }"></textarea>
-          <div *ngIf="this.addDeviceForm.controls.name.errors" class="invalid-feedback">
-            <div *ngIf="this.addDeviceForm.controls.name.errors.required">Name is required</div>
-            <div *ngIf="this.addDeviceForm.controls.name.errors.minlength">Name must be at least 4 characters</div>
-          </div>
-        </div>
-
-        <div class="row" formGroupName="position">
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="x" class="form-label">x</label>
-              <input
-                type="text"
-                formControlName="x"
-                class="form-control"
-                id="x"
-                required
-                [ngClass]="{
-                  'is-invalid': this.addDeviceForm.controls.x.status != 'VALID',
-                  'is-valid': this.addDeviceForm.controls.x.status == 'VALID',
-                  'form-control': true
-                }" />
-                <div *ngIf="this.addDeviceForm.controls.x.errors" class="invalid-feedback">
-                  <div *ngIf="this.addDeviceForm.controls.x.errors.required">X is required</div>
-                  <div *ngIf="this.addDeviceForm.controls.x.errors.minlength">X must be at least 1 characters</div>
-                </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="y" class="form-label">y</label>
-              <input
-                type="text"
-                formControlName="y"
-                class="form-control"
-                id="y"
-                required
-                [ngClass]="{
-                  'is-invalid': this.addDeviceForm.controls.y.status != 'VALID',
-                  'is-valid': this.addDeviceForm.controls.y.status == 'VALID',
-                  'form-control': true
-                }" />
-                <div *ngIf="this.addDeviceForm.controls.y.errors" class="invalid-feedback">
-                  <div *ngIf="this.addDeviceForm.controls.y.errors.required">Y is required</div>
-                  <div *ngIf="this.addDeviceForm.controls.y.errors.minlength">Y must be at least 1 characters</div>
-                </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="h" class="form-label">h</label>
-              <input
-                type="text"
-                formControlName="h"
-                class="form-control"
-                id="h"
-                required
-                [ngClass]="{
-                  'is-invalid': this.addDeviceForm.controls.h.status != 'VALID',
-                  'is-valid': this.addDeviceForm.controls.h.status == 'VALID',
-                  'form-control': true
-                }" />
-                <div *ngIf="this.addDeviceForm.controls.h.errors" class="invalid-feedback">
-                  <div *ngIf="this.addDeviceForm.controls.h.errors.required">H is required</div>
-                  <div *ngIf="this.addDeviceForm.controls.h.errors.minlength">H must be at least 1 characters</div>
-                </div>
-            </div>
-          </div>
-        </div>
-        <p>Form Status: {{ addDeviceForm.status }}</p>
-        <!-- <p>Form Values: {{ toString(addDeviceForm.value) }}</p> -->
-        <div class="form-group mb-3">
-          <button type="submit" [disabled]="!(addDeviceForm.valid && addDeviceForm.touched)" class="btn btn-primary mb-3">
-            Submit
-          </button>
-        </div>
-      </form>
+  <h3><i class="bi bi-hdd"></i> Add Device</h3>
+  <form [formGroup]="addDeviceForm" (ngSubmit)="submitForm()" class="g-3 needs-validation" novalidate>
+    <div class="form-group mb-3">
+      <label>Id</label>
+      <input type="text" formControlName="id" [ngClass]="{
+          'is-invalid': this.addDeviceForm.controls.id.status != 'VALID',
+          'form-control': true
+        }" maxlength="20" minlength="4" required />
+      <div *ngIf="f.id.errors" class="invalid-feedback">
+        <div *ngIf="f.id.errors.required">Id is required</div>
+        <div *ngIf="f.id.errors.minlength">Id must be at least 4 characters</div>
+      </div>
+      <div class="valid-feedback">Looks good!</div>
     </div>
-  </div>
+
+    <div class="form-group mb-3">
+      <label>Name</label>
+      <textarea formControlName="name" rows="2" minlength="4" maxlength="50" required [ngClass]="{
+          'is-invalid': this.addDeviceForm.controls.name.status != 'VALID',
+          'is-valid': this.addDeviceForm.controls.name.status == 'VALID',
+          'form-select': true
+        }"></textarea>
+      <div *ngIf="this.addDeviceForm.controls.name.errors" class="invalid-feedback">
+        <div *ngIf="this.addDeviceForm.controls.name.errors.required">Name is required</div>
+        <div *ngIf="this.addDeviceForm.controls.name.errors.minlength">Name must be at least 4 characters</div>
+      </div>
+    </div>
+    <div formGroupName="position">
+      <div class="row">
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="x" class="form-label">x</label>
+            <input type="text" formControlName="x" id="x" required [ngClass]="{
+              'is-invalid': this.addDeviceForm.controls.position.controls.x.status != 'VALID',
+              'is-valid': this.addDeviceForm.controls.position.controls.x.status == 'VALID',
+              'form-control': true
+            }" />
+            <div *ngIf="this.addDeviceForm.controls.position.controls.x.errors" class="invalid-feedback">
+              <div *ngIf="this.addDeviceForm.controls.position.controls.x.errors.required">X is required</div>
+              <div *ngIf="this.addDeviceForm.controls.position.controls.x.errors.minlength">X must be at least 1 characters
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="y" class="form-label">y</label>
+            <input type="text" formControlName="y" id="y" required [ngClass]="{
+              'is-invalid': this.addDeviceForm.controls.position.controls.y.status != 'VALID',
+              'is-valid': this.addDeviceForm.controls.position.controls.y.status == 'VALID',
+              'form-control': true
+            }" />
+            <div *ngIf="this.addDeviceForm.controls.position.controls.y.errors" class="invalid-feedback">
+              <div *ngIf="this.addDeviceForm.controls.position.controls.y.errors.required">Y is required</div>
+              <div *ngIf="this.addDeviceForm.controls.position.controls.y.errors.minlength">Y must be at least 1 characters</div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="h" class="form-label">h</label>
+            <input type="text" formControlName="h" id="h" required [ngClass]="{
+              'is-invalid': this.addDeviceForm.controls.position.controls.h.status != 'VALID',
+              'is-valid': this.addDeviceForm.controls.position.controls.h.status == 'VALID',
+              'form-control': true
+            }" />
+            <div *ngIf="this.addDeviceForm.controls.position.controls.h.errors" class="invalid-feedback">
+              <div *ngIf="this.addDeviceForm.controls.position.controls.h.errors.required">H is required</div>
+              <div *ngIf="this.addDeviceForm.controls.position.controls.h.errors.minlength">H must be at least 1 characters</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group mb-3">
+          <label for="modelId" class="form-label">Model</label>
+          <select (change)="changeModelId($event)" formControlName="modelId" class="form-control" id="modelId"
+            required [ngClass]="{
+              'is-invalid': this.addDeviceForm.controls.modelId.status != 'VALID',
+              'is-valid': this.addDeviceForm.controls.modelId.status == 'VALID',
+              'form-select': true
+            }">
+            <option *ngFor="let modelObj of this.modelList; let i = index" value="{{ modelObj.id }}">
+              {{ modelObj.name }}
+            </option>
+          </select>
+          <div *ngIf="this.addDeviceForm.controls.modelId.errors" class="invalid-feedback">
+            <div *ngIf="this.addDeviceForm.controls.modelId.errors.required">Name is required</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>Form Status: {{ addDeviceForm.status }}</p>
+    <!-- <p>Form Values: {{ toString(addDeviceForm.value) }}</p> -->
+    <div class="form-group mb-3">
+      <button type="submit" [disabled]="!(addDeviceForm.valid && addDeviceForm.touched)"
+        class="btn btn-primary mb-3">
+        Submit
+      </button>
+    </div>
+  </form>
 </div>

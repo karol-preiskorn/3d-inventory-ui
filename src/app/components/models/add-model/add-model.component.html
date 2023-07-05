@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
-    <h3>Add Model</h3>
+    <h3><i
+      class="bi bi-motherboard"></i> Add Model</h3>
     <form [formGroup]="addModelForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
       <div class="row">
-        <div class="col">
+        <!-- <div class="col">
           <div class="form-group mb-3">
             <label for="form-id" class="form-label">Id</label>
             <input
@@ -13,6 +14,7 @@
               maxlength="100"
               minlength="1"
               required
+              readonly
               [ngClass]="{
                 'is-invalid': this.addModelForm.controls.id.status != 'VALID',
                 'is-valid': this.addModelForm.controls.id.status == 'VALID',
@@ -23,7 +25,7 @@
               <div *ngIf="this.addModelForm.controls.id.errors.minlength">Id must be at least 4 characters</div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="col">
           <div class="form-group mb-3">
             <label for="name" class="form-label">Name</label>
@@ -237,6 +239,9 @@
                 {{ typeObj.name }}
               </option>
             </select>
+            <div *ngIf="this.addModelForm.controls.type.errors" class="invalid-feedback">
+              <div *ngIf="this.addModelForm.controls.type.errors.required">type have to selected</div>
+            </div>
           </div>
         </div>
         <div class="col">
@@ -255,6 +260,9 @@
                 {{ categoryObj.name }}
               </option>
             </select>
+            <div *ngIf="this.addModelForm.controls.category.errors" class="invalid-feedback">
+              <div *ngIf="this.addModelForm.controls.category.errors.required">category have to selected</div>
+            </div>
           </div>
         </div>
       </div>
