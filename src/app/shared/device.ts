@@ -8,13 +8,8 @@
  * ----------  -----  ---------------------------------------------------------
  * 2023-02-18  C2RLO  Init
  */
-import {
-  adjectives,
-  animals,
-  colors,
-  uniqueNamesGenerator,
-} from 'unique-names-generator'
-import { v4 as uuidv4 } from 'uuid'
+import {adjectives, animals, colors, uniqueNamesGenerator} from 'unique-names-generator'
+import {v4 as uuidv4} from 'uuid'
 
 interface Position {
   x: string
@@ -29,21 +24,18 @@ export class Device {
   position: Position
 
   print(): void {
-    console.log(
-      this.makeDeviceString()
-    )
+    console.log(this.makeDeviceString())
   }
 
   makeDeviceString(): string {
-    return '-->[device] id: ' + this.id +
-      ', name: ' + this.name +
-      ', position: (' + this.position.x + ', ' + this.position.y + ', ' + this.position.h + ')'
+    return (
+      'name: ' + this.name + ', position: (' + this.position.x + ', ' + this.position.y + ', ' + this.position.h + ')'
+    )
   }
 
   getString(): string {
     this.print()
-    return (this.makeDeviceString()
-    )
+    return this.makeDeviceString()
   }
 
   // TODO: move it to deviceList

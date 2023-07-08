@@ -26,17 +26,17 @@
             <div tooltip="{{ attribute.id }}">#</div>
           </td>
           <td>
-            <div tooltip="{{ attribute.deviceId }}">{{ findDeviceName(attribute.deviceId) }}</div>
+            <a href="edit-device/{{ attribute.deviceId }}" tooltip="{{ attribute.deviceId }}">{{ findDeviceName(attribute.deviceId) }}</a>
           </td>
           <td>
-            <div tooltip="{{ attribute.modelId }}">{{ findModelName(attribute.modelId) }}</div>
+            <a href="edit-model/{{ attribute.modelId }}"  tooltip="{{ attribute.modelId }}">{{ findModelName(attribute.modelId) }}</a>
           </td>
           <td>
-            <div tooltip="{{ attribute.connectionId }}">{{ findConnectionName(attribute.connectionId) }}</div>
+            <a href="edit-connection/{{ attribute.connectionId }}" tooltip="{{ attribute.connectionId }}">{{ findConnectionName(attribute.connectionId) }}</a>
           </td>
           <td>
-            <div tooltip="{{ attribute.attributeDictionaryId }}">{{
-              findAttributeDictionary(attribute.attributeDictionaryId) }}</div>
+            <a href="edit-attribute-dictionary/{{ attribute.attributeDictionaryId }}" tooltip="{{ attribute.attributeDictionaryId }}">{{
+              findAttributeDictionary(attribute.attributeDictionaryId) }}</a>
           </td>
           <td>{{ attribute.value }}</td>
           <td>

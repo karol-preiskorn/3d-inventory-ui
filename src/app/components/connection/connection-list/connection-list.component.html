@@ -21,13 +21,14 @@
         <td tooltip="{{ connectionObj.id }}">{{ connectionObj.name }}</td>
         <td>
           <a href="/edit-device/{{ connectionObj.deviceIdFrom }}">
-            <i class="bi bi-box"></i> {{ this.findDeviceName(connectionObj.deviceIdFrom) }}
+            <i class="bi bi-box"></i> {{ this.findDevice(connectionObj.deviceIdFrom).name }}
           </a>
           <div class="deviceid">{{ connectionObj.deviceIdFrom }}</div>
         </td>
         <td>
           <a href="/edit-device/{{ connectionObj.deviceIdTo }}">
-            <i class="bi bi-box"></i> {{ this.findDeviceName(connectionObj.deviceIdTo) }}
+            <i class="bi bi-box"></i> {{ this.findDevice(connectionObj.deviceIdTo).name }}
+            {{ this.findDevice(connectionObj.deviceIdTo).makeDeviceString }}
           </a>
           <div class="deviceid">{{ connectionObj.deviceIdTo }}</div>
         </td>

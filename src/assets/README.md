@@ -38,11 +38,11 @@ Project create `3d inventory`. A simple solution that allows you to build a spat
 
 ### Entity
 
-![](assets/img/Screenshot%20from%202023-05-20%2016-54-30.png)
+![Entity](src/assets/img/Screenshot%20from%202023-05-20%2016-54-30.png)
 
 ### Logical
 
-![](src/assets/img/Screenshot%20from%202023-05-20%2017-20-39.png)
+![Logical](assets/img/Screenshot%20from%202023-05-20%2017-20-39.png)
 
 ### Data Classes and attributes
 
@@ -77,6 +77,10 @@ Project create `3d inventory`. A simple solution that allows you to build a spat
   - NAME
   - DESCRIPTION
   - COMPONENTS (list of values)
+- FLOORS
+  - x
+  - y
+  - h
 - LOGS
   - ID (UUID4)
   - DATETIME

@@ -20,11 +20,12 @@
 		"prepare": "husky install",
 		"prettier": "prettier --check src/**/*.ts",
 		"json-server": "cd backend && json-server --watch db_v2.json",
-		"start": "ng serve  --watch",
+		"start": "npm run clear-all && npm run cp && ng serve  --watch",
 		"test": "ng test",
 		"test:nyc": "nyc --reporter=html --produce-source-map --reporter=text npm test",
 		"clear-cache": "rm -rf .angular/cache",
-		"clear-dist": "rm -rf dist"
+		"clear-dist": "rm -rf dist",
+    "clear-all": "npm run clear-cache && npm run clear-dist"
 	},
 	"lint-staged": {
 		"**/*": "prettier --write --ignore-unknown"

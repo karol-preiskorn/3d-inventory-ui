@@ -48,10 +48,10 @@ export class ConnectionListComponent implements OnInit {
     })
   }
 
-  findDeviceName(id: string): string {
+  findDevice(id: string): Device {
     let tmp: Device = new Device()
     tmp = this.deviceList.find((e: Device): boolean => e.id === id) || tmp
-    return tmp.name
+    return tmp
   }
 
   gotoDevice(deviceId: string) {

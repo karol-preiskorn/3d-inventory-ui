@@ -31,12 +31,13 @@ export class HomeComponent {
       'Access-Control-Allow-Origin': 'https://api.github.com/',
     }),
   }
+
   async ngOnInit() {
     this.http
       .get('/assets/README.md', { responseType: 'text' })
       .subscribe((data: string) => {
         // console.log('Get Markdown ' + JSON.stringify(data))
-        this.md = data
+        this.md = data.replaceAll('src/', "");
       })
 
     // await this.http
