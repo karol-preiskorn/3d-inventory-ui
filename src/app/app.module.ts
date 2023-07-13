@@ -12,6 +12,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip'
 import { MarkdownModule } from 'ngx-markdown'
 import { NgxPaginationModule } from 'ngx-pagination'
 import { AppRoutingModule } from './app-routing.module'
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { DeviceListComponent } from './components/devices/devices-list/devices-list.component'
 import { AddDeviceComponent } from './components/devices/add-device/add-device.component'
@@ -85,6 +86,7 @@ import { EditConnectionComponent } from './components/connection/edit-connection
     }),
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
+    NgbPopoverModule
   ],
   providers: [
     DeviceService,

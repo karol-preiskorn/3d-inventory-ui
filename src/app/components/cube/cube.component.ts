@@ -10,20 +10,24 @@
  *
  * Date         By        Comments
  * ----------   -------   ------------------------------
+ * 2023-07-13   C2RLO     Get cube from
  * 2023-04-16   C2RLO     Add cube
  */
-
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  ViewChild,
-} from '@angular/core'
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
+import { Router } from '@angular/router'
 
 import * as THREE from 'three'
 import { OrbitControls } from 'three-orbitcontrols-ts'
+
+import { adjectives, animals, colors, uniqueNamesGenerator } from 'unique-names-generator'
+
+import { LogService } from 'src/app/services/log.service'
+
+import { DeviceService } from 'src/app/services/device.service'
+import { Device } from 'src/app/shared/device'
+
+import { ModelsService } from 'src/app/services/models.service'
+import { Model } from 'src/app/shared/model'
 
 @Component({
   selector: 'app-cube',
@@ -67,109 +71,105 @@ export class CubeComponent implements OnInit, AfterViewInit {
   private renderer!: THREE.WebGLRenderer
   private scene!: THREE.Scene
 
-  private racks: Array<{ x: number; y: number; name: string }>
+  private racks: Array<{ x: number; y: number; name: string }> = []
+  private deviceList: Device[] = []
+  private modelList: Model[] = []
+  component = 'Cube'
 
   addRandomCubes() {
-    for (let i = 0; i < 20; i++) {
-      this.addServer(
-        2,
-        1,
-        3,
-        Math.random() * 40 - 20,
-        Math.random() * 9 + 0.5,
-        Math.random() * 40 - 20
-      )
-      // const object = new THREE.Mesh(
-      //   geometry,
-      //   new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff })
-      // )
-
-      // object.position.x =
-      // object.position.y c
-      // object.position.z = Math.random() * 40 - 20
-
-      // // object.rotation.x = Math.random() * 8 * Math.PI
-      // // object.rotation.y = Math.random() * 88 * Math.PI
-      // // object.rotation.z = Math.random() * 8 * Math.PI
-
-      // // object.scale.x = Math.random() + 0.6
-      // // object.scale.y = Math.random() + 0.5
-      // // object.scale.z = Math.random() + 0.5
-
-      //this.scene.add(object)
+    for (let i = 0; i < 10; i++) {
+      this.addServer(2, 1, 3, Math.random() * 40 - 20, Math.random() * 9 + 0.5, Math.random() * 40 - 20)
     }
   }
 
-  addRandomRacks(count: number) {
+  generateRandomRack() {
+    let x = Math.random() * 45 - 22
+    let y = Math.random() * 45 - 22
+    let distance = true
+    let counter = 0
+
+    console.log('Start Generate Rack: (' + x + ', ' + y + ')')
+
+    while (distance == true && counter < 10) {
+      this.racks.forEach((element) => {
+        // console.log('Generate rack (' + x + ', ' + y + ') ' + Math.sqrt(Math.pow(Math.abs(x - element.x), 2) + Math.pow(Math.abs(y - element.y), 2)))
+        if (Math.sqrt(Math.pow(Math.abs(x - element.x), 2) + Math.pow(Math.abs(y - element.y), 2)) < 6) {
+          distance = false
+        }
+        counter = counter + 1
+      })
+
+      if (distance == false as boolean) {
+        x = Math.random() * 45 - 22
+        y = Math.random() * 45 - 22
+        // distance = true
+      }
+      counter = counter + 1
+    }
+
+    console.log('Generate Rack: (' + x + ', ' + y + ')')
+    this.racks.push({
+      x: x,
+      y: y,
+      name: uniqueNamesGenerator({
+        dictionaries: [adjectives, colors, animals],
+        style: 'lowerCase',
+        separator: '-'
+      })
+    })
+  }
+
+  generateRandomRacks(count: number) {
     for (let i = 0; i < count; i++) {
-      const x = Math.random() * 45 - 22
-      const y = Math.random() * 45 - 22
-      //this.racks.push({ x: x, y: y, name: '1' })
-      this.addRack(x, y)
+      this.generateRandomRack()
     }
   }
-  addRack(floor_x: number, floor_y: number) {
+
+  createRacks(): void {
+    this.racks.forEach((element) => {
+      this.addRack(element.x, element.y)
+    })
+  }
+
+  addRack(floor_x: number, floor_y: number): void {
     const n_servers = Math.round(Math.random() * 10)
     for (let i = 0; i < n_servers; i++) {
-      this.addServer(2, 1, 3, floor_x, i + 0.5, floor_y)
+      this.addServer(3, 1, 3, floor_x, i + 0.5, floor_y)
     }
   }
 
-  /**
-   * Add server in size, position
-   *
-   * @param {number} box_x
-   * @param {number} box_y
-   * @param {number} box_z
-   * @param {number} pos_x
-   * @param {number} pos_y
-   * @param {number} pos_z
-   * @memberof CubeComponent
-   */
-  addServer(
-    box_x: number,
-    box_y: number,
-    box_z: number,
-    pos_x: number,
-    pos_y: number,
-    pos_z: number
-  ) {
+  addServer(box_x: number, box_y: number, box_z: number, pos_x: number, pos_y: number, pos_z: number) {
     const geometry = new THREE.BoxGeometry(box_x, box_y, box_z)
-
-    const object = new THREE.Mesh(
-      geometry,
-      new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff })
-    )
+    const object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
 
     object.position.x = pos_x
     object.position.y = pos_y
     object.position.z = pos_z
 
-    console.log(
-      JSON.stringify(object.position) + JSON.stringify(object.rotation)
-    )
+    //console.log('addServer: ' + JSON.stringify(object.position))
 
     this.scene.add(object)
   }
+
+  loadDevices() {
+    return this.devicesService.GetDevices().subscribe((data: any) => {
+      this.deviceList = data
+    })
+  }
+
+  loadModels() {
+    return this.modelsService.GetModels().subscribe((data: Model[]): void => {
+      this.modelList = data as Model[]
+    })
+  }
+
   addWalls() {
     const geometry = new THREE.BoxGeometry(50, 10, 1)
     const geometry2 = new THREE.BoxGeometry(1, 10, 50)
-    const object1 = new THREE.Mesh(
-      geometry,
-      new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff })
-    )
-    const object2 = new THREE.Mesh(
-      geometry,
-      new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff })
-    )
-    const object3 = new THREE.Mesh(
-      geometry2,
-      new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff })
-    )
-    const object4 = new THREE.Mesh(
-      geometry2,
-      new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff })
-    )
+    const object1 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
+    const object2 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
+    const object3 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
+    const object4 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
     object1.position.set(0, 5, 25)
     this.scene.add(object1)
     object2.position.set(0, 5, -25)
@@ -181,20 +181,20 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   addLight() {
-    const light = new THREE.DirectionalLight(0xddb14c, 0.8)
+    const light = new THREE.DirectionalLight(0xddb14c, 0.3)
     light.position.set(100, 100, 100).normalize()
     this.scene.add(light)
   }
 
   addLight2() {
-    const light2 = new THREE.DirectionalLight(0xdbc29e, 0.7)
+    const light2 = new THREE.DirectionalLight(0xdbc29e, 0.3)
     light2.position.set(-100, 50, -100).normalize()
     this.scene.add(light2)
   }
 
   addAbientLight() {
     const color = 0xffffff
-    const intensity = 0.2
+    const intensity = 0.1
     const lightAbient = new THREE.AmbientLight(color, intensity)
     this.scene.add(lightAbient)
   }
@@ -218,9 +218,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
    */
   addPlane(planeSize: number) {
     const loader = new THREE.TextureLoader()
-    const texture = loader.load(
-      'https://threejs.org/manual/examples/resources/images/checker.png'
-    )
+    const texture = loader.load('https://threejs.org/manual/examples/resources/images/checker.png')
     texture.wrapS = THREE.RepeatWrapping
     texture.wrapT = THREE.RepeatWrapping
     texture.magFilter = THREE.NearestFilter
@@ -237,22 +235,24 @@ export class CubeComponent implements OnInit, AfterViewInit {
     mesh.rotation.x = Math.PI * -0.5
     this.scene.add(mesh)
   }
+
   private createScene() {
-    //* Scene
     this.scene = new THREE.Scene()
     const planeSize = 50
 
     this.addPlane(planeSize)
 
-    this.scene.background = new THREE.Color(0x202020)
+    this.scene.background = new THREE.Color(0x252525)
+
     this.addLight()
     this.addLight2()
     this.addAbientLight()
-    //this.addRandomCubes()
+
     this.addWalls()
-    //this.addRack(10, 10)
-    this.addRandomRacks(50)
-    //*Camera
+
+    this.generateRandomRacks(60)
+    this.createRacks()
+
     const aspectRatio = this.getAspectRatio()
     this.camera = new THREE.PerspectiveCamera(
       this.fieldOfView,
@@ -270,7 +270,6 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
     controls.enablePan = true // Set to false to disable panning (ie vertical and horizontal translations)
     controls.update()
-    //this.cameraZ +
   }
 
   private getAspectRatio() {
@@ -291,16 +290,24 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight)
 
     const component: CubeComponent = this
-    ;(function render() {
-      requestAnimationFrame(render)
-      component.animateCube()
-      component.renderer.render(component.scene, component.camera)
-    })()
+      ; (function render() {
+        requestAnimationFrame(render)
+        component.animateCube()
+        component.renderer.render(component.scene, component.camera)
+      })()
   }
 
-  constructor() {}
+  constructor(
+      private devicesService: DeviceService,
+      private modelsService: ModelsService,
+      private logService: LogService,
+      private router: Router,
+      ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadDevices()
+    this.loadModels()
+  }
 
   ngAfterViewInit() {
     this.createScene()

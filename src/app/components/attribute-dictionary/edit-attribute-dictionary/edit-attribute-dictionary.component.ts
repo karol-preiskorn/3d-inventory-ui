@@ -9,6 +9,7 @@ import { ComponentDictionary } from 'src/app/shared/component-dictionary'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 import { v4 as uuidv4 } from 'uuid'
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-edit-attribute-dictionary',

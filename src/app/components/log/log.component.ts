@@ -86,7 +86,7 @@ export class LogComponent implements OnInit {
 
   loadComponentLog(id: string): Subscription {
     return this.logService.GetComponentLogs(id).subscribe((data: Log[]) => {
-      console.log('LogComponent.loadComponentLog(' + id + '): ' + JSON.stringify(data))
+      //console.log('LogComponent.loadComponentLog(' + id + '): ' + JSON.stringify(data))
       this.LogList = data
     })
   }

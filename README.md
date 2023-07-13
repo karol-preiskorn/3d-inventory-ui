@@ -130,7 +130,7 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
 - [ ] Docker -> serve application in Github Pages --> `AWS EC2`
 - [ ] Use Dev container in `GitHub` for development.
 - [ ] Recognize `Grunt`/`Glup` to `CI`/`DI` use in this project.
-- [ ] Show actual all task form `GitHub` during build in README.md.
+- [ ] Add actual tasks form `GitHub` during build in README.md.
 - [ ] Add light/dark theme switch in `UI`
 - [ ] For development `JSON` server -> rest `Oracle` --> rest `Neo4j`
 

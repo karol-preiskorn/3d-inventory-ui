@@ -25,11 +25,13 @@ export class ModelsService {
       'Content-Type': 'application/json',
     }),
   }
-  GetModels(): Observable<Model> {
+
+  GetModels(): Observable<Model[]> {
     return this.http
-      .get<Model>(this.baseurl + '/models/')
-      .pipe(retry(1), catchError(this.errorHandl))
+      .get<Model[]>(this.baseurl + '/models/')
+      .pipe(catchError(this.errorHandl))
   }
+
   GetModel(id: string | null): Observable<Model> {
     return this.http
       .get<Model>(this.baseurl + '/models/' + id, this.httpOptions)
