@@ -133,6 +133,7 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
 - [ ] Add actual tasks form `GitHub` during build in README.md.
 - [ ] Add light/dark theme switch in `UI`
 - [ ] For development `JSON` server -> rest `Oracle` --> rest `Neo4j`
+- [ ] Add title page change in Ngx routing
 
 ### List devices
 
