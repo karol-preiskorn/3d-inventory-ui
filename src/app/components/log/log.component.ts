@@ -1,25 +1,24 @@
-import {Component, OnInit, Input, NgZone} from '@angular/core'
-import {Router} from '@angular/router'
-import {Subscription} from 'rxjs'
+import { Component, OnInit, Input } from '@angular/core'
+import { Subscription } from 'rxjs'
 
-import {Log, LogService} from 'src/app/services/log.service'
+import { Log, LogService } from 'src/app/services/log.service'
 
-import {EnvironmentService} from 'src/app/services/environment.service'
+import { EnvironmentService } from 'src/app/services/environment.service'
 
-import {Device} from 'src/app/shared/device'
-import {DeviceService} from 'src/app/services/device.service'
+import { Device } from 'src/app/shared/device'
+import { DeviceService } from 'src/app/services/device.service'
 
-import {Model} from 'src/app/shared/model'
-import {ModelsService} from 'src/app/services/models.service'
+import { Model } from 'src/app/shared/model'
+import { ModelsService } from 'src/app/services/models.service'
 
-import {Connection} from 'src/app/shared/connection'
-import {ConnectionService} from 'src/app/services/connection.service'
+import { Connection } from 'src/app/shared/connection'
+import { ConnectionService } from 'src/app/services/connection.service'
 
-import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
-import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
 
-import {Attribute} from 'src/app/shared/attribute'
-import {AttributeService} from 'src/app/services/attribute.service'
+import { Attribute } from 'src/app/shared/attribute'
+import { AttributeService } from 'src/app/services/attribute.service'
 
 @Component({
   selector: 'app-log',
@@ -51,17 +50,16 @@ export class LogComponent implements OnInit {
   constructor(
     public logService: LogService,
     private environmentService: EnvironmentService,
-    private router: Router,
-    private ngZone: NgZone,
     private attributeService: AttributeService,
     private deviceService: DeviceService,
     private modelService: ModelsService,
     private connectionService: ConnectionService,
     private attributeDictionaryService: AttributeDictionaryService
-  ) {}
+  ) { }
 
   loadLog(context: string) {
     console.log(this.environmentService.isApiSettings(this.component))
+    // found log context in share service with strore variables
     if (this.environmentService.isApiSettings(this.component)) {
       console.log(context + '.loadComponentLog: ' + this.component)
       this.loadComponentLog(this.component)
@@ -73,11 +71,6 @@ export class LogComponent implements OnInit {
 
   ngOnInit() {
     this.loadLog('ngOnInit')
-    // this.getDeviceList()
-    // this.getModelList()
-    // this.getConnectionList()
-    // this.getAttributeDictionaryList()
-    // this.getAttributeList()
   }
 
   OnChanges() {
@@ -98,13 +91,13 @@ export class LogComponent implements OnInit {
     })
   }
 
-/**
- * @description depends on type log find usable information from message
- * @param {Log} log
- * @return {string} information about object
- * @memberof LogComponent
- */
-findNameInLogMessage(log: Log): string {
+  /**
+   * @description depends on type log find usable information from message
+   * @param {Log} log
+   * @return {string} information about object
+   * @memberof LogComponent
+   */
+  findNameInLogMessage(log: Log): string {
     if (log.component == 'Attributes') {
       const jAttribute: Attribute = JSON.parse(log.message)
       if (jAttribute.connectionId != '') {

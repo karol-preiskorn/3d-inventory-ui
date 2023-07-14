@@ -20,19 +20,20 @@ export class AttributeService {
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router,
-
   ) { }
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   }
 
-  GetAttributes(): Observable<Attribute> {
+  GetAttributes(): Observable<Attribute[]> {
     return this.http
-      .get<Attribute>(this.BASEURL + '/attributes/')
+      .get<Attribute[]>(this.BASEURL + '/attributes/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
+
   GetAttribute(id: string | null): Observable<Attribute> {
     return this.http
       .get<Attribute>(
@@ -41,6 +42,7 @@ export class AttributeService {
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
+
   DeleteAttribute(id: string): Observable<Attribute> {
     return this.http
       .delete<Attribute>(
@@ -49,6 +51,7 @@ export class AttributeService {
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
+
   CreateAttribute(data: Attribute): Observable<Attribute> {
     return this.http
       .post<Attribute>(
@@ -58,6 +61,7 @@ export class AttributeService {
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
+
   CloneAttribute(id: string): string {
     const id_uuid: string = uuidv4()
     this.GetAttribute(id).subscribe((value: Attribute) => {
@@ -74,6 +78,7 @@ export class AttributeService {
     })
     return id_uuid
   }
+
   UpdateAttribute(id: string | null, data: Attribute): Observable<Attribute> {
     return this.http
       .put<Attribute>(
@@ -83,6 +88,7 @@ export class AttributeService {
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
+
   errorHandl(error: { error: { message: string }; status: any; message: any }) {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {

@@ -1,8 +1,11 @@
-import {Component, NgZone, OnInit} from '@angular/core'
+import {Component, OnInit, Input, NgZone} from '@angular/core'
 import {Router} from '@angular/router'
-import {AttributeService} from 'src/app/services/attribute.service'
+import {Subscription} from 'rxjs'
+
 import {LogService} from 'src/app/services/log.service'
+
 import {Attribute} from 'src/app/shared/attribute'
+import {AttributeService} from 'src/app/services/attribute.service'
 
 import {Device} from 'src/app/shared/device'
 import {DeviceService} from 'src/app/services/device.service'
@@ -22,6 +25,9 @@ import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.
   styleUrls: ['./attribute-list.component.scss'],
 })
 export class AttributeListComponent implements OnInit {
+
+  @Input() attributeComponent = ''
+
   attributeList: Attribute[] = []
   selectedAttribute: Attribute
   attributePage = 1
@@ -33,7 +39,7 @@ export class AttributeListComponent implements OnInit {
   attributeDictionary: AttributeDictionary[]
 
   ngOnInit() {
-    this.LoadAttribute()
+    this.LoadAttributes()
     this.getDeviceList()
     this.getModelList()
     this.getConnectionList()
@@ -50,8 +56,8 @@ export class AttributeListComponent implements OnInit {
     private attributeDictionaryService: AttributeDictionaryService
   ) {}
 
-  LoadAttribute() {
-    return this.attributeService.GetAttributes().subscribe((data: any) => {
+  LoadAttributes() {
+    return this.attributeService.GetAttributes().subscribe((data: Attribute[]) => {
       this.attributeList = data
     })
   }
@@ -65,7 +71,7 @@ export class AttributeListComponent implements OnInit {
     })
     return this.attributeService.DeleteAttribute(id).subscribe((data: any) => {
       console.log(data)
-      this.LoadAttribute()
+      this.LoadAttributes()
       this.router.navigate(['/attribute-dictionary-list'])
     })
   }

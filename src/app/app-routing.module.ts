@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes, provideRouter } from '@angular/router'
+import { Injectable, NgModule } from '@angular/core'
+import { RouterModule, RouterStateSnapshot, Routes, TitleStrategy, provideRouter } from '@angular/router'
 
 import { DeviceListComponent } from 'src/app/components/devices/devices-list/devices-list.component'
 import { AddDeviceComponent } from 'src/app/components/devices/add-device/add-device.component'
@@ -23,44 +23,69 @@ import { EditConnectionComponent } from './components/connection/edit-connection
 
 import { CubeComponent } from './components/cube/cube.component'
 import { HomeComponent } from './components/home/home.component'
+import { Title } from '@angular/platform-browser'
+
+@Injectable()
+export class TemplatePageTitleStrategy extends TitleStrategy {
+  constructor(private readonly title: Title) {
+    super();
+  }
+
+  override updateTitle(routerState: RouterStateSnapshot) {
+    const title = this.buildTitle(routerState);
+    if (title !== undefined) {
+      this.title.setTitle(`3d inventory - ${title}`);
+    }
+  }
+}
+
 
 const routes: Routes = [
   // { path: '**', component: DeviceListComponent },
   {
     path: 'home',
     component: HomeComponent,
+    title: 'Home'
   },
   {
     path: 'cube',
     component: CubeComponent,
+    title: '3d'
   },
   {
     path: 'device-list',
     component: DeviceListComponent,
+    title: 'Device List'
   },
   {
     path: 'edit-device/:id',
     component: EditDeviceComponent,
+    title: 'Edit Device'
   },
   {
     path: 'add-device',
     component: AddDeviceComponent,
+    title: 'Add Device'
   },
   {
     path: 'models-list',
     component: ModelsListComponent,
+    title: 'Models List'
   },
   {
     path: 'edit-model/:id',
     component: EditModelComponent,
+    title: 'Edit Model'
   },
   {
     path: 'add-model',
     component: AddModelComponent,
+    title: 'Add Model'
   },
   {
     path: 'attribute-dictionary-list',
     component: AttributeDictionaryListComponent,
+    title: 'Attribute Dictionary List'
   },
   {
     path: 'add-attribute-dictionary',
@@ -69,30 +94,37 @@ const routes: Routes = [
   {
     path: 'edit-attribute-dictionary/:id',
     component: EditAttributeDictionaryComponent,
+    title: 'Edit Attribute Dictionary'
   },
   {
     path: 'attribute-list',
     component: AttributeListComponent,
+    title: 'Attribute List'
   },
   {
     path: 'add-attribute',
     component: AddAttributeComponent,
+    title: 'Add Attribute'
   },
   {
     path: 'edit-attribute/:id',
     component: EditAttributeComponent,
+    title: 'Edit Attribute'
   },
   {
     path: 'connection-list',
     component: ConnectionListComponent,
+    title: 'Connections List'
   },
   {
     path: 'add-connection',
     component: AddConnectionComponent,
+    title: 'Add Connections'
   },
   {
     path: 'edit-connection/:id',
     component: EditConnectionComponent,
+    title: 'Edit Connections'
   },
 ]
 

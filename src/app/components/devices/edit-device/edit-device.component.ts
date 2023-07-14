@@ -26,9 +26,12 @@ export class EditDeviceComponent implements OnInit {
   device: Device = new Device()
   model: Model = new Model()
   modelList: Model[]
-  component = ''
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
+
+  component = ''
+  attributeComponent = ''
+
   isSubmitted = false
   action = ''
 
@@ -62,7 +65,7 @@ export class EditDeviceComponent implements OnInit {
   ) {}
 
   reloadComponent(self: boolean, urlToNavigateTo?: string) {
-    //skipLocationChange:true means dont update the url to / when navigating
+    //skipLocationChange:true means don't update the url to / when navigating
     console.log('Current route I am on:', this.router.url)
     const url = self ? this.router.url : urlToNavigateTo
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
