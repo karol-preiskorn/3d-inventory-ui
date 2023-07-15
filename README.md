@@ -4,12 +4,15 @@
 
 - [3d inventory](#3d-inventory)
   - [Description](#description)
+    - [About project](#about-project)
+    - [About background and motivation](#about-background-and-motivation)
   - [Technology stack](#technology-stack)
+  - [Demo](#demo)
   - [Data Model](#data-model)
     - [Entity model](#entity-model)
     - [Logical model](#logical-model)
     - [Entity attributes](#entity-attributes)
-  - [Functionality](#functionality)
+  - [Current functionality](#current-functionality)
   - [Future development ideas](#future-development-ideas)
     - [List devices](#list-devices)
       - [Edit device](#edit-device)
@@ -20,23 +23,37 @@
     - [Application 3d view](#application-3d-view)
   - [Run](#run)
   - [Debug](#debug)
-    - [Json server](#json-server)
+  - [Json server](#json-server)
   - [Swagger client to generate API structures](#swagger-client-to-generate-api-structures)
   - [Contributing](#contributing)
   - [Next tasks TODO](#next-tasks-todo)
 
 ## Description
 
+### About project
+
 Project create `3d inventory`. A simple solution that allows you to build a spatial and database representation of all types of warehouses and server rooms.
+
+### About background and motivation
+
+I'm programming over 20 years to incorporate database systems. I develop practical knowledge backend programming databases in `PLSQL` and `ABAP`. I have some experience in create frontend/interfaces to database app in `Node.JS` (`Rx`/`Ag`), `Python` and `Java`. This project covers relevant topics and issues related to my [`programming journey`](http://ultimasolution.pl). This project solves several problems I encountered while integrating inventory database solutions in a corporate environment.
+
+I want to focus here to topic build database inventory applications and interfaces.
+
+You are welcome to cooperate and leave a few words of comment.
 
 ## Technology stack
 
 - `Angular` 15+ (as a corpo framework)
 - `Bootstrap` 5.3+ - logic for insert UI data
 - `Tree` 150+ (as best graph framework)
-- [`Neo4j`|`Oracle`|`jsonserver`] `Oracle` as database (for development `json server` -> rest `Oracle` -> rest `Neo4j`.
+- [`Neo4j`|`Oracle`|`jsonserver`] `Oracle` as database (for development `json server` -> rest `Oracle` -> rest `Neo4j`. I want in this project try different solution and diferent data structure and storage.
 - `REST` - prepared `API` in use in `Swagger`.
 - [`Docker`|`OpenShift`|`Podman`|`GitHub Container`] as containers
+
+## Demo
+
+Underconstrution (not work jet)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=0000000&machine=premiumLinux&devcontainer_path=.devcontainer%2Fdevcontainer.json&location=WestUs2)
 
@@ -115,11 +132,11 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
   - COMPONENT
   - MESSAGE
 
-## Functionality
+## Current functionality
 
 - [Reactive forms](https://angular.io/guide/reactive-forms?ref=cup-t) in `Angular` 15+
 - [Bootstrap 5.3](https://getbootstrap.com/)+ show
-- 3D representation in [three.js](https://threejs.org/) 150+
+- `3D` representation in [three.js](https://threejs.org/) 150+
 - Dynamic define attributes to components:
   - `DEVICES`
   - `MODELS`
@@ -196,7 +213,7 @@ Try use Firefox plugin in VS code. Without success i used Chronium.
 
 - https://github.com/microsoft/vscode-recipes/tree/main/Angular-CLI
 
-### Json server
+## Json server
 
 For testing UI API run `jsonserver`.
 

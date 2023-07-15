@@ -30,7 +30,8 @@ export class EditDeviceComponent implements OnInit {
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
 
   component = ''
-  attributeComponent = ''
+  attributeComponent = 'Device'
+  attributeComponentId = ''
 
   isSubmitted = false
   action = ''
@@ -52,6 +53,8 @@ export class EditDeviceComponent implements OnInit {
     this.getDevice()
     this.loadModels()
     this.component = this.inputId
+    this.attributeComponent = 'Device'
+    this.attributeComponentId = this.inputId
     console.log('EditDeviceComponent.ngOnInit set component =' + this.component)
   }
 

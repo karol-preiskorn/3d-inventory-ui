@@ -26,7 +26,8 @@ import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.
 })
 export class AttributeListComponent implements OnInit {
 
-  @Input() attributeComponent = ''
+  @Input() attributeComponent: string
+  @Input() attributeComponentId: string
 
   attributeList: Attribute[] = []
   selectedAttribute: Attribute

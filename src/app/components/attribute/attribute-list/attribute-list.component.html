@@ -13,7 +13,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="
+        <tr
+          *ngFor="
             let attribute of attributeList
               | paginate
                 : {
@@ -28,35 +29,46 @@
           <td>
             <a href="edit-device/{{ attribute.deviceId }}" tooltip="{{ attribute.deviceId }}">{{
               findDeviceName(attribute.deviceId)
-              }}</a>
+            }}</a>
           </td>
           <td>
             <a href="edit-model/{{ attribute.modelId }}" tooltip="{{ attribute.modelId }}">{{
               findModelName(attribute.modelId)
-              }}</a>
+            }}</a>
           </td>
           <td>
             <a href="edit-connection/{{ attribute.connectionId }}" tooltip="{{ attribute.connectionId }}">{{
               findConnectionName(attribute.connectionId)
-              }}</a>
+            }}</a>
           </td>
           <td>
-            <a href="edit-attribute-dictionary/{{ attribute.attributeDictionaryId }}"
-              tooltip="{{ attribute.attributeDictionaryId }}">{{
-              findAttributeDictionary(attribute.attributeDictionaryId) }}</a>
+            <a
+              href="edit-attribute-dictionary/{{ attribute.attributeDictionaryId }}"
+              tooltip="{{ attribute.attributeDictionaryId }}"
+              >{{ findAttributeDictionary(attribute.attributeDictionaryId) }}</a
+            >
           </td>
           <td>{{ attribute.value }}</td>
           <td>
             <div class="btn-group" role="group" aria-label="attribute-operations">
-              <button type="button" class="btn btn-success btn-sm move-right" id="edit-attribute"
+              <button
+                type="button"
+                class="btn btn-success btn-sm move-right"
+                id="edit-attribute"
                 (click)="EditAttribute(attribute)">
                 Edit
               </button>
-              <button type="button" id="delete-attribute" class="btn btn-danger btn-sm"
+              <button
+                type="button"
+                id="delete-attribute"
+                class="btn btn-danger btn-sm"
                 (click)="DeleteAttribute(attribute.id)">
                 Delete
               </button>
-              <button type="button" id="clone-attribute" class="btn btn-info btn-sm"
+              <button
+                type="button"
+                id="clone-attribute"
+                class="btn btn-info btn-sm"
                 (click)="CloneAttribute(attribute.id)">
                 Clone
               </button>
