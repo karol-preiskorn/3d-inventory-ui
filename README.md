@@ -1,5 +1,7 @@
 # 3d inventory
 
+![Entity model](src/assets/3d-inventory.png)
+
 - [3d inventory](#3d-inventory)
   - [Description](#description)
   - [Technology stack](#technology-stack)
@@ -8,11 +10,14 @@
     - [Logical model](#logical-model)
     - [Entity attributes](#entity-attributes)
   - [Functionality](#functionality)
-    - [Future development ideas](#future-development-ideas)
+  - [Future development ideas](#future-development-ideas)
     - [List devices](#list-devices)
-    - [Edit device](#edit-device)
-    - [Application view](#application-view)
-      - [Angular + Three.js](#angular--threejs)
+      - [Edit device](#edit-device)
+    - [Models](#models)
+    - [Attributes](#attributes)
+    - [Attribute Dictionary](#attribute-dictionary)
+    - [Connections](#connections)
+    - [Application 3d view](#application-3d-view)
   - [Run](#run)
   - [Debug](#debug)
     - [Json server](#json-server)
@@ -27,6 +32,7 @@ Project create `3d inventory`. A simple solution that allows you to build a spat
 ## Technology stack
 
 - `Angular` 15+ (as a corpo framework)
+- `Bootstrap` 5.3+ - logic for insert UI data
 - `Tree` 150+ (as best graph framework)
 - [`Neo4j`|`Oracle`|`jsonserver`] `Oracle` as database (for development `json server` -> rest `Oracle` -> rest `Neo4j`.
 - `REST` - prepared `API` in use in `Swagger`.
@@ -46,22 +52,22 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
 
 ### Entity model
 
-![Entity model](src/assets/img/Screenshot%20from%202023-05-20%2016-54-30.png)
+![Entity model](src/assets/img/Screenshot%20from%202023-05-20%2016-54-30-watermark.png)
 
 ### Logical model
 
-![Logical model](src/assets/img/Screenshot%20from%202023-05-20%2017-20-39.png)
+![Logical model](src/assets/img/Screenshot%20from%202023-05-20%2017-20-39-watermark.png)
 
 ### Entity attributes
 
-- MODELS
+- `MODELS`
   - ID (UUID4)
   - NAME
   - DIMENSION
     - X
     - Y
     - H
-- DEVICES
+- `DEVICES`
   - ID (UUID4)
   - NAME
   - MODEL_ID
@@ -69,23 +75,23 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
     - X
     - Y
     - H
-- CONNECTION
+- `CONNECTION`
   - ID (UUID4)
   - TO_DEVICE_ID
   - FROM_DEVICE_ID
-- ATTRIBUTES
+- `ATTRIBUTES`
   - ID (UUID4)
   - DEVICE_ID
   - MODEL_ID
   - CONNECTION_ID
   - ATTRIBUTE_TYPE_ID
   - VALUE
-- ATTRIBUTES_TYPES
+- `ATTRIBUTES_TYPES`
   - ID (UUID4)
   - NAME
   - DESCRIPTION
   - COMPONENTS (list of values)
-- FLOORS
+- `FLOORS`
   - ID
   - ARRAY SHAPE
     - DIMENSION
@@ -101,7 +107,7 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
       - Y
       - H
       - TYPE [ENTER|EMPTY]
-- LOGS
+- `LOGS`
   - ID (UUID4)
   - DATETIME
   - OBJECT_ID (UUID4)
@@ -111,23 +117,25 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
 
 ## Functionality
 
-- Reactive forms in `Angular` 15+
-- Bootstrap 5.3+
-- 3D representation in `three.js` 150+
+- [Reactive forms](https://angular.io/guide/reactive-forms?ref=cup-t) in `Angular` 15+
+- [Bootstrap 5.3](https://getbootstrap.com/)+ show
+- 3D representation in [three.js](https://threejs.org/) 150+
 - Dynamic define attributes to components:
-  - DEVICES
-  - MODELS
-  - FLOORS
-  - CONNECTIONS
+  - `DEVICES`
+  - `MODELS`
+  - `FLOORS`
+  - `CONNECTIONS`
 
-### Future development ideas
+## Future development ideas
+
+Sth. like development plan:
 
 - [ ] Set position and model in data ans show this data in `3d`.
 - [ ] Show attributes of `DEVICES`, `MODELS` and `CONNECTIONS`.
 - [ ] Generate `FLOOR`
-  - [ ] as array of squere (x,y,h)
+  - [ ] as array of squere (x, y, h)
 - [ ] Use `Mongo` to strore `JSON` data.
-- [ ] Docker -> serve application in Github Pages --> `AWS EC2`
+- [ ] `Docker` -> serve application in `Github Pages` --> `AWS EC2`
 - [ ] Use Dev container in `GitHub` for development.
 - [ ] Recognize `Grunt`/`Glup` to `CI`/`DI` use in this project.
 - [ ] Add actual tasks form `GitHub` during build in README.md.
@@ -136,19 +144,34 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
 
 ### List devices
 
-![List devices](src/assets/img/Screenshot%202023-04-11%20at%2007-51-03%203d%20inventory.png)
+![List devices](src/assets/img/Screenshot%202023-07-14%20at%2008-48-50%203d%20inventory-watermark.png)
 
-### Edit device
+#### Edit device
 
-![Edit device](src/assets/img/Screenshot%202023-04-11%20at%2007-50-36%203d%20inventory.png)
+![Edit device](src/assets/img/Screenshot%202023-04-11%20at%2007-50-36%203d%20inventory-watermark.png)
 
-### Application view
+### Models
+
+![Models](<src/assets/img/Screenshot%202023-07-14%20at%2008-49-31%203d%20inventory-watermark.png>)
+
+### Attributes
+
+![Alt text](<src/assets/img/Screenshot%202023-07-14%20at%2008-49-42%203d%20inventory-watermark.png>)
+
+### Attribute Dictionary
+
+![Alt text](<src/assets/img/Screenshot%202023-07-14%20at%2008-49-51%203d%20inventory-watermark.png>)
+
+### Connections
+
+![Alt text](<src/assets/img/Screenshot%202023-07-14%20at%2008-50-00%203d%20inventory-watermark.png>)
+
+### Application 3d view
 
 View in `3d` inventory use [three.js](https://threejs.org/) framework.
 
-![Example random generated blocks in floor](src/assets/img/Screenshot%20from%202023-05-01%2008-29-25.png)
+![Example random generated blocks in floor](src/assets/img/Screenshot%20from%202023-05-01%2008-29-25-watermark.png)
 
-#### Angular + Three.js
 
 This project build from this example contain `three.js` in `Angular`[Tutorial to render 3D Cube in Angular + Three.js](https://srivastavaanurag79.medium.com/hello-cube-your-first-three-js-scene-in-angular-176c44b9c6c0).
 
@@ -169,7 +192,9 @@ http://localhost:4200
 
 ## Debug
 
-https://github.com/microsoft/vscode-recipes/tree/main/Angular-CLI
+Try use Firefox plugin in VS code. Without success i used Chronium.
+
+- https://github.com/microsoft/vscode-recipes/tree/main/Angular-CLI
 
 ### Json server
 
@@ -196,9 +221,10 @@ ng generate library swagger-client
 Generate library: `projects/swagger-client`
 
 Copy to src all generated by swaggercodegen code
+
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome. For major changes, please open an [issue](https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues/new) first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 

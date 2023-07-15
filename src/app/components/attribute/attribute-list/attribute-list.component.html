@@ -14,28 +14,35 @@
       </thead>
       <tbody>
         <tr *ngFor="
-                let attribute of attributeList
-                  | paginate
-                    : {
-                        id: 'attributeListPagination',
-                        itemsPerPage: 5,
-                        currentPage: attributePage
-                      }
-              ">
+            let attribute of attributeList
+              | paginate
+                : {
+                    id: 'attributeListPagination',
+                    itemsPerPage: 5,
+                    currentPage: attributePage
+                  }
+          ">
           <td>
             <div tooltip="{{ attribute.id }}">#</div>
           </td>
           <td>
-            <a href="edit-device/{{ attribute.deviceId }}" tooltip="{{ attribute.deviceId }}">{{ findDeviceName(attribute.deviceId) }}</a>
+            <a href="edit-device/{{ attribute.deviceId }}" tooltip="{{ attribute.deviceId }}">{{
+              findDeviceName(attribute.deviceId)
+              }}</a>
           </td>
           <td>
-            <a href="edit-model/{{ attribute.modelId }}"  tooltip="{{ attribute.modelId }}">{{ findModelName(attribute.modelId) }}</a>
+            <a href="edit-model/{{ attribute.modelId }}" tooltip="{{ attribute.modelId }}">{{
+              findModelName(attribute.modelId)
+              }}</a>
           </td>
           <td>
-            <a href="edit-connection/{{ attribute.connectionId }}" tooltip="{{ attribute.connectionId }}">{{ findConnectionName(attribute.connectionId) }}</a>
+            <a href="edit-connection/{{ attribute.connectionId }}" tooltip="{{ attribute.connectionId }}">{{
+              findConnectionName(attribute.connectionId)
+              }}</a>
           </td>
           <td>
-            <a href="edit-attribute-dictionary/{{ attribute.attributeDictionaryId }}" tooltip="{{ attribute.attributeDictionaryId }}">{{
+            <a href="edit-attribute-dictionary/{{ attribute.attributeDictionaryId }}"
+              tooltip="{{ attribute.attributeDictionaryId }}">{{
               findAttributeDictionary(attribute.attributeDictionaryId) }}</a>
           </td>
           <td>{{ attribute.value }}</td>
@@ -65,4 +72,4 @@
   <pagination-controls (pageChange)="attributePage = $event" id="attributeListPagination"></pagination-controls>
 </div>
 
-<app-log [component]="component"></app-log>
+<app-log *ngIf="attributeComponent" [component]="component"></app-log>
