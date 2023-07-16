@@ -12,6 +12,7 @@
 	"scripts": {
 		"update": "npm update && npm upgrade",
 		"build": "cp -f README.md src/assets && ng build --watch",
+		"server": "lite-server --baseDir='dist/3d-inventory-angular-ui/browser'",
 		"cp": "cp -f README.md src/assets",
 		"compodoc:build": "compodoc -p tsconfig.doc.json",
 		"compodoc:build-and-serve": "compodoc -p tsconfig.doc.json -s",
@@ -25,7 +26,7 @@
 		"test:nyc": "nyc --reporter=html --produce-source-map --reporter=text npm test",
 		"clear-cache": "rm -rf .angular/cache",
 		"clear-dist": "rm -rf dist",
-    "clear-all": "npm run clear-cache && npm run clear-dist"
+		"clear-all": "npm run clear-cache && npm run clear-dist"
 	},
 	"lint-staged": {
 		"**/*": "prettier --write --ignore-unknown"
@@ -71,7 +72,7 @@
 		"prismjs": "^1.29.0",
 		"process": "^0.11.10",
 		"rimraf": "^5.0.1",
-		"rxjs": "~7.8.1",
+		"rxjs": "^7.4.0",
 		"three": "^0.152.2",
 		"three-orbitcontrols-ts": "^0.1.2",
 		"tslib": "^2.5.2",
@@ -113,6 +114,7 @@
 		"karma-jasmine-html-reporter": "~2.1.0",
 		"karma-jsdom-launcher": "^15.0.0",
 		"lint-staged": "^13.2.3",
+		"lite-server": "^2.6.1",
 		"ng-packagr": "^15.2.2",
 		"nyc": "^15.1.0",
 		"prettier": "3.0.0",

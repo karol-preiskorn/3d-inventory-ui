@@ -23,10 +23,11 @@
     - [Application 3d view](#application-3d-view)
   - [Run](#run)
   - [Debug](#debug)
+  - [Deploy](#deploy)
   - [Json server](#json-server)
   - [Swagger client to generate API structures](#swagger-client-to-generate-api-structures)
   - [Contributing](#contributing)
-  - [Next tasks TODO](#next-tasks-todo)
+    - [Next tasks](#next-tasks)
 
 ## Description
 
@@ -36,9 +37,11 @@ Project create `3d inventory`. A simple solution that allows you to build a spat
 
 ### About background and motivation
 
-I'm programming over 20 years to incorporate database systems. I develop practical knowledge backend programming databases in `PLSQL` and `ABAP`. I have some experience in create frontend/interfaces to database app in `Node.JS` (`Rx`/`Ag`), `Python` and `Java`. This project covers relevant topics and issues related to my [`programming journey`](http://ultimasolution.pl). This project solves several problems I encountered while integrating inventory database solutions in a corporate environment.
+This project solves several problems I encountered while integrating inventory database solutions in a corporate environment.
 
 I want to focus here to topic build database inventory applications and interfaces.
+
+I'm programming over 20 years to incorporate database systems. I develop practical knowledge backend programming databases in `PLSQL` and `ABAP`. I have some experience in create frontend/interfaces to database app in `Node.JS` (`Rx`/`Ag`), `Python` and `Java`. This project covers relevant topics and issues related to my [`programming journey`](http://ultimasolution.pl).
 
 You are welcome to cooperate and leave a few words of comment.
 
@@ -208,10 +211,27 @@ http://localhost:4200
 ```
 
 ## Debug
-
 Try use Firefox plugin in VS code. Without success i used Chronium.
 
 - https://github.com/microsoft/vscode-recipes/tree/main/Angular-CLI
+
+## Deploy
+
+https://angular.io/guide/deployment
+
+Build in first terminal: `ng build --watch` in npm alias:
+
+```bash
+npm run build
+```
+
+On the second terminal, install a web server (such as lite-server), and run it against the output folder. For example:
+
+```bash
+lite-server --baseDir='dist/3d-inventory-angular-ui/browser'
+```
+
+npm alias: `npm run server`
 
 ## Json server
 
@@ -231,6 +251,8 @@ baseurl = 'http://localhost:3000';
 
 ## Swagger client to generate API structures
 
+Abandoned until I do not have clear situation with data entity and operations. Now I use `json-swager` to store data.
+
 ```bash
 ng generate library swagger-client
 ```
@@ -247,6 +269,6 @@ Please make sure to update tests as appropriate.
 
 Not forget about [code guide-lines](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines).
 
-## Next tasks TODO
+### Next tasks
 
-[https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues](https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues)
++ [https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues](https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues)
