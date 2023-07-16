@@ -22,6 +22,7 @@
     - [Connections](#connections)
     - [Application 3d view](#application-3d-view)
   - [Run](#run)
+  - [Upgrades](#upgrades)
   - [Debug](#debug)
   - [Deploy](#deploy)
   - [Json server](#json-server)
@@ -111,8 +112,7 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
   - NAME
   - DESCRIPTION
   - COMPONENTS (list of values)
-- `FLOORS`
-  - ID
+- `FLOORS` (@TODO)
   - ARRAY SHAPE
     - DIMENSION
       - X
@@ -210,12 +210,18 @@ npm run start:json-server
 http://localhost:4200
 ```
 
+## Upgrades
+
+https://angular.io/guide/versions
+
 ## Debug
 Try use Firefox plugin in VS code. Without success i used Chronium.
 
 - https://github.com/microsoft/vscode-recipes/tree/main/Angular-CLI
 
 ## Deploy
+
+
 
 https://angular.io/guide/deployment
 

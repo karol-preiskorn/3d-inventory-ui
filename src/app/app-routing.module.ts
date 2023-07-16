@@ -125,6 +125,21 @@ const routes: Routes = [
     component: EditConnectionComponent,
     title: 'Edit Connections',
   },
+  {
+    path: 'floor-list',
+    component: ConnectionListComponent,
+    title: 'Floor List',
+  },
+  {
+    path: 'add-floor',
+    component: AddConnectionComponent,
+    title: 'Add Floor',
+  },
+  {
+    path: 'edit-floor/:id',
+    component: EditConnectionComponent,
+    title: 'Edit Floor',
+  },
 ]
 
 @NgModule({
