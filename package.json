@@ -64,7 +64,7 @@
 		"lodash": "^4.17.21",
 		"mkdirp": "^3.0.1",
 		"nav-bar": "^1.0.3",
-		"ngx-bootstrap": "^10.3.0",
+		"ngx-bootstrap": "^11.0.2",
 		"ngx-markdown": "^16.0.0",
 		"ngx-pagination": "^6.0.3",
 		"node-sass": "^9.0.0",
