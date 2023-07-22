@@ -2,5 +2,4 @@
 . "$(pwd -- "$0")/.husky/_/husky.sh"
 
 # npx lint-staged
-npm test
-npm test
+npm --no-git-tag-version version patch
