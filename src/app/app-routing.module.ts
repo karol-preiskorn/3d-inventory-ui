@@ -1,5 +1,6 @@
 import {Injectable, NgModule} from '@angular/core'
 import {RouterModule, RouterStateSnapshot, Routes, TitleStrategy, provideRouter} from '@angular/router'
+import {Title} from '@angular/platform-browser'
 
 import {DeviceListComponent} from 'src/app/components/devices/devices-list/devices-list.component'
 import {AddDeviceComponent} from 'src/app/components/devices/add-device/add-device.component'
@@ -21,9 +22,12 @@ import {ConnectionListComponent} from './components/connection/connection-list/c
 import {AddConnectionComponent} from './components/connection/add-connection/add-connection.component'
 import {EditConnectionComponent} from './components/connection/edit-connection/edit-connection.component'
 
+import {FloorListComponent} from './components/floors/floor-list/floor-list.component'
+import {AddFloorComponent} from './components/floors/add-floor/add-floor.component'
+import {EditFloorComponent} from './components/floors/edit-floor/edit-floor.component'
+
 import {CubeComponent} from './components/cube/cube.component'
 import {HomeComponent} from './components/home/home.component'
-import {Title} from '@angular/platform-browser'
 
 @Injectable()
 export class TemplatePageTitleStrategy extends TitleStrategy {
@@ -127,17 +131,17 @@ const routes: Routes = [
   },
   {
     path: 'floor-list',
-    component: ConnectionListComponent,
+    component: FloorListComponent,
     title: 'Floor List',
   },
   {
     path: 'add-floor',
-    component: AddConnectionComponent,
+    component: AddFloorComponent,
     title: 'Add Floor',
   },
   {
     path: 'edit-floor/:id',
-    component: EditConnectionComponent,
+    component: EditFloorComponent,
     title: 'Edit Floor',
   },
 ]

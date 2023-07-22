@@ -44,7 +44,10 @@ import { LogService } from './services/log.service';
 import { ConnectionListComponent } from './components/connection/connection-list/connection-list.component';
 import { AddConnectionComponent } from './components/connection/add-connection/add-connection.component';
 import { EditConnectionComponent } from './components/connection/edit-connection/edit-connection.component';
-import { FloorsComponent } from './components/floors/floors.component'
+
+import { FloorListComponent } from './components/floors/floor-list/floor-list.component';
+import { EditFloorComponent } from './components/floors/edit-floor/edit-floor.component';
+import { AddFloorComponent } from './components/floors/add-floor/add-floor.component'
 
 
 @NgModule({
@@ -72,7 +75,9 @@ import { FloorsComponent } from './components/floors/floors.component'
     ConnectionListComponent,
     AddConnectionComponent,
     EditConnectionComponent,
-    FloorsComponent,
+    FloorListComponent,
+    EditFloorComponent,
+    AddFloorComponent,
   ],
   imports: [
     AppRoutingModule,

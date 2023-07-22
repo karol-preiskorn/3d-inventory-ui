@@ -22,6 +22,7 @@
     - [Connections](#connections)
     - [Application 3d view](#application-3d-view)
   - [Run](#run)
+  - [Upgrades](#upgrades)
   - [Debug](#debug)
   - [Deploy](#deploy)
   - [Json server](#json-server)
@@ -209,7 +210,14 @@ npm run start:json-server
 http://localhost:4200
 ```
 
+On this stage of project I use single branch `master`. If I finish this stage when app will be usefully I will use also develop.
+
+## Upgrades
+
+https://angular.io/guide/versions
+
 ## Debug
+
 Try use Firefox plugin in VS code. Without success i used Chronium.
 
 - https://github.com/microsoft/vscode-recipes/tree/main/Angular-CLI

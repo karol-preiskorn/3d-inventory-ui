@@ -1,23 +1,24 @@
-import {Component, OnInit, Input, NgZone} from '@angular/core'
-import {Router} from '@angular/router'
-import {Subscription} from 'rxjs'
+import { Component, OnInit, Input, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
+import { Subscription } from 'rxjs'
 
-import {LogService} from 'src/app/services/log.service'
+import { LogService } from 'src/app/services/log.service'
 
-import {Attribute} from 'src/app/shared/attribute'
-import {AttributeService} from 'src/app/services/attribute.service'
+import { Attribute } from 'src/app/shared/attribute'
+import { AttributeService } from 'src/app/services/attribute.service'
 
-import {Device} from 'src/app/shared/device'
-import {DeviceService} from 'src/app/services/device.service'
+import { Device } from 'src/app/shared/device'
+import { DeviceService } from 'src/app/services/device.service'
 
-import {Model} from 'src/app/shared/model'
-import {ModelsService} from 'src/app/services/models.service'
+import { Model } from 'src/app/shared/model'
+import { ModelsService } from 'src/app/services/models.service'
 
-import {Connection} from 'src/app/shared/connection'
-import {ConnectionService} from 'src/app/services/connection.service'
+import { Connection } from 'src/app/shared/connection'
+import { ConnectionService } from 'src/app/services/connection.service'
 
-import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
-import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
+
 
 @Component({
   selector: 'app-attribute-list',
@@ -25,9 +26,8 @@ import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.
   styleUrls: ['./attribute-list.component.scss'],
 })
 export class AttributeListComponent implements OnInit {
-
   @Input() attributeComponent: string
-  @Input() attributeComponentId: string
+  @Input() attributeComponentId: object
 
   attributeList: Attribute[] = []
   selectedAttribute: Attribute
@@ -39,13 +39,19 @@ export class AttributeListComponent implements OnInit {
   connectionDictionary: Connection[]
   attributeDictionary: AttributeDictionary[]
 
+  device: Device = new Device()
+  model: Model
+  connection: Connection
+
   ngOnInit() {
     this.LoadAttributes()
     this.getDeviceList()
     this.getModelList()
     this.getConnectionList()
     this.getAttributeDictionaryList()
+    this.device = this.attributeComponentId as Device
   }
+
   constructor(
     public attributeService: AttributeService,
     private logService: LogService,
@@ -55,29 +61,52 @@ export class AttributeListComponent implements OnInit {
     private modelService: ModelsService,
     private connectionService: ConnectionService,
     private attributeDictionaryService: AttributeDictionaryService
-  ) {}
+  ) { }
 
-  LoadAttributes() {
-    return this.attributeService.GetAttributes().subscribe((data: Attribute[]) => {
-      this.attributeList = data
+  private getDevice() {
+    this.deviceService.GetDevice(this.device.id).subscribe((data: Device) => {
+      console.log('AttributeListComponents.GetDevice ' + JSON.stringify(data))
+      this.device = data
     })
   }
 
-  DeleteAttribute(id: any) {
+  // GetDeviceAttributes(id: string): Observable<Attribute[]> {
+  //   return this.http.get<Attribute[]>(this.BASEURL + '/attributes/?deviceId=' + id).pipe(retry(1), catchError(this.errorHandl))
+  // }
+
+  private LoadAttributes() {
+    // @TODO: #62 show data depends of context attributeComponent and attributeComponentId
+    if (this.attributeComponent == 'Device' && this.attributeComponentId != null) {
+
+      this.getDevice()
+
+      console.log('LoadAttributes.getDevice' + JSON.stringify(this.device));
+
+      this.attributeList = this.attributeService.GetContextAttributes(this.attributeComponent, JSON.stringify(this.device))
+
+      console.log('LoadAttributes.attributeList: ' + JSON.stringify(this.attributeList))
+    } else {
+      this.attributeService.GetAttributes().subscribe((data: Attribute[]) => {
+        this.attributeList.push(...data)
+      })
+    }
+  }
+
+  DeleteAttribute(id: string) {
     this.logService.CreateLog({
       message: id,
       object: id,
       operation: 'Delete',
       component: 'Attributes',
     })
-    return this.attributeService.DeleteAttribute(id).subscribe((data: any) => {
+    return this.attributeService.DeleteAttribute(id).subscribe((data: Attribute) => {
       console.log(data)
       this.LoadAttributes()
       this.router.navigate(['/attribute-dictionary-list'])
     })
   }
 
-  async CloneAttribute(id: any) {
+  async CloneAttribute(id: string | null) {
     const id_new: string = this.attributeService.CloneAttribute(id)
     this.logService
       .CreateLog({
@@ -107,7 +136,7 @@ export class AttributeListComponent implements OnInit {
     })
   }
 
-  findDeviceName(id: any): string {
+  findDeviceName(id: string | null): string {
     return this.deviceDictionary.find((e) => e.id === id)?.name as string
   }
 
@@ -119,7 +148,7 @@ export class AttributeListComponent implements OnInit {
     })
   }
 
-  findModelName(id: any): string {
+  findModelName(id: string | null): string {
     return this.modelDictionary.find((e) => e.id === id)?.name as string
   }
 
@@ -131,7 +160,7 @@ export class AttributeListComponent implements OnInit {
     })
   }
 
-  findConnectionName(id: any): string {
+  findConnectionName(id: string | null): string {
     return this.connectionDictionary.find((e) => e.id === id)?.name as string
   }
 
@@ -143,7 +172,7 @@ export class AttributeListComponent implements OnInit {
     })
   }
 
-  findAttributeDictionary(id: any): string {
+  findAttributeDictionary(id: string | null): string {
     return this.attributeDictionary.find((e) => e.id === id)?.name as string
   }
 }

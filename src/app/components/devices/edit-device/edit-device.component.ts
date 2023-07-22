@@ -69,7 +69,7 @@ export class EditDeviceComponent implements OnInit {
 
   reloadComponent(self: boolean, urlToNavigateTo?: string) {
     //skipLocationChange:true means don't update the url to / when navigating
-    console.log('Current route I am on:', this.router.url)
+    //console.log('Current route I am on:', this.router.url)
     const url = self ? this.router.url : urlToNavigateTo
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate([`/${url}`]).then(() => {
