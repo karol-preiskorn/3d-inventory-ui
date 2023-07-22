@@ -1,4 +1,4 @@
-﻿#
+﻿/*
 # File:        @/src/cddi/version-change.py
 # Description:
 # Used by:
@@ -6,10 +6,14 @@
 #
 # Date        By       Comments
 # ----------  -------  ------------------------------
-# 2023-07-22  C2RLO
+# 2023-07-22  C2RLO    add husky comment insteed
+# 2023-07-22  C2RLO    Init (simple-git not install?!)
+*/
+
 
 
 const semver = require("semver");
+
 const simpleGit = require("simple-git");
 
 const options = {

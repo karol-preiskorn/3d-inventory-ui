@@ -9,5 +9,9 @@
     "uuidv"
   ],
   "todo-tree.tree.showCountsInTree": true,
-  "window.title": "${dirty} ${activeEditorMedium}"
+  "window.title": "${dirty} ${activeEditorMedium}",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.formatting.provider": "none"
 }
