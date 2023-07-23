@@ -1,11 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
 import { Observable, throwError } from 'rxjs'
-import { catchError, retry } from 'rxjs/operators'
+import { catchError, map, retry } from 'rxjs/operators'
+import { SyncRequestClient } from 'ts-sync-request/dist'
 import { v4 as uuidv4 } from 'uuid'
 import { Device } from '../shared/device'
 import { LogService } from './log.service'
-import { Router } from '@angular/router'
+
 
 @Injectable({
   providedIn: 'root',
@@ -37,6 +39,21 @@ export class DeviceService {
     return this.http
       .get<Device>(this.baseurl + '/' + this.objectName + '/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
+  }
+
+
+  getDeviceSynchronize(id: string | null) {
+    return new SyncRequestClient().get<Device>(this.baseurl + '/' + this.objectName + '/' + id)
+  }
+
+  GetDeviceSynchro(id: string | null): Observable<Device> {
+    return this.http
+      .get<Device>(this.baseurl + '/' + this.objectName + '/' + id).pipe(
+        map(res => {
+          return res
+        }),
+        catchError(this.errorHandl)
+      )
   }
 
   DeleteDevice(id: string | null): Observable<Device> {

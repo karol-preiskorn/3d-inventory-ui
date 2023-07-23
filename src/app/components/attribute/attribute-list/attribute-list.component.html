@@ -68,12 +68,14 @@
     <button type="button" class="btn btn-success btn-sm move-right mb-3" (click)="AddAttribute()">
       <i class="bi bi-plus-lg"></i> Add
     </button>
+
   </div>
   <pagination-controls (pageChange)="attributePage = $event" id="attributeListPagination"></pagination-controls>
 </div>
 
-<div>attributeComponentId in AttributeList: {{ attributeComponent }}</div>
-<div>attributeComponentId in AttributeList: {{ attributeComponentId }}</div>
-<div>(attributeComponent == '') {{ attributeComponent == '' }}</div>
+<!-- <div>attributeComponent: {{ this.attributeComponent }}</div>
+<div>attributeComponentObject: {{ this.attributeComponentObject }}</div>
+<div>(attributeComponent == '') {{ attributeComponent == '' }}</div> -->
 
-<app-log *ngIf="attributeComponent == ''" [component]="component"></app-log>
+<app-log *ngIf="attributeComponent == ''" [attributeComponentObject]="this.device"
+  [component]="component"></app-log>

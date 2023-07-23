@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable } from '@angular/core'
+import { Injectable, Input } from '@angular/core'
 import { Observable, catchError, of, retry, throwError } from 'rxjs'
 import { v4 as uuidv4 } from 'uuid'
 import { getDateString } from '../shared/utils'
@@ -31,6 +31,7 @@ export interface LogIn {
 export class LogService {
 
   baseurl = 'http://localhost:3000'
+  @Input() attributeComponentId: string
 
   constructor(private http: HttpClient) { }
 

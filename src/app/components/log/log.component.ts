@@ -27,7 +27,9 @@ import { AttributeService } from 'src/app/services/attribute.service'
 })
 export class LogComponent implements OnInit {
   LogList: Log[] = []
+
   @Input() component = ''
+  @Input() attributeComponentObject: object = {}
 
   deviceList: Device[]
   modelList: Model[]
