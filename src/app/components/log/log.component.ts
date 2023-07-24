@@ -1,24 +1,24 @@
-import { Component, OnInit, Input } from '@angular/core'
-import { Subscription } from 'rxjs'
+import {Component, OnInit, Input} from '@angular/core'
+import {Subscription} from 'rxjs'
 
-import { Log, LogService } from 'src/app/services/log.service'
+import {Log, LogService} from 'src/app/services/log.service'
 
-import { EnvironmentService } from 'src/app/services/environment.service'
+import {EnvironmentService} from 'src/app/services/environment.service'
 
-import { Device } from 'src/app/shared/device'
-import { DeviceService } from 'src/app/services/device.service'
+import {Device} from 'src/app/shared/device'
+import {DeviceService} from 'src/app/services/device.service'
 
-import { Model } from 'src/app/shared/model'
-import { ModelsService } from 'src/app/services/models.service'
+import {Model} from 'src/app/shared/model'
+import {ModelsService} from 'src/app/services/models.service'
 
-import { Connection } from 'src/app/shared/connection'
-import { ConnectionService } from 'src/app/services/connection.service'
+import {Connection} from 'src/app/shared/connection'
+import {ConnectionService} from 'src/app/services/connection.service'
 
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
-import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
+import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
+import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
 
-import { Attribute } from 'src/app/shared/attribute'
-import { AttributeService } from 'src/app/services/attribute.service'
+import {Attribute} from 'src/app/shared/attribute'
+import {AttributeService} from 'src/app/services/attribute.service'
 
 @Component({
   selector: 'app-log',
@@ -57,10 +57,10 @@ export class LogComponent implements OnInit {
     private modelService: ModelsService,
     private connectionService: ConnectionService,
     private attributeDictionaryService: AttributeDictionaryService
-  ) { }
+  ) {}
 
   loadLog(context: string) {
-    console.log(this.environmentService.isApiSettings(this.component))
+    //console.log(this.environmentService.isApiSettings(this.component))
     // found log context in share service with strore variables
     if (this.environmentService.isApiSettings(this.component)) {
       console.log(context + '.loadComponentLog: ' + this.component)

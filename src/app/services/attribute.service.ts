@@ -52,24 +52,24 @@ export class AttributeService {
   }
 
   GetAttributes(): Observable<Attribute[]> {
-    return this.http.get<Attribute[]>(this.BASEURL + '/attributes/').pipe(retry(1), catchError(this.errorHandl))
+    return this.http.get<Attribute[]>(this.BASEURL + '/attributes/', this.httpOptions).pipe(retry(1), catchError(this.errorHandl))
   }
 
   GetDeviceAttributes(id: string): Observable<Attribute[]> {
     return this.http
-      .get<Attribute[]>(this.BASEURL + '/attributes/?deviceId=' + id)
+      .get<Attribute[]>(this.BASEURL + '/attributes/?deviceId=' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   async GetDeviceAttributesPomise(id: string) {
     return this.http
-      .get<Attribute[]>(this.BASEURL + '/attributes/?deviceId=' + id)
+      .get<Attribute[]>(this.BASEURL + '/attributes/?deviceId=' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl)).toPromise()
   }
 
   GetModelAtributes(id: string): Observable<Attribute[]> {
     return this.http
-      .get<Attribute[]>(this.BASEURL + '/attributes/?modelId=' + id)
+      .get<Attribute[]>(this.BASEURL + '/attributes/?modelId=' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
