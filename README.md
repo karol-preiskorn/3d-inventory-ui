@@ -42,7 +42,7 @@ This project solves several problems I encountered while integrating inventory d
 
 I want to focus here to topic build database inventory applications and interfaces.
 
-I'm programming over 20 years to incorporate database systems. I develop practical knowledge backend programming databases in `PLSQL` and `ABAP`. I have some experience in create frontend/interfaces to database app in `Node.JS` (`Rx`/`Ag`), `Python` and `Java`. This project covers relevant topics and issues related to my [`programming journey`](http://ultimasolution.pl).
+I'm programming to incorporate database systems. I develop in `PLSQL` and `ABAP`. I have some experience in create frontend/interfaces to database app in `Node.JS` (`Rx`/`Ag`), `Python` and `Java`. This project covers relevant topics and issues related to create simple and enicient platform for IT inventory.
 
 You are welcome to cooperate and leave a few words of comment.
 
