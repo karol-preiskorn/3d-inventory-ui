@@ -675,6 +675,70 @@
       "operation": "Update",
       "component": "Devices",
       "message": "{\"id\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"name\":\"Device 2\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"4\",\"y\":\"3\",\"h\":\"0\"}}"
+    },
+    {
+      "id": "083952d6-4895-4e74-88ef-d8457c93d658",
+      "date": "2023/07/24 20:32:42.70",
+      "object": "6f4bfa3e-958d-4487-ad4e-3febcbac2103",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"6f4bfa3e-958d-4487-ad4e-3febcbac2103\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"3\"}"
+    },
+    {
+      "id": "5abc1850-f8e1-4dc0-8d1d-5998b5ccc9a6",
+      "date": "2023/07/24 20:34:30.18",
+      "object": "b775baeb-e736-407a-921d-d5c31f12897c",
+      "operation": "Create",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"b775baeb-e736-407a-921d-d5c31f12897c\",\"name\":\"Device Color\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"device\"}"
+    },
+    {
+      "id": "9a545311-f8a8-422a-8cfa-33d40d7a9648",
+      "date": "2023/07/24 20:34:57.03",
+      "object": "5bd08753-c41a-4ac5-beed-b90d45ef0f7c",
+      "operation": "Create",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"5bd08753-c41a-4ac5-beed-b90d45ef0f7c\",\"name\":\"Model Color\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"model\"}"
+    },
+    {
+      "id": "0c219667-a9a6-402a-ac9a-899c177c3800",
+      "date": "2023/07/24 20:35:42.90",
+      "object": "8ea54f32-daf2-4b21-a937-e9cc7839e096",
+      "operation": "Create",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"8ea54f32-daf2-4b21-a937-e9cc7839e096\",\"name\":\"Connection Color\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"connection\"}"
+    },
+    {
+      "id": "249bce96-6bf4-4d16-9181-9b46bde784ec",
+      "date": "2023/07/24 20:36:09.65",
+      "object": "2d09bb16-7b2b-430b-84bd-31c45013a12c",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"2d09bb16-7b2b-430b-84bd-31c45013a12c\",\"deviceId\":\"5f8abd81-0d35-47c4-8277-3d6bbbe185f0\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b775baeb-e736-407a-921d-d5c31f12897c\",\"value\":\"Blue\"}"
+    },
+    {
+      "id": "2eb81613-090e-426e-8d75-dcbbd680f5b5",
+      "date": "2023/07/24 20:36:33.69",
+      "object": "fbee7887-b91e-425a-8dc6-87c6bfd2772d",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"fbee7887-b91e-425a-8dc6-87c6bfd2772d\",\"deviceId\":\"b04452d1-a271-4a4a-a543-087b8effd74b\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b775baeb-e736-407a-921d-d5c31f12897c\",\"value\":\"Red\"}"
+    },
+    {
+      "id": "022df952-c079-4b66-87b8-bb6fa4ac36f8",
+      "date": "2023/07/24 20:36:53.87",
+      "object": "b89ec72f-dac9-406f-b166-30e696a3aa7e",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"b89ec72f-dac9-406f-b166-30e696a3aa7e\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b775baeb-e736-407a-921d-d5c31f12897c\",\"value\":\"Black\"}"
+    },
+    {
+      "id": "059b42fd-a93a-43ab-b4d8-6e69705730e9",
+      "date": "2023/07/24 20:38:15.21",
+      "object": "73ee6acc-2364-4cb4-8e38-25b26f7ff3df",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"73ee6acc-2364-4cb4-8e38-25b26f7ff3df\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"04f0e57c-6214-49af-a2bb-47b61e23e116\",\"value\":\"Old\"}"
     }
   ],
   "models": [
@@ -804,6 +868,27 @@
       "type": "Bridge",
       "category": "Connectivity",
       "component": "model"
+    },
+    {
+      "id": "b775baeb-e736-407a-921d-d5c31f12897c",
+      "name": "Device Color",
+      "type": "Bridge",
+      "category": "Connectivity",
+      "component": "device"
+    },
+    {
+      "id": "5bd08753-c41a-4ac5-beed-b90d45ef0f7c",
+      "name": "Model Color",
+      "type": "Bridge",
+      "category": "Connectivity",
+      "component": "model"
+    },
+    {
+      "id": "8ea54f32-daf2-4b21-a937-e9cc7839e096",
+      "name": "Connection Color",
+      "type": "Bridge",
+      "category": "Connectivity",
+      "component": "connection"
     }
   ],
   "attributes": [
@@ -838,6 +923,46 @@
       "connectionId": "fd5ece0f-9626-47cf-ad12-3e94a5a14015",
       "attributeDictionaryId": "489d6288-f336-4915-b753-a1071879c6d3",
       "value": "2"
+    },
+    {
+      "id": "6f4bfa3e-958d-4487-ad4e-3febcbac2103",
+      "deviceId": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
+      "value": "3"
+    },
+    {
+      "id": "2d09bb16-7b2b-430b-84bd-31c45013a12c",
+      "deviceId": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "b775baeb-e736-407a-921d-d5c31f12897c",
+      "value": "Blue"
+    },
+    {
+      "id": "fbee7887-b91e-425a-8dc6-87c6bfd2772d",
+      "deviceId": "b04452d1-a271-4a4a-a543-087b8effd74b",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "b775baeb-e736-407a-921d-d5c31f12897c",
+      "value": "Red"
+    },
+    {
+      "id": "b89ec72f-dac9-406f-b166-30e696a3aa7e",
+      "deviceId": "be5bb617-a614-435f-bf66-8768d0aba0c8",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "b775baeb-e736-407a-921d-d5c31f12897c",
+      "value": "Black"
+    },
+    {
+      "id": "73ee6acc-2364-4cb4-8e38-25b26f7ff3df",
+      "deviceId": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "04f0e57c-6214-49af-a2bb-47b61e23e116",
+      "value": "Old"
     }
   ]
 }

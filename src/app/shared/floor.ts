@@ -6,12 +6,33 @@
  *
  * Date         By        Comments
  * ----------   -------   ------------------------------
+ * 2023-07-25   C2RLO
  * 2023-05-16   C2RLO
  */
 
 import { v4 as uuidv4 } from 'uuid'
 
-export class Floor {
+// export class _Floor {
+//   id: string
+//   name: string
+//   adress: {
+//     street: string
+//     country: string
+//     postcode: string
+//   }
+//   dimension: [{
+//     x: number
+//     y: number
+//     h: number
+//   }]
+
+//   constructor() {
+//     this.id = uuidv4()
+//   }
+// }
+
+
+export interface Floor {
   id: string
   name: string
   adress: {
@@ -24,8 +45,4 @@ export class Floor {
     y: number
     h: number
   }]
-
-  constructor() {
-    this.id = uuidv4()
-  }
 }

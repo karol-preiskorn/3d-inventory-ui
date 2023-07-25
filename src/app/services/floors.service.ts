@@ -29,9 +29,9 @@ export class FloorsService {
     }),
   }
 
-  GetFloors(): Observable<Floor> {
+  GetFloors(): Observable<Floor[]> {
     return this.http
-      .get<Floor>(this.BASEURL + '/floor/')
+      .get<Floor[]>(this.BASEURL + '/floor/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -83,7 +83,7 @@ export class FloorsService {
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
-  
+
   errorHandl(error: { error: { message: string }; status: any; message: Log }) {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
