@@ -19,10 +19,13 @@
                   currentPage: floorListPage
                 }
         ">
-
         <td tooltip="{{ floor.id }}">{{ floor.name }}</td>
         <td>Adress: {{ floor.adress.street }}, {{ floor.adress.postcode }} {{ floor.adress.country }}</td>
-        <td><div *ngFor="let dimension of floor.dimension">x: {{ dimension.x }}, y: {{ dimension.y }}, h: {{ dimension.h }}</div></td>
+        <td>
+          <div *ngFor="let d of floor.dimension">
+            (x: {{ d.x }}, y: {{ d.y }}, h: {{ d.h }})->({{ d.x_pos }}, {{ d.y_pos }}, {{ d.h_pos }})
+          </div>
+        </td>
         <td>
           <div class="btn-group" role="group" aria-label="device-operations">
             <button type="button" class="btn btn-success btn-sm move-right" id="edit-device" (click)="editFloor(floor)">

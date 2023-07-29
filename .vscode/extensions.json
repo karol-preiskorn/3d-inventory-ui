@@ -2,6 +2,7 @@
   "recommendations": [
     "unional.vscode-sort-package-json",
     "ms-vscode.js-debug-nightly",
-    "firefox-devtools.vscode-firefox-debug"
+    "firefox-devtools.vscode-firefox-debug",
+    "dbaeumer.vscode-eslint"
   ]
 }

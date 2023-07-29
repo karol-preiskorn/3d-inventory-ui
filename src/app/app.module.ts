@@ -48,6 +48,7 @@ import { EditConnectionComponent } from './components/connection/edit-connection
 import { FloorListComponent } from './components/floors/floor-list/floor-list.component';
 import { EditFloorComponent } from './components/floors/edit-floor/edit-floor.component';
 import { AddFloorComponent } from './components/floors/add-floor/add-floor.component'
+import { FloorService } from './services/floor.service'
 
 
 @NgModule({
@@ -103,6 +104,7 @@ import { AddFloorComponent } from './components/floors/add-floor/add-floor.compo
     AttributeDictionaryService,
     AttributeService,
     EnvironmentService,
+    FloorService
   ],
   bootstrap: [AppComponent],
   exports: [LogComponent],

@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs'
 import { catchError, map, retry } from 'rxjs/operators'
 import { SyncRequestClient } from 'ts-sync-request/dist'
 import { v4 as uuidv4 } from 'uuid'
+
 import { Device } from '../shared/device'
 import { LogService } from './log.service'
 

@@ -145,6 +145,7 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
   - `MODELS`
   - `FLOORS`
   - `CONNECTIONS`
+- Show dynamic attributes for `Device`: ![Device with attibutes](image.png)
 
 ## Future development ideas
 
@@ -161,6 +162,7 @@ Sth. like development plan:
 - [ ] Add actual tasks form `GitHub` during build in README.md.
 - [ ] Add light/dark theme switch in `UI`
 - [ ] For development `JSON` server -> rest `Oracle` --> rest `Neo4j`
+- [ ] Use https://formly.dev/ ?
 
 ### List devices
 
@@ -168,7 +170,8 @@ Sth. like development plan:
 
 #### Edit device
 
-![Edit device](src/assets/img/Screenshot%202023-04-11%20at%2007-50-36%203d%20inventory-watermark.png)
+![Edit Device](image-1.png)
+
 
 ### Models
 

@@ -1,17 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
 import { Observable, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 import { v4 as uuidv4 } from 'uuid'
+import { SyncRequestClient } from 'ts-sync-request'
+
 import { Floor } from '../shared/floor'
-import { LogService, Log } from './log.service'
-import { Router } from '@angular/router'
 import { EnvironmentService } from './environment.service'
+import { Log, LogService } from './log.service'
+
 
 @Injectable({
   providedIn: 'root',
 })
-export class FloorsService {
+export class FloorService {
   environmentServiceClass = new EnvironmentService()
   BASEURL = this.environmentServiceClass.getSettings('BASEURL')
   constructor(
@@ -19,9 +22,7 @@ export class FloorsService {
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
-  ) {
-
-  }
+  ) {}
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -30,9 +31,11 @@ export class FloorsService {
   }
 
   GetFloors(): Observable<Floor[]> {
-    return this.http
-      .get<Floor[]>(this.BASEURL + '/floor/')
-      .pipe(retry(1), catchError(this.errorHandl))
+    return this.http.get<Floor[]>(this.BASEURL + '/floor/').pipe(retry(1), catchError(this.errorHandl))
+  }
+
+  getFloorSynchronize(id: string | null): Floor {
+    return new SyncRequestClient().get<Floor>(this.BASEURL + '/floor/' + id)
   }
 
   GetFloor(id: string | null): Observable<Floor> {
@@ -49,11 +52,7 @@ export class FloorsService {
 
   CreateFloor(data: Floor): Observable<Floor> {
     return this.http
-      .post<Floor>(
-        this.BASEURL + '/floor/',
-        JSON.stringify(data),
-        this.httpOptions
-      )
+      .post<Floor>(this.BASEURL + '/floor/', JSON.stringify(data), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -67,24 +66,19 @@ export class FloorsService {
           console.log('Create Floor: ' + JSON.stringify(v))
           this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
         },
-        complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('floor-list')),
+        complete: () => this.ngZone.run(() => this.router.navigateByUrl('floor-list')),
       })
     })
     return id_uuid
   }
 
-  UpdateFloor(id: string | null, data: any): Observable<Floor> {
+  UpdateFloor(id: string | null | undefined, data: () => { id: string | null; name: string | null; adress: { street: string | null; country: string | null; postcode: string | null; }; description: string | null; dimension: any[]; }): Observable<Floor> {
     return this.http
-      .put<Floor>(
-        this.BASEURL + '/floor/' + id,
-        JSON.stringify(data),
-        this.httpOptions
-      )
+      .put<Floor>(this.BASEURL + '/floor/' + id, JSON.stringify(data), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  errorHandl(error: { error: { message: string }; status: any; message: Log }) {
+  errorHandl(error: {error: {message: string}; status: any; message: Log}) {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       // Get client-side error

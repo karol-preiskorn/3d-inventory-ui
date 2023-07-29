@@ -3,7 +3,7 @@
     {
       "id": "fd5ece0f-9626-47cf-ad12-3e94a5a14015",
       "name": "2 to 5",
-      "deviceIdTo": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f",
+      "deviceIdTo": "b04452d1-a271-4a4a-a543-087b8effd74b",
       "deviceIdFrom": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a"
     },
     {
@@ -11,6 +11,18 @@
       "name": "2 coonect to 3",
       "deviceIdTo": "be5bb617-a614-435f-bf66-8768d0aba0c8",
       "deviceIdFrom": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a"
+    },
+    {
+      "id": "baf4152d-65ab-4cce-8f05-6d889e4d8c2a",
+      "name": "Coonect 5",
+      "deviceIdTo": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "deviceIdFrom": "b04452d1-a271-4a4a-a543-087b8effd74b"
+    },
+    {
+      "id": "67c06b77-d609-4f80-aef0-722227ee7ac6",
+      "name": "1 to 5",
+      "deviceIdTo": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f",
+      "deviceIdFrom": "b04452d1-a271-4a4a-a543-087b8effd74b"
     }
   ],
   "devices": [
@@ -739,6 +751,30 @@
       "operation": "Create",
       "component": "Attributes",
       "message": "{\"id\":\"73ee6acc-2364-4cb4-8e38-25b26f7ff3df\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"04f0e57c-6214-49af-a2bb-47b61e23e116\",\"value\":\"Old\"}"
+    },
+    {
+      "id": "0e890073-01bf-433a-8847-06c2f40cfae2",
+      "date": "2023/07/25 20:41:47.19",
+      "object": "baf4152d-65ab-4cce-8f05-6d889e4d8c2a",
+      "operation": "Create",
+      "component": "Connection",
+      "message": "{\"id\":\"baf4152d-65ab-4cce-8f05-6d889e4d8c2a\",\"name\":\"Coonect 5\",\"deviceIdTo\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"deviceIdFrom\":\"b04452d1-a271-4a4a-a543-087b8effd74b\"}"
+    },
+    {
+      "id": "acf54708-4b78-4ca8-ae88-943e37fbd508",
+      "date": "2023/07/26 20:49:39.74",
+      "object": "fd5ece0f-9626-47cf-ad12-3e94a5a14015",
+      "operation": "Update",
+      "component": "Connection",
+      "message": "{\"id\":\"fd5ece0f-9626-47cf-ad12-3e94a5a14015\",\"name\":\"2 to 5\",\"deviceIdTo\":\"b04452d1-a271-4a4a-a543-087b8effd74b\",\"deviceIdFrom\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\"}"
+    },
+    {
+      "id": "f2e3b937-8cec-4999-a51d-69e47b4ccc2e",
+      "date": "2023/07/26 20:49:58.08",
+      "object": "67c06b77-d609-4f80-aef0-722227ee7ac6",
+      "operation": "Create",
+      "component": "Connection",
+      "message": "{\"id\":\"67c06b77-d609-4f80-aef0-722227ee7ac6\",\"name\":\"1 to 5\",\"deviceIdTo\":\"255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f\",\"deviceIdFrom\":\"b04452d1-a271-4a4a-a543-087b8effd74b\"}"
     }
   ],
   "models": [
@@ -891,78 +927,6 @@
       "component": "connection"
     }
   ],
-  "attributes": [
-    {
-      "id": "43d3bf0e-f03b-421d-9df9-b45b7ff7a266",
-      "deviceId": "",
-      "modelId": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
-      "connectionId": "",
-      "attributeDictionaryId": "70728826-94ef-4610-b171-bfcda02976b6",
-      "value": "1"
-    },
-    {
-      "id": "e583db8f-c27e-4437-801e-501e1c288ef7",
-      "deviceId": "b04452d1-a271-4a4a-a543-087b8effd74b",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "04f0e57c-6214-49af-a2bb-47b61e23e116",
-      "value": "1"
-    },
-    {
-      "id": "6d9403a8-14a6-4b72-8109-5a2d330ab596",
-      "deviceId": "",
-      "modelId": "",
-      "connectionId": "0ec13b68-bc4d-4824-acf7-151b7b5cd02e",
-      "attributeDictionaryId": "04f0e57c-6214-49af-a2bb-47b61e23e116",
-      "value": "1"
-    },
-    {
-      "id": "644f017c-13b2-4e72-a3f8-f1e67ee93127",
-      "deviceId": "",
-      "modelId": "",
-      "connectionId": "fd5ece0f-9626-47cf-ad12-3e94a5a14015",
-      "attributeDictionaryId": "489d6288-f336-4915-b753-a1071879c6d3",
-      "value": "2"
-    },
-    {
-      "id": "6f4bfa3e-958d-4487-ad4e-3febcbac2103",
-      "deviceId": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
-      "value": "3"
-    },
-    {
-      "id": "2d09bb16-7b2b-430b-84bd-31c45013a12c",
-      "deviceId": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "b775baeb-e736-407a-921d-d5c31f12897c",
-      "value": "Blue"
-    },
-    {
-      "id": "fbee7887-b91e-425a-8dc6-87c6bfd2772d",
-      "deviceId": "b04452d1-a271-4a4a-a543-087b8effd74b",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "b775baeb-e736-407a-921d-d5c31f12897c",
-      "value": "Red"
-    },
-    {
-      "id": "b89ec72f-dac9-406f-b166-30e696a3aa7e",
-      "deviceId": "be5bb617-a614-435f-bf66-8768d0aba0c8",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "b775baeb-e736-407a-921d-d5c31f12897c",
-      "value": "Black"
-    },
-    {
-      "id": "73ee6acc-2364-4cb4-8e38-25b26f7ff3df",
-      "deviceId": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "04f0e57c-6214-49af-a2bb-47b61e23e116",
-      "value": "Old"
-    }
-  ]
+  "attributes": [],
+  "floor": []
 }

@@ -1,21 +1,21 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, Input } from '@angular/core'
-import { Observable, catchError, of, retry, throwError } from 'rxjs'
-import { v4 as uuidv4 } from 'uuid'
-import { getDateString } from '../shared/utils'
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http'
+import {Injectable, Input} from '@angular/core'
+import {Observable, catchError, of, retry, throwError} from 'rxjs'
+import {v4 as uuidv4} from 'uuid'
+import {getDateString} from '../shared/utils'
 
- export interface LogParamteres {
+export interface LogParamteres {
   component: string
-  id: string  // id set then show id object logs
+  id: string // id set then show id object logs
 }
 
 export interface Log {
-  id: string             // logs uuid4
-  date: string           // date-time
+  id: string // logs uuid4
+  date: string // date-time
   object?: string | null // objects uuid4
-  operation: string      // Edit, Delete, Create, Update
-  component: string      // [device, model, category]
-  message: string        // object json
+  operation: string // Edit, Delete, Create, Update
+  component: string // [device, model, category]
+  message: string // object json
 }
 
 export interface LogIn {
@@ -29,11 +29,10 @@ export interface LogIn {
   providedIn: 'root',
 })
 export class LogService {
-
   baseurl = 'http://localhost:3000'
   @Input() attributeComponentId: string
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -44,34 +43,32 @@ export class LogService {
   GetLogs(): Observable<Log[]> {
     return this.http
       .get<Log[]>(this.baseurl + '/logs?_sort=date&_order=desc')
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(retry(1), catchError(this.handleError))
   }
 
   GetComponentLogs(component: string): Observable<Log[]> {
     const url = this.baseurl + '/logs?component=' + component + '&_sort=date&_order=desc'
-    console.log('LogComponet.GetComponetLogs('+component+') ' + url)
-    return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.errorHandl))
+    console.log('LogComponet.GetComponetLogs(' + component + ') ' + url)
+    return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
   }
 
   GetObjectsLogs(object: string): Observable<Log[]> {
     const url = this.baseurl + '/logs?object=' + object + '&_sort=date&_order=desc'
     console.log('LogService.GetObjectsLogs.url: ' + url)
 
-    return this.http
-      .get<Log[]>(url)
-      .pipe(catchError(this.handleError<Log[]>('GetObjectsLogs', [])))
+    return this.http.get<Log[]>(url).pipe(catchError(this.handleErrorTemplate<Log[]>('GetObjectsLogs', [])))
   }
 
   GetLogId(id: string | null): Observable<Log> {
     return this.http
       .get<Log>(this.baseurl + '/logs/' + id, this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(retry(1), catchError(this.handleError))
   }
 
   DeleteLog(id: string): Observable<Log> {
     return this.http
       .delete<Log>(this.baseurl + '/logs/' + id, this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(retry(1), catchError(this.handleError))
   }
 
   CreateLog(data: LogIn): Observable<Log> {
@@ -87,14 +84,13 @@ export class LogService {
     //this.postLog(log)
     return this.http
       .post<Log>(`${this.baseurl}/logs/`, JSON.stringify(log), this.httpOptions)
-      .pipe(retry(1), catchError(this.handleError<Log>('CreateLog', log)))
+      .pipe(retry(1), catchError(this.handleErrorTemplate<Log>('CreateLog', log)))
   }
-
 
   postLog(data: Log): Observable<Log> {
     return this.http
       .post<Log>(`${this.baseurl}/logs`, JSON.stringify(data), this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(retry(1), catchError(this.handleErrorTemplate<Log>('postLog', data)))
   }
 
   private extractData(res: Response) {
@@ -102,39 +98,34 @@ export class LogService {
     return body || {}
   }
 
-  UpdateLog(id: string | null, data: any): Observable<Log> {
+  UpdateLog(id: string | null, data: JSON): Observable<Log> {
     return this.http
-      .put<Log>(
-        this.baseurl + '/logs/' + id,
-        JSON.stringify(data),
-        this.httpOptions
-      )
-      .pipe(retry(1), catchError(this.errorHandl))
+      .put<Log>(this.baseurl + '/logs/' + id, JSON.stringify(data), this.httpOptions)
+      .pipe(retry(1), catchError(this.handleError))
   }
 
-  errorHandl(err: any) {
-    let message = ''
-    if (err.error instanceof ErrorEvent) {
-      message = err.error.message
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error)
     } else {
-      message = `Error Code: ${err.status}\nMessage: ${err.message}`
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(`Backend returned code ${error.status}, body was: `, error.error)
     }
-    console.log('-----> LogService.errorHandl: ' + message)
-    return throwError(() => {
-      message
-    })
+    // Return an observable with a user-facing error message.
+    return throwError(() => new Error('Something bad happened; please try again later.'))
   }
 
   /**
- * Handle Http operation that failed.
- * Let the app continue.
- *
- * @param operation - name of the operation that failed
- * @param result - optional value to return as the observable result
- */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
+   * Handle Http operation that failed.
+   * Let the app continue.
+   *
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleErrorTemplate<T>(operation = 'operation', result?: T) {
+    return (error:any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
       console.error(error) // log to console instead
 

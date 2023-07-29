@@ -1,18 +1,17 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
+import {Component, NgZone, OnInit} from '@angular/core'
+import {Router} from '@angular/router'
 
-import { LogService } from 'src/app/services/log.service'
+import {LogService} from 'src/app/services/log.service'
 
-import { Floor } from 'src/app/shared/floor'
-import { FloorsService } from 'src/app/services/floors.service'
+import {Floor} from 'src/app/shared/floor'
+import {FloorService} from 'src/app/services/floor.service'
 
 @Component({
   selector: 'app-floor-list',
   templateUrl: './floor-list.component.html',
-  styleUrls: ['./floor-list.component.scss']
+  styleUrls: ['./floor-list.component.scss'],
 })
 export class FloorListComponent implements OnInit {
-
   floorList: Floor[] = []
   selectedFloor: Floor
   component = 'Floor'
@@ -23,11 +22,11 @@ export class FloorListComponent implements OnInit {
   }
 
   constructor(
-    private floorService: FloorsService,
+    private floorService: FloorService,
     private logService: LogService,
     private router: Router,
     private ngZone: NgZone
-  ) { }
+  ) {}
 
   loadFloors() {
     return this.floorService.GetFloors().subscribe((data: Floor[]) => {
@@ -64,7 +63,7 @@ export class FloorListComponent implements OnInit {
   }
 
   addFloor() {
-    this.router.navigateByUrl('/add-floor')
+    this.router.navigateByUrl('add-floor')
   }
 
   editFloor(floor: Floor) {

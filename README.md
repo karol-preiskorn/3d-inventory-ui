@@ -162,6 +162,7 @@ Sth. like development plan:
 - [ ] Add actual tasks form `GitHub` during build in README.md.
 - [ ] Add light/dark theme switch in `UI`
 - [ ] For development `JSON` server -> rest `Oracle` --> rest `Neo4j`
+- [ ] Use https://formly.dev/ ?
 
 ### List devices
 
