@@ -89,6 +89,7 @@ export class DeviceService {
     })
     return id_uuid
   }
+  
   // PUT
   UpdateDevice(id: string | null, data: any): Observable<Device> {
     return this.http

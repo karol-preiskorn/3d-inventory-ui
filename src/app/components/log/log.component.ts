@@ -20,6 +20,9 @@ import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.
 import {Attribute} from 'src/app/shared/attribute'
 import {AttributeService} from 'src/app/services/attribute.service'
 
+import {Floor} from 'src/app/shared/floor'
+import {FloorService} from 'src/app/services/floor.service'
+
 @Component({
   selector: 'app-log',
   templateUrl: './log.component.html',
@@ -36,12 +39,14 @@ export class LogComponent implements OnInit {
   connectionList: Connection[]
   attributeDictionaryList: AttributeDictionary[]
   attributeList: Attribute[]
+  floorList: Floor[]
 
   deviceListGet = false
   modelListGet = false
   connectionListGet = false
   attributeDictionaryListGet = false
   attributeListGet = false
+  floorListGet = false
 
   pageLog = 1
   hideWhenNoLog = false
@@ -56,7 +61,8 @@ export class LogComponent implements OnInit {
     private deviceService: DeviceService,
     private modelService: ModelsService,
     private connectionService: ConnectionService,
-    private attributeDictionaryService: AttributeDictionaryService
+    private attributeDictionaryService: AttributeDictionaryService,
+    private floorService: FloorService
   ) {}
 
   loadLog(context: string) {
@@ -77,6 +83,14 @@ export class LogComponent implements OnInit {
 
   OnChanges() {
     this.loadLog('ngOnChanges')
+  }
+
+  DeleteLog(id: string) {
+    return this.logService.DeleteLog(id).subscribe((data: any) => {
+      console.log(data)
+      this.OnChanges()
+      // this.router.navigate(['/log-list/'])
+    })
   }
 
   loadComponentLog(id: string): Subscription {
@@ -188,11 +202,17 @@ export class LogComponent implements OnInit {
     return this.attributeList.find((e) => e.id === id)
   }
 
-  DeleteLog(id: string) {
-    return this.logService.DeleteLog(id).subscribe((data: any) => {
-      console.log(data)
-      this.OnChanges()
-      // this.router.navigate(['/log-list/'])
+  getFloorList() {
+    if (this.attributeListGet == true) return null
+    return this.attributeService.GetAttributes().subscribe((data: any) => {
+      const tmp = new Attribute()
+      data.unshift(tmp)
+      this.attributeList = data
+      this.attributeListGet = true
     })
+  }
+
+  findFloor(id: string) {
+    return this.floorList.find((e) => e.id === id)
   }
 }

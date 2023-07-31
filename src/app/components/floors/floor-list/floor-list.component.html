@@ -3,8 +3,7 @@
   <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Adress</th>
+        <th scope="col">Name/Adress</th>
         <th scope="col">Dimension</th>
       </tr>
     </thead>
@@ -19,11 +18,22 @@
                   currentPage: floorListPage
                 }
         ">
-        <td tooltip="{{ floor.id }}">{{ floor.name }}</td>
-        <td>Adress: {{ floor.adress.street }}, {{ floor.adress.postcode }} {{ floor.adress.country }}</td>
+        <td tooltip="{{ floor.id }}">{{ floor.name }}<br>
+          <div class="text-body-tertiary small p-2">
+            {{ floor.adress.street }}<br />
+            {{ floor.adress.city }} {{ floor.adress.postcode }} {{ floor.adress.country }}
+          </div>
+        </td>
         <td>
-          <div *ngFor="let d of floor.dimension">
-            (x: {{ d.x }}, y: {{ d.y }}, h: {{ d.h }})->({{ d.x_pos }}, {{ d.y_pos }}, {{ d.h_pos }})
+          <div *ngFor="let d of floor.dimension" class="border p-2 row-gap-1 gap-0">
+              <small>
+                {{ d.description }}<br>
+                <i class="bi bi-arrows-fullscreen"></i> <i class="bi bi-arrow-right"></i>{{ d.x }} <i class="bi bi-arrow-up"></i>{{ d.y }}
+                <i class="bi bi-arrow-bar-up"></i>{{ d.h }}<br>
+                <i class="bi bi-box-arrow-in-right"></i>
+                <i class="bi bi-arrow-right"></i>{{ d.x_pos }} <i class="bi bi-arrow-up"></i>{{ d.y_pos }}
+                <i class="bi bi-arrow-bar-up"></i>{{ d.h_pos }}
+              </small>
           </div>
         </td>
         <td>

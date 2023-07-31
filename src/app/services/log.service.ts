@@ -14,7 +14,7 @@ export interface Log {
   date: string // date-time
   object?: string | null // objects uuid4
   operation: string // Edit, Delete, Create, Update
-  component: string // [device, model, category]
+  component: string // [device, model, category, floor]
   message: string // object json
 }
 

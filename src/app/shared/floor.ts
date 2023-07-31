@@ -15,11 +15,12 @@ export interface Floor {
   name: string
   adress: {
     street: string
+    city: string,
     country: string
     postcode: string
   },
-  description: string,
   dimension: [{
+    description: string,
     x: string
     y: string
     h: string

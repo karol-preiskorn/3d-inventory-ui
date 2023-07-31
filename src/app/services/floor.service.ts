@@ -1,15 +1,14 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
-import { Observable, throwError } from 'rxjs'
-import { catchError, retry } from 'rxjs/operators'
-import { v4 as uuidv4 } from 'uuid'
-import { SyncRequestClient } from 'ts-sync-request'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
+import {Injectable, NgZone} from '@angular/core'
+import {Router} from '@angular/router'
+import {Observable, throwError} from 'rxjs'
+import {catchError, retry} from 'rxjs/operators'
+import {v4 as uuidv4} from 'uuid'
+import {SyncRequestClient} from 'ts-sync-request'
 
-import { Floor } from '../shared/floor'
-import { EnvironmentService } from './environment.service'
-import { Log, LogService } from './log.service'
-
+import {Floor} from '../shared/floor'
+import {EnvironmentService} from './environment.service'
+import {Log, LogService} from './log.service'
 
 @Injectable({
   providedIn: 'root',
@@ -72,11 +71,15 @@ export class FloorService {
     return id_uuid
   }
 
-  UpdateFloor(id: string | null | undefined, data: () => { id: string | null; name: string | null; adress: { street: string | null; country: string | null; postcode: string | null; }; description: string | null; dimension: any[]; }): Observable<Floor> {
+  UpdateFloor(
+    id: string | null | undefined,
+    data: never
+  ): Observable<Floor> {
     return this.http
       .put<Floor>(this.BASEURL + '/floor/' + id, JSON.stringify(data), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
+
 
   errorHandl(error: {error: {message: string}; status: any; message: Log}) {
     let errorMessage = ''
