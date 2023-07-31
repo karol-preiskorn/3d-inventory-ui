@@ -928,5 +928,57 @@
     }
   ],
   "attributes": [],
-  "floor": []
+  "floor": [
+    {
+      "id": "a6b75fd8-f448-46b0-9bf3-0fbee09c0086",
+      "name": "Konopelski - Walter - incentivize global platforms",
+      "adress": {
+        "street": "Zion Valleys 86789",
+        "city": "Paradise",
+        "country": "Papua New Guinea",
+        "postcode": "05649-8267"
+      },
+      "dimension": [
+        {
+          "description": "Koss, Powlowski and Sipes - leverage out-of-the-box schemas dasd",
+          "x": "54",
+          "y": "58",
+          "h": "6",
+          "x_pos": "76",
+          "y_pos": "70",
+          "h_pos": "23"
+        }
+      ]
+    },
+    {
+      "id": "e1c18b23-47fe-468e-bb90-5e2e3b13d68b",
+      "name": "Hane Inc - utilize interactive bandwidth ",
+      "adress": {
+        "street": "Clementine Vista 761",
+        "city": "Lake Jorge",
+        "country": "Iraq",
+        "postcode": "05192"
+      },
+      "dimension": [
+        {
+          "description": "Koelpin Group - matrix killer relationships",
+          "x": "46",
+          "y": "63",
+          "h": "3",
+          "x_pos": "7",
+          "y_pos": "96",
+          "h_pos": "80"
+        },
+        {
+          "description": "Mann Group - transition interactive schemas ",
+          "x": "78",
+          "y": "45",
+          "h": "3",
+          "x_pos": "43",
+          "y_pos": "98",
+          "h_pos": "19"
+        }
+      ]
+    }
+  ]
 }
