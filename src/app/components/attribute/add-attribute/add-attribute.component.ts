@@ -25,6 +25,7 @@ import {ConnectionService} from 'src/app/services/connection.service'
 
 import {v4 as uuidv4} from 'uuid'
 import {Subscription} from 'rxjs'
+import {faker} from '@faker-js/faker'
 
 import Validation from 'src/app/shared/validation'
 
@@ -67,6 +68,7 @@ export class AddAttributeComponent implements OnInit {
     this.getConnectionList()
     this.getAttributeDictionaryList()
   }
+
   constructor(
     public formBulider: FormBuilder,
     private ngZone: NgZone,
@@ -79,6 +81,7 @@ export class AddAttributeComponent implements OnInit {
     private attributeDictionaryService: AttributeDictionaryService,
     private logService: LogService
   ) {}
+
   formAttribute() {
     this.addAttributeFrom = this.formBulider.group(
       {
@@ -92,45 +95,59 @@ export class AddAttributeComponent implements OnInit {
       {validators: this.valid.atLeastOneValidator}
     )
   }
+
   changeId(e: any) {
     this.id?.setValue(e.target.value, {onlySelf: true})
   }
+
   changeDeviceId(e: any) {
     this.deviceId?.setValue(e.target.value, {onlySelf: true})
   }
+
   changeModelId(e: any) {
     this.modelId?.setValue(e.target.value, {onlySelf: true})
   }
+
   changeConnectionId(e: any) {
     this.connectionId?.setValue(e.target.value, {onlySelf: true})
   }
+
   changeAttributeDictionaryId(e: any) {
     this.attributeDictionaryId?.setValue(e.target.value, {onlySelf: true})
   }
+
   changeValue(e: any) {
     this.value?.setValue(e.target.value, {onlySelf: true})
   }
+
   get id() {
     return this.addAttributeFrom.get('id')
   }
+
   get deviceId() {
     return this.addAttributeFrom.get('deviceId')
   }
+
   get modelId() {
     return this.addAttributeFrom.get('modelId')
   }
+
   get connectionId() {
     return this.addAttributeFrom.get('connectionId')
   }
+
   get attributeDictionaryId() {
     return this.addAttributeFrom.get('attributeDictionaryId')
   }
+
   get value() {
     return this.addAttributeFrom.get('value')
   }
+
   toString(data: any): string {
     return JSON.stringify(data)
   }
+
   getDeviceList(): Subscription {
     return this.deviceService.GetDevices().subscribe((data: any) => {
       const tmp = new Device()
@@ -138,6 +155,7 @@ export class AddAttributeComponent implements OnInit {
       this.deviceDictionary = data
     })
   }
+
   getModelList(): Subscription {
     return this.modelService.GetModels().subscribe((data: any) => {
       const tmp = new Model()
@@ -145,6 +163,7 @@ export class AddAttributeComponent implements OnInit {
       this.modelDictionary = data
     })
   }
+
   getConnectionList(): Subscription {
     return this.connectionService.GetConnections().subscribe((data: any) => {
       const tmp = new Connection()
@@ -152,11 +171,28 @@ export class AddAttributeComponent implements OnInit {
       this.connectionDictionary = data
     })
   }
+
   getAttributeDictionaryList(): Subscription {
     return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: any) => {
       this.attributeDictionary = data
     })
   }
+
+  /**
+   * @description Generate random data for attribute
+   *              1. Select one of List
+   *                  - deviceId: [''],
+   *                  - modelId: [''],
+   *                  - connectionId: [''],
+   *              2. get random data from this list
+   *              3. get random data from attributeDictionaryId: ['', Validators.required],
+   *              4. set random value: ['', Validators.required],
+   * @memberof AddAttributeComponent
+   */
+  generateAttributeDictionary() {
+    this.addAttributeFrom.controls.value.setValue(faker.company.name() + ' - ' + faker.company.bs())
+  }
+
   submitForm(): void {
     this.attributeService.CreateAttribute(this.addAttributeFrom.value as Attribute).subscribe(() => {
       this.logService

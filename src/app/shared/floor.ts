@@ -10,6 +10,17 @@
  * 2023-05-16  C2RLO  Init
  */
 
+
+export interface FloorDimension{
+    description: string
+    x: string
+    y: string
+    h: string
+    x_pos: string
+    y_pos: string
+    h_pos: string
+}
+
 export interface Floor {
   id: string
   name: string
@@ -18,14 +29,6 @@ export interface Floor {
     city: string,
     country: string
     postcode: string
-  },
-  dimension: [{
-    description: string,
-    x: string
-    y: string
-    h: string
-    x_pos: string
-    y_pos: string
-    h_pos: string
-  }]
+  }
+  dimension: [FloorDimension]
 }

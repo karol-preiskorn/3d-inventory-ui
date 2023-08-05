@@ -1,6 +1,0 @@
-50	OPEN	Return from edit to specific list's page	enhancement	2023-07-02 15:58:22 +0000 UTC
-27	OPEN	Create CRUD forms for `floor`	enhancement	2023-06-14 18:58:20 +0000 UTC
-24	OPEN	Use camera-controls instead of orbital-controls	dependencies	2023-05-26 06:04:53 +0000 UTC
-22	OPEN	Light and shadow	enhancement	2023-05-12 20:48:31 +0000 UTC
-2	OPEN	Create class deviceList operated on list of devices	enhancement, question	2023-05-26 06:06:02 +0000 UTC
-1	OPEN	Create Jasmin test generate data and test operations	enhancement	2023-06-24 07:30:12 +0000 UTC

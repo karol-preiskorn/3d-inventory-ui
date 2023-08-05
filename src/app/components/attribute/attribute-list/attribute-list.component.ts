@@ -1,6 +1,5 @@
 import {Component, OnInit, Input, NgZone} from '@angular/core'
 import {Router} from '@angular/router'
-import {Subscription} from 'rxjs'
 
 import {LogService} from 'src/app/services/log.service'
 
@@ -19,16 +18,13 @@ import {ConnectionService} from 'src/app/services/connection.service'
 import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
 import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
 
-import {HttpClient} from '@angular/common/http'
-import {ObjectIteratorTypeGuard} from 'lodash'
-
 @Component({
   selector: 'app-attribute-list',
   templateUrl: './attribute-list.component.html',
   styleUrls: ['./attribute-list.component.scss'],
 })
 export class AttributeListComponent implements OnInit {
-  @Input() attributeComponent: string       // type of object
+  @Input() attributeComponent: string // type of object
   @Input() attributeComponentObject: string // string with Object
 
   attributeList: Attribute[] = []
@@ -36,10 +32,10 @@ export class AttributeListComponent implements OnInit {
   attributePage = 1
   component = 'Attributes'
 
-  deviceDictionary: Device[]
-  modelDictionary: Model[]
-  connectionDictionary: Connection[]
-  attributeDictionary: AttributeDictionary[]
+  deviceDictionary: Device[] = []
+  modelDictionary: Model[] = []
+  connectionDictionary: Connection[] = []
+  attributeDictionary: AttributeDictionary[] = []
 
   device: Device = new Device() // for find attributes
   model: Model
@@ -53,8 +49,7 @@ export class AttributeListComponent implements OnInit {
     private deviceService: DeviceService,
     private modelService: ModelsService,
     private connectionService: ConnectionService,
-    private attributeDictionaryService: AttributeDictionaryService,
-    private http: HttpClient
+    private attributeDictionaryService: AttributeDictionaryService
   ) {}
 
   public toString(str: any) {
@@ -66,24 +61,31 @@ export class AttributeListComponent implements OnInit {
     this.getModelList()
     this.getConnectionList()
     this.getAttributeDictionaryList()
+
     this.LoadAttributes()
   }
 
   private LoadAttributes() {
     // @TODO: #62 show data depends of context attributeComponent and attributeComponentObject
-    console.log('--------------- LoadAttributes ----------------------');
+    console.log('-------------------<  LoadAttributes  >-------------------')
     if (this.attributeComponent == 'Device' && this.attributeComponentObject != null) {
-      console.log('>>>> LoadAttributes.getDevice: ' + this.attributeComponent + ' ' + this.attributeComponentObject + ' JSON.stringify: ' + JSON.stringify(this.attributeComponentObject))
+      console.log(
+        '>>>> LoadAttributes.GetContextAttributes: ' +
+          this.attributeComponent +
+          ' ' +
+          this.attributeComponentObject +
+          ' JSON.stringify: ' +
+          JSON.stringify(this.attributeComponentObject)
+      )
       this.attributeList = this.attributeService.GetContextAttributes(
         this.attributeComponent,
         this.attributeComponentObject
       )
-      console.log('>>>> LoadAttributes.attributeList: ' + this.attributeList)
     } else {
-      console.log('>>>> LoadAttributes.attributeService.GetAttributes')
-      this.attributeService.GetAttributes().subscribe((data: Attribute[]) => {
-        this.attributeList= data
-      })
+      console.log(
+        '>>>> LoadAttributes.attributeService.GetAttributesSync()'
+      )
+      this.attributeList = this.attributeService.GetAttributesSync( )
     }
   }
 
@@ -92,7 +94,7 @@ export class AttributeListComponent implements OnInit {
       message: id,
       object: id,
       operation: 'Delete',
-      component: 'Attributes',
+      component: this.component,
     })
     return this.attributeService.DeleteAttribute(id).subscribe((data: Attribute) => {
       console.log(data)
@@ -107,7 +109,7 @@ export class AttributeListComponent implements OnInit {
       .CreateLog({
         message: id + ' -> ' + id_new,
         operation: 'Clone',
-        component: 'Attributes',
+        component: this.component,
       })
       .subscribe(() => {
         this.ngZone.run(() => this.router.navigateByUrl('attributes-list'))

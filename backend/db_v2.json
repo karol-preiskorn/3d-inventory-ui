@@ -28,7 +28,7 @@
   "devices": [
     {
       "id": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
-      "name": "Device 2",
+      "name": "Device 2 (new2)",
       "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
       "position": {
         "x": "4",
@@ -775,6 +775,86 @@
       "operation": "Create",
       "component": "Connection",
       "message": "{\"id\":\"67c06b77-d609-4f80-aef0-722227ee7ac6\",\"name\":\"1 to 5\",\"deviceIdTo\":\"255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f\",\"deviceIdFrom\":\"b04452d1-a271-4a4a-a543-087b8effd74b\"}"
+    },
+    {
+      "id": "44b838eb-60c1-4d29-8243-b5f5cb6c2f53",
+      "date": "2023/08/03 22:38:56.04",
+      "object": "51e6d2be-54dd-458f-9563-51f01a3908e9",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"51e6d2be-54dd-458f-9563-51f01a3908e9\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"1\"}"
+    },
+    {
+      "id": "b94c2a21-bde9-4cd0-beac-a3a533b4783d",
+      "date": "2023/08/03 22:39:07.48",
+      "object": "d4576ffa-fe19-476d-9353-d5d4eefe84e4",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"d4576ffa-fe19-476d-9353-d5d4eefe84e4\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"04f0e57c-6214-49af-a2bb-47b61e23e116\",\"value\":\"2\"}"
+    },
+    {
+      "id": "339091fb-f3a9-487a-850d-781e91bd555d",
+      "date": "2023/08/03 22:39:24.36",
+      "object": "0fd06b69-4bda-416d-96d5-e41746e81b1b",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"0fd06b69-4bda-416d-96d5-e41746e81b1b\",\"deviceId\":\"\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"connectionId\":\"\",\"attributeDictionaryId\":\"489d6288-f336-4915-b753-a1071879c6d3\",\"value\":\"1\"}"
+    },
+    {
+      "id": "18ecbf27-c499-4b90-b676-d9d8f5d01b7c",
+      "date": "2023/08/03 22:40:04.03",
+      "object": "f1083e8e-f15c-4484-8871-37f1aff88084",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"f1083e8e-f15c-4484-8871-37f1aff88084\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"8ea54f32-daf2-4b21-a937-e9cc7839e096\",\"value\":\"3\"}"
+    },
+    {
+      "id": "05daa3b8-d03d-4844-af88-73921be5c77f",
+      "date": "2023/08/03 22:40:28.68",
+      "object": "bf135174-3224-4f6c-aaa9-09c3995136ec",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"bf135174-3224-4f6c-aaa9-09c3995136ec\",\"deviceId\":\"\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b775baeb-e736-407a-921d-d5c31f12897c\",\"value\":\"blue\"}"
+    },
+    {
+      "id": "7d8c9126-e13b-4c98-be58-a1b2a4885635",
+      "date": "2023/08/03 23:02:34.02",
+      "object": "e1c18b23-47fe-468e-bb90-5e2e3b13d68b",
+      "operation": "Update",
+      "component": "Floor",
+      "message": "{\"id\":\"e1c18b23-47fe-468e-bb90-5e2e3b13d68b\",\"name\":\"Hane Inc - utilize interactive bandwidth aadas 2  \",\"adress\":{\"street\":\"Clementine Vista 761\",\"city\":\"Lake Jorge\",\"country\":\"Iraq\",\"postcode\":\"05192\"},\"dimension\":[{\"description\":\"Hickle, Hilpert and Larkin - redefine leading-edge applications\",\"x\":\"92\",\"y\":\"76\",\"h\":\"3\",\"x_pos\":\"60\",\"y_pos\":\"81\",\"h_pos\":\"55\"},{\"description\":\"Hegmann - Harvey - evolve web-enabled experiences\",\"x\":\"93\",\"y\":\"72\",\"h\":\"7\",\"x_pos\":\"85\",\"y_pos\":\"91\",\"h_pos\":\"57\"},{\"description\":\"Stehr - Murray - disintermediate global models  \",\"x\":\"2\",\"y\":\"25\",\"h\":\"7\",\"x_pos\":\"46\",\"y_pos\":\"81\",\"h_pos\":\"67\"}]}"
+    },
+    {
+      "id": "f3c478db-3479-42a2-a864-2f00d05c6ca0",
+      "date": "2023/08/03 23:07:58.54",
+      "object": "a6b75fd8-f448-46b0-9bf3-0fbee09c0086",
+      "operation": "Update",
+      "component": "Floor",
+      "message": "{\"id\":\"a6b75fd8-f448-46b0-9bf3-0fbee09c0086\",\"name\":\"Konopelski - Walter - incentivize global cxcx\",\"adress\":{\"street\":\"Zion Valleys 86789\",\"city\":\"Paradise\",\"country\":\"Papua New Guinea\",\"postcode\":\"05649-8267\"},\"dimension\":[{\"description\":\"Koss, Powlowski and Sipes - leverage out-of-the-box schemas dasd\",\"x\":\"54\",\"y\":\"58\",\"h\":\"6\",\"x_pos\":\"76\",\"y_pos\":\"70\",\"h_pos\":\"23\"},{\"description\":\"Abbott - Hagenes - engage impactful web services\",\"x\":\"92\",\"y\":\"11\",\"h\":\"4\",\"x_pos\":\"14\",\"y_pos\":\"89\",\"h_pos\":\"16\"}]}"
+    },
+    {
+      "id": "1b7701b1-8034-4faf-82e4-44263cf3c6b4",
+      "date": "2023/08/03 23:52:37.23",
+      "object": "82e76da3-b493-4991-a502-203a258c773d",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"82e76da3-b493-4991-a502-203a258c773d\",\"deviceId\":\"5f8abd81-0d35-47c4-8277-3d6bbbe185f0\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"04f0e57c-6214-49af-a2bb-47b61e23e116\",\"value\":\"Runte, Jacobs and Hackett - leverage scalable e-business\"}"
+    },
+    {
+      "id": "33db01ad-d51a-4978-9d30-a5e7729e66bf",
+      "date": "2023/08/04 19:09:44.45",
+      "object": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"name\":\"Device 2 (new)\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"4\",\"y\":\"3\",\"h\":\"0\"}}"
+    },
+    {
+      "id": "241e5e14-a471-41f0-9656-a856b5ad411f",
+      "date": "2023/08/04 19:10:05.28",
+      "object": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"name\":\"Device 2 (new2)\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"4\",\"y\":\"3\",\"h\":\"0\"}}"
     }
   ],
   "models": [
@@ -927,11 +1007,60 @@
       "component": "connection"
     }
   ],
-  "attributes": [],
+  "attributes": [
+    {
+      "id": "51e6d2be-54dd-458f-9563-51f01a3908e9",
+      "deviceId": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "70728826-94ef-4610-b171-bfcda02976b6",
+      "value": "1"
+    },
+    {
+      "id": "d4576ffa-fe19-476d-9353-d5d4eefe84e4",
+      "deviceId": "be5bb617-a614-435f-bf66-8768d0aba0c8",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "04f0e57c-6214-49af-a2bb-47b61e23e116",
+      "value": "2"
+    },
+    {
+      "id": "0fd06b69-4bda-416d-96d5-e41746e81b1b",
+      "deviceId": "",
+      "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
+      "connectionId": "",
+      "attributeDictionaryId": "489d6288-f336-4915-b753-a1071879c6d3",
+      "value": "1"
+    },
+    {
+      "id": "f1083e8e-f15c-4484-8871-37f1aff88084",
+      "deviceId": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "8ea54f32-daf2-4b21-a937-e9cc7839e096",
+      "value": "3"
+    },
+    {
+      "id": "bf135174-3224-4f6c-aaa9-09c3995136ec",
+      "deviceId": "",
+      "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
+      "connectionId": "",
+      "attributeDictionaryId": "b775baeb-e736-407a-921d-d5c31f12897c",
+      "value": "blue"
+    },
+    {
+      "id": "82e76da3-b493-4991-a502-203a258c773d",
+      "deviceId": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "04f0e57c-6214-49af-a2bb-47b61e23e116",
+      "value": "Runte, Jacobs and Hackett - leverage scalable e-business"
+    }
+  ],
   "floor": [
     {
       "id": "a6b75fd8-f448-46b0-9bf3-0fbee09c0086",
-      "name": "Konopelski - Walter - incentivize global platforms",
+      "name": "Konopelski - Walter - incentivize global cxcx",
       "adress": {
         "street": "Zion Valleys 86789",
         "city": "Paradise",
@@ -947,12 +1076,21 @@
           "x_pos": "76",
           "y_pos": "70",
           "h_pos": "23"
+        },
+        {
+          "description": "Abbott - Hagenes - engage impactful web services",
+          "x": "92",
+          "y": "11",
+          "h": "4",
+          "x_pos": "14",
+          "y_pos": "89",
+          "h_pos": "16"
         }
       ]
     },
     {
       "id": "e1c18b23-47fe-468e-bb90-5e2e3b13d68b",
-      "name": "Hane Inc - utilize interactive bandwidth ",
+      "name": "Hane Inc - utilize interactive bandwidth aadas 2  ",
       "adress": {
         "street": "Clementine Vista 761",
         "city": "Lake Jorge",
@@ -961,22 +1099,31 @@
       },
       "dimension": [
         {
-          "description": "Koelpin Group - matrix killer relationships",
-          "x": "46",
-          "y": "63",
+          "description": "Hickle, Hilpert and Larkin - redefine leading-edge applications",
+          "x": "92",
+          "y": "76",
           "h": "3",
-          "x_pos": "7",
-          "y_pos": "96",
-          "h_pos": "80"
+          "x_pos": "60",
+          "y_pos": "81",
+          "h_pos": "55"
         },
         {
-          "description": "Mann Group - transition interactive schemas ",
-          "x": "78",
-          "y": "45",
-          "h": "3",
-          "x_pos": "43",
-          "y_pos": "98",
-          "h_pos": "19"
+          "description": "Hegmann - Harvey - evolve web-enabled experiences",
+          "x": "93",
+          "y": "72",
+          "h": "7",
+          "x_pos": "85",
+          "y_pos": "91",
+          "h_pos": "57"
+        },
+        {
+          "description": "Stehr - Murray - disintermediate global models  ",
+          "x": "2",
+          "y": "25",
+          "h": "7",
+          "x_pos": "46",
+          "y_pos": "81",
+          "h_pos": "67"
         }
       ]
     }

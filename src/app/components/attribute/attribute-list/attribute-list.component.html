@@ -77,5 +77,5 @@
 <div>attributeComponentObject: {{ this.attributeComponentObject }}</div>
 <div>(attributeComponent == '') {{ attributeComponent == '' }}</div> -->
 
-<app-log *ngIf="attributeComponent == ''" [attributeComponentObject]="this.device"
+<app-log *ngIf="attributeComponent == '' || attributeComponent === undefined" [attributeComponentObject]="this.device"
   [component]="component"></app-log>

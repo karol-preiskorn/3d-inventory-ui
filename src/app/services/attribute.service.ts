@@ -55,13 +55,21 @@ export class AttributeService {
     return this.http.get<Attribute[]>(this.BASEURL + '/attributes/', this.httpOptions).pipe(retry(1), catchError(this.errorHandl))
   }
 
+  GetAttributesSync(): Attribute[] {
+    let attributes: Attribute[] = []
+    const url = this.BASEURL + '/attributes/'
+    attributes = new SyncRequestClient().get<Attribute[]>(url)
+    console.log('GetAttributesSync.attributes: ' + JSON.stringify(attributes))
+    return attributes
+  }
+
   GetDeviceAttributes(id: string): Observable<Attribute[]> {
     return this.http
       .get<Attribute[]>(this.BASEURL + '/attributes/?deviceId=' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  async GetDeviceAttributesPomise(id: string) {
+  async GetDeviceAttributesPromise(id: string) {
     return this.http
       .get<Attribute[]>(this.BASEURL + '/attributes/?deviceId=' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl)).toPromise()

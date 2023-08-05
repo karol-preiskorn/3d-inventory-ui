@@ -2,8 +2,11 @@
   <h3><i class="bi bi-building"></i> Edit Floor</h3>
   <form [formGroup]="floorForm" (ngSubmit)="submitForm()" class="g-3 needs-validation" novalidate>
     <div class="form-group mb-3">
-      <label>Id: {{ this.floorForm.controls.id.value }}</label>
+      <label><i class="bi bi-app"></i> {{ this.floorForm.controls.id.value }}</label>
     </div>
+
+    <h4>Adress</h4>
+
     <div class="col border">
       <div class="form-group mb-3">
         <label>Name</label>
@@ -98,20 +101,21 @@
             <div class="row">
               <div class="col">
                 <div class="form-group mb-3">
-                  <label>Description</label>
+                  <label for="description" class="form-label">Description</label>
                   <textarea formControlName="description" rows="2" minlength="4" maxlength="4000" required
                     [ngClass]="{
                       'is-invalid': this.floorForm.controls.dimension.at(i).controls.description.status != 'VALID',
                       'is-valid': this.floorForm.controls.dimension.at(i).controls.description.status == 'VALID',
                       'form-control': true
-                    }"></textarea>
+                    }" [value]="this.floorForm.controls.dimension.at(i).controls.description.value">{{ this.floorForm.controls.dimension.at(i).controls.description.value }}
+                  {{ this.floorForm.controls.dimension.at(i).controls.description.value }}</textarea>
                   <div *ngIf="this.floorForm.controls.dimension.at(i).controls.description.errors"
                     class="invalid-feedback">
                     <div *ngIf="this.floorForm.controls.dimension.at(i).controls.description.errors?.required">
-                      description is required
+                      Description is required.
                     </div>
                     <div *ngIf="this.floorForm.controls.dimension.at(i).controls.description.errors?.minlength">
-                      description must be at least 4 characters
+                      description must be at least 4 characters and max 4000.
                     </div>
                   </div>
                 </div>

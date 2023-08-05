@@ -6,6 +6,7 @@
  *
  * Date        By     Comments
  * ----------  -----  ------------------------
+ * 2023-08-03  C2RLO  Add docs
  * 2023-04-11	 C2RLO	convert to DeviceType and DeviceTypeList
  * 2023-02-19	 C2RLO	add findType
  * 2023-02-18  C2RLO  Init
@@ -27,6 +28,11 @@ export class DeviceType {
   }
 }
 
+/**
+ * @description Dictionarys values
+ * @export
+ * @class DeviceTypeDict
+ */
 export class DeviceTypeDict {
   list: DeviceType[] = [
     {name: '', description: ''},
@@ -69,9 +75,15 @@ export class DeviceTypeDict {
     return this.list[Math.floor(Math.random() * this.list.length)]
   }
 
+  /**
+   * @description Generate random name from disctionary
+   * @return {*}  {string}
+   * @memberof DeviceTypeDict
+   */
   public getRandomName(): string {
     return this.list[Math.floor(Math.random() * this.list.length)].name
   }
+
   /**
    * Find specific type in DeviceTypeList
    *
@@ -84,7 +96,12 @@ export class DeviceTypeDict {
     return element || search // element?.DeviceType || search
   }
 
-  findTypeByName(obj: string) {
+/**
+ * @description Find type by name
+ * @param {string} obj
+ * @memberof DeviceTypeDict
+ */
+findTypeByName(obj: string) {
     for (let i = 0; i < this.list.length; i++) {
       if (this.list[i].name === obj) {
         console.log('-->', obj)

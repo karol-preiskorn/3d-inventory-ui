@@ -29,6 +29,7 @@
   - [Swagger client to generate API structures](#swagger-client-to-generate-api-structures)
   - [Contributing](#contributing)
     - [Next tasks](#next-tasks)
+- [Tools](#tools)
 
 ## Description
 
@@ -284,3 +285,9 @@ Not forget about [code guide-lines](https://github.com/Microsoft/TypeScript/wiki
 ### Next tasks
 
 + [https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues](https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues)
+
+# Tools
+
+- https://glyphsearch.com/ Icons
+
+

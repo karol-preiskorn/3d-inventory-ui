@@ -146,6 +146,7 @@
           }">
           Update
         </button>
+
         <div *ngIf="!(editDeviceForm.invalid && editDeviceForm.touched)" class="invalid-feedback">
           editDeviceForm is invalid or untouched
         </div>
@@ -160,6 +161,8 @@
 <!-- <div>attributeComponent: {{ attributeComponent }}</div>
 <div>attributeComponentObject: {{ attributeComponentObject }}</div> -->
 
-<app-attribute-list [attributeComponent]="attributeComponent" [attributeComponentObject]="attributeComponentObject"></app-attribute-list>
+<app-attribute-list
+  [attributeComponent]="attributeComponent"
+  [attributeComponentObject]="attributeComponentObject"></app-attribute-list>
 
 <app-log [component]="component"></app-log>

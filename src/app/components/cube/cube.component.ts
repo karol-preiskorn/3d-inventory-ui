@@ -181,20 +181,20 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   addLight() {
-    const light = new THREE.DirectionalLight(0xddb14c, 0.3)
+    const light = new THREE.DirectionalLight(0xddb14c, 3)
     light.position.set(100, 100, 100).normalize()
     this.scene.add(light)
   }
 
   addLight2() {
-    const light2 = new THREE.DirectionalLight(0xdbc29e, 0.3)
+    const light2 = new THREE.DirectionalLight(0xdbc29e, 1)
     light2.position.set(-100, 50, -100).normalize()
     this.scene.add(light2)
   }
 
   addAbientLight() {
-    const color = 0xffffff
-    const intensity = 0.1
+    const color = 0xf0f0f0
+    const intensity = 0.8
     const lightAbient = new THREE.AmbientLight(color, intensity)
     this.scene.add(lightAbient)
   }

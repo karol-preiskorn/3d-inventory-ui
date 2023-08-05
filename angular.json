@@ -67,14 +67,15 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all",
+              "outputHashing": "all"
             },
             "optimization": {
               "scripts": true,
               "styles": {
                 "minify": true,
-                "inlineCritical": false
-              }
+                "inlineCritical": true
+              },
+              "fonts": true
             },
             "development": {
               "buildOptimizer": false,

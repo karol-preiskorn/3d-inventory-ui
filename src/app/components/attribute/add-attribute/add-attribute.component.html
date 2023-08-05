@@ -5,6 +5,7 @@
     {{ this.toString(this.addAttributeFrom.controls.id.value) }}</span>
   <form [formGroup]="addAttributeFrom" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
     <div class="row g-3">
+      <h4>Attribute object</h4>
       <div class="col border">
         <div class="row g-3">
           <div class="col">
@@ -122,6 +123,11 @@
             class="btn btn-primary">
             Add attribute
           </button>
+
+            <button type="button" (click)="generateAttributeDictionary()" class="btn btn-debug">
+              <i class="bi bi-bookmark-plus"></i> Generate random data
+            </button>
+
           <div *ngIf="!(this.addAttributeFrom.valid && this.addAttributeFrom.touched)">Form is invalid</div>
           <span class="text-danger" *ngIf="addAttributeFrom.hasError('atLeastOneValidator')">
             Fill one of Device, Model or Connection first.

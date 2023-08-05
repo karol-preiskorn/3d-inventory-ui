@@ -1,32 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
-body {
-  width: 100vw;
-  height: 100vh;
-}
-.log-message {
-  margin-top: 4px;
-  color: #9a9aa7;
-  font-size: small;
-}
-
-.error-message {
-  margin-top: 4px;
-  font-size: 0.875em;
-  color: var(--bs-form-invalid-color);
-}
-
-.border {
-  padding: 1rem;
-  margin-right: 0;
-  margin-left: 0;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  border-width: 1px;
-  border-radius: 8px;
-}
-
-
-[data-theme='light'] {
+﻿[data-theme='light'] {
   --header-background-color: #ffffff;
   --header-border-color: #e5e8ea;
   --header-menu-item-color: #231f20;
@@ -49,4 +21,3 @@ body {
   --main-content-background-color: #231f20;
   --main-content-text-color: #ffffff;
 }
-

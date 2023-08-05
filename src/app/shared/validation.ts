@@ -15,7 +15,11 @@
  */
 
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms'
-
+/**
+ * @description custm validation form shared module
+ * @export
+ * @class Validation
+ */
 export default class Validation {
   static match(controlName: string, checkControlName: string): ValidatorFn {
     return (controls: AbstractControl) => {
@@ -56,8 +60,13 @@ export default class Validation {
       return { atLeastOneValidator: true }
     }
   }
-
-  numberValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+/**
+ * @description check is it number
+ * @param {AbstractControl} control
+ * @type {ValidatorFn}
+ * @memberof Validation
+ */
+numberValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     if (isNaN(control?.value)) {
       return {
         number: true
