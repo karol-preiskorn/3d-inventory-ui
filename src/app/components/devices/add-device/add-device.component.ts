@@ -2,6 +2,7 @@ import {Component, NgZone, OnInit} from '@angular/core'
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
 import {Router} from '@angular/router'
 import {v4 as uuidv4} from 'uuid'
+import {faker} from '@faker-js/faker'
 
 import {Device} from 'src/app/shared/device'
 import {DeviceService} from 'src/app/services/device.service'
@@ -21,7 +22,6 @@ import Validation from 'src/app/shared/validation'
   styleUrls: ['./add-device.component.scss'],
 })
 export class AddDeviceComponent implements OnInit {
-
   device: Device
   isSubmitted = false
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
@@ -31,7 +31,7 @@ export class AddDeviceComponent implements OnInit {
   valid: Validation = new Validation()
 
   addDeviceForm = new FormGroup({
-    id: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    id: new FormControl(uuidv4(), [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     modelId: new FormControl('', Validators.required),
     position: new FormGroup({
@@ -114,23 +114,22 @@ export class AddDeviceComponent implements OnInit {
     return JSON.stringify(data)
   }
 
-  /**
-   * @description shortcut for html template
-   * @readonly
-   * @memberof AddDeviceComponent
-   */
-  get f() {
-    return this.addDeviceForm.controls
+  generateDevice() {
+    this.addDeviceForm.controls.name.setValue(faker.company.name() + ' - ' + faker.company.buzzPhrase())
+    this.addDeviceForm.controls.position.controls.x.setValue(String(faker.number.int(10)))
+    this.addDeviceForm.controls.position.controls.y.setValue(String(faker.number.int(10)))
+    this.addDeviceForm.controls.position.controls.h.setValue(String(faker.number.int(10)))
+    this.addDeviceForm.controls.modelId.setValue(this.modelList[Math.floor(Math.random() * this.modelList.length)].id)
   }
 
   submitForm() {
+    console.log('Device added!')
+    this.logService.CreateLog({
+      operation: 'Create',
+      component: 'Devices',
+      message: this.toString(this.addDeviceForm.value),
+    })
     this.devicesService.CreateDevice(this.device).subscribe((res) => {
-      console.log('Device added!')
-      this.logService.CreateLog({
-        operation: 'Create',
-        component: 'Devices',
-        message: this.toString(this.addDeviceForm.value),
-      })
       this.ngZone.run(() => this.router.navigateByUrl('device-list'))
     })
   }

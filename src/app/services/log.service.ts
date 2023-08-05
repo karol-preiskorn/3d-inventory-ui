@@ -80,7 +80,7 @@ export class LogService {
       component: data.component,
       message: data.message,
     }
-    console.log('LogService.CreateLog(' + JSON.stringify(log) + ')')
+    console.log('LogService.CreateLog: ' + JSON.stringify(log, null, " "))
     //this.postLog(log)
     return this.http
       .post<Log>(`${this.baseurl}/logs/`, JSON.stringify(log), this.httpOptions)

@@ -82,7 +82,7 @@
       "modelId": "82c77905-2118-4c38-85a5-e04728c8dbbe",
       "position": {
         "x": "2",
-        "y": "3",
+        "y": "4",
         "h": "3"
       }
     }
@@ -855,6 +855,14 @@
       "operation": "Update",
       "component": "Devices",
       "message": "{\"id\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"name\":\"Device 2 (new2)\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"4\",\"y\":\"3\",\"h\":\"0\"}}"
+    },
+    {
+      "id": "480d7100-65e6-4824-b82d-49bbb3dde25e",
+      "date": "2023/08/05 13:00:05.73",
+      "object": "34c3b304-463f-4958-b045-3237f7030838",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"34c3b304-463f-4958-b045-3237f7030838\",\"name\":\"Device 1.1\",\"modelId\":\"82c77905-2118-4c38-85a5-e04728c8dbbe\",\"position\":{\"x\":\"2\",\"y\":\"4\",\"h\":\"3\"}}"
     }
   ],
   "models": [
@@ -1007,56 +1015,7 @@
       "component": "connection"
     }
   ],
-  "attributes": [
-    {
-      "id": "51e6d2be-54dd-458f-9563-51f01a3908e9",
-      "deviceId": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "70728826-94ef-4610-b171-bfcda02976b6",
-      "value": "1"
-    },
-    {
-      "id": "d4576ffa-fe19-476d-9353-d5d4eefe84e4",
-      "deviceId": "be5bb617-a614-435f-bf66-8768d0aba0c8",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "04f0e57c-6214-49af-a2bb-47b61e23e116",
-      "value": "2"
-    },
-    {
-      "id": "0fd06b69-4bda-416d-96d5-e41746e81b1b",
-      "deviceId": "",
-      "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
-      "connectionId": "",
-      "attributeDictionaryId": "489d6288-f336-4915-b753-a1071879c6d3",
-      "value": "1"
-    },
-    {
-      "id": "f1083e8e-f15c-4484-8871-37f1aff88084",
-      "deviceId": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "8ea54f32-daf2-4b21-a937-e9cc7839e096",
-      "value": "3"
-    },
-    {
-      "id": "bf135174-3224-4f6c-aaa9-09c3995136ec",
-      "deviceId": "",
-      "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
-      "connectionId": "",
-      "attributeDictionaryId": "b775baeb-e736-407a-921d-d5c31f12897c",
-      "value": "blue"
-    },
-    {
-      "id": "82e76da3-b493-4991-a502-203a258c773d",
-      "deviceId": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "04f0e57c-6214-49af-a2bb-47b61e23e116",
-      "value": "Runte, Jacobs and Hackett - leverage scalable e-business"
-    }
-  ],
+  "attributes": [],
   "floor": [
     {
       "id": "a6b75fd8-f448-46b0-9bf3-0fbee09c0086",
