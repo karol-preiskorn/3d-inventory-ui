@@ -51,7 +51,7 @@ You are welcome to cooperate and leave a few words of comment.
 
 ## Technology stack
 
-- `Angular` 15+ (as a corpo framework)
+- `Angular` 15+ (as a Corp framework)
 - `Bootstrap` 5.3+ - logic for insert UI data
 - `Tree` 150+ (as best graph framework)
 - [`Neo4j`|`Oracle`|`jsonserver`] `Oracle` as database (for development `json server` -> rest `Oracle` -> rest `Neo4j`. I want in this project try different solution and different data structure and storage.
@@ -78,11 +78,11 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
 
 ### Entity model
 
-![Entity model](src/assets/img/Screenshot%20from%202023-05-20%2016-54-30-watermark.png)
+<img title="Entity mode" src="src/assets/img/Screenshot%20from%202023-05-20%2016-54-30-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="95%"/>
 
 ### Logical model
 
-![Logical model](src/assets/img/Screenshot%20from%202023-05-20%2017-20-39-watermark.png)
+<img title="Logical model" src="src/assets/img/Screenshot%20from%202023-05-20%2017-20-39-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="95%"/>
 
 ### Entity attributes
 
@@ -171,35 +171,35 @@ Sth. like development plan:
 
 ### List devices
 
-![List devices](src/assets/img/Screenshot%202023-07-14%20at%2008-48-50%203d%20inventory-watermark.png)
+<img title="List devices" src="src/assets/img/Screenshot%202023-07-14%20at%2008-48-50%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
 
 #### Edit device
 
-![Edit Device](image-1.png)
+<img title="Edit device" src="/src/assets/img/edit-device.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
 
 
 ### Models
 
-![Models](<src/assets/img/Screenshot%202023-07-14%20at%2008-49-31%203d%20inventory-watermark.png>)
+<img title="Models" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-31%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
 
 ### Attributes
 
-![Alt text](<src/assets/img/Screenshot%202023-07-14%20at%2008-49-42%203d%20inventory-watermark.png>)
+<img title="Attributes" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-42%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
 
 ### Attribute Dictionary
 
-![Alt text](<src/assets/img/Screenshot%202023-07-14%20at%2008-49-51%203d%20inventory-watermark.png>)
+<img title="Attribute Dictionary" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-51%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
+
 
 ### Connections
 
-![Alt text](<src/assets/img/Screenshot%202023-07-14%20at%2008-50-00%203d%20inventory-watermark.png>)
+<img title="Connections" src="src/assets/img/Screenshot%202023-07-14%20at%2008-50-00%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
 
 ### Application 3d view
 
 View in `3d` inventory use [three.js](https://threejs.org/) framework.
 
-![Example random generated blocks in floor](src/assets/img/Screenshot%20from%202023-05-01%2008-29-25-watermark.png)
-
+<img title="Example random generated blocks in floor" src="src/assets/img/Screenshot%20from%202023-05-01%2008-29-25-watermark.png" width="95%"/>
 
 This project build from this example contain `three.js` in `Angular`[Tutorial to render 3D Cube in Angular + Three.js](https://srivastavaanurag79.medium.com/hello-cube-your-first-three-js-scene-in-angular-176c44b9c6c0).
 
@@ -310,6 +310,9 @@ For mongosh info see: https://docs.mongodb.com/mongodb-shell/
 
 user: 3d-inventory
 password: HNPBhKUaBsLZAvER
+
+public key: ldphuywe
+private key: 150b086f-0975-4849-b2e6-bde9b161e913
 
 ## Contributing
 

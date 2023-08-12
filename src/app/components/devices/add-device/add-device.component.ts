@@ -35,9 +35,9 @@ export class AddDeviceComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     modelId: new FormControl('', Validators.required),
     position: new FormGroup({
-      x: new FormControl('', [Validators.required, this.valid.numberValidator]),
-      y: new FormControl('', [Validators.required, this.valid.numberValidator]),
-      h: new FormControl('', [Validators.required, this.valid.numberValidator]),
+      x: new FormControl<number>(0, [Validators.required, this.valid.numberValidator]),
+      y: new FormControl<number>(0, [Validators.required, this.valid.numberValidator]),
+      h: new FormControl<number>(0, [Validators.required, this.valid.numberValidator]),
     }),
   })
 
@@ -116,9 +116,9 @@ export class AddDeviceComponent implements OnInit {
 
   generateDevice() {
     this.addDeviceForm.controls.name.setValue(faker.company.name() + ' - ' + faker.company.buzzPhrase())
-    this.addDeviceForm.controls.position.controls.x.setValue(String(faker.number.int(10)))
-    this.addDeviceForm.controls.position.controls.y.setValue(String(faker.number.int(10)))
-    this.addDeviceForm.controls.position.controls.h.setValue(String(faker.number.int(10)))
+    this.addDeviceForm.controls.position.controls.x.setValue(faker.number.int(10))
+    this.addDeviceForm.controls.position.controls.y.setValue(faker.number.int(10))
+    this.addDeviceForm.controls.position.controls.h.setValue(faker.number.int(10))
     this.addDeviceForm.controls.modelId.setValue(this.modelList[Math.floor(Math.random() * this.modelList.length)].id)
   }
 

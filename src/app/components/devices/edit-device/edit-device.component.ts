@@ -1,3 +1,16 @@
+/*
+ * File:        @/src/app/components/devices/edit-device/edit-device.component.ts
+ * Description:
+ * Used by:
+ * Dependency:
+ *
+ * Date        By       Comments
+ * ----------  -------  ------------------------------
+ * 2023-08-08  C2RLO    add FormControl<number>(0,
+ */
+
+
+
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
@@ -44,9 +57,9 @@ export class EditDeviceComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     modelId: new FormControl('', Validators.required),
     position: new FormGroup({
-      x: new FormControl('', [Validators.required, this.valid.numberValidator]),
-      y: new FormControl('', [Validators.required, this.valid.numberValidator]),
-      h: new FormControl('', [Validators.required, this.valid.numberValidator]),
+      x: new FormControl<number>(0, [Validators.required, this.valid.numberValidator]),
+      y: new FormControl<number>(0, [Validators.required, this.valid.numberValidator]),
+      h: new FormControl<number>(0, [Validators.required, this.valid.numberValidator]),
     }),
   })
 

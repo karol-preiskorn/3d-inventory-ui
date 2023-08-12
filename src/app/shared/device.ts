@@ -12,9 +12,9 @@ import {adjectives, animals, colors, uniqueNamesGenerator} from 'unique-names-ge
 import {v4 as uuidv4} from 'uuid'
 
 interface Position {
-  x: string
-  y: string
-  h: string
+  x: number
+  y: number
+  h: number
 }
 
 export class Device {

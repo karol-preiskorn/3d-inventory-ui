@@ -55,7 +55,6 @@ export class LogService {
   GetObjectsLogs(object: string): Observable<Log[]> {
     const url = this.baseurl + '/logs?object=' + object + '&_sort=date&_order=desc'
     console.log('LogService.GetObjectsLogs.url: ' + url)
-
     return this.http.get<Log[]>(url).pipe(catchError(this.handleErrorTemplate<Log[]>('GetObjectsLogs', [])))
   }
 
@@ -80,7 +79,7 @@ export class LogService {
       component: data.component,
       message: data.message,
     }
-    console.log('LogService.CreateLog: ' + JSON.stringify(log, null, " "))
+    console.log('LogService.CreateLog: ' + JSON.stringify(log, null, ' '))
     //this.postLog(log)
     return this.http
       .post<Log>(`${this.baseurl}/logs/`, JSON.stringify(log), this.httpOptions)
@@ -125,7 +124,7 @@ export class LogService {
    * @param result - optional value to return as the observable result
    */
   private handleErrorTemplate<T>(operation = 'operation', result?: T) {
-    return (error:any): Observable<T> => {
+    return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
       console.error(error) // log to console instead
 

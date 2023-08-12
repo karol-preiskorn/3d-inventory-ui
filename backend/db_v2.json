@@ -85,6 +85,9 @@
         "y": "4",
         "h": "3"
       }
+    },
+    {
+      "id": "sQKVIg_"
     }
   ],
   "logs": [
@@ -863,6 +866,46 @@
       "operation": "Update",
       "component": "Devices",
       "message": "{\"id\":\"34c3b304-463f-4958-b045-3237f7030838\",\"name\":\"Device 1.1\",\"modelId\":\"82c77905-2118-4c38-85a5-e04728c8dbbe\",\"position\":{\"x\":\"2\",\"y\":\"4\",\"h\":\"3\"}}"
+    },
+    {
+      "id": "580949a8-a8a2-4a65-8040-582f4c0472cf",
+      "date": "2023/08/05 23:44:52.22",
+      "object": "b887ae84-7a36-4f4d-b215-d6c8e414bf1d",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"b887ae84-7a36-4f4d-b215-d6c8e414bf1d\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"Kemmer - Gottlieb - seize integrated systems\"}"
+    },
+    {
+      "id": "bed34eba-d77a-486b-8212-178bd0ababd0",
+      "date": "2023/08/05 23:45:02.88",
+      "object": "1bde6a80-04f1-4f74-a826-6f9d88b529fe",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"1bde6a80-04f1-4f74-a826-6f9d88b529fe\",\"deviceId\":\"\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b775baeb-e736-407a-921d-d5c31f12897c\",\"value\":\"Turner and Sons - harness real-time convergence\"}"
+    },
+    {
+      "id": "87ae224d-cefb-496d-80b1-1f2a998f7dc7",
+      "date": "2023/08/08 10:09:23.43",
+      "object": "498a4deb-084f-4a00-8706-642ba011db0d",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"498a4deb-084f-4a00-8706-642ba011db0d\",\"deviceId\":\"\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"Witting Group - reinvent cross-platform supply-chains\"}"
+    },
+    {
+      "id": "1050c5fe-d2b3-42a7-9299-ba97c42780a6",
+      "date": "2023/08/08 10:09:35.20",
+      "object": "98e54c2e-1a8e-4221-b2b9-44631bf307e4",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"98e54c2e-1a8e-4221-b2b9-44631bf307e4\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"baf4152d-65ab-4cce-8f05-6d889e4d8c2a\",\"attributeDictionaryId\":\"b775baeb-e736-407a-921d-d5c31f12897c\",\"value\":\"3\"}"
+    },
+    {
+      "id": "e156f400-b236-46bb-8514-1e223d4373b8",
+      "date": "2023/08/08 10:10:00.02",
+      "object": "129eda46-3c9a-48bb-a1a5-eff5ccba5fd5",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"129eda46-3c9a-48bb-a1a5-eff5ccba5fd5\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"y\"}"
     }
   ],
   "models": [
@@ -1015,7 +1058,48 @@
       "component": "connection"
     }
   ],
-  "attributes": [],
+  "attributes": [
+    {
+      "id": "b887ae84-7a36-4f4d-b215-d6c8e414bf1d",
+      "deviceId": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
+      "value": "Kemmer - Gottlieb - seize integrated systems"
+    },
+    {
+      "id": "1bde6a80-04f1-4f74-a826-6f9d88b529fe",
+      "deviceId": "",
+      "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
+      "connectionId": "",
+      "attributeDictionaryId": "b775baeb-e736-407a-921d-d5c31f12897c",
+      "value": "Turner and Sons - harness real-time convergence"
+    },
+    {
+      "id": "498a4deb-084f-4a00-8706-642ba011db0d",
+      "deviceId": "",
+      "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
+      "connectionId": "",
+      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
+      "value": "Witting Group - reinvent cross-platform supply-chains"
+    },
+    {
+      "id": "98e54c2e-1a8e-4221-b2b9-44631bf307e4",
+      "deviceId": "",
+      "modelId": "",
+      "connectionId": "baf4152d-65ab-4cce-8f05-6d889e4d8c2a",
+      "attributeDictionaryId": "b775baeb-e736-407a-921d-d5c31f12897c",
+      "value": "3"
+    },
+    {
+      "id": "129eda46-3c9a-48bb-a1a5-eff5ccba5fd5",
+      "deviceId": "be5bb617-a614-435f-bf66-8768d0aba0c8",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
+      "value": "y"
+    }
+  ],
   "floor": [
     {
       "id": "a6b75fd8-f448-46b0-9bf3-0fbee09c0086",
