@@ -80,7 +80,7 @@ export class EditModelComponent implements OnInit {
     return this.modelsService
       .GetModel(this.inputId)
       .subscribe((data: Model) => {
-        console.log('GetModel ' + JSON.stringify(data))
+        console.log('GetModel ' + JSON.stringify(data, null, ' '))
         this.model = data
         this.editModelForm.setValue({
           id: data.id,
@@ -134,7 +134,7 @@ export class EditModelComponent implements OnInit {
     return this.editModelForm.get('category')
   }
   toString(data: any): string {
-    return JSON.stringify(data)
+    return JSON.stringify(data, null, ' ')
   }
 
   DeleteForm() {
@@ -152,7 +152,7 @@ export class EditModelComponent implements OnInit {
     if (this.editModelForm.valid && this.editModelForm.touched) {
       this.ngZone.run(() => this.router.navigateByUrl('models-list'))
       const log: LogIn = {
-        message: JSON.stringify(this.editModelForm.value) as string,
+        message: JSON.stringify(this.editModelForm.value, null, ' ') as string,
         operation: 'Update',
         component: 'Models',
         object: this.editModelForm.value.id,

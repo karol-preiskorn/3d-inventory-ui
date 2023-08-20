@@ -1,6 +1,6 @@
 {
   "name": "3d-inventory-angular-ui",
-  "version": "0.3.30",
+  "version": "0.3.31",
   "private": true,
   "browser": {
     "fs": false,
@@ -75,7 +75,6 @@
     "process": "^0.11.10",
     "rimraf": "^5.0.1",
     "rxjs": "^7.8.1",
-    "three": "^0.155.0",
     "three-orbitcontrols-ts": "^0.1.2",
     "ts-sync-request": "^1.4.1",
     "tslib": "^2.6.1",
@@ -115,11 +114,13 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "karma-jsdom-launcher": "^15.0.0",
+    "lil-gui": "^0.18.2",
     "lint-staged": "^13.2.3",
     "lite-server": "^2.6.1",
     "ng-packagr": "^16.1.0",
     "nyc": "^15.1.0",
     "prettier": "3.0.0",
+    "three": "^0.155.0",
     "typescript": "^5.1.6",
     "unique-names-generator": "^4.7.1",
     "uuid": "^9.0.0"

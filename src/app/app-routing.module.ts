@@ -45,6 +45,12 @@ export class TemplatePageTitleStrategy extends TitleStrategy {
 
 const routes: Routes = [
   // { path: '**', component: DeviceListComponent },
+  //
+  {
+    path: '',
+    component: HomeComponent,
+    title: 'Home',
+  },
   {
     path: 'home',
     component: HomeComponent,

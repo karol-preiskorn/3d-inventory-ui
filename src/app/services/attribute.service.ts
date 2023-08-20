@@ -59,7 +59,7 @@ export class AttributeService {
     let attributes: Attribute[] = []
     const url = this.BASEURL + '/attributes/'
     attributes = new SyncRequestClient().get<Attribute[]>(url)
-    console.log('GetAttributesSync.attributes: ' + JSON.stringify(attributes))
+    console.log('GetAttributesSync.attributes: ' + JSON.stringify(attributes, null, ' '))
     return attributes
   }
 
@@ -109,18 +109,18 @@ export class AttributeService {
 
   CreateAttribute(data: Attribute): Observable<Attribute> {
     return this.http
-      .post<Attribute>(this.BASEURL + '/attributes/', JSON.stringify(data), this.httpOptions)
+      .post<Attribute>(this.BASEURL + '/attributes/', JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   CloneAttribute(id: string | null): string {
     const id_uuid: string = uuidv4()
     this.GetAttribute(id).subscribe((value: Attribute) => {
-      console.log('Get attribute: ' + JSON.stringify(value))
+      console.log('Get attribute: ' + JSON.stringify(value, null, ' '))
       value.id = id_uuid
       this.CreateAttribute(value).subscribe({
         next: (v) => {
-          console.log('Create attribute: ' + JSON.stringify(v))
+          console.log('Create attribute: ' + JSON.stringify(v, null, ' '))
           this.ngZone.run(() => this.router.navigateByUrl('attribute-list'))
         },
         complete: () => this.ngZone.run(() => this.router.navigateByUrl('attribute-list')),
@@ -131,7 +131,7 @@ export class AttributeService {
 
   UpdateAttribute(id: string | null, data: Attribute): Observable<Attribute> {
     return this.http
-      .put<Attribute>(this.BASEURL + '/attributes/' + id, JSON.stringify(data), this.httpOptions)
+      .put<Attribute>(this.BASEURL + '/attributes/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -144,7 +144,7 @@ export class AttributeService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
-    console.log(JSON.stringify(errorMessage))
+    console.log(JSON.stringify(errorMessage, null, ' '))
     return throwError(() => {
       return errorMessage
     })

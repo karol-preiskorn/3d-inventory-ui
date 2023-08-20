@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <h2><i class="bi bi-bar-chart"></i> Edit Attribute</h2>
   <div>{{ this.toString(this.editAttributeForm.controls.id.value) }}</div>
   <form [formGroup]="editAttributeForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
@@ -6,11 +6,15 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="deviceId" class="form-label">Device Id</label>
-          <select (change)="changeDeviceId($event)" formControlName="deviceId" [ngClass]="{
-            'is-invalid': editAttributeForm.hasError('atLeastOneValidator'),
-            'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
-            'form-select': true
-          }" id="deviceId">
+          <select
+            (change)="changeDeviceId($event)"
+            formControlName="deviceId"
+            [ngClass]="{
+              'is-invalid': editAttributeForm.hasError('atLeastOneValidator'),
+              'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
+              'form-select': true
+            }"
+            id="deviceId">
             <option *ngFor="let deviceObj of deviceDictionary; let i = index" value="{{ deviceObj.id }}">
               {{ deviceObj.name }}
             </option>
@@ -26,11 +30,15 @@
       <div class="col">
         <div class="form-group mb-2">
           <label for="modelId" class="form-label">Model Id</label>
-          <select (change)="changeModelId($event)" formControlName="modelId" [ngClass]="{
-            'is-invalid': editAttributeForm.hasError('atLeastOneValidator'),
-            'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
-            'form-select': true
-          }" id="modelId">
+          <select
+            (change)="changeModelId($event)"
+            formControlName="modelId"
+            [ngClass]="{
+              'is-invalid': editAttributeForm.hasError('atLeastOneValidator'),
+              'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
+              'form-select': true
+            }"
+            id="modelId">
             <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj.id }}">
               {{ modelObj.name }}
             </option>
@@ -100,11 +108,16 @@
       <div class="col">
         <div class="form-group mb-2">
           <label for="value" class="form-label">Value</label>
-          <input type="text" formControlName="value" id="id" required [ngClass]="{
-            'is-invalid': this.editAttributeForm.controls.value.status != 'VALID',
-            'is-valid': this.editAttributeForm.controls.value.status == 'VALID',
-            'form-control': true
-          }" />
+          <input
+            type="text"
+            formControlName="value"
+            id="id"
+            required
+            [ngClass]="{
+              'is-invalid': this.editAttributeForm.controls.value.status != 'VALID',
+              'is-valid': this.editAttributeForm.controls.value.status == 'VALID',
+              'form-control': true
+            }" />
           <div *ngIf="this.editAttributeForm.controls.value.errors" class="invalid-feedback">
             <div *ngIf="this.editAttributeForm.controls.value.errors.required">Value is required</div>
             <div *ngIf="this.editAttributeForm.controls.value.errors.minlength">

@@ -73,7 +73,7 @@ export class AddConnectionComponent implements OnInit {
   }
 
   toString(data: any): string {
-    return JSON.stringify(data)
+    return JSON.stringify(data, null, 2)
   }
 
   getDeviceList() {

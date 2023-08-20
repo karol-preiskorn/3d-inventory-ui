@@ -185,7 +185,7 @@ export class EditFloorComponent implements OnInit {
   }
 
   toText(data: any): string {
-    return JSON.stringify(data)
+    return JSON.stringify(data, null, ' ')
   }
 
   get dimension() {

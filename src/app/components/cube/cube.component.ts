@@ -19,23 +19,24 @@
  * 2023-04-16   C2RLO   Add cube
  */
 
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core'
-import {Router} from '@angular/router'
-import {v4 as uuidv4} from 'uuid'
-import {faker} from '@faker-js/faker'
+
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
+import { Router } from '@angular/router'
+import { v4 as uuidv4 } from 'uuid'
+import { faker } from '@faker-js/faker'
 
 import * as THREE from 'three'
-import {OrbitControls} from 'three-orbitcontrols-ts'
+import { OrbitControls } from 'three-orbitcontrols-ts'
+import GUI from 'lil-gui'
 
-import {adjectives, animals, colors, uniqueNamesGenerator} from 'unique-names-generator'
+import { LogService } from 'src/app/services/log.service'
 
-import {LogService} from 'src/app/services/log.service'
+import { DeviceService } from 'src/app/services/device.service'
+import { Device } from 'src/app/shared/device'
 
-import {DeviceService} from 'src/app/services/device.service'
-import {Device} from 'src/app/shared/device'
+import { ModelsService } from 'src/app/services/models.service'
+import { Model } from 'src/app/shared/model'
 
-import {ModelsService} from 'src/app/services/models.service'
-import {Model} from 'src/app/shared/model'
 
 @Component({
   selector: 'app-cube',
@@ -46,15 +47,15 @@ export class CubeComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas')
   private canvasRef: ElementRef
 
-  @Input() public rotationSpeedX = 0.002
-  @Input() public rotationSpeedY = 0.003
-  @Input() public size = 10
+  @Input() public rotationSpeedX = 0.1
+  @Input() public rotationSpeedY = 0.1
+  @Input() public size = 30
   @Input() public texture = '/assets/r710-2.5-nobezel__29341.png'
 
-  @Input() public cameraZ = 1000
-  @Input() public fieldOfView = 1
-  @Input('nearClipping') public nearClippingPlane = 1
-  @Input('farClipping') public farClippingPlane = 3000
+  @Input() public cameraZ = 500
+  @Input() public fieldOfView = 4
+  @Input('nearClipping') public nearClippingPlane = 0.1
+  @Input('farClipping') public farClippingPlane = 2000
 
   private camera!: THREE.PerspectiveCamera
 
@@ -64,11 +65,17 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
   private loader = new THREE.TextureLoader()
   private geometry = new THREE.BoxGeometry(4, 2, 1)
+
   private material = new THREE.MeshBasicMaterial({
     map: this.loader.load(this.texture),
   })
 
+
+  //private material = new THREE.ShadowMaterial()
+
+
   private cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material)
+
   private renderer!: THREE.WebGLRenderer
   private scene!: THREE.Scene
 
@@ -83,7 +90,11 @@ export class CubeComponent implements OnInit, AfterViewInit {
     private modelsService: ModelsService,
     private logService: LogService,
     private router: Router
-  ) {}
+  ) {
+
+    this.material.opacity = 0.8
+    this.cube.receiveShadow = true
+  }
 
   ngOnInit(): void {
     this.loadDevices()
@@ -95,32 +106,25 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.startRenderingLoop()
   }
 
-  addRandomCubes() {
-    for (let i = 0; i < 9; i++) {
-      this.addServer(2, 1, 3, Math.random() * 40 - 20, this.getRandomH(), Math.random() * 40 - 20)
-    }
-  }
-
   getRandomX = () => Math.round(Math.random() * 40 - 20)
   getRandomY = () => Math.round(Math.random() * 40 - 20)
-  getRandomH = () => Math.round(Math.random() * 9)
+  getRandomH = () => Math.round(Math.random() * 10)
 
-  checkDistace() {
+  checkDistaceInDeviceList() {
     let x = this.getRandomX()
     let y = this.getRandomY()
     let distance = true
     let counter = 0
-    while (distance == true && counter < 9) {
+    while (distance == true && counter < 10) {
       this.racks.forEach((element) => {
         // console.log('Generate rack (' + x + ', ' + y + ') ' + Math.sqrt(Math.pow(Math.abs(x - element.x), 2) + Math.pow(Math.abs(y - element.y), 2)))
         if (
-          Math.sqrt(Math.pow(Math.abs(x - element.position.x), 2) + Math.pow(Math.abs(y - element.position.y), 2)) < 6
+          Math.sqrt(Math.pow(Math.abs(x - element.position.x), 2) + Math.pow(Math.abs(y - element.position.y), 2)) < 8
         ) {
           distance = false
         }
         counter = counter + 1
       })
-
       if (distance == (false as boolean)) {
         x = this.getRandomX()
         y = this.getRandomY()
@@ -130,7 +134,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  generateRack(): Device {
+  generateRandomDeviceRack(): Device {
     return {
       id: uuidv4(),
       name: faker.company.name() + ' - ' + faker.company.buzzPhrase(),
@@ -144,46 +148,43 @@ export class CubeComponent implements OnInit, AfterViewInit {
     } as Device
   }
 
-  generateRandomRack() {
-    this.checkDistace()
-    this.racks.push(this.generateRack())
-  }
-
-  generateRandomRacks(count: number) {
+  generateRacksList(count: number) {
     for (let i = 0; i < count; i++) {
-      this.generateRandomRack()
+      this.checkDistaceInDeviceList()
+      this.racks.push(this.generateRandomDeviceRack())
     }
   }
 
-  createRacks(): void {
+  createRacksList3d(): void {
     this.racks.forEach((element) => {
-      this.addRack(element.position.x, element.position.y)
+      this.createRack3d(element.position.x, element.position.y, Math.round(Math.random() * 10))
     })
   }
 
-  addRack(floor_x: number, floor_y: number): void {
-    const n_servers = Math.round(Math.random() * 9)
-    for (let i = 0; i < n_servers; i++) {
-      this.addServer(3, 1, 3, floor_x, i + 0.5, floor_y)
+  createRack3d(floor_x: number, floor_y: number, h: number): void {
+    for (let i = 0; i < h; i++) {
+      this.createDevice3d(3, 1, 3, floor_x, i + 0.5, floor_y)
     }
   }
 
-  addServer(box_x: number, box_y: number, box_z: number, pos_x: number, pos_y: number, pos_z: number) {
+  createDevice3d(box_x: number, box_y: number, box_z: number, pos_x: number, pos_y: number, pos_z: number) {
     const geometry = new THREE.BoxGeometry(box_x, box_y, box_z)
-    const object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({color: Math.random() * 0xffffff}))
+    this.material.color = new THREE.Color(Math.random() * 0xffffff )
+    const sphereMaterial = new THREE.MeshStandardMaterial( { color: Math.random() * 0xffffff } );
+    this.material.opacity = 0.75
 
+    const object = new THREE.Mesh(geometry, sphereMaterial /* new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }) */)
     object.position.x = pos_x
     object.position.y = pos_y
     object.position.z = pos_z
-
-    //console.log('addServer: ' + JSON.stringify(object.position))
-
+    object.castShadow = true
+    object.receiveShadow = true
     this.scene.add(object)
   }
 
   loadDevices() {
-    return this.devicesService.GetDevices().subscribe((data: any) => {
-      this.deviceList = data
+    return this.devicesService.GetDevices().subscribe((data: Device[]) => {
+      this.deviceList = data as Device[]
     })
   }
 
@@ -194,12 +195,23 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   addWalls() {
-    const geometry = new THREE.BoxGeometry(50, 10, 1)
-    const geometry2 = new THREE.BoxGeometry(1, 10, 50)
-    const object1 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({color: Math.random() * 0xffffff}))
-    const object2 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({color: Math.random() * 0xffffff}))
-    const object3 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({color: Math.random() * 0xffffff}))
-    const object4 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({color: Math.random() * 0xffffff}))
+    const geometry = new THREE.BoxGeometry(51, 10, 1)
+    const geometry2 = new THREE.BoxGeometry(1, 10, 51)
+
+    const object1 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
+    const object2 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
+    const object3 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
+    const object4 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
+
+    object1.receiveShadow = true
+    object1.castShadow = true
+    object2.receiveShadow = true
+    object2.castShadow = true
+    object3.receiveShadow = true
+    object3.castShadow = true
+    object4.receiveShadow = true
+    object4.castShadow = true
+
     object1.position.set(0, 5, 25)
     this.scene.add(object1)
     object2.position.set(0, 5, -25)
@@ -211,25 +223,50 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   addLight() {
-    const light = new THREE.DirectionalLight(0xddb14c, 1.5)
-    light.position.set(200, 200, 200).normalize()
-    const cameraHelper = new THREE.CameraHelper(light.shadow.camera)
-    this.scene.add(cameraHelper)
+    const light = new THREE.DirectionalLight(0xffffff, 2)
+    light.position.set(30, 10, 50)
+    light.castShadow = true
+
+    light.position.set( 15, 20, 10 );
+    light.castShadow = true; // default false
+
+    //Set up shadow properties for the light
+    light.shadow.mapSize.width = 3000; // default
+    light.shadow.mapSize.height = 3000; // default
+    light.shadow.camera.near = 1000; // default
+    light.shadow.camera.far = 2000; // default
+
     this.scene.add(light)
+
+    const lightHelper = new THREE.DirectionalLightHelper(light, 1)
+    this.scene.add(lightHelper)
   }
 
-  addLight2() {
-    const light2 = new THREE.DirectionalLight(0xeefccf, 2)
-    light2.position.set(-200, 80, 150).normalize()
-    const cameraHelper2 = new THREE.CameraHelper(light2.shadow.camera)
-    this.scene.add(cameraHelper2)
+  directionalLight() {
+    const light2 = new THREE.DirectionalLight(0xffffff, 1.3)
+    light2.position.set(-20, 30, 20)
+    light2.castShadow = true
     this.scene.add(light2)
+
+    const lightHelper2 = new THREE.DirectionalLightHelper(light2, 1)
+    this.scene.add(lightHelper2)
+  }
+
+  directionalLight2() {
+    const light3 = new THREE.DirectionalLight(0xffffff, 0.8)
+    light3.position.set(20, 20, 25)
+    light3.castShadow = true
+    this.scene.add(light3)
+
+    const lightHelper3 = new THREE.DirectionalLightHelper(light3, 1)
+    this.scene.add(lightHelper3)
   }
 
   addAbientLight() {
-    const color = 0xf0f0f0
-    const intensity = 0.1
+    const color = 0xffffff
+    const intensity = 0.9
     const lightAbient = new THREE.AmbientLight(color, intensity)
+    lightAbient.castShadow = true
     this.scene.add(lightAbient)
   }
 
@@ -253,12 +290,16 @@ export class CubeComponent implements OnInit, AfterViewInit {
     texture.repeat.set(repeats, repeats)
 
     const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize)
-    const planeMat = new THREE.MeshPhongMaterial({
-      map: texture,
-      side: THREE.DoubleSide,
-    })
+    // const planeMat = new THREE.MeshPhongMaterial({
+    //   map: texture,
+    //   side: THREE.DoubleSide,
+    //   shadowSide: 2
+    // })
+    const planeMat = new THREE.MeshStandardMaterial( { color: 0xffffff } )
 
     const mesh = new THREE.Mesh(planeGeo, planeMat)
+    mesh.receiveShadow = true
+    // mesh.castShadow = true
     mesh.rotation.x = Math.PI * -0.5
     this.scene.add(mesh)
   }
@@ -270,22 +311,18 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.addPlane(planeSize)
 
     this.scene.background = new THREE.Color(0x555555)
+    this.scene.castShadow = true
+    this.scene.receiveShadow = true
 
-    this.addLight()
-    this.addLight2()
-    //this.addAbientLight()
 
     this.addWalls()
+    this.generateRacksList(25)
+    this.createRacksList3d()
 
-    this.generateRandomRacks(30)
-    this.createRacks()
-
-    // const color = 0xF29900
-    // const intensity = 23
-    // const light = new THREE.DirectionalLight(color, intensity)
-    // light.position.set(100, 100, -100).normalize()
-    // const cameraHelper = new THREE.CameraHelper(light.shadow.camera)
-    // this.scene.add(cameraHelper)
+    this.directionalLight()
+    this.directionalLight2()
+    //this.addLight()
+    //this.addAbientLight()
 
     const aspectRatio = this.getAspectRatio()
     this.camera = new THREE.PerspectiveCamera(
@@ -294,15 +331,16 @@ export class CubeComponent implements OnInit, AfterViewInit {
       this.nearClippingPlane,
       this.farClippingPlane
     )
-    this.camera.position.z = 1800
-    this.camera.position.x = 1600
-    this.camera.position.y = 1400
+    this.camera.position.z = 500
+    this.camera.position.x = 500
+    this.camera.position.y = 500
     const controls = new OrbitControls(this.camera, this.canvas)
-    this.camera.zoom = 2 // Set to false to disable zooming
-    //THREE.zoomSpeed = 1.0
-    controls.target.set(5, 5, 0)
+    this.camera.zoom = 0.8
+    controls.target.set(0, 0, 0)
+    controls.enablePan = true
+    controls.enableZoom = true
+    controls.autoRotate = true
 
-    controls.enablePan = false // Set to false to disable panning (ie vertical and horizontal translations)
     controls.update()
   }
 
@@ -311,18 +349,29 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   private startRenderingLoop() {
-    //* Renderer
-    // Use canvas element in template
-    this.renderer = new THREE.WebGLRenderer({canvas: this.canvas})
+    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas })
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+    this.renderer.shadowMap.enabled = true
     this.renderer.setPixelRatio(devicePixelRatio)
     this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight)
 
+    const fov = 1000
+    const aspect = 1 // the canvas default
+    const near = 0.01
+    const far = 3000
+    const camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
+    camera.position.set(10, 20, 20)
+
+    const controls = new OrbitControls(camera, this.canvas)
+    controls.target.set(10, 40, 30)
+    controls.update()
+
     const component: CubeComponent = this
-    ;(function render() {
-      requestAnimationFrame(render)
-      component.animateCube()
-      component.shadowCube()
-      component.renderer.render(component.scene, component.camera)
-    })()
+      ; (function render() {
+        requestAnimationFrame(render)
+        component.animateCube()
+        component.shadowCube()
+        component.renderer.render(component.scene, component.camera)
+      })()
   }
 }

@@ -111,7 +111,7 @@ export class AddDeviceComponent implements OnInit {
   }
 
   toString(data: any): string {
-    return JSON.stringify(data)
+    return JSON.stringify(data, null, ' ')
   }
 
   generateDevice() {

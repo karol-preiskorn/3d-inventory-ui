@@ -1,8 +1,8 @@
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http'
-import {Injectable, Input} from '@angular/core'
-import {Observable, catchError, of, retry, throwError} from 'rxjs'
-import {v4 as uuidv4} from 'uuid'
-import {getDateString} from '../shared/utils'
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
+import { Injectable, Input } from '@angular/core'
+import { Observable, catchError, of, retry, throwError } from 'rxjs'
+import { v4 as uuidv4 } from 'uuid'
+import { getDateString } from '../shared/utils'
 
 export interface LogParamteres {
   component: string
@@ -32,7 +32,7 @@ export class LogService {
   baseurl = 'http://localhost:3000'
   @Input() attributeComponentId: string
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -80,15 +80,14 @@ export class LogService {
       message: data.message,
     }
     console.log('LogService.CreateLog: ' + JSON.stringify(log, null, ' '))
-    //this.postLog(log)
     return this.http
-      .post<Log>(`${this.baseurl}/logs/`, JSON.stringify(log), this.httpOptions)
+      .post<Log>(`${this.baseurl}/logs/`, JSON.stringify(log, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Log>('CreateLog', log)))
   }
 
   postLog(data: Log): Observable<Log> {
     return this.http
-      .post<Log>(`${this.baseurl}/logs`, JSON.stringify(data), this.httpOptions)
+      .post<Log>(`${this.baseurl}/logs`, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Log>('postLog', data)))
   }
 
@@ -99,7 +98,7 @@ export class LogService {
 
   UpdateLog(id: string | null, data: JSON): Observable<Log> {
     return this.http
-      .put<Log>(this.baseurl + '/logs/' + id, JSON.stringify(data), this.httpOptions)
+      .put<Log>(this.baseurl + '/logs/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.handleError))
   }
 
@@ -108,8 +107,7 @@ export class LogService {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error)
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
+      // The backend returned an unsuccessful response code. The response body may contain clues as to what went wrong.
       console.error(`Backend returned code ${error.status}, body was: `, error.error)
     }
     // Return an observable with a user-facing error message.
@@ -117,8 +115,7 @@ export class LogService {
   }
 
   /**
-   * Handle Http operation that failed.
-   * Let the app continue.
+   * Handle Http operation that failed. Let the app continue.
    *
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
@@ -127,18 +124,10 @@ export class LogService {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
       console.error(error) // log to console instead
-
       // TODO: better job of transforming error for user consumption
-      this.log(`LogService.handleError----> ${operation} failed: ${error.message}`)
-
+      console.log(`LogService.handleError----> ${operation} failed: ${error.message}`)
       // Let the app keep running by returning an empty result.
       return of(result as T)
     }
-  }
-
-  /** Log a message with the MessageService */
-  private log(message: string) {
-    //this.messageService.add(`HeroService: ${message}`)
-    this.log(`LogService.handleError.log: ${message}`)
   }
 }

@@ -51,18 +51,18 @@ export class FloorService {
 
   CreateFloor(data: Floor): Observable<Floor> {
     return this.http
-      .post<Floor>(this.BASEURL + '/floor/', JSON.stringify(data), this.httpOptions)
+      .post<Floor>(this.BASEURL + '/floor/', JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   CloneFloor(id: string): string {
     const id_uuid: string = uuidv4()
     this.GetFloor(id).subscribe((value: Floor) => {
-      console.log('Get Floor: ' + JSON.stringify(value))
+      console.log('Get Floor: ' + JSON.stringify(value, null, ' '))
       value.id = id_uuid
       this.CreateFloor(value).subscribe({
         next: (v) => {
-          console.log('Create Floor: ' + JSON.stringify(v))
+          console.log('Create Floor: ' + JSON.stringify(v, null, ' '))
           this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
         },
         complete: () => this.ngZone.run(() => this.router.navigateByUrl('floor-list')),
@@ -76,7 +76,7 @@ export class FloorService {
     data: never
   ): Observable<Floor> {
     return this.http
-      .put<Floor>(this.BASEURL + '/floor/' + id, JSON.stringify(data), this.httpOptions)
+      .put<Floor>(this.BASEURL + '/floor/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -90,7 +90,7 @@ export class FloorService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
-    console.log(JSON.stringify(errorMessage))
+    console.log(JSON.stringify(errorMessage, null, ' '))
     return throwError(() => {
       return errorMessage
     })

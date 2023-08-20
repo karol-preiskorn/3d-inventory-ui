@@ -92,7 +92,7 @@ export class EditConnectionComponent implements OnInit {
   }
 
   toString(data: any): string {
-    return JSON.stringify(data)
+    return JSON.stringify(data, null, 2)
   }
 
   getDeviceList() {
@@ -107,7 +107,7 @@ export class EditConnectionComponent implements OnInit {
     return this.connectionService
       .GetConnection(this.inputId)
       .subscribe((data: any) => {
-        console.log('EditConnectionComponent.connectionService.GetConnection(' + this.inputId + ') => ' + JSON.stringify(data))
+        console.log('EditConnectionComponent.connectionService.GetConnection(' + this.inputId + ') => ' + JSON.stringify(data, null, ' '))
         this.connection = data
         this.editConnectionForm.setValue(data)
       })

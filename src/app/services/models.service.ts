@@ -44,11 +44,11 @@ export class ModelsService {
   }
   // POST
   CreateModel(data: Model): Observable<Model> {
-    console.log('Service.CreateModel: ' + JSON.stringify(data))
+    console.log('Service.CreateModel: ' + JSON.stringify(data, null, ' '))
     return this.http
       .post<Model>(
         this.baseurl + '/models/',
-        JSON.stringify(data),
+        JSON.stringify(data, null, ' '),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
@@ -56,19 +56,19 @@ export class ModelsService {
   CloneModel(id: string): string {
     const id_uuid: string = uuidv4()
     this.GetModel(id).subscribe((value: Model) => {
-      console.log('Get Model: ' + JSON.stringify(value))
+      console.log('Get Model: ' + JSON.stringify(value, null, ' '))
       value.id = id_uuid
       this.model = value
       this.CreateModel(value).subscribe({
         next: (v) => {
-          console.log('Create Model: ' + JSON.stringify(v))
+          console.log('Create Model: ' + JSON.stringify(v, null, ' '))
           this.ngZone.run(() => this.router.navigateByUrl('models-list'))
         },
         complete: () =>
           this.ngZone.run(() => this.router.navigateByUrl('models-list')),
       })
     })
-    console.log('Get after Model: ' + JSON.stringify(this.model))
+    console.log('Get after Model: ' + JSON.stringify(this.model, null, ' '))
     return id_uuid
   }
   // PUT
@@ -76,7 +76,7 @@ export class ModelsService {
     return this.http
       .put<Model>(
         this.baseurl + '/models/' + id,
-        JSON.stringify(data),
+        JSON.stringify(data, null, ' '),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
@@ -97,7 +97,7 @@ export class ModelsService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
-    console.log(JSON.stringify(errorMessage))
+    console.log(JSON.stringify(errorMessage, null, ' '))
 
     return throwError(() => {
       return errorMessage

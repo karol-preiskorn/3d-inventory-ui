@@ -157,7 +157,7 @@ export class EditDeviceComponent implements OnInit {
   }
 
   // toString(data: string): string {
-  //   return JSON.stringify(data)
+  //   return JSON.stringify(data, null, ' ')
   // }
 
   submitForm() {

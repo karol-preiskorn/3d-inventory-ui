@@ -75,7 +75,7 @@ export class EditAttributeComponent implements OnInit {
 
   private getAttribute(id: string): any {
     return this.attributeService.GetAttribute(this.inputId).subscribe((data: any) => {
-      console.log('EditAttributeComponent.GetAttribute(' + this.inputId + ') => ' + JSON.stringify(data))
+      console.log('EditAttributeComponent.GetAttribute(' + this.inputId + ') => ' + JSON.stringify(data, null, 2))
       this.attribute = data
       this.editAttributeForm.setValue(data)
     })
@@ -143,7 +143,7 @@ export class EditAttributeComponent implements OnInit {
   }
 
   toString(data: any): string {
-    return JSON.stringify(data)
+    return JSON.stringify(data, null, ' ')
   }
 
   getDeviceList() {

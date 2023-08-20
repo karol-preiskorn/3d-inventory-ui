@@ -53,7 +53,7 @@ export class AttributeListComponent implements OnInit {
   ) {}
 
   public toString(str: any) {
-    return JSON.stringify(str)
+    return JSON.stringify(str, null, 2)
   }
 
   ngOnInit() {

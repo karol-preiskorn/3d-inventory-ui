@@ -49,7 +49,7 @@ export class ConnectionService {
 
   CreateConnection(data: Connection): Observable<Connection> {
     return this.http
-      .post<Connection>(this.BASEURL + '/connections/', JSON.stringify(data), this.httpOptions)
+      .post<Connection>(this.BASEURL + '/connections/', JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -71,7 +71,7 @@ export class ConnectionService {
 
   UpdateConnection(id: string | null, data: any): Observable<Connection> {
     return this.http
-      .put<Connection>(this.BASEURL + '/connections/' + id, JSON.stringify(data), this.httpOptions)
+      .put<Connection>(this.BASEURL + '/connections/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 

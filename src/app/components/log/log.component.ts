@@ -95,14 +95,14 @@ export class LogComponent implements OnInit {
 
   loadComponentLog(id: string): Subscription {
     return this.logService.GetComponentLogs(id).subscribe((data: Log[]) => {
-      //console.log('LogComponent.loadComponentLog(' + id + '): ' + JSON.stringify(data))
+      //console.log('LogComponent.loadComponentLog(' + id + '): ' + JSON.stringify(data, null, ' '))
       this.LogList = data
     })
   }
 
   loadObjectsLog(id: string): Subscription {
     return this.logService.GetObjectsLogs(id).subscribe((data: Log[]) => {
-      // console.log('LogComponent.loadObjectsLog(' + id + '): ' + JSON.stringify(data))
+      // console.log('LogComponent.loadObjectsLog(' + id + '): ' + JSON.stringify(data, null, ' '))
       this.LogList = data
     })
   }

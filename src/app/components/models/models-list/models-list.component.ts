@@ -23,15 +23,16 @@ export class ModelsListComponent implements OnInit {
     private router: Router,
     private ngZone: NgZone
   ) {}
+
   loadModels() {
     return this.modelsService.GetModels().subscribe((data: any) => {
       this.ModelsList = data
     })
   }
+
   ngOnInit() {
     this.loadModels()
   }
-
 
   DeleteModel(id: string) {
     this.logService.CreateLog({

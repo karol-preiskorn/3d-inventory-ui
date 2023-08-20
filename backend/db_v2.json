@@ -1,28 +1,28 @@
 {
   "connections": [
     {
-      "id": "fd5ece0f-9626-47cf-ad12-3e94a5a14015",
-      "name": "2 to 5",
-      "deviceIdTo": "b04452d1-a271-4a4a-a543-087b8effd74b",
-      "deviceIdFrom": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a"
-    },
-    {
       "id": "0ec13b68-bc4d-4824-acf7-151b7b5cd02e",
       "name": "2 coonect to 3",
-      "deviceIdTo": "be5bb617-a614-435f-bf66-8768d0aba0c8",
-      "deviceIdFrom": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a"
+      "deviceIdTo": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0",
+      "deviceIdFrom": "be5bb617-a614-435f-bf66-8768d0aba0c8"
     },
     {
       "id": "baf4152d-65ab-4cce-8f05-6d889e4d8c2a",
       "name": "Coonect 5",
-      "deviceIdTo": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "deviceIdTo": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f",
       "deviceIdFrom": "b04452d1-a271-4a4a-a543-087b8effd74b"
     },
     {
       "id": "67c06b77-d609-4f80-aef0-722227ee7ac6",
       "name": "1 to 5",
-      "deviceIdTo": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f",
-      "deviceIdFrom": "b04452d1-a271-4a4a-a543-087b8effd74b"
+      "deviceIdTo": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "deviceIdFrom": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0"
+    },
+    {
+      "id": "f3438145-7fb7-4a3c-8ce6-3f5ea982d0af",
+      "name": "443333",
+      "deviceIdTo": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0",
+      "deviceIdFrom": "be5bb617-a614-435f-bf66-8768d0aba0c8"
     }
   ],
   "devices": [
@@ -604,14 +604,6 @@
       "message": "{\"id\":\"51973a2d-bbec-401f-a6f6-1252955453ce\",\"deviceId\":\"\",\"modelId\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"connectionId\":\"\",\"attributeDictionaryId\":\"489d6288-f336-4915-b753-a1071879c6d3\",\"value\":\"3\"}"
     },
     {
-      "id": "27b91e70-010c-45f9-b9d9-db3eb1d1633a",
-      "date": "2023/07/24 07:42:47.85",
-      "object": "fd5ece0f-9626-47cf-ad12-3e94a5a14015",
-      "operation": "Update",
-      "component": "Connection",
-      "message": "{\"id\":\"fd5ece0f-9626-47cf-ad12-3e94a5a14015\",\"name\":\"2 to 5\",\"deviceIdTo\":\"255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f\",\"deviceIdFrom\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\"}"
-    },
-    {
       "id": "ad470dae-dd06-4659-b115-09a00598a638",
       "date": "2023/07/24 07:44:07.54",
       "object": "43d3bf0e-f03b-421d-9df9-b45b7ff7a266",
@@ -756,30 +748,6 @@
       "message": "{\"id\":\"73ee6acc-2364-4cb4-8e38-25b26f7ff3df\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"04f0e57c-6214-49af-a2bb-47b61e23e116\",\"value\":\"Old\"}"
     },
     {
-      "id": "0e890073-01bf-433a-8847-06c2f40cfae2",
-      "date": "2023/07/25 20:41:47.19",
-      "object": "baf4152d-65ab-4cce-8f05-6d889e4d8c2a",
-      "operation": "Create",
-      "component": "Connection",
-      "message": "{\"id\":\"baf4152d-65ab-4cce-8f05-6d889e4d8c2a\",\"name\":\"Coonect 5\",\"deviceIdTo\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"deviceIdFrom\":\"b04452d1-a271-4a4a-a543-087b8effd74b\"}"
-    },
-    {
-      "id": "acf54708-4b78-4ca8-ae88-943e37fbd508",
-      "date": "2023/07/26 20:49:39.74",
-      "object": "fd5ece0f-9626-47cf-ad12-3e94a5a14015",
-      "operation": "Update",
-      "component": "Connection",
-      "message": "{\"id\":\"fd5ece0f-9626-47cf-ad12-3e94a5a14015\",\"name\":\"2 to 5\",\"deviceIdTo\":\"b04452d1-a271-4a4a-a543-087b8effd74b\",\"deviceIdFrom\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\"}"
-    },
-    {
-      "id": "f2e3b937-8cec-4999-a51d-69e47b4ccc2e",
-      "date": "2023/07/26 20:49:58.08",
-      "object": "67c06b77-d609-4f80-aef0-722227ee7ac6",
-      "operation": "Create",
-      "component": "Connection",
-      "message": "{\"id\":\"67c06b77-d609-4f80-aef0-722227ee7ac6\",\"name\":\"1 to 5\",\"deviceIdTo\":\"255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f\",\"deviceIdFrom\":\"b04452d1-a271-4a4a-a543-087b8effd74b\"}"
-    },
-    {
       "id": "44b838eb-60c1-4d29-8243-b5f5cb6c2f53",
       "date": "2023/08/03 22:38:56.04",
       "object": "51e6d2be-54dd-458f-9563-51f01a3908e9",
@@ -876,14 +844,6 @@
       "message": "{\"id\":\"b887ae84-7a36-4f4d-b215-d6c8e414bf1d\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"Kemmer - Gottlieb - seize integrated systems\"}"
     },
     {
-      "id": "bed34eba-d77a-486b-8212-178bd0ababd0",
-      "date": "2023/08/05 23:45:02.88",
-      "object": "1bde6a80-04f1-4f74-a826-6f9d88b529fe",
-      "operation": "Create",
-      "component": "Attributes",
-      "message": "{\"id\":\"1bde6a80-04f1-4f74-a826-6f9d88b529fe\",\"deviceId\":\"\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b775baeb-e736-407a-921d-d5c31f12897c\",\"value\":\"Turner and Sons - harness real-time convergence\"}"
-    },
-    {
       "id": "87ae224d-cefb-496d-80b1-1f2a998f7dc7",
       "date": "2023/08/08 10:09:23.43",
       "object": "498a4deb-084f-4a00-8706-642ba011db0d",
@@ -906,6 +866,134 @@
       "operation": "Create",
       "component": "Attributes",
       "message": "{\"id\":\"129eda46-3c9a-48bb-a1a5-eff5ccba5fd5\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"y\"}"
+    },
+    {
+      "id": "48f4e8e8-d1cb-420a-b87f-8585c546ebc2",
+      "date": "2023/08/15 12:27:04.61",
+      "object": "9dbf3b97-566c-4c1e-8da2-83fc46b551f5",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"9dbf3b97-566c-4c1e-8da2-83fc46b551f5\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"value\":\"Collins - Hackett - incubate world-class markets\"}"
+    },
+    {
+      "id": "d3c62e0b-138c-41f5-a713-61ca15a8f67a",
+      "date": "2023/08/15 13:03:49.67",
+      "object": "0ec13b68-bc4d-4824-acf7-151b7b5cd02e",
+      "operation": "Update",
+      "component": "Connection",
+      "message": "{\"id\":\"0ec13b68-bc4d-4824-acf7-151b7b5cd02e\",\"name\":\"2 coonect to 3\",\"deviceIdTo\":\"5f8abd81-0d35-47c4-8277-3d6bbbe185f0\",\"deviceIdFrom\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\"}"
+    },
+    {
+      "id": "9eb324b8-e061-488d-9509-cca10d5d48e8",
+      "date": "2023/08/15 13:04:15.36",
+      "object": "baf4152d-65ab-4cce-8f05-6d889e4d8c2a",
+      "operation": "Update",
+      "component": "Connection",
+      "message": "{\"id\":\"baf4152d-65ab-4cce-8f05-6d889e4d8c2a\",\"name\":\"Coonect 5\",\"deviceIdTo\":\"255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f\",\"deviceIdFrom\":\"b04452d1-a271-4a4a-a543-087b8effd74b\"}"
+    },
+    {
+      "id": "1780438a-d72e-43f1-9749-9ff371fb4505",
+      "date": "2023/08/15 13:04:31.32",
+      "object": "67c06b77-d609-4f80-aef0-722227ee7ac6",
+      "operation": "Update",
+      "component": "Connection",
+      "message": "{\"id\":\"67c06b77-d609-4f80-aef0-722227ee7ac6\",\"name\":\"1 to 5\",\"deviceIdTo\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"deviceIdFrom\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\"}"
+    },
+    {
+      "id": "7ff5d35b-fdd5-4907-8bd9-0832bf41ac06",
+      "date": "2023/08/15 13:30:10.46",
+      "object": "67c06b77-d609-4f80-aef0-722227ee7ac6",
+      "operation": "Update",
+      "component": "Connection",
+      "message": "{\n  \"id\": \"67c06b77-d609-4f80-aef0-722227ee7ac6\",\n  \"name\": \"1 to 5\",\n  \"deviceIdTo\": \"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\n  \"deviceIdFrom\": \"5f8abd81-0d35-47c4-8277-3d6bbbe185f0\"\n}"
+    },
+    {
+      "id": "83bb6be8-b086-4ac3-99b1-5a3e5bf77396",
+      "date": "2023/08/15 15:01:28.25",
+      "object": "f3438145-7fb7-4a3c-8ce6-3f5ea982d0af",
+      "operation": "Create",
+      "component": "Connection",
+      "message": "{\n  \"id\": \"f3438145-7fb7-4a3c-8ce6-3f5ea982d0af\",\n  \"name\": \"443333\",\n  \"deviceIdTo\": \"5f8abd81-0d35-47c4-8277-3d6bbbe185f0\",\n  \"deviceIdFrom\": \"be5bb617-a614-435f-bf66-8768d0aba0c8\"\n}"
+    },
+    {
+      "id": "4b20df44-dd95-475c-bb70-7325f4c18dc9",
+      "date": "2023/08/15 15:21:15.73",
+      "object": "cd69addc-5c83-4638-a1d5-059f06259f5f",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\n  \"id\": \"cd69addc-5c83-4638-a1d5-059f06259f5f\",\n  \"deviceId\": \"be5bb617-a614-435f-bf66-8768d0aba0c8\",\n  \"modelId\": \"\",\n  \"connectionId\": \"\",\n  \"attributeDictionaryId\": \"b324c94f-58a7-4e2e-a566-207024cb3485\",\n  \"value\": \"2\"\n}"
+    },
+    {
+      "id": "91e70b27-0bcd-4403-837f-f80bc89fd6b9",
+      "date": "2023/08/15 15:21:43.62",
+      "object": "8de18c99-f0f3-45c9-9137-833e6b28f8ed",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\n  \"id\": \"8de18c99-f0f3-45c9-9137-833e6b28f8ed\",\n  \"deviceId\": \"\",\n  \"modelId\": \"\",\n  \"connectionId\": \"baf4152d-65ab-4cce-8f05-6d889e4d8c2a\",\n  \"attributeDictionaryId\": \"04f0e57c-6214-49af-a2bb-47b61e23e116\",\n  \"value\": \"Bashirian and Sons - monetize turn-key paradigms\"\n}"
+    },
+    {
+      "id": "5943bcf9-9a22-4cee-8398-0801f511002f",
+      "date": "2023/08/15 15:21:50.76",
+      "object": "055cf595-025c-4716-9025-48b7d9402f6e",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\n  \"id\": \"055cf595-025c-4716-9025-48b7d9402f6e\",\n  \"deviceId\": \"be5bb617-a614-435f-bf66-8768d0aba0c8\",\n  \"modelId\": \"\",\n  \"connectionId\": \"\",\n  \"attributeDictionaryId\": \"b324c94f-58a7-4e2e-a566-207024cb3485\",\n  \"value\": \"Ziemann - Hodkiewicz - harness viral supply-chains\"\n}"
+    },
+    {
+      "id": "f6bcb0ac-7fdb-434c-a9ed-491da3b2f6c5",
+      "date": "2023/08/18 20:58:17.07",
+      "object": "fb248caa-1f4a-44f3-9034-bd58ae244410",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\n  \"id\": \"fb248caa-1f4a-44f3-9034-bd58ae244410\",\n  \"deviceId\": \"255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f\",\n  \"modelId\": \"\",\n  \"connectionId\": \"\",\n  \"attributeDictionaryId\": \"04f0e57c-6214-49af-a2bb-47b61e23e116\",\n  \"value\": \"1\"\n}"
+    },
+    {
+      "id": "6615e0e9-b507-4b03-a891-d389b6db8900",
+      "date": "2023/08/18 20:58:38.53",
+      "object": "da32664d-dc5c-4b3c-96b0-e1df33c975bf",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\n  \"id\": \"da32664d-dc5c-4b3c-96b0-e1df33c975bf\",\n  \"deviceId\": \"b04452d1-a271-4a4a-a543-087b8effd74b\",\n  \"modelId\": \"\",\n  \"connectionId\": \"\",\n  \"attributeDictionaryId\": \"70728826-94ef-4610-b171-bfcda02976b6\",\n  \"value\": \"11\"\n}"
+    },
+    {
+      "id": "9698d2bd-93e9-4cf8-87d3-ed12653037ac",
+      "date": "2023/08/18 20:59:24.97",
+      "object": "e1e82ff9-8a33-4fa2-b1de-2f4b7c0405f0",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\n  \"id\": \"e1e82ff9-8a33-4fa2-b1de-2f4b7c0405f0\",\n  \"deviceId\": \"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\n  \"modelId\": \"\",\n  \"connectionId\": \"\",\n  \"attributeDictionaryId\": \"b324c94f-58a7-4e2e-a566-207024cb3485\",\n  \"value\": \"1\"\n}"
+    },
+    {
+      "id": "417873d6-1fa4-4e1c-bf69-500fd0a3600a",
+      "date": "2023/08/18 21:00:49.07",
+      "object": "a6b75fd8-f448-46b0-9bf3-0fbee09c0086",
+      "operation": "Update",
+      "component": "Floor",
+      "message": "{\"id\":\"a6b75fd8-f448-46b0-9bf3-0fbee09c0086\",\"name\":\"Konopelski - Walter - incentivize global 2222\",\"adress\":{\"street\":\"Zion Valleys 86789\",\"city\":\"Paradise\",\"country\":\"Papua New Guinea\",\"postcode\":\"05649-8267\"},\"dimension\":[{\"description\":\"Koss, Powlowski and Sipes - leverage out-of-the-box schemas dasd\",\"x\":\"54\",\"y\":\"58\",\"h\":\"6\",\"x_pos\":\"76\",\"y_pos\":\"70\",\"h_pos\":\"23\"}]}"
+    },
+    {
+      "id": "f53faf55-c7c8-4401-bab6-7a544149faa4",
+      "date": "2023/08/18 21:01:32.61",
+      "object": "1d343f27-cc28-446f-9156-e0d942b3e2f7",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\n  \"id\": \"1d343f27-cc28-446f-9156-e0d942b3e2f7\",\n  \"deviceId\": \"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\n  \"modelId\": \"\",\n  \"connectionId\": \"\",\n  \"attributeDictionaryId\": \"489d6288-f336-4915-b753-a1071879c6d3\",\n  \"value\": \"Bartoletti - Labadie - deliver cross-media deliverables\"\n}"
+    },
+    {
+      "id": "90042a5b-d0cb-4dd4-b60c-d7d2ee823dae",
+      "date": "2023/08/18 21:02:27.37",
+      "object": "1d343f27-cc28-446f-9156-e0d942b3e2f7",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\n \"id\": \"1d343f27-cc28-446f-9156-e0d942b3e2f7\",\n \"deviceId\": \"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\n \"modelId\": \"\",\n \"connectionId\": \"\",\n \"attributeDictionaryId\": \"489d6288-f336-4915-b753-a1071879c6d3\",\n \"value\": \"Bartoletti - Labadie - deliver cross-media deliverables\"\n}"
+    },
+    {
+      "id": "61587d44-7108-4f05-a98c-5ac8e39da89b",
+      "date": "2023/08/18 21:03:24.80",
+      "object": "67916cfb-b119-449e-b1f2-903ee3e07826",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\n  \"id\": \"67916cfb-b119-449e-b1f2-903ee3e07826\",\n  \"deviceId\": \"\",\n  \"modelId\": \"e13aea31-cce3-4877-ba29-740f8392ddd2\",\n  \"connectionId\": \"\",\n  \"attributeDictionaryId\": \"489d6288-f336-4915-b753-a1071879c6d3\",\n  \"value\": \"m2\"\n}"
     }
   ],
   "models": [
@@ -1060,50 +1148,74 @@
   ],
   "attributes": [
     {
-      "id": "b887ae84-7a36-4f4d-b215-d6c8e414bf1d",
-      "deviceId": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
-      "value": "Kemmer - Gottlieb - seize integrated systems"
-    },
-    {
-      "id": "1bde6a80-04f1-4f74-a826-6f9d88b529fe",
-      "deviceId": "",
-      "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
-      "connectionId": "",
-      "attributeDictionaryId": "b775baeb-e736-407a-921d-d5c31f12897c",
-      "value": "Turner and Sons - harness real-time convergence"
-    },
-    {
-      "id": "498a4deb-084f-4a00-8706-642ba011db0d",
-      "deviceId": "",
-      "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
-      "connectionId": "",
-      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
-      "value": "Witting Group - reinvent cross-platform supply-chains"
-    },
-    {
-      "id": "98e54c2e-1a8e-4221-b2b9-44631bf307e4",
-      "deviceId": "",
-      "modelId": "",
-      "connectionId": "baf4152d-65ab-4cce-8f05-6d889e4d8c2a",
-      "attributeDictionaryId": "b775baeb-e736-407a-921d-d5c31f12897c",
-      "value": "3"
-    },
-    {
-      "id": "129eda46-3c9a-48bb-a1a5-eff5ccba5fd5",
+      "id": "cd69addc-5c83-4638-a1d5-059f06259f5f",
       "deviceId": "be5bb617-a614-435f-bf66-8768d0aba0c8",
       "modelId": "",
       "connectionId": "",
       "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
-      "value": "y"
+      "value": "2"
+    },
+    {
+      "id": "8de18c99-f0f3-45c9-9137-833e6b28f8ed",
+      "deviceId": "",
+      "modelId": "",
+      "connectionId": "baf4152d-65ab-4cce-8f05-6d889e4d8c2a",
+      "attributeDictionaryId": "04f0e57c-6214-49af-a2bb-47b61e23e116",
+      "value": "Bashirian and Sons - monetize turn-key paradigms"
+    },
+    {
+      "id": "055cf595-025c-4716-9025-48b7d9402f6e",
+      "deviceId": "be5bb617-a614-435f-bf66-8768d0aba0c8",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
+      "value": "Ziemann - Hodkiewicz - harness viral supply-chains"
+    },
+    {
+      "id": "fb248caa-1f4a-44f3-9034-bd58ae244410",
+      "deviceId": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "04f0e57c-6214-49af-a2bb-47b61e23e116",
+      "value": "1"
+    },
+    {
+      "id": "da32664d-dc5c-4b3c-96b0-e1df33c975bf",
+      "deviceId": "b04452d1-a271-4a4a-a543-087b8effd74b",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "70728826-94ef-4610-b171-bfcda02976b6",
+      "value": "11"
+    },
+    {
+      "id": "e1e82ff9-8a33-4fa2-b1de-2f4b7c0405f0",
+      "deviceId": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
+      "value": "1"
+    },
+    {
+      "id": "1d343f27-cc28-446f-9156-e0d942b3e2f7",
+      "deviceId": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "489d6288-f336-4915-b753-a1071879c6d3",
+      "value": "Bartoletti - Labadie - deliver cross-media deliverables"
+    },
+    {
+      "id": "67916cfb-b119-449e-b1f2-903ee3e07826",
+      "deviceId": "",
+      "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
+      "connectionId": "",
+      "attributeDictionaryId": "489d6288-f336-4915-b753-a1071879c6d3",
+      "value": "m2"
     }
   ],
   "floor": [
     {
       "id": "a6b75fd8-f448-46b0-9bf3-0fbee09c0086",
-      "name": "Konopelski - Walter - incentivize global cxcx",
+      "name": "Konopelski - Walter - incentivize global 2222",
       "adress": {
         "street": "Zion Valleys 86789",
         "city": "Paradise",
@@ -1119,15 +1231,6 @@
           "x_pos": "76",
           "y_pos": "70",
           "h_pos": "23"
-        },
-        {
-          "description": "Abbott - Hagenes - engage impactful web services",
-          "x": "92",
-          "y": "11",
-          "h": "4",
-          "x_pos": "14",
-          "y_pos": "89",
-          "h_pos": "16"
         }
       ]
     },

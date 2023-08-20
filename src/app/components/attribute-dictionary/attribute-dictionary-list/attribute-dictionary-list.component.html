@@ -1,4 +1,4 @@
-<div class="container wrapper">
+<div class="container-fluid">
   <div class="inner">
     <h2><i class="bi bi-grid-3x3-gap"></i> Attribute Dictionary</h2>
     <table class="table table-striped table-hover">
@@ -8,39 +8,58 @@
           <th scope="col">Category</th>
           <th scope="col">Type</th>
           <th scope="col">Component</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="
-                let attributeDictionary of attributeDictionaryList
-                  | paginate
-                    : {
-                        id: 'attributeDictionaryPagination',
-                        itemsPerPage: 5,
-                        currentPage: attributeDictionaryPage
-                      }
-              ">
+        <tr
+          *ngFor="
+            let attributeDictionary of attributeDictionaryList
+              | paginate
+                : {
+                    id: 'attributeDictionaryPagination',
+                    itemsPerPage: 5,
+                    currentPage: attributeDictionaryPage
+                  }
+          ">
           <td tooltip="{{ attributeDictionary.id }}">{{ attributeDictionary.name }}</td>
           <td>{{ attributeDictionary.category }}</td>
           <td>{{ attributeDictionary.type }}</td>
           <td>{{ attributeDictionary.component }}</td>
           <td>
-            <div class="btn-group" role="group" aria-label="attributeDictionary-operations">
-              <button type="button" class="btn btn-success btn-sm move-right" id="edit-attributeDictionary"
-                (click)="EditForm(attributeDictionary)"> Edit </button>
-              <button type="button" id="delete-attributeDictionary" class="btn btn-danger btn-sm"
-                (click)="deleteAttributeDictionary(attributeDictionary.id)"> Delete </button>
-              <button type="button" id="clone-attributeDictionary" class="btn btn-info btn-sm"
-                (click)="CloneAttributeDictionary(attributeDictionary.id)"> Clone </button>
+            <div class="btn-group float-md-end" role="group" aria-label="attributeDictionary-operations">
+              <button
+                type="button"
+                class="btn btn-success btn-sm move-right"
+                id="edit-attributeDictionary"
+                (click)="EditForm(attributeDictionary)">
+                Edit
+              </button>
+              <button
+                type="button"
+                id="delete-attributeDictionary"
+                class="btn btn-danger btn-sm"
+                (click)="deleteAttributeDictionary(attributeDictionary.id)">
+                Delete
+              </button>
+              <button
+                type="button"
+                id="clone-attributeDictionary"
+                class="btn btn-info btn-sm"
+                (click)="CloneAttributeDictionary(attributeDictionary.id)">
+                Clone
+              </button>
             </div>
           </td>
         </tr>
       </tbody>
     </table>
     <button type="button" class="btn btn-success btn-sm move-right mb-3" (click)="AddForm()">
-      <i class="bi bi-plus-lg"></i> Add </button>
+      <i class="bi bi-plus-lg"></i> Add
+    </button>
   </div>
-  <pagination-controls (pageChange)="attributeDictionaryPage = $event"
+  <pagination-controls
+    (pageChange)="attributeDictionaryPage = $event"
     id="attributeDictionaryPagination"></pagination-controls>
 </div>
 <app-log [component]="component"></app-log>
