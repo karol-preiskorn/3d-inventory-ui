@@ -115,7 +115,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "karma-jsdom-launcher": "^15.0.0",
     "lil-gui": "^0.18.2",
-    "lint-staged": "^13.2.3",
+    "lint-staged": "^14.0.0",
     "lite-server": "^2.6.1",
     "ng-packagr": "^16.1.0",
     "nyc": "^15.1.0",
