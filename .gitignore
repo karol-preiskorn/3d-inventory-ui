@@ -172,3 +172,4 @@ Thumbs.db
 package-lock.json
 documentation
 MONGO.md
+.odo
