@@ -31,18 +31,19 @@ export class HomeComponent {
       'Access-Control-Allow-Origin': 'https://api.github.com/',
     }),
   }
+
   async ngOnInit() {
     this.http
       .get('/assets/README.md', { responseType: 'text' })
       .subscribe((data: string) => {
-        // console.log('Get Markdown ' + JSON.stringify(data))
-        this.md = data
+        // console.log('Get Markdown ' + JSON.stringify(data, null, ' '))
+        this.md = data.replaceAll('src/', "");
       })
 
     // await this.http
     //   .get(this.githubIssuesUrl, this.httpOptions)
     //   .subscribe((data) => {
-    //     console.log('Get Issues ' + JSON.stringify(data))
+    //     console.log('Get Issues ' + JSON.stringify(data, null, ' '))
     //     this.issues = data
     //   })
   }

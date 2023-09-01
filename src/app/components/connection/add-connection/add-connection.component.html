@@ -1,39 +1,32 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h3>Add Connection</h3>
-      <a class="icon-link" href="#">
-        <svg class="bi" aria-hidden="true">
-          <use xlink:href="#box-seam"></use>
-        </svg>
-        {{ this.toString(this.addConnectionForm.controls.id.value) }}
-      </a>
-      <form [formGroup]="addConnectionForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate >
+<div class="container-fluid">
+      <h2><i class="bi bi-ethernet"></i> Add Connection</h2>
+      <i class="bi bi-window-plus"></i>
+      {{ this.toString(this.addConnectionForm.controls.id.value) }}
+      <form [formGroup]="addConnectionForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
         <div class="row">
           <div class="col">
             <div class="form-group mb-3">
               <label for="name" class="form-label">Name</label>
-              <input formControlName="name" id="name" class="form-control" value="{{ this.addConnectionForm.value.name }}">
-              <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                Please choose a name 6 char len.
-              </div>
-
-              <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert">
-                <div *ngIf="name?.errors?.['required']">
-                  Name is required.
-                </div>
-                <div *ngIf="name?.errors?.['minlength']" >
+              <input
+                formControlName="name"
+                id="name"
+                [ngClass]="{
+                  'is-invalid': this.addConnectionForm.controls.name.status != 'VALID',
+                  'is-valid': this.addConnectionForm.controls.name.status == 'VALID',
+                  'form-control': true
+                }"
+                value="{{ this.addConnectionForm.value.name }}" />
+              <div *ngIf="addConnectionForm.get('name')?.invalid">
+                <div *ngIf="addConnectionForm.get('name')?.errors?.['required']">Name is required.</div>
+                <div *ngIf="addConnectionForm.get('name')?.errors?.['minlength']">
                   Name must be at least 6 characters long.
                 </div>
               </div>
-              <div  *ngIf="(
-                addConnectionForm.get('name')?.dirty ||
-                addConnectionForm.get('name')?.touched
-               ) &&
-               addConnectionForm.get('name')?.invalid">
+              <div
+                *ngIf="
+                  (addConnectionForm.get('name')?.dirty || addConnectionForm.get('name')?.touched) &&
+                  addConnectionForm.get('name')?.invalid
+                ">
                 Please provide connection name.
               </div>
             </div>
@@ -43,29 +36,39 @@
           <div class="col">
             <div class="form-group mb-3">
               <label for="deviceIdFrom" class="form-label">Device From</label>
-              <select (change)="changeDeviceFrom($event)" formControlName="deviceIdFrom" class="form-control" id="deviceIdFrom">
-                <option *ngFor="let deviceFromObj of deviceList; let i = index">
-                  {{ i }} {{ deviceFromObj.name }}
+              <select
+                (change)="changeDeviceFrom($event)"
+                formControlName="deviceIdFrom"
+                [ngClass]="{
+                  'is-invalid': this.addConnectionForm.controls.deviceIdFrom.status != 'VALID',
+                  'is-valid': this.addConnectionForm.controls.deviceIdFrom.status == 'VALID',
+                  'form-select': true
+                }"
+                id="deviceIdFrom">
+                <option *ngFor="let deviceFromObj of deviceList; let i = index" [value]="deviceFromObj.id">
+                  {{ deviceFromObj.name }}
                 </option>
               </select>
-              <div *ngIf="this.addConnectionForm.controls.deviceIdFrom.errors" class="invalid-feedback">
-                <div *ngIf="this.addConnectionForm.controls.deviceIdFrom.errors.required">Defice Id From is required
-                </div>
-              </div>
-              <div>
-                {{ this.toString(this.addConnectionForm.controls.deviceIdFrom.hasError) }}
-              </div>
+              <div *ngIf="this.addConnectionForm.get('deviceIdFrom')?.invalid">Device Id From is required</div>
             </div>
           </div>
           <div class="col">
             <div class="form-group mb-3">
               <label for="deviceIdTo" class="form-label">Device To</label>
-              <select (change)="changeDeviceTo($event)" formControlName="deviceIdTo" class="form-control" id="deviceIdTo">
-                <option *ngFor="let deviceToObj of deviceList; let i = index">
-                  {{ i }} {{ deviceToObj.name }}
+              <select
+                (change)="changeDeviceTo($event)"
+                formControlName="deviceIdTo"
+                [ngClass]="{
+                  'is-invalid': this.addConnectionForm.controls.deviceIdTo.status != 'VALID',
+                  'is-valid': this.addConnectionForm.controls.deviceIdTo.status == 'VALID',
+                  'form-select': true
+                }"
+                id="deviceIdTo">
+                <option *ngFor="let deviceToObj of deviceList; let i = index" [value]="deviceToObj.id">
+                  {{ deviceToObj.name }}
                 </option>
               </select>
-              <div *ngIf="this.addConnectionForm.controls.deviceIdTo.errors" class="invalid-feedback">
+              <div *ngIf="this.addConnectionForm.controls.deviceIdTo.errors">
                 <div *ngIf="this.addConnectionForm.controls.deviceIdTo.errors.required">Device Id To is required</div>
               </div>
               <div>
@@ -75,9 +78,11 @@
           </div>
         </div>
         <div class="form-group mb-3">
-          <button type="submit" [disabled]="!(this.addConnectionForm.valid && this.addConnectionForm.touched)"
+          <button
+            type="submit"
+            [disabled]="!(this.addConnectionForm.valid && this.addConnectionForm.touched)"
             class="btn btn-primary">
-            Add connection
+            <i class="bi bi-plus-square"></i> Add connection
           </button>
           <div *ngIf="!(this.addConnectionForm.valid && this.addConnectionForm.touched)" class="invalid-feedback">
             Form is invalid
@@ -85,5 +90,3 @@
         </div>
       </form>
     </div>
-  </div>
-</div>

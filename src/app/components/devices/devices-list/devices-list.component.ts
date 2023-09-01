@@ -15,15 +15,17 @@ import { ModelsService } from 'src/app/services/models.service'
   styleUrls: ['./devices-list.component.scss'],
 })
 export class DeviceListComponent implements OnInit {
-  deviceList: Device[]
-  modelList: Model[]
+  deviceList: Device[] = []
+  modelList: Model[] = []
   selectedDevice: Device
   component = 'Devices'
   deviceListPage = 1
+
   ngOnInit() {
     this.loadDevices()
     this.loadModels()
   }
+
   constructor(
     private devicesService: DeviceService,
     private modelsService: ModelsService,
@@ -31,16 +33,19 @@ export class DeviceListComponent implements OnInit {
     private router: Router,
     private ngZone: NgZone
   ) {}
+
   loadDevices() {
     return this.devicesService.GetDevices().subscribe((data: any) => {
       this.deviceList = data
     })
   }
+
   loadModels() {
-    return this.modelsService.GetModels().subscribe((data: any) => {
-      this.modelList = data
+    return this.modelsService.GetModels().subscribe((data: Model[]): void => {
+      this.modelList= data as Model[]
     })
   }
+
   DeleteDevice(id: string) {
     this.logService.CreateLog({
       message: id,
@@ -55,6 +60,7 @@ export class DeviceListComponent implements OnInit {
       this.router.navigate(['/device-list/'])
     })
   }
+
   CloneDevice(id: string | null) {
     const id_new: string = this.devicesService.CloneDevice(id)
     this.logService
@@ -68,19 +74,17 @@ export class DeviceListComponent implements OnInit {
       })
     this.loadDevices()
   }
+
   AddForm() {
     this.router.navigateByUrl('/add-device')
   }
+
   EditForm(device: Device) {
     this.selectedDevice = device
     this.router.navigate(['edit-device/', device.id])
   }
-  findModelName(id: string) {
-    const nameEmpty: Model = new Model()
-    nameEmpty.name
-    const name: Model = this.modelList.find((e) => e.id === id) || nameEmpty
-    //console.log('findModelName: ' + name?.name);
 
-    return name?.name
+  findModelName(id: string): string {
+    return this.modelList.find((e: Model) => e.id === id)?.name as string
   }
 }

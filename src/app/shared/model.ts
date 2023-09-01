@@ -100,7 +100,7 @@ export class Model {
     )
   }
   public getDimensionsJson(): string {
-    return JSON.stringify(this.dimension)
+    return JSON.stringify(this.dimension, null, ' ')
   }
 
   public generate(): void {

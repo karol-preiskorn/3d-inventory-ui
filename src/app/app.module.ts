@@ -12,6 +12,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip'
 import { MarkdownModule } from 'ngx-markdown'
 import { NgxPaginationModule } from 'ngx-pagination'
 import { AppRoutingModule } from './app-routing.module'
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { DeviceListComponent } from './components/devices/devices-list/devices-list.component'
 import { AddDeviceComponent } from './components/devices/add-device/add-device.component'
@@ -42,7 +43,12 @@ import { LogComponent } from './components/log/log.component'
 import { LogService } from './services/log.service';
 import { ConnectionListComponent } from './components/connection/connection-list/connection-list.component';
 import { AddConnectionComponent } from './components/connection/add-connection/add-connection.component';
-import { EditConnectionComponent } from './components/connection/edit-connection/edit-connection.component'
+import { EditConnectionComponent } from './components/connection/edit-connection/edit-connection.component';
+
+import { FloorListComponent } from './components/floors/floor-list/floor-list.component';
+import { EditFloorComponent } from './components/floors/edit-floor/edit-floor.component';
+import { AddFloorComponent } from './components/floors/add-floor/add-floor.component'
+import { FloorService } from './services/floor.service'
 
 
 @NgModule({
@@ -70,6 +76,9 @@ import { EditConnectionComponent } from './components/connection/edit-connection
     ConnectionListComponent,
     AddConnectionComponent,
     EditConnectionComponent,
+    FloorListComponent,
+    EditFloorComponent,
+    AddFloorComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -85,6 +94,7 @@ import { EditConnectionComponent } from './components/connection/edit-connection
     }),
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
+    NgbPopoverModule
   ],
   providers: [
     DeviceService,
@@ -94,6 +104,7 @@ import { EditConnectionComponent } from './components/connection/edit-connection
     AttributeDictionaryService,
     AttributeService,
     EnvironmentService,
+    FloorService
   ],
   bootstrap: [AppComponent],
   exports: [LogComponent],

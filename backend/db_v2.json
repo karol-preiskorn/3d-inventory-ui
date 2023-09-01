@@ -1,49 +1,45 @@
 {
   "connections": [
     {
-      "id": "f1f5abce-d4aa-4108-af4c-dfd2ade5a814",
-      "name": "con  2",
-      "deviceIdTo": "2 Device 1abcd",
-      "deviceIdFrom": "1 Device 1abcd"
+      "id": "0ec13b68-bc4d-4824-acf7-151b7b5cd02e",
+      "name": "2 coonect to 3",
+      "deviceIdTo": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0",
+      "deviceIdFrom": "be5bb617-a614-435f-bf66-8768d0aba0c8"
     },
     {
-      "id": "80ed734c-0910-42bb-83f0-acdd23aadc43",
-      "name": "Connection 2",
-      "deviceIdTo": "4 Device 1abcd",
-      "deviceIdFrom": "3 Device 1abcd"
+      "id": "baf4152d-65ab-4cce-8f05-6d889e4d8c2a",
+      "name": "Coonect 5",
+      "deviceIdTo": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f",
+      "deviceIdFrom": "b04452d1-a271-4a4a-a543-087b8effd74b"
     },
     {
-      "id": "97cd7051-974f-4405-9127-9abf1465966d",
-      "name": "Connection 3",
-      "deviceIdTo": "3 Device 4",
-      "deviceIdFrom": "1 Device 2"
+      "id": "67c06b77-d609-4f80-aef0-722227ee7ac6",
+      "name": "1 to 5",
+      "deviceIdTo": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "deviceIdFrom": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0"
+    },
+    {
+      "id": "f3438145-7fb7-4a3c-8ce6-3f5ea982d0af",
+      "name": "443333",
+      "deviceIdTo": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0",
+      "deviceIdFrom": "be5bb617-a614-435f-bf66-8768d0aba0c8"
     }
   ],
   "devices": [
     {
-      "id": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "name": "Device 1",
-      "modelId": "850819ca-305e-45e8-ac14-32271aad0ee7",
-      "position": {
-        "x": "58",
-        "y": "24",
-        "h": "9"
-      }
-    },
-    {
       "id": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
-      "name": "Device 2",
-      "modelId": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "name": "Device 2 (new2)",
+      "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
       "position": {
-        "x": "3",
+        "x": "4",
         "y": "3",
-        "h": "3"
+        "h": "0"
       }
     },
     {
       "id": "be5bb617-a614-435f-bf66-8768d0aba0c8",
       "name": "Device 3",
-      "modelId": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "modelId": "850819ca-305e-45e8-ac14-32271aad0ee7",
       "position": {
         "x": "2",
         "y": "3",
@@ -53,17 +49,17 @@
     {
       "id": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0",
       "name": "Device 4",
-      "modelId": "850819ca-305e-45e8-ac14-32271aad0ee7",
+      "modelId": "482e0849-2241-4ef3-b316-cdf844befbda",
       "position": {
         "x": "2",
-        "y": "3",
+        "y": "4",
         "h": "3"
       }
     },
     {
       "id": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f",
       "name": "Device 5",
-      "modelId": "482e0849-2241-4ef3-b316-cdf844befbda",
+      "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
       "position": {
         "x": "1",
         "y": "5",
@@ -72,155 +68,26 @@
     },
     {
       "id": "b04452d1-a271-4a4a-a543-087b8effd74b",
+      "name": "Device 1",
       "modelId": "82c77905-2118-4c38-85a5-e04728c8dbbe",
-      "name": "Device 1abcd",
       "position": {
-        "h": "3",
         "x": "2",
-        "y": "3"
+        "y": "3",
+        "h": "3"
       }
     },
     {
       "id": "34c3b304-463f-4958-b045-3237f7030838",
+      "name": "Device 1.1",
       "modelId": "82c77905-2118-4c38-85a5-e04728c8dbbe",
-      "name": "Device 1abcd",
       "position": {
-        "h": "3",
         "x": "2",
-        "y": "3"
+        "y": "4",
+        "h": "3"
       }
     }
   ],
   "logs": [
-    {
-      "id": "2d9d190c-2dbe-4311-b16c-7f86c1a3cf5b",
-      "date": "2023/06/14 22:10:17.67",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update",
-      "component": "Devices",
-      "message": " - 1 - "
-    },
-    {
-      "id": "2d9d190c-2dbe-4311-b16c-7f86c1a3cf50",
-      "date": "2023/06/14 23:10:17.67",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update",
-      "component": "Devices",
-      "message": " - 2 - "
-    },
-    {
-      "id": "57bbe93a-f824-44e2-98fa-3963e6db5c14",
-      "date": "2023/06/15 17:40:15.97",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update",
-      "component": "Devices",
-      "message": "-- bla bla --"
-    },
-    {
-      "id": "2ea5e131-a71f-404f-83ce-90a17eec1853",
-      "date": "2023/06/15 17:51:08.33",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update",
-      "component": "Devices",
-      "message": "-- bla bla --"
-    },
-    {
-      "id": "0721a3ef-ed58-45ce-81f1-2013126466c4",
-      "date": "2023/06/15 17:51:28.19",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update",
-      "component": "Devices",
-      "message": "-- bla bla --"
-    },
-    {
-      "id": "aea463d6-3201-4849-8d07-f8a647e9d226",
-      "date": "2023/06/15 17:51:36.45",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update",
-      "component": "Devices",
-      "message": "-- bla bla --"
-    },
-    {
-      "id": "a2283bda-cb2a-40d0-ba42-547ef74360dc",
-      "date": "2023/06/15 17:53:14.74",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update",
-      "component": "Devices",
-      "message": "-- bla bla --"
-    },
-    {
-      "id": "c2b7a924-34f1-475f-9154-f702cc4dd7ed",
-      "date": "2023/06/15 17:53:22.15",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update",
-      "component": "Devices",
-      "message": "-- bla bla --"
-    },
-    {
-      "id": "12833b31-6c07-4ec0-b4d3-cee2f285f3e2",
-      "date": "2023/06/15 17:53:31.09",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update",
-      "component": "Devices",
-      "message": "-- bla bla --"
-    },
-    {
-      "id": "6fecf475-fb85-4c8c-952f-69613a85e57b",
-      "date": "2023/06/15 18:00:42.15",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update",
-      "component": "Devices",
-      "message": ""
-    },
-    {
-      "id": "a6696d7e-4eba-4cdd-a98a-92bec73de7a6",
-      "date": "2023/06/15 19:07:21.42",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update",
-      "component": "Devices",
-      "message": ""
-    },
-    {
-      "id": "f01ff1c0-8fa1-455a-893c-60b22349b53d",
-      "date": "2023/06/15 19:19:09.93",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update",
-      "component": "Devices",
-      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Device 1\",\"modelId\":\"850819ca-305e-45e8-ac14-32271aad0ee7\",\"position\":{\"x\":\"58\",\"y\":\"12\",\"h\":\"9\"}}"
-    },
-    {
-      "id": "67901abc-926a-4f01-b170-18dc3166b939",
-      "date": "2023/06/17 15:34:47.16",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update",
-      "component": "Devices",
-      "message": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5"
-    },
-    {
-      "id": "67cda249-4b65-466e-8033-1f25e9cf52c9",
-      "date": "2023/06/17 15:35:32.59",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update",
-      "component": "Devices",
-      "message": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5"
-    },
-    {
-      "id": "dd4cf38d-9952-404a-9195-b85bae7b2e6f",
-      "date": "2023/06/17 15:36:37.85",
-      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-      "operation": "Update",
-      "component": "Devices",
-      "message": {
-        "id": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
-        "name": "Device 1",
-        "modelId": "850819ca-305e-45e8-ac14-32271aad0ee7",
-        "position": {
-          "x": "58",
-          "y": "22",
-          "h": "9"
-        }
-      }
-    },
     {
       "id": "b5318cd7-89a4-45e4-8b03-311ed85444d6",
       "date": "2023/06/17 15:37:58.44",
@@ -246,14 +113,6 @@
       "message": "{\"id\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"name\":\"Model 1\",\"dimension\":{\"width\":\"1\",\"height\":\"2\",\"depth\":\"1\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"Bridge\",\"category\":\"Connectivity\"}"
     },
     {
-      "id": "41c38aad-3615-4045-a43e-5f54398c668c",
-      "date": "2023/06/17 23:39:15.86",
-      "object": "97d9a503-f009-4ff6-9b1c-2ec30e52ef78",
-      "operation": "Create",
-      "component": "Attributes",
-      "message": "{\"id\":\"97d9a503-f009-4ff6-9b1c-2ec30e52ef78\",\"deviceId\":\"\",\"modelId\":\"Model 3\",\"connectionId\":\"\",\"attributeDictionaryId\":\"\",\"value\":\"csdasdadadsa\"}"
-    },
-    {
       "id": "e1a269c5-3192-4ae9-b477-16a98ad91108",
       "date": "2023/06/17 23:47:34.07",
       "object": "e802a1de-9a13-4ac9-b148-b503ec304383",
@@ -270,14 +129,6 @@
       "message": "{\"id\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"name\":\"Model 1\",\"dimension\":{\"width\":\"1\",\"height\":\"2\",\"depth\":\"2\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"Bridge\",\"category\":\"Connectivity\"}"
     },
     {
-      "id": "4230f7ed-5c64-4b80-8b76-3adc871c7439",
-      "date": "2023/06/18 09:44:03.04",
-      "object": "97d9a503-f009-4ff6-9b1c-2ec30e52ef78",
-      "operation": "Update",
-      "component": "Attributes",
-      "message": "{\"id\":\"97d9a503-f009-4ff6-9b1c-2ec30e52ef78\",\"deviceId\":\"\",\"modelId\":\"Model 3\",\"connectionId\":\"\",\"attributeDictionaryId\":\"\",\"value\":\"Value of attribute 1\"}"
-    },
-    {
       "id": "37c301cc-e1d7-48ef-acf0-8f378560e386",
       "date": "2023/06/18 09:44:55.92",
       "object": "850819ca-305e-45e8-ac14-32271aad0ee7",
@@ -286,100 +137,860 @@
       "message": "{\"id\":\"850819ca-305e-45e8-ac14-32271aad0ee7\",\"name\":\"Model 3\",\"dimension\":{\"width\":\"2\",\"height\":\"3\",\"depth\":\"2\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"Server\",\"category\":\"Facility\"}"
     },
     {
-      "id": "5ab60542-cd0a-4dc0-8453-e5419f1928dd",
-      "date": "2023/06/18 10:05:21.42",
-      "object": "97d9a503-f009-4ff6-9b1c-2ec30e52ef78",
+      "id": "00af8550-9459-42c5-90df-9425e13de48e",
+      "date": "2023/06/24 13:54:53.75",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
       "operation": "Update",
-      "component": "Attributes",
-      "message": "{\"id\":\"97d9a503-f009-4ff6-9b1c-2ec30e52ef78\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"connectionId\":\"80ed734c-0910-42bb-83f0-acdd23aadc43\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"Value of attribute 1\"}"
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Device 1\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"9\"}}"
     },
     {
-      "id": "3894b80a-288e-48a8-b932-5e1ba07123c5",
-      "date": "2023/06/18 10:45:32.19",
-      "object": "9777f19b-e527-4067-bedd-12bcdc54858d",
+      "id": "b3b831e3-3211-434f-9483-d67bfccf4493",
+      "date": "2023/06/24 13:54:55.71",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Device 1\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"9\"}}"
+    },
+    {
+      "id": "e5dec5bc-7c80-4919-b101-1763941cc24d",
+      "date": "2023/06/24 13:55:22.00",
+      "object": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"5f8abd81-0d35-47c4-8277-3d6bbbe185f0\",\"name\":\"Device 4\",\"modelId\":\"482e0849-2241-4ef3-b316-cdf844befbda\",\"position\":{\"x\":\"2\",\"y\":\"3\",\"h\":\"3\"}}"
+    },
+    {
+      "id": "a7f112fd-74fd-4052-ae23-533829c0d4f5",
+      "date": "2023/06/25 11:26:11.36",
+      "object": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"5f8abd81-0d35-47c4-8277-3d6bbbe185f0\",\"name\":\"Device 4\",\"modelId\":\"482e0849-2241-4ef3-b316-cdf844befbda\",\"position\":{\"x\":\"2\",\"y\":\"4\",\"h\":\"3\"}}"
+    },
+    {
+      "id": "51719322-10f0-49f9-af73-e2b9a65e15e9",
+      "date": "2023/06/25 13:00:19.71",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Deva\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"9\"}}"
+    },
+    {
+      "id": "07afc61e-7d54-43a4-8920-159ae75a4385",
+      "date": "2023/06/25 13:08:33.26",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Deva\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"9\"}}"
+    },
+    {
+      "id": "61fadf80-11ee-4043-b944-96c56e9a6314",
+      "date": "2023/06/25 13:11:19.59",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Deva\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"9\"}}"
+    },
+    {
+      "id": "65b76ea8-f722-4d18-8784-a5703d558243",
+      "date": "2023/06/25 13:12:33.73",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Deva\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"9\"}}"
+    },
+    {
+      "id": "d3e420be-3c1c-4e9c-a525-6e0789919761",
+      "date": "2023/06/25 13:21:31.52",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Deva\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"9\"}}"
+    },
+    {
+      "id": "263fb1a5-e3c5-4d9e-b861-95d3bb156081",
+      "date": "2023/06/25 13:22:19.28",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Deva\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"9\"}}"
+    },
+    {
+      "id": "a6182237-bab9-4e7a-b28d-a2ed19d43f4d",
+      "date": "2023/06/25 13:22:24.92",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Deva\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"11\"}}"
+    },
+    {
+      "id": "b9aa6568-125a-4c1d-aeff-a6b4045c28e7",
+      "date": "2023/06/25 13:23:51.97",
+      "object": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"name\":\"Device 2\",\"modelId\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"position\":{\"x\":\"4\",\"y\":\"3\",\"h\":\"3\"}}"
+    },
+    {
+      "id": "0fe12f24-6d3e-49fa-9c1d-8f7ba687170e",
+      "date": "2023/06/25 20:07:04.29",
+      "object": "955edd48-37e2-4ff5-966c-6a1c0a5143ee",
       "operation": "Create",
       "component": "Attributes",
-      "message": "{\"id\":\"9777f19b-e527-4067-bedd-12bcdc54858d\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"\",\"value\":\"hhhhhhh\"}"
+      "message": "{\"id\":\"955edd48-37e2-4ff5-966c-6a1c0a5143ee\",\"deviceId\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"value\":\"2\"}"
     },
     {
-      "id": "0b9abb3a-0b2c-46ff-bae8-864b780b4feb",
-      "date": "2023/06/18 10:50:39.62",
-      "object": "9777f19b-e527-4067-bedd-12bcdc54858d",
-      "operation": "Update",
-      "component": "Attributes",
-      "message": "{\"id\":\"9777f19b-e527-4067-bedd-12bcdc54858d\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"\",\"value\":\"hhhhhhh\"}"
-    },
-    {
-      "id": "89a10c3a-4d73-4208-af17-8852038f31a4",
-      "date": "2023/06/18 14:14:25.88",
-      "object": "c5c144d7-b1d9-4aee-b794-a2f55a2016d0",
+      "id": "9e45a7a5-54a2-4f79-840e-547df45ac19e",
+      "date": "2023/06/25 22:27:53.38",
+      "object": "d611e8c0-8f8d-4160-b9cb-e7987d2e2169",
       "operation": "Create",
       "component": "Attributes",
-      "message": "{\"id\":\"c5c144d7-b1d9-4aee-b794-a2f55a2016d0\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"connectionId\":\"80ed734c-0910-42bb-83f0-acdd23aadc43\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"aaaaaa\"}"
+      "message": "{\"id\":\"d611e8c0-8f8d-4160-b9cb-e7987d2e2169\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"value\":\"1\"}"
     },
     {
-      "id": "d8dbe99b-5c63-42e8-9f13-dfa12a113f42",
-      "date": "2023/06/18 14:27:19.78",
-      "object": "97d9a503-f009-4ff6-9b1c-2ec30e52ef78",
+      "id": "7a8dce26-148a-4a00-a052-862330c62692",
+      "date": "2023/07/01 16:16:43.03",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
       "operation": "Update",
-      "component": "Attributes",
-      "message": "{\"id\":\"97d9a503-f009-4ff6-9b1c-2ec30e52ef78\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"connectionId\":\"80ed734c-0910-42bb-83f0-acdd23aadc43\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"Value of attribute 1\"}"
+      "component": "Models",
+      "message": "{\"id\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"name\":\"Model 1\",\"dimension\":{\"width\":\"1\",\"height\":\"2\",\"depth\":\"2\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"CoolAir\",\"category\":\"Connectivity\"}"
     },
     {
-      "id": "9e45e5c6-1aed-428e-8398-3c1e850a82cf",
-      "date": "2023/06/18 14:32:42.73",
-      "object": "97d9a503-f009-4ff6-9b1c-2ec30e52ef78",
+      "id": "4873a7e1-cb11-4046-b640-13a6bee8f44c",
+      "date": "2023/07/01 16:16:49.86",
+      "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
       "operation": "Update",
-      "component": "Attributes",
-      "message": "{\"id\":\"97d9a503-f009-4ff6-9b1c-2ec30e52ef78\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"850819ca-305e-45e8-ac14-32271aad0ee7\",\"connectionId\":\"80ed734c-0910-42bb-83f0-acdd23aadc43\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"Value of attribute 12\"}"
+      "component": "Models",
+      "message": "{\"id\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"name\":\"Model 1\",\"dimension\":{\"width\":\"1\",\"height\":\"2\",\"depth\":\"2\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"CoolAir\",\"category\":\"Facility\"}"
     },
     {
-      "id": "09377732-e2ae-434c-9aeb-6d1f8dca0bb6",
-      "date": "2023/06/18 20:50:56.54",
-      "object": "97d9a503-f009-4ff6-9b1c-2ec30e52ef78",
+      "id": "5cf51606-91c7-41e4-8a75-b9d94ac7d97c",
+      "date": "2023/07/01 16:17:14.03",
+      "object": "482e0849-2241-4ef3-b316-cdf844befbda",
       "operation": "Update",
-      "component": "Attributes",
-      "message": "{\"id\":\"97d9a503-f009-4ff6-9b1c-2ec30e52ef78\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"\",\"value\":\"Value of attribute 12\"}"
+      "component": "Models",
+      "message": "{\"id\":\"482e0849-2241-4ef3-b316-cdf844befbda\",\"name\":\"Model 4\",\"dimension\":{\"width\":\"3\",\"height\":\"4\",\"depth\":\"3\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"Server\",\"category\":\"Facility\"}"
     },
     {
-      "id": "7c4f1ee5-2f98-4dcc-b3ab-f2ce588a0914",
-      "date": "2023/06/18 20:51:08.35",
-      "object": "c5c144d7-b1d9-4aee-b794-a2f55a2016d0",
-      "operation": "Update",
+      "id": "3363368c-97ca-4842-aebb-93ac167fd722",
+      "date": "2023/07/01 16:24:02.73",
+      "object": "3fbad21f-dc2a-4fe4-ba05-e1510189dbdb",
+      "operation": "Create",
       "component": "Attributes",
-      "message": "{\"id\":\"c5c144d7-b1d9-4aee-b794-a2f55a2016d0\",\"deviceId\":\"\",\"modelId\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"connectionId\":\"\",\"attributeDictionaryId\":\"\",\"value\":\"aaaaaa\"}"
+      "message": "{\"id\":\"3fbad21f-dc2a-4fe4-ba05-e1510189dbdb\",\"deviceId\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"11dsasdasd\"}"
     },
     {
-      "id": "c1eaddcc-813d-41a8-b73d-63f286fdd137",
-      "date": "2023/06/18 20:51:37.42",
-      "object": "9777f19b-e527-4067-bedd-12bcdc54858d",
-      "operation": "Update",
+      "id": "7da3c59e-75d5-4754-8e77-8072d428a8e2",
+      "date": "2023/07/01 16:49:20.91",
+      "object": "f66e88bc-e2b9-4706-9164-03adbd4a1b11",
+      "operation": "Create",
       "component": "Attributes",
-      "message": "{\"id\":\"9777f19b-e527-4067-bedd-12bcdc54858d\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"f1f5abce-d4aa-4108-af4c-dfd2ade5a814\",\"attributeDictionaryId\":\"\",\"value\":\"Value of attribute connection\"}"
+      "message": "{\"id\":\"f66e88bc-e2b9-4706-9164-03adbd4a1b11\",\"deviceId\":\"\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"connectionId\":\"\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"2\"}"
     },
     {
-      "id": "bd136eb5-0cbd-4e1b-96a5-b7fc027a8363",
-      "date": "2023/06/18 21:00:25.46",
-      "object": "97d9a503-f009-4ff6-9b1c-2ec30e52ef78",
-      "operation": "Update",
+      "id": "740f97d0-5681-4cfa-8e46-59a5ec36aecf",
+      "date": "2023/07/01 16:49:30.06",
+      "object": "e39a1f92-e797-4219-ba6d-63efd1742c29",
+      "operation": "Create",
       "component": "Attributes",
-      "message": "{\"id\":\"97d9a503-f009-4ff6-9b1c-2ec30e52ef78\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"\",\"value\":\"Value of attribute Device 3\"}"
+      "message": "{\"id\":\"e39a1f92-e797-4219-ba6d-63efd1742c29\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"fd5ece0f-9626-47cf-ad12-3e94a5a14015\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"3\"}"
     },
     {
-      "id": "3b4c507e-64b4-4a0d-a5bf-1db2075d188f",
-      "date": "2023/06/18 21:00:36.89",
-      "object": "9777f19b-e527-4067-bedd-12bcdc54858d",
+      "id": "08fdb520-9f9a-4dd7-92e6-7c675541a35a",
+      "date": "2023/07/01 18:02:31.92",
+      "object": "e39a1f92-e797-4219-ba6d-63efd1742c29",
       "operation": "Update",
       "component": "Attributes",
-      "message": "{\"id\":\"9777f19b-e527-4067-bedd-12bcdc54858d\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"f1f5abce-d4aa-4108-af4c-dfd2ade5a814\",\"attributeDictionaryId\":\"\",\"value\":\"Value of attribute connection 2\"}"
+      "message": "{\"id\":\"e39a1f92-e797-4219-ba6d-63efd1742c29\",\"deviceId\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"3\"}"
     },
     {
-      "id": "99a2277c-4749-4077-8599-4355b71dc344",
-      "date": "2023/06/18 21:00:58.38",
-      "object": "c5c144d7-b1d9-4aee-b794-a2f55a2016d0",
+      "id": "30bb7ef9-05a1-442d-82a0-8105e6f39f4a",
+      "date": "2023/07/01 18:02:45.39",
+      "object": "3fbad21f-dc2a-4fe4-ba05-e1510189dbdb",
       "operation": "Update",
       "component": "Attributes",
-      "message": "{\"id\":\"c5c144d7-b1d9-4aee-b794-a2f55a2016d0\",\"deviceId\":\"\",\"modelId\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"connectionId\":\"\",\"attributeDictionaryId\":\"\",\"value\":\"Value attribute Model 1\"}"
+      "message": "{\"id\":\"3fbad21f-dc2a-4fe4-ba05-e1510189dbdb\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"fd5ece0f-9626-47cf-ad12-3e94a5a14015\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"1\"}"
+    },
+    {
+      "id": "5a599452-8834-44d0-ac07-ea71aa20890d",
+      "date": "2023/07/01 18:08:35.51",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Deva\",\"modelId\":\"850819ca-305e-45e8-ac14-32271aad0ee7\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"11\"}}"
+    },
+    {
+      "id": "d96a4acf-88df-476d-a9c3-73c092d0a872",
+      "date": "2023/07/02 11:17:48.36",
+      "object": "06a26870-fb7e-455f-8eea-3c1adaf610aa",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"06a26870-fb7e-455f-8eea-3c1adaf610aa\",\"deviceId\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"1\"}"
+    },
+    {
+      "id": "ade21c72-7fa3-440b-a5a2-07d357e23799",
+      "date": "2023/07/02 12:06:47.65",
+      "object": "3fbad21f-dc2a-4fe4-ba05-e1510189dbdb",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"3fbad21f-dc2a-4fe4-ba05-e1510189dbdb\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"fd5ece0f-9626-47cf-ad12-3e94a5a14015\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"2\"}"
+    },
+    {
+      "id": "665446a0-e7f5-4b0a-9172-67142c20441b",
+      "date": "2023/07/02 17:37:02.52",
+      "object": "e802a1de-9a13-4ac9-b148-b503ec304383",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"name\":\"Attribute Brigde Connectivity no 2\",\"type\":\"Security Device\",\"category\":\"Site\",\"component\":\"attribute\"}"
+    },
+    {
+      "id": "c7b8fc06-c7e6-48b9-b6fa-f79c09118f2f",
+      "date": "2023/07/02 17:37:17.89",
+      "object": "b324c94f-58a7-4e2e-a566-207024cb3485",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"name\":\"Attribute Device no 3\",\"type\":\"Probe\",\"category\":\"Facility\",\"component\":\"device\"}"
+    },
+    {
+      "id": "5f94e42b-c6d7-482f-ad91-43e068275a86",
+      "date": "2023/07/02 17:51:43.26",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Device 1\",\"modelId\":\"850819ca-305e-45e8-ac14-32271aad0ee7\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"11\"}}"
+    },
+    {
+      "id": "4f4ad905-e694-432b-8976-861ef2fa420a",
+      "date": "2023/07/02 17:52:28.29",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Device 1\",\"modelId\":\"850819ca-305e-45e8-ac14-32271aad0ee7\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"0\"}}"
+    },
+    {
+      "id": "f0da5720-e525-4ed4-8ca6-ec9e097ef5c8",
+      "date": "2023/07/02 17:52:37.81",
+      "object": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"name\":\"Device 2\",\"modelId\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"position\":{\"x\":\"4\",\"y\":\"3\",\"h\":\"0\"}}"
+    },
+    {
+      "id": "86f2180e-0cee-4f20-8c32-1bce4d4021d2",
+      "date": "2023/07/02 17:53:59.82",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Device 1\",\"modelId\":\"482e0849-2241-4ef3-b316-cdf844befbda\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"0\"}}"
+    },
+    {
+      "id": "ff43d559-81eb-4854-a70d-8f21b48fe2b7",
+      "date": "2023/07/02 17:54:08.17",
+      "object": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"name\":\"Device 2\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"4\",\"y\":\"3\",\"h\":\"0\"}}"
+    },
+    {
+      "id": "8c4fb741-320b-490c-941b-5424cdfe7ff6",
+      "date": "2023/07/02 18:00:21.21",
+      "object": "be5bb617-a614-435f-bf66-8768d0aba0c8",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"name\":\"Device 3\",\"modelId\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"position\":{\"x\":\"2\",\"y\":\"3\",\"h\":\"0\"}}"
+    },
+    {
+      "id": "8bc7f95d-ee0f-4ea6-8c8d-619c9ddcf5c5",
+      "date": "2023/07/02 18:00:38.20",
+      "object": "5f8abd81-0d35-47c4-8277-3d6bbbe185f0",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"5f8abd81-0d35-47c4-8277-3d6bbbe185f0\",\"name\":\"Device 4\",\"modelId\":\"482e0849-2241-4ef3-b316-cdf844befbda\",\"position\":{\"x\":\"2\",\"y\":\"4\",\"h\":\"0\"}}"
+    },
+    {
+      "id": "70f9c517-9b09-4de8-88fe-ea8d3c27221f",
+      "date": "2023/07/02 21:33:14.85",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Device 1\",\"modelId\":\"482e0849-2241-4ef3-b316-cdf844befbda\",\"position\":{\"x\":\"    1\",\"y\":\"1\",\"h\":\"0\"}}"
+    },
+    {
+      "id": "c955ceb8-b540-48b9-a4f5-0f7f85d64f31",
+      "date": "2023/07/02 21:33:30.32",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Device 1\",\"modelId\":\"82c77905-2118-4c38-85a5-e04728c8dbbe\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"0\"}}"
+    },
+    {
+      "id": "07f83131-5b40-43fb-9151-d521e79a244c",
+      "date": "2023/07/02 21:33:45.58",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Device 1\",\"modelId\":\"82c77905-2118-4c38-85a5-e04728c8dbbe\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"0\"}}"
+    },
+    {
+      "id": "1ca1d8d2-bcbe-4ae5-974a-12bbccb54109",
+      "date": "2023/07/02 21:35:08.14",
+      "object": "dfc93d99-72ca-411e-a4e5-b38d5034b1c5",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"dfc93d99-72ca-411e-a4e5-b38d5034b1c5\",\"name\":\"Device 1\",\"modelId\":\"82c77905-2118-4c38-85a5-e04728c8dbbe\",\"position\":{\"x\":\"58\",\"y\":\"24\",\"h\":\"0\"}}"
+    },
+    {
+      "id": "b7115aab-f4cc-4e5b-b96f-7b640d09f41c",
+      "date": "2023/07/05 21:47:01.54",
+      "object": "3fbad21f-dc2a-4fe4-ba05-e1510189dbdb",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"3fbad21f-dc2a-4fe4-ba05-e1510189dbdb\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"fd5ece0f-9626-47cf-ad12-3e94a5a14015\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"3\"}"
+    },
+    {
+      "id": "5c23805a-76da-409f-9a28-36a1155ff28a",
+      "date": "2023/07/06 24:02:28.28",
+      "object": "70728826-94ef-4610-b171-bfcda02976b6",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"name\":\"Attribute Bridge Connectivity no. 1\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"connection\"}"
+    },
+    {
+      "id": "21958438-158f-42e2-b794-739a9ce2b1fb",
+      "date": "2023/07/06 24:02:28.59",
+      "object": "70728826-94ef-4610-b171-bfcda02976b6",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"name\":\"Attribute Bridge Connectivity no. 1\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"connection\"}"
+    },
+    {
+      "id": "fe861848-ddb5-40fa-ac1d-7d95028980b5",
+      "date": "2023/07/07 21:10:15.62",
+      "object": "3fbad21f-dc2a-4fe4-ba05-e1510189dbdb",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"3fbad21f-dc2a-4fe4-ba05-e1510189dbdb\",\"deviceId\":\"\",\"modelId\":\"82c77905-2118-4c38-85a5-e04728c8dbbe\",\"connectionId\":\"\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"3\"}"
+    },
+    {
+      "id": "24482226-cef3-40be-bc24-619568ea6db5",
+      "date": "2023/07/07 21:10:29.24",
+      "object": "e802a1de-9a13-4ac9-b148-b503ec304383",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"name\":\"Attribute Brigde Connectivity no 2\",\"type\":\"Security Device\",\"category\":\"Facility\",\"component\":\"attribute\"}"
+    },
+    {
+      "id": "dd81d0da-76de-4806-9fb2-9f3960c54830",
+      "date": "2023/07/07 21:51:50.38",
+      "object": "f66e88bc-e2b9-4706-9164-03adbd4a1b11",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"f66e88bc-e2b9-4706-9164-03adbd4a1b11\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"fd5ece0f-9626-47cf-ad12-3e94a5a14015\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"2\"}"
+    },
+    {
+      "id": "4f8a270c-5ad5-4fc6-87d4-7bba4e0094d9",
+      "date": "2023/07/07 21:52:02.38",
+      "object": "e39a1f92-e797-4219-ba6d-63efd1742c29",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"e39a1f92-e797-4219-ba6d-63efd1742c29\",\"deviceId\":\"255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"3\"}"
+    },
+    {
+      "id": "9044e85f-2d34-4936-b064-1e0e1adb0471",
+      "date": "2023/07/07 21:55:52.90",
+      "object": "4ceb6bf1-3b5f-4c35-bb59-eeea6df43002",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"4ceb6bf1-3b5f-4c35-bb59-eeea6df43002\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"fd5ece0f-9626-47cf-ad12-3e94a5a14015\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"eeerre 2222\"}"
+    },
+    {
+      "id": "1782a1de-601e-40b2-a116-3c4ceb6b3385",
+      "date": "2023/07/07 21:59:04.02",
+      "object": "70728826-94ef-4610-b171-bfcda02976b6",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"name\":\"Attribute Bridge Connectivity no. 1.1\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"connection\"}"
+    },
+    {
+      "id": "139146a6-fe42-4204-9135-b92a48e97fa6",
+      "date": "2023/07/23 14:46:17.57",
+      "object": "a06ecba8-c745-49c7-9719-c5a1c94adabf",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"a06ecba8-c745-49c7-9719-c5a1c94adabf\",\"deviceId\":\"b04452d1-a271-4a4a-a543-087b8effd74b\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"value\":\"1\"}"
+    },
+    {
+      "id": "391bc803-051b-4449-aa45-85c4be2d1479",
+      "date": "2023/07/23 14:46:38.92",
+      "object": "de364fd3-e629-43e0-912d-def2fe92e7a9",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"de364fd3-e629-43e0-912d-def2fe92e7a9\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"2\"}"
+    },
+    {
+      "id": "d2bca2d2-1682-46a6-b527-12ed4717535d",
+      "date": "2023/07/23 14:46:55.78",
+      "object": "57c6afa5-4b1f-40ad-af59-ff2236f790d8",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"57c6afa5-4b1f-40ad-af59-ff2236f790d8\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"fd5ece0f-9626-47cf-ad12-3e94a5a14015\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"4\"}"
+    },
+    {
+      "id": "5d441d59-f9af-4eea-8a7e-0c222142706d",
+      "date": "2023/07/23 14:47:13.71",
+      "object": "447c3d03-9238-44ea-bee5-7c13049421da",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"447c3d03-9238-44ea-bee5-7c13049421da\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"1\"}"
+    },
+    {
+      "id": "936cfe7a-dd6e-495e-b430-0cf12556783e",
+      "date": "2023/07/23 14:48:43.90",
+      "object": "61f68ad4-2d17-4ab5-8eb5-ead3827fc907",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"61f68ad4-2d17-4ab5-8eb5-ead3827fc907\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"6\"}"
+    },
+    {
+      "id": "d85c9937-8a51-4061-977d-b00fdde45935",
+      "date": "2023/07/23 14:49:12.73",
+      "object": "37cae6aa-3b75-4962-be13-8ad2be6419b8",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"37cae6aa-3b75-4962-be13-8ad2be6419b8\",\"deviceId\":\"\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"connectionId\":\"\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"7\"}"
+    },
+    {
+      "id": "26b94073-f137-45eb-b410-2ccf4f384517",
+      "date": "2023/07/24 07:36:57.95",
+      "object": "af69b0c6-3b28-4991-b738-1bc2d6c3f2e8",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"af69b0c6-3b28-4991-b738-1bc2d6c3f2e8\",\"deviceId\":\"\",\"modelId\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"connectionId\":\"\",\"attributeDictionaryId\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"value\":\"Model Attribute 1\"}"
+    },
+    {
+      "id": "318525e2-2dc0-4313-940d-57e6f58ce588",
+      "date": "2023/07/24 07:39:45.28",
+      "object": "04f0e57c-6214-49af-a2bb-47b61e23e116",
+      "operation": "Create",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"04f0e57c-6214-49af-a2bb-47b61e23e116\",\"name\":\"Model attribute No 1\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"model\"}"
+    },
+    {
+      "id": "13bf0108-3c8a-40c8-b2b7-d36dcbb10561",
+      "date": "2023/07/24 07:40:14.33",
+      "object": "489d6288-f336-4915-b753-a1071879c6d3",
+      "operation": "Create",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"489d6288-f336-4915-b753-a1071879c6d3\",\"name\":\"Model Attribute No 2\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"model\"}"
+    },
+    {
+      "id": "85a9699f-7a6f-4146-96c7-43660cd2900e",
+      "date": "2023/07/24 07:40:54.14",
+      "object": "d6c158b8-529c-4114-9a83-7bcb11788233",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"d6c158b8-529c-4114-9a83-7bcb11788233\",\"deviceId\":\"\",\"modelId\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"connectionId\":\"\",\"attributeDictionaryId\":\"489d6288-f336-4915-b753-a1071879c6d3\",\"value\":\"2\"}"
+    },
+    {
+      "id": "555b123b-cf44-4f19-bebe-844cf683fc06",
+      "date": "2023/07/24 07:41:19.26",
+      "object": "51973a2d-bbec-401f-a6f6-1252955453ce",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"51973a2d-bbec-401f-a6f6-1252955453ce\",\"deviceId\":\"\",\"modelId\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"connectionId\":\"\",\"attributeDictionaryId\":\"489d6288-f336-4915-b753-a1071879c6d3\",\"value\":\"3\"}"
+    },
+    {
+      "id": "ad470dae-dd06-4659-b115-09a00598a638",
+      "date": "2023/07/24 07:44:07.54",
+      "object": "43d3bf0e-f03b-421d-9df9-b45b7ff7a266",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"43d3bf0e-f03b-421d-9df9-b45b7ff7a266\",\"deviceId\":\"\",\"modelId\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"connectionId\":\"\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"1\"}"
+    },
+    {
+      "id": "3fcc2803-c4d5-40db-bea0-fd31bc3513a4",
+      "date": "2023/07/24 07:45:36.72",
+      "object": "e583db8f-c27e-4437-801e-501e1c288ef7",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"e583db8f-c27e-4437-801e-501e1c288ef7\",\"deviceId\":\"b04452d1-a271-4a4a-a543-087b8effd74b\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"04f0e57c-6214-49af-a2bb-47b61e23e116\",\"value\":\"1\"}"
+    },
+    {
+      "id": "2e433f21-bec4-45dd-8be5-d98ad0911be4",
+      "date": "2023/07/24 07:45:54.51",
+      "object": "b04452d1-a271-4a4a-a543-087b8effd74b",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"b04452d1-a271-4a4a-a543-087b8effd74b\",\"name\":\"Device 1\",\"modelId\":\"82c77905-2118-4c38-85a5-e04728c8dbbe\",\"position\":{\"x\":\"2\",\"y\":\"3\",\"h\":\"3\"}}"
+    },
+    {
+      "id": "00bf5c05-e62f-4f8f-ab08-2beca187b651",
+      "date": "2023/07/24 07:46:11.69",
+      "object": "34c3b304-463f-4958-b045-3237f7030838",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"34c3b304-463f-4958-b045-3237f7030838\",\"name\":\"Device 1.1\",\"modelId\":\"82c77905-2118-4c38-85a5-e04728c8dbbe\",\"position\":{\"x\":\"2\",\"y\":\"3\",\"h\":\"3\"}}"
+    },
+    {
+      "id": "de94136c-d6e8-467f-879d-2796b1b5de66",
+      "date": "2023/07/24 07:46:30.07",
+      "object": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f\",\"name\":\"Device 5\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"1\",\"y\":\"5\",\"h\":\"3\"}}"
+    },
+    {
+      "id": "94c3b1db-4d8f-4a01-9b96-e43a7f376e30",
+      "date": "2023/07/24 07:46:41.16",
+      "object": "be5bb617-a614-435f-bf66-8768d0aba0c8",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"name\":\"Device 3\",\"modelId\":\"850819ca-305e-45e8-ac14-32271aad0ee7\",\"position\":{\"x\":\"2\",\"y\":\"3\",\"h\":\"3\"}}"
+    },
+    {
+      "id": "d1f71391-1002-4731-8697-d9aa9576fa03",
+      "date": "2023/07/24 08:16:20.19",
+      "object": "6d9403a8-14a6-4b72-8109-5a2d330ab596",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"6d9403a8-14a6-4b72-8109-5a2d330ab596\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"0ec13b68-bc4d-4824-acf7-151b7b5cd02e\",\"attributeDictionaryId\":\"04f0e57c-6214-49af-a2bb-47b61e23e116\",\"value\":\"1\"}"
+    },
+    {
+      "id": "d469ea55-d7c4-4230-b648-2840b9ee38ff",
+      "date": "2023/07/24 08:16:36.67",
+      "object": "644f017c-13b2-4e72-a3f8-f1e67ee93127",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"644f017c-13b2-4e72-a3f8-f1e67ee93127\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"0ec13b68-bc4d-4824-acf7-151b7b5cd02e\",\"attributeDictionaryId\":\"489d6288-f336-4915-b753-a1071879c6d3\",\"value\":\"2\"}"
+    },
+    {
+      "id": "1c59ce29-193e-4ef2-9759-9f7827d7047f",
+      "date": "2023/07/24 08:16:49.07",
+      "object": "644f017c-13b2-4e72-a3f8-f1e67ee93127",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\"id\":\"644f017c-13b2-4e72-a3f8-f1e67ee93127\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"fd5ece0f-9626-47cf-ad12-3e94a5a14015\",\"attributeDictionaryId\":\"489d6288-f336-4915-b753-a1071879c6d3\",\"value\":\"2\"}"
+    },
+    {
+      "id": "f97edaae-446c-49a3-be30-bcda2ff790e2",
+      "date": "2023/07/24 08:30:05.91",
+      "object": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"name\":\"Device 2\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"4\",\"y\":\"3\",\"h\":\"0\"}}"
+    },
+    {
+      "id": "083952d6-4895-4e74-88ef-d8457c93d658",
+      "date": "2023/07/24 20:32:42.70",
+      "object": "6f4bfa3e-958d-4487-ad4e-3febcbac2103",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"6f4bfa3e-958d-4487-ad4e-3febcbac2103\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"3\"}"
+    },
+    {
+      "id": "5abc1850-f8e1-4dc0-8d1d-5998b5ccc9a6",
+      "date": "2023/07/24 20:34:30.18",
+      "object": "b775baeb-e736-407a-921d-d5c31f12897c",
+      "operation": "Create",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"b775baeb-e736-407a-921d-d5c31f12897c\",\"name\":\"Device Color\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"device\"}"
+    },
+    {
+      "id": "9a545311-f8a8-422a-8cfa-33d40d7a9648",
+      "date": "2023/07/24 20:34:57.03",
+      "object": "5bd08753-c41a-4ac5-beed-b90d45ef0f7c",
+      "operation": "Create",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"5bd08753-c41a-4ac5-beed-b90d45ef0f7c\",\"name\":\"Model Color\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"model\"}"
+    },
+    {
+      "id": "0c219667-a9a6-402a-ac9a-899c177c3800",
+      "date": "2023/07/24 20:35:42.90",
+      "object": "8ea54f32-daf2-4b21-a937-e9cc7839e096",
+      "operation": "Create",
+      "component": "Attribute Dictionary",
+      "message": "{\"id\":\"8ea54f32-daf2-4b21-a937-e9cc7839e096\",\"name\":\"Connection Color\",\"type\":\"Bridge\",\"category\":\"Connectivity\",\"component\":\"connection\"}"
+    },
+    {
+      "id": "249bce96-6bf4-4d16-9181-9b46bde784ec",
+      "date": "2023/07/24 20:36:09.65",
+      "object": "2d09bb16-7b2b-430b-84bd-31c45013a12c",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"2d09bb16-7b2b-430b-84bd-31c45013a12c\",\"deviceId\":\"5f8abd81-0d35-47c4-8277-3d6bbbe185f0\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b775baeb-e736-407a-921d-d5c31f12897c\",\"value\":\"Blue\"}"
+    },
+    {
+      "id": "2eb81613-090e-426e-8d75-dcbbd680f5b5",
+      "date": "2023/07/24 20:36:33.69",
+      "object": "fbee7887-b91e-425a-8dc6-87c6bfd2772d",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"fbee7887-b91e-425a-8dc6-87c6bfd2772d\",\"deviceId\":\"b04452d1-a271-4a4a-a543-087b8effd74b\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b775baeb-e736-407a-921d-d5c31f12897c\",\"value\":\"Red\"}"
+    },
+    {
+      "id": "022df952-c079-4b66-87b8-bb6fa4ac36f8",
+      "date": "2023/07/24 20:36:53.87",
+      "object": "b89ec72f-dac9-406f-b166-30e696a3aa7e",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"b89ec72f-dac9-406f-b166-30e696a3aa7e\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b775baeb-e736-407a-921d-d5c31f12897c\",\"value\":\"Black\"}"
+    },
+    {
+      "id": "059b42fd-a93a-43ab-b4d8-6e69705730e9",
+      "date": "2023/07/24 20:38:15.21",
+      "object": "73ee6acc-2364-4cb4-8e38-25b26f7ff3df",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"73ee6acc-2364-4cb4-8e38-25b26f7ff3df\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"04f0e57c-6214-49af-a2bb-47b61e23e116\",\"value\":\"Old\"}"
+    },
+    {
+      "id": "44b838eb-60c1-4d29-8243-b5f5cb6c2f53",
+      "date": "2023/08/03 22:38:56.04",
+      "object": "51e6d2be-54dd-458f-9563-51f01a3908e9",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"51e6d2be-54dd-458f-9563-51f01a3908e9\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"70728826-94ef-4610-b171-bfcda02976b6\",\"value\":\"1\"}"
+    },
+    {
+      "id": "b94c2a21-bde9-4cd0-beac-a3a533b4783d",
+      "date": "2023/08/03 22:39:07.48",
+      "object": "d4576ffa-fe19-476d-9353-d5d4eefe84e4",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"d4576ffa-fe19-476d-9353-d5d4eefe84e4\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"04f0e57c-6214-49af-a2bb-47b61e23e116\",\"value\":\"2\"}"
+    },
+    {
+      "id": "339091fb-f3a9-487a-850d-781e91bd555d",
+      "date": "2023/08/03 22:39:24.36",
+      "object": "0fd06b69-4bda-416d-96d5-e41746e81b1b",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"0fd06b69-4bda-416d-96d5-e41746e81b1b\",\"deviceId\":\"\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"connectionId\":\"\",\"attributeDictionaryId\":\"489d6288-f336-4915-b753-a1071879c6d3\",\"value\":\"1\"}"
+    },
+    {
+      "id": "18ecbf27-c499-4b90-b676-d9d8f5d01b7c",
+      "date": "2023/08/03 22:40:04.03",
+      "object": "f1083e8e-f15c-4484-8871-37f1aff88084",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"f1083e8e-f15c-4484-8871-37f1aff88084\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"8ea54f32-daf2-4b21-a937-e9cc7839e096\",\"value\":\"3\"}"
+    },
+    {
+      "id": "05daa3b8-d03d-4844-af88-73921be5c77f",
+      "date": "2023/08/03 22:40:28.68",
+      "object": "bf135174-3224-4f6c-aaa9-09c3995136ec",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"bf135174-3224-4f6c-aaa9-09c3995136ec\",\"deviceId\":\"\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b775baeb-e736-407a-921d-d5c31f12897c\",\"value\":\"blue\"}"
+    },
+    {
+      "id": "7d8c9126-e13b-4c98-be58-a1b2a4885635",
+      "date": "2023/08/03 23:02:34.02",
+      "object": "e1c18b23-47fe-468e-bb90-5e2e3b13d68b",
+      "operation": "Update",
+      "component": "Floor",
+      "message": "{\"id\":\"e1c18b23-47fe-468e-bb90-5e2e3b13d68b\",\"name\":\"Hane Inc - utilize interactive bandwidth aadas 2  \",\"adress\":{\"street\":\"Clementine Vista 761\",\"city\":\"Lake Jorge\",\"country\":\"Iraq\",\"postcode\":\"05192\"},\"dimension\":[{\"description\":\"Hickle, Hilpert and Larkin - redefine leading-edge applications\",\"x\":\"92\",\"y\":\"76\",\"h\":\"3\",\"x_pos\":\"60\",\"y_pos\":\"81\",\"h_pos\":\"55\"},{\"description\":\"Hegmann - Harvey - evolve web-enabled experiences\",\"x\":\"93\",\"y\":\"72\",\"h\":\"7\",\"x_pos\":\"85\",\"y_pos\":\"91\",\"h_pos\":\"57\"},{\"description\":\"Stehr - Murray - disintermediate global models  \",\"x\":\"2\",\"y\":\"25\",\"h\":\"7\",\"x_pos\":\"46\",\"y_pos\":\"81\",\"h_pos\":\"67\"}]}"
+    },
+    {
+      "id": "f3c478db-3479-42a2-a864-2f00d05c6ca0",
+      "date": "2023/08/03 23:07:58.54",
+      "object": "a6b75fd8-f448-46b0-9bf3-0fbee09c0086",
+      "operation": "Update",
+      "component": "Floor",
+      "message": "{\"id\":\"a6b75fd8-f448-46b0-9bf3-0fbee09c0086\",\"name\":\"Konopelski - Walter - incentivize global cxcx\",\"adress\":{\"street\":\"Zion Valleys 86789\",\"city\":\"Paradise\",\"country\":\"Papua New Guinea\",\"postcode\":\"05649-8267\"},\"dimension\":[{\"description\":\"Koss, Powlowski and Sipes - leverage out-of-the-box schemas dasd\",\"x\":\"54\",\"y\":\"58\",\"h\":\"6\",\"x_pos\":\"76\",\"y_pos\":\"70\",\"h_pos\":\"23\"},{\"description\":\"Abbott - Hagenes - engage impactful web services\",\"x\":\"92\",\"y\":\"11\",\"h\":\"4\",\"x_pos\":\"14\",\"y_pos\":\"89\",\"h_pos\":\"16\"}]}"
+    },
+    {
+      "id": "1b7701b1-8034-4faf-82e4-44263cf3c6b4",
+      "date": "2023/08/03 23:52:37.23",
+      "object": "82e76da3-b493-4991-a502-203a258c773d",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"82e76da3-b493-4991-a502-203a258c773d\",\"deviceId\":\"5f8abd81-0d35-47c4-8277-3d6bbbe185f0\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"04f0e57c-6214-49af-a2bb-47b61e23e116\",\"value\":\"Runte, Jacobs and Hackett - leverage scalable e-business\"}"
+    },
+    {
+      "id": "33db01ad-d51a-4978-9d30-a5e7729e66bf",
+      "date": "2023/08/04 19:09:44.45",
+      "object": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"name\":\"Device 2 (new)\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"4\",\"y\":\"3\",\"h\":\"0\"}}"
+    },
+    {
+      "id": "241e5e14-a471-41f0-9656-a856b5ad411f",
+      "date": "2023/08/04 19:10:05.28",
+      "object": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"name\":\"Device 2 (new2)\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"4\",\"y\":\"3\",\"h\":\"0\"}}"
+    },
+    {
+      "id": "480d7100-65e6-4824-b82d-49bbb3dde25e",
+      "date": "2023/08/05 13:00:05.73",
+      "object": "34c3b304-463f-4958-b045-3237f7030838",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"34c3b304-463f-4958-b045-3237f7030838\",\"name\":\"Device 1.1\",\"modelId\":\"82c77905-2118-4c38-85a5-e04728c8dbbe\",\"position\":{\"x\":\"2\",\"y\":\"4\",\"h\":\"3\"}}"
+    },
+    {
+      "id": "580949a8-a8a2-4a65-8040-582f4c0472cf",
+      "date": "2023/08/05 23:44:52.22",
+      "object": "b887ae84-7a36-4f4d-b215-d6c8e414bf1d",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"b887ae84-7a36-4f4d-b215-d6c8e414bf1d\",\"deviceId\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"Kemmer - Gottlieb - seize integrated systems\"}"
+    },
+    {
+      "id": "87ae224d-cefb-496d-80b1-1f2a998f7dc7",
+      "date": "2023/08/08 10:09:23.43",
+      "object": "498a4deb-084f-4a00-8706-642ba011db0d",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"498a4deb-084f-4a00-8706-642ba011db0d\",\"deviceId\":\"\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"Witting Group - reinvent cross-platform supply-chains\"}"
+    },
+    {
+      "id": "1050c5fe-d2b3-42a7-9299-ba97c42780a6",
+      "date": "2023/08/08 10:09:35.20",
+      "object": "98e54c2e-1a8e-4221-b2b9-44631bf307e4",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"98e54c2e-1a8e-4221-b2b9-44631bf307e4\",\"deviceId\":\"\",\"modelId\":\"\",\"connectionId\":\"baf4152d-65ab-4cce-8f05-6d889e4d8c2a\",\"attributeDictionaryId\":\"b775baeb-e736-407a-921d-d5c31f12897c\",\"value\":\"3\"}"
+    },
+    {
+      "id": "e156f400-b236-46bb-8514-1e223d4373b8",
+      "date": "2023/08/08 10:10:00.02",
+      "object": "129eda46-3c9a-48bb-a1a5-eff5ccba5fd5",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"129eda46-3c9a-48bb-a1a5-eff5ccba5fd5\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"b324c94f-58a7-4e2e-a566-207024cb3485\",\"value\":\"y\"}"
+    },
+    {
+      "id": "48f4e8e8-d1cb-420a-b87f-8585c546ebc2",
+      "date": "2023/08/15 12:27:04.61",
+      "object": "9dbf3b97-566c-4c1e-8da2-83fc46b551f5",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\"id\":\"9dbf3b97-566c-4c1e-8da2-83fc46b551f5\",\"deviceId\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\",\"modelId\":\"\",\"connectionId\":\"\",\"attributeDictionaryId\":\"e802a1de-9a13-4ac9-b148-b503ec304383\",\"value\":\"Collins - Hackett - incubate world-class markets\"}"
+    },
+    {
+      "id": "d3c62e0b-138c-41f5-a713-61ca15a8f67a",
+      "date": "2023/08/15 13:03:49.67",
+      "object": "0ec13b68-bc4d-4824-acf7-151b7b5cd02e",
+      "operation": "Update",
+      "component": "Connection",
+      "message": "{\"id\":\"0ec13b68-bc4d-4824-acf7-151b7b5cd02e\",\"name\":\"2 coonect to 3\",\"deviceIdTo\":\"5f8abd81-0d35-47c4-8277-3d6bbbe185f0\",\"deviceIdFrom\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\"}"
+    },
+    {
+      "id": "9eb324b8-e061-488d-9509-cca10d5d48e8",
+      "date": "2023/08/15 13:04:15.36",
+      "object": "baf4152d-65ab-4cce-8f05-6d889e4d8c2a",
+      "operation": "Update",
+      "component": "Connection",
+      "message": "{\"id\":\"baf4152d-65ab-4cce-8f05-6d889e4d8c2a\",\"name\":\"Coonect 5\",\"deviceIdTo\":\"255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f\",\"deviceIdFrom\":\"b04452d1-a271-4a4a-a543-087b8effd74b\"}"
+    },
+    {
+      "id": "1780438a-d72e-43f1-9749-9ff371fb4505",
+      "date": "2023/08/15 13:04:31.32",
+      "object": "67c06b77-d609-4f80-aef0-722227ee7ac6",
+      "operation": "Update",
+      "component": "Connection",
+      "message": "{\"id\":\"67c06b77-d609-4f80-aef0-722227ee7ac6\",\"name\":\"1 to 5\",\"deviceIdTo\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"deviceIdFrom\":\"be5bb617-a614-435f-bf66-8768d0aba0c8\"}"
+    },
+    {
+      "id": "7ff5d35b-fdd5-4907-8bd9-0832bf41ac06",
+      "date": "2023/08/15 13:30:10.46",
+      "object": "67c06b77-d609-4f80-aef0-722227ee7ac6",
+      "operation": "Update",
+      "component": "Connection",
+      "message": "{\n  \"id\": \"67c06b77-d609-4f80-aef0-722227ee7ac6\",\n  \"name\": \"1 to 5\",\n  \"deviceIdTo\": \"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\n  \"deviceIdFrom\": \"5f8abd81-0d35-47c4-8277-3d6bbbe185f0\"\n}"
+    },
+    {
+      "id": "83bb6be8-b086-4ac3-99b1-5a3e5bf77396",
+      "date": "2023/08/15 15:01:28.25",
+      "object": "f3438145-7fb7-4a3c-8ce6-3f5ea982d0af",
+      "operation": "Create",
+      "component": "Connection",
+      "message": "{\n  \"id\": \"f3438145-7fb7-4a3c-8ce6-3f5ea982d0af\",\n  \"name\": \"443333\",\n  \"deviceIdTo\": \"5f8abd81-0d35-47c4-8277-3d6bbbe185f0\",\n  \"deviceIdFrom\": \"be5bb617-a614-435f-bf66-8768d0aba0c8\"\n}"
+    },
+    {
+      "id": "4b20df44-dd95-475c-bb70-7325f4c18dc9",
+      "date": "2023/08/15 15:21:15.73",
+      "object": "cd69addc-5c83-4638-a1d5-059f06259f5f",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\n  \"id\": \"cd69addc-5c83-4638-a1d5-059f06259f5f\",\n  \"deviceId\": \"be5bb617-a614-435f-bf66-8768d0aba0c8\",\n  \"modelId\": \"\",\n  \"connectionId\": \"\",\n  \"attributeDictionaryId\": \"b324c94f-58a7-4e2e-a566-207024cb3485\",\n  \"value\": \"2\"\n}"
+    },
+    {
+      "id": "91e70b27-0bcd-4403-837f-f80bc89fd6b9",
+      "date": "2023/08/15 15:21:43.62",
+      "object": "8de18c99-f0f3-45c9-9137-833e6b28f8ed",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\n  \"id\": \"8de18c99-f0f3-45c9-9137-833e6b28f8ed\",\n  \"deviceId\": \"\",\n  \"modelId\": \"\",\n  \"connectionId\": \"baf4152d-65ab-4cce-8f05-6d889e4d8c2a\",\n  \"attributeDictionaryId\": \"04f0e57c-6214-49af-a2bb-47b61e23e116\",\n  \"value\": \"Bashirian and Sons - monetize turn-key paradigms\"\n}"
+    },
+    {
+      "id": "5943bcf9-9a22-4cee-8398-0801f511002f",
+      "date": "2023/08/15 15:21:50.76",
+      "object": "055cf595-025c-4716-9025-48b7d9402f6e",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\n  \"id\": \"055cf595-025c-4716-9025-48b7d9402f6e\",\n  \"deviceId\": \"be5bb617-a614-435f-bf66-8768d0aba0c8\",\n  \"modelId\": \"\",\n  \"connectionId\": \"\",\n  \"attributeDictionaryId\": \"b324c94f-58a7-4e2e-a566-207024cb3485\",\n  \"value\": \"Ziemann - Hodkiewicz - harness viral supply-chains\"\n}"
+    },
+    {
+      "id": "f6bcb0ac-7fdb-434c-a9ed-491da3b2f6c5",
+      "date": "2023/08/18 20:58:17.07",
+      "object": "fb248caa-1f4a-44f3-9034-bd58ae244410",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\n  \"id\": \"fb248caa-1f4a-44f3-9034-bd58ae244410\",\n  \"deviceId\": \"255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f\",\n  \"modelId\": \"\",\n  \"connectionId\": \"\",\n  \"attributeDictionaryId\": \"04f0e57c-6214-49af-a2bb-47b61e23e116\",\n  \"value\": \"1\"\n}"
+    },
+    {
+      "id": "6615e0e9-b507-4b03-a891-d389b6db8900",
+      "date": "2023/08/18 20:58:38.53",
+      "object": "da32664d-dc5c-4b3c-96b0-e1df33c975bf",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\n  \"id\": \"da32664d-dc5c-4b3c-96b0-e1df33c975bf\",\n  \"deviceId\": \"b04452d1-a271-4a4a-a543-087b8effd74b\",\n  \"modelId\": \"\",\n  \"connectionId\": \"\",\n  \"attributeDictionaryId\": \"70728826-94ef-4610-b171-bfcda02976b6\",\n  \"value\": \"11\"\n}"
+    },
+    {
+      "id": "9698d2bd-93e9-4cf8-87d3-ed12653037ac",
+      "date": "2023/08/18 20:59:24.97",
+      "object": "e1e82ff9-8a33-4fa2-b1de-2f4b7c0405f0",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\n  \"id\": \"e1e82ff9-8a33-4fa2-b1de-2f4b7c0405f0\",\n  \"deviceId\": \"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\n  \"modelId\": \"\",\n  \"connectionId\": \"\",\n  \"attributeDictionaryId\": \"b324c94f-58a7-4e2e-a566-207024cb3485\",\n  \"value\": \"1\"\n}"
+    },
+    {
+      "id": "417873d6-1fa4-4e1c-bf69-500fd0a3600a",
+      "date": "2023/08/18 21:00:49.07",
+      "object": "a6b75fd8-f448-46b0-9bf3-0fbee09c0086",
+      "operation": "Update",
+      "component": "Floor",
+      "message": "{\"id\":\"a6b75fd8-f448-46b0-9bf3-0fbee09c0086\",\"name\":\"Konopelski - Walter - incentivize global 2222\",\"adress\":{\"street\":\"Zion Valleys 86789\",\"city\":\"Paradise\",\"country\":\"Papua New Guinea\",\"postcode\":\"05649-8267\"},\"dimension\":[{\"description\":\"Koss, Powlowski and Sipes - leverage out-of-the-box schemas dasd\",\"x\":\"54\",\"y\":\"58\",\"h\":\"6\",\"x_pos\":\"76\",\"y_pos\":\"70\",\"h_pos\":\"23\"}]}"
+    },
+    {
+      "id": "f53faf55-c7c8-4401-bab6-7a544149faa4",
+      "date": "2023/08/18 21:01:32.61",
+      "object": "1d343f27-cc28-446f-9156-e0d942b3e2f7",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\n  \"id\": \"1d343f27-cc28-446f-9156-e0d942b3e2f7\",\n  \"deviceId\": \"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\n  \"modelId\": \"\",\n  \"connectionId\": \"\",\n  \"attributeDictionaryId\": \"489d6288-f336-4915-b753-a1071879c6d3\",\n  \"value\": \"Bartoletti - Labadie - deliver cross-media deliverables\"\n}"
+    },
+    {
+      "id": "90042a5b-d0cb-4dd4-b60c-d7d2ee823dae",
+      "date": "2023/08/18 21:02:27.37",
+      "object": "1d343f27-cc28-446f-9156-e0d942b3e2f7",
+      "operation": "Update",
+      "component": "Attributes",
+      "message": "{\n \"id\": \"1d343f27-cc28-446f-9156-e0d942b3e2f7\",\n \"deviceId\": \"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\n \"modelId\": \"\",\n \"connectionId\": \"\",\n \"attributeDictionaryId\": \"489d6288-f336-4915-b753-a1071879c6d3\",\n \"value\": \"Bartoletti - Labadie - deliver cross-media deliverables\"\n}"
+    },
+    {
+      "id": "61587d44-7108-4f05-a98c-5ac8e39da89b",
+      "date": "2023/08/18 21:03:24.80",
+      "object": "67916cfb-b119-449e-b1f2-903ee3e07826",
+      "operation": "Create",
+      "component": "Attributes",
+      "message": "{\n  \"id\": \"67916cfb-b119-449e-b1f2-903ee3e07826\",\n  \"deviceId\": \"\",\n  \"modelId\": \"e13aea31-cce3-4877-ba29-740f8392ddd2\",\n  \"connectionId\": \"\",\n  \"attributeDictionaryId\": \"489d6288-f336-4915-b753-a1071879c6d3\",\n  \"value\": \"m2\"\n}"
     }
   ],
   "models": [
@@ -398,8 +1009,8 @@
         "top": "/assets/r710-2.5-nobezel__29341.png",
         "botom": "/assets/r710-2.5-nobezel__29341.png"
       },
-      "type": "Bridge",
-      "category": "Connectivity"
+      "type": "CoolAir",
+      "category": "Facility"
     },
     {
       "id": "e13aea31-cce3-4877-ba29-740f8392ddd2",
@@ -442,7 +1053,7 @@
       "name": "Model 4",
       "dimension": {
         "width": "3",
-        "height": "3",
+        "height": "4",
         "depth": "3"
       },
       "texture": {
@@ -478,49 +1089,186 @@
     {
       "id": "e802a1de-9a13-4ac9-b148-b503ec304383",
       "name": "Attribute Brigde Connectivity no 2",
-      "type": "Desktop",
+      "type": "Security Device",
       "category": "Facility",
       "component": "attribute"
     },
     {
       "id": "70728826-94ef-4610-b171-bfcda02976b6",
-      "name": "Attribute Bridge Connectivity no. 1",
+      "name": "Attribute Bridge Connectivity no. 1.1",
+      "type": "Bridge",
+      "category": "Connectivity",
+      "component": "connection"
+    },
+    {
+      "id": "b324c94f-58a7-4e2e-a566-207024cb3485",
+      "name": "Attribute Device no 3",
+      "type": "Probe",
+      "category": "Facility",
+      "component": "device"
+    },
+    {
+      "id": "04f0e57c-6214-49af-a2bb-47b61e23e116",
+      "name": "Model attribute No 1",
       "type": "Bridge",
       "category": "Connectivity",
       "component": "model"
     },
     {
-      "id": "b324c94f-58a7-4e2e-a566-207024cb3485",
-      "name": "Attribute Device ",
+      "id": "489d6288-f336-4915-b753-a1071879c6d3",
+      "name": "Model Attribute No 2",
+      "type": "Bridge",
+      "category": "Connectivity",
+      "component": "model"
+    },
+    {
+      "id": "b775baeb-e736-407a-921d-d5c31f12897c",
+      "name": "Device Color",
       "type": "Bridge",
       "category": "Connectivity",
       "component": "device"
+    },
+    {
+      "id": "5bd08753-c41a-4ac5-beed-b90d45ef0f7c",
+      "name": "Model Color",
+      "type": "Bridge",
+      "category": "Connectivity",
+      "component": "model"
+    },
+    {
+      "id": "8ea54f32-daf2-4b21-a937-e9cc7839e096",
+      "name": "Connection Color",
+      "type": "Bridge",
+      "category": "Connectivity",
+      "component": "connection"
     }
   ],
   "attributes": [
     {
-      "id": "97d9a503-f009-4ff6-9b1c-2ec30e52ef78",
+      "id": "cd69addc-5c83-4638-a1d5-059f06259f5f",
       "deviceId": "be5bb617-a614-435f-bf66-8768d0aba0c8",
       "modelId": "",
       "connectionId": "",
-      "attributeDictionaryId": "",
-      "value": "Value of attribute Device 3"
+      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
+      "value": "2"
     },
     {
-      "id": "9777f19b-e527-4067-bedd-12bcdc54858d",
+      "id": "8de18c99-f0f3-45c9-9137-833e6b28f8ed",
       "deviceId": "",
       "modelId": "",
-      "connectionId": "f1f5abce-d4aa-4108-af4c-dfd2ade5a814",
-      "attributeDictionaryId": "",
-      "value": "Value of attribute connection 2"
+      "connectionId": "baf4152d-65ab-4cce-8f05-6d889e4d8c2a",
+      "attributeDictionaryId": "04f0e57c-6214-49af-a2bb-47b61e23e116",
+      "value": "Bashirian and Sons - monetize turn-key paradigms"
     },
     {
-      "id": "c5c144d7-b1d9-4aee-b794-a2f55a2016d0",
-      "deviceId": "",
-      "modelId": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
+      "id": "055cf595-025c-4716-9025-48b7d9402f6e",
+      "deviceId": "be5bb617-a614-435f-bf66-8768d0aba0c8",
+      "modelId": "",
       "connectionId": "",
-      "attributeDictionaryId": "",
-      "value": "Value attribute Model 1"
+      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
+      "value": "Ziemann - Hodkiewicz - harness viral supply-chains"
+    },
+    {
+      "id": "fb248caa-1f4a-44f3-9034-bd58ae244410",
+      "deviceId": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "04f0e57c-6214-49af-a2bb-47b61e23e116",
+      "value": "1"
+    },
+    {
+      "id": "da32664d-dc5c-4b3c-96b0-e1df33c975bf",
+      "deviceId": "b04452d1-a271-4a4a-a543-087b8effd74b",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "70728826-94ef-4610-b171-bfcda02976b6",
+      "value": "11"
+    },
+    {
+      "id": "e1e82ff9-8a33-4fa2-b1de-2f4b7c0405f0",
+      "deviceId": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
+      "value": "1"
+    },
+    {
+      "id": "1d343f27-cc28-446f-9156-e0d942b3e2f7",
+      "deviceId": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "modelId": "",
+      "connectionId": "",
+      "attributeDictionaryId": "489d6288-f336-4915-b753-a1071879c6d3",
+      "value": "Bartoletti - Labadie - deliver cross-media deliverables"
+    },
+    {
+      "id": "67916cfb-b119-449e-b1f2-903ee3e07826",
+      "deviceId": "",
+      "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
+      "connectionId": "",
+      "attributeDictionaryId": "489d6288-f336-4915-b753-a1071879c6d3",
+      "value": "m2"
+    }
+  ],
+  "floor": [
+    {
+      "id": "a6b75fd8-f448-46b0-9bf3-0fbee09c0086",
+      "name": "Konopelski - Walter - incentivize global 2222",
+      "adress": {
+        "street": "Zion Valleys 86789",
+        "city": "Paradise",
+        "country": "Papua New Guinea",
+        "postcode": "05649-8267"
+      },
+      "dimension": [
+        {
+          "description": "Koss, Powlowski and Sipes - leverage out-of-the-box schemas dasd",
+          "x": "54",
+          "y": "58",
+          "h": "6",
+          "x_pos": "76",
+          "y_pos": "70",
+          "h_pos": "23"
+        }
+      ]
+    },
+    {
+      "id": "e1c18b23-47fe-468e-bb90-5e2e3b13d68b",
+      "name": "Hane Inc - utilize interactive bandwidth aadas 2  ",
+      "adress": {
+        "street": "Clementine Vista 761",
+        "city": "Lake Jorge",
+        "country": "Iraq",
+        "postcode": "05192"
+      },
+      "dimension": [
+        {
+          "description": "Hickle, Hilpert and Larkin - redefine leading-edge applications",
+          "x": "92",
+          "y": "76",
+          "h": "3",
+          "x_pos": "60",
+          "y_pos": "81",
+          "h_pos": "55"
+        },
+        {
+          "description": "Hegmann - Harvey - evolve web-enabled experiences",
+          "x": "93",
+          "y": "72",
+          "h": "7",
+          "x_pos": "85",
+          "y_pos": "91",
+          "h_pos": "57"
+        },
+        {
+          "description": "Stehr - Murray - disintermediate global models  ",
+          "x": "2",
+          "y": "25",
+          "h": "7",
+          "x_pos": "46",
+          "y_pos": "81",
+          "h_pos": "67"
+        }
+      ]
     }
   ]
 }

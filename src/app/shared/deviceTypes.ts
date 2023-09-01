@@ -6,6 +6,7 @@
  *
  * Date        By     Comments
  * ----------  -----  ------------------------
+ * 2023-08-03  C2RLO  Add docs
  * 2023-04-11	 C2RLO	convert to DeviceType and DeviceTypeList
  * 2023-02-19	 C2RLO	add findType
  * 2023-02-18  C2RLO  Init
@@ -16,7 +17,7 @@ export interface DeviceTypeInterfance {
   description: string
 }
 
-export type DeviceTypeListType = { name: string; description: string }
+export type DeviceTypeListType = {name: string; description: string}
 
 export class DeviceType {
   name: string
@@ -27,34 +28,39 @@ export class DeviceType {
   }
 }
 
+/**
+ * @description Dictionarys values
+ * @export
+ * @class DeviceTypeDict
+ */
 export class DeviceTypeDict {
   list: DeviceType[] = [
-    { name: '-', description: '' },
-    { name: 'Bridge', description: '' },
-    { name: 'CoolAir', description: '' },
-    { name: 'Copier', description: '' },
-    { name: 'Desktop', description: '' },
-    { name: 'Firewall', description: '' },
-    { name: 'Getaway', description: '' },
-    { name: 'Hubs', description: '' },
-    { name: 'Load Balancer', description: '' },
-    { name: 'Modem', description: '' },
-    { name: 'Multiplexer', description: '' },
-    { name: 'PDU System', description: '' },
-    { name: 'Power', description: '' },
-    { name: 'Printer', description: '' },
-    { name: 'Probe', description: '' },
-    { name: 'Repeaters', description: '' },
-    { name: 'Router', description: '' },
-    { name: 'Security Device', description: '' },
-    { name: 'Server', description: '' },
-    { name: 'Switch', description: '' },
-    { name: 'Telephone', description: '' },
-    { name: 'Terminal', description: '' },
-    { name: 'Traffic shaper', description: '' },
-    { name: 'Transceiver', description: '' },
-    { name: 'UPS System', description: '' },
-    { name: 'Workstations', description: '' },
+    {name: '', description: ''},
+    {name: 'Bridge', description: ''},
+    {name: 'CoolAir', description: ''},
+    {name: 'Copier', description: ''},
+    {name: 'Desktop', description: ''},
+    {name: 'Firewall', description: ''},
+    {name: 'Getaway', description: ''},
+    {name: 'Hubs', description: ''},
+    {name: 'Load Balancer', description: ''},
+    {name: 'Modem', description: ''},
+    {name: 'Multiplexer', description: ''},
+    {name: 'PDU System', description: ''},
+    {name: 'Power', description: ''},
+    {name: 'Printer', description: ''},
+    {name: 'Probe', description: ''},
+    {name: 'Repeaters', description: ''},
+    {name: 'Router', description: ''},
+    {name: 'Security Device', description: ''},
+    {name: 'Server', description: ''},
+    {name: 'Switch', description: ''},
+    {name: 'Telephone', description: ''},
+    {name: 'Terminal', description: ''},
+    {name: 'Traffic shaper', description: ''},
+    {name: 'Transceiver', description: ''},
+    {name: 'UPS System', description: ''},
+    {name: 'Workstations', description: ''},
   ]
   get(): DeviceType[] {
     return this.list
@@ -69,9 +75,15 @@ export class DeviceTypeDict {
     return this.list[Math.floor(Math.random() * this.list.length)]
   }
 
+  /**
+   * @description Generate random name from disctionary
+   * @return {*}  {string}
+   * @memberof DeviceTypeDict
+   */
   public getRandomName(): string {
     return this.list[Math.floor(Math.random() * this.list.length)].name
   }
+
   /**
    * Find specific type in DeviceTypeList
    *
@@ -84,7 +96,12 @@ export class DeviceTypeDict {
     return element || search // element?.DeviceType || search
   }
 
-  findTypeByName(obj: string) {
+/**
+ * @description Find type by name
+ * @param {string} obj
+ * @memberof DeviceTypeDict
+ */
+findTypeByName(obj: string) {
     for (let i = 0; i < this.list.length; i++) {
       if (this.list[i].name === obj) {
         console.log('-->', obj)

@@ -1,8 +1,9 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
-import { ModelsService } from 'src/app/services/models.service'
-import { LogService } from 'src/app/services/log.service'
-import { Model } from 'src/app/shared/model'
+import {Component, NgZone, OnInit} from '@angular/core'
+import {Router} from '@angular/router'
+
+import {ModelsService} from 'src/app/services/models.service'
+import {LogService} from 'src/app/services/log.service'
+import {Model} from 'src/app/shared/model'
 
 
 @Component({
@@ -15,20 +16,24 @@ export class ModelsListComponent implements OnInit {
   selectedModel: Model
   modelListPage = 1
   component = 'Models'
-  ngOnInit() {
-    this.loadModels()
-  }
+
   constructor(
     public modelsService: ModelsService,
     private logService: LogService,
     private router: Router,
     private ngZone: NgZone
   ) {}
+
   loadModels() {
     return this.modelsService.GetModels().subscribe((data: any) => {
       this.ModelsList = data
     })
   }
+
+  ngOnInit() {
+    this.loadModels()
+  }
+
   DeleteModel(id: string) {
     this.logService.CreateLog({
       message: id,
@@ -57,9 +62,11 @@ export class ModelsListComponent implements OnInit {
     this.loadModels()
     this.router.navigate(['/models-list'])
   }
+
   AddModel() {
-    this.router.navigateByUrl('add-model')
+    this.router.navigate(['/add-model'])
   }
+
   EditModel(model: Model) {
     this.selectedModel = model
     this.router.navigate(['edit-model', model.id])

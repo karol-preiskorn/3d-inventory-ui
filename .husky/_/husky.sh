@@ -1,9 +1,7 @@
 #!/usr/bin/env sh
 if [ -z "$husky_skip_init" ]; then
-
-  HUSKY_DEBUG="1"
   debug () {
-    if [ $HUSKY_DEBUG = "1" ]; then
+    if [ "$HUSKY_DEBUG" = "1" ]; then
       echo "husky (debug) - $1"
     fi
   }
@@ -34,5 +32,5 @@ if [ -z "$husky_skip_init" ]; then
     echo "husky - command not found in PATH=$PATH"
   fi
 
-  # exit $exitCode
+  exit $exitCode
 fi

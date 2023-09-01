@@ -1,296 +1,211 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
-      <h3>Add Model</h3>
-      <form [formGroup]="form" (ngSubmit)="submitForm()">
-        <div class="form-group mb-3">
-          <label for="form-id" class="form-label">Id</label>
-          <input type="text" formControlName="id" id="form-id" maxlength="20"
-            minlength="1" required [ngClass]="{
-              'is-invalid': this.form.controls.id.status != 'VALID',
-              'form-control': true
-            }" />
-          <div *ngIf="this.form.controls.id.errors" class="invalid-feedback">
-            <div *ngIf="this.form.controls.id.errors.required">Id is required
-            </div>
-            <div *ngIf="this.form.controls.id.errors.minlength">
-              Id must be at least 4 characters
-            </div>
-          </div>
-          <p>
-            Value: {{ form.value.id }} -
-            {{ this.form.controls.id.status }}
-          </p>
-        </div>
-        <div class="form-group mb-3">
-          <label for="form-name" class="form-label">Name</label>
-          <textarea [ngClass]="{
-              'is-invalid': this.form.controls.name.status != 'VALID',
-              'form-control': true
-            }" formControlName="name" rows="2" minlength="4" id="form-name"
-            maxlength="50">{{ form.value.name }}</textarea>
-          <div *ngIf="this.form.controls.name.errors" class="invalid-feedback">
-            <div *ngIf="this.form.controls.name.errors.required">
-              Name is required
-            </div>
-            <div *ngIf="this.form.controls.name.errors.minlength">
-              Name must be at least 4 characters
+    <h3><i class="bi bi-motherboard"></i> Add Model</h3>
+    <form [formGroup]="addModelForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
+      <div class="row">
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input [ngClass]="{
+                'is-invalid': this.addModelForm.controls.name.status != 'VALID',
+                'is-valid': this.addModelForm.controls.name.status == 'VALID',
+                'form-control': true
+              }" formControlName="name" minlength="4" id="name" maxlength="255" />
+            <div *ngIf="this.addModelForm.controls.name.errors" class="invalid-feedback">
+              <div *ngIf="this.addModelForm.controls.name.errors.required">Name is required</div>
+              <div *ngIf="this.addModelForm.controls.name.errors.minlength">Name must be at least 4 characters
+              </div>
             </div>
           </div>
         </div>
-        <div class="row" formGroupName="dimension">
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="width" class="form-label">Width</label>
-              <input type="text" formControlName="width" id="width"
-                maxlength="6" minlength="1" required [ngClass]="{
-                  'is-invalid':
-                    this.form.controls.dimension.controls.width.status !=
-                    'VALID',
-                  'form-control': true
-                }" />
-              <div *ngIf="this.form.controls.dimension.controls.width.errors"
-                class="invalid-feedback">
-                <div *ngIf="
-                    this.form.controls.dimension.controls.width.errors
-                      .required
-                  ">
-                  Width is required
-                </div>
-                <div *ngIf="
-                    this.form.controls.dimension.controls.width.errors
-                      .minlength
-                  ">
-                  Width must be at least 1 number.
-                </div>
+      </div>
+      <div class="row" formGroupName="dimension">
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="width" class="form-label">Width</label>
+            <input type="text" formControlName="width" id="width" maxlength="6" minlength="1" required [ngClass]="{
+                'is-invalid': this.addModelForm.controls.dimension.controls.width.status != 'VALID',
+                'is-valid': this.addModelForm.controls.dimension.controls.width.status == 'VALID',
+                'form-control': true
+              }" />
+            <div *ngIf="this.addModelForm.controls.dimension.controls.width.errors" class="invalid-feedback">
+              <div *ngIf="this.addModelForm.controls.dimension.controls.width.errors.required">Width is required
               </div>
-              <p>
-                Value: {{ form.value.dimension?.width }} -
-                {{ this.form.controls.dimension.controls.width.status }}
-              </p>
+              <div *ngIf="this.addModelForm.controls.dimension.controls.width.errors.minlength">
+                Width must be at least 1 number.
+              </div>
             </div>
-          </div>
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="heigth" class="form-label">Height</label>
-              <input type="text" formControlName="height" id="heigth"
-                maxlength="6" minlength="1" required [ngClass]="{
-                  'is-invalid':
-                    this.form.controls.dimension.controls.height.status !=
-                    'VALID',
-                  'form-control': true
-                }" />
-              <div *ngIf="this.form.controls.dimension.controls.height.errors"
-                class="invalid-feedback">
-                <div *ngIf="
-                    this.form.controls.dimension.controls.height.errors
-                      .required
-                  ">
-                  Height is required
-                </div>
-                <div *ngIf="
-                    this.form.controls.dimension.controls.height.errors
-                      .minlength
-                  ">
-                  Height must be at least 1 number
-                </div>
-              </div>
-              <p>
-                Value: {{ form.value.dimension?.height }} -
-                {{ this.form.controls.dimension.controls.height.status }}
-              </p>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="depth" class="form-label">Depth</label>
-              <input type="text" formControlName="depth" id="depth"
-                maxlength="4" minlength="1" required [ngClass]="{
-                  'is-invalid':
-                    this.form.controls.dimension.status != 'VALID',
-                  'form-control': true
-                }" />
-              <div *ngIf="this.form.controls.dimension.controls.depth.errors"
-                class="invalid-feedback">
-                <div *ngIf="
-                    this.form.controls.dimension.controls.depth.errors
-                      .required
-                  ">
-                  Depth is required
-                </div>
-                <div *ngIf="
-                    this.form.controls.dimension.controls.depth.errors
-                      .minlength
-                  ">
-                  Depth must be at least 1 number
-                </div>
-              </div>
-              <p>
-                Value: {{ this.form.controls.dimension.value.depth }} -
-                {{ this.form.controls.dimension.controls.depth.status }}
-              </p>
+            <div class="form-control-feedback"
+              *ngIf="addModelForm.errors && (addModelForm.dirty || addModelForm.touched)">
+              <p *ngIf="addModelForm.errors.pattern" class="text-danger">Number Only</p>
             </div>
           </div>
         </div>
-        <div class="row" formGroupName="texture">
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="front" class="form-label">Front</label>
-              <input type="text" formControlName="front" id="front" />
-              <div *ngIf="this.form.controls.texture.controls.front.errors"
-                class="invalid-feedback">
-                <div *ngIf="
-                    this.form.controls.texture.controls.front.errors.required
-                  ">
-                  Width is required
-                </div>
-                <div *ngIf="
-                    this.form.controls.texture.controls.front.errors
-                      .minlength
-                  ">
-                  Width must be at least 1 number.
-                </div>
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="heigth" class="form-label">Height</label>
+            <input type="text" formControlName="height" id="heigth" maxlength="6" minlength="1" required [ngClass]="{
+                'is-invalid': this.addModelForm.controls.dimension.controls.height.status != 'VALID',
+                'is-valid': this.addModelForm.controls.dimension.controls.height.status == 'VALID',
+                'form-control': true
+              }" />
+            <div *ngIf="this.addModelForm.controls.dimension.controls.height.errors" class="invalid-feedback">
+              <div *ngIf="this.addModelForm.controls.dimension.controls.height.errors.required">Height is required
               </div>
-              <p>
-                Value: {{ form.value.texture?.front }} -
-                {{ this.form.controls.texture.controls.front.status }}
-              </p>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="back" class="form-label">Back</label>
-              <input type="text" formControlName="back" id="back"  />
-              <div *ngIf="this.form.controls.texture.controls.back.errors"
-                class="invalid-feedback">
-                <div *ngIf="
-                    this.form.controls.texture.controls.back.errors.required
-                  ">
-                  back side is required
-                </div>
-                <div *ngIf="
-                    this.form.controls.texture.controls.back.errors.minlength
-                  ">
-                  back must be at least 1 number
-                </div>
+              <div *ngIf="this.addModelForm.controls.dimension.controls.height.errors.minlength">
+                Height must be at least 1 number
               </div>
-              <p>
-                Value: {{ form.value.texture?.back }} -
-                {{ this.form.controls.texture.controls.back.status }}
-              </p>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="depth" class="form-label">Side</label>
-              <input type="text" formControlName="side" id="side" />
-              <div *ngIf="this.form.controls.texture.controls.side.errors"
-                class="invalid-feedback">
-                <div *ngIf="
-                    this.form.controls.texture.controls.side.errors.required
-                  ">
-                  side is required
-                </div>
-                <div *ngIf="
-                    this.form.controls.texture.controls.side.errors.minlength
-                  ">
-                  side must be at least 1 number
-                </div>
-              </div>
-              <p>
-                Value: {{ this.form.controls.texture.value.side }} -
-                {{ this.form.controls.texture.controls.side.status }}
-              </p>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="top" class="form-label">Top</label>
-              <input type="text" formControlName="top" id="top" />
-              <div *ngIf="this.form.controls.texture.controls.side.errors"
-                class="invalid-feedback">
-                <div *ngIf="this.form.controls.texture.controls.top.errors">
-                  Top is required
-                </div>
-                <div *ngIf="this.form.controls.texture.controls.top.errors">
-                  Top must be at least 1 number
-                </div>
-              </div>
-              <p>
-                Value: {{ this.form.controls.texture.value.top }} -
-                {{ this.form.controls.texture.controls.top.status }}
-              </p>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="botom" class="form-label">Botom</label>
-              <input type="text" formControlName="botom" id="botom"  />
-              <div *ngIf="this.form.controls.texture.controls.botom.errors"
-                class="invalid-feedback">
-                <div *ngIf="
-                    this.form.controls.texture.controls.botom.errors.required
-                  ">
-                  Botom is required
-                </div>
-                <div *ngIf="
-                    this.form.controls.texture.controls.botom.errors
-                      .minlength
-                  ">
-                  Botom must be at least 2 characters
-                </div>
-              </div>
-              <p>
-                Value: {{ this.form.controls.texture.value.botom }} -
-                {{ this.form.controls.texture.controls.botom.status }}
-              </p>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="form-type" class="form-label">Type</label>
-              <select (change)="changeType($event)" formControlName="type"
-                class="form-control" id="form-type">
-                <option
-                  *ngFor="let typeObj of deviceTypeDict.list; let i = index">
-                  {{ typeObj.name }}
-                </option>
-              </select>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group mb-3">
-              <label for="form-category" class="form-label">Category</label>
-              <select (change)="changeCategory($event)"
-                formControlName="category" class="form-control"
-                id="form-category">
-                <option *ngFor="
-                    let categoryObj of deviceCategoryDict.list;
-                    let i = index
-                  ">
-                  {{ categoryObj.name }}
-                </option>
-              </select>
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="depth" class="form-label">Depth</label>
+            <input type="text" formControlName="depth" id="depth" maxlength="4" minlength="1" required [ngClass]="{
+                'is-invalid': this.addModelForm.controls.dimension.controls.depth.status != 'VALID',
+                'is-valid': this.addModelForm.controls.dimension.controls.depth.status == 'VALID',
+                'form-control': true
+              }" />
+            <div *ngIf="this.addModelForm.controls.dimension.controls.depth.errors" class="invalid-feedback">
+              <div *ngIf="this.addModelForm.controls.dimension.controls.depth.errors.required">Depth is required
+              </div>
+              <div *ngIf="this.addModelForm.controls.dimension.controls.depth.errors.minlength">
+                Depth must be at least 1 number
+              </div>
             </div>
           </div>
         </div>
-        <div class="form-group mb-3">
-          <button type="submit" [disabled]="!(form.valid && form.touched)"
-            class="btn btn-primary">
-            Add model
+      </div>
+      <div class="row" formGroupName="texture">
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="front" class="form-label">Front</label>
+            <input type="text" formControlName="front" id="front" [ngClass]="{
+                'is-invalid': this.addModelForm.controls.texture.controls.front.status != 'VALID',
+                'is-valid': this.addModelForm.controls.texture.controls.front.status == 'VALID',
+                'form-control': true
+              }" />
+            <div *ngIf="this.addModelForm.controls.texture.controls.front.errors" class="invalid-feedback">
+              <div *ngIf="this.addModelForm.controls.texture.controls.front.errors.required">Width is required
+              </div>
+              <div *ngIf="this.addModelForm.controls.texture.controls.front.errors.minlength">
+                Width must be at least 1 number.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="back" class="form-label">Back</label>
+            <input type="text" formControlName="back" id="back" [ngClass]="{
+                'is-invalid': this.addModelForm.controls.texture.controls.back.status != 'VALID',
+                'is-valid': this.addModelForm.controls.texture.controls.back.status == 'VALID',
+                'form-control': true
+              }" />
+            <div *ngIf="this.addModelForm.controls.texture.controls.back.errors" class="invalid-feedback">
+              <div *ngIf="this.addModelForm.controls.texture.controls.back.errors.required">back side is required
+              </div>
+              <div *ngIf="this.addModelForm.controls.texture.controls.back.errors.minlength">
+                back must be at least 1 number
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="side" class="form-label">Side</label>
+            <input type="text" formControlName="side" id="side" [ngClass]="{
+                'is-invalid': this.addModelForm.controls.texture.controls.side.status != 'VALID',
+                'is-valid': this.addModelForm.controls.texture.controls.side.status == 'VALID',
+                'form-control': true
+              }" />
+            <div *ngIf="this.addModelForm.controls.texture.controls.side.errors" class="invalid-feedback">
+              <div *ngIf="this.addModelForm.controls.texture.controls.side.errors.required">side is required</div>
+              <div *ngIf="this.addModelForm.controls.texture.controls.side.errors.minlength">
+                side must be at least 1 number
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="top" class="form-label">Top</label>
+            <input type="text" formControlName="top" id="top" [ngClass]="{
+                'is-invalid': this.addModelForm.controls.texture.controls.top.status != 'VALID',
+                'is-valid': this.addModelForm.controls.texture.controls.top.status == 'VALID',
+                'form-control': true
+              }" />
+            <div *ngIf="this.addModelForm.controls.texture.controls.top.errors" class="invalid-feedback">
+              <div *ngIf="this.addModelForm.controls.texture.controls.top.errors">Top is required</div>
+              <div *ngIf="this.addModelForm.controls.texture.controls.top.errors">Top must be at least 1 number
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="botom" class="form-label">Botom</label>
+            <input type="text" formControlName="botom" id="botom" [ngClass]="{
+                'is-invalid': this.addModelForm.controls.texture.controls.botom.status != 'VALID',
+                'is-valid': this.addModelForm.controls.texture.controls.botom.status == 'VALID',
+                'form-control': true
+              }" />
+            <div *ngIf="this.addModelForm.controls.texture.controls.botom.errors" class="invalid-feedback">
+              <div *ngIf="this.addModelForm.controls.texture.controls.botom.errors.required">Botom is required
+              </div>
+              <div *ngIf="this.addModelForm.controls.texture.controls.botom.errors.minlength">
+                Botom must be at least 2 characters
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="type" class="form-label">Type</label>
+            <select (change)="changeType($event)" formControlName="type" [ngClass]="{
+                'is-invalid': this.addModelForm.controls.type.status != 'VALID',
+                'is-valid': this.addModelForm.controls.type.status == 'VALID',
+                'form-select': true
+              }" id="type">
+              <option *ngFor="let typeObj of deviceTypeDict.list; let i = index">
+                {{ typeObj.name }}
+              </option>
+            </select>
+            <div *ngIf="this.addModelForm.controls.type.errors" class="invalid-feedback">
+              <div *ngIf="this.addModelForm.controls.type.errors.required">type have to selected</div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select (change)="changeCategory($event)" formControlName="category" [ngClass]="{
+                'is-invalid': this.addModelForm.controls.category.status != 'VALID',
+                'is-valid': this.addModelForm.controls.category.status == 'VALID',
+                'form-select': true
+              }" id="category">
+              <option *ngFor="let categoryObj of deviceCategoryDict.list; let i = index">
+                {{ categoryObj.name }}
+              </option>
+            </select>
+            <div *ngIf="this.addModelForm.controls.category.errors" class="invalid-feedback">
+              <div *ngIf="this.addModelForm.controls.category.errors.required">category have to selected</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="button" [disabled]="!(addModelForm.valid && addModelForm.touched)" class="btn btn-primary"
+            (click)="this.submitForm()" tooltip="Update device.">
+            Add
           </button>
-          <div *ngIf="!(form.valid && form.touched)" class="-valid-feedback">
-            Form is invalid
-          </div>
-          <div *ngIf="form.valid && form.touched" class="-invalid-feedback">
-            Form is valid
-          </div>
-          <p>Form Status: {{ form.status }}</p>
-          <p>Form Values: {{ toString(form.value) }}</p>
         </div>
-      </form>
-    </div>
+      </div>
+      <div *ngIf="addModelForm.valid && addModelForm.touched" class="invalid-feedback">Form is valid</div>
+      <p class="valid-feedback">Form Status: {{ addModelForm.status }}.</p>
+    </form>
   </div>
 </div>

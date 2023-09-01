@@ -42,17 +42,17 @@ export class AttributeDictionaryService {
   }
   CreateAttributeDictionary(data: AttributeDictionary): Observable<AttributeDictionary> {
     return this.http
-      .post<AttributeDictionary>(this.BASEURL + '/attribute-dictionary/', JSON.stringify(data), this.httpOptions)
+      .post<AttributeDictionary>(this.BASEURL + '/attribute-dictionary/', JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   CloneAttributeDictionary(id: string): string {
     const id_uuid: string = uuidv4()
     this.GetAttributeDictionary(id).subscribe((value: AttributeDictionary) => {
-      console.log('Get attributes: ' + JSON.stringify(value))
+      console.log('Get attributes: ' + JSON.stringify(value, null, ' '))
       value.id = id_uuid
       this.CreateAttributeDictionary(value).subscribe({
         next: (v) => {
-          console.log('Create attributes: ' + JSON.stringify(v))
+          console.log('Create attributes: ' + JSON.stringify(v, null, ' '))
           this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))
         },
         complete: () => this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list')),
@@ -62,7 +62,7 @@ export class AttributeDictionaryService {
   }
   UpdateAttributeDictionary(id: string | null, data: AttributeDictionary): Observable<AttributeDictionary> {
     return this.http
-      .put<AttributeDictionary>(this.BASEURL + '/attribute-dictionary/' + id, JSON.stringify(data), this.httpOptions)
+      .put<AttributeDictionary>(this.BASEURL + '/attribute-dictionary/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   errorHandl(error: { error: { message: string }; status: any; message: any }) {
@@ -72,7 +72,7 @@ export class AttributeDictionaryService {
     } else {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
-    console.log(JSON.stringify(errorMessage))
+    console.log(JSON.stringify(errorMessage, null, ' '))
     return throwError(() => {
       return errorMessage
     })

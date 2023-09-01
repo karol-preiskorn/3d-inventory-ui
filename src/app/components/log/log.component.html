@@ -1,4 +1,5 @@
-<div class="container wrapper">
+<p></p>
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
       <div class="inner">
@@ -11,6 +12,7 @@
               <th scope="col">Component</th>
               <th scope="col">Operation</th>
               <th scope="col">Message</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -20,10 +22,17 @@
                 let i = index
               ">
               <td>{{ log.date }}</td>
-              <td>{{ log.object }}</td>
+              <td>{{ findNameInLogMessage(log) }}<div class="log-message">{{ log.object }}</div></td>
               <td>{{ log.component }}</td>
               <td>{{ log.operation }}</td>
-              <td>{{ log.message }}</td>
+              <td class="log-message">{{ log.message }}</td>
+              <td>
+                <button type="button" id="delete-device"
+                  class="btn btn-danger btn-sm"
+                  (click)="DeleteLog(log.id)">
+                  Delete
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>

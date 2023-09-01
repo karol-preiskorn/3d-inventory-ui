@@ -19,6 +19,7 @@ interface ModelForm {
   type: FormControl<string>
   category: FormControl<string>
 }
+
 @Component({
   selector: 'app-edit-model',
   templateUrl: './edit-model.component.html',
@@ -29,21 +30,27 @@ export class EditModelComponent implements OnInit {
   model: Model
   component = ''
 
-  editForm = new FormGroup({
+  editModelForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     dimension: new FormGroup({
       width: new FormControl('', [
         Validators.required,
         Validators.minLength(1),
+        Validators.maxLength(6),
+        Validators.pattern("^[0-9]*$"),
       ]),
       height: new FormControl('', [
         Validators.required,
         Validators.minLength(1),
+        Validators.maxLength(6),
+        Validators.pattern("^[0-9]*$"),
       ]),
       depth: new FormControl('', [
         Validators.required,
         Validators.minLength(1),
+        Validators.maxLength(6),
+        Validators.pattern("^[0-9]*$"),
       ]),
     }),
     texture: new FormGroup({
@@ -61,19 +68,21 @@ export class EditModelComponent implements OnInit {
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   isSubmitted = false
 
-  ngOnInit() {
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
-    this.model = this.getModel(this.inputId)
-    this.component = this.inputId
-  }
+  constructor(
+    public activatedRoute: ActivatedRoute,
+    public modelsService: ModelsService,
+    private ngZone: NgZone,
+    private router: Router,
+    private logService: LogService
+  ) { }
 
   private getModel(id: string): any {
     return this.modelsService
       .GetModel(this.inputId)
       .subscribe((data: Model) => {
-        console.log('GetModel ' + JSON.stringify(data))
+        console.log('GetModel ' + JSON.stringify(data, null, ' '))
         this.model = data
-        this.editForm.setValue({
+        this.editModelForm.setValue({
           id: data.id,
           name: data.name,
           dimension: {
@@ -93,13 +102,13 @@ export class EditModelComponent implements OnInit {
         })
       })
   }
-  constructor(
-    public activatedRoute: ActivatedRoute,
-    public modelsService: ModelsService,
-    private ngZone: NgZone,
-    private router: Router,
-    private logService: LogService
-  ) { }
+
+  ngOnInit() {
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
+    this.model = this.getModel(this.inputId)
+    this.component = this.inputId
+  }
+
   changeId(e: any) {
     this.id?.setValue(e.target.value, { onlySelf: true })
   }
@@ -113,46 +122,46 @@ export class EditModelComponent implements OnInit {
     this.category?.setValue(e.target.value, { onlySelf: true })
   }
   get id() {
-    return this.editForm.get('id')
+    return this.editModelForm.get('id')
   }
   get name() {
-    return this.editForm.get('name')
+    return this.editModelForm.get('name')
   }
   get type() {
-    return this.editForm.get('type')
+    return this.editModelForm.get('type')
   }
   get category() {
-    return this.editForm.get('category')
+    return this.editModelForm.get('category')
   }
   toString(data: any): string {
-    return JSON.stringify(data)
+    return JSON.stringify(data, null, ' ')
   }
 
   DeleteForm() {
     this.logService.CreateLog({
-      object: this.editForm.value.id,
+      object: this.editModelForm.value.id,
       operation: 'Delete',
       component: 'Models',
-      message: JSON.stringify(this.editForm.value, null, 2),
+      message: JSON.stringify(this.editModelForm.value, null, 2),
     })
     this.modelsService.DeleteModel(this.inputId).subscribe(() => {
       this.ngZone.run(() => this.router.navigateByUrl('models-list'))
     })
   }
   submitForm() {
-    if (this.editForm.valid && this.editForm.touched) {
+    if (this.editModelForm.valid && this.editModelForm.touched) {
       this.ngZone.run(() => this.router.navigateByUrl('models-list'))
       const log: LogIn = {
-        message: JSON.stringify(this.editForm.value) as string,
+        message: JSON.stringify(this.editModelForm.value, null, ' ') as string,
         operation: 'Update',
         component: 'Models',
-        object: this.editForm.value.id,
+        object: this.editModelForm.value.id,
       }
       this.logService.CreateLog(log).subscribe(() => {
         console.log(JSON.stringify(log))
       })
       this.modelsService
-        .UpdateModel(this.inputId, this.editForm.value)
+        .UpdateModel(this.inputId, this.editModelForm.value)
         .subscribe(() => {
           this.router.navigate(['edit-model/', this.model.id])
         })

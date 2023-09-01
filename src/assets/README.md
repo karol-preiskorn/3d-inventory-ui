@@ -1,59 +1,98 @@
 # 3d inventory
 
+![Entity model](src/assets/3d-inventory.png)
+
 1. [3d inventory](#3d-inventory)
    1. [Description](#description)
+      1. [About project](#about-project)
+      2. [About background and motivation](#about-background-and-motivation)
    2. [Technology stack](#technology-stack)
-   3. [Data Model](#data-model)
-      1. [Entity](#entity)
-      2. [Logical](#logical)
-      3. [Data Classes and attributes](#data-classes-and-attributes)
-   4. [Functionality](#functionality)
-      1. [Future ideas](#future-ideas)
-      2. [List devices](#list-devices)
-      3. [Edit device](#edit-device)
-      4. [Application view](#application-view)
-         1. [Angular + Three.js](#angular--threejs)
-   5. [Usage](#usage)
-      1. [Swagger client to generate API structures](#swagger-client-to-generate-api-structures)
-      2. [Json server](#json-server)
-      3. [Run app](#run-app)
-   6. [Contributing](#contributing)
-   7. [Next tasks TODO](#next-tasks-todo)
+   3. [Demo](#demo)
+   4. [Data Model](#data-model)
+      1. [Entity model](#entity-model)
+      2. [Logical model](#logical-model)
+      3. [Entity attributes](#entity-attributes)
+   5. [Current functionality](#current-functionality)
+   6. [Future development ideas](#future-development-ideas)
+      1. [List devices](#list-devices)
+         1. [Edit device](#edit-device)
+      2. [Models](#models)
+      3. [Attributes](#attributes)
+      4. [Attribute Dictionary](#attribute-dictionary)
+      5. [Connections](#connections)
+      6. [Application 3d view](#application-3d-view)
+   7. [Run](#run)
+   8. [Upgrades](#upgrades)
+   9. [Debug](#debug)
+   10. [Deploy](#deploy)
+   11. [Json server](#json-server)
+   12. [Swagger client to generate API structures](#swagger-client-to-generate-api-structures)
+2. [Mongo Atlas](#mongo-atlas)
+   1. [Contributing](#contributing)
+      1. [Next tasks](#next-tasks)
+3. [Tools](#tools)
 
 ## Description
 
+### About project
+
 Project create `3d inventory`. A simple solution that allows you to build a spatial and database representation of all types of warehouses and server rooms.
+
+### About background and motivation
+
+This project solves several problems I encountered while integrating inventory database solutions in a corporate environment.
+
+I want to focus here to topic build database inventory applications and interfaces.
+
+I'm programming to incorporate database systems. I develop in `PLSQL` and `ABAP`. I have some experience in create frontend/interfaces to database app in `Node.JS` (`Rx`/`Ag`), `Python` and `Java`. This project covers relevant topics and issues related to create simple and efficient platform for IT inventory.
+
+You are welcome to cooperate and leave a few words of comment.
 
 ## Technology stack
 
-- `Angular` 15+ (as a corpo framework)
+- `Angular` 15+ (as a Corp framework)
+- `Bootstrap` 5.3+ - logic for insert UI data
 - `Tree` 150+ (as best graph framework)
-- <`Neo4j`|`Oracle`|`jsonserver`> - Oracle as database (for development `json server` -> rest oracle -> rest neo4j)
-- `REST` - prepared API in use in Swagger
-- <`Docker`|`OpenShift`> as containers
+- [`Neo4j`|`Oracle`|`jsonserver`] `Oracle` as database (for development `json server` -> rest `Oracle` -> rest `Neo4j`. I want in this project try different solution and different data structure and storage.
+- `REST` - prepared `API` in use in `Swagger`.
+- [`Docker`|`OpenShift`|`Podman`|`GitHub Container`] as containers
+
+## Demo
+
+Underconstrution (not work jet)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=0000000&machine=premiumLinux&devcontainer_path=.devcontainer%2Fdevcontainer.json&location=WestUs2)
 
+[![3-d inventory the video](https://youtu.be/rNOxpZ0ti1Q)](https://youtu.be/rNOxpZ0ti1Q)
+
 ## Data Model
 
-### Entity
+This is implementation parametric generic attribute class. All attributes for `Devices`, `Models` and `Connections` are stored in this model.
 
-![](src/assets/img/Screenshot%20from%202023-05-20%2016-54-30.png)
+Parameters types are defined in `Attribute Dictionary`.
 
-### Logical
+In `Attributes` are stored values defined in `Attributes Dictionary` for `Devices`, `Model` and `Connections`.
 
-![](src/assets/img/Screenshot%20from%202023-05-20%2017-20-39.png)
+`Attributes Dictionary` are defined for specyfice.
 
-### Data Classes and attributes
+### Entity model
 
-- MODELS
+<img title="Entity mode" src="src/assets/img/Screenshot%20from%202023-05-20%2016-54-30-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="95%"/>
+
+### Logical model
+
+<img title="Logical model" src="src/assets/img/Screenshot%20from%202023-05-20%2017-20-39-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="95%"/>
+
+### Entity attributes
+
+- `MODELS`
   - ID (UUID4)
   - NAME
   - DIMENSION
     - X
     - Y
     - H
-- DEVICES
+- `DEVICES`
   - ID (UUID4)
   - NAME
   - MODEL_ID
@@ -61,23 +100,38 @@ Project create `3d inventory`. A simple solution that allows you to build a spat
     - X
     - Y
     - H
-- CONNECTION
+- `CONNECTION`
   - ID (UUID4)
   - TO_DEVICE_ID
   - FROM_DEVICE_ID
-- ATTRIBUTES
+- `ATTRIBUTES`
   - ID (UUID4)
   - DEVICE_ID
   - MODEL_ID
   - CONNECTION_ID
   - ATTRIBUTE_TYPE_ID
   - VALUE
-- ATTRIBUTES_TYPES
+- `ATTRIBUTES_TYPES`
   - ID (UUID4)
   - NAME
   - DESCRIPTION
   - COMPONENTS (list of values)
-- LOGS
+- `FLOORS` (@TODO)
+  - ARRAY SHAPE
+    - DIMENSION
+      - X
+      - Y
+      - H
+    - POSITION
+      - X
+      - Y
+      - H
+    - ENTERS ARRAY
+      - X
+      - Y
+      - H
+      - TYPE [ENTER|EMPTY]
+- `LOGS`
   - ID (UUID4)
   - DATETIME
   - OBJECT_ID (UUID4)
@@ -85,84 +139,115 @@ Project create `3d inventory`. A simple solution that allows you to build a spat
   - COMPONENT
   - MESSAGE
 
-## Functionality
+## Current functionality
 
-- Reactive forms in Angular 15+
-- 3D representation in three.js 150+
+- [Reactive forms](https://angular.io/guide/reactive-forms?ref=cup-t) in `Angular` 15+
+- [Bootstrap 5.3](https://getbootstrap.com/)+ show
+- `3D` representation in [three.js](https://threejs.org/) 150+
 - Dynamic define attributes to components:
-  - DEVICES
-  - MODELS
-  - FLOORS
-  - CONNECTIONS
+  - `DEVICES`
+  - `MODELS`
+  - `FLOORS`
+  - `CONNECTIONS`
+- Show dynamic attributes for `Device`: ![Device with attributes](image.png)
 
-### Future ideas
+## Future development ideas
 
-- [ ] Docker -> serve application in Github Pages --> AWS EC2
-- [ ] For development json server -> rest Oracle -> rest Neo4j
+Sth. like development plan:
+
+- [ ] Set position and model in data ans show this data in `3d`.
+- [ ] Show attributes of `DEVICES`, `MODELS` and `CONNECTIONS`.
+- [ ] Generate `FLOOR`
+- [ ] as array of square (x, y, h)
+- [ ] Use `Mongo` to strore `JSON` data.
+- [ ] `Docker` -> serve application in `Github Pages` --> `AWS EC2`
+- [ ] Use Dev container in `GitHub` for development.
+- [ ] Recognize `Grunt`/`Glup` to `CI`/`DI` use in this project.
+- [ ] Add actual tasks form `GitHub` during build in README.md.
+- [ ] Add light/dark theme switch in `UI`
+- [ ] For development `JSON` server -> rest `Oracle` --> rest `Neo4j`
+- [ ] Use https://formly.dev/ ?
 
 ### List devices
 
-![](src/assets/img/Screenshot%202023-04-11%20at%2007-51-03%203d%20inventory.png)
+<img title="List devices" src="src/assets/img/Screenshot%202023-07-14%20at%2008-48-50%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
 
-### Edit device
+#### Edit device
 
-![](src/assets/img/Screenshot%202023-04-11%20at%2007-50-36%203d%20inventory.png)
+<img title="Edit device" src="/src/assets/img/edit-device.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
 
-### Application view
 
-View in 3d inventory use [three.js](https://threejs.org/) framework.
+### Models
 
-![Example random generated blocks in floor](src/assets/img/Screenshot%20from%202023-05-01%2008-29-25.png)
+<img title="Models" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-31%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
 
-#### Angular + Three.js
+### Attributes
 
-This project bild from this example contain `three.js` in `Angular` [Tutorial to render 3D Cube in Angular + Three.js](https://srivastavaanurag79.medium.com/hello-cube-your-first-three-js-scene-in-angular-176c44b9c6c0).
+<img title="Attributes" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-42%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
 
-## Usage
+### Attribute Dictionary
+
+<img title="Attribute Dictionary" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-51%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
+
+
+### Connections
+
+<img title="Connections" src="src/assets/img/Screenshot%202023-07-14%20at%2008-50-00%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
+
+### Application 3d view
+
+View in `3d` inventory use [three.js](https://threejs.org/) framework.
+
+<img title="Example random generated blocks in floor" src="src/assets/img/Screenshot%20from%202023-05-01%2008-29-25-watermark.png" width="95%"/>
+
+This project build from this example contain `three.js` in `Angular`[Tutorial to render 3D Cube in Angular + Three.js](https://srivastavaanurag79.medium.com/hello-cube-your-first-three-js-scene-in-angular-176c44b9c6c0).
+
+## Run
 
 ```bash
 # clone repo
-git clone <this-repo>
-# install
+git clone https://github.com/karol-preiskorn/3d-inventory-angular-ui.git
+# install dependences
 npm install
-# run
+# run server
 npm run start
-# or
+# run data server
 npm run start:json-server
-npm run start:ng
-# goto
-localhost:4200
+# goto in browser
+http://localhost:4200
 ```
 
-### Swagger client to generate API structures
+On this stage of project I use single branch `master`. If I finish this stage when app will be usefully I will use also develop.
 
-```js
-ng generate library swagger-client
+## Upgrades
+
+https://angular.io/guide/versions
+
+## Debug
+
+Try use Firefox plugin in `VS code`. Without success i used Chronium.
+
+- https://github.com/microsoft/vscode-recipes/tree/main/Angular-CLI
+
+## Deploy
+
+https://angular.io/guide/deployment
+
+Build in first terminal: `ng build --watch` in npm alias:
+
+```bash
+npm run build
 ```
 
-Generate library: `projects/swagger-client`
+On the second terminal, install a web server (such as `lite-server`), and run it against the output folder. For example:
 
-Copy to src all generated by swaggercodegen code
-
-`IdentityService.getApiConfiguration()` is a static method where you can provide API configuration. You usually will want to populate the authentication token in this method.
-
-```ts
-import {ApiModule} from 'foo-swagger-client';
-
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    ...
-    ApiModule.forRoot(IdentityService.getApiConfiguration),
-    ...
-})
-export class AppModule {
-}
+```bash
+lite-server --baseDir='dist/3d-inventory-angular-ui/browser'
 ```
 
-### Json server
+npm alias: `npm run server`
+
+## Json server
 
 For testing UI API run `jsonserver`.
 
@@ -178,28 +263,36 @@ Server `url`:
 baseurl = 'http://localhost:3000';
 ```
 
-### Run app
+## Swagger client to generate API structures
 
-The api json-server must be running for the application to work.
-
-```bash
-npm start
-```
-
-or run all:
+Abandoned until I do not have clear situation with data entity and operations. Now I use `json-swager` to store data.
 
 ```bash
-"start:all": "concurrently -c \"bgBlue.bold,bgMagenta.bold\" --prefix \"{time}-{pid}\"  \"npm:start:ng\" \"npm:start:json-server\" --kill-others",
+ng generate library swagger-client
 ```
+
+Generate library: `projects/swagger-client`
+
+Copy to src all generated by `swaggercodegen` code
+
+# Mongo Atlas
+
+One of good options `3d-inventory` data storage.
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome. For major changes, please open an [issue](https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues/new) first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
 Not forget about [code guide-lines](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines).
 
-## Next tasks TODO
+### Next tasks
 
-[https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues](https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues)
++ [https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues](https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues)
+
+# Tools
+
+- https://glyphsearch.com/ Icons
+
+

@@ -1,60 +1,93 @@
-<div class="container wrapper">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="inner">
-        <h2>Attributes</h2>
-        <table class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Id</th>
-              <th scope="col">Device</th>
-              <th scope="col">Model</th>
-              <th scope="col">Connection</th>
-              <th scope="col">Attribute Dictionary</th>
-              <th scope="col">Value</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="
-                let attribute of attributeList
-                  | paginate
-                    : {
-                        id: 'attributeListPagination',
-                        itemsPerPage: 5,
-                        currentPage: attributePage
-                      }
-              ">
-              <td>{{ attribute.id }}</td>
-              <td>{{ attribute.deviceId }}</td>
-              <td>{{ attribute.modelId }}</td>
-              <td>{{ attribute.connectionId }}</td>
-              <td>{{ attribute.attributeDictionaryId }}</td>
-              <td>{{ attribute.value }}</td>
-              <td>
-                <div class="btn-group" role="group"
-                  aria-label="attribute-operations">
-                  <button type="button"
-                    class="btn btn-success btn-sm move-right"
-                    id="edit-attribute" (click)="EditAttribute(attribute)"> Edit
-                  </button>
-                  <button type="button" id="delete-attribute"
-                    class="btn btn-danger btn-sm"
-                    (click)="DeleteAttribute(attribute.id)"> Delete </button>
-                  <button type="button" id="clone-attribute"
-                    class="btn btn-info btn-sm"
-                    (click)="CloneAttribute(attribute.id)"> Clone </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <button type="button" class="btn btn-success btn-sm move-right mb-3"
-          (click)="AddAttribute()">
-          <i class="bi bi-plus-lg"></i> Add </button>
-      </div>
-    </div>
-  </div>
-  <pagination-controls (pageChange)="attributePage = $event"
-    id="attributeListPagination"></pagination-controls>
+<div class="container-fluid">
+  <h2><i class="bi bi-bar-chart"></i> Attributes</h2>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Device</th>
+        <th scope="col">Model</th>
+        <th scope="col">Connection</th>
+        <th scope="col">Attribute Dictionary</th>
+        <th scope="col">Value</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let attribute of attributeList
+            | paginate
+              : {
+                  id: 'attributeListPagination',
+                  itemsPerPage: 5,
+                  currentPage: attributePage
+                }
+        ">
+        <td>
+          <div tooltip="{{ attribute.id }}">#</div>
+        </td>
+        <td>
+          <a href="edit-device/{{ attribute.deviceId }}" tooltip="{{ attribute.deviceId }}">{{
+            findDeviceName(attribute.deviceId)
+          }}</a>
+        </td>
+        <td>
+          <a href="edit-model/{{ attribute.modelId }}" tooltip="{{ attribute.modelId }}">{{
+            findModelName(attribute.modelId)
+          }}</a>
+        </td>
+        <td>
+          <a href="edit-connection/{{ attribute.connectionId }}" tooltip="{{ attribute.connectionId }}">{{
+            findConnectionName(attribute.connectionId)
+          }}</a>
+        </td>
+        <td>
+          <a
+            href="edit-attribute-dictionary/{{ attribute.attributeDictionaryId }}"
+            tooltip="{{ attribute.attributeDictionaryId }}"
+            >{{ findAttributeDictionary(attribute.attributeDictionaryId) }}</a
+          >
+        </td>
+        <td>{{ attribute.value }}</td>
+        <td>
+          <div class="btn-group float-md-end" role="group" aria-label="attribute-operations">
+            <button
+              type="button"
+              class="btn btn-success btn-sm move-right"
+              id="edit-attribute"
+              (click)="EditAttribute(attribute)">
+              Edit
+            </button>
+            <button
+              type="button"
+              id="delete-attribute"
+              class="btn btn-danger btn-sm"
+              (click)="DeleteAttribute(attribute.id)">
+              Delete
+            </button>
+            <button
+              type="button"
+              id="clone-attribute"
+              class="btn btn-info btn-sm"
+              (click)="CloneAttribute(attribute.id)">
+              Clone
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="button" class="btn btn-success btn-sm" (click)="AddAttribute()">
+    <i class="bi bi-plus-lg"></i> Add
+  </button>
+  <pagination-controls (pageChange)="attributePage = $event" id="attributeListPagination"></pagination-controls>
 </div>
-<app-log [component]="component"></app-log>
+
+<!-- <div>attributeComponent: {{ this.attributeComponent }}</div>
+<div>attributeComponentObject: {{ this.attributeComponentObject }}</div>
+<div>(attributeComponent == '') {{ attributeComponent == '' }}</div> -->
+
+<app-log
+  *ngIf="attributeComponent == '' || attributeComponent === undefined"
+  [attributeComponentObject]="this.device"
+  [component]="component"></app-log>

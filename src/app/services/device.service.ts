@@ -1,11 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
 import { Observable, throwError } from 'rxjs'
-import { catchError, retry } from 'rxjs/operators'
+import { catchError, map, retry } from 'rxjs/operators'
+import { SyncRequestClient } from 'ts-sync-request/dist'
 import { v4 as uuidv4 } from 'uuid'
+
 import { Device } from '../shared/device'
 import { LogService } from './log.service'
-import { Router } from '@angular/router'
+
 
 @Injectable({
   providedIn: 'root',
@@ -27,9 +30,9 @@ export class DeviceService {
     }),
   }
 
-  GetDevices(): Observable<Device> {
+  GetDevices(): Observable<Device[]> {
     return this.http
-      .get<Device>(this.baseurl + '/' + this.objectName + '/')
+      .get<Device[]>(this.baseurl + '/' + this.objectName + '/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -37,6 +40,21 @@ export class DeviceService {
     return this.http
       .get<Device>(this.baseurl + '/' + this.objectName + '/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
+  }
+
+
+  getDeviceSynchronize(id: string | null) {
+    return new SyncRequestClient().get<Device>(this.baseurl + '/' + this.objectName + '/' + id)
+  }
+
+  GetDeviceSynchro(id: string | null): Observable<Device> {
+    return this.http
+      .get<Device>(this.baseurl + '/' + this.objectName + '/' + id).pipe(
+        map(res => {
+          return res
+        }),
+        catchError(this.errorHandl)
+      )
   }
 
   DeleteDevice(id: string | null): Observable<Device> {
@@ -49,7 +67,7 @@ export class DeviceService {
     return this.http
       .post<Device>(
         this.baseurl + '/' + this.objectName + '/',
-        JSON.stringify(data),
+        JSON.stringify(data, null, ' '),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
@@ -58,11 +76,11 @@ export class DeviceService {
   CloneDevice(id: string | null): string {
     const id_uuid: string = uuidv4()
     this.GetDevice(id).subscribe((value: Device) => {
-      console.log('Get Device: ' + JSON.stringify(value))
+      console.log('Get Device: ' + JSON.stringify(value, null, ' '))
       value.id = id_uuid
       this.CreateDevice(value).subscribe({
         next: (v) => {
-          console.log('Create Device: ' + JSON.stringify(v))
+          console.log('Create Device: ' + JSON.stringify(v, null, ' '))
           this.ngZone.run(() => this.router.navigateByUrl('device-list'))
         },
         complete: () =>
@@ -71,12 +89,13 @@ export class DeviceService {
     })
     return id_uuid
   }
+
   // PUT
   UpdateDevice(id: string | null, data: any): Observable<Device> {
     return this.http
       .put<Device>(
         this.baseurl + '/' + this.objectName + '/' + id,
-        JSON.stringify(data),
+        JSON.stringify(data, null, ' '),
         this.httpOptions
       )
       .pipe(retry(1), catchError(this.errorHandl))
@@ -91,9 +110,9 @@ export class DeviceService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
-    console.log(JSON.stringify(errorMessage))
+    console.log(JSON.stringify(errorMessage, null, ' '))
     // logService.CreateLog({
-    //   message: 'Error service device: ' + JSON.stringify(error.message),
+    //   message: 'Error service device: ' + JSON.stringify(error.message, null, ' '),
     //   category: 'Error',
     //   component: 'DeviceService.errorHandl',
     // })

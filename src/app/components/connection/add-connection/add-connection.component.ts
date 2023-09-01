@@ -18,32 +18,25 @@ import { LogService } from 'src/app/services/log.service'
   styleUrls: ['./add-connection.component.scss']
 })
 export class AddConnectionComponent implements OnInit {
-  addConnectionForm = new FormGroup({
-    id: new FormControl('', [Validators.required, Validators.minLength(36)]),
-    name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]),
-    deviceIdTo: new FormControl('', Validators.required),
-    deviceIdFrom: new FormControl('', Validators.required),
-  })
+  addConnectionForm: FormGroup
   connection: Connection = new Connection()
   deviceList: Device[]
   isSubmitted = false
   componentDictionary: ComponentDictionary = new ComponentDictionary()
   logComponent = 'Connection'
 
-  ngOnInit() {
-    this.formConnection()
-    this.getDeviceList()
-  }
-
   constructor(
-    public formBulider: FormBuilder,
+    private formBulider: FormBuilder,
     private ngZone: NgZone,
     private router: Router,
     private connectionService: ConnectionService,
     private deviceService: DeviceService,
     private logService: LogService
   ) { }
-
+  ngOnInit() {
+    this.formConnection()
+    this.getDeviceList()
+  }
   formConnection() {
     this.addConnectionForm = this.formBulider.group({
       id: [uuidv4(), [Validators.required, Validators.minLength(36)]],
@@ -80,13 +73,19 @@ export class AddConnectionComponent implements OnInit {
   }
 
   toString(data: any): string {
-    return JSON.stringify(data)
+    return JSON.stringify(data, null, 2)
   }
 
   getDeviceList() {
     return this.deviceService.GetDevices().subscribe((data: any) => {
+      const tmp = new Device()
+      data.unshift(tmp)
       this.deviceList = data
     })
+  }
+
+  gotoDevice(deviceId: string) {
+    this.router.navigate(['edit-device/', deviceId])
   }
 
   submitForm() {

@@ -8,8 +8,15 @@
  * ----------   -------   ------------------------------
  * 2023-05-21   C2RLO
  */
+
 import { v4 as uuidv4 } from 'uuid'
 
+
+/**
+ * @description
+ * @export
+ * @class Connection
+ */
 export class Connection {
   id: string
   name: string

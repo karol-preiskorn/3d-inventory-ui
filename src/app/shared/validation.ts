@@ -15,7 +15,11 @@
  */
 
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms'
-
+/**
+ * @description custm validation form shared module
+ * @export
+ * @class Validation
+ */
 export default class Validation {
   static match(controlName: string, checkControlName: string): ValidatorFn {
     return (controls: AbstractControl) => {
@@ -35,12 +39,18 @@ export default class Validation {
     }
   }
 
+  /**
+   * One of deviceId, modelId and connectionId have to set
+   *
+   * @param {AbstractControl} control
+   * @type {ValidatorFn}
+   * @memberof Validation
+   */
   atLeastOneValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     let i = 0
     if (control.get('deviceId')?.value != '') i++
     if (control.get('modelId')?.value != '') i++
     if (control.get('connectionId')?.value != '') i++
-    if (control.get('attributeDictionaryId')?.value != '') i++
     console.log('count Ids => ' + i)
     if (i > 1 || i == 0) {
       return { atLeastOneValidator: true }
@@ -49,5 +59,19 @@ export default class Validation {
     } else {
       return { atLeastOneValidator: true }
     }
+  }
+/**
+ * @description check is it number
+ * @param {AbstractControl} control
+ * @type {ValidatorFn}
+ * @memberof Validation
+ */
+numberValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    if (isNaN(control?.value)) {
+      return {
+        number: true
+      }
+    }
+    return null;
   }
 }

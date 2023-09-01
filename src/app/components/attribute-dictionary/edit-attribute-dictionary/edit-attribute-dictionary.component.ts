@@ -9,6 +9,7 @@ import { ComponentDictionary } from 'src/app/shared/component-dictionary'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 import { v4 as uuidv4 } from 'uuid'
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-edit-attribute-dictionary',
@@ -37,7 +38,7 @@ export class EditAttributeDictionaryComponent implements OnInit {
     return this.attributeDictionaryService
       .GetAttributeDictionary(this.inputId)
       .subscribe((data: AttributeDictionary) => {
-        console.log('GetAttributeDictionary(' + this.inputId + ') => ' + JSON.stringify(data))
+        console.log('GetAttributeDictionary(' + this.inputId + ') => ' + JSON.stringify(data, null, 2))
         this.attributeDictionary = data
         this.form.setValue({
           id: data.id,
@@ -97,7 +98,7 @@ export class EditAttributeDictionaryComponent implements OnInit {
     return this.form.get('component')
   }
   toString(data: any): string {
-    return JSON.stringify(data)
+    return JSON.stringify(data, null, ' ')
   }
   submitForm() {
     this.attributeDictionaryService.UpdateAttributeDictionary(this.inputId, this.form.value as AttributeDictionary)

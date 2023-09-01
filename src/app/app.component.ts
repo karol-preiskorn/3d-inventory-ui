@@ -8,6 +8,17 @@ import { setTheme } from 'ngx-bootstrap/utils'
 })
 export class AppComponent {
   title = '3d-inventory-angular-ui'
+  public myTheme: string = "light";
+
+  themeSwitch() {
+    if (this.myTheme === "light") {
+      console.log('theme dark')
+      this.myTheme = "dark"
+    } else {
+      console.log('theme light')
+      this.myTheme = "light"
+    }
+  }
 
   constructor() {
     setTheme('bs5')
