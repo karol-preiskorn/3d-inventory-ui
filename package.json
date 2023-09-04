@@ -119,7 +119,7 @@
     "ng-packagr": "^16.2.0",
     "nyc": "^15.1.0",
     "prettier": "3.0.2",
-    "three": "^0.155.0",
+    "three": "^0.156.0",
     "typescript": "^5.1.6",
     "unique-names-generator": "^4.7.1",
     "uuid": "^9.0.0"
