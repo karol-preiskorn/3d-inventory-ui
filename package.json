@@ -103,7 +103,7 @@
     "@types/node-sass": "^4.11.3",
     "@types/path-browserify": "^1.0.0",
     "@types/prismjs": "^1.26.0",
-    "@types/three": "^0.156.0",
+    "@types/three": "^0.157.2",
     "@types/uuid": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",
