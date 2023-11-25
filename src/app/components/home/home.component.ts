@@ -1,6 +1,5 @@
 import { Component } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { MarkdownService } from 'ngx-markdown'
 
 @Component({
   selector: 'app-home',
@@ -9,12 +8,11 @@ import { MarkdownService } from 'ngx-markdown'
 })
 export class HomeComponent {
   md: string | undefined
-  issues: any
   githubIssuesUrl =
     'https://api.github.com/karol-preiskorn/3d-inventory-angular-ui/issues'
   githubIssuesUrl2 = 'https://api.github.com/repositories/600698591/issues'
   // TODO: get this form .env
-  authToken = 
+  authToken = ''
   baseUrl = 'https://api.github.com'
 
   constructor(private http: HttpClient) {}
@@ -47,13 +45,13 @@ export class HomeComponent {
     //   })
   }
 
-  onLoad(data: unknown) {
-    // console.log(this.md + ' ' + data)
-  }
+  // onLoad(data: unknown) {
+  //   // console.log(this.md + ' ' + data)
+  // }
 
-  onError(data: unknown) {
-    // console.log(this.md + ' ' + data)
-  }
+  // onError(data: unknown) {
+  //   // console.log(this.md + ' ' + data)
+  // }
 
   async getIssues() {
     // const { data: root } = await this.octokit.request('GET /')
