@@ -14,8 +14,7 @@ export class HomeComponent {
     'https://api.github.com/karol-preiskorn/3d-inventory-angular-ui/issues'
   githubIssuesUrl2 = 'https://api.github.com/repositories/600698591/issues'
   // TODO: get this form .env
-  authToken =
-    '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'
+  authToken = 
   baseUrl = 'https://api.github.com'
 
   constructor(private http: HttpClient) {}

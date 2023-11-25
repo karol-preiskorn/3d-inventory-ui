@@ -13,7 +13,7 @@
         [ngClass]="{
           'is-invalid': this.addDeviceForm.controls.name.status != 'VALID',
           'is-valid': this.addDeviceForm.controls.name.status == 'VALID',
-          'form-select': true
+          'form-control': true
         }"></textarea>
       <div *ngIf="this.addDeviceForm.controls.name.errors" class="invalid-feedback">
         <div *ngIf="this.addDeviceForm.controls.name.errors.required">Name is required</div>
@@ -94,7 +94,7 @@
           <select
             (change)="changeModelId($event)"
             formControlName="modelId"
-            class="form-control"
+            class="form-select"
             id="modelId"
             required
             [ngClass]="{
