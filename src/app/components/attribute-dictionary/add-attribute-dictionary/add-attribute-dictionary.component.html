@@ -12,7 +12,7 @@
         [ngClass]="{
           'is-invalid': this.addAttributeDictionaryForm.controls.id.status != 'VALID',
           'is-valid': this.addAttributeDictionaryForm.controls.id.status == 'VALID',
-          'form-select': true
+          'form-control': true
         }" />
       <div *ngIf="this.addAttributeDictionaryForm.controls.id.errors" class="invalid-feedback">
         <div *ngIf="this.addAttributeDictionaryForm.controls.id.errors.required">Id is required</div>
@@ -25,7 +25,7 @@
         [ngClass]="{
           'is-invalid': this.addAttributeDictionaryForm.controls.name.status != 'VALID',
           'is-valid': this.addAttributeDictionaryForm.controls.name.status == 'VALID',
-          'form-select': true
+          'form-control': true
         }"
         formControlName="name"
         id="name"

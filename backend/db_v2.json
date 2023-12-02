@@ -28,7 +28,7 @@
   "devices": [
     {
       "id": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
-      "name": "Device 2 (new2)",
+      "name": "Device 8",
       "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
       "position": {
         "x": "4",
@@ -991,6 +991,22 @@
       "operation": "Create",
       "component": "Attributes",
       "message": "{\n  \"id\": \"67916cfb-b119-449e-b1f2-903ee3e07826\",\n  \"deviceId\": \"\",\n  \"modelId\": \"e13aea31-cce3-4877-ba29-740f8392ddd2\",\n  \"connectionId\": \"\",\n  \"attributeDictionaryId\": \"489d6288-f336-4915-b753-a1071879c6d3\",\n  \"value\": \"m2\"\n}"
+    },
+    {
+      "id": "b86b5549-4ebd-483c-9cca-c45b65746b2d",
+      "date": "2023/11/07 07:13:55.89",
+      "object": "e802a1de-9a13-4ac9-b148-b503ec304383",
+      "operation": "Update",
+      "component": "Attribute Dictionary",
+      "message": "{\n \"id\": \"e802a1de-9a13-4ac9-b148-b503ec304383\",\n \"name\": \"Attribute Brigde Connectivity no 2\",\n \"type\": \"Hubs\",\n \"category\": \"Facility\",\n \"component\": \"attribute\"\n}"
+    },
+    {
+      "id": "fcb387d6-bb30-43a6-9d54-3b471668474d",
+      "date": "2023/11/07 07:14:41.50",
+      "object": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
+      "operation": "Update",
+      "component": "Devices",
+      "message": "{\"id\":\"5606dcf9-8c4f-475b-9e5c-edb54e7a864a\",\"name\":\"Device 8\",\"modelId\":\"e13aea31-cce3-4877-ba29-740f8392ddd2\",\"position\":{\"x\":\"4\",\"y\":\"3\",\"h\":\"0\"}}"
     }
   ],
   "models": [
@@ -1089,7 +1105,7 @@
     {
       "id": "e802a1de-9a13-4ac9-b148-b503ec304383",
       "name": "Attribute Brigde Connectivity no 2",
-      "type": "Security Device",
+      "type": "Hubs",
       "category": "Facility",
       "component": "attribute"
     },
