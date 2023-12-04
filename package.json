@@ -93,7 +93,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.0.0",
     "@angular/cli": "^16.0.0",
-    "@angular/compiler-cli": "^16.0.0",
+    "@angular/compiler-cli": "^17.0.5",
     "@angular/localize": "^16.0.0",
     "@types/cors": "^2.8.17",
     "@types/eslint": "^8.44.7",
