@@ -51,10 +51,6 @@ Project create `3d inventory`. A simple solution that allows you to build a spat
 
 ## Motivation
 
-This project solves several problems I encountered while integrating inventory database solutions in a corporate environment.
-
-I want to focus here to topic build database inventory applications and interfaces.
-
 I'm programming to incorporate database systems. This project covers relevant topics and issues related to create simple and efficient platform for IT inventory.
 
 ## Technology stack
