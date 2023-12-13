@@ -34,22 +34,28 @@
           2. [MongoDB](#mongodb)
    13. [Contributing](#contributing)
    14. [Next todo](#next-todo)
+  
 
-## Description
+[![wakatime](https://wakatime.com/badge/user/3bbeedbe-0c6a-4a01-b3cd-a85d319a03bf/project/018c62ce-6164-4200-bca9-be53af7f6d80.svg)](https://wakatime.com/badge/user/3bbeedbe-0c6a-4a01-b3cd-a85d319a03bf/project/018c62ce-6164-4200-bca9-be53af7f6d80)
+[![GitHub latest commit](https://badgen.net/github/last-commit/karol-preiskorn/3d-inventory-angular-ui)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/commit/)
+[![GitHub stars](https://img.shields.io/github/stars/karol-preiskorn/3d-inventory-angular-ui.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/stargazers/)
+[![GitHub issues](https://img.shields.io/github/issues/karol-preiskorn/3d-inventory-angular-ui.svg)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/issues/)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+[![TypeScript](https://img.shields.io/badge/--3178C6?logo=typescript&logoColor=ffffff)](https://www.typescriptlang.org/)
+[![Npm](https://badgen.net/badge/icon/npm?icon=npm&label)](https://https://npmjs.com/)
+[![GitHub license](https://badgen.net/github/license/karol-preiskorn/3d-inventory-angular-ui)](https://github.com/karol-preiskorn/3d-inventory-angular-ui/blob/master/LICENSE)
 
-### About project
+## About project
 
 Project create `3d inventory`. A simple solution that allows you to build a spatial and database representation of all types of warehouses and server rooms.
 
-### About background and motivation
+## Motivation
 
 This project solves several problems I encountered while integrating inventory database solutions in a corporate environment.
 
 I want to focus here to topic build database inventory applications and interfaces.
 
-I'm programming to incorporate database systems. I develop in `PLSQL` and `ABAP`. I have some experience in create frontend/interfaces to database app in `Node.JS` (`Rx`/`Ag`), `Python` and `Java`. This project covers relevant topics and issues related to create simple and efficient platform for IT inventory.
-
-You are welcome to cooperate and leave a few words of comment.
+I'm programming to incorporate database systems. This project covers relevant topics and issues related to create simple and efficient platform for IT inventory.
 
 ## Technology stack
 
