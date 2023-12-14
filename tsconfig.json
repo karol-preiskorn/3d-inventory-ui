@@ -1,4 +1,4 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */ {
+/* To learn more about this file see: https://angular.io/config/tsconfig. */{
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
@@ -14,7 +14,10 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
-    "lib": ["es2022", "dom"],
+    "lib": [
+      "es2022",
+      "dom"
+    ],
     "module": "es2022",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
@@ -33,5 +36,8 @@
     "src/test.ts",
     "src/**/*.spec.ts"
   ],
-  "include": ["src/**/*.ts", "src/**/*.d.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/app/**/*.ts"
+  ]
 }
