@@ -1,5 +1,5 @@
 ﻿/*
-# File:        @/src/cddi/version-change.py
+# File:        src/cddi/version-change.js
 # Description:
 # Used by:
 # Dependency:
