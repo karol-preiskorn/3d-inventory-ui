@@ -2,7 +2,7 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CAF7683B-83E7-055A-EC26-47FA0E5555F6" schemaObject="2E57B3AC-A335-158D-F66B-1F85FCBC80E9" name="MODELS">
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:44:19 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <ordsAlias>m</ordsAlias>
 <useDDLTransformationScript>true</useDDLTransformationScript>
 <allowColumnReorder>false</allowColumnReorder>
@@ -13,7 +13,7 @@
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:44:19 UTC</createdTime>
 <commentInRDBMS><![CDATA[universal device identity ]]></commentInRDBMS>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
@@ -25,7 +25,7 @@
 <Column name="NAME" id="110ED1F7-AFCC-7CCA-D4EB-E0065DB4F272">
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:44:19 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
@@ -37,7 +37,7 @@
 <Column name="DIMENSION" id="D782D3FF-A6EB-2A34-33CF-B67131DA8E65">
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:44:19 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>3</use>
@@ -52,7 +52,7 @@
 <nestedColumn name="DIMENSION.x" id="D277F5CD-48CB-3383-1335-DBCFFCE4E6D5">
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:58:44 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <parentObject>D782D3FF-A6EB-2A34-33CF-B67131DA8E65</parentObject>
 <structAttributeID>FC7DDF81-06B8-40F5-BC74-F6A6953685DD</structAttributeID>
@@ -67,7 +67,7 @@
 <nestedColumn name="DIMENSION.y" id="98BEED66-11A5-88D1-9055-81E4AE6E7CE0">
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:58:44 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <parentObject>D782D3FF-A6EB-2A34-33CF-B67131DA8E65</parentObject>
 <structAttributeID>944731C5-08C0-50AE-5330-A2DF8947C677</structAttributeID>
@@ -82,7 +82,7 @@
 <nestedColumn name="DIMENSION.h" id="35388682-98D2-7D1F-AF52-9FE05A9CD109">
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:58:44 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <parentObject>D782D3FF-A6EB-2A34-33CF-B67131DA8E65</parentObject>
 <structAttributeID>98249AAC-4D4D-D4D0-FC94-D3CA66212FCB</structAttributeID>
@@ -99,7 +99,7 @@
 <ind_PK_UK id="60882945-4CD2-9B88-9778-624AA3551BAC" name="MODELS_PK">
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:44:19 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
