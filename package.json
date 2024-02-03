@@ -1,6 +1,6 @@
 {
   "name": "3d-inventory-angular-ui",
-  "version": "0.3.40",
+  "version": "0.3.41",
   "private": true,
   "browser": {
     "fs": false,
