@@ -38,13 +38,24 @@
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:44:19 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>3</use>
 <structuredType>F72C39E0-D1CA-8821-2AD7-A1E95A37D3D1</structuredType>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>50 BYTE</dataTypeSize>
 <ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CATEGORY" id="E48C443D-8E20-F13D-4AA4-3F109576BEC7">
+<createdBy>karol</createdBy>
+<createdTime>2024-02-03 08:38:22 UTC</createdTime>
+<comment><![CDATA[Category device ]]></comment>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>

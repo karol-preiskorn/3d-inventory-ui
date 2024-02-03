@@ -1,49 +1,36 @@
 # 3d inventory
 
-![Entity model](src/assets/3d-inventory.png)
+- [3d inventory](#3d-inventory)
+  - [About project](#about-project)
+  - [Motivation](#motivation)
+  - [Technology stack](#technology-stack)
+  - [Demo](#demo)
+  - [Data Model](#data-model)
+    - [Entity model](#entity-model)
+    - [Logical model](#logical-model)
+    - [Entity attributes](#entity-attributes)
+  - [Current functionality](#current-functionality)
+    - [List devices](#list-devices)
+    - [Models](#models)
+    - [Attributes](#attributes)
+    - [Attribute Dictionary](#attribute-dictionary)
+    - [Connections](#connections)
+    - [Application 3d view](#application-3d-view)
+  - [Run](#run)
+  - [Upgrades dependences](#upgrades-dependences)
+  - [Debug](#debug)
+  - [Deploy](#deploy)
+    - [AWS](#aws)
+  - [Json server](#json-server)
+  - [Swagger client to generate API structures](#swagger-client-to-generate-api-structures)
+  - [APIs](#apis)
+    - [Oracle](#oracle)
+    - [Mongo](#mongo)
+  - [Contributing](#contributing)
+  - [Next todo](#next-todo)
 
-1. [3d inventory](#3d-inventory)
-   1. [Description](#description)
-      1. [About project](#about-project)
-      2. [About background and motivation](#about-background-and-motivation)
-   2. [Technology stack](#technology-stack)
-   3. [Demo](#demo)
-   4. [Data Model](#data-model)
-      1. [Entity model](#entity-model)
-      2. [Logical model](#logical-model)
-      3. [Entity attributes](#entity-attributes)
-   5. [Current functionality](#current-functionality)
-      1. [List devices](#list-devices)
-         1. [Edit device](#edit-device)
-      2. [Models](#models)
-      3. [Attributes](#attributes)
-      4. [Attribute Dictionary](#attribute-dictionary)
-      5. [Connections](#connections)
-      6. [Application 3d view](#application-3d-view)
-   6. [Run](#run)
-   7. [Upgrades dependences](#upgrades-dependences)
-   8. [Debug](#debug)
-   9. [Deploy](#deploy)
-      1. [AWS](#aws)
-   10. [Json server](#json-server)
-   11. [Swagger client to generate API structures](#swagger-client-to-generate-api-structures)
-   12. [APIs](#apis)
-       1. [Oracle](#oracle)
-       2. [Mongo](#mongo)
-          1. [Mongo Atlas](#mongo-atlas)
-          2. [MongoDB](#mongodb)
-   13. [Contributing](#contributing)
-   14. [Next todo](#next-todo)
-  
-
-[![wakatime](https://wakatime.com/badge/user/3bbeedbe-0c6a-4a01-b3cd-a85d319a03bf/project/018c62ce-6164-4200-bca9-be53af7f6d80.svg)](https://wakatime.com/badge/user/3bbeedbe-0c6a-4a01-b3cd-a85d319a03bf/project/018c62ce-6164-4200-bca9-be53af7f6d80)
-[![GitHub latest commit](https://badgen.net/github/last-commit/karol-preiskorn/3d-inventory-angular-ui)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/commit/)
-[![GitHub stars](https://img.shields.io/github/stars/karol-preiskorn/3d-inventory-angular-ui.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/stargazers/)
-[![GitHub issues](https://img.shields.io/github/issues/karol-preiskorn/3d-inventory-angular-ui.svg)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/issues/)
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
-[![TypeScript](https://img.shields.io/badge/--3178C6?logo=typescript&logoColor=ffffff)](https://www.typescriptlang.org/)
-[![Npm](https://badgen.net/badge/icon/npm?icon=npm&label)](https://https://npmjs.com/)
-[![GitHub license](https://badgen.net/github/license/karol-preiskorn/3d-inventory-angular-ui)](https://github.com/karol-preiskorn/3d-inventory-angular-ui/blob/master/LICENSE)
+[![wakatime](https://wakatime.com/badge/user/3bbeedbe-0c6a-4a01-b3cd-a85d319a03bf/project/018c62ce-6164-4200-bca9-be53af7f6d80.svg)](https://wakatime.com/badge/user/3bbeedbe-0c6a-4a01-b3cd-a85d319a03bf/project/018c62ce-6164-4200-bca9-be53af7f6d80) [![GitHub latest commit](https://badgen.net/github/last-commit/karol-preiskorn/3d-inventory-angular-ui)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/commit/) [![GitHub stars](https://img.shields.io/github/stars/karol-preiskorn/3d-inventory-angular-ui.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/stargazers/) [![GitHub issues](https://img.shields.io/github/issues/karol-preiskorn/3d-inventory-angular-ui.svg)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/issues/)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/) [![TypeScript](https://img.shields.io/badge/--3178C6?logo=typescript&logoColor=ffffff)](https://www.typescriptlang.org/) [![Npm](https://badgen.net/badge/icon/npm?icon=npm&label)](https://https://npmjs.com/) [![GitHub license](https://badgen.net/github/license/karol-preiskorn/3d-inventory-angular-ui)](https://github.com/karol-preiskorn/3d-inventory-angular-ui/blob/master/LICENSE)
 
 ## About project
 
@@ -64,7 +51,7 @@ I'm programming to incorporate database systems. This project covers relevant to
 
 ## Demo
 
-[![3-d inventory the video](https://youtu.be/rNOxpZ0ti1Q)](https://youtu.be/rNOxpZ0ti1Q)
+![3-d inventory the video](https://youtu.be/rNOxpZ0ti1Q)
 
 ## Data Model
 
@@ -78,11 +65,11 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
 
 ### Entity model
 
-<img title="Entity mode" src="src/assets/img/Screenshot%20from%202023-05-20%2016-54-30-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="95%"/>
+<img title="Entity mode" src="src/assets/Logical.png" style="filter: drop-shadow(8px 8px 8px grey); border-radius: 1%;" width="95%"/>
 
 ### Logical model
 
-<img title="Logical model" src="src/assets/img/Screenshot%20from%202023-05-20%2017-20-39-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="95%"/>
+<img title="Logical model" src="src/assets/3d-inventory.png" style="filter: drop-shadow(8px 8px 8px grey); border-radius: 1%;" width="95%"/>
 
 ### Entity attributes
 
@@ -151,7 +138,6 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
   - `FLOORS`
   - `CONNECTIONS`
 - Show dynamic attributes for `Device`: ![Device with attributes](image.png)
-
 
 ### List devices
 
@@ -296,12 +282,8 @@ Not forget about [code guide-lines](https://github.com/Microsoft/TypeScript/wiki
 
 ## Next todo
 
-Development plan:
-
-- [ ] connection beetween showind 3d and defined devices.
-- [ ] build interfance to mongo-atlas (started)
-- [ ] build intergance to mongodb
-- [ ] build graphql api
+- [ ] connection between showing 3d and defined devices.
+- [x] build interfance to Mongo Atlas
 - [x] Set position and model in data ans show this data in `3d`.
 - [ ] Show attributes of `DEVICES`, `MODELS` and `CONNECTIONS`.
 - [x] Generate `FLOOR`
@@ -314,3 +296,4 @@ Development plan:
 - [x] Add light/dark theme switch in `UI`
 - [ ] For development `JSON` server -> rest `Oracle` --> rest `Neo4j`
 - [ ] Use <https://formly.dev/> ?
+- [ ] Create blog on GitHub Pages

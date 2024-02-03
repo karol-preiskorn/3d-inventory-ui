@@ -58,24 +58,37 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>3</use>
-<structuredType>F72C39E0-D1CA-8821-2AD7-A1E95A37D3D1</structuredType>
+<structuredType>F81EAAE1-E160-1336-6163-C9E445276F2E</structuredType>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>50 BYTE</dataTypeSize>
 <ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="CATEGORY" id="888CCF07-C806-4873-608E-EA0AD113C4D5">
+<createdBy>karol</createdBy>
+<createdTime>2024-02-03 11:12:46 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <nestedAttributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<nestedAttribute name="DIMENSION.x" directorySegmentName="seg_0" id="3C1984DB-1630-61E3-9A07-59468CF79D43">
+<nestedAttribute name="DIMENSION.width" directorySegmentName="seg_0" id="59424439-F5F7-5DF5-75D5-51723E685778">
 <createdBy>karol</createdBy>
-<createdTime>2023-05-20 11:51:50 UTC</createdTime>
-<generatorID>D277F5CD-48CB-3383-1335-DBCFFCE4E6D5</generatorID>
+<createdTime>2024-02-03 11:17:30 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <engineerTo>
 <item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <parentObject>0EDAC9EC-546D-3CC9-44A9-43ECB090B636</parentObject>
-<structAttributeID>FC7DDF81-06B8-40F5-BC74-F6A6953685DD</structAttributeID>
+<structAttributeID>FBC013C8-9AD2-109F-E10D-A2C9E5E4B0E2</structAttributeID>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -83,17 +96,16 @@
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
 </nestedAttribute>
-<nestedAttribute name="DIMENSION.y" directorySegmentName="seg_0" id="5B09C7DA-699A-14D4-3EF6-606727234BF3">
+<nestedAttribute name="DIMENSION.height" directorySegmentName="seg_0" id="03E42F15-D0F6-562F-395C-6D2B45D9C561">
 <createdBy>karol</createdBy>
-<createdTime>2023-05-20 11:51:50 UTC</createdTime>
-<generatorID>98BEED66-11A5-88D1-9055-81E4AE6E7CE0</generatorID>
+<createdTime>2024-02-03 11:17:30 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <engineerTo>
 <item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <parentObject>0EDAC9EC-546D-3CC9-44A9-43ECB090B636</parentObject>
-<structAttributeID>944731C5-08C0-50AE-5330-A2DF8947C677</structAttributeID>
+<structAttributeID>1A55C27F-3AFC-15FA-465E-21FC5B2C5CB0</structAttributeID>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -101,17 +113,16 @@
 <dataTypeScale>0</dataTypeScale>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
 </nestedAttribute>
-<nestedAttribute name="DIMENSION.h" directorySegmentName="seg_0" id="EB44AB36-6F6D-335C-4536-3E2C2EEBF8A2">
+<nestedAttribute name="DIMENSION.depth" directorySegmentName="seg_0" id="D20C5440-798A-651E-6700-2FDD8114BAA9">
 <createdBy>karol</createdBy>
-<createdTime>2023-05-20 11:51:50 UTC</createdTime>
-<generatorID>35388682-98D2-7D1F-AF52-9FE05A9CD109</generatorID>
+<createdTime>2024-02-03 11:17:30 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <engineerTo>
 <item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <parentObject>0EDAC9EC-546D-3CC9-44A9-43ECB090B636</parentObject>
-<structAttributeID>98249AAC-4D4D-D4D0-FC94-D3CA66212FCB</structAttributeID>
+<structAttributeID>8448ABA9-4BB1-262A-A4AF-5E24DE4EA91F</structAttributeID>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
