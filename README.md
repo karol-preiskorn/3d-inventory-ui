@@ -8,24 +8,16 @@
   - [Data Model](#data-model)
     - [Entity model](#entity-model)
     - [Logical model](#logical-model)
-  - [Current functionality](#current-functionality)
     - [List devices](#list-devices)
     - [Models](#models)
     - [Attributes](#attributes)
     - [Attribute Dictionary](#attribute-dictionary)
     - [Connections](#connections)
-    - [Application 3d view](#application-3d-view)
   - [Run](#run)
-  - [Upgrades dependences](#upgrades-dependences)
-  - [Debug](#debug)
   - [Deploy](#deploy)
     - [AWS](#aws)
   - [Json server](#json-server)
-  - [Swagger client to generate API structures](#swagger-client-to-generate-api-structures)
-  - [APIs](#apis)
-    - [Oracle](#oracle)
-    - [Mongo Atlas](#mongo-atlas)
-    - [MongoDB](#mongodb)
+  - [APIs repos](#apis-repos)
   - [Contributing](#contributing)
   - [Next todo](#next-todo)
 
@@ -50,16 +42,20 @@ I'm programming to incorporate database systems. This project covers relevant to
 
 ## Technology stack
 
-- `Angular` 15+ (as a Corp framework)
+- `Angular` 16+ - as a Corp framework.
 - `Bootstrap` 5.3+ - logic for insert `UI` data
-- `Tree` 150+ (as best graph framework)
-- [`Neo4j`|`Oracle`|`jsonserver`] `Oracle` as database (for development `json server` -> rest `Oracle` -> rest `Neo4j`. I want in this project try different solution and different data structure and storage.
+- `Tree` 150+ - as best graph framework.
+- [`MongoAtlas`|`Oracle`|`jsonserver`] I want in this project try different solution and different data structure and storage datamodels (relational and noSQL.
 - `REST` - prepared `API` in use in `Swagger`.
-- [`Docker`|`OpenShift`|`Podman`|`GitHub Container`] as containers
+- `Podman`|`Google Cloud` as containers
 
 ## Demo
 
-![3-d inventory the video](https://youtu.be/rNOxpZ0ti1Q)
+Demo 3d inventory use three.js framework.
+
+[![3-d inventory the video](src/assets/img/Screenshot%20from%202023-05-01%2008-29-25-watermark.png)](https://youtu.be/rNOxpZ0ti1Q '3-d inventory the video')
+
+This project build from this example contain `three.js` in `Angular`[Tutorial to render 3D Cube in Angular + Three.js](https://srivastavaanurag79.medium.com/hello-cube-your-first-three-js-scene-in-angular-176c44b9c6c0).
 
 ## Data Model
 
@@ -79,25 +75,9 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
 
 <img title="Logical model" src="src/assets/3d-inventory.png" style="filter: drop-shadow(8px 8px 8px grey); border-radius: 1%;" width="95%"/>
 
-## Current functionality
-
-- [Reactive forms](https://angular.io/guide/reactive-forms?ref=cup-t) in `Angular` 15+
-- [Bootstrap 5.3](https://getbootstrap.com/)+ show
-- `3D` representation in [three.js](https://threejs.org/) 150+
-- Dynamic define attributes to components:
-  - `DEVICES`
-  - `MODELS`
-  - `FLOORS`
-  - `CONNECTIONS`
-- Show dynamic attributes for `Device`: ![Device with attributes](image.png)
-
 ### List devices
 
 <img title="List devices" src="src/assets/img/Screenshot%202023-07-14%20at%2008-48-50%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
-
-#### Edit device
-
-<img title="Edit device" src="/src/assets/img/edit-device.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
 
 ### Models
 
@@ -115,14 +95,6 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
 
 <img title="Connections" src="src/assets/img/Screenshot%202023-07-14%20at%2008-50-00%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
 
-### Application 3d view
-
-View in `3d` inventory use [three.js](https://threejs.org/) framework.
-
-<img title="Example random generated blocks in floor" src="src/assets/img/Screenshot%20from%202023-05-01%2008-29-25-watermark.png" width="95%"/>
-
-This project build from this example contain `three.js` in `Angular`[Tutorial to render 3D Cube in Angular + Three.js](https://srivastavaanurag79.medium.com/hello-cube-your-first-three-js-scene-in-angular-176c44b9c6c0).
-
 ## Run
 
 ```bash
@@ -139,17 +111,6 @@ http://localhost:4200
 ```
 
 On this stage of project I use single branch `master`. If I finish this stage when app will be usefully I will use also develop.
-
-## Upgrades dependences
-
-- For Ag <https://angular.io/guide/versions>
-- All use `npm `
-
-## Debug
-
-Try use Firefox plugin in `VS code`. Without success i used Chronium.
-
-- <https://github.com/microsoft/vscode-recipes/tree/main/Angular-CLI>
 
 ## Deploy
 
@@ -194,40 +155,16 @@ baseurl = 'http://localhost:3000';
 
 Used by `.env` service `this.environmentServiceClass.getSettings('BASEURL')`.
 
-## Swagger client to generate API structures
+## APIs repos
 
-Abandoned until I do not have clear situation with data entity and operations. Now I use `json-swager` to store data.
+- Oracle [3d-inventory-oracle-api](https://github.com/karol-preiskorn/3d-inventory-oracle-api)
 
-```bash
-ng generate library swagger-client
-```
-
-Generate library: `projects/swagger-client`
-
-Copy to src all generated by `swaggercodegen` code
-
-## APIs
-
-### Oracle
-
-[3d-inventory-oracle-api](https://github.com/karol-preiskorn/3d-inventory-oracle-api)
-
-### Mongo Atlas
-
-One of good options `3d-inventory` data storage.
-
-[3d-inventory-mongo-api](https://github.com/karol-preiskorn/3d-inventory-mongo-api)
-
-### MongoDB
-
-Under consideration
+- Mongo Atlas [3d-inventory-mongo-api](https://github.com/karol-preiskorn/3d-inventory-mongo-api)
 
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an [issue](https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues/new) first to discuss what you would like to change.
-
 Please make sure to update tests as appropriate.
-
 Not forget about [code guide-lines](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines).
 
 ## Next todo
@@ -235,15 +172,14 @@ Not forget about [code guide-lines](https://github.com/Microsoft/TypeScript/wiki
 - [ ] connection between showing 3d and defined devices.
 - [x] build interfance to Mongo Atlas
 - [x] Set position and model in data ans show this data in `3d`.
-- [ ] Show attributes of `DEVICES`, `MODELS` and `CONNECTIONS`.
+- [ ] Show attributes of `DEVICES`, `MODELS` and `CONNECTIONS`. Waiting for MongoDB|Oracle API.
 - [x] Generate `FLOOR`
 - [ ] as array of square (x, y, h)
-- [ ] Use `Mongo` to strore `JSON` data. (starting)
-- [ ] `Docker` -> serve application in `Github Pages` --> `AWS EC2`
+- [x] Use `Mongo` to strore `JSON` data. (starting)
+- [x] `Docker` -> serve application in `Github Pages` --> `AWS EC2`
 - [ ] Use Dev container in `GitHub` for development.
 - [ ] Recognize `Grunt`/`Glup` to `CI`/`DI` use in this project.
-- [ ] Add actual tasks form `GitHub` during build in README.md.
+- [x] Add actual tasks form `GitHub` during build in README.md.
 - [x] Add light/dark theme switch in `UI`
-- [ ] For development `JSON` server -> rest `Oracle` --> rest `Neo4j`
 - [ ] Use <https://formly.dev/> ?
-- [ ] Create blog on GitHub Pages
+- [ ] Create blog on GitHub Pages or use https://ultimasolution.pl
