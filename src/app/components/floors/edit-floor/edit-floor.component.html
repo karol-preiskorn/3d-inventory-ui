@@ -5,7 +5,7 @@
       <label><i class="bi bi-app"></i> {{ this.floorForm.controls.id.value }}</label>
     </div>
 
-    <h4>Adress</h4>
+    <h4>Address</h4>
 
     <div class="col border">
       <div class="form-group mb-3">
@@ -21,20 +21,15 @@
         </div>
       </div>
 
-      <div formGroupName="adress">
+      <div formGroupName="address">
         <div class="row">
           <div class="col">
             <div class="form-group mb-3">
               <label for="street" class="form-label">Street</label>
-              <input type="text" formControlName="street" id="street" required [ngClass]="{
-                  'is-invalid': this.floorForm.controls.adress.controls.street.status != 'VALID',
-                  'is-valid': this.floorForm.controls.adress.controls.street.status == 'VALID',
-                  'form-control': true
-                }" />
-              <div *ngIf="this.floorForm.controls.adress.controls.street.errors" class="invalid-feedback">
-                <div *ngIf="this.floorForm.controls.adress.controls.street.errors.required">street is required
+              <div *ngIf="this.floorForm.controls.address.controls.street.errors" class="invalid-feedback">
+                <div *ngIf="this.floorForm.controls.address.controls.street.errors.required">street is required
                 </div>
-                <div *ngIf="this.floorForm.controls.adress.controls.street.errors.minlength">
+                <div *ngIf="this.floorForm.controls.address.controls.street.errors.minlength">
                   street must be at least 1 characters
                 </div>
               </div>
@@ -44,13 +39,13 @@
             <div class="form-group mb-3">
               <label for="city" class="form-label">City</label>
               <input type="text" formControlName="city" id="city" required [ngClass]="{
-                  'is-invalid': this.floorForm.controls.adress.controls.city.status != 'VALID',
-                  'is-valid': this.floorForm.controls.adress.controls.city.status == 'VALID',
+                  'is-invalid': this.floorForm.controls.address.controls.city.status != 'VALID',
+                  'is-valid': this.floorForm.controls.address.controls.city.status == 'VALID',
                   'form-control': true
                 }" />
-              <div *ngIf="this.floorForm.controls.adress.controls.city.errors" class="invalid-feedback">
-                <div *ngIf="this.floorForm.controls.adress.controls.city.errors.required">City is required</div>
-                <div *ngIf="this.floorForm.controls.adress.controls.city.errors.minlength">
+              <div *ngIf="this.floorForm.controls.address.controls.city.errors" class="invalid-feedback">
+                <div *ngIf="this.floorForm.controls.address.controls.city.errors.required">City is required</div>
+                <div *ngIf="this.floorForm.controls.address.controls.city.errors.minlength">
                   City must be at least 1 characters
                 </div>
               </div>
@@ -60,14 +55,14 @@
             <div class="form-group mb-3">
               <label for="country" class="form-label">Country</label>
               <input type="text" formControlName="country" id="country" required [ngClass]="{
-                  'is-invalid': this.floorForm.controls.adress.controls.country.status != 'VALID',
-                  'is-valid': this.floorForm.controls.adress.controls.country.status == 'VALID',
+                  'is-invalid': this.floorForm.controls.address.controls.country.status != 'VALID',
+                  'is-valid': this.floorForm.controls.address.controls.country.status == 'VALID',
                   'form-control': true
                 }" />
-              <div *ngIf="this.floorForm.controls.adress.controls.country.errors" class="invalid-feedback">
-                <div *ngIf="this.floorForm.controls.adress.controls.country.errors.required">country is required
+              <div *ngIf="this.floorForm.controls.address.controls.country.errors" class="invalid-feedback">
+                <div *ngIf="this.floorForm.controls.address.controls.country.errors.required">country is required
                 </div>
-                <div *ngIf="this.floorForm.controls.adress.controls.country.errors.minlength">
+                <div *ngIf="this.floorForm.controls.address.controls.country.errors.minlength">
                   country must be at least 1 characters
                 </div>
               </div>
@@ -77,14 +72,14 @@
             <div class="form-group mb-3">
               <label for="postcode" class="form-label">Postcode</label>
               <input type="text" formControlName="postcode" id="postcode" required [ngClass]="{
-                  'is-invalid': this.floorForm.controls.adress.controls.postcode.status != 'VALID',
-                  'is-valid': this.floorForm.controls.adress.controls.postcode.status == 'VALID',
+                  'is-invalid': this.floorForm.controls.address.controls.postcode.status != 'VALID',
+                  'is-valid': this.floorForm.controls.address.controls.postcode.status == 'VALID',
                   'form-control': true
                 }" />
-              <div *ngIf="this.floorForm.controls.adress.controls.postcode.errors" class="invalid-feedback">
-                <div *ngIf="this.floorForm.controls.adress.controls.postcode.errors.required">code is required
+              <div *ngIf="this.floorForm.controls.address.controls.postcode.errors" class="invalid-feedback">
+                <div *ngIf="this.floorForm.controls.address.controls.postcode.errors.required">code is required
                 </div>
-                <div *ngIf="this.floorForm.controls.adress.controls.postcode.errors.minlength">
+                <div *ngIf="this.floorForm.controls.address.controls.postcode.errors.minlength">
                   Postcode must be at least 5 characters
                 </div>
               </div>
@@ -124,18 +119,18 @@
             <div class="row">
               <div class="col">
                 <div class="form-group mb-3">
-                  <label for="x_pos" class="form-label">X position</label>
-                  <input type="text" formControlName="x_pos" id="x_pos" required [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.x_pos.status != 'VALID',
-                      'is-valid': this.floorForm.controls.dimension.at(i).controls.x_pos.status == 'VALID',
+                  <label for="xPos" class="form-label">X position</label>
+                  <input type="text" formControlName="xPos" id="xPos" required [ngClass]="{
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.xPos.status != 'VALID',
+                      'is-valid': this.floorForm.controls.dimension.at(i).controls.xPos.status == 'VALID',
                       'form-control': true
                     }" />
-                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.x_pos.errors"
+                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.xPos.errors"
                     class="invalid-feedback">
-                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.x_pos.errors?.required">
+                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.xPos.errors?.required">
                       X position is required
                     </div>
-                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.x_pos.errors?.minlength">
+                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.xPos.errors?.minlength">
                       X position must be at least 1 characters
                     </div>
                   </div>
@@ -143,18 +138,18 @@
               </div>
               <div class="col">
                 <div class="form-group mb-3">
-                  <label for="y_pos" class="form-label">Y position</label>
-                  <input type="text" formControlName="y_pos" id="y_pos" required [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.y_pos.status != 'VALID',
-                      'is-valid': this.floorForm.controls.dimension.at(i).controls.y_pos.status == 'VALID',
+                  <label for="yPos" class="form-label">Y position</label>
+                  <input type="text" formControlName="yPos" id="yPos" required [ngClass]="{
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.yPos.status != 'VALID',
+                      'is-valid': this.floorForm.controls.dimension.at(i).controls.yPos.status == 'VALID',
                       'form-control': true
                     }" />
-                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.y_pos.errors"
+                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.yPos.errors"
                     class="invalid-feedback">
-                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.y_pos.errors?.required">
+                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.yPos.errors?.required">
                       Y is required
                     </div>
-                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.y_pos.errors?.minlength">
+                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.yPos.errors?.minlength">
                       Y must be at least 1 characters
                     </div>
                   </div>
@@ -162,18 +157,18 @@
               </div>
               <div class="col">
                 <div class="form-group mb-3">
-                  <label for="h_pos" class="form-label">H position</label>
-                  <input type="text" formControlName="h_pos" id="h_pos" required [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.h_pos.status != 'VALID',
-                      'is-valid': this.floorForm.controls.dimension.at(i).controls.h_pos.status == 'VALID',
+                  <label for="hPos" class="form-label">H position</label>
+                  <input type="text" formControlName="hPos" id="hPos" required [ngClass]="{
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.hPos.status != 'VALID',
+                      'is-valid': this.floorForm.controls.dimension.at(i).controls.hPos.status == 'VALID',
                       'form-control': true
                     }" />
-                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.h_pos.errors"
+                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.hPos.errors"
                     class="invalid-feedback">
-                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.h_pos.errors?.required">
+                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.hPos.errors?.required">
                       H is required
                     </div>
-                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.h_pos.errors?.minlength">
+                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.hPos.errors?.minlength">
                       H must be at least 1 characters
                     </div>
                   </div>

@@ -6,19 +6,21 @@ import { catchError, retry } from 'rxjs/operators'
 import { v4 as uuidv4 } from 'uuid'
 import { Model } from '../shared/model'
 import { LogService } from './log.service'
+import { EnvironmentService } from './environment.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModelsService {
-  baseurl = 'http://localhost:3000'
+  environmentServiceClass = new EnvironmentService()
+  BASEURL = this.environmentServiceClass.getSettings('BASEURL')
   model: Model
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
-  ) {}
+  ) { }
   // Http Headers
   httpOptions = {
     headers: new HttpHeaders({
@@ -28,18 +30,18 @@ export class ModelsService {
 
   GetModels(): Observable<Model[]> {
     return this.http
-      .get<Model[]>(this.baseurl + '/models/')
+      .get<Model[]>(this.BASEURL + '/models/')
       .pipe(catchError(this.errorHandl))
   }
 
   GetModel(id: string | null): Observable<Model> {
     return this.http
-      .get<Model>(this.baseurl + '/models/' + id, this.httpOptions)
+      .get<Model>(this.BASEURL + '/models/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   DeleteModel(id: string): Observable<Model> {
     return this.http
-      .delete<Model>(this.baseurl + '/models/' + id, this.httpOptions)
+      .delete<Model>(this.BASEURL + '/models/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   // POST
@@ -47,7 +49,7 @@ export class ModelsService {
     console.log('Service.CreateModel: ' + JSON.stringify(data, null, ' '))
     return this.http
       .post<Model>(
-        this.baseurl + '/models/',
+        this.BASEURL + '/models/',
         JSON.stringify(data, null, ' '),
         this.httpOptions
       )
@@ -75,7 +77,7 @@ export class ModelsService {
   UpdateModel(id: string | null, data: any): Observable<Model> {
     return this.http
       .put<Model>(
-        this.baseurl + '/models/' + id,
+        this.BASEURL + '/models/' + id,
         JSON.stringify(data, null, ' '),
         this.httpOptions
       )

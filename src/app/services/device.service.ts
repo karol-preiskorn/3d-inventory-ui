@@ -8,13 +8,15 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { Device } from '../shared/device'
 import { LogService } from './log.service'
+import { EnvironmentService } from './environment.service'
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class DeviceService {
-  private baseurl = 'http://localhost:3000'
+  environmentServiceClass = new EnvironmentService()
+  BASEURL = this.environmentServiceClass.getSettings('BASEURL')
   private objectName = 'devices'
 
   constructor(
@@ -32,24 +34,24 @@ export class DeviceService {
 
   GetDevices(): Observable<Device[]> {
     return this.http
-      .get<Device[]>(this.baseurl + '/' + this.objectName + '/')
+      .get<Device[]>(this.BASEURL + '/' + this.objectName + '/')
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   GetDevice(id: string | null): Observable<Device> {
     return this.http
-      .get<Device>(this.baseurl + '/' + this.objectName + '/' + id, this.httpOptions)
+      .get<Device>(this.BASEURL + '/' + this.objectName + '/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
 
   getDeviceSynchronize(id: string | null) {
-    return new SyncRequestClient().get<Device>(this.baseurl + '/' + this.objectName + '/' + id)
+    return new SyncRequestClient().get<Device>(this.BASEURL + '/' + this.objectName + '/' + id)
   }
 
   GetDeviceSynchro(id: string | null): Observable<Device> {
     return this.http
-      .get<Device>(this.baseurl + '/' + this.objectName + '/' + id).pipe(
+      .get<Device>(this.BASEURL + '/' + this.objectName + '/' + id).pipe(
         map(res => {
           return res
         }),
@@ -59,14 +61,14 @@ export class DeviceService {
 
   DeleteDevice(id: string | null): Observable<Device> {
     return this.http
-      .delete<Device>(this.baseurl + '/' + this.objectName + '/' + id, this.httpOptions)
+      .delete<Device>(this.BASEURL + '/' + this.objectName + '/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   CreateDevice(data: Device): Observable<Device> {
     return this.http
       .post<Device>(
-        this.baseurl + '/' + this.objectName + '/',
+        this.BASEURL + '/' + this.objectName + '/',
         JSON.stringify(data, null, ' '),
         this.httpOptions
       )
@@ -94,7 +96,7 @@ export class DeviceService {
   UpdateDevice(id: string | null, data: any): Observable<Device> {
     return this.http
       .put<Device>(
-        this.baseurl + '/' + this.objectName + '/' + id,
+        this.BASEURL + '/' + this.objectName + '/' + id,
         JSON.stringify(data, null, ' '),
         this.httpOptions
       )

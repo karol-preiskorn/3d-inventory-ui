@@ -3,6 +3,7 @@ import { Injectable, Input } from '@angular/core'
 import { Observable, catchError, of, retry, throwError } from 'rxjs'
 import { v4 as uuidv4 } from 'uuid'
 import { getDateString } from '../shared/utils'
+import { EnvironmentService } from './environment.service'
 
 export interface LogParamteres {
   component: string
@@ -29,7 +30,8 @@ export interface LogIn {
   providedIn: 'root',
 })
 export class LogService {
-  baseurl = 'http://localhost:3000'
+  environmentServiceClass = new EnvironmentService()
+  BASEURL = this.environmentServiceClass.getSettings('BASEURL')
   @Input() attributeComponentId: string
 
   constructor(private http: HttpClient) { }
@@ -42,31 +44,31 @@ export class LogService {
 
   GetLogs(): Observable<Log[]> {
     return this.http
-      .get<Log[]>(this.baseurl + '/logs?_sort=date&_order=desc')
+      .get<Log[]>(this.BASEURL + '/logs?_sort=date&_order=desc')
       .pipe(retry(1), catchError(this.handleError))
   }
 
   GetComponentLogs(component: string): Observable<Log[]> {
-    const url = this.baseurl + '/logs?component=' + component + '&_sort=date&_order=desc'
+    const url = this.BASEURL + '/logs?component=' + component + '&_sort=date&_order=desc'
     console.log('LogComponet.GetComponetLogs(' + component + ') ' + url)
     return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
   }
 
   GetObjectsLogs(object: string): Observable<Log[]> {
-    const url = this.baseurl + '/logs?object=' + object + '&_sort=date&_order=desc'
+    const url = this.BASEURL + '/logs?object=' + object + '&_sort=date&_order=desc'
     console.log('LogService.GetObjectsLogs.url: ' + url)
     return this.http.get<Log[]>(url).pipe(catchError(this.handleErrorTemplate<Log[]>('GetObjectsLogs', [])))
   }
 
   GetLogId(id: string | null): Observable<Log> {
     return this.http
-      .get<Log>(this.baseurl + '/logs/' + id, this.httpOptions)
+      .get<Log>(this.BASEURL + '/logs/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError))
   }
 
   DeleteLog(id: string): Observable<Log> {
     return this.http
-      .delete<Log>(this.baseurl + '/logs/' + id, this.httpOptions)
+      .delete<Log>(this.BASEURL + '/logs/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError))
   }
 
@@ -81,13 +83,13 @@ export class LogService {
     }
     console.log('LogService.CreateLog: ' + JSON.stringify(log, null, ' '))
     return this.http
-      .post<Log>(`${this.baseurl}/logs/`, JSON.stringify(log, null, ' '), this.httpOptions)
+      .post<Log>(`${this.BASEURL}/logs/`, JSON.stringify(log, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Log>('CreateLog', log)))
   }
 
   postLog(data: Log): Observable<Log> {
     return this.http
-      .post<Log>(`${this.baseurl}/logs`, JSON.stringify(data, null, ' '), this.httpOptions)
+      .post<Log>(`${this.BASEURL}/logs`, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Log>('postLog', data)))
   }
 
@@ -98,7 +100,7 @@ export class LogService {
 
   UpdateLog(id: string | null, data: JSON): Observable<Log> {
     return this.http
-      .put<Log>(this.baseurl + '/logs/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
+      .put<Log>(this.BASEURL + '/logs/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.handleError))
   }
 

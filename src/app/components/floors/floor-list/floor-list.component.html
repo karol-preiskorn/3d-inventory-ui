@@ -3,13 +3,12 @@
   <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th scope="col">Name/Adress</th>
+        <th scope="col">Name/Address</th>
         <th scope="col">Dimension</th>
       </tr>
     </thead>
     <tbody>
-      <tr
-        *ngFor="
+      <tr *ngFor="
           let floor of floorList
             | paginate
               : {
@@ -18,27 +17,29 @@
                   currentPage: floorListPage
                 }
         ">
-        <td tooltip="{{ floor.id }}">{{ floor.name }}<br>
+        <td [tooltip]="floor.id">{{ floor.name }}<br>
           <div class="text-body-tertiary small p-2">
-            {{ floor.adress.street }}<br />
-            {{ floor.adress.city }} {{ floor.adress.postcode }} {{ floor.adress.country }}
+            {{ floor.address.street }}<br />
+            {{ floor.address.city }} {{ floor.address.postcode }} {{ floor.address.country }}
           </div>
         </td>
         <td>
           <div *ngFor="let d of floor.dimension" class="border p-2 row-gap-1 gap-0">
-              <small>
-                {{ d.description }}<br>
-                <i class="bi bi-arrows-fullscreen"></i> <i class="bi bi-arrow-right"></i>{{ d.x }} <i class="bi bi-arrow-up"></i>{{ d.y }}
-                <i class="bi bi-arrow-bar-up"></i>{{ d.h }}<br>
-                <i class="bi bi-box-arrow-in-right"></i>
-                <i class="bi bi-arrow-right"></i>{{ d.x_pos }} <i class="bi bi-arrow-up"></i>{{ d.y_pos }}
-                <i class="bi bi-arrow-bar-up"></i>{{ d.h_pos }}
-              </small>
+            <small>
+              {{ d.description }}<br>
+              <i class="bi bi-arrows-fullscreen"></i> <i class="bi bi-arrow-right"></i>{{ d.x }} <i
+                class="bi bi-arrow-up"></i>{{ d.y }}
+              <i class="bi bi-arrow-bar-up"></i>{{ d.h }}<br>
+              <i class="bi bi-box-arrow-in-right"></i>
+              <i class="bi bi-arrow-right"></i>{{ d.xPos }} <i class="bi bi-arrow-up"></i>{{ d.yPos }}
+              <i class="bi bi-arrow-bar-up"></i>{{ d.hPos }}
+            </small>
           </div>
         </td>
         <td>
           <div class="btn-group  float-md-end" role="group" aria-label="device-operations">
-            <button type="button" class="btn btn-success btn-sm move-right" id="edit-device" (click)="editFloor(floor)">
+            <button type="button" class="btn btn-success btn-sm move-right" id="edit-device"
+              (click)="editFloor(floor)">
               Edit
             </button>
             <button type="button" id="delete-device" class="btn btn-danger btn-sm" (click)="deleteFloor(floor.id)">

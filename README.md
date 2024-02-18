@@ -15,6 +15,7 @@
     - [Connections](#connections)
   - [Run](#run)
   - [Deploy](#deploy)
+    - [Google Cloud](#google-cloud)
     - [AWS](#aws)
   - [Json server](#json-server)
   - [APIs repos](#apis-repos)
@@ -45,7 +46,7 @@ I'm programming to incorporate database systems. This project covers relevant to
 - `Angular` 16+ - as a Corp framework.
 - `Bootstrap` 5.3+ - logic for insert `UI` data
 - `Tree` 150+ - as best graph framework.
-- [`MongoAtlas`|`Oracle`|`jsonserver`] I want in this project try different solution and different data structure and storage datamodels (relational and noSQL.
+- `MongoAtlas`|`Oracle`|`jsonserver` - I want in this project try different solution and different data structure and storage datamodels (relational and noSQL.
 - `REST` - prepared `API` in use in `Swagger`.
 - `Podman`|`Google Cloud` as containers
 
@@ -53,7 +54,7 @@ I'm programming to incorporate database systems. This project covers relevant to
 
 Demo 3d inventory use three.js framework.
 
-[![3-d inventory the video](src/assets/img/Screenshot%20from%202023-05-01%2008-29-25-watermark.png)](https://youtu.be/rNOxpZ0ti1Q '3-d inventory the video')
+[![3-d inventory the video](src/assets/img/3d-inventory-demo.png)](https://youtu.be/rNOxpZ0ti1Q '3-d inventory the video')
 
 This project build from this example contain `three.js` in `Angular`[Tutorial to render 3D Cube in Angular + Three.js](https://srivastavaanurag79.medium.com/hello-cube-your-first-three-js-scene-in-angular-176c44b9c6c0).
 
@@ -63,9 +64,7 @@ This is implementation parametric generic attribute class. All attributes for `D
 
 Parameters types are defined in `Attribute Dictionary`.
 
-In `Attributes` are stored values defined in `Attributes Dictionary` for `Devices`, `Model` and `Connections`.
-
-`Attributes Dictionary` are defined for specyfice.
+In `Attributes` are stored values defined in `Attributes Dictionary` for `Devices`, `Model` and `Connections`. `Attributes Dictionary` are defined for specyfice.
 
 ### Entity model
 
@@ -98,19 +97,20 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
 ## Run
 
 ```bash
-# clone repo
 git clone https://github.com/karol-preiskorn/3d-inventory-angular-ui.git
-# install dependences
+cd 3d-inventory-angular-ui
 npm install
-# run server
 npm run start
-# run data server
-npm run start:json-server
-# goto in browser
-http://localhost:4200
 ```
 
-On this stage of project I use single branch `master`. If I finish this stage when app will be usefully I will use also develop.
+or run separately json-server and ui
+
+```bash
+npm run start:json-server
+npm run start:ng
+```
+
+Goto in browser http://localhost:4200
 
 ## Deploy
 
@@ -129,6 +129,10 @@ lite-server --baseDir='dist/3d-inventory-angular-ui/browser'
 ```
 
 `npm` alias: `npm run server`
+
+### Google Cloud
+
+tbc
 
 ### AWS
 
@@ -158,7 +162,6 @@ Used by `.env` service `this.environmentServiceClass.getSettings('BASEURL')`.
 ## APIs repos
 
 - Oracle [3d-inventory-oracle-api](https://github.com/karol-preiskorn/3d-inventory-oracle-api)
-
 - Mongo Atlas [3d-inventory-mongo-api](https://github.com/karol-preiskorn/3d-inventory-mongo-api)
 
 ## Contributing
@@ -182,4 +185,4 @@ Not forget about [code guide-lines](https://github.com/Microsoft/TypeScript/wiki
 - [x] Add actual tasks form `GitHub` during build in README.md.
 - [x] Add light/dark theme switch in `UI`
 - [ ] Use <https://formly.dev/> ?
-- [ ] Create blog on GitHub Pages or use https://ultimasolution.pl
+- [ ] Create blog on GitHub Pages or use <https://ultimasolution.pl>
