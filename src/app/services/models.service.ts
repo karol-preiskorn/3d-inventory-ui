@@ -6,14 +6,14 @@ import { catchError, retry } from 'rxjs/operators'
 import { v4 as uuidv4 } from 'uuid'
 import { Model } from '../shared/model'
 import { LogService } from './log.service'
-import { EnvironmentService } from './environment.service'
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModelsService {
-  environmentServiceClass = new EnvironmentService()
-  BASEURL = this.environmentServiceClass.getSettings('BASEURL')
+
+  baseurl = environment.baseurl
   model: Model
   constructor(
     private http: HttpClient,
@@ -30,18 +30,18 @@ export class ModelsService {
 
   GetModels(): Observable<Model[]> {
     return this.http
-      .get<Model[]>(this.BASEURL + '/models/')
+      .get<Model[]>(environment.baseurl + '/models/')
       .pipe(catchError(this.errorHandl))
   }
 
   GetModel(id: string | null): Observable<Model> {
     return this.http
-      .get<Model>(this.BASEURL + '/models/' + id, this.httpOptions)
+      .get<Model>(environment.baseurl + '/models/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   DeleteModel(id: string): Observable<Model> {
     return this.http
-      .delete<Model>(this.BASEURL + '/models/' + id, this.httpOptions)
+      .delete<Model>(environment.baseurl + '/models/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   // POST
@@ -49,7 +49,7 @@ export class ModelsService {
     console.log('Service.CreateModel: ' + JSON.stringify(data, null, ' '))
     return this.http
       .post<Model>(
-        this.BASEURL + '/models/',
+        environment.baseurl + '/models/',
         JSON.stringify(data, null, ' '),
         this.httpOptions
       )
@@ -77,7 +77,7 @@ export class ModelsService {
   UpdateModel(id: string | null, data: any): Observable<Model> {
     return this.http
       .put<Model>(
-        this.BASEURL + '/models/' + id,
+        environment.baseurl + '/models/' + id,
         JSON.stringify(data, null, ' '),
         this.httpOptions
       )

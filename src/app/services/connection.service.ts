@@ -6,23 +6,22 @@ import { v4 as uuidv4 } from 'uuid'
 import { Connection } from '../shared/connection'
 import { LogService } from './log.service'
 import { Router } from '@angular/router'
-import { EnvironmentService } from './environment.service'
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConnectionService {
-  environmentServiceClass = new EnvironmentService()
-  BASEURL = this.environmentServiceClass.getSettings('BASEURL')
+
+  baseurl = environment.baseurl
 
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router,
-    private environmentService: EnvironmentService
   ) {
-    this.BASEURL = this.environmentServiceClass.getSettings('BASEURL')
+
   }
 
   httpOptions = {
@@ -32,24 +31,24 @@ export class ConnectionService {
   }
 
   GetConnections(): Observable<Connection> {
-    return this.http.get<Connection>(this.BASEURL + '/connections/').pipe(retry(1), catchError(this.errorHandl))
+    return this.http.get<Connection>(environment.baseurl + '/connections/').pipe(retry(1), catchError(this.errorHandl))
   }
 
   GetConnection(id: string | null): Observable<Connection> {
     return this.http
-      .get<Connection>(this.BASEURL + '/connections/' + id, this.httpOptions)
+      .get<Connection>(environment.baseurl + '/connections/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   DeleteConnection(id: string): Observable<Connection> {
     return this.http
-      .delete<Connection>(this.BASEURL + '/connections/' + id, this.httpOptions)
+      .delete<Connection>(environment.baseurl + '/connections/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   CreateConnection(data: Connection): Observable<Connection> {
     return this.http
-      .post<Connection>(this.BASEURL + '/connections/', JSON.stringify(data, null, ' '), this.httpOptions)
+      .post<Connection>(environment.baseurl + '/connections/', JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -69,13 +68,13 @@ export class ConnectionService {
     return id_uuid
   }
 
-  UpdateConnection(id: string | null, data: any): Observable<Connection> {
+  UpdateConnection(id: string | null, data: Connection): Observable<Connection> {
     return this.http
-      .put<Connection>(this.BASEURL + '/connections/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
+      .put<Connection>(environment.baseurl + '/connections/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  errorHandl(error: { error: { message: string }; status: any; message: any }) {
+  errorHandl(error: { error: { message: string }; status: number; message: string }) {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       // Get client-side error

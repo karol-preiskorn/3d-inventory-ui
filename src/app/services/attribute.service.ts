@@ -1,41 +1,24 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http'
-import {Injectable, NgZone} from '@angular/core'
-import {Router} from '@angular/router'
-import {Observable, throwError, Subscription} from 'rxjs'
-import {catchError, retry} from 'rxjs/operators'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
+import { Observable, throwError } from 'rxjs'
+import { catchError, retry } from 'rxjs/operators'
+import { DeviceService } from 'src/app/services/device.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Attribute } from 'src/app/shared/attribute'
+import { Device } from 'src/app/shared/device'
 import { SyncRequestClient } from 'ts-sync-request/dist'
+import { environment } from '../../environments/environment'
+import { LogService } from './log.service'
 
-import {EnvironmentService} from './environment.service'
-import {LogService} from './log.service'
 
-import {ComponentDictionary} from 'src/app/shared/component-dictionary'
-
-import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
-import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
-
-import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
-import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
-
-import {Attribute} from 'src/app/shared/attribute'
-
-import {Device} from 'src/app/shared/device'
-import {DeviceService} from 'src/app/services/device.service'
-
-import {Model} from 'src/app/shared/model'
-import {ModelsService} from 'src/app/services/models.service'
-
-import {Connection} from 'src/app/shared/connection'
-import {ConnectionService} from 'src/app/services/connection.service'
-
-import {v4 as uuidv4} from 'uuid'
-import {Object3D} from 'three'
+import { v4 as uuidv4 } from 'uuid'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AttributeService {
-  environmentService = new EnvironmentService()
-  BASEURL = this.environmentService.getSettings('BASEURL')
+  baseurl = environment.baseurl
   constructor(
     private http: HttpClient,
     private logService: LogService,
@@ -43,7 +26,7 @@ export class AttributeService {
     private modelService: ModelsService,
     private ngZone: NgZone,
     private router: Router
-  ) {}
+  ) { }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -52,12 +35,12 @@ export class AttributeService {
   }
 
   GetAttributes(): Observable<Attribute[]> {
-    return this.http.get<Attribute[]>(this.BASEURL + '/attributes/', this.httpOptions).pipe(retry(1), catchError(this.errorHandl))
+    return this.http.get<Attribute[]>(environment.baseurl + '/attributes/', this.httpOptions).pipe(retry(1), catchError(this.errorHandl))
   }
 
   GetAttributesSync(): Attribute[] {
     let attributes: Attribute[] = []
-    const url = this.BASEURL + '/attributes/'
+    const url = environment.baseurl + '/attributes/'
     attributes = new SyncRequestClient().get<Attribute[]>(url)
     console.log('GetAttributesSync.attributes: ' + JSON.stringify(attributes, null, ' '))
     return attributes
@@ -65,19 +48,19 @@ export class AttributeService {
 
   GetDeviceAttributes(id: string): Observable<Attribute[]> {
     return this.http
-      .get<Attribute[]>(this.BASEURL + '/attributes/?deviceId=' + id, this.httpOptions)
+      .get<Attribute[]>(environment.baseurl + '/attributes/?deviceId=' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   async GetDeviceAttributesPromise(id: string) {
     return this.http
-      .get<Attribute[]>(this.BASEURL + '/attributes/?deviceId=' + id, this.httpOptions)
+      .get<Attribute[]>(environment.baseurl + '/attributes/?deviceId=' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl)).toPromise()
   }
 
   GetModelAtributes(id: string): Observable<Attribute[]> {
     return this.http
-      .get<Attribute[]>(this.BASEURL + '/attributes/?modelId=' + id, this.httpOptions)
+      .get<Attribute[]>(environment.baseurl + '/attributes/?modelId=' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -85,8 +68,8 @@ export class AttributeService {
     let attributes: Attribute[] = []
     let device: Device = new Device()
     device = JSON.parse(item)
-    const url_model = this.BASEURL + '/attributes/?modelId=' + device.modelId
-    const url_device = this.BASEURL + '/attributes/?deviceId=' + device.id
+    const url_model = environment.baseurl + '/attributes/?modelId=' + device.modelId
+    const url_device = environment.baseurl + '/attributes/?deviceId=' + device.id
     attributes = new SyncRequestClient().get<Attribute[]>(url_model)
     attributes.push(...new SyncRequestClient().get<Attribute[]>(url_device))
     console.log('device.id: ' + device.id + ' ' + url_device)
@@ -97,19 +80,19 @@ export class AttributeService {
 
   GetAttribute(id: string | null): Observable<Attribute> {
     return this.http
-      .get<Attribute>(this.BASEURL + '/attributes/' + id, this.httpOptions)
+      .get<Attribute>(environment.baseurl + '/attributes/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   DeleteAttribute(id: string): Observable<Attribute> {
     return this.http
-      .delete<Attribute>(this.BASEURL + '/attributes/' + id, this.httpOptions)
+      .delete<Attribute>(environment.baseurl + '/attributes/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   CreateAttribute(data: Attribute): Observable<Attribute> {
     return this.http
-      .post<Attribute>(this.BASEURL + '/attributes/', JSON.stringify(data, null, ' '), this.httpOptions)
+      .post<Attribute>(environment.baseurl + '/attributes/', JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -131,11 +114,11 @@ export class AttributeService {
 
   UpdateAttribute(id: string | null, data: Attribute): Observable<Attribute> {
     return this.http
-      .put<Attribute>(this.BASEURL + '/attributes/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
+      .put<Attribute>(environment.baseurl + '/attributes/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  errorHandl(error: {error: {message: string}; status: any; message: any}) {
+  errorHandl(error: { error: { message: string }; status: number; message: string }) {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       // Get client-side error

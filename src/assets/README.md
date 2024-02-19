@@ -29,13 +29,13 @@
 
 Project create `3d inventory`. A simple solution that allows you to build a spatial and database representation of all types of warehouses and server rooms.
 
-![Architecture](src/assets/architecture.drawio.png)
+![Architecture](src/assets/../../architecture.drawio.png)
 
 Project contain three repos:
 
-- https://github.com/karol-preiskorn/3d-inventory-angular-ui
-- https://github.com/karol-preiskorn/3d-inventory-mongo-api
-- https://github.com/karol-preiskorn/3d-inventory-oracle-api
+- <https://github.com/karol-preiskorn/3d-inventory-angular-ui>
+- <https://github.com/karol-preiskorn/3d-inventory-mongo-api>
+- <https://github.com/karol-preiskorn/3d-inventory-oracle-api>
 
 ## Motivation
 
@@ -54,7 +54,7 @@ I'm programming to incorporate database systems. This project covers relevant to
 
 Demo 3d inventory use three.js framework.
 
-[![3-d inventory the video](src/assets/img/3d-inventory-demo.png)](https://youtu.be/rNOxpZ0ti1Q '3-d inventory the video')
+[![3-d inventory the video](img/3d-inventory-demo.png)](https://youtu.be/rNOxpZ0ti1Q '3-d inventory the video')
 
 This project build from this example contain `three.js` in `Angular`[Tutorial to render 3D Cube in Angular + Three.js](https://srivastavaanurag79.medium.com/hello-cube-your-first-three-js-scene-in-angular-176c44b9c6c0).
 
@@ -110,7 +110,7 @@ npm run start:json-server
 npm run start:ng
 ```
 
-Goto in browser http://localhost:4200
+Goto in browser <http://localhost:4200>
 
 ## Deploy
 
@@ -154,10 +154,7 @@ In `npm` run script:
 Server `url`:
 
 ```json
-  import { EnvironmentService } from './environment.service'
-  ...
-  environmentServiceClass = new EnvironmentService()
-  BASEURL = this.environmentServiceClass.getSettings('BASEURL')
+baseurl = 'http://localhost:3000';
 ```
 
 Used by `.env` service `this.environmentServiceClass.getSettings('BASEURL')`.

@@ -1,27 +1,27 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http'
-import {Injectable, NgZone} from '@angular/core'
-import {Router} from '@angular/router'
-import {Observable, throwError} from 'rxjs'
-import {catchError, retry} from 'rxjs/operators'
-import {v4 as uuidv4} from 'uuid'
-import {SyncRequestClient} from 'ts-sync-request'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
+import { Observable, throwError } from 'rxjs'
+import { catchError, retry } from 'rxjs/operators'
+import { v4 as uuidv4 } from 'uuid'
+import { SyncRequestClient } from 'ts-sync-request'
 
-import {Floor} from '../shared/floor'
-import {EnvironmentService} from './environment.service'
-import {Log, LogService} from './log.service'
+import { Floor } from '../shared/floor'
+import { EnvironmentService } from './environment.service'
+import { Log, LogService } from './log.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class FloorService {
-  environmentServiceClass = new EnvironmentService()
-  BASEURL = this.environmentServiceClass.getSettings('BASEURL')
+
+  baseurl = environment.baseurl
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
-  ) {}
+  ) { }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -30,28 +30,28 @@ export class FloorService {
   }
 
   GetFloors(): Observable<Floor[]> {
-    return this.http.get<Floor[]>(this.BASEURL + '/floor/').pipe(retry(1), catchError(this.errorHandl))
+    return this.http.get<Floor[]>(environment.baseurl + '/floor/').pipe(retry(1), catchError(this.errorHandl))
   }
 
   getFloorSynchronize(id: string | null): Floor {
-    return new SyncRequestClient().get<Floor>(this.BASEURL + '/floor/' + id)
+    return new SyncRequestClient().get<Floor>(environment.baseurl + '/floor/' + id)
   }
 
   GetFloor(id: string | null): Observable<Floor> {
     return this.http
-      .get<Floor>(this.BASEURL + '/floor/' + id, this.httpOptions)
+      .get<Floor>(environment.baseurl + '/floor/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   DeleteFloor(id: string): Observable<Floor> {
     return this.http
-      .delete<Floor>(this.BASEURL + '/floor/' + id, this.httpOptions)
+      .delete<Floor>(environment.baseurl + '/floor/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   CreateFloor(data: Floor): Observable<Floor> {
     return this.http
-      .post<Floor>(this.BASEURL + '/floor/', JSON.stringify(data, null, ' '), this.httpOptions)
+      .post<Floor>(environment.baseurl + '/floor/', JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -76,12 +76,12 @@ export class FloorService {
     data: never
   ): Observable<Floor> {
     return this.http
-      .put<Floor>(this.BASEURL + '/floor/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
+      .put<Floor>(environment.baseurl + '/floor/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
 
-  errorHandl(error: {error: {message: string}; status: any; message: Log}) {
+  errorHandl(error: { error: { message: string }; status: any; message: Log }) {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       // Get client-side error
