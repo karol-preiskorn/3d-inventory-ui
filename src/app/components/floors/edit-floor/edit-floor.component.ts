@@ -13,7 +13,7 @@ import Validation from 'src/app/shared/validation'
   templateUrl: './edit-floor.component.html',
   styleUrls: ['./edit-floor.component.scss'],
 })
-export class EditFloorComponent implements OnInit {
+export class FloorEditComponent implements OnInit {
   floor: Floor
   isSubmitted = false
   valid: Validation = new Validation()

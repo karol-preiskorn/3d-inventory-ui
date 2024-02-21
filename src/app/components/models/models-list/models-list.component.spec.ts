@@ -4,6 +4,8 @@ import { RouterTestingModule } from '@angular/router/testing'
 import { ModelsListComponent } from './models-list.component'
 import { NgxPaginationModule } from 'ngx-pagination'
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
+
+
 describe('ModelsListComponent', () => {
   let component: ModelsListComponent
   let fixture: ComponentFixture<ModelsListComponent>

@@ -1,6 +1,6 @@
 {
   "name": "3d-inventory-angular-ui",
-  "version": "0.3.45",
+  "version": "0.3.46",
   "private": true,
   "browser": {
     "fs": false,
@@ -10,6 +10,7 @@
     "process": false
   },
   "scripts": {
+    "api": "cd ../3d-inventory-mongo-api && npm run start",
     "build": "ng build 3d-inventory-angular-ui",
     "clear:all": "npm run clear:cache && npm run clear:dist && npm run clear:node_install",
     "clear:cache": "rm -rf .angular/cache",
@@ -29,9 +30,9 @@
     "server:json": "cd backend && json-server --watch db_v2.json",
     "server:kill": "killall \"ng serve\"",
     "server:lite": "lite-server --baseDir='dist/3d-inventory-angular-ui/browser'",
-    "server:ng": "npm run cp && ng serve --host 0.0.0.0  --watch",
+    "server:ng": "npm run cp && ng serve --host 0.0.0.0 --watch",
     "server:run": "npm run cp && ng build --watch",
-    "start": "concurrently --kill-others \"npm run server:ng\" \"npm run server:json\"",
+    "start": "npm run server:ng",
     "test": "ng test",
     "test:nyc": "nyc --reporter=html --produce-source-map --reporter=text npm test",
     "update": "npm-check-updates -u && npm update && npm upgrade"

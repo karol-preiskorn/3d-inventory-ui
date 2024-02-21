@@ -8,11 +8,9 @@ import { ModelsService } from 'src/app/services/models.service'
 import { Attribute } from 'src/app/shared/attribute'
 import { Device } from 'src/app/shared/device'
 import { SyncRequestClient } from 'ts-sync-request/dist'
+import { v4 as uuidv4 } from 'uuid'
 import { environment } from '../../environments/environment'
 import { LogService } from './log.service'
-
-
-import { v4 as uuidv4 } from 'uuid'
 
 @Injectable({
   providedIn: 'root',
@@ -34,10 +32,18 @@ export class AttributeService {
     }),
   }
 
+  /**
+   * Retrieves the attributes from the server.
+   * @returns An Observable that emits an array of Attribute objects.
+   */
   GetAttributes(): Observable<Attribute[]> {
     return this.http.get<Attribute[]>(environment.baseurl + '/attributes/', this.httpOptions).pipe(retry(1), catchError(this.errorHandl))
   }
 
+  /**
+   * Retrieves the attributes synchronously.
+   * @returns An array of attributes.
+   */
   GetAttributesSync(): Attribute[] {
     let attributes: Attribute[] = []
     const url = environment.baseurl + '/attributes/'
@@ -46,24 +52,45 @@ export class AttributeService {
     return attributes
   }
 
+  /**
+   * Retrieves the attributes of a device.
+   * @param id The ID of the device.
+   * @returns An Observable that emits an array of Attribute objects.
+   */
   GetDeviceAttributes(id: string): Observable<Attribute[]> {
     return this.http
       .get<Attribute[]>(environment.baseurl + '/attributes/?deviceId=' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
+  /**
+   * Retrieves the attributes of a device using a Promise.
+   * @param id The ID of the device.
+   * @returns A Promise that resolves to an array of Attribute objects.
+   */
   async GetDeviceAttributesPromise(id: string) {
     return this.http
       .get<Attribute[]>(environment.baseurl + '/attributes/?deviceId=' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl)).toPromise()
   }
 
+  /**
+   * Retrieves the attributes for a given model ID.
+   * @param id The ID of the model.
+   * @returns An Observable that emits an array of Attribute objects.
+   */
   GetModelAtributes(id: string): Observable<Attribute[]> {
     return this.http
       .get<Attribute[]>(environment.baseurl + '/attributes/?modelId=' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
+  /**
+   * Retrieves the context attributes for a given component and item.
+   * @param component - The component name.
+   * @param item - The item in JSON format.
+   * @returns An array of Attribute objects representing the context attributes.
+   */
   GetContextAttributes(component: string, item: string): Attribute[] {
     let attributes: Attribute[] = []
     let device: Device = new Device()
@@ -78,24 +105,45 @@ export class AttributeService {
     return attributes
   }
 
+  /**
+   * Retrieves an attribute by its ID.
+   * @param id The ID of the attribute to retrieve.
+   * @returns An Observable that emits the retrieved attribute.
+   */
   GetAttribute(id: string | null): Observable<Attribute> {
     return this.http
       .get<Attribute>(environment.baseurl + '/attributes/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
+  /**
+   * Deletes an attribute by its ID.
+   * @param id The ID of the attribute to delete.
+   * @returns An Observable that emits the deleted attribute.
+   */
   DeleteAttribute(id: string): Observable<Attribute> {
     return this.http
       .delete<Attribute>(environment.baseurl + '/attributes/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
+  /**
+   * Creates a new attribute.
+   * @param data The attribute data to be created.
+   * @returns An observable that emits the created attribute.
+   */
   CreateAttribute(data: Attribute): Observable<Attribute> {
     return this.http
       .post<Attribute>(environment.baseurl + '/attributes/', JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
+  /**
+   * Clones an attribute with the specified ID.
+   *
+   * @param id - The ID of the attribute to clone.
+   * @returns The UUID of the cloned attribute.
+   */
   CloneAttribute(id: string | null): string {
     const id_uuid: string = uuidv4()
     this.GetAttribute(id).subscribe((value: Attribute) => {
@@ -112,19 +160,28 @@ export class AttributeService {
     return id_uuid
   }
 
+  /**
+   * Updates an attribute with the specified ID.
+   * @param id - The ID of the attribute to update.
+   * @param data - The updated attribute data.
+   * @returns An Observable that emits the updated attribute.
+   */
   UpdateAttribute(id: string | null, data: Attribute): Observable<Attribute> {
     return this.http
       .put<Attribute>(environment.baseurl + '/attributes/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
+  /**
+   * Handles the error response from the server.
+   * @param error - The error object containing the error message and status.
+   * @returns An Observable that emits the error message.
+   */
   errorHandl(error: { error: { message: string }; status: number; message: string }) {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
-      // Get client-side error
       errorMessage = error.error.message
     } else {
-      // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
     console.log(JSON.stringify(errorMessage, null, ' '))

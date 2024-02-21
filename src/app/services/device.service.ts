@@ -5,10 +5,9 @@ import { Observable, throwError } from 'rxjs'
 import { catchError, map, retry } from 'rxjs/operators'
 import { SyncRequestClient } from 'ts-sync-request/dist'
 import { v4 as uuidv4 } from 'uuid'
-
+import { environment } from '../../environments/environment'
 import { Device } from '../shared/device'
 import { LogService } from './log.service'
-import { environment } from '../../environments/environment'
 
 
 @Injectable({
@@ -55,7 +54,6 @@ export class DeviceService {
       .get<Device>(environment.baseurl + '/' + this.objectName + '/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
-
 
   /**
    * Retrieves a device by its ID and returns a synchronous request client.
@@ -155,18 +153,11 @@ export class DeviceService {
   errorHandl(error: { error: { message: string }; status: number; message: string }): Observable<never> {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
-      // Get client-side error
       errorMessage = error.error.message
     } else {
-      // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
     console.log(JSON.stringify(errorMessage, null, ' '))
-    // logService.CreateLog({
-    //   message: 'Error service device: ' + JSON.stringify(error.message, null, ' '),
-    //   category: 'Error',
-    //   component: 'DeviceService.errorHandl',
-    // })
 
     return throwError(() => {
       return errorMessage

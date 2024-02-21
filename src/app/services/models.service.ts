@@ -4,15 +4,14 @@ import { Router } from '@angular/router'
 import { Observable, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 import { v4 as uuidv4 } from 'uuid'
+import { environment } from '../../environments/environment'
 import { Model } from '../shared/model'
 import { LogService } from './log.service'
-import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModelsService {
-
   baseurl = environment.baseurl
   model: Model
   constructor(
@@ -21,30 +20,50 @@ export class ModelsService {
     private ngZone: NgZone,
     private router: Router
   ) { }
-  // Http Headers
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   }
 
+  /**
+   * Retrieves the models from the server.
+   * @returns An Observable that emits an array of Model objects.
+   */
   GetModels(): Observable<Model[]> {
     return this.http
       .get<Model[]>(environment.baseurl + '/models/')
       .pipe(catchError(this.errorHandl))
   }
 
+  /**
+   * Retrieves a model by its ID.
+   * @param id The ID of the model to retrieve.
+   * @returns An Observable that emits the retrieved model.
+   */
   GetModel(id: string | null): Observable<Model> {
     return this.http
       .get<Model>(environment.baseurl + '/models/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
+
+  /**
+   * Deletes a model by its ID.
+   * @param id The ID of the model to delete.
+   * @returns An Observable that emits the deleted model.
+   */
   DeleteModel(id: string): Observable<Model> {
     return this.http
       .delete<Model>(environment.baseurl + '/models/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
-  // POST
+
+  /**
+   * Creates a new model.
+   * @param data The data of the model to be created.
+   * @returns An Observable that emits the created model.
+   */
   CreateModel(data: Model): Observable<Model> {
     console.log('Service.CreateModel: ' + JSON.stringify(data, null, ' '))
     return this.http
@@ -55,6 +74,12 @@ export class ModelsService {
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
+
+  /**
+   * Clones a model with the specified ID.
+   * @param id - The ID of the model to clone.
+   * @returns The UUID of the cloned model.
+   */
   CloneModel(id: string): string {
     const id_uuid: string = uuidv4()
     this.GetModel(id).subscribe((value: Model) => {
@@ -73,8 +98,14 @@ export class ModelsService {
     console.log('Get after Model: ' + JSON.stringify(this.model, null, ' '))
     return id_uuid
   }
-  // PUT
-  UpdateModel(id: string | null, data: any): Observable<Model> {
+
+  /**
+   * Updates a model with the specified ID.
+   * @param id - The ID of the model to update.
+   * @param data - The updated data for the model.
+   * @returns An Observable that emits the updated model.
+   */
+  UpdateModel(id: string | null, data: Model): Observable<Model> {
     return this.http
       .put<Model>(
         environment.baseurl + '/models/' + id,
@@ -83,20 +114,17 @@ export class ModelsService {
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
+
   /**
-   * TODO: file log? (watcom ect.)
-   *
-   * @param {{ error: { message: string }; status: any; message: any }} error
-   * @return {*}
-   * @memberof ModelsService
+   * Handles the error response from an HTTP request.
+   * @param error - The error object containing the error message and status.
+   * @returns An Observable that emits the error message.
    */
-  errorHandl(error: { error: { message: string }; status: any; message: any }) {
+  errorHandl(error: { error: { message: string }; status: number; message: string }): Observable<never> {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
-      // Get client-side error
       errorMessage = error.error.message
     } else {
-      // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
     console.log(JSON.stringify(errorMessage, null, ' '))

@@ -32,7 +32,7 @@ import Validation from 'src/app/shared/validation'
   templateUrl: './edit-device.component.html',
   styleUrls: ['./edit-device.component.scss'],
 })
-export class EditDeviceComponent implements OnInit {
+export class DeviceEditComponent implements OnInit {
   errorMessage: string
   valid: Validation = new Validation()
   inputId = ''
@@ -151,7 +151,7 @@ export class EditDeviceComponent implements OnInit {
 
   submitForm() {
     if (this.editDeviceForm.valid && this.editDeviceForm.touched) {
-      console.log('EditDeviceComponent.submitForm(): ' + JSON.stringify(this.editDeviceForm.value, null, 2))
+      console.log('DeviceEditComponent.submitForm(): ' + JSON.stringify(this.editDeviceForm.value, null, 2))
       const log: LogIn = {
         message: JSON.stringify(this.editDeviceForm.value) as string,
         operation: 'Update',
@@ -162,7 +162,7 @@ export class EditDeviceComponent implements OnInit {
         this.action = JSON.stringify(log)
         //this.reloadComponent(false, 'edit-device/' + this.device.id)
       })
-      this.devicesService.UpdateDevice(this.inputId, this.editDeviceForm.value).subscribe(() => {
+      this.devicesService.UpdateDevice(this.inputId, this.editDeviceForm.value as Device).subscribe(() => {
         //  this.ngZone.run(() => this.router.navigateByUrl('device-list'))
         this.router.navigate(['device-list'])
         // @TODO: #64 goto specific row in list when return form list

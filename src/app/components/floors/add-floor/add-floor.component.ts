@@ -14,7 +14,7 @@ import Validation from 'src/app/shared/validation'
   templateUrl: './add-floor.component.html',
   styleUrls: ['./add-floor.component.scss'],
 })
-export class AddFloorComponent implements OnInit {
+export class FloorAddComponent implements OnInit {
   floor: Floor
   isSubmitted = false
   valid: Validation = new Validation()
