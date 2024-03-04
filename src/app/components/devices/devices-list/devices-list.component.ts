@@ -32,17 +32,17 @@ export class DeviceListComponent implements OnInit {
     private logService: LogService,
     private router: Router,
     private ngZone: NgZone
-  ) {}
+  ) { }
 
   loadDevices() {
-    return this.devicesService.GetDevices().subscribe((data: any) => {
+    return this.devicesService.GetDevices().subscribe((data: Device[]) => {
       this.deviceList = data
     })
   }
 
   loadModels() {
     return this.modelsService.GetModels().subscribe((data: Model[]): void => {
-      this.modelList= data as Model[]
+      this.modelList = data as Model[]
     })
   }
 
@@ -53,8 +53,8 @@ export class DeviceListComponent implements OnInit {
       operation: 'Delete',
       component: this.component,
     })
-    return this.devicesService.DeleteDevice(id).subscribe((data: any) => {
-      console.log(data)
+    return this.devicesService.DeleteDevice(id).subscribe(() => {
+      console.log(id + ' deleted')
       this.loadDevices()
       this.loadModels()
       this.router.navigate(['/device-list/'])

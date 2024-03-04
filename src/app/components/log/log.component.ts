@@ -1,27 +1,39 @@
-import {Component, OnInit, Input} from '@angular/core'
-import {Subscription} from 'rxjs'
+import { Component, OnInit, Input } from '@angular/core'
+import { Subscription } from 'rxjs'
 
-import {Log, LogService} from 'src/app/services/log.service'
+import { Log, LogService } from 'src/app/services/log.service'
 
-import {EnvironmentService} from 'src/app/services/environment.service'
+import { Device } from 'src/app/shared/device'
+import { DeviceService } from 'src/app/services/device.service'
 
-import {Device} from 'src/app/shared/device'
-import {DeviceService} from 'src/app/services/device.service'
+import { Model } from 'src/app/shared/model'
+import { ModelsService } from 'src/app/services/models.service'
 
-import {Model} from 'src/app/shared/model'
-import {ModelsService} from 'src/app/services/models.service'
+import { Connection } from 'src/app/shared/connection'
+import { ConnectionService } from 'src/app/services/connection.service'
 
-import {Connection} from 'src/app/shared/connection'
-import {ConnectionService} from 'src/app/services/connection.service'
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
 
-import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
-import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
+import { Attribute } from 'src/app/shared/attribute'
+import { AttributeService } from 'src/app/services/attribute.service'
 
-import {Attribute} from 'src/app/shared/attribute'
-import {AttributeService} from 'src/app/services/attribute.service'
+import { Floor } from 'src/app/shared/floor'
+import { FloorService } from 'src/app/services/floor.service'
 
-import {Floor} from 'src/app/shared/floor'
-import {FloorService} from 'src/app/services/floor.service'
+const api = [
+  { component: 'Models', api: 'models' },
+  { component: 'Devices', api: 'devices' },
+  { component: 'Logs', api: 'logs' },
+  { component: 'Attributes', api: 'attributes' },
+  { component: 'Attribute Dictionary', api: 'attribute-dictionary' },
+  { component: 'Connection', api: 'connections' },
+  { component: 'Floor', api: 'floor' },
+]
+
+function isApiSettings(component: string): boolean {
+  return api.find((e) => e.component === component) ? true : false
+}
 
 @Component({
   selector: 'app-log',
@@ -52,23 +64,21 @@ export class LogComponent implements OnInit {
   hideWhenNoLog = false
   noData = false
   preLoader = false
-  private sub: any
 
   constructor(
     public logService: LogService,
-    private environmentService: EnvironmentService,
     private attributeService: AttributeService,
     private deviceService: DeviceService,
     private modelService: ModelsService,
     private connectionService: ConnectionService,
     private attributeDictionaryService: AttributeDictionaryService,
     private floorService: FloorService
-  ) {}
+  ) { }
 
   loadLog(context: string) {
     //console.log(this.environmentService.isApiSettings(this.component))
     // found log context in share service with strore variables
-    if (this.environmentService.isApiSettings(this.component)) {
+    if (isApiSettings(this.component)) {
       console.log(context + '.loadComponentLog: ' + this.component)
       this.loadComponentLog(this.component)
     } else {
@@ -86,7 +96,7 @@ export class LogComponent implements OnInit {
   }
 
   DeleteLog(id: string) {
-    return this.logService.DeleteLog(id).subscribe((data: any) => {
+    return this.logService.DeleteLog(id).subscribe((data: Log) => {
       console.log(data)
       this.OnChanges()
       // this.router.navigate(['/log-list/'])
@@ -135,7 +145,7 @@ export class LogComponent implements OnInit {
 
   getDeviceList() {
     if (this.deviceListGet == true) return null
-    return this.deviceService.GetDevices().subscribe((data: any) => {
+    return this.deviceService.GetDevices().subscribe((data: Device[]) => { // Specify the correct type for the data parameter
       const tmp = new Device()
       data.unshift(tmp)
       this.deviceList = data
@@ -149,7 +159,7 @@ export class LogComponent implements OnInit {
 
   getModelList() {
     if (this.modelListGet == true) return null
-    return this.modelService.GetModels().subscribe((data: any) => {
+    return this.modelService.GetModels().subscribe((data: Model[]) => { // Specify the correct type for the data parameter
       const tmp = new Model()
       data.unshift(tmp)
       this.modelList = data
@@ -163,10 +173,8 @@ export class LogComponent implements OnInit {
 
   getConnectionList() {
     if (this.connectionListGet == true) return null
-    return this.connectionService.GetConnections().subscribe((data: any) => {
-      const tmp = new Connection()
-      data.unshift(tmp)
-      this.connectionList = data
+    return this.connectionService.GetConnections().subscribe((data: Connection) => {
+      this.connectionList.push(data)
       this.connectionListGet = true
     })
   }
@@ -177,10 +185,8 @@ export class LogComponent implements OnInit {
 
   getAttributeDictionaryList() {
     if (this.attributeDictionaryListGet == true) return null
-    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: any) => {
-      const tmp = new AttributeDictionary()
-      data.unshift(tmp)
-      this.attributeDictionaryList = data
+    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary) => {
+      this.attributeDictionaryList.push(data)
     })
   }
 
@@ -190,7 +196,7 @@ export class LogComponent implements OnInit {
 
   getAttributeList() {
     if (this.attributeListGet == true) return null
-    return this.attributeService.GetAttributes().subscribe((data: any) => {
+    return this.attributeService.GetAttributes().subscribe((data: Attribute[]) => { // Specify the correct type for the data parameter
       const tmp = new Attribute()
       data.unshift(tmp)
       this.attributeList = data
@@ -204,7 +210,7 @@ export class LogComponent implements OnInit {
 
   getFloorList() {
     if (this.attributeListGet == true) return null
-    return this.attributeService.GetAttributes().subscribe((data: any) => {
+    return this.attributeService.GetAttributes().subscribe((data: Attribute[]) => { // Specify the correct type for the data parameter
       const tmp = new Attribute()
       data.unshift(tmp)
       this.attributeList = data

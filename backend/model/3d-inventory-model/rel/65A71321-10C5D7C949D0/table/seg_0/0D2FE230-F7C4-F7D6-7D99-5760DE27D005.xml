@@ -2,18 +2,17 @@
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0D2FE230-F7C4-F7D6-7D99-5760DE27D005" schemaObject="2E57B3AC-A335-158D-F66B-1F85FCBC80E9" name="ATTRIBUTES">
 <createdBy>karol</createdBy>
 <createdTime>2022-11-01 07:38:50 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <ordsAlias>a</ordsAlias>
 <useDDLTransformationScript>true</useDDLTransformationScript>
 <abbreviation>AT</abbreviation>
-<allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="ID" id="21FC9162-B2B8-127E-6E4A-8F536CD8BD63">
 <createdBy>karol</createdBy>
 <createdTime>2022-11-01 23:34:31 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>2</use>
 <distinctType>F2E1BC9B-52D3-32BF-58AE-5C84A23F10F7</distinctType>
@@ -26,12 +25,12 @@
 <createdBy>karol</createdBy>
 <createdTime>2022-11-01 23:26:47 UTC</createdTime>
 <commentInRDBMS><![CDATA[universal device identity ]]></commentInRDBMS>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>50</dataTypeSize>
-<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="319A45EC-8DC8-5DD3-9EA5-A9B07F911821" referredColumn="2B154004-7826-C65D-ECA8-38258F5DF47F"/>
@@ -41,12 +40,12 @@
 <createdBy>karol</createdBy>
 <createdTime>2023-05-01 05:24:06 UTC</createdTime>
 <commentInRDBMS><![CDATA[universal device identity ]]></commentInRDBMS>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>50</dataTypeSize>
-<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
@@ -56,12 +55,12 @@
 <Column name="ATTRIBUTE_TYPES_ID" id="43F080E9-23A1-A844-2520-CD502ABF971F">
 <createdBy>karol</createdBy>
 <createdTime>2023-05-01 05:27:41 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>50</dataTypeSize>
-<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
@@ -71,7 +70,7 @@
 <Column name="CONNECTION_ID" id="F5BB7102-97E1-7E80-9348-76E9B9F6B080">
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 14:30:15 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>2</use>
 <distinctType>F2E1BC9B-52D3-32BF-58AE-5C84A23F10F7</distinctType>
@@ -86,7 +85,7 @@
 <Column name="VALUE" id="1380F9A5-F393-5C87-ED91-B4DFD0B8535B">
 <createdBy>karol</createdBy>
 <createdTime>2022-11-01 23:26:47 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -100,7 +99,7 @@
 <ind_PK_UK id="615BC84A-2AB1-7936-FC71-3FBF2F922936" name="ATTRIBUTES_PK">
 <createdBy>karol</createdBy>
 <createdTime>2022-11-01 23:26:47 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
@@ -111,7 +110,7 @@
 <ind_PK_UK id="61277910-682C-A5F4-82CD-E0BCFF25A324" name="ATTRIBUTES_DEVICES_FK">
 <createdBy>karol</createdBy>
 <createdTime>2022-11-01 23:29:41 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
@@ -121,7 +120,7 @@
 <ind_PK_UK id="81D4C608-EEC0-1E68-BED6-3ADD5EB39A4F" name="ATTRIBUTES_MODELS_FK">
 <createdBy>karol</createdBy>
 <createdTime>2023-05-01 05:24:06 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
@@ -131,7 +130,7 @@
 <ind_PK_UK id="6B6EAB57-66BC-799B-8079-7A98FEB930BB" name="ATTRIBUTES_ATTRIBUTE_TYPES_FK">
 <createdBy>karol</createdBy>
 <createdTime>2023-05-01 05:27:41 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
@@ -141,7 +140,7 @@
 <ind_PK_UK id="C57E4A50-255C-571B-D359-6583122CEB5E" name="ATTRIBUTES_CONNECTIONS_FK">
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 15:16:12 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
