@@ -1,18 +1,18 @@
-import {Component, NgZone, OnInit} from '@angular/core'
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
-import {Router} from '@angular/router'
-import {v4 as uuidv4} from 'uuid'
-import {faker} from '@faker-js/faker'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { v4 as uuidv4 } from 'uuid'
+import { faker } from '@faker-js/faker'
 
-import {Device} from 'src/app/shared/device'
-import {DeviceService} from 'src/app/services/device.service'
+import { Device } from 'src/app/shared/device'
+import { DeviceService } from 'src/app/services/device.service'
 
-import {LogService} from 'src/app/services/log.service'
-import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
-import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
+import { LogService } from 'src/app/services/log.service'
+import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
+import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 
-import {Model} from 'src/app/shared/model'
-import {ModelsService} from 'src/app/services/models.service'
+import { Model } from 'src/app/shared/model'
+import { ModelsService } from 'src/app/services/models.service'
 
 import Validation from 'src/app/shared/validation'
 
@@ -21,7 +21,7 @@ import Validation from 'src/app/shared/validation'
   templateUrl: './add-device.component.html',
   styleUrls: ['./add-device.component.scss'],
 })
-export class AddDeviceComponent implements OnInit {
+export class DeviceAddComponent implements OnInit {
   device: Device
   isSubmitted = false
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
@@ -48,7 +48,7 @@ export class AddDeviceComponent implements OnInit {
     public devicesService: DeviceService,
     private modelService: ModelsService,
     private logService: LogService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loadModels()
@@ -63,27 +63,27 @@ export class AddDeviceComponent implements OnInit {
   }
 
   changeId(e: any) {
-    this.id?.setValue(e.target.value, {onlySelf: true})
+    this.id?.setValue(e.target.value, { onlySelf: true })
   }
 
   changeName(e: any) {
-    this.name?.setValue(e.target.value, {onlySelf: true})
+    this.name?.setValue(e.target.value, { onlySelf: true })
   }
 
   changeX(e: any) {
-    this.x?.setValue(e.target.value, {onlySelf: true})
+    this.x?.setValue(e.target.value, { onlySelf: true })
   }
 
   changeY(e: any) {
-    this.y?.setValue(e.target.value, {onlySelf: true})
+    this.y?.setValue(e.target.value, { onlySelf: true })
   }
 
   changeH(e: any) {
-    this.h?.setValue(e.target.value, {onlySelf: true})
+    this.h?.setValue(e.target.value, { onlySelf: true })
   }
 
   changeModelId(e: any) {
-    this.modelId?.setValue(e.target.value, {onlySelf: true})
+    this.modelId?.setValue(e.target.value, { onlySelf: true })
   }
 
   get id() {

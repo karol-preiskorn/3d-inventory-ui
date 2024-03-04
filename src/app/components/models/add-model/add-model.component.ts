@@ -1,20 +1,20 @@
-import {Component, NgZone, OnInit} from '@angular/core'
-import {FormControl, FormGroup, Validators} from '@angular/forms'
-import {Router} from '@angular/router'
-import {v4 as uuidv4} from 'uuid'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { v4 as uuidv4 } from 'uuid'
 
-import {LogService} from 'src/app/services/log.service'
-import {ModelsService} from 'src/app/services/models.service'
-import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
-import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
-import {Model} from 'src/app/shared/model'
+import { LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
+import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
+import { Model } from 'src/app/shared/model'
 
 @Component({
   selector: 'app-add-model',
   templateUrl: './add-model.component.html',
   styleUrls: ['./add-model.component.scss'],
 })
-export class AddModelComponent implements OnInit {
+export class ModelAddComponent implements OnInit {
   addModelForm = new FormGroup({
     id: new FormControl(uuidv4(), [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -58,50 +58,50 @@ export class AddModelComponent implements OnInit {
     private router: Router,
     public modelsService: ModelsService,
     private logService: LogService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.isSubmitted = false
   }
 
   changeId(e: any) {
-    this.id?.setValue(e.target.value, {onlySelf: true})
+    this.id?.setValue(e.target.value, { onlySelf: true })
   }
   changeName(e: any) {
-    this.name?.setValue(e.target.value, {onlySelf: true})
+    this.name?.setValue(e.target.value, { onlySelf: true })
   }
 
   changeWidth(e: any) {
-    this.width?.setValue(e.target.value as never, {onlySelf: true})
+    this.width?.setValue(e.target.value as never, { onlySelf: true })
   }
   changeHeight(e: any) {
-    this.height?.setValue(e.target.value as never, {onlySelf: true})
+    this.height?.setValue(e.target.value as never, { onlySelf: true })
   }
   changeDepth(e: any) {
-    this.depth?.setValue(e.target.value as never, {onlySelf: true})
+    this.depth?.setValue(e.target.value as never, { onlySelf: true })
   }
 
   changeFront(e: any) {
-    this.front?.setValue(e.target.value as never, {onlySelf: true})
+    this.front?.setValue(e.target.value as never, { onlySelf: true })
   }
   changeBack(e: any) {
-    this.back?.setValue(e.target.value as never, {onlySelf: true})
+    this.back?.setValue(e.target.value as never, { onlySelf: true })
   }
   changeSide(e: any) {
-    this.side?.setValue(e.target.value as never, {onlySelf: true})
+    this.side?.setValue(e.target.value as never, { onlySelf: true })
   }
   changeTop(e: any) {
-    this.top?.setValue(e.target.value as never, {onlySelf: true})
+    this.top?.setValue(e.target.value as never, { onlySelf: true })
   }
   changeBotom(e: any) {
-    this.botom?.setValue(e.target.value as never, {onlySelf: true})
+    this.botom?.setValue(e.target.value as never, { onlySelf: true })
   }
 
   changeType(e: any) {
-    this.type?.setValue(e.target.value, {onlySelf: true})
+    this.type?.setValue(e.target.value, { onlySelf: true })
   }
   changeCategory(e: any) {
-    this.category?.setValue(e.target.value, {onlySelf: true})
+    this.category?.setValue(e.target.value, { onlySelf: true })
   }
 
   get id() {

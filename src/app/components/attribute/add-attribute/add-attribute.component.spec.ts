@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { AddAttributeComponent } from './add-attribute.component';
+import { AttributeAddComponent } from './add-attribute.component'
 
-describe('AddAttributeComponent', () => {
-  let component: AddAttributeComponent;
-  let fixture: ComponentFixture<AddAttributeComponent>;
+describe('AttributeAddComponent', () => {
+  let component: AttributeAddComponent
+  let fixture: ComponentFixture<AttributeAddComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddAttributeComponent ]
+      declarations: [AttributeAddComponent]
     })
-    .compileComponents();
+      .compileComponents()
 
-    fixture = TestBed.createComponent(AddAttributeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(AttributeAddComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

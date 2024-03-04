@@ -1,27 +1,23 @@
 import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormArray, FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
-
-import { LogIn, LogService } from 'src/app/services/log.service'
-
 import { FloorService } from 'src/app/services/floor.service'
+import { LogIn, LogService } from 'src/app/services/log.service'
 import { Floor, FloorDimension } from 'src/app/shared/floor'
-
 import Validation from 'src/app/shared/validation'
+
 
 @Component({
   selector: 'app-edit-floor',
   templateUrl: './edit-floor.component.html',
   styleUrls: ['./edit-floor.component.scss'],
 })
-export class EditFloorComponent implements OnInit {
+export class FloorEditComponent implements OnInit {
   floor: Floor
   isSubmitted = false
   valid: Validation = new Validation()
-
   inputId = ''
-
   component = ''
   attributeComponent = 'Device'
   attributeComponentObject: string = ''
@@ -31,15 +27,15 @@ export class EditFloorComponent implements OnInit {
     x: new FormControl('', [Validators.required, this.valid.numberValidator]),
     y: new FormControl('', [Validators.required, this.valid.numberValidator]),
     h: new FormControl('', [Validators.required, this.valid.numberValidator]),
-    x_pos: new FormControl('', [Validators.required, this.valid.numberValidator]),
-    y_pos: new FormControl('', [Validators.required, this.valid.numberValidator]),
-    h_pos: new FormControl('', [Validators.required, this.valid.numberValidator]),
+    xPos: new FormControl('', [Validators.required, this.valid.numberValidator]),
+    yPos: new FormControl('', [Validators.required, this.valid.numberValidator]),
+    hPos: new FormControl('', [Validators.required, this.valid.numberValidator]),
   })
 
   floorForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(36)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    adress: new FormGroup({
+    address: new FormGroup({
       street: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
       country: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -49,8 +45,10 @@ export class EditFloorComponent implements OnInit {
   })
 
   constructor(
-    private formBulider: FormBuilder,
+    private formBuilder: FormBuilder,
     public activatedRoute: ActivatedRoute,
+
+    public ReactiveFormsModule: ReactiveFormsModule,
     private ngZone: NgZone,
     private router: Router,
     private floorService: FloorService,
@@ -69,71 +67,49 @@ export class EditFloorComponent implements OnInit {
     console.log('edit-device.attributeComponentObject = ' + this.attributeComponentObject)
     // @TODO one line mapping for this.floorForm.setValue(this.floor)
     console.log(
-      this.floor.dimension.map(d => this.createDimesionGroup(d))
+      this.floor.dimension.map(d => this.createDimensionGroup(d))
     )
     this.floorForm.controls.id.setValue(id)
     this.floorForm.controls.name.setValue(this.floor.name)
-    this.floorForm.controls.adress.controls.street.setValue(this.floor.adress.street)
-    this.floorForm.controls.adress.controls.city.setValue(this.floor.adress.city)
-    this.floorForm.controls.adress.controls.country.setValue(this.floor.adress.country)
-    this.floorForm.controls.adress.controls.postcode.setValue(this.floor.adress.postcode)
+    this.floorForm.controls.address.controls.street.setValue(this.floor.address.street)
+    this.floorForm.controls.address.controls.city.setValue(this.floor.address.city)
+    this.floorForm.controls.address.controls.country.setValue(this.floor.address.country)
+    this.floorForm.controls.address.controls.postcode.setValue(this.floor.address.postcode)
     this.floorForm.controls.dimension =
-      this.formBulider.array(
-        this.floor.dimension.map(floor => this.createDimesionGroup(floor))
-    )
-
-
-    // this.peopleForm = this.fb.group({
-    //   people: this.fb.array(this.people.map(person => this.createPersonGroup(person) ))
-    // });
+      this.formBuilder.array(
+        this.floor.dimension.map(floor => this.createDimensionGroup(floor))
+      )
   }
-
-  createDimesionGroup(dimesion: any = {}) {
+  createDimensionGroup(dimension: FloorDimension) {
     return new FormGroup({
-      description: new FormControl(dimesion.description, [Validators.required, Validators.minLength(4)]),
-      x: new FormControl(dimesion.x, [Validators.required, this.valid.numberValidator]),
-      y: new FormControl(dimesion.y, [Validators.required, this.valid.numberValidator]),
-      h: new FormControl(dimesion.h, [Validators.required, this.valid.numberValidator]),
-      x_pos: new FormControl(dimesion.x_pos, [Validators.required, this.valid.numberValidator]),
-      y_pos: new FormControl(dimesion.y_pos, [Validators.required, this.valid.numberValidator]),
-      h_pos: new FormControl(dimesion.h_pos, [Validators.required, this.valid.numberValidator]),
+      description: new FormControl(dimension.description, [Validators.required, Validators.minLength(4)]),
+      x: new FormControl(dimension.x, [Validators.required, this.valid.numberValidator]),
+      y: new FormControl(dimension.y, [Validators.required, this.valid.numberValidator]),
+      h: new FormControl(dimension.h, [Validators.required, this.valid.numberValidator]),
+      xPos: new FormControl(dimension.xPos, [Validators.required, this.valid.numberValidator]),
+      yPos: new FormControl(dimension.yPos, [Validators.required, this.valid.numberValidator]),
+      hPos: new FormControl(dimension.hPos, [Validators.required, this.valid.numberValidator]),
     })
   }
 
-  changeId(e: any) {
-    this.id?.setValue(e.target.value, { onlySelf: true })
+  changeId(e: Event) {
+    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeName(e: any) {
-    this.name?.setValue(e.target.value, { onlySelf: true })
+  changeX(e: Event) {
+    this.floorForm.controls.dimension.at(0).controls.x.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeDescription(e: any) {
-    this.floorForm.controls.dimension.at(0).controls.description?.setValue(e.target.value, { onlySelf: true })
+  changeH(e: Event) {
+    this.floorForm.controls.dimension.at(0).controls.h.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeX(e: any) {
-    this.floorForm.controls.dimension.at(0).controls.x.setValue(e.target.value, { onlySelf: true })
+  changeXpos(e: Event) {
+    this.floorForm.controls.dimension.at(0).controls.xPos.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeY(e: any) {
-    this.floorForm.controls.dimension.at(0).controls.y.setValue(e.target.value, { onlySelf: true })
-  }
-
-  changeH(e: any) {
-    this.floorForm.controls.dimension.at(0).controls.h.setValue(e.target.value, { onlySelf: true })
-  }
-
-  changeXpos(e: any) {
-    this.floorForm.controls.dimension.at(0).controls.x_pos.setValue(e.target.value, { onlySelf: true })
-  }
-
-  changeYpos(e: any) {
-    this.floorForm.controls.dimension.at(0).controls.y_pos.setValue(e.target.value, { onlySelf: true })
-  }
-
-  changeHpos(e: any) {
-    this.floorForm.controls.dimension.at(0).controls.h_pos.setValue(e.target.value, { onlySelf: true })
+  changeHpos(e: Event) {
+    this.floorForm.controls.dimension.at(0).controls.hPos.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   get id() {
@@ -145,15 +121,15 @@ export class EditFloorComponent implements OnInit {
   }
 
   get street() {
-    return this.floorForm.get('adress')?.get('street')
+    return this.floorForm.get('address')?.get('street')
   }
 
   get country() {
-    return this.floorForm.get('adress')?.get('street')
+    return this.floorForm.get('address')?.get('street')
   }
 
   get postcode() {
-    return this.floorForm.get('adress')?.get('postcode')
+    return this.floorForm.get('address')?.get('postcode')
   }
 
   get description() {
@@ -172,19 +148,19 @@ export class EditFloorComponent implements OnInit {
     return this.floorForm.get('dimension')?.get('h')
   }
 
-  get x_pos() {
-    return this.floorForm.get('dimension')?.get('x_pos')
+  get xPos() {
+    return this.floorForm.get('dimension')?.get('xPos')
   }
 
-  get y_pos() {
-    return this.floorForm.get('dimension')?.get('y_pos')
+  get yPos() {
+    return this.floorForm.get('dimension')?.get('yPos')
   }
 
-  get h_pos() {
-    return this.floorForm.get('dimension')?.get('h_pos')
+  get hPos() {
+    return this.floorForm.get('dimension')?.get('hPos')
   }
 
-  toText(data: any): string {
+  toText(data: unknown): string {
     return JSON.stringify(data, null, ' ')
   }
 
@@ -198,9 +174,9 @@ export class EditFloorComponent implements OnInit {
       x: new FormControl('', [Validators.required, this.valid.numberValidator]),
       y: new FormControl('', [Validators.required, this.valid.numberValidator]),
       h: new FormControl('', [Validators.required, this.valid.numberValidator]),
-      x_pos: new FormControl('', [Validators.required, this.valid.numberValidator]),
-      y_pos: new FormControl('', [Validators.required, this.valid.numberValidator]),
-      h_pos: new FormControl('', [Validators.required, this.valid.numberValidator]),
+      xPos: new FormControl('', [Validators.required, this.valid.numberValidator]),
+      yPos: new FormControl('', [Validators.required, this.valid.numberValidator]),
+      hPos: new FormControl('', [Validators.required, this.valid.numberValidator]),
     })
     this.dimension.push(fg)
   }
@@ -211,16 +187,14 @@ export class EditFloorComponent implements OnInit {
       x: new FormControl(floorDimension.x, [Validators.required, this.valid.numberValidator]),
       y: new FormControl(floorDimension.y, [Validators.required, this.valid.numberValidator]),
       h: new FormControl(floorDimension.h, [Validators.required, this.valid.numberValidator]),
-      x_pos: new FormControl(floorDimension.x_pos, [Validators.required, this.valid.numberValidator]),
-      y_pos: new FormControl(floorDimension.y_pos, [Validators.required, this.valid.numberValidator]),
-      h_pos: new FormControl(floorDimension.h_pos, [Validators.required, this.valid.numberValidator]),
+      xPos: new FormControl(floorDimension.xPos, [Validators.required, this.valid.numberValidator]),
+      yPos: new FormControl(floorDimension.yPos, [Validators.required, this.valid.numberValidator]),
+      hPos: new FormControl(floorDimension.hPos, [Validators.required, this.valid.numberValidator]),
     })
     this.dimension.push(fg)
   }
 
-  addAllFillDimensions(floorDimensions: FloorDimension[]) {
-
-
+  addAllFillDimensions() {
   }
 
   deleteDimension(i: number) {
@@ -229,12 +203,12 @@ export class EditFloorComponent implements OnInit {
 
   generateFloor() {
     this.floorForm.controls.name.setValue(faker.company.name() + ' - ' + faker.company.bs())
-    this.floorForm.controls.adress.controls.street.setValue(
+    this.floorForm.controls.address.controls.street.setValue(
       faker.location.street() + ' ' + faker.location.buildingNumber()
     )
-    this.floorForm.controls.adress.controls.city.setValue(faker.location.city())
-    this.floorForm.controls.adress.controls.country.setValue(faker.location.country())
-    this.floorForm.controls.adress.controls.postcode.setValue(faker.location.zipCode())
+    this.floorForm.controls.address.controls.city.setValue(faker.location.city())
+    this.floorForm.controls.address.controls.country.setValue(faker.location.country())
+    this.floorForm.controls.address.controls.postcode.setValue(faker.location.zipCode())
   }
 
   generateDimension(i: number) {
@@ -247,9 +221,9 @@ export class EditFloorComponent implements OnInit {
     this.floorForm.controls.dimension.at(i).controls.x.setValue(String(faker.number.int({ min: 2, max: 100 })))
     this.floorForm.controls.dimension.at(i).controls.y.setValue(String(faker.number.int({ min: 2, max: 100 })))
     this.floorForm.controls.dimension.at(i).controls.h.setValue(String(faker.number.int({ min: 2, max: 10 })))
-    this.floorForm.controls.dimension.at(i).controls.x_pos.setValue(String(faker.number.int({ min: 2, max: 100 })))
-    this.floorForm.controls.dimension.at(i).controls.y_pos.setValue(String(faker.number.int({ min: 2, max: 100 })))
-    this.floorForm.controls.dimension.at(i).controls.h_pos.setValue(String(faker.number.int({ min: 2, max: 100 })))
+    this.floorForm.controls.dimension.at(i).controls.xPos.setValue(String(faker.number.int({ min: 2, max: 100 })))
+    this.floorForm.controls.dimension.at(i).controls.yPos.setValue(String(faker.number.int({ min: 2, max: 100 })))
+    this.floorForm.controls.dimension.at(i).controls.hPos.setValue(String(faker.number.int({ min: 2, max: 100 })))
   }
 
   submitForm() {
@@ -261,9 +235,9 @@ export class EditFloorComponent implements OnInit {
     }
     this.logService.CreateLog(log).subscribe(() => {
       //this.floor = JSON.stringify(log)
-       //  this.reloadComponent(false, 'edit-floor/' + this.floor.id)
+      //  this.reloadComponent(false, 'edit-floor/' + this.floor.id)
     })
-    this.floorService.UpdateFloor(this.floorForm.value.id, this.floorForm.getRawValue() as never).subscribe((res) => {
+    this.floorService.UpdateFloor(this.floorForm.value.id, this.floorForm.getRawValue() as never).subscribe(() => {
       console.log('Floor updated!')
       this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
     })

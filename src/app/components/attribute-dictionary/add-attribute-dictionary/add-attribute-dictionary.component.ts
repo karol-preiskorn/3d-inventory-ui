@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from 'uuid'
   templateUrl: './add-attribute-dictionary.component.html',
   styleUrls: ['./add-attribute-dictionary.component.scss']
 })
-export class AddAttributeDictionaryComponent implements OnInit {
+export class AttributeDictionaryAddComponent implements OnInit {
 
   addAttributeDictionaryForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(10)]),
@@ -40,7 +40,7 @@ export class AddAttributeDictionaryComponent implements OnInit {
     private router: Router,
     public attributeDictionaryService: AttributeDictionaryService,
     private logService: LogService
-  ) {}
+  ) { }
 
   formAttributeDictionary() {
     this.addAttributeDictionaryForm = this.formBulider.group({
@@ -110,6 +110,6 @@ export class AddAttributeDictionaryComponent implements OnInit {
             this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))
             this.router.navigate(['attribute-dictionary-list'])
           })
-    })
+      })
   }
 }

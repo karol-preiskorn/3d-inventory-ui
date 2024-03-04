@@ -1159,130 +1159,26 @@
       "component": "connection"
     }
   ],
-  "attributes": [
-    {
-      "id": "cd69addc-5c83-4638-a1d5-059f06259f5f",
-      "deviceId": "be5bb617-a614-435f-bf66-8768d0aba0c8",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
-      "value": "2"
-    },
-    {
-      "id": "8de18c99-f0f3-45c9-9137-833e6b28f8ed",
-      "deviceId": "",
-      "modelId": "",
-      "connectionId": "baf4152d-65ab-4cce-8f05-6d889e4d8c2a",
-      "attributeDictionaryId": "04f0e57c-6214-49af-a2bb-47b61e23e116",
-      "value": "Bashirian and Sons - monetize turn-key paradigms"
-    },
-    {
-      "id": "055cf595-025c-4716-9025-48b7d9402f6e",
-      "deviceId": "be5bb617-a614-435f-bf66-8768d0aba0c8",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
-      "value": "Ziemann - Hodkiewicz - harness viral supply-chains"
-    },
-    {
-      "id": "fb248caa-1f4a-44f3-9034-bd58ae244410",
-      "deviceId": "255a1cf6-3fb4-4eeb-90c8-4c7ccc38ad3f",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "04f0e57c-6214-49af-a2bb-47b61e23e116",
-      "value": "1"
-    },
-    {
-      "id": "da32664d-dc5c-4b3c-96b0-e1df33c975bf",
-      "deviceId": "b04452d1-a271-4a4a-a543-087b8effd74b",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "70728826-94ef-4610-b171-bfcda02976b6",
-      "value": "11"
-    },
-    {
-      "id": "e1e82ff9-8a33-4fa2-b1de-2f4b7c0405f0",
-      "deviceId": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "b324c94f-58a7-4e2e-a566-207024cb3485",
-      "value": "1"
-    },
-    {
-      "id": "1d343f27-cc28-446f-9156-e0d942b3e2f7",
-      "deviceId": "5606dcf9-8c4f-475b-9e5c-edb54e7a864a",
-      "modelId": "",
-      "connectionId": "",
-      "attributeDictionaryId": "489d6288-f336-4915-b753-a1071879c6d3",
-      "value": "Bartoletti - Labadie - deliver cross-media deliverables"
-    },
-    {
-      "id": "67916cfb-b119-449e-b1f2-903ee3e07826",
-      "deviceId": "",
-      "modelId": "e13aea31-cce3-4877-ba29-740f8392ddd2",
-      "connectionId": "",
-      "attributeDictionaryId": "489d6288-f336-4915-b753-a1071879c6d3",
-      "value": "m2"
-    }
-  ],
+  "attributes": [],
   "floor": [
     {
-      "id": "a6b75fd8-f448-46b0-9bf3-0fbee09c0086",
-      "name": "Konopelski - Walter - incentivize global 2222",
-      "adress": {
-        "street": "Zion Valleys 86789",
-        "city": "Paradise",
-        "country": "Papua New Guinea",
-        "postcode": "05649-8267"
+      "id": "f7b2c512-d067-4dcd-957a-9febbd6f15c6",
+      "name": "ABCD",
+      "address": {
+        "street": "B",
+        "city": "C",
+        "country": "Poland",
+        "postcode": "111212"
       },
       "dimension": [
         {
-          "description": "Koss, Powlowski and Sipes - leverage out-of-the-box schemas dasd",
-          "x": "54",
-          "y": "58",
-          "h": "6",
-          "x_pos": "76",
-          "y_pos": "70",
-          "h_pos": "23"
-        }
-      ]
-    },
-    {
-      "id": "e1c18b23-47fe-468e-bb90-5e2e3b13d68b",
-      "name": "Hane Inc - utilize interactive bandwidth aadas 2  ",
-      "adress": {
-        "street": "Clementine Vista 761",
-        "city": "Lake Jorge",
-        "country": "Iraq",
-        "postcode": "05192"
-      },
-      "dimension": [
-        {
-          "description": "Hickle, Hilpert and Larkin - redefine leading-edge applications",
-          "x": "92",
-          "y": "76",
-          "h": "3",
-          "x_pos": "60",
-          "y_pos": "81",
-          "h_pos": "55"
-        },
-        {
-          "description": "Hegmann - Harvey - evolve web-enabled experiences",
-          "x": "93",
-          "y": "72",
-          "h": "7",
-          "x_pos": "85",
-          "y_pos": "91",
-          "h_pos": "57"
-        },
-        {
-          "description": "Stehr - Murray - disintermediate global models  ",
-          "x": "2",
-          "y": "25",
-          "h": "7",
-          "x_pos": "46",
-          "y_pos": "81",
-          "h_pos": "67"
+          "description": "Graham - Bergstrom - maximize magnetic users",
+          "x": "42",
+          "y": "17",
+          "h": "5",
+          "xPos": "35",
+          "yPos": "42",
+          "hPos": "54"
         }
       ]
     }

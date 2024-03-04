@@ -17,7 +17,7 @@ import { LogService } from 'src/app/services/log.service'
   templateUrl: './edit-connection.component.html',
   styleUrls: ['./edit-connection.component.scss']
 })
-export class EditConnectionComponent implements OnInit {
+export class ConnectionEditComponent implements OnInit {
   inputId: any
 
   editConnectionForm = new FormGroup({
@@ -107,7 +107,7 @@ export class EditConnectionComponent implements OnInit {
     return this.connectionService
       .GetConnection(this.inputId)
       .subscribe((data: any) => {
-        console.log('EditConnectionComponent.connectionService.GetConnection(' + this.inputId + ') => ' + JSON.stringify(data, null, ' '))
+        console.log('ConnectionEditComponent.connectionService.GetConnection(' + this.inputId + ') => ' + JSON.stringify(data, null, ' '))
         this.connection = data
         this.editConnectionForm.setValue(data)
       })
@@ -130,4 +130,3 @@ export class EditConnectionComponent implements OnInit {
       })
   }
 }
-

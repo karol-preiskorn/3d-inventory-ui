@@ -17,7 +17,7 @@ import { LogService } from 'src/app/services/log.service'
   templateUrl: './add-connection.component.html',
   styleUrls: ['./add-connection.component.scss']
 })
-export class AddConnectionComponent implements OnInit {
+export class ConnectionAddComponent implements OnInit {
   addConnectionForm: FormGroup
   connection: Connection = new Connection()
   deviceList: Device[]
