@@ -6,6 +6,7 @@ import { ModelsService } from 'src/app/services/models.service'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 import { Model } from 'src/app/shared/model'
+import { Subscription } from 'rxjs';
 
 interface ModelForm {
   id: FormControl<string | null>
@@ -25,10 +26,10 @@ interface ModelForm {
   templateUrl: './edit-model.component.html',
   styleUrls: ['./edit-model.component.scss'],
 })
-export class EditModelComponent implements OnInit {
-  inputId: any
+export class ModelEditComponent implements OnInit {
+  inputId: string | number
   model: Model
-  component = ''
+  component = '';
 
   editModelForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -76,9 +77,18 @@ export class EditModelComponent implements OnInit {
     private logService: LogService
   ) { }
 
-  private getModel(id: string): any {
+  ngOnInit() {
+    this.getModel()
+  }
+
+  /**
+   * Retrieves a model with the specified ID from the models service.
+   * @param id - The ID of the model to retrieve.
+   * @returns An Observable that emits the retrieved model.
+   */
+  private getModel(): Subscription {
     return this.modelsService
-      .GetModel(this.inputId)
+      .GetModel(this.inputId.toString())
       .subscribe((data: Model) => {
         console.log('GetModel ' + JSON.stringify(data, null, ' '))
         this.model = data
@@ -103,23 +113,17 @@ export class EditModelComponent implements OnInit {
       })
   }
 
-  ngOnInit() {
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
-    this.model = this.getModel(this.inputId)
-    this.component = this.inputId
+  changeId(e: Event) {
+    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
-
-  changeId(e: any) {
-    this.id?.setValue(e.target.value, { onlySelf: true })
+  changeName(e: Event) {
+    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
-  changeName(e: any) {
-    this.name?.setValue(e.target.value, { onlySelf: true })
+  changeType(e: Event) {
+    this.type?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
-  changeType(e: any) {
-    this.type?.setValue(e.target.value, { onlySelf: true })
-  }
-  changeCategory(e: any) {
-    this.category?.setValue(e.target.value, { onlySelf: true })
+  changeCategory(e: Event) { // Specify the type of 'e' as 'Event'
+    this.category?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
   get id() {
     return this.editModelForm.get('id')
@@ -133,10 +137,10 @@ export class EditModelComponent implements OnInit {
   get category() {
     return this.editModelForm.get('category')
   }
-  toString(data: any): string {
-    return JSON.stringify(data, null, ' ')
-  }
 
+  /**
+   * Deletes the form data and performs the delete operation for the model.
+   */
   DeleteForm() {
     this.logService.CreateLog({
       object: this.editModelForm.value.id,
@@ -144,10 +148,14 @@ export class EditModelComponent implements OnInit {
       component: 'Models',
       message: JSON.stringify(this.editModelForm.value, null, 2),
     })
-    this.modelsService.DeleteModel(this.inputId).subscribe(() => {
+    this.modelsService.DeleteModel(this.inputId.toString()).subscribe(() => {
       this.ngZone.run(() => this.router.navigateByUrl('models-list'))
     })
   }
+  /**
+   * Submits the form for editing a model.
+   * If the form is valid and has been touched, it updates the model, creates a log entry, and navigates to the models list.
+   */
   submitForm() {
     if (this.editModelForm.valid && this.editModelForm.touched) {
       this.ngZone.run(() => this.router.navigateByUrl('models-list'))
@@ -161,7 +169,7 @@ export class EditModelComponent implements OnInit {
         console.log(JSON.stringify(log))
       })
       this.modelsService
-        .UpdateModel(this.inputId, this.editModelForm.value)
+        .UpdateModel(this.inputId.toString(), this.editModelForm.value as unknown as Model)
         .subscribe(() => {
           this.router.navigate(['edit-model/', this.model.id])
         })

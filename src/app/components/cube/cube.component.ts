@@ -27,7 +27,6 @@ import { faker } from '@faker-js/faker'
 
 import * as THREE from 'three'
 import { OrbitControls } from 'three-orbitcontrols-ts'
-import GUI from 'lil-gui'
 
 import { LogService } from 'src/app/services/log.service'
 
@@ -169,8 +168,8 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
   createDevice3d(box_x: number, box_y: number, box_z: number, pos_x: number, pos_y: number, pos_z: number) {
     const geometry = new THREE.BoxGeometry(box_x, box_y, box_z)
-    this.material.color = new THREE.Color(Math.random() * 0xffffff )
-    const sphereMaterial = new THREE.MeshStandardMaterial( { color: Math.random() * 0xffffff } );
+    this.material.color = new THREE.Color(Math.random() * 0xffffff)
+    const sphereMaterial = new THREE.MeshStandardMaterial({ color: Math.random() * 0xffffff })
     this.material.opacity = 0.75
 
     const object = new THREE.Mesh(geometry, sphereMaterial /* new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }) */)
@@ -227,14 +226,14 @@ export class CubeComponent implements OnInit, AfterViewInit {
     light.position.set(30, 10, 50)
     light.castShadow = true
 
-    light.position.set( 15, 20, 10 );
-    light.castShadow = true; // default false
+    light.position.set(15, 20, 10)
+    light.castShadow = true // default false
 
     //Set up shadow properties for the light
-    light.shadow.mapSize.width = 3000; // default
-    light.shadow.mapSize.height = 3000; // default
-    light.shadow.camera.near = 1000; // default
-    light.shadow.camera.far = 2000; // default
+    light.shadow.mapSize.width = 3000 // default
+    light.shadow.mapSize.height = 3000 // default
+    light.shadow.camera.near = 1000 // default
+    light.shadow.camera.far = 2000 // default
 
     this.scene.add(light)
 
@@ -295,7 +294,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     //   side: THREE.DoubleSide,
     //   shadowSide: 2
     // })
-    const planeMat = new THREE.MeshStandardMaterial( { color: 0xffffff } )
+    const planeMat = new THREE.MeshStandardMaterial({ color: 0xffffff })
 
     const mesh = new THREE.Mesh(planeGeo, planeMat)
     mesh.receiveShadow = true
@@ -350,7 +349,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
   private startRenderingLoop() {
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas })
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap // default THREE.PCFShadowMap
     this.renderer.shadowMap.enabled = true
     this.renderer.setPixelRatio(devicePixelRatio)
     this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight)

@@ -15,8 +15,6 @@ import { Component, NgZone, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 
-import { SyncRequestClient } from 'ts-sync-request/dist'
-
 import { Device } from 'src/app/shared/device'
 import { DeviceService } from 'src/app/services/device.service'
 
@@ -34,7 +32,7 @@ import Validation from 'src/app/shared/validation'
   templateUrl: './edit-device.component.html',
   styleUrls: ['./edit-device.component.scss'],
 })
-export class EditDeviceComponent implements OnInit {
+export class DeviceEditComponent implements OnInit {
   errorMessage: string
   valid: Validation = new Validation()
   inputId = ''
@@ -66,12 +64,16 @@ export class EditDeviceComponent implements OnInit {
   constructor(
     public activatedRoute: ActivatedRoute,
     public devicesService: DeviceService,
-    private ngZone: NgZone,
     private router: Router,
     private logService: LogService,
     private modelsService: ModelsService
   ) { }
 
+  loadModels() {
+    return this.modelsService.GetModels().subscribe((data: Model[]): void => {
+      this.modelList = data as Model[]
+    })
+  }
   ngOnInit() {
     const id: string = this.activatedRoute.snapshot.paramMap.get('id') || ''
     this.inputId = id
@@ -100,36 +102,27 @@ export class EditDeviceComponent implements OnInit {
     })
   }
 
-  loadModels() {
-    const tmp: Model = new Model()
-    return this.modelsService.GetModels().subscribe((data: any) => {
-      this.modelList = data
-      this.modelList.unshift(tmp)
-    })
+  changeId(e: Event) {
+    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeId(e: any) {
-    this.id?.setValue(e.target.value, { onlySelf: true })
+  changeX(e: Event) {
+    const value = parseFloat((e.target as HTMLInputElement).value)
+    this.x?.setValue(value, { onlySelf: true })
   }
 
-  changeName(e: any) {
-    this.name?.setValue(e.target.value, { onlySelf: true })
+  changeY(e: Event) {
+    const value = parseFloat((e.target as HTMLInputElement).value)
+    this.y?.setValue(value, { onlySelf: true })
   }
 
-  changeX(e: any) {
-    this.x?.setValue(e.target.value, { onlySelf: true })
+  changeH(e: Event) {
+    const value = parseFloat((e.target as HTMLInputElement).value)
+    this.h?.setValue(value, { onlySelf: true })
   }
 
-  changeY(e: any) {
-    this.y?.setValue(e.target.value, { onlySelf: true })
-  }
-
-  changeH(e: any) {
-    this.h?.setValue(e.target.value, { onlySelf: true })
-  }
-
-  changeModelId(e: any) {
-    this.modelId?.setValue(e.target.value, { onlySelf: true })
+  changeModelId(e: Event) {
+    this.modelId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   get id() {
@@ -156,13 +149,9 @@ export class EditDeviceComponent implements OnInit {
     return this.editDeviceForm.get('modelId')
   }
 
-  // toString(data: string): string {
-  //   return JSON.stringify(data, null, ' ')
-  // }
-
   submitForm() {
     if (this.editDeviceForm.valid && this.editDeviceForm.touched) {
-      console.log('EditDeviceComponent.submitForm(): ' + JSON.stringify(this.editDeviceForm.value, null, 2))
+      console.log('DeviceEditComponent.submitForm(): ' + JSON.stringify(this.editDeviceForm.value, null, 2))
       const log: LogIn = {
         message: JSON.stringify(this.editDeviceForm.value) as string,
         operation: 'Update',
@@ -173,7 +162,7 @@ export class EditDeviceComponent implements OnInit {
         this.action = JSON.stringify(log)
         //this.reloadComponent(false, 'edit-device/' + this.device.id)
       })
-      this.devicesService.UpdateDevice(this.inputId, this.editDeviceForm.value).subscribe(() => {
+      this.devicesService.UpdateDevice(this.inputId, this.editDeviceForm.value as Device).subscribe(() => {
         //  this.ngZone.run(() => this.router.navigateByUrl('device-list'))
         this.router.navigate(['device-list'])
         // @TODO: #64 goto specific row in list when return form list

@@ -1,0 +1,12 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<DistinctType class="oracle.dbtools.crest.model.design.datatypes.DistinctType" name="ObjectId" directorySegmentName="seg_0" id="05757FF6-B8A9-BC6D-129E-0A32D5FDD869">
+<createdBy>karol</createdBy>
+<createdTime>2024-01-31 21:38:23 UTC</createdTime>
+<comment><![CDATA[MongoDB Id]]></comment>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<predefined>false</predefined>
+<logicalDataType>LOGDT024</logicalDataType>
+<precision>0</precision>
+<scale>0</scale>
+<size>24</size>
+</DistinctType>

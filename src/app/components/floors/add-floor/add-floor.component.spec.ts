@@ -1,21 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { AddFloorComponent } from './add-floor.component';
+import { FloorAddComponent } from './add-floor.component'
 
-describe('AddFloorComponent', () => {
-  let component: AddFloorComponent;
-  let fixture: ComponentFixture<AddFloorComponent>;
+describe('FloorAddComponent', () => {
+  let component: FloorAddComponent
+  let fixture: ComponentFixture<FloorAddComponent>
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AddFloorComponent]
-    });
-    fixture = TestBed.createComponent(AddFloorComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+      declarations: [FloorAddComponent]
+    })
+    fixture = TestBed.createComponent(FloorAddComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

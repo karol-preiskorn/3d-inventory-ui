@@ -1,27 +1,27 @@
-import {Component, NgZone, OnInit} from '@angular/core'
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
-import {ActivatedRoute, Router} from '@angular/router'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
 
-import {LogService} from 'src/app/services/log.service'
-import {ComponentDictionary} from 'src/app/shared/component-dictionary'
+import { LogService } from 'src/app/services/log.service'
+import { ComponentDictionary } from 'src/app/shared/component-dictionary'
 
-import {Attribute} from 'src/app/shared/attribute'
-import {AttributeService} from 'src/app/services/attribute.service'
+import { Attribute } from 'src/app/shared/attribute'
+import { AttributeService } from 'src/app/services/attribute.service'
 
-import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
-import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
+import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
+import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 
-import {Device} from 'src/app/shared/device'
-import {DeviceService} from 'src/app/services/device.service'
+import { Device } from 'src/app/shared/device'
+import { DeviceService } from 'src/app/services/device.service'
 
-import {Model} from 'src/app/shared/model'
-import {ModelsService} from 'src/app/services/models.service'
+import { Model } from 'src/app/shared/model'
+import { ModelsService } from 'src/app/services/models.service'
 
-import {Connection} from 'src/app/shared/connection'
-import {ConnectionService} from 'src/app/services/connection.service'
+import { Connection } from 'src/app/shared/connection'
+import { ConnectionService } from 'src/app/services/connection.service'
 
-import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
-import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
 
 import Validation from 'src/app/shared/validation'
 
@@ -30,7 +30,7 @@ import Validation from 'src/app/shared/validation'
   templateUrl: './edit-attribute.component.html',
   styleUrls: ['./edit-attribute.component.scss'],
 })
-export class EditAttributeComponent implements OnInit {
+export class AttributeEditComponent implements OnInit {
   inputId: any
   valid: Validation = new Validation()
 
@@ -43,7 +43,7 @@ export class EditAttributeComponent implements OnInit {
       attributeDictionaryId: new FormControl('', [Validators.required]),
       value: new FormControl('', [Validators.required]),
     },
-    {validators: this.valid.atLeastOneValidator}
+    { validators: this.valid.atLeastOneValidator }
   )
 
   attribute: Attribute
@@ -75,7 +75,7 @@ export class EditAttributeComponent implements OnInit {
 
   private getAttribute(id: string): any {
     return this.attributeService.GetAttribute(this.inputId).subscribe((data: any) => {
-      console.log('EditAttributeComponent.GetAttribute(' + this.inputId + ') => ' + JSON.stringify(data, null, 2))
+      console.log('AttributeEditComponent.GetAttribute(' + this.inputId + ') => ' + JSON.stringify(data, null, 2))
       this.attribute = data
       this.editAttributeForm.setValue(data)
     })
@@ -92,30 +92,30 @@ export class EditAttributeComponent implements OnInit {
     private connectionService: ConnectionService,
     private attributeDictionaryService: AttributeDictionaryService,
     private logService: LogService
-  ) {}
+  ) { }
 
   changeId(e: any) {
-    this.id?.setValue(e.target.value, {onlySelf: true})
+    this.id?.setValue(e.target.value, { onlySelf: true })
   }
 
   changeDeviceId(e: any) {
-    this.deviceId?.setValue(e.target.value, {onlySelf: true})
+    this.deviceId?.setValue(e.target.value, { onlySelf: true })
   }
 
   changeModelId(e: any) {
-    this.modelId?.setValue(e.target.value, {onlySelf: true})
+    this.modelId?.setValue(e.target.value, { onlySelf: true })
   }
 
   changeConnectionId(e: any) {
-    this.connectionId?.setValue(e.target.value, {onlySelf: true})
+    this.connectionId?.setValue(e.target.value, { onlySelf: true })
   }
 
   changeAttributeDictionaryId(e: any) {
-    this.attributeDictionaryId?.setValue(e.target.value, {onlySelf: true})
+    this.attributeDictionaryId?.setValue(e.target.value, { onlySelf: true })
   }
 
   changeValue(e: any) {
-    this.value?.setValue(e.target.value, {onlySelf: true})
+    this.value?.setValue(e.target.value, { onlySelf: true })
   }
 
   get id() {

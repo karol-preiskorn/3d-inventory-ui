@@ -173,3 +173,4 @@ package-lock.json
 documentation
 MONGO.md
 .odo
+src/environments/environment.prod.ts
