@@ -131,6 +131,7 @@
     "lite-server": "^2.6.1",
     "ng-packagr": "^17.1.2",
     "nyc": "^15.1.0",
+
     "prettier": "3.2.4",
     "three": "^0.161.0",
     "typescript": "^5.2.0",
