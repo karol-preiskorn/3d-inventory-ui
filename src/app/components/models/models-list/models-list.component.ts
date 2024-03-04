@@ -1,9 +1,8 @@
-import {Component, NgZone, OnInit} from '@angular/core'
-import {Router} from '@angular/router'
-
-import {ModelsService} from 'src/app/services/models.service'
-import {LogService} from 'src/app/services/log.service'
-import {Model} from 'src/app/shared/model'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Model } from 'src/app/shared/model'
 
 
 @Component({
@@ -22,18 +21,29 @@ export class ModelsListComponent implements OnInit {
     private logService: LogService,
     private router: Router,
     private ngZone: NgZone
-  ) {}
+  ) { }
 
+  /**
+   * Loads the models by calling the GetModels method of the models service.
+   * @returns An Observable that emits the loaded models data.
+   */
   loadModels() {
-    return this.modelsService.GetModels().subscribe((data: any) => {
+    return this.modelsService.GetModels().subscribe((data: Model[]) => {
       this.ModelsList = data
     })
   }
 
+  /**
+   * Initializes the component.
+   */
   ngOnInit() {
     this.loadModels()
   }
 
+  /**
+   * Deletes a model with the specified ID.
+   * @param id The ID of the model to delete.
+   */
   DeleteModel(id: string) {
     this.logService.CreateLog({
       message: id,
@@ -41,13 +51,19 @@ export class ModelsListComponent implements OnInit {
       operation: 'Delete',
       component: 'Models',
     })
-    return this.modelsService.DeleteModel(id).subscribe((data: any) => {
+    return this.modelsService.DeleteModel(id).subscribe((data: Model) => { // Update the callback function parameter type to Model
       console.log(data)
       this.loadModels()
       this.router.navigate(['/models-list'])
     })
   }
 
+  /**
+   * Clones a model with the specified ID.
+   *
+   * @param id The ID of the model to clone.
+   * @returns The ID of the newly cloned model.
+   */
   async CloneModel(id: string) {
     const id_new: string = this.modelsService.CloneModel(id)
     this.logService
@@ -63,10 +79,18 @@ export class ModelsListComponent implements OnInit {
     this.router.navigate(['/models-list'])
   }
 
+  /**
+   * Navigates to the 'add-model' route.
+   */
   AddModel() {
     this.router.navigate(['/add-model'])
   }
 
+  /**
+   * Edits the specified model.
+   *
+   * @param model The model to be edited.
+   */
   EditModel(model: Model) {
     this.selectedModel = model
     this.router.navigate(['edit-model', model.id])

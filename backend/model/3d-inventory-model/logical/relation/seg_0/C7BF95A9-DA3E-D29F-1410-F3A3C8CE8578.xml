@@ -3,7 +3,7 @@
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 11:51:50 UTC</createdTime>
 <generatorID>AD83F4EC-F6EF-A6C2-F91B-A2DAE870F2A8</generatorID>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <engineerTo>
 <item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
 </engineerTo>
@@ -16,5 +16,4 @@
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>E8A6E223-484F-51A3-B95F-731D8E12774E</targetEntity>
 <transferable>true</transferable>
-<deleteRule>NO ACTION</deleteRule>
 </Relation>

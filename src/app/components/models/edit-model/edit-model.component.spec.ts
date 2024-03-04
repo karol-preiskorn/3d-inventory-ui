@@ -1,22 +1,22 @@
 import { HttpClientModule, HttpClient } from '@angular/common/http'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { RouterTestingModule } from '@angular/router/testing'
-import { EditModelComponent } from './edit-model.component'
+import { ModelEditComponent } from './edit-model.component'
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
-describe('EditModelComponent', () => {
-  let component: EditModelComponent
-  let fixture: ComponentFixture<EditModelComponent>
+describe('ModelEditComponent', () => {
+  let component: ModelEditComponent
+  let fixture: ComponentFixture<ModelEditComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [EditModelComponent],
+      declarations: [ModelEditComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [RouterTestingModule, HttpClientModule, ReactiveFormsModule],
       providers: [HttpClient],
     }).compileComponents()
 
-    fixture = TestBed.createComponent(EditModelComponent)
+    fixture = TestBed.createComponent(ModelEditComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

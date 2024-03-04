@@ -2,8 +2,11 @@
 <CollectionType class="oracle.dbtools.crest.model.design.datatypes.CollectionType" name="COMPONENTS" directorySegmentName="seg_0" id="C4B5C766-560F-EACF-8907-1DA45C3F2857">
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 14:34:07 UTC</createdTime>
-<comment><![CDATA[All entity comonents ]]></comment>
-<ownerDesignName>model</ownerDesignName>
+<comment><![CDATA[All entity comonents of applications data
+- device
+- model
+- connection]]></comment>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <predefined>false</predefined>
 <dataTypeDescr class="oracle.dbtools.crest.model.design.datatypes.CollectionType$DataTypeWrapper">
 <size>64</size>
@@ -11,7 +14,7 @@
 <isreference>false</isreference>
 </dataTypeDescr>
 <maxElement>10</maxElement>
-<type>ARRAY</type>
+<type>COLLECTION</type>
 <propertyMap>
 <property name="CONNECTION" value=""/>
 <property name="DEVICE" value=""/>

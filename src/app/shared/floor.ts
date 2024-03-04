@@ -11,20 +11,20 @@
  */
 
 
-export interface FloorDimension{
-    description: string
-    x: string
-    y: string
-    h: string
-    x_pos: string
-    y_pos: string
-    h_pos: string
+export interface FloorDimension {
+  description: string
+  x: string
+  y: string
+  h: string
+  xPos: string
+  yPos: string
+  hPos: string
 }
 
 export interface Floor {
   id: string
   name: string
-  adress: {
+  address: {
     street: string
     city: string,
     country: string

@@ -1,28 +1,27 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
 import { Observable, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 import { v4 as uuidv4 } from 'uuid'
+import { environment } from '../../environments/environment'
 import { Connection } from '../shared/connection'
 import { LogService } from './log.service'
-import { Router } from '@angular/router'
-import { EnvironmentService } from './environment.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConnectionService {
-  environmentServiceClass = new EnvironmentService()
-  BASEURL = this.environmentServiceClass.getSettings('BASEURL')
+
+  baseurl = environment.baseurl
 
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router,
-    private environmentService: EnvironmentService
   ) {
-    this.BASEURL = this.environmentServiceClass.getSettings('BASEURL')
+
   }
 
   httpOptions = {
@@ -31,28 +30,53 @@ export class ConnectionService {
     }),
   }
 
+  /**
+   * Retrieves the connections.
+   * @returns An Observable of type Connection.
+   */
   GetConnections(): Observable<Connection> {
-    return this.http.get<Connection>(this.BASEURL + '/connections/').pipe(retry(1), catchError(this.errorHandl))
+    return this.http.get<Connection>(environment.baseurl + '/connections/').pipe(retry(1), catchError(this.errorHandl))
   }
 
+  /**
+   * Retrieves a connection by its ID.
+   * @param id The ID of the connection to retrieve.
+   * @returns An Observable that emits the retrieved Connection object.
+   */
   GetConnection(id: string | null): Observable<Connection> {
     return this.http
-      .get<Connection>(this.BASEURL + '/connections/' + id, this.httpOptions)
+      .get<Connection>(environment.baseurl + '/connections/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
+  /**
+   * Deletes a connection by its ID.
+   * @param id The ID of the connection to delete.
+   * @returns An Observable that emits the deleted Connection object.
+   */
   DeleteConnection(id: string): Observable<Connection> {
     return this.http
-      .delete<Connection>(this.BASEURL + '/connections/' + id, this.httpOptions)
+      .delete<Connection>(environment.baseurl + '/connections/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
+  /**
+   * Creates a connection.
+   * @param data The connection data to be created.
+   * @returns An observable that emits the created connection.
+   */
   CreateConnection(data: Connection): Observable<Connection> {
     return this.http
-      .post<Connection>(this.BASEURL + '/connections/', JSON.stringify(data, null, ' '), this.httpOptions)
+      .post<Connection>(environment.baseurl + '/connections/', JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
+  /**
+   * Clones a connection with the specified ID.
+   *
+   * @param id - The ID of the connection to clone.
+   * @returns The UUID of the cloned connection.
+   */
   CloneConnection(id: string): string {
     const id_uuid: string = uuidv4()
     this.GetConnection(id).subscribe((value: Connection) => {
@@ -69,27 +93,31 @@ export class ConnectionService {
     return id_uuid
   }
 
-  UpdateConnection(id: string | null, data: any): Observable<Connection> {
+  /**
+   * Updates a connection with the specified ID.
+   * @param id - The ID of the connection to update.
+   * @param data - The updated connection data.
+   * @returns An Observable that emits the updated Connection object.
+   */
+  UpdateConnection(id: string | null, data: Connection): Observable<Connection> {
     return this.http
-      .put<Connection>(this.BASEURL + '/connections/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
+      .put<Connection>(environment.baseurl + '/connections/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
-  errorHandl(error: { error: { message: string }; status: any; message: any }) {
+  /**
+   * Handles the error response from the server.
+   * @param error - The error object containing the error message and status.
+   * @returns - An Observable that emits the error message.
+   */
+  errorHandl(error: { error: { message: string }; status: number; message: string }) {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
-      // Get client-side error
       errorMessage = error.error.message
     } else {
-      // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
     console.log(JSON.stringify(errorMessage))
-    // logService.CreateLog({
-    //   message: 'Error service Connections: ' + JSON.stringify(error.message),
-    //   category: 'Error',
-    //   component: 'ConnectionService.errorHandl',
-    // })
 
     return throwError(() => {
       return errorMessage

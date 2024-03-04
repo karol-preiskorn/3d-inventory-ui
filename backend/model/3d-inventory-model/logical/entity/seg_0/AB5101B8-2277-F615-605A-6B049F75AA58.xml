@@ -3,7 +3,7 @@
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 11:51:50 UTC</createdTime>
 <generatorID>8280AF94-5AB2-68B0-A2D2-D6D2142BF11B</generatorID>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <engineerTo>
 <item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
 </engineerTo>
@@ -22,7 +22,7 @@
 <createdTime>2023-05-20 11:51:50 UTC</createdTime>
 <commentInRDBMS><![CDATA[universal device identity ]]></commentInRDBMS>
 <generatorID>2B154004-7826-C65D-ECA8-38258F5DF47F</generatorID>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <engineerTo>
 <item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
 </engineerTo>
@@ -37,7 +37,7 @@
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 11:51:50 UTC</createdTime>
 <generatorID>EE9B94BB-F301-24CF-CA60-F570F9B29615</generatorID>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <engineerTo>
 <item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
 </engineerTo>
@@ -52,7 +52,7 @@
 <createdTime>2023-05-20 11:51:50 UTC</createdTime>
 <commentInRDBMS><![CDATA[universal device identity ]]></commentInRDBMS>
 <generatorID>6E22E895-4C92-9401-D35B-43570137B440</generatorID>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <engineerTo>
 <item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
 </engineerTo>
@@ -67,7 +67,7 @@
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 11:51:50 UTC</createdTime>
 <generatorID>E30F5183-2F84-A1B7-5916-2A8D6AD6D7F9</generatorID>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <engineerTo>
 <item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
 </engineerTo>
@@ -84,7 +84,7 @@
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 11:51:50 UTC</createdTime>
 <generatorID>D7536EA0-C1E2-9A63-C017-90CDF0676A46</generatorID>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <engineerTo>
 <item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
 </engineerTo>
@@ -102,7 +102,7 @@
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 11:51:50 UTC</createdTime>
 <generatorID>9DC7771D-9A15-4608-8188-0D130D0FC9CA</generatorID>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <engineerTo>
 <item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
 </engineerTo>
@@ -120,7 +120,7 @@
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 11:51:50 UTC</createdTime>
 <generatorID>D4E98997-A38E-7BD3-2FE3-834451B4F136</generatorID>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <engineerTo>
 <item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
 </engineerTo>
@@ -140,7 +140,7 @@
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 11:51:50 UTC</createdTime>
 <generatorID>40653B75-0001-D29B-6CE6-1505F0DA09BC</generatorID>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <shouldEngineer>false</shouldEngineer>
 <engineerTo>
 <item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="false"/>

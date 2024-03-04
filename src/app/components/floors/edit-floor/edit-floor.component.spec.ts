@@ -1,21 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { EditFloorComponent } from './edit-floor.component';
+import { FloorEditComponent } from './edit-floor.component'
 
-describe('EditFloorComponent', () => {
-  let component: EditFloorComponent;
-  let fixture: ComponentFixture<EditFloorComponent>;
+describe('FloorEditComponent', () => {
+  let component: FloorEditComponent
+  let fixture: ComponentFixture<FloorEditComponent>
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EditFloorComponent]
-    });
-    fixture = TestBed.createComponent(EditFloorComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+      declarations: [FloorEditComponent]
+    })
+    fixture = TestBed.createComponent(FloorEditComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

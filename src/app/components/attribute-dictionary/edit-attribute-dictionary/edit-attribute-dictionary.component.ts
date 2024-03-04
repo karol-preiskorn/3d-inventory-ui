@@ -16,7 +16,7 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap'
   templateUrl: './edit-attribute-dictionary.component.html',
   styleUrls: ['./edit-attribute-dictionary.component.scss']
 })
-export class EditAttributeDictionaryComponent implements OnInit {
+export class AttributeDictionaryEditComponent implements OnInit {
   inputId: any
   form: any
   attributeDictionary: AttributeDictionary
@@ -31,7 +31,7 @@ export class EditAttributeDictionaryComponent implements OnInit {
     this.logComponent = this.inputId
     this.setAttributeDictionaryForm()
   }
-  private getInput(){
+  private getInput() {
     return this.activatedRoute.snapshot.paramMap.get('id')
   }
   private getAttributeDictionary(id: string): any {
@@ -56,7 +56,7 @@ export class EditAttributeDictionaryComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     public attributeDictionaryService: AttributeDictionaryService,
     private logService: LogService
-  ) {}
+  ) { }
 
   setAttributeDictionaryForm() {
     this.form = this.formBulider.group({
@@ -114,6 +114,6 @@ export class EditAttributeDictionaryComponent implements OnInit {
             this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))
             this.router.navigate(['attribute-dictionary-list'])
           })
-    })
+      })
   }
 }
