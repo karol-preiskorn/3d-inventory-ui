@@ -1,37 +1,36 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<StructuredType class="oracle.dbtools.crest.model.design.datatypes.StructuredType" name="Position" directorySegmentName="seg_0" id="F72C39E0-D1CA-8821-2AD7-A1E95A37D3D1">
+<StructuredType class="oracle.dbtools.crest.model.design.datatypes.StructuredType" name="Dimension" directorySegmentName="seg_0" id="F81EAAE1-E160-1336-6163-C9E445276F2E">
 <createdBy>karol</createdBy>
-<createdTime>2022-10-31 23:03:38 UTC</createdTime>
+<createdTime>2024-01-31 21:43:39 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
-<visible>false</visible>
-<predefined>true</predefined>
+<predefined>false</predefined>
 <final>false</final>
 <instantiable>true</instantiable>
 <attributes itemClass="oracle.dbtools.crest.model.design.datatypes.TypeElement">
-<Attribute name="x" id="FC7DDF81-06B8-40F5-BC74-F6A6953685DD">
+<Attribute name="width" id="FBC013C8-9AD2-109F-E10D-A2C9E5E4B0E2">
 <createdBy>karol</createdBy>
-<createdTime>2023-04-30 15:57:08 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<createdTime>2024-01-31 21:43:39 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <mandatory>false</mandatory>
 <precision>0</precision>
 <reference>false</reference>
 <scale>0</scale>
 <type>LOGDT019</type>
 </Attribute>
-<Attribute name="y" id="944731C5-08C0-50AE-5330-A2DF8947C677">
+<Attribute name="height" id="1A55C27F-3AFC-15FA-465E-21FC5B2C5CB0">
 <createdBy>karol</createdBy>
-<createdTime>2023-04-30 15:57:32 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<createdTime>2024-01-31 21:43:39 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <mandatory>false</mandatory>
 <precision>0</precision>
 <reference>false</reference>
 <scale>0</scale>
 <type>LOGDT019</type>
 </Attribute>
-<Attribute name="h" id="98249AAC-4D4D-D4D0-FC94-D3CA66212FCB">
+<Attribute name="depth" id="8448ABA9-4BB1-262A-A4AF-5E24DE4EA91F">
 <createdBy>karol</createdBy>
-<createdTime>2023-04-30 15:57:54 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<createdTime>2024-01-31 21:43:39 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <mandatory>false</mandatory>
 <precision>0</precision>
 <reference>false</reference>

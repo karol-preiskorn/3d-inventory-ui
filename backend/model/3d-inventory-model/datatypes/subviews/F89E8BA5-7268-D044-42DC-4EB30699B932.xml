@@ -22,6 +22,10 @@
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="20" y="20" width="100" height="100"/>
 </OView>
+<OView class="oracle.dbtools.crest.swingui.datatypes.TVStructuredType" oid="F81EAAE1-E160-1336-6163-C9E445276F2E" otype="StructuredType" vid="CEF3F64C-DCFE-93C9-47A0-F28282D4522E">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="50" y="50" width="100" height="100"/>
+</OView>
 </objectViews>
 <displays>
 <Display class="oracle.dbtools.crest.swingui.datatypes.DPVDataTypes" name="DEVICE" id="51DFDB43-C4F1-FEB2-93E1-11354B687F3E">
@@ -46,6 +50,10 @@
 <OView class="oracle.dbtools.crest.swingui.datatypes.TVStructuredType" oid="F72C39E0-D1CA-8821-2AD7-A1E95A37D3D1" otype="StructuredType" vid="AB7CB6C6-F0A8-CA5F-5289-5CB8C4DA0A4C">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="20" y="20" width="100" height="100"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.datatypes.TVStructuredType" oid="F81EAAE1-E160-1336-6163-C9E445276F2E" otype="StructuredType" vid="4A0EEC1F-2A8D-CED2-1715-FC7D64710441">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="50" y="50" width="100" height="100"/>
 </OView>
 </objectViews>
 </Display>
