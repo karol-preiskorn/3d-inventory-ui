@@ -84,7 +84,7 @@
     "process": "^0.11.10",
     "rimraf": "^5.0.5",
     "rxjs": "~7.8.1",
-    "three": "^0.158.0",
+    "three": "^0.161.0",
     "three-orbitcontrols-ts": "^0.1.2",
     "ts-sync-request": "^1.4.1",
     "tslib": "^2.6.2",
@@ -132,7 +132,7 @@
     "ng-packagr": "^17.1.2",
     "nyc": "^15.1.0",
     "prettier": "3.2.4",
-    "three": "^0.158.0",
+    "three": "^0.161.0",
     "typescript": "^5.2.0",
     "unique-names-generator": "^4.7.1",
     "uuid": "^9.0.1"
