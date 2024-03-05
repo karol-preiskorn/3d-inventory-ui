@@ -6,7 +6,7 @@ import { ModelsService } from 'src/app/services/models.service'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 import { Model } from 'src/app/shared/model'
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs'
 
 interface ModelForm {
   id: FormControl<string | null>
@@ -143,7 +143,7 @@ export class ModelEditComponent implements OnInit {
    */
   DeleteForm() {
     this.logService.CreateLog({
-      object: this.editModelForm.value.id,
+      objectId: this.editModelForm.value.id,
       operation: 'Delete',
       component: 'Models',
       message: JSON.stringify(this.editModelForm.value, null, 2),
@@ -163,7 +163,7 @@ export class ModelEditComponent implements OnInit {
         message: JSON.stringify(this.editModelForm.value, null, ' ') as string,
         operation: 'Update',
         component: 'Models',
-        object: this.editModelForm.value.id,
+        objectId: this.editModelForm.value.id,
       }
       this.logService.CreateLog(log).subscribe(() => {
         console.log(JSON.stringify(log))

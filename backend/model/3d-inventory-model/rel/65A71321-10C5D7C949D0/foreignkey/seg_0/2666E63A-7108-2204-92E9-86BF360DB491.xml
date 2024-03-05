@@ -1,15 +1,15 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2666E63A-7108-2204-92E9-86BF360DB491" containerWithKeyObject="94FB98D3-E3F0-5BA6-A6CD-151A409F35BC" localFKIndex="8F35327F-A805-DFD9-AFEC-F5B47D5C7606" name="CONNECTIONS_DEVICES_FROM_FK">
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2666E63A-7108-2204-92E9-86BF360DB491" containerWithKeyObject="94FB98D3-E3F0-5BA6-A6CD-151A409F35BC" localFKIndex="8F35327F-A805-DFD9-AFEC-F5B47D5C7606" name="connections_devices_from_fk">
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 12:42:53 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
-<referredTableLongName>REST.DEVICES</referredTableLongName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<referredTableLongName>3DINV.devices</referredTableLongName>
 <deleteRule>NO ACTION</deleteRule>
 <referredTableID>8280AF94-5AB2-68B0-A2D2-D6D2142BF11B</referredTableID>
 <keyObject>40653B75-0001-D29B-6CE6-1505F0DA09BC</keyObject>
 <referredKeyID>40653B75-0001-D29B-6CE6-1505F0DA09BC</referredKeyID>
 <mandatory>true</mandatory>
-<refColNames>ID</refColNames>
+<refColNames>id</refColNames>
 <transferable>true</transferable>
 <rely>false</rely>
 <columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>

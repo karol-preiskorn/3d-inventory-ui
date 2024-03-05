@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CAF7683B-83E7-055A-EC26-47FA0E5555F6" schemaObject="2E57B3AC-A335-158D-F66B-1F85FCBC80E9" name="MODELS">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CAF7683B-83E7-055A-EC26-47FA0E5555F6" schemaObject="2E57B3AC-A335-158D-F66B-1F85FCBC80E9" name="models">
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:44:19 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
@@ -9,32 +9,34 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="ID" id="115FA11B-0E2B-73D9-A4FC-ECDB6571B98D">
+<Column name="id" id="115FA11B-0E2B-73D9-A4FC-ECDB6571B98D">
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:44:19 UTC</createdTime>
 <commentInRDBMS><![CDATA[universal device identity ]]></commentInRDBMS>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>50</dataTypeSize>
+<domain>0F082329-443B-2567-7399-838BA8C6A2E2</domain>
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_DEVICESv1_DEVICE_ID</notNullConstraintName>
 </Column>
-<Column name="NAME" id="110ED1F7-AFCC-7CCA-D4EB-E0065DB4F272">
+<Column name="name" id="110ED1F7-AFCC-7CCA-D4EB-E0065DB4F272">
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:44:19 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>50</dataTypeSize>
+<domain>0F082329-443B-2567-7399-838BA8C6A2E2</domain>
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_DEVICESv1_DEVICE_NAME</notNullConstraintName>
 </Column>
-<Column name="DIMENSION" id="D782D3FF-A6EB-2A34-33CF-B67131DA8E65">
+<Column name="dimension" id="D782D3FF-A6EB-2A34-33CF-B67131DA8E65">
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:44:19 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
@@ -46,21 +48,22 @@
 <ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="CATEGORY" id="E48C443D-8E20-F13D-4AA4-3F109576BEC7">
+<Column name="category" id="E48C443D-8E20-F13D-4AA4-3F109576BEC7">
 <createdBy>karol</createdBy>
 <createdTime>2024-02-03 08:38:22 UTC</createdTime>
 <comment><![CDATA[Category device ]]></comment>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
+<domain>162C6B29-BE1F-72D5-B51C-76B042C15438</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
 <nestedColumns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<nestedColumn name="DIMENSION.x" id="D277F5CD-48CB-3383-1335-DBCFFCE4E6D5">
+<nestedColumn name="dimension.x" id="D277F5CD-48CB-3383-1335-DBCFFCE4E6D5">
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:58:44 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
@@ -68,14 +71,15 @@
 <parentObject>D782D3FF-A6EB-2A34-33CF-B67131DA8E65</parentObject>
 <structAttributeID>FC7DDF81-06B8-40F5-BC74-F6A6953685DD</structAttributeID>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
+<domain>1BBF3132-D8B5-CA9F-97C9-5E2C0481F1FB</domain>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </nestedColumn>
-<nestedColumn name="DIMENSION.y" id="98BEED66-11A5-88D1-9055-81E4AE6E7CE0">
+<nestedColumn name="dimension.y" id="98BEED66-11A5-88D1-9055-81E4AE6E7CE0">
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:58:44 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
@@ -83,14 +87,15 @@
 <parentObject>D782D3FF-A6EB-2A34-33CF-B67131DA8E65</parentObject>
 <structAttributeID>944731C5-08C0-50AE-5330-A2DF8947C677</structAttributeID>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
+<domain>1BBF3132-D8B5-CA9F-97C9-5E2C0481F1FB</domain>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </nestedColumn>
-<nestedColumn name="DIMENSION.h" id="35388682-98D2-7D1F-AF52-9FE05A9CD109">
+<nestedColumn name="dimension.h" id="35388682-98D2-7D1F-AF52-9FE05A9CD109">
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:58:44 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
@@ -98,16 +103,17 @@
 <parentObject>D782D3FF-A6EB-2A34-33CF-B67131DA8E65</parentObject>
 <structAttributeID>98249AAC-4D4D-D4D0-FC94-D3CA66212FCB</structAttributeID>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
+<domain>1BBF3132-D8B5-CA9F-97C9-5E2C0481F1FB</domain>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </nestedColumn>
 </nestedColumns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="60882945-4CD2-9B88-9778-624AA3551BAC" name="MODELS_PK">
+<ind_PK_UK id="60882945-4CD2-9B88-9778-624AA3551BAC" name="models_pk">
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 15:44:19 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>

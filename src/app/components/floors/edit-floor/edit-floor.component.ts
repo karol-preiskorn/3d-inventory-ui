@@ -231,7 +231,7 @@ export class FloorEditComponent implements OnInit {
       message: JSON.stringify(this.floorForm.value) as string,
       operation: 'Update',
       component: 'Floor',
-      object: this.floorForm.value.id,
+      objectId: this.floorForm.value.id,
     }
     this.logService.CreateLog(log).subscribe(() => {
       //this.floor = JSON.stringify(log)

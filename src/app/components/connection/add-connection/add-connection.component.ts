@@ -93,7 +93,7 @@ export class ConnectionAddComponent implements OnInit {
       .subscribe(() => {
         this.logService
           .CreateLog({
-            object: this.addConnectionForm.get('id')?.value,
+            objectId: this.addConnectionForm.get('id')?.value,
             message: this.toString(this.addConnectionForm.value),
             operation: 'Create',
             component: 'Connection',

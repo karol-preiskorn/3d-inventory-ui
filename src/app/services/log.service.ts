@@ -1,7 +1,7 @@
+
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
 import { Injectable, Input } from '@angular/core'
 import { Observable, catchError, of, retry, throwError } from 'rxjs'
-import { v4 as uuidv4 } from 'uuid'
 import { environment } from '../../environments/environment'
 import { getDateString } from '../shared/utils'
 
@@ -11,16 +11,16 @@ export interface LogParamteres {
 }
 
 export interface Log {
-  id: string // logs uuid4
+  _id: string // logs uuid4
   date: string // date-time
-  object?: string | null // objects uuid4
+  objectId?: string | null // objects uuid4
   operation: string // Edit, Delete, Create, Update
   component: string // [device, model, category, floor]
   message: string // object json
 }
 
 export interface LogIn {
-  object?: string | null
+  objectId?: string | null
   operation: string
   component: string
   message: string
@@ -44,7 +44,7 @@ export class LogService {
 
   /**
    * Retrieves the logs from the server.
-   * @returns An Observable that emits an array of Log objects.
+   * @returns An Observable that emits an array of Log objectIds.
    */
   GetLogs(): Observable<Log[]> {
     return this.http
@@ -55,21 +55,21 @@ export class LogService {
   /**
    * Retrieves the logs for a specific component.
    * @param component The name of the component.
-   * @returns An Observable that emits an array of Log objects.
+   * @returns An Observable that emits an array of Log objectIds.
    */
   GetComponentLogs(component: string): Observable<Log[]> {
-    const url = environment.baseurl + '/logs/' + component
-    console.log('LogComponet.GetComponetLogs(' + component + ') ' + url)
+    const url = environment.baseurl + '/logs/component/' + component.toLowerCase()
+    console.log('LogComponent.GetComponentLogs(' + component.toLowerCase() + ') ' + url)
     return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
   }
 
   /**
    * Retrieves the logs for a specific object.
-   * @param object - The name of the object.
-   * @returns An Observable that emits an array of Log objects.
+   * @param objectId - The name of the objectId.
+   * @returns An Observable that emits an array of Log objectIds.
    */
-  GetObjectsLogs(object: string): Observable<Log[]> {
-    const url = environment.baseurl + '/logs/' + object
+  GetObjectsLogs(objectId: string): Observable<Log[]> {
+    const url = environment.baseurl + '/logs/' + objectId
     console.log('LogService.GetObjectsLogs.url: ' + url)
     return this.http.get<Log[]>(url).pipe(catchError(this.handleErrorTemplate<Log[]>('GetObjectsLogs', [])))
   }
@@ -103,9 +103,9 @@ export class LogService {
    */
   CreateLog(data: LogIn): Observable<Log> {
     const log: Log = {
-      id: uuidv4(),
+      _id: '',
       date: getDateString(),
-      object: data.object,
+      objectId: data.objectId,
       operation: data.operation,
       component: data.component,
       message: data.message,

@@ -42,9 +42,10 @@
 <item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>50</dataTypeSize>
+<domain>0F082329-443B-2567-7399-838BA8C6A2E2</domain>
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="DIMENSION" id="0EDAC9EC-546D-3CC9-44A9-43ECB090B636">
@@ -72,9 +73,10 @@
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>100</dataTypeSize>
+<domain>4E45A331-20F8-027B-F0C5-063352EECAA2</domain>
 <ownDataTypeParameters>100,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
@@ -90,10 +92,11 @@
 <parentObject>0EDAC9EC-546D-3CC9-44A9-43ECB090B636</parentObject>
 <structAttributeID>FBC013C8-9AD2-109F-E10D-A2C9E5E4B0E2</structAttributeID>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
+<domain>1BBF3132-D8B5-CA9F-97C9-5E2C0481F1FB</domain>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
 </nestedAttribute>
 <nestedAttribute name="DIMENSION.height" directorySegmentName="seg_0" id="03E42F15-D0F6-562F-395C-6D2B45D9C561">
@@ -107,10 +110,11 @@
 <parentObject>0EDAC9EC-546D-3CC9-44A9-43ECB090B636</parentObject>
 <structAttributeID>1A55C27F-3AFC-15FA-465E-21FC5B2C5CB0</structAttributeID>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
+<domain>1BBF3132-D8B5-CA9F-97C9-5E2C0481F1FB</domain>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
 </nestedAttribute>
 <nestedAttribute name="DIMENSION.depth" directorySegmentName="seg_0" id="D20C5440-798A-651E-6700-2FDD8114BAA9">
@@ -124,10 +128,11 @@
 <parentObject>0EDAC9EC-546D-3CC9-44A9-43ECB090B636</parentObject>
 <structAttributeID>8448ABA9-4BB1-262A-A4AF-5E24DE4EA91F</structAttributeID>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
+<domain>1BBF3132-D8B5-CA9F-97C9-5E2C0481F1FB</domain>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
 </nestedAttribute>
 </nestedAttributes>

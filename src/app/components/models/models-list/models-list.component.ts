@@ -47,7 +47,7 @@ export class ModelsListComponent implements OnInit {
   DeleteModel(id: string) {
     this.logService.CreateLog({
       message: id,
-      object: id,
+      objectId: id,
       operation: 'Delete',
       component: 'Models',
     })

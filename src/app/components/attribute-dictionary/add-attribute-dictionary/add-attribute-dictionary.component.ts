@@ -7,7 +7,6 @@ import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
 import { ComponentDictionary } from 'src/app/shared/component-dictionary'
-import { v4 as uuidv4 } from 'uuid'
 
 @Component({
   selector: 'app-add-attribute-dictionary',
@@ -17,11 +16,12 @@ import { v4 as uuidv4 } from 'uuid'
 export class AttributeDictionaryAddComponent implements OnInit {
 
   addAttributeDictionaryForm = new FormGroup({
-    id: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    _id: new FormControl('', [Validators.required, Validators.minLength(24)]),
+    objectId: new FormControl('', [Validators.required, Validators.minLength(10)]),
     name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]),
-    type: new FormControl(null, Validators.required),
-    category: new FormControl(null, Validators.required),
-    component: new FormControl(null, Validators.required),
+    type: new FormControl('', Validators.required),
+    category: new FormControl('', Validators.required),
+    component: new FormControl('', Validators.required),
   })
 
   attributeDictionary: AttributeDictionary
@@ -35,7 +35,7 @@ export class AttributeDictionaryAddComponent implements OnInit {
   }
 
   constructor(
-    public formBulider: FormBuilder,
+    public formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router,
     public attributeDictionaryService: AttributeDictionaryService,
@@ -43,37 +43,38 @@ export class AttributeDictionaryAddComponent implements OnInit {
   ) { }
 
   formAttributeDictionary() {
-    this.addAttributeDictionaryForm = this.formBulider.group({
-      id: [uuidv4(), [Validators.required, Validators.minLength(36)]],
+    this.addAttributeDictionaryForm = this.formBuilder.group({
+      _id: new FormControl('', [Validators.required, Validators.minLength(24)]),
+      objectId: ['', [Validators.required, Validators.minLength(24)]],
       name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
-      type: [null, [Validators.required]],
-      category: [null, [Validators.required]],
-      component: [null, [Validators.required]],
+      type: ['', [Validators.required]],
+      category: ['', [Validators.required]],
+      component: ['', [Validators.required]],
     })
   }
 
-  changeId(e: any) {
-    this.id?.setValue(e.target.value, { onlySelf: true })
+  changeObjectId(e: Event) {
+    this.objectId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeName(e: any) {
-    this.name?.setValue(e.target.value, { onlySelf: true })
+  changeName(e: Event) {
+    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeType(e: any) {
-    this.type?.setValue(e.target.value, { onlySelf: true })
+  changeType(e: Event) {
+    this.type?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeCategory(e: any) {
-    this.category?.setValue(e.target.value, { onlySelf: true })
+  changeCategory(e: Event) {
+    this.category?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeComponent(e: any) {
-    this.component?.setValue(e.target.value, { onlySelf: true })
+  changeComponent(e: Event) {
+    this.component?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  get id() {
-    return this.addAttributeDictionaryForm.get('id')
+  get objectId() {
+    return this.addAttributeDictionaryForm.get('objectId')
   }
 
   get name() {
@@ -92,7 +93,7 @@ export class AttributeDictionaryAddComponent implements OnInit {
     return this.addAttributeDictionaryForm.get('component')
   }
 
-  toString(data: any): string {
+  toString(data: unknown): string {
     return JSON.stringify(data, null, 2)
   }
 
@@ -101,8 +102,8 @@ export class AttributeDictionaryAddComponent implements OnInit {
       .subscribe(() => {
         this.logService
           .CreateLog({
-            object: this.addAttributeDictionaryForm.get('id')?.value,
-            message: this.toString(this.addAttributeDictionaryForm.value),
+            objectId: this.addAttributeDictionaryForm.get('id')?.value,
+            message: this.toString(this.addAttributeDictionaryForm.getRawValue()),
             operation: 'Create',
             component: 'Attribute Dictionary',
           })

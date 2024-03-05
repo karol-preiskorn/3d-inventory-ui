@@ -2,22 +2,24 @@
 <StructuredTypeProxyOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StructuredTypeProxyOraclev10g" name="Position" directorySegmentName="seg_0" id="F72C39E0-D1CA-8821-2AD7-A1E95A37D3D1">
 <createdBy>karol</createdBy>
 <createdTime>2022-10-31 23:08:05 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<comment><![CDATA[Position Device the Floor]]></comment>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<commentchanged>true</commentchanged>
 <attributes itemClass="oracle.dbtools.crest.model.design.storage.oracle.v9i.TypeElementProxyOraclev9i">
 <Attribute name="y" id="944731C5-08C0-50AE-5330-A2DF8947C677">
 <createdBy>karol</createdBy>
 <createdTime>2023-06-19 07:04:43 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 </Attribute>
 <Attribute name="h" id="98249AAC-4D4D-D4D0-FC94-D3CA66212FCB">
 <createdBy>karol</createdBy>
 <createdTime>2023-06-19 07:04:43 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 </Attribute>
 <Attribute name="x" id="FC7DDF81-06B8-40F5-BC74-F6A6953685DD">
 <createdBy>karol</createdBy>
 <createdTime>2023-06-19 07:04:43 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 </Attribute>
 </attributes>
 </StructuredTypeProxyOraclev10g>

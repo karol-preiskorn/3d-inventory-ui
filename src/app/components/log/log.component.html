@@ -8,29 +8,26 @@
           <thead>
             <tr>
               <th scope="col">Date</th>
-              <th scope="col">Object</th>
-              <th scope="col">Component</th>
               <th scope="col">Operation</th>
-              <th scope="col">Message</th>
+              <th scope="col">Component</th>
+              <th scope="col">Object</th>
               <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
-            <tr
-              *ngFor="
+            <tr *ngFor="
                 let log of LogList | paginate : { id: 'logPagination', itemsPerPage: 5, currentPage: pageLog };
                 let i = index
               ">
               <td>{{ log.date }}</td>
-              <td>{{ findNameInLogMessage(log) }}<div class="log-message">{{ log.object }}</div></td>
-              <td>{{ log.component }}</td>
               <td>{{ log.operation }}</td>
-              <td class="log-message">{{ log.message }}</td>
+              <td>{{ log.component }}</td>
+              <td>{{ findNameInLogMessage(log) }}
+              </td>
               <td>
-                <button type="button" id="delete-device"
-                  class="btn btn-danger btn-sm"
-                  (click)="DeleteLog(log.id)">
-                  Delete
+                <button type="button" id="delete-device" class="btn btn-danger btn-sm"
+                  (click)="DeleteLog(log._id)">
+                  <i class="bi bi-trash"></i>
                 </button>
               </td>
             </tr>

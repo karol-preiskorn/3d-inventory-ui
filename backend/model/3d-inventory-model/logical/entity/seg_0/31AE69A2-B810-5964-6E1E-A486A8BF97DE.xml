@@ -1,0 +1,105 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="31AE69A2-B810-5964-6E1E-A486A8BF97DE" name="components">
+<createdBy>karol</createdBy>
+<createdTime>2024-02-25 10:31:08 UTC</createdTime>
+<comment><![CDATA[Structure application]]></comment>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>com</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="_id" id="E286427C-69D2-7704-61F0-E5B85C00C474">
+<createdBy>karol</createdBy>
+<createdTime>2024-02-25 10:31:44 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>2</use>
+<distinctType>05757FF6-B8A9-BC6D-129E-0A32D5FDD869</distinctType>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="component" id="9ED12212-05C1-C063-3DAA-43BC7FC87756">
+<createdBy>karol</createdBy>
+<createdTime>2024-02-25 12:01:29 UTC</createdTime>
+<comment><![CDATA[Application component]]></comment>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<domain>4E45A331-20F8-027B-F0C5-063352EECAA2</domain>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="collection" id="9C9CC1DB-A078-ABFD-5026-51338F6302AD">
+<createdBy>karol</createdBy>
+<createdTime>2024-02-25 12:02:39 UTC</createdTime>
+<comment><![CDATA[Database collection/table]]></comment>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<domain>4E45A331-20F8-027B-F0C5-063352EECAA2</domain>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="attributes" id="F3D5AA7D-1132-B34F-C091-A7F0421549C0">
+<createdBy>karol</createdBy>
+<createdTime>2024-02-25 12:03:50 UTC</createdTime>
+<comment><![CDATA[Id component collection has attributes]]></comment>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<domain>6A2A2DA1-3F83-C82A-2D58-09F7B105F361</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="742F6A34-FB59-3481-AF33-01FDC7D2C778" name="components PK">
+<createdBy>karol</createdBy>
+<createdTime>2024-02-25 12:22:43 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>E286427C-69D2-7704-61F0-E5B85C00C474</attributeRef>
+<attributeRef>9C9CC1DB-A078-ABFD-5026-51338F6302AD</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="8F881C35-0F37-A7DA-539F-A5F05EC74FF3" name="component_uk">
+<createdBy>karol</createdBy>
+<createdTime>2024-02-25 12:29:28 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<newElementsIDs>9ED12212-05C1-C063-3DAA-43BC7FC87756</newElementsIDs>
+<usedAttributes>
+<attributeRef>9ED12212-05C1-C063-3DAA-43BC7FC87756</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -35,7 +35,7 @@ export class FloorListComponent implements OnInit {
   deleteFloor(id: string) {
     this.logService.CreateLog({
       message: id,
-      object: id,
+      objectId: id,
       operation: 'Delete',
       component: this.component,
     })

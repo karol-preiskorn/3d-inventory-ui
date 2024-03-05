@@ -29,7 +29,7 @@
 
 Project create `3d inventory`. A simple solution that allows you to build a spatial and database representation of all types of warehouses and server rooms.
 
-![Architecture](src/assets/architecture.drawio.png)
+<img title="Architecture" src="src/assets/architecture.drawio.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%; margin-bottom: 16px" width="85%">
 
 Project contain three repos:
 
@@ -54,7 +54,7 @@ I'm programming to incorporate database systems. This project covers relevant to
 
 Demo 3d inventory use three.js framework.
 
-[![3-d inventory the video](src/assets/img/3d-inventory-demo.png)](https://youtu.be/rNOxpZ0ti1Q '3-d inventory the video')
+[<img title="3-d inventory the video" src="src/assets/img/3d-inventory-demo.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%;" width="85%"/>](https://youtu.be/rNOxpZ0ti1Q '3-d inventory the video')
 
 This project build from this example contain `three.js` in `Angular`[Tutorial to render 3D Cube in Angular + Three.js](https://srivastavaanurag79.medium.com/hello-cube-your-first-three-js-scene-in-angular-176c44b9c6c0).
 
@@ -68,31 +68,31 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
 
 ### Entity model
 
-<img title="Entity mode" src="src/assets/Logical.png" style="filter: drop-shadow(8px 8px 8px grey); border-radius: 1%;" width="95%"/>
+<img title="Entity mode" src="src/assets/Logical.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="85%"/>
 
 ### Logical model
 
-<img title="Logical model" src="src/assets/3d-inventory.png" style="filter: drop-shadow(8px 8px 8px grey); border-radius: 1%;" width="95%"/>
+<img title="Logical model" src="src/assets/3d-inventory.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="85%"/>
 
 ### List devices
 
-<img title="List devices" src="src/assets/img/Screenshot%202023-07-14%20at%2008-48-50%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
+<img title="List devices" src="src/assets/img/Screenshot%202023-07-14%20at%2008-48-50%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
 
 ### Models
 
-<img title="Models" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-31%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
+<img title="Models" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-31%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
 
 ### Attributes
 
-<img title="Attributes" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-42%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
+<img title="Attributes" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-42%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
 
 ### Attribute Dictionary
 
-<img title="Attribute Dictionary" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-51%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
+<img title="Attribute Dictionary" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-51%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
 
 ### Connections
 
-<img title="Connections" src="src/assets/img/Screenshot%202023-07-14%20at%2008-50-00%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black);" width="70%"/>
+<img title="Connections" src="src/assets/img/Screenshot%202023-07-14%20at%2008-50-00%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
 
 ## Run
 

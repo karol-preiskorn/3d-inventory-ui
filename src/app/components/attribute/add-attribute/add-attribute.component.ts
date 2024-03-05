@@ -197,7 +197,7 @@ export class AttributeAddComponent implements OnInit {
     this.attributeService.CreateAttribute(this.addAttributeFrom.value as Attribute).subscribe(() => {
       this.logService
         .CreateLog({
-          object: this.addAttributeFrom.get('id')?.value,
+          objectId: this.addAttributeFrom.get('id')?.value,
           message: this.toString(this.addAttributeFrom.value),
           operation: 'Create',
           component: 'Attributes',

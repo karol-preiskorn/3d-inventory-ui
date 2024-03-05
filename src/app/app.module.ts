@@ -50,7 +50,7 @@ import { FloorAddComponent } from './components/floors/add-floor/add-floor.compo
 import { FloorEditComponent } from './components/floors/edit-floor/edit-floor.component'
 import { FloorService } from './services/floor.service'
 
-import { ErrorHandler } from './services/errorHandler.service'
+import { CustomErrorHandler } from './services/errorHandler.service'
 
 
 @NgModule({
@@ -109,7 +109,7 @@ import { ErrorHandler } from './services/errorHandler.service'
     AttributeDictionaryService,
     AttributeService,
     FloorService,
-    ErrorHandler,
+    CustomErrorHandler,
   ],
   bootstrap: [AppComponent],
   exports: [LogComponent],

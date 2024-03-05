@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_10" directorySegmentName="seg_0" id="6DB02A58-2DE5-3840-7063-CA4C76D29CBB">
+<createdBy>karol</createdBy>
+<createdTime>2024-02-25 12:46:31 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<engineerTo>
+<item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
+</engineerTo>
+<useSurrogateKey>true</useSurrogateKey>
+<sourceTransferable>false</sourceTransferable>
+<targetTransferable>false</targetTransferable>
+<sourcePk>8DA5FF8A-45B2-F0DE-0742-E6364B64D2D2</sourcePk>
+<targetPk>8DA5FF8A-45B2-F0DE-0742-E6364B64D2D2</targetPk>
+<identifying>false</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>D65F28F4-3B99-30C6-55D3-342A667044EE</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>31AE69A2-B810-5964-6E1E-A486A8BF97DE</targetEntity>
+<transferable>true</transferable>
+<deleteRule>CASCADE</deleteRule>
+</Relation>

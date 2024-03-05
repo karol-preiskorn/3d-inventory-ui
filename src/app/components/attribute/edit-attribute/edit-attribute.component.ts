@@ -186,7 +186,7 @@ export class AttributeEditComponent implements OnInit {
     this.attributeService.UpdateAttribute(this.inputId, this.editAttributeForm.value as Attribute).subscribe(() => {
       this.logService
         .CreateLog({
-          object: this.editAttributeForm.get('id')?.value,
+          objectId: this.editAttributeForm.get('id')?.value,
           message: this.toString(this.editAttributeForm.value),
           operation: 'Update',
           component: 'Attributes',

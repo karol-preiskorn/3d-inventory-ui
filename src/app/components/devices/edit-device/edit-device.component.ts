@@ -1,31 +1,21 @@
-/*
- * File:        @/src/app/components/devices/edit-device/edit-device.component.ts
- * Description:
- * Used by:
- * Dependency:
- *
- * Date        By       Comments
- * ----------  -------  ------------------------------
- * 2023-08-08  C2RLO    add FormControl<number>(0,
+/**
+ * @file /src/app/components/devices/edit-device/edit-device.component.ts
+ * @description: edit
+ * @version 2023-08-08  C2RLO    add FormControl<number>(0,
  */
 
-
-
-import { Component, NgZone, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
-
-import { Device } from 'src/app/shared/device'
 import { DeviceService } from 'src/app/services/device.service'
-
+import { LogIn, LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Device } from 'src/app/shared/device'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
-
 import { Model } from 'src/app/shared/model'
-import { ModelsService } from 'src/app/services/models.service'
-
-import { LogIn, LogService } from 'src/app/services/log.service'
 import Validation from 'src/app/shared/validation'
+
 
 @Component({
   selector: 'app-edit-device',
@@ -51,7 +41,7 @@ export class DeviceEditComponent implements OnInit {
   action = ''
 
   editDeviceForm = new FormGroup({
-    id: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    _id: new FormControl('', [Validators.required, Validators.minLength(24)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     modelId: new FormControl('', Validators.required),
     position: new FormGroup({
@@ -92,8 +82,6 @@ export class DeviceEditComponent implements OnInit {
   }
 
   reloadComponent(self: boolean, urlToNavigateTo?: string) {
-    //skipLocationChange:true means don't update the url to / when navigating
-    //console.log('Current route I am on:', this.router.url)
     const url = self ? this.router.url : urlToNavigateTo
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([`/${url}`]).then(() => {
@@ -103,7 +91,11 @@ export class DeviceEditComponent implements OnInit {
   }
 
   changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this._id?.setValue((e.target as HTMLInputElement).value)
+  }
+
+  changeModelId(e: Event) {
+    this.modelId?.setValue((e.target as HTMLInputElement).value)
   }
 
   changeX(e: Event) {
@@ -121,16 +113,16 @@ export class DeviceEditComponent implements OnInit {
     this.h?.setValue(value, { onlySelf: true })
   }
 
-  changeModelId(e: Event) {
-    this.modelId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
-  }
-
-  get id() {
-    return this.editDeviceForm.get('id')
+  get _id() {
+    return this.editDeviceForm.get('_id')
   }
 
   get name() {
     return this.editDeviceForm.get('name')
+  }
+
+  get modelId() {
+    return this.editDeviceForm.get('modelId')
   }
 
   get x() {
@@ -145,10 +137,6 @@ export class DeviceEditComponent implements OnInit {
     return this.editDeviceForm.get('position')?.get('h')
   }
 
-  get modelId() {
-    return this.editDeviceForm.get('modelId')
-  }
-
   submitForm() {
     if (this.editDeviceForm.valid && this.editDeviceForm.touched) {
       console.log('DeviceEditComponent.submitForm(): ' + JSON.stringify(this.editDeviceForm.value, null, 2))
@@ -156,7 +144,7 @@ export class DeviceEditComponent implements OnInit {
         message: JSON.stringify(this.editDeviceForm.value) as string,
         operation: 'Update',
         component: 'Devices',
-        object: this.editDeviceForm.value.id,
+        objectId: this.editDeviceForm.value._id,
       }
       this.logService.CreateLog(log).subscribe(() => {
         this.action = JSON.stringify(log)

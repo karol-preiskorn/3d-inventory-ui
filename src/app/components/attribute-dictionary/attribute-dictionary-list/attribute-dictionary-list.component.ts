@@ -23,7 +23,7 @@ export class AttributeDictionaryListComponent implements OnInit {
     private logService: LogService,
     private router: Router,
     private ngZone: NgZone
-  ) {}
+  ) { }
   loadAttributeDictionary() {
     return this.attributeDictionaryService
       .GetAttributeDictionaries()
@@ -34,7 +34,7 @@ export class AttributeDictionaryListComponent implements OnInit {
   deleteAttributeDictionary(id: string) {
     this.logService.CreateLog({
       message: id,
-      object: id,
+      objectId: id,
       operation: 'Delete',
       component: 'AttributeDictionary',
     })

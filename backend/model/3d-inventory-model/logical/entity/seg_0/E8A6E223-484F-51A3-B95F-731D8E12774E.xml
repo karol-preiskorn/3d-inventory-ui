@@ -57,11 +57,11 @@
 <engineerTo>
 <item key="65A71321-1988-4781-04DF-10C5D7C949D0" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>100</dataTypeSize>
+<domain>4E45A331-20F8-027B-F0C5-063352EECAA2</domain>
 <ownDataTypeParameters>100,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="MODEL_ID" id="9302444A-4DC2-4A3E-51A5-7C0297C4EA93">

@@ -77,7 +77,7 @@ export class LogComponent implements OnInit {
 
   loadLog(context: string) {
     //console.log(this.environmentService.isApiSettings(this.component))
-    // found log context in share service with strore variables
+    // found log context in share service with store variables
     if (isApiSettings(this.component)) {
       console.log(context + '.loadComponentLog: ' + this.component)
       this.loadComponentLog(this.component)
@@ -124,8 +124,18 @@ export class LogComponent implements OnInit {
    * @memberof LogComponent
    */
   findNameInLogMessage(log: Log): string {
-    if (log.component == 'Attributes') {
+    let jLog: object
+    try {
+      jLog = JSON.parse(JSON.stringify(log.message))
+    } catch (error) {
+      console.log('findNameInLogMessage: ' + JSON.stringify(log.message) + ' ' + error)
+      return log.message
+    }
+    console.log('jLog: ' + JSON.stringify(jLog, null, ' '))
+    if (log.component == 'Attribute') {
       const jAttribute: Attribute = JSON.parse(log.message)
+      console.log('jAttribute: ' + JSON.stringify(jAttribute, null, ' '))
+      console.log('findNameInLogMessage: ' + JSON.stringify(jAttribute, null, ' '))
       if (jAttribute.connectionId != '') {
         this.getConnectionList()
         return 'Connection ' + this.findConnectionName(jAttribute.connectionId as string)
@@ -139,8 +149,7 @@ export class LogComponent implements OnInit {
         return 'Device ' + this.findDeviceName(jAttribute.connectionId as string)
       }
     }
-    const jMessage = JSON.parse(log.message)
-    return jMessage.name
+    return JSON.stringify(jLog, null, ' ')
   }
 
   getDeviceList() {
