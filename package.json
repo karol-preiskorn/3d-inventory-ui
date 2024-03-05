@@ -111,6 +111,7 @@
     "@types/path-browserify": "^1.0.2",
     "@types/prismjs": "^1.26.3",
     "@types/three": "^0.162.0",
+    "@types/three": "^0.162.0",
     "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
@@ -134,6 +135,11 @@
     "prettier": "3.2.5",
     "three": "^0.162.0",
     "typescript": "^5.3.3",
+
+    "prettier": "3.2.5",
+
+    "three": "^0.161.0",
+    "typescript": "^5.2.0",
     "unique-names-generator": "^4.7.1",
     "uuid": "^9.0.1"
   }
