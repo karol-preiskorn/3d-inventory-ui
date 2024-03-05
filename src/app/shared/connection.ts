@@ -1,29 +1,27 @@
 ﻿/*
  * File:        /src/app/shared/connection.ts
- * Description:
- * Used by:
- * Dependency:
+ * Description: Represents a connection between two devices.
  *
- * Date         By        Comments
- * ----------   -------   ------------------------------
  * 2023-05-21   C2RLO
  */
 
 import { v4 as uuidv4 } from 'uuid'
 
-
 /**
- * @description
+ * @description Represents a connection between two devices.
  * @export
  * @class Connection
  */
 export class Connection {
-  id: string
+  _id: string
   name: string
   deviceIdTo: string
   deviceIdFrom: string
 
+  /**
+   * Generates a unique identifier for the connection.
+   */
   generate() {
-    this.id = uuidv4()
+    this._id = uuidv4()
   }
 }

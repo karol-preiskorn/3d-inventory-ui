@@ -20,6 +20,10 @@ export class AppComponent {
     }
   }
 
+  currentYearLong(): number {
+    return new Date().getFullYear()
+  }
+
   constructor() {
     setTheme('bs5')
   }

@@ -67,7 +67,7 @@ export class AttributeDictionaryListComponent implements OnInit {
   }
   EditForm(attributeDictionary: AttributeDictionary) {
     this.selectedAttributeDictionary = attributeDictionary
-    this.router.navigate(['edit-attribute-dictionary', this.selectedAttributeDictionary.id])
+    this.router.navigate(['edit-attribute-dictionary', this.selectedAttributeDictionary._id])
     // this.ngZone.run(() => this.router.navigateByUrl(`edit-device/${id}`))
   }
 }

@@ -163,7 +163,7 @@ export class LogComponent implements OnInit {
   }
 
   findDeviceName(id: string) {
-    return this.deviceList.find((e) => e.id === id)?.name
+    return this.deviceList.find((e) => e._id === id)?.name
   }
 
   getModelList() {
@@ -177,30 +177,34 @@ export class LogComponent implements OnInit {
   }
 
   findModelName(id: string) {
-    return this.modelList.find((e) => e.id === id)?.name
+    return this.modelList.find((e) => e._id === id)?.name
   }
 
   getConnectionList() {
     if (this.connectionListGet == true) return null
-    return this.connectionService.GetConnections().subscribe((data: Connection) => {
-      this.connectionList.push(data)
+    return this.connectionService.GetConnections().subscribe((data: Connection[]) => {
+      data.forEach(connection => {
+        this.connectionList.push(connection)
+      })
       this.connectionListGet = true
     })
   }
 
   findConnectionName(id: string) {
-    return this.connectionList.find((e) => e.id === id)?.name
+    return this.connectionList.find((e) => e._id === id)?.name
   }
 
   getAttributeDictionaryList() {
     if (this.attributeDictionaryListGet == true) return null
-    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary) => {
-      this.attributeDictionaryList.push(data)
-    })
+    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) => {
+      data.forEach((item) => {
+        this.attributeDictionaryList.push(item);
+      });
+    });
   }
 
   findAttributeDictionaryName(id: string) {
-    return this.attributeDictionaryList.find((e) => e.id === id)?.name
+    return this.attributeDictionaryList.find((e) => e._id === id)?.name
   }
 
   getAttributeList() {

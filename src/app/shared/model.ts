@@ -18,8 +18,8 @@ import {
   uniqueNamesGenerator,
 } from 'unique-names-generator'
 import { v4 as uuidv4 } from 'uuid'
-import { DeviceCategory, DeviceCategoryDict } from './deviceCategories'
-import { DeviceType, DeviceTypeDict } from './deviceTypes'
+import { DeviceCategoryDict } from './deviceCategories'
+import { DeviceTypeDict } from './deviceTypes'
 
 interface Dimension {
   width: number
@@ -36,7 +36,7 @@ interface Texture {
 }
 
 export class Model {
-  id: string
+  _id: string
   name: string
   dimension: Dimension
   texture: Texture
@@ -46,22 +46,22 @@ export class Model {
 
   public print(): void {
     console.log(
-      '[model] id: ' +
-        this.id +
-        ', name: ' +
-        this.name +
-        ', dimensions: ' +
-        this.getDimensionsString() +
-        ', type: ' +
-        this.type +
-        ', category: ' +
-        this.category
+      '[model] _id: ' +
+      this._id +
+      ', name: ' +
+      this.name +
+      ', dimensions: ' +
+      this.getDimensionsString() +
+      ', type: ' +
+      this.type +
+      ', category: ' +
+      this.category
     )
   }
   public getString(): string {
     return (
-      '[model] id: ' +
-      this.id +
+      '[model] _id: ' +
+      this._id +
       ', name: ' +
       this.name +
       ', dimensions: ' +
@@ -74,8 +74,8 @@ export class Model {
   }
   public json(): string {
     return (
-      '{ "id": "' +
-      this.id +
+      '{ "_id": "' +
+      this._id +
       '", "name": "' +
       this.name +
       '", "dimensions": {' +
@@ -104,7 +104,7 @@ export class Model {
   }
 
   public generate(): void {
-    this.id = uuidv4()
+    this._id = uuidv4()
     this.name = uniqueNamesGenerator({
       dictionaries: [adjectives, colors, animals],
       style: 'lowerCase',

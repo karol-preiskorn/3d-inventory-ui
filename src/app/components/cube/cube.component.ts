@@ -135,7 +135,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
   generateRandomDeviceRack(): Device {
     return {
-      id: uuidv4(),
+      _id: uuidv4(),
       name: faker.company.name() + ' - ' + faker.company.buzzPhrase(),
       position: {
         x: this.getRandomX(),

@@ -29,11 +29,10 @@ export class AttributeDictionaryService {
    * Retrieves the attribute dictionaries.
    * @returns An observable that emits the attribute dictionaries.
    */
-  GetAttributeDictionaries(): Observable<AttributeDictionary> {
-    return this.http
-      .get<AttributeDictionary>(environment.baseurl + '/attribute-dictionary/')
-      .pipe(retry(1), catchError(this.errorHandl))
+  GetAttributeDictionaries(): Observable<AttributeDictionary[]> {
+    return this.http.get<AttributeDictionary[]>(environment.baseurl + '/attribute-dictionary/').pipe(retry(1), catchError(this.errorHandl))
   }
+
   /**
    * Retrieves an attribute dictionary by its ID.
    * @param id - The ID of the attribute dictionary to retrieve.
@@ -74,7 +73,7 @@ export class AttributeDictionaryService {
     const id_uuid: string = uuidv4()
     this.GetAttributeDictionary(id).subscribe((value: AttributeDictionary) => {
       console.log('Get attributes: ' + JSON.stringify(value, null, ' '))
-      value.id = id_uuid
+      value._id = id_uuid
       this.CreateAttributeDictionary(value).subscribe({
         next: (v) => {
           console.log('Create attributes: ' + JSON.stringify(v, null, ' '))

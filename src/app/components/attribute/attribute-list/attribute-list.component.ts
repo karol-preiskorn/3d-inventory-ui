@@ -52,7 +52,7 @@ export class AttributeListComponent implements OnInit {
     private attributeDictionaryService: AttributeDictionaryService
   ) { }
 
-  public toString(str: any) {
+  public toString(str: string | number | boolean | object | null | undefined) {
     return JSON.stringify(str, null, 2)
   }
 
@@ -64,7 +64,6 @@ export class AttributeListComponent implements OnInit {
 
     this.LoadAttributes()
   }
-
   private LoadAttributes() {
     // @TODO: #62 show data depends of context attributeComponent and attributeComponentObject
     console.log('-------------------<  LoadAttributes  >-------------------')
@@ -102,7 +101,6 @@ export class AttributeListComponent implements OnInit {
       this.router.navigate(['/attribute-dictionary-list'])
     })
   }
-
   async CloneAttribute(id: string | null) {
     const id_new: string = this.attributeService.CloneAttribute(id)
     this.logService
@@ -115,67 +113,56 @@ export class AttributeListComponent implements OnInit {
         this.ngZone.run(() => this.router.navigateByUrl('attributes-list'))
       })
   }
-
   AddAttribute() {
     this.router.navigateByUrl('add-attribute')
   }
-
   EditAttribute(attribute: Attribute) {
     this.selectedAttribute = attribute
     this.router.navigate(['edit-attribute', this.selectedAttribute.id])
   }
-
   getDevice(id: string) {
     return this.deviceService.GetDevice(id).subscribe((data: Device) => {
       this.device = data
     })
   }
-
   getDeviceList() {
-    return this.deviceService.GetDevices().subscribe((data: any) => {
+    return this.deviceService.GetDevices().subscribe((data: Device[]) => {
       const tmp = new Device()
       data.unshift(tmp)
       this.deviceDictionary = data
     })
   }
-
   findDeviceName(id: string | null): string {
-    return this.deviceDictionary.find((e) => e.id === id)?.name as string
+    return this.deviceDictionary.find((e) => e._id === id)?.name as string
   }
-
+  findModelName(id: string | null): string {
+    return this.modelDictionary.find((e) => e._id === id)?.name as string
+  }
   getModelList() {
-    return this.modelService.GetModels().subscribe((data: any) => {
+    return this.modelService.GetModels().subscribe((data: Model[]) => {
       const tmp = new Model()
       data.unshift(tmp)
       this.modelDictionary = data
     })
   }
-
-  findModelName(id: string | null): string {
-    return this.modelDictionary.find((e) => e.id === id)?.name as string
-  }
-
   getConnectionList() {
-    return this.connectionService.GetConnections().subscribe((data: any) => {
+    return this.connectionService.GetConnections().subscribe((data: Connection[]) => {
       const tmp = new Connection()
-      data.unshift(tmp)
+      data = [tmp, ...data]
       this.connectionDictionary = data
     })
   }
-
   findConnectionName(id: string | null): string {
-    return this.connectionDictionary.find((e) => e.id === id)?.name as string
+    return this.connectionDictionary.find((e) => e._id === id)?.name as string
   }
-
   getAttributeDictionaryList() {
-    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: any) => {
+    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) => {
       const tmp = new AttributeDictionary()
-      data.unshift(tmp)
+      data = [tmp, ...data]
       this.attributeDictionary = data
     })
   }
-
   findAttributeDictionary(id: string | null): string {
-    return this.attributeDictionary.find((e) => e.id === id)?.name as string
+    return this.attributeDictionary.find((e) => e._id === id)?.name as string
   }
 }

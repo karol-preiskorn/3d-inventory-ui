@@ -84,7 +84,7 @@
                 'is-valid': this.editDeviceForm.controls.modelId.status == 'VALID',
                 'form-select': true
               }">
-            <option *ngFor="let modelObj of this.modelList; let i = index" value="{{ modelObj.id }}">
+            <option *ngFor="let modelObj of this.modelList; let i = index" value="{{ modelObj._id }}">
               {{ modelObj.name }} ({{ modelObj.type }}/{{ modelObj.category }})
             </option>
           </select>

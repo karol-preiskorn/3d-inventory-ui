@@ -4,13 +4,7 @@
     <label>Id {{ this.addDeviceForm.controls.id.value }}</label>
     <div class="form-group mb-3">
       <label>Name</label>
-      <textarea
-        formControlName="name"
-        rows="2"
-        minlength="4"
-        maxlength="50"
-        required
-        [ngClass]="{
+      <textarea formControlName="name" rows="2" minlength="4" maxlength="50" required [ngClass]="{
           'is-invalid': this.addDeviceForm.controls.name.status != 'VALID',
           'is-valid': this.addDeviceForm.controls.name.status == 'VALID',
           'form-control': true
@@ -25,12 +19,7 @@
         <div class="col">
           <div class="form-group mb-3">
             <label for="x" class="form-label">x</label>
-            <input
-              type="text"
-              formControlName="x"
-              id="x"
-              required
-              [ngClass]="{
+            <input type="text" formControlName="x" id="x" required [ngClass]="{
                 'is-invalid': this.addDeviceForm.controls.position.controls.x.status != 'VALID',
                 'is-valid': this.addDeviceForm.controls.position.controls.x.status == 'VALID',
                 'form-control': true
@@ -46,12 +35,7 @@
         <div class="col">
           <div class="form-group mb-3">
             <label for="y" class="form-label">y</label>
-            <input
-              type="text"
-              formControlName="y"
-              id="y"
-              required
-              [ngClass]="{
+            <input type="text" formControlName="y" id="y" required [ngClass]="{
                 'is-invalid': this.addDeviceForm.controls.position.controls.y.status != 'VALID',
                 'is-valid': this.addDeviceForm.controls.position.controls.y.status == 'VALID',
                 'form-control': true
@@ -67,12 +51,7 @@
         <div class="col">
           <div class="form-group mb-3">
             <label for="h" class="form-label">h</label>
-            <input
-              type="text"
-              formControlName="h"
-              id="h"
-              required
-              [ngClass]="{
+            <input type="text" formControlName="h" id="h" required [ngClass]="{
                 'is-invalid': this.addDeviceForm.controls.position.controls.h.status != 'VALID',
                 'is-valid': this.addDeviceForm.controls.position.controls.h.status == 'VALID',
                 'form-control': true
@@ -91,18 +70,13 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="modelId" class="form-label">Model</label>
-          <select
-            (change)="changeModelId($event)"
-            formControlName="modelId"
-            class="form-select"
-            id="modelId"
-            required
-            [ngClass]="{
+          <select (change)="changeModelId($event)" formControlName="modelId" class="form-select" id="modelId"
+            required [ngClass]="{
               'is-invalid': this.addDeviceForm.controls.modelId.status != 'VALID',
               'is-valid': this.addDeviceForm.controls.modelId.status == 'VALID',
               'form-select': true
             }">
-            <option *ngFor="let modelObj of this.modelList; let i = index" value="{{ modelObj.id }}">
+            <option *ngFor="let modelObj of this.modelList; let i = index" value="{{ modelObj._id }}">
               {{ modelObj.name }}
             </option>
           </select>
@@ -116,7 +90,8 @@
     <!-- <p>Form Values: {{ toString(addDeviceForm.value) }}</p> -->
     <div class="d-flex p-2">
       <div class="p-1 g-col-1">
-        <button type="submit" [disabled]="!(addDeviceForm.valid && addDeviceForm.touched)" class="btn btn-primary mb-3">
+        <button type="submit" [disabled]="!(addDeviceForm.valid && addDeviceForm.touched)"
+          class="btn btn-primary mb-3">
           Submit
         </button>
       </div>

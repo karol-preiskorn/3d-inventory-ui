@@ -119,7 +119,7 @@ export class DeviceAddComponent implements OnInit {
     this.addDeviceForm.controls.position.controls.x.setValue(faker.number.int(10))
     this.addDeviceForm.controls.position.controls.y.setValue(faker.number.int(10))
     this.addDeviceForm.controls.position.controls.h.setValue(faker.number.int(10))
-    this.addDeviceForm.controls.modelId.setValue(this.modelList[Math.floor(Math.random() * this.modelList.length)].id)
+    this.addDeviceForm.controls.modelId.setValue(this.modelList[Math.floor(Math.random() * this.modelList.length)]._id)
   }
 
   submitForm() {

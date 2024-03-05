@@ -12,7 +12,7 @@
 import { v4 as uuidv4 } from 'uuid'
 
 export class AttributeDictionary {
-  id: string
+  _id: string
   name?: string
   category?: string
   type?: string
@@ -21,6 +21,7 @@ export class AttributeDictionary {
   //TODO: problem with generate id during create object
   //TODO: unify all definition entity as class | interfance or
   generate() {
-    this.id = uuidv4()
+    this._id = uuidv4()
   }
 }
+ 

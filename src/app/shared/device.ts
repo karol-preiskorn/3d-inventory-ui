@@ -8,8 +8,8 @@
  * ----------  -----  ---------------------------------------------------------
  * 2023-02-18  C2RLO  Init
  */
-import {adjectives, animals, colors, uniqueNamesGenerator} from 'unique-names-generator'
-import {v4 as uuidv4} from 'uuid'
+import { adjectives, animals, colors, uniqueNamesGenerator } from 'unique-names-generator'
+import { v4 as uuidv4 } from 'uuid'
 
 interface Position {
   x: number
@@ -18,7 +18,7 @@ interface Position {
 }
 
 export class Device {
-  id: string
+  _id: string
   name: string
   modelId: string
   position: Position
@@ -39,8 +39,8 @@ export class Device {
   }
 
   // TODO: move it to deviceList
-  public generate() {
-    this.id = uuidv4()
+  public _generate() {
+    this._id = uuidv4()
     this.name = uniqueNamesGenerator({
       dictionaries: [adjectives, colors, animals],
       style: 'lowerCase',

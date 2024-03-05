@@ -24,6 +24,9 @@ import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
 import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
 
 import Validation from 'src/app/shared/validation'
+import { Observable } from 'rxjs'
+import { tap } from 'rxjs/operators'
+import { AbstractControl } from '@angular/forms'
 
 @Component({
   selector: 'app-edit-attribute',
@@ -31,8 +34,8 @@ import Validation from 'src/app/shared/validation'
   styleUrls: ['./edit-attribute.component.scss'],
 })
 export class AttributeEditComponent implements OnInit {
-  inputId: any
-  valid: Validation = new Validation()
+  inputId: string
+  valid: Validation = new Validation();
 
   editAttributeForm = new FormGroup(
     {
@@ -44,7 +47,7 @@ export class AttributeEditComponent implements OnInit {
       value: new FormControl('', [Validators.required]),
     },
     { validators: this.valid.atLeastOneValidator }
-  )
+  );
 
   attribute: Attribute
   deviceDictionary: Device[]
@@ -60,27 +63,29 @@ export class AttributeEditComponent implements OnInit {
   isSubmitted = false
 
   ngOnInit() {
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
-    this.attribute = this.getAttribute(this.inputId)
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')!
+    this.getAttribute().subscribe((data: Attribute) => { // Remove the argument from the subscribe function call
+      this.attribute = data
+      this.editAttributeForm.setValue(data)
+    })
     this.getDeviceList()
     this.getModelList()
     this.getConnectionList()
     this.getAttributeDictionaryList()
     this.component = this.inputId
   }
-
   private getInput() {
     return this.activatedRoute.snapshot.paramMap.get('id')
   }
-
-  private getAttribute(id: string): any {
-    return this.attributeService.GetAttribute(this.inputId).subscribe((data: any) => {
-      console.log('AttributeEditComponent.GetAttribute(' + this.inputId + ') => ' + JSON.stringify(data, null, 2))
-      this.attribute = data
-      this.editAttributeForm.setValue(data)
-    })
+  private getAttribute(): Observable<Attribute> {
+    return this.attributeService.GetAttribute(this.inputId).pipe(
+      tap((data: Attribute) => {
+        console.log('AttributeEditComponent.GetAttribute(' + this.inputId + ') => ' + JSON.stringify(data, null, 2))
+        this.attribute = data
+        this.editAttributeForm.setValue(data)
+      })
+    )
   }
-
   constructor(
     public formBulider: FormBuilder,
     private ngZone: NgZone,
@@ -93,29 +98,28 @@ export class AttributeEditComponent implements OnInit {
     private attributeDictionaryService: AttributeDictionaryService,
     private logService: LogService
   ) { }
-
-  changeId(e: any) {
-    this.id?.setValue(e.target.value, { onlySelf: true })
+  changeId(e: Event) {
+    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+  changeModelId(e: Event) {
+    this.modelId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+  changeDeviceId(e: Event) {
+    this.deviceId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+  changeConnectionId(e: Event) {
+    this.connectionId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeDeviceId(e: any) {
-    this.deviceId?.setValue(e.target.value, { onlySelf: true })
+  value: AbstractControl | null = null;
+
+  changeAttributeDictionaryId(e: Event) {
+    this.attributeDictionaryId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeModelId(e: any) {
-    this.modelId?.setValue(e.target.value, { onlySelf: true })
-  }
-
-  changeConnectionId(e: any) {
-    this.connectionId?.setValue(e.target.value, { onlySelf: true })
-  }
-
-  changeAttributeDictionaryId(e: any) {
-    this.attributeDictionaryId?.setValue(e.target.value, { onlySelf: true })
-  }
-
-  changeValue(e: any) {
-    this.value?.setValue(e.target.value, { onlySelf: true })
+  changeValue(e: Event) {
+    this.value = this.editAttributeForm.get('value')
+    this.value?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   get id() {
@@ -125,63 +129,47 @@ export class AttributeEditComponent implements OnInit {
   get deviceId() {
     return this.editAttributeForm.get('deviceId')
   }
-
   get modelId() {
     return this.editAttributeForm.get('modelId')
   }
-
   get connectionId() {
     return this.editAttributeForm.get('connectionId')
   }
-
   get attributeDictionaryId() {
     return this.editAttributeForm.get('attributeDictionaryId')
   }
-
-  get value() {
-    return this.editAttributeForm.get('value')
-  }
-
-  toString(data: any): string {
+  toString(data: unknown): string {
     return JSON.stringify(data, null, ' ')
   }
-
   getDeviceList() {
-    return this.deviceService.GetDevices().subscribe((data: any) => {
+    this.deviceService.GetDevices().subscribe((data: Device[]) => { // Specify the type of 'data' as 'Device[]'
       const tmp = new Device()
       data.unshift(tmp)
       this.deviceDictionary = data
     })
   }
-
   findDeviceName(id: string) {
-    return this.deviceDictionary.find((e) => e.id === id)?.name
+    return this.deviceDictionary.find((e) => e._id === id)?.name
   }
-
   getModelList() {
-    return this.modelService.GetModels().subscribe((data: any) => {
+    return this.modelService.GetModels().subscribe((data: Model[]) => {
       const tmp = new Model()
       data.unshift(tmp)
       this.modelDictionary = data
     })
   }
-
   getConnectionList() {
-    return this.connectionService.GetConnections().subscribe((data: any) => {
+    return this.connectionService.GetConnections().subscribe((data: Connection[]) => { // Update the callback parameter type to Connection[]
       const tmp = new Connection()
-      data.unshift(tmp)
-      this.connectionDictionary = data
+      this.connectionDictionary = [tmp, ...data] // Spread the data array to include the existing tmp object
     })
   }
-
   getAttributeDictionaryList() {
-    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: any) => {
+    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) => { // Update the callback parameter type to AttributeDictionary[]
       const tmp = new AttributeDictionary()
-      data.unshift(tmp)
-      this.attributeDictionary = data
+      this.attributeDictionary = [tmp, ...data] // Spread the data array to include the existing tmp object
     })
   }
-
   submitForm() {
     this.attributeService.UpdateAttribute(this.inputId, this.editAttributeForm.value as Attribute).subscribe(() => {
       this.logService

@@ -12,8 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          *ngFor="
+        <tr *ngFor="
             let attributeDictionary of attributeDictionaryList
               | paginate
                 : {
@@ -22,31 +21,22 @@
                     currentPage: attributeDictionaryPage
                   }
           ">
-          <td tooltip="{{ attributeDictionary.id }}">{{ attributeDictionary.name }}</td>
+          <td tooltip="{{ attributeDictionary._id }}">{{ attributeDictionary.name }}</td>
           <td>{{ attributeDictionary.category }}</td>
           <td>{{ attributeDictionary.type }}</td>
           <td>{{ attributeDictionary.component }}</td>
           <td>
             <div class="btn-group float-md-end" role="group" aria-label="attributeDictionary-operations">
-              <button
-                type="button"
-                class="btn btn-success btn-sm move-right"
-                id="edit-attributeDictionary"
+              <button type="button" class="btn btn-success btn-sm move-right" id="edit-attributeDictionary"
                 (click)="EditForm(attributeDictionary)">
                 Edit
               </button>
-              <button
-                type="button"
-                id="delete-attributeDictionary"
-                class="btn btn-danger btn-sm"
-                (click)="deleteAttributeDictionary(attributeDictionary.id)">
+              <button type="button" id="delete-attributeDictionary" class="btn btn-danger btn-sm"
+                (click)="deleteAttributeDictionary(attributeDictionary._id)">
                 Delete
               </button>
-              <button
-                type="button"
-                id="clone-attributeDictionary"
-                class="btn btn-info btn-sm"
-                (click)="CloneAttributeDictionary(attributeDictionary.id)">
+              <button type="button" id="clone-attributeDictionary" class="btn btn-info btn-sm"
+                (click)="CloneAttributeDictionary(attributeDictionary._id)">
                 Clone
               </button>
             </div>
@@ -58,8 +48,7 @@
       <i class="bi bi-plus-lg"></i> Add
     </button>
   </div>
-  <pagination-controls
-    (pageChange)="attributeDictionaryPage = $event"
+  <pagination-controls (pageChange)="attributeDictionaryPage = $event"
     id="attributeDictionaryPagination"></pagination-controls>
 </div>
 <app-log [component]="component"></app-log>

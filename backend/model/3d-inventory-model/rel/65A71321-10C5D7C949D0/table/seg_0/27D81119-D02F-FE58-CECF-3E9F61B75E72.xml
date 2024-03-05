@@ -84,7 +84,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="E941FFD7-F289-E50A-AD34-C35D211F98E1" name="attribute_types_pk">
+<ind_PK_UK id="E941FFD7-F289-E50A-AD34-C35D211F98E1" name="attributeTypesPk">
 <createdBy>karol</createdBy>
 <createdTime>2022-11-01 23:52:49 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>

@@ -84,7 +84,7 @@ export class ModelsService {
     const id_uuid: string = uuidv4()
     this.GetModel(id).subscribe((value: Model) => {
       console.log('Get Model: ' + JSON.stringify(value, null, ' '))
-      value.id = id_uuid
+      value._id = id_uuid
       this.model = value
       this.CreateModel(value).subscribe({
         next: (v) => {

@@ -93,7 +93,7 @@ export class ModelsListComponent implements OnInit {
    */
   EditModel(model: Model) {
     this.selectedModel = model
-    this.router.navigate(['edit-model', model.id])
-    this.ngZone.run(() => this.router.navigateByUrl(`edit-model/${model.id}`))
+    this.router.navigate(['edit-model', model._id])
+    this.ngZone.run(() => this.router.navigateByUrl(`edit-model/${model._id}`))
   }
 }

@@ -34,8 +34,8 @@ export class ConnectionService {
    * Retrieves the connections.
    * @returns An Observable of type Connection.
    */
-  GetConnections(): Observable<Connection> {
-    return this.http.get<Connection>(environment.baseurl + '/connections/').pipe(retry(1), catchError(this.errorHandl))
+  GetConnections(): Observable<Connection[]> {
+    return this.http.get<Connection[]>(environment.baseurl + '/connections/').pipe(retry(1), catchError(this.errorHandl))
   }
 
   /**
@@ -81,7 +81,7 @@ export class ConnectionService {
     const id_uuid: string = uuidv4()
     this.GetConnection(id).subscribe((value: Connection) => {
       console.log('Get Connections: ' + JSON.stringify(value))
-      value.id = id_uuid
+      value._id = id_uuid
       this.CreateConnection(value).subscribe({
         next: (v) => {
           console.log('Create Connections: ' + JSON.stringify(v))

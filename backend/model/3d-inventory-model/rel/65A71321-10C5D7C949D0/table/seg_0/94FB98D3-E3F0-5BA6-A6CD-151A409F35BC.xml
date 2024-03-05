@@ -10,14 +10,14 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id" id="5DA64AFD-87A4-719D-638F-116B7FD0E8B5">
+<Column name="_id" id="5DA64AFD-87A4-719D-638F-116B7FD0E8B5">
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 12:36:39 UTC</createdTime>
 <commentInRDBMS><![CDATA[Identify connection]]></commentInRDBMS>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>2</use>
-<distinctType>F2E1BC9B-52D3-32BF-58AE-5C84A23F10F7</distinctType>
+<distinctType>05757FF6-B8A9-BC6D-129E-0A32D5FDD869</distinctType>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>50</dataTypeSize>
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
@@ -26,15 +26,16 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_C_ID</notNullConstraintName>
 </Column>
-<Column name="devices_id_to" id="FA3AFAA3-7471-DE79-90C4-54DFF9BDB209">
+<Column name="devicesIdTo" id="FA3AFAA3-7471-DE79-90C4-54DFF9BDB209">
 <createdBy>karol</createdBy>
 <createdTime>2022-11-01 07:26:49 UTC</createdTime>
 <commentInRDBMS><![CDATA[universal device identity ]]></commentInRDBMS>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>50</dataTypeSize>
+<domain>0F082329-443B-2567-7399-838BA8C6A2E2</domain>
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
 <defaultLabel>Device Id To</defaultLabel>
 <autoIncrementCycle>false</autoIncrementCycle>
@@ -43,15 +44,16 @@
 <colAssociation fkAssociation="D016605E-51B6-C611-6F28-0B341C1E294C" referredColumn="2B154004-7826-C65D-ECA8-38258F5DF47F"/>
 </associations>
 </Column>
-<Column name="devices_id_from" directorySegmentName="seg_0" id="5BA77C3B-CCBC-29A0-461B-14034388B854">
+<Column name="devicesIdFrom" directorySegmentName="seg_0" id="5BA77C3B-CCBC-29A0-461B-14034388B854">
 <createdBy>karol</createdBy>
 <createdTime>2022-11-01 07:26:49 UTC</createdTime>
 <commentInRDBMS><![CDATA[universal device identity ]]></commentInRDBMS>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
+<use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>50</dataTypeSize>
+<domain>0F082329-443B-2567-7399-838BA8C6A2E2</domain>
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
 <defaultLabel>Device Id From</defaultLabel>
 <autoIncrementCycle>false</autoIncrementCycle>

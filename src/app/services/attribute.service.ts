@@ -96,10 +96,10 @@ export class AttributeService {
     let device: Device = new Device()
     device = JSON.parse(item)
     const url_model = environment.baseurl + '/attributes/?modelId=' + device.modelId
-    const url_device = environment.baseurl + '/attributes/?deviceId=' + device.id
+    const url_device = environment.baseurl + '/attributes/?deviceId=' + device._id
     attributes = new SyncRequestClient().get<Attribute[]>(url_model)
     attributes.push(...new SyncRequestClient().get<Attribute[]>(url_device))
-    console.log('device.id: ' + device.id + ' ' + url_device)
+    console.log('device.id: ' + device._id + ' ' + url_device)
     console.log('device.modelId: ' + device.modelId + ' ' + url_model)
     console.log('GetContextAttributes.attributes: ' + attributes)
     return attributes

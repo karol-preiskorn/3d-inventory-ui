@@ -49,6 +49,7 @@
 <referedAttribute>1A8E63FE-6866-BAC3-E6DB-539277A481E7</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>2</use>
+<distinctType>05757FF6-B8A9-BC6D-129E-0A32D5FDD869</distinctType>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>24</dataTypeSize>
 <ownDataTypeParameters>24,,</ownDataTypeParameters>

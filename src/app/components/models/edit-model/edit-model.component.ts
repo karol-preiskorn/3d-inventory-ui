@@ -93,7 +93,7 @@ export class ModelEditComponent implements OnInit {
         console.log('GetModel ' + JSON.stringify(data, null, ' '))
         this.model = data
         this.editModelForm.setValue({
-          id: data.id,
+          id: data._id,
           name: data.name,
           dimension: {
             width: data.dimension.width.toString(),
@@ -171,7 +171,7 @@ export class ModelEditComponent implements OnInit {
       this.modelsService
         .UpdateModel(this.inputId.toString(), this.editModelForm.value as unknown as Model)
         .subscribe(() => {
-          this.router.navigate(['edit-model/', this.model.id])
+          this.router.navigate(['edit-model/', this.model._id])
         })
     }
   }

@@ -96,28 +96,28 @@ export class AttributeAddComponent implements OnInit {
     )
   }
 
-  changeId(e: any) {
-    this.id?.setValue(e.target.value, { onlySelf: true })
+  changeId(e: Event) {
+    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeDeviceId(e: any) {
-    this.deviceId?.setValue(e.target.value, { onlySelf: true })
+  changeModelId(e: Event) {
+    this.modelId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeModelId(e: any) {
-    this.modelId?.setValue(e.target.value, { onlySelf: true })
+  changeDeviceId(e: Event) {
+    this.deviceId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeConnectionId(e: any) {
-    this.connectionId?.setValue(e.target.value, { onlySelf: true })
+  changeConnectionId(e: Event) {
+    this.connectionId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeAttributeDictionaryId(e: any) {
-    this.attributeDictionaryId?.setValue(e.target.value, { onlySelf: true })
+  changeAttributeDictionaryId(e: Event) {
+    this.attributeDictionaryId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeValue(e: any) {
-    this.value?.setValue(e.target.value, { onlySelf: true })
+  changeValue(e: Event) {
+    this.value?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   get id() {
@@ -145,11 +145,12 @@ export class AttributeAddComponent implements OnInit {
   }
 
   toString(data: any): string {
+    // Specify a more specific type for the 'data' parameter
     return JSON.stringify(data, null, 2)
   }
 
   getDeviceList(): Subscription {
-    return this.deviceService.GetDevices().subscribe((data: any) => {
+    return this.deviceService.GetDevices().subscribe((data: Device[]) => {
       const tmp = new Device()
       data.unshift(tmp)
       this.deviceDictionary = data
@@ -157,7 +158,7 @@ export class AttributeAddComponent implements OnInit {
   }
 
   getModelList(): Subscription {
-    return this.modelService.GetModels().subscribe((data: any) => {
+    return this.modelService.GetModels().subscribe((data: Model[]) => {
       const tmp = new Model()
       data.unshift(tmp)
       this.modelDictionary = data
@@ -165,7 +166,7 @@ export class AttributeAddComponent implements OnInit {
   }
 
   getConnectionList(): Subscription {
-    return this.connectionService.GetConnections().subscribe((data: any) => {
+    return this.connectionService.GetConnections().subscribe((data: Connection[]): any => {
       const tmp = new Connection()
       data.unshift(tmp)
       this.connectionDictionary = data
@@ -173,7 +174,7 @@ export class AttributeAddComponent implements OnInit {
   }
 
   getAttributeDictionaryList(): Subscription {
-    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: any) => {
+    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) => {
       this.attributeDictionary = data
     })
   }

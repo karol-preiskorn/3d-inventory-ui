@@ -41,7 +41,7 @@ export class AttributeDictionaryEditComponent implements OnInit {
         console.log('GetAttributeDictionary(' + this.inputId + ') => ' + JSON.stringify(data, null, 2))
         this.attributeDictionary = data
         this.form.setValue({
-          id: data.id,
+          id: data._id,
           name: data.name,
           type: data.type,
           category: data.category,

@@ -115,7 +115,7 @@ export class DeviceService {
     const id_uuid: string = uuidv4()
     this.GetDevice(id).subscribe((value: Device) => {
       console.log('Get Device: ' + JSON.stringify(value, null, ' '))
-      value.id = id_uuid
+      value._id = id_uuid
       this.CreateDevice(value).subscribe({
         next: (v) => {
           console.log('Create Device: ' + JSON.stringify(v, null, ' '))

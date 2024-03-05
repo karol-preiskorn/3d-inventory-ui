@@ -50,7 +50,7 @@ export class ConnectionListComponent implements OnInit {
 
   findDevice(id: string): Device {
     let tmp: Device = new Device()
-    tmp = this.deviceList.find((e: Device): boolean => e.id === id) || tmp
+    tmp = this.deviceList.find((e: Device): boolean => e._id === id) || tmp
     return tmp
   }
 
@@ -95,7 +95,7 @@ export class ConnectionListComponent implements OnInit {
   }
   EditForm(Connection: Connection) {
     this.selectedConnection = Connection
-    this.router.navigate(['edit-connection', this.selectedConnection.id])
+    this.router.navigate(['edit-connection', this.selectedConnection._id])
     // this.ngZone.run(() => this.router.navigateByUrl(`edit-device/${id}`))
   }
 }

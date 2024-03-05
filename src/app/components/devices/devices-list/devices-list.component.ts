@@ -1,5 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 
 import { LogService } from 'src/app/services/log.service'
 
@@ -31,7 +31,8 @@ export class DeviceListComponent implements OnInit {
     private modelsService: ModelsService,
     private logService: LogService,
     private router: Router,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private route: ActivatedRoute
   ) { }
 
   loadDevices() {
@@ -81,10 +82,14 @@ export class DeviceListComponent implements OnInit {
 
   EditForm(device: Device) {
     this.selectedDevice = device
-    this.router.navigate(['edit-device/', device.id])
+    if (device._id !== undefined) {
+      this.router.navigate(['edit-device', device._id], { relativeTo: this.route.parent })
+    } else {
+      console.warn('[DeviceListComponent] Device route.id is undefined')
+    }
   }
 
   findModelName(id: string): string {
-    return this.modelList.find((e: Model) => e.id === id)?.name as string
+    return this.modelList.find((e: Model) => e._id === id)?.name as string
   }
 }
