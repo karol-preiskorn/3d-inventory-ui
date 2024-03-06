@@ -30,7 +30,7 @@ export class AttributeDictionaryService {
    * @returns An observable that emits the attribute dictionaries.
    */
   GetAttributeDictionaries(): Observable<AttributeDictionary[]> {
-    return this.http.get<AttributeDictionary[]>(environment.baseurl + '/attribute-dictionary/').pipe(retry(1), catchError(this.errorHandl))
+    return this.http.get<AttributeDictionary[]>(environment.baseurl + '/attributesDictionary/').pipe(retry(1), catchError(this.errorHandl))
   }
 
   /**
@@ -50,7 +50,7 @@ export class AttributeDictionaryService {
    */
   DeleteAttributeDictionary(id: string): Observable<AttributeDictionary> {
     return this.http
-      .delete<AttributeDictionary>(environment.baseurl + '/attribute-dictionary/' + id, this.httpOptions)
+      .delete<AttributeDictionary>(environment.baseurl + '/attributesDictionary/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   /**
@@ -60,7 +60,7 @@ export class AttributeDictionaryService {
    */
   CreateAttributeDictionary(data: AttributeDictionary): Observable<AttributeDictionary> {
     return this.http
-      .post<AttributeDictionary>(environment.baseurl + '/attribute-dictionary/', JSON.stringify(data, null, ' '), this.httpOptions)
+      .post<AttributeDictionary>(environment.baseurl + '/attributesDictionary/', JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   /**
@@ -77,7 +77,7 @@ export class AttributeDictionaryService {
       this.CreateAttributeDictionary(value).subscribe({
         next: (v) => {
           console.log('Create attributes: ' + JSON.stringify(v, null, ' '))
-          this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))
+          this.ngZone.run(() => this.router.navigateByUrl('attributesDictionary-list'))
         },
         complete: () => this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list')),
       })
@@ -92,7 +92,7 @@ export class AttributeDictionaryService {
    */
   UpdateAttributeDictionary(id: string | null, data: AttributeDictionary): Observable<AttributeDictionary> {
     return this.http
-      .put<AttributeDictionary>(environment.baseurl + '/attribute-dictionary/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
+      .put<AttributeDictionary>(environment.baseurl + '/attributesDictionary/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   /**

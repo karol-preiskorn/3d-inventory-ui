@@ -39,7 +39,7 @@ export class AttributeEditComponent implements OnInit {
 
   editAttributeForm = new FormGroup(
     {
-      id: new FormControl('', [Validators.required]),
+      _id: new FormControl('', [Validators.required]),
       deviceId: new FormControl(''),
       modelId: new FormControl(''),
       connectionId: new FormControl(''),
@@ -64,7 +64,7 @@ export class AttributeEditComponent implements OnInit {
 
   ngOnInit() {
     this.inputId = this.activatedRoute.snapshot.paramMap.get('id')!
-    this.getAttribute().subscribe((data: Attribute) => { // Remove the argument from the subscribe function call
+    this.getAttribute(this.inputId).subscribe((data: Attribute) => { // Remove the argument from the subscribe function call
       this.attribute = data
       this.editAttributeForm.setValue(data)
     })
@@ -77,10 +77,10 @@ export class AttributeEditComponent implements OnInit {
   private getInput() {
     return this.activatedRoute.snapshot.paramMap.get('id')
   }
-  private getAttribute(): Observable<Attribute> {
-    return this.attributeService.GetAttribute(this.inputId).pipe(
+  private getAttribute(id: string): Observable<Attribute> {
+    return this.attributeService.GetAttribute(id).pipe(
       tap((data: Attribute) => {
-        console.log('AttributeEditComponent.GetAttribute(' + this.inputId + ') => ' + JSON.stringify(data, null, 2))
+        console.log('AttributeEditComponent.GetAttribute(' + id + ') => ' + JSON.stringify(data, null, 2))
         this.attribute = data
         this.editAttributeForm.setValue(data)
       })
@@ -98,9 +98,7 @@ export class AttributeEditComponent implements OnInit {
     private attributeDictionaryService: AttributeDictionaryService,
     private logService: LogService
   ) { }
-  changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
-  }
+
   changeModelId(e: Event) {
     this.modelId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }

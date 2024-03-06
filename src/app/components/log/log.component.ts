@@ -198,9 +198,9 @@ export class LogComponent implements OnInit {
     if (this.attributeDictionaryListGet == true) return null
     return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) => {
       data.forEach((item) => {
-        this.attributeDictionaryList.push(item);
-      });
-    });
+        this.attributeDictionaryList.push(item)
+      })
+    })
   }
 
   findAttributeDictionaryName(id: string) {
@@ -218,7 +218,7 @@ export class LogComponent implements OnInit {
   }
 
   findAttribute(id: string) {
-    return this.attributeList.find((e) => e.id === id)
+    return this.attributeList.find((e) => e._id === id)
   }
 
   getFloorList() {

@@ -59,7 +59,7 @@ export class AttributeService {
    */
   GetDeviceAttributes(id: string): Observable<Attribute[]> {
     return this.http
-      .get<Attribute[]>(environment.baseurl + '/attributes/?deviceId=' + id, this.httpOptions)
+      .get<Attribute[]>(environment.baseurl + '/attributes/device/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -70,7 +70,7 @@ export class AttributeService {
    */
   async GetDeviceAttributesPromise(id: string) {
     return this.http
-      .get<Attribute[]>(environment.baseurl + '/attributes/?deviceId=' + id, this.httpOptions)
+      .get<Attribute[]>(environment.baseurl + '/attributes/device/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl)).toPromise()
   }
 
@@ -81,7 +81,7 @@ export class AttributeService {
    */
   GetModelAtributes(id: string): Observable<Attribute[]> {
     return this.http
-      .get<Attribute[]>(environment.baseurl + '/attributes/?modelId=' + id, this.httpOptions)
+      .get<Attribute[]>(environment.baseurl + '/attributes/model/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -95,8 +95,8 @@ export class AttributeService {
     let attributes: Attribute[] = []
     let device: Device = new Device()
     device = JSON.parse(item)
-    const url_model = environment.baseurl + '/attributes/?modelId=' + device.modelId
-    const url_device = environment.baseurl + '/attributes/?deviceId=' + device._id
+    const url_model = environment.baseurl + '/attributes/model/' + device.modelId
+    const url_device = environment.baseurl + '/attributes/device/' + device._id
     attributes = new SyncRequestClient().get<Attribute[]>(url_model)
     attributes.push(...new SyncRequestClient().get<Attribute[]>(url_device))
     console.log('device.id: ' + device._id + ' ' + url_device)
@@ -148,7 +148,7 @@ export class AttributeService {
     const id_uuid: string = uuidv4()
     this.GetAttribute(id).subscribe((value: Attribute) => {
       console.log('Get attribute: ' + JSON.stringify(value, null, ' '))
-      value.id = id_uuid
+      value._id = ''
       this.CreateAttribute(value).subscribe({
         next: (v) => {
           console.log('Create attribute: ' + JSON.stringify(v, null, ' '))

@@ -118,7 +118,7 @@ export class AttributeListComponent implements OnInit {
   }
   EditAttribute(attribute: Attribute) {
     this.selectedAttribute = attribute
-    this.router.navigate(['edit-attribute', this.selectedAttribute.id])
+    this.router.navigate(['edit-attribute', this.selectedAttribute._id])
   }
   getDevice(id: string) {
     return this.deviceService.GetDevice(id).subscribe((data: Device) => {
