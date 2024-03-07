@@ -1,34 +1,34 @@
-import { Component, OnInit, Input } from '@angular/core'
-import { Subscription } from 'rxjs'
+import {Component, OnInit, Input} from '@angular/core'
+import {Subscription} from 'rxjs'
 
-import { Log, LogService } from 'src/app/services/log.service'
+import {Log, LogService} from 'src/app/services/log.service'
 
-import { Device } from 'src/app/shared/device'
-import { DeviceService } from 'src/app/services/device.service'
+import {Device} from 'src/app/shared/device'
+import {DeviceService} from 'src/app/services/device.service'
 
-import { Model } from 'src/app/shared/model'
-import { ModelsService } from 'src/app/services/models.service'
+import {Model} from 'src/app/shared/model'
+import {ModelsService} from 'src/app/services/models.service'
 
-import { Connection } from 'src/app/shared/connection'
-import { ConnectionService } from 'src/app/services/connection.service'
+import {Connection} from 'src/app/shared/connection'
+import {ConnectionService} from 'src/app/services/connection.service'
 
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
-import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
+import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
+import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
 
-import { Attribute } from 'src/app/shared/attribute'
-import { AttributeService } from 'src/app/services/attribute.service'
+import {Attribute} from 'src/app/shared/attribute'
+import {AttributeService} from 'src/app/services/attribute.service'
 
-import { Floor } from 'src/app/shared/floor'
-import { FloorService } from 'src/app/services/floor.service'
+import {Floor} from 'src/app/shared/floor'
+import {FloorService} from 'src/app/services/floor.service'
 
 const api = [
-  { component: 'Models', api: 'models' },
-  { component: 'Devices', api: 'devices' },
-  { component: 'Logs', api: 'logs' },
-  { component: 'Attributes', api: 'attributes' },
-  { component: 'Attribute Dictionary', api: 'attribute-dictionary' },
-  { component: 'Connection', api: 'connections' },
-  { component: 'Floor', api: 'floor' },
+  {component: 'Models', api: 'models'},
+  {component: 'Devices', api: 'devices'},
+  {component: 'Logs', api: 'logs'},
+  {component: 'Attributes', api: 'attributes'},
+  {component: 'Attribute Dictionary', api: 'attribute-dictionary'},
+  {component: 'Connection', api: 'connections'},
+  {component: 'Floor', api: 'floor'},
 ]
 
 function isApiSettings(component: string): boolean {
@@ -73,7 +73,7 @@ export class LogComponent implements OnInit {
     private connectionService: ConnectionService,
     private attributeDictionaryService: AttributeDictionaryService,
     private floorService: FloorService
-  ) { }
+  ) {}
 
   loadLog(context: string) {
     //console.log(this.environmentService.isApiSettings(this.component))
@@ -155,7 +155,8 @@ export class LogComponent implements OnInit {
 
   getDeviceList() {
     if (this.deviceListGet == true) return null
-    return this.deviceService.GetDevices().subscribe((data: Device[]) => { // Specify the correct type for the data parameter
+    return this.deviceService.GetDevices().subscribe((data: Device[]) => {
+      // Specify the correct type for the data parameter
       const tmp = new Device()
       data.unshift(tmp)
       this.deviceList = data
@@ -169,7 +170,8 @@ export class LogComponent implements OnInit {
 
   getModelList() {
     if (this.modelListGet == true) return null
-    return this.modelService.GetModels().subscribe((data: Model[]) => { // Specify the correct type for the data parameter
+    return this.modelService.GetModels().subscribe((data: Model[]) => {
+      // Specify the correct type for the data parameter
       const tmp = new Model()
       data.unshift(tmp)
       this.modelList = data
@@ -184,7 +186,7 @@ export class LogComponent implements OnInit {
   getConnectionList() {
     if (this.connectionListGet == true) return null
     return this.connectionService.GetConnections().subscribe((data: Connection[]) => {
-      data.forEach(connection => {
+      data.forEach((connection) => {
         this.connectionList.push(connection)
       })
       this.connectionListGet = true
@@ -210,7 +212,8 @@ export class LogComponent implements OnInit {
 
   getAttributeList() {
     if (this.attributeListGet == true) return null
-    return this.attributeService.GetAttributes().subscribe((data: Attribute[]) => { // Specify the correct type for the data parameter
+    return this.attributeService.GetAttributes().subscribe((data: Attribute[]) => {
+      // Specify the correct type for the data parameter
       const tmp = new Attribute()
       data.unshift(tmp)
       this.attributeList = data
@@ -224,7 +227,8 @@ export class LogComponent implements OnInit {
 
   getFloorList() {
     if (this.attributeListGet == true) return null
-    return this.attributeService.GetAttributes().subscribe((data: Attribute[]) => { // Specify the correct type for the data parameter
+    return this.attributeService.GetAttributes().subscribe((data: Attribute[]) => {
+      // Specify the correct type for the data parameter
       const tmp = new Attribute()
       data.unshift(tmp)
       this.attributeList = data

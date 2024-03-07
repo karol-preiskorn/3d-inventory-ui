@@ -1,21 +1,21 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
-import { v4 as uuidv4 } from 'uuid'
+import {Component, NgZone, OnInit} from '@angular/core'
+import {FormBuilder, FormGroup, Validators} from '@angular/forms'
+import {Router} from '@angular/router'
+import {v4 as uuidv4} from 'uuid'
 
-import { Device } from 'src/app/shared/device'
-import { DeviceService } from 'src/app/services/device.service'
+import {Device} from 'src/app/shared/device'
+import {DeviceService} from 'src/app/services/device.service'
 
-import { Connection } from 'src/app/shared/connection'
-import { ConnectionService } from 'src/app/services/connection.service'
+import {Connection} from 'src/app/shared/connection'
+import {ConnectionService} from 'src/app/services/connection.service'
 
-import { ComponentDictionary } from 'src/app/shared/component-dictionary'
-import { LogService } from 'src/app/services/log.service'
+import {ComponentDictionary} from 'src/app/shared/component-dictionary'
+import {LogService} from 'src/app/services/log.service'
 
 @Component({
   selector: 'app-add-connection',
   templateUrl: './add-connection.component.html',
-  styleUrls: ['./add-connection.component.scss']
+  styleUrls: ['./add-connection.component.scss'],
 })
 export class ConnectionAddComponent implements OnInit {
   addConnectionForm: FormGroup
@@ -32,7 +32,7 @@ export class ConnectionAddComponent implements OnInit {
     private connectionService: ConnectionService,
     private deviceService: DeviceService,
     private logService: LogService
-  ) { }
+  ) {}
 
   formConnection() {
     this.addConnectionForm = this.formBuilder.group({
@@ -48,16 +48,16 @@ export class ConnectionAddComponent implements OnInit {
     this.getDeviceList()
   }
   changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.id?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   changeName(e: Event) {
-    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.name?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   changeDeviceTo(e: Event) {
-    this.deviceIdTo?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.deviceIdTo?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   changeDeviceFrom(e: Event) {
-    this.deviceIdFrom?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.deviceIdFrom?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   get id() {
@@ -86,19 +86,18 @@ export class ConnectionAddComponent implements OnInit {
     this.router.navigate(['edit-device/', deviceId])
   }
   submitForm() {
-    this.connectionService.CreateConnection(this.addConnectionForm.value as Connection)
-      .subscribe(() => {
-        this.logService
-          .CreateLog({
-            objectId: this.addConnectionForm.get('id')?.value,
-            message: this.toString(this.addConnectionForm.value),
-            operation: 'Create',
-            component: 'Connection',
-          })
-          .subscribe(() => {
-            this.ngZone.run(() => this.router.navigateByUrl('connection-list'))
-            this.router.navigate(['connection-list'])
-          })
-      })
+    this.connectionService.CreateConnection(this.addConnectionForm.value as Connection).subscribe(() => {
+      this.logService
+        .CreateLog({
+          objectId: this.addConnectionForm.get('id')?.value,
+          message: this.toString(this.addConnectionForm.value),
+          operation: 'Create',
+          component: 'Connection',
+        })
+        .subscribe(() => {
+          this.ngZone.run(() => this.router.navigateByUrl('connection-list'))
+          this.router.navigate(['connection-list'])
+        })
+    })
   }
 }

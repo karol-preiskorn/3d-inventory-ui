@@ -44,9 +44,9 @@ export class DeviceCategoryDict {
     return deviceCategory.name == searchCategory
   }
 
-  findCategoryImplementation(this: any, searchCategory: string): DeviceCategoryDict[] {
-    return this.deviceCategories.find(this.findCategory(searchCategory))
-  }
+  // findCategoryImplementation(this: DeviceCategoryDict[], searchCategory: string): DeviceCategoryDict[] {
+  //   return this.filter((category) => this.findCategory(category, searchCategory))
+  // }
 
   // getCat(category: string): string {
   //   return this.deviceCategories.find((element) => element.Category === category)?.Category

@@ -11,15 +11,10 @@
  * 2023-04-30   C2RLO  Init
  */
 
-import {
-  adjectives,
-  animals,
-  colors,
-  uniqueNamesGenerator,
-} from 'unique-names-generator'
-import { v4 as uuidv4 } from 'uuid'
-import { DeviceCategoryDict } from './deviceCategories'
-import { DeviceTypeDict } from './deviceTypes'
+import {adjectives, animals, colors, uniqueNamesGenerator} from 'unique-names-generator'
+import {v4 as uuidv4} from 'uuid'
+import {DeviceCategoryDict} from './deviceCategories'
+import {DeviceTypeDict} from './deviceTypes'
 
 interface Dimension {
   width: number
@@ -47,15 +42,15 @@ export class Model {
   public print(): void {
     console.log(
       '[model] _id: ' +
-      this._id +
-      ', name: ' +
-      this.name +
-      ', dimensions: ' +
-      this.getDimensionsString() +
-      ', type: ' +
-      this.type +
-      ', category: ' +
-      this.category
+        this._id +
+        ', name: ' +
+        this.name +
+        ', dimensions: ' +
+        this.getDimensionsString() +
+        ', type: ' +
+        this.type +
+        ', category: ' +
+        this.category
     )
   }
   public getString(): string {

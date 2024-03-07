@@ -9,15 +9,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="
-                let connectionObj of connectionList
-                  | paginate
-                    : {
-                        id: 'connectionListPagination',
-                        itemsPerPage: 5,
-                        currentPage: connectionListPage
-                      }
-              ">
+      <tr
+        *ngFor="
+          let connectionObj of connectionList
+            | paginate
+              : {
+                  id: 'connectionListPagination',
+                  itemsPerPage: 5,
+                  currentPage: connectionListPage
+                }
+        ">
         <td tooltip="{{ connectionObj._id }}">{{ connectionObj.name }}</td>
         <td>
           <a href="/edit-device/{{ connectionObj.deviceIdFrom }}">
@@ -34,15 +35,24 @@
         </td>
         <td>
           <div class="btn-group float-md-end" role="group" aria-label="connection-operations">
-            <button type="button" class="btn btn-success btn-sm move-right" id="edit-connection"
+            <button
+              type="button"
+              class="btn btn-success btn-sm move-right"
+              id="edit-connection"
               (click)="EditForm(connectionObj)">
               Edit
             </button>
-            <button type="button" id="delete-connection" class="btn btn-danger btn-sm"
+            <button
+              type="button"
+              id="delete-connection"
+              class="btn btn-danger btn-sm"
               (click)="deleteConnection(connectionObj._id)">
               Delete
             </button>
-            <button type="button" id="clone-connection" class="btn btn-info btn-sm"
+            <button
+              type="button"
+              id="clone-connection"
+              class="btn btn-info btn-sm"
               (click)="CloneConnection(connectionObj._id)">
               Clone
             </button>

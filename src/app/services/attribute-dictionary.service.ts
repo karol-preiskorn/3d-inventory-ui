@@ -1,25 +1,24 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
-import { Observable, throwError } from 'rxjs'
-import { catchError, retry } from 'rxjs/operators'
-import { v4 as uuidv4 } from 'uuid'
-import { environment } from '../../environments/environment'
-import { AttributeDictionary } from '../shared/attribute-dictionary'
-import { LogService } from './log.service'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
+import {Injectable, NgZone} from '@angular/core'
+import {Router} from '@angular/router'
+import {Observable, throwError} from 'rxjs'
+import {catchError, retry} from 'rxjs/operators'
+import {v4 as uuidv4} from 'uuid'
+import {environment} from '../../environments/environment'
+import {AttributeDictionary} from '../shared/attribute-dictionary'
+import {LogService} from './log.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AttributeDictionaryService {
-
   baseurl = environment.baseurl
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
-  ) { }
+  ) {}
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -30,7 +29,9 @@ export class AttributeDictionaryService {
    * @returns An observable that emits the attribute dictionaries.
    */
   GetAttributeDictionaries(): Observable<AttributeDictionary[]> {
-    return this.http.get<AttributeDictionary[]>(environment.baseurl + '/attributesDictionary/').pipe(retry(1), catchError(this.errorHandl))
+    return this.http
+      .get<AttributeDictionary[]>(environment.baseurl + '/attributesDictionary/')
+      .pipe(retry(1), catchError(this.errorHandl))
   }
 
   /**
@@ -60,7 +61,11 @@ export class AttributeDictionaryService {
    */
   CreateAttributeDictionary(data: AttributeDictionary): Observable<AttributeDictionary> {
     return this.http
-      .post<AttributeDictionary>(environment.baseurl + '/attributesDictionary/', JSON.stringify(data, null, ' '), this.httpOptions)
+      .post<AttributeDictionary>(
+        environment.baseurl + '/attributesDictionary/',
+        JSON.stringify(data, null, ' '),
+        this.httpOptions
+      )
       .pipe(retry(1), catchError(this.errorHandl))
   }
   /**
@@ -92,7 +97,11 @@ export class AttributeDictionaryService {
    */
   UpdateAttributeDictionary(id: string | null, data: AttributeDictionary): Observable<AttributeDictionary> {
     return this.http
-      .put<AttributeDictionary>(environment.baseurl + '/attributesDictionary/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
+      .put<AttributeDictionary>(
+        environment.baseurl + '/attributesDictionary/' + id,
+        JSON.stringify(data, null, ' '),
+        this.httpOptions
+      )
       .pipe(retry(1), catchError(this.errorHandl))
   }
   /**
@@ -100,7 +109,7 @@ export class AttributeDictionaryService {
    * @param error - The error object containing the error message and status.
    * @returns An Observable that emits the error message.
    */
-  errorHandl(error: { error: { message: string }; status: number; message: string }) {
+  errorHandl(error: {error: {message: string}; status: number; message: string}) {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message

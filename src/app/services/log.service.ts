@@ -1,9 +1,8 @@
-
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
-import { Injectable, Input } from '@angular/core'
-import { Observable, catchError, of, retry, throwError } from 'rxjs'
-import { environment } from '../../environments/environment'
-import { getDateString } from '../shared/utils'
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http'
+import {Injectable, Input} from '@angular/core'
+import {Observable, catchError, of, retry, throwError} from 'rxjs'
+import {environment} from '../../environments/environment'
+import {getDateString} from '../shared/utils'
 
 export interface LogParamteres {
   component: string
@@ -30,11 +29,10 @@ export interface LogIn {
   providedIn: 'root',
 })
 export class LogService {
-
   baseurl = environment.baseurl
   @Input() attributeComponentId: string
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -47,9 +45,7 @@ export class LogService {
    * @returns An Observable that emits an array of Log objectIds.
    */
   GetLogs(): Observable<Log[]> {
-    return this.http
-      .get<Log[]>(environment.baseurl + '/logs')
-      .pipe(retry(1), catchError(this.handleError))
+    return this.http.get<Log[]>(environment.baseurl + '/logs').pipe(retry(1), catchError(this.handleError))
   }
 
   /**

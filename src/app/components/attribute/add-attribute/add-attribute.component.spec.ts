@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing'
+import {ComponentFixture, TestBed} from '@angular/core/testing'
 
-import { AttributeAddComponent } from './add-attribute.component'
+import {AttributeAddComponent} from './add-attribute.component'
 
 describe('AttributeAddComponent', () => {
   let component: AttributeAddComponent
@@ -8,9 +8,8 @@ describe('AttributeAddComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AttributeAddComponent]
-    })
-      .compileComponents()
+      declarations: [AttributeAddComponent],
+    }).compileComponents()
 
     fixture = TestBed.createComponent(AttributeAddComponent)
     component = fixture.componentInstance

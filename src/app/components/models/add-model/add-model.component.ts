@@ -1,13 +1,13 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
-import { v4 as uuidv4 } from 'uuid'
+import {Component, NgZone, OnInit} from '@angular/core'
+import {FormControl, FormGroup, Validators} from '@angular/forms'
+import {Router} from '@angular/router'
+import {v4 as uuidv4} from 'uuid'
 
-import { LogService } from 'src/app/services/log.service'
-import { ModelsService } from 'src/app/services/models.service'
-import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
-import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
-import { Model } from 'src/app/shared/model'
+import {LogService} from 'src/app/services/log.service'
+import {ModelsService} from 'src/app/services/models.service'
+import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
+import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
+import {Model} from 'src/app/shared/model'
 
 @Component({
   selector: 'app-add-model',
@@ -58,41 +58,41 @@ export class ModelAddComponent implements OnInit {
     private router: Router,
     public modelsService: ModelsService,
     private logService: LogService
-  ) { }
+  ) {}
   ngOnInit(): void {
     // Initialize the model object
     this.model = new Model()
   }
 
   changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.id?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   changeName(e: Event) {
-    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.name?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   changeWidth(e: Event) {
-    this.width?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.width?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   changeHeight(e: Event) {
-    this.height?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.height?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   changeFront(e: Event) {
-    this.front?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.front?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   changeBack(e: Event) {
-    this.back?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.back?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   changeSide(e: Event) {
-    this.side?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.side?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   changeTop(e: Event) {
-    this.top?.setValue((e.target as HTMLInputElement).value as never, { onlySelf: true })
+    this.top?.setValue((e.target as HTMLInputElement).value as never, {onlySelf: true})
   }
   changeBotom(e: Event) {
-    this.botom?.setValue((e.target as HTMLInputElement).value as never, { onlySelf: true })
+    this.botom?.setValue((e.target as HTMLInputElement).value as never, {onlySelf: true})
   }
   changeCategory(e: Event) {
-    this.category?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.category?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   get id() {
     return this.addModelForm.get('id')

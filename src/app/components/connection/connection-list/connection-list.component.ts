@@ -1,13 +1,13 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
+import {Component, NgZone, OnInit} from '@angular/core'
+import {Router} from '@angular/router'
 
-import { Log, LogService } from 'src/app/services/log.service'
+import {Log, LogService} from 'src/app/services/log.service'
 
-import { Connection } from 'src/app/shared/connection'
-import { ConnectionService } from 'src/app/services/connection.service'
+import {Connection} from 'src/app/shared/connection'
+import {ConnectionService} from 'src/app/services/connection.service'
 
-import { Device } from 'src/app/shared/device'
-import { DeviceService } from 'src/app/services/device.service'
+import {Device} from 'src/app/shared/device'
+import {DeviceService} from 'src/app/services/device.service'
 
 @Component({
   selector: 'app-connection-list',
@@ -32,7 +32,7 @@ export class ConnectionListComponent implements OnInit {
     private ngZone: NgZone,
     private deviceService: DeviceService,
     private logService: LogService
-  ) { }
+  ) {}
 
   loadConnection() {
     return this.ConnectionService.GetConnections().subscribe((data: Connection[]) => {
@@ -59,16 +59,18 @@ export class ConnectionListComponent implements OnInit {
   }
 
   deleteConnection(id: string) {
-    this.logService.CreateLog({
-      message: id,
-      objectId: id,
-      operation: 'Delete',
-      component: 'Connection',
-    }).subscribe((data: Log) => {
-      console.log(data)
-      this.loadConnection()
-      this.router.navigate(['/connection-list'])
-    })
+    this.logService
+      .CreateLog({
+        message: id,
+        objectId: id,
+        operation: 'Delete',
+        component: 'Connection',
+      })
+      .subscribe((data: Log) => {
+        console.log(data)
+        this.loadConnection()
+        this.router.navigate(['/connection-list'])
+      })
     return this.ConnectionService.DeleteConnection(id).subscribe((data: Connection) => {
       console.log(data)
       this.loadConnection()

@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing'
 
-import { AttributeDictionaryListComponent } from './attribute-list.component';
+import {AttributeDictionaryListComponent} from './attribute-list.component'
 
 describe('AttributeDictionaryListComponent', () => {
-  let component: AttributeDictionaryListComponent;
-  let fixture: ComponentFixture<AttributeDictionaryListComponent>;
+  let component: AttributeDictionaryListComponent
+  let fixture: ComponentFixture<AttributeDictionaryListComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AttributeDictionaryListComponent ]
-    })
-    .compileComponents();
+      declarations: [AttributeDictionaryListComponent],
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(AttributeDictionaryListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(AttributeDictionaryListComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

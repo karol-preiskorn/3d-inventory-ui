@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing'
+import {TestBed} from '@angular/core/testing'
 
-import { AttributeService } from './attribute.service'
+import {AttributeService} from './attribute.service'
 
 describe('AttributesService', () => {
   let service: AttributeService

@@ -8,8 +8,8 @@
  * ----------  -----  ---------------------------------------------------------
  * 2023-02-18  C2RLO  Init
  */
-import { adjectives, animals, colors, uniqueNamesGenerator } from 'unique-names-generator'
-import { v4 as uuidv4 } from 'uuid'
+import {adjectives, animals, colors, uniqueNamesGenerator} from 'unique-names-generator'
+import {v4 as uuidv4} from 'uuid'
 
 interface Position {
   x: number

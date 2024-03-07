@@ -1,11 +1,7 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: [
-      'jasmine',
-      '@angular-devkit/build-angular',
-      'karma-typescript',
-    ],
+    frameworks: ['jasmine', '@angular-devkit/build-angular', 'karma-typescript'],
     plugins: [
       require('karma-jasmine'),
       require('karma-jsdom-launcher'),
@@ -27,7 +23,7 @@ module.exports = function (config) {
     coverageReporter: {
       dir: './coverage',
       subdir: '.',
-      reporters: [{ type: 'html' }, { type: 'text-summary' }],
+      reporters: [{type: 'html'}, {type: 'text-summary'}],
     },
     angularCli: {
       environment: 'dev',

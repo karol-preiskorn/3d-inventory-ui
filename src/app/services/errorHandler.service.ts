@@ -1,10 +1,9 @@
-import { ErrorHandler, Injectable } from '@angular/core'
+import {ErrorHandler, Injectable} from '@angular/core'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CustomErrorHandler implements ErrorHandler {
-
   handleError(error: Error): void {
     // Log the error to the console.
     console.error(error)

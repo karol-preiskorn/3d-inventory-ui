@@ -1,5 +1,5 @@
-import { Component } from '@angular/core'
-import { setTheme } from 'ngx-bootstrap/utils'
+import {Component} from '@angular/core'
+import {setTheme} from 'ngx-bootstrap/utils'
 
 @Component({
   selector: 'app-root',
@@ -8,15 +8,15 @@ import { setTheme } from 'ngx-bootstrap/utils'
 })
 export class AppComponent {
   title = '3d-inventory-angular-ui'
-  public myTheme: string = "light";
+  public myTheme: string = 'light'
 
   themeSwitch() {
-    if (this.myTheme === "light") {
+    if (this.myTheme === 'light') {
       console.log('theme dark')
-      this.myTheme = "dark"
+      this.myTheme = 'dark'
     } else {
       console.log('theme light')
-      this.myTheme = "light"
+      this.myTheme = 'light'
     }
   }
 

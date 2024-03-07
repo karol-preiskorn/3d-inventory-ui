@@ -9,7 +9,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="
+      <tr
+        *ngFor="
           let device of deviceList
             | paginate
               : {
@@ -21,19 +22,16 @@
         <td tooltip="{{ device._id }}">{{ device.name }}</td>
         <td>[x: {{ device.position.x }}, y: {{ device.position.y }}, h: {{ device.position.h }}]</td>
         <td>
-          <a href="edit-model/{{ device.modelId }}" tooltip="{{ device.modelId }}"><i
-              class="bi bi-motherboard"></i> {{
-            this.findModelName(device.modelId)
-            }}</a>
+          <a href="edit-model/{{ device.modelId }}" tooltip="{{ device.modelId }}"
+            ><i class="bi bi-motherboard"></i> {{ this.findModelName(device.modelId) }}</a
+          >
         </td>
         <td>
-          <div class="btn-group  float-md-end" role="group" aria-label="device-operations">
-            <button type="button" class="btn btn-success btn-sm move-right" id="edit-device"
-              (click)="EditForm(device)">
+          <div class="btn-group float-md-end" role="group" aria-label="device-operations">
+            <button type="button" class="btn btn-success btn-sm move-right" id="edit-device" (click)="EditForm(device)">
               <i class="bi bi-pen"></i>
             </button>
-            <button type="button" id="delete-device" class="btn btn-danger btn-sm"
-              (click)="DeleteDevice(device._id)">
+            <button type="button" id="delete-device" class="btn btn-danger btn-sm" (click)="DeleteDevice(device._id)">
               <i class="bi bi-trash"></i>
             </button>
             <button type="button" id="clone-device" class="btn btn-light btn-sm" (click)="CloneDevice(device._id)">

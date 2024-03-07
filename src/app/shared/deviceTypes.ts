@@ -96,12 +96,12 @@ export class DeviceTypeDict {
     return element || search // element?.DeviceType || search
   }
 
-/**
- * @description Find type by name
- * @param {string} obj
- * @memberof DeviceTypeDict
- */
-findTypeByName(obj: string) {
+  /**
+   * @description Find type by name
+   * @param {string} obj
+   * @memberof DeviceTypeDict
+   */
+  findTypeByName(obj: string) {
     for (let i = 0; i < this.list.length; i++) {
       if (this.list[i].name === obj) {
         console.log('-->', obj)

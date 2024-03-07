@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing'
+import {ComponentFixture, TestBed} from '@angular/core/testing'
 
-import { FloorAddComponent } from './add-floor.component'
+import {FloorAddComponent} from './add-floor.component'
 
 describe('FloorAddComponent', () => {
   let component: FloorAddComponent
@@ -8,7 +8,7 @@ describe('FloorAddComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FloorAddComponent]
+      declarations: [FloorAddComponent],
     })
     fixture = TestBed.createComponent(FloorAddComponent)
     component = fixture.componentInstance

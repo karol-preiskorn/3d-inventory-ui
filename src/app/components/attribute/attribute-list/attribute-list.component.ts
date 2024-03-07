@@ -1,22 +1,22 @@
-import { Component, OnInit, Input, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
+import {Component, OnInit, Input, NgZone} from '@angular/core'
+import {Router} from '@angular/router'
 
-import { LogService } from 'src/app/services/log.service'
+import {LogService} from 'src/app/services/log.service'
 
-import { Attribute } from 'src/app/shared/attribute'
-import { AttributeService } from 'src/app/services/attribute.service'
+import {Attribute} from 'src/app/shared/attribute'
+import {AttributeService} from 'src/app/services/attribute.service'
 
-import { Device } from 'src/app/shared/device'
-import { DeviceService } from 'src/app/services/device.service'
+import {Device} from 'src/app/shared/device'
+import {DeviceService} from 'src/app/services/device.service'
 
-import { Model } from 'src/app/shared/model'
-import { ModelsService } from 'src/app/services/models.service'
+import {Model} from 'src/app/shared/model'
+import {ModelsService} from 'src/app/services/models.service'
 
-import { Connection } from 'src/app/shared/connection'
-import { ConnectionService } from 'src/app/services/connection.service'
+import {Connection} from 'src/app/shared/connection'
+import {ConnectionService} from 'src/app/services/connection.service'
 
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
-import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
+import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
+import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
 
 @Component({
   selector: 'app-attribute-list',
@@ -50,7 +50,7 @@ export class AttributeListComponent implements OnInit {
     private modelService: ModelsService,
     private connectionService: ConnectionService,
     private attributeDictionaryService: AttributeDictionaryService
-  ) { }
+  ) {}
 
   public toString(str: string | number | boolean | object | null | undefined) {
     return JSON.stringify(str, null, 2)
@@ -70,20 +70,18 @@ export class AttributeListComponent implements OnInit {
     if (this.attributeComponent == 'Device' && this.attributeComponentObject != null) {
       console.log(
         '>>>> LoadAttributes.GetContextAttributes: ' +
-        this.attributeComponent +
-        ' ' +
-        this.attributeComponentObject +
-        ' JSON.stringify: ' +
-        JSON.stringify(this.attributeComponentObject)
+          this.attributeComponent +
+          ' ' +
+          this.attributeComponentObject +
+          ' JSON.stringify: ' +
+          JSON.stringify(this.attributeComponentObject)
       )
       this.attributeList = this.attributeService.GetContextAttributes(
         this.attributeComponent,
         this.attributeComponentObject
       )
     } else {
-      console.log(
-        '>>>> LoadAttributes.attributeService.GetAttributesSync()'
-      )
+      console.log('>>>> LoadAttributes.attributeService.GetAttributesSync()')
       this.attributeList = this.attributeService.GetAttributesSync()
     }
   }

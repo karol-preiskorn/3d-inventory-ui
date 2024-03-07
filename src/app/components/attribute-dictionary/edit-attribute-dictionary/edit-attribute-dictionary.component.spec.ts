@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing'
+import {ComponentFixture, TestBed} from '@angular/core/testing'
 
-import { AttributeDictionaryEditComponent } from './edit-attribute-dictionary.component'
+import {AttributeDictionaryEditComponent} from './edit-attribute-dictionary.component'
 
 describe('AttributeDictionaryEditComponent', () => {
   let component: AttributeDictionaryEditComponent
@@ -8,9 +8,8 @@ describe('AttributeDictionaryEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AttributeDictionaryEditComponent]
-    })
-      .compileComponents()
+      declarations: [AttributeDictionaryEditComponent],
+    }).compileComponents()
 
     fixture = TestBed.createComponent(AttributeDictionaryEditComponent)
     component = fixture.componentInstance

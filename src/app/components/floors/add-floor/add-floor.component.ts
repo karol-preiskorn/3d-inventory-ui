@@ -1,13 +1,12 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
-import { v4 as uuidv4 } from 'uuid'
-import { faker } from '@faker-js/faker'
-import { LogService } from 'src/app/services/log.service'
-import { Floor } from '../../../shared/floor.js'
-import { FloorService } from 'src/app/services/floor.service'
+import {Component, NgZone, OnInit} from '@angular/core'
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
+import {Router} from '@angular/router'
+import {v4 as uuidv4} from 'uuid'
+import {faker} from '@faker-js/faker'
+import {LogService} from 'src/app/services/log.service'
+import {Floor} from '../../../shared/floor.js'
+import {FloorService} from 'src/app/services/floor.service'
 import Validation from 'src/app/shared/validation'
-
 
 @Component({
   selector: 'app-add-floor',
@@ -47,41 +46,49 @@ export class FloorAddComponent implements OnInit {
     private router: Router,
     private floorService: FloorService,
     private logService: LogService
-  ) { }
+  ) {}
   ngOnInit(): void {
     throw new Error('Method not implemented.')
   }
 
   changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.id?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   changeName(e: Event) {
-    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.name?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   changeDescription(i: number, e: Event) {
-    this.floorForm.controls.dimension.at(i).controls.description.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.floorForm.controls.dimension
+      .at(i)
+      .controls.description.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   changeX(i: number, e: Event) {
-    this.floorForm.controls.dimension.at(i).controls.x.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.floorForm.controls.dimension.at(i).controls.x.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   changeY(i: number, e: Event) {
-    this.floorForm.controls.dimension.at(i).controls.y.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.floorForm.controls.dimension.at(i).controls.y.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   changeXpos(i: number, e: Event) {
-    this.floorForm.controls.dimension.at(i).controls.xPos.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.floorForm.controls.dimension
+      .at(i)
+      .controls.xPos.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   changeYpos(i: number, e: Event) {
-    this.floorForm.controls.dimension.at(i).controls.yPos.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.floorForm.controls.dimension
+      .at(i)
+      .controls.yPos.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   changeHpos(i: number, e: Event) {
-    this.floorForm.controls.dimension.at(i).controls.hPos.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.floorForm.controls.dimension
+      .at(i)
+      .controls.hPos.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   get id() {
@@ -159,20 +166,27 @@ export class FloorAddComponent implements OnInit {
 
   generateFloor() {
     this.floorForm.controls.name.setValue(faker.company.name() + ' - ' + faker.company.bs())
-    this.floorForm.controls.address.controls.street.setValue(faker.location.street() + ' ' + faker.location.buildingNumber())
+    this.floorForm.controls.address.controls.street.setValue(
+      faker.location.street() + ' ' + faker.location.buildingNumber()
+    )
     this.floorForm.controls.address.controls.city.setValue(faker.location.city())
     this.floorForm.controls.address.controls.country.setValue(faker.location.country())
     this.floorForm.controls.address.controls.postcode.setValue(faker.location.zipCode())
   }
 
   generateDimension(i: number) {
-    this.floorForm.controls.dimension.at(i).controls.description.patchValue(faker.company.name() + ' - ' + faker.company.buzzPhrase(), { emitEvent: false, onlySelf: true })
-    this.floorForm.controls.dimension.at(i).controls.x.setValue(String(faker.number.int({ min: 2, max: 100 })))
-    this.floorForm.controls.dimension.at(i).controls.y.setValue(String(faker.number.int({ min: 2, max: 100 })))
-    this.floorForm.controls.dimension.at(i).controls.h.setValue(String(faker.number.int({ min: 2, max: 10 })))
-    this.floorForm.controls.dimension.at(i).controls.xPos.setValue(String(faker.number.int({ min: 2, max: 100 })))
-    this.floorForm.controls.dimension.at(i).controls.yPos.setValue(String(faker.number.int({ min: 2, max: 100 })))
-    this.floorForm.controls.dimension.at(i).controls.hPos.setValue(String(faker.number.int({ min: 2, max: 100 })))
+    this.floorForm.controls.dimension
+      .at(i)
+      .controls.description.patchValue(faker.company.name() + ' - ' + faker.company.buzzPhrase(), {
+        emitEvent: false,
+        onlySelf: true,
+      })
+    this.floorForm.controls.dimension.at(i).controls.x.setValue(String(faker.number.int({min: 2, max: 100})))
+    this.floorForm.controls.dimension.at(i).controls.y.setValue(String(faker.number.int({min: 2, max: 100})))
+    this.floorForm.controls.dimension.at(i).controls.h.setValue(String(faker.number.int({min: 2, max: 10})))
+    this.floorForm.controls.dimension.at(i).controls.xPos.setValue(String(faker.number.int({min: 2, max: 100})))
+    this.floorForm.controls.dimension.at(i).controls.yPos.setValue(String(faker.number.int({min: 2, max: 100})))
+    this.floorForm.controls.dimension.at(i).controls.hPos.setValue(String(faker.number.int({min: 2, max: 100})))
   }
 
   submitForm() {

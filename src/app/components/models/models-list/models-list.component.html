@@ -13,42 +13,48 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let model of ModelsList | paginate
-                    : {
-                        id: 'modelListPagination',
-                        itemsPerPage: 5,
-                        currentPage: modelListPage
-                      }
-              ">
+        <tr
+          *ngFor="
+            let model of ModelsList
+              | paginate
+                : {
+                    id: 'modelListPagination',
+                    itemsPerPage: 5,
+                    currentPage: modelListPage
+                  }
+          ">
           <td tooltip="{{ model._id }}">{{ model.name }}</td>
-          <td> ({{ model.dimension.width +
-            ', ' +
-            model.dimension.height +
-            ', ' +
-            model.dimension.depth
-            }}) </td>
+          <td>({{ model.dimension.width + ', ' + model.dimension.height + ', ' + model.dimension.depth }})</td>
           <td style="font-size: small">
-            <a href="{{ model.texture.front }}">front</a>, <a href="{{ model.texture.back }}">back</a>, <a
-              href="{{ model.texture.side }}">side</a>, <a href="{{ model.texture.top }}">top</a>, <a
-              href="{{ model.texture.botom }}">botom</a>
+            <a href="{{ model.texture.front }}">front</a>, <a href="{{ model.texture.back }}">back</a>,
+            <a href="{{ model.texture.side }}">side</a>, <a href="{{ model.texture.top }}">top</a>,
+            <a href="{{ model.texture.botom }}">botom</a>
           </td>
           <td>{{ model.type }}</td>
           <td>{{ model.category }}</td>
           <td>
-            <div class="btn-group  float-md-end" role="group" aria-label="model-operations">
-              <button type="button" class="btn btn-success btn-sm move-right" id="edit-device"
-                (click)="EditModel(model)"> Edit </button>
-              <button type="button" id="delete-device" class="btn btn-danger btn-sm"
-                (click)="DeleteModel(model._id)"> Delete </button>
+            <div class="btn-group float-md-end" role="group" aria-label="model-operations">
+              <button
+                type="button"
+                class="btn btn-success btn-sm move-right"
+                id="edit-device"
+                (click)="EditModel(model)">
+                Edit
+              </button>
+              <button type="button" id="delete-device" class="btn btn-danger btn-sm" (click)="DeleteModel(model._id)">
+                Delete
+              </button>
               <button type="button" id="clone-device" class="btn btn-info btn-sm" (click)="CloneModel(model._id)">
-                Clone </button>
+                Clone
+              </button>
             </div>
           </td>
         </tr>
       </tbody>
     </table>
     <button type="button" class="btn btn-success btn-sm move-right mb-3" (click)="AddModel()">
-      <i class="bi bi-plus-lg"></i> Add </button>
+      <i class="bi bi-plus-lg"></i> Add
+    </button>
   </div>
   <pagination-controls (pageChange)="modelListPage = $event" id="modelListPagination"></pagination-controls>
 </div>

@@ -1,25 +1,25 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { ActivatedRoute, Router } from '@angular/router'
-import { LogIn, LogService } from 'src/app/services/log.service'
-import { ModelsService } from 'src/app/services/models.service'
-import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
-import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
-import { Model } from 'src/app/shared/model'
-import { Subscription } from 'rxjs'
+import {Component, NgZone, OnInit} from '@angular/core'
+import {FormControl, FormGroup, Validators} from '@angular/forms'
+import {ActivatedRoute, Router} from '@angular/router'
+import {LogIn, LogService} from 'src/app/services/log.service'
+import {ModelsService} from 'src/app/services/models.service'
+import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
+import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
+import {Model} from 'src/app/shared/model'
+import {Subscription} from 'rxjs'
 
-interface ModelForm {
-  id: FormControl<string | null>
-  name: FormControl<string | null>
-  dimension: {
-    width: FormControl<string>
-    height: FormControl<string>
-    depth: FormControl<string>
-  }
-  texture: FormGroup<string>
-  type: FormControl<string>
-  category: FormControl<string>
-}
+// interface editModelForm {
+//   _id: FormControl<string | null>
+//   name: FormControl<string | null>
+//   dimension: {
+//     width: FormControl<string>
+//     height: FormControl<string>
+//     depth: FormControl<string>
+//   }
+//   texture: FormGroup<string>
+//   type: FormControl<string>
+//   category: FormControl<string>
+// }
 
 @Component({
   selector: 'app-edit-model',
@@ -29,7 +29,7 @@ interface ModelForm {
 export class ModelEditComponent implements OnInit {
   inputId: string | number
   model: Model
-  component = '';
+  component = ''
 
   editModelForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -39,19 +39,19 @@ export class ModelEditComponent implements OnInit {
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(6),
-        Validators.pattern("^[0-9]*$"),
+        Validators.pattern('^[0-9]*$'),
       ]),
       height: new FormControl('', [
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(6),
-        Validators.pattern("^[0-9]*$"),
+        Validators.pattern('^[0-9]*$'),
       ]),
       depth: new FormControl('', [
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(6),
-        Validators.pattern("^[0-9]*$"),
+        Validators.pattern('^[0-9]*$'),
       ]),
     }),
     texture: new FormGroup({
@@ -75,7 +75,7 @@ export class ModelEditComponent implements OnInit {
     private ngZone: NgZone,
     private router: Router,
     private logService: LogService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getModel()
@@ -87,43 +87,42 @@ export class ModelEditComponent implements OnInit {
    * @returns An Observable that emits the retrieved model.
    */
   private getModel(): Subscription {
-    return this.modelsService
-      .GetModel(this.inputId.toString())
-      .subscribe((data: Model) => {
-        console.log('GetModel ' + JSON.stringify(data, null, ' '))
-        this.model = data
-        this.editModelForm.setValue({
-          id: data._id,
-          name: data.name,
-          dimension: {
-            width: data.dimension.width.toString(),
-            height: data.dimension.height.toString(),
-            depth: data.dimension.depth.toString(),
-          },
-          texture: {
-            front: data.texture.front,
-            back: data.texture.back,
-            side: data.texture.side,
-            top: data.texture.top,
-            botom: data.texture.botom,
-          },
-          type: data.type,
-          category: data.category,
-        })
+    return this.modelsService.GetModel(this.inputId.toString()).subscribe((data: Model) => {
+      console.log('GetModel ' + JSON.stringify(data, null, ' '))
+      this.model = data
+      this.editModelForm.setValue({
+        id: data._id,
+        name: data.name,
+        dimension: {
+          width: data.dimension.width.toString(),
+          height: data.dimension.height.toString(),
+          depth: data.dimension.depth.toString(),
+        },
+        texture: {
+          front: data.texture.front,
+          back: data.texture.back,
+          side: data.texture.side,
+          top: data.texture.top,
+          botom: data.texture.botom,
+        },
+        type: data.type,
+        category: data.category,
       })
+    })
   }
 
   changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.id?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   changeName(e: Event) {
-    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.name?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   changeType(e: Event) {
-    this.type?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.type?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
-  changeCategory(e: Event) { // Specify the type of 'e' as 'Event'
-    this.category?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  changeCategory(e: Event) {
+    // Specify the type of 'e' as 'Event'
+    this.category?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   get id() {
     return this.editModelForm.get('id')

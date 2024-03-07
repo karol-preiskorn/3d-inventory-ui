@@ -19,23 +19,21 @@
  * 2023-04-16   C2RLO   Add cube
  */
 
-
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
-import { Router } from '@angular/router'
-import { v4 as uuidv4 } from 'uuid'
-import { faker } from '@faker-js/faker'
+import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core'
+import {Router} from '@angular/router'
+import {v4 as uuidv4} from 'uuid'
+import {faker} from '@faker-js/faker'
 
 import * as THREE from 'three'
-import { OrbitControls } from 'three-orbitcontrols-ts'
+import {OrbitControls} from 'three-orbitcontrols-ts'
 
-import { LogService } from 'src/app/services/log.service'
+import {LogService} from 'src/app/services/log.service'
 
-import { DeviceService } from 'src/app/services/device.service'
-import { Device } from 'src/app/shared/device'
+import {DeviceService} from 'src/app/services/device.service'
+import {Device} from 'src/app/shared/device'
 
-import { ModelsService } from 'src/app/services/models.service'
-import { Model } from 'src/app/shared/model'
-
+import {ModelsService} from 'src/app/services/models.service'
+import {Model} from 'src/app/shared/model'
 
 @Component({
   selector: 'app-cube',
@@ -69,9 +67,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     map: this.loader.load(this.texture),
   })
 
-
   //private material = new THREE.ShadowMaterial()
-
 
   private cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material)
 
@@ -90,7 +86,6 @@ export class CubeComponent implements OnInit, AfterViewInit {
     private logService: LogService,
     private router: Router
   ) {
-
     this.material.opacity = 0.8
     this.cube.receiveShadow = true
   }
@@ -169,10 +164,13 @@ export class CubeComponent implements OnInit, AfterViewInit {
   createDevice3d(box_x: number, box_y: number, box_z: number, pos_x: number, pos_y: number, pos_z: number) {
     const geometry = new THREE.BoxGeometry(box_x, box_y, box_z)
     this.material.color = new THREE.Color(Math.random() * 0xffffff)
-    const sphereMaterial = new THREE.MeshStandardMaterial({ color: Math.random() * 0xffffff })
+    const sphereMaterial = new THREE.MeshStandardMaterial({color: Math.random() * 0xffffff})
     this.material.opacity = 0.75
 
-    const object = new THREE.Mesh(geometry, sphereMaterial /* new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }) */)
+    const object = new THREE.Mesh(
+      geometry,
+      sphereMaterial /* new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }) */
+    )
     object.position.x = pos_x
     object.position.y = pos_y
     object.position.z = pos_z
@@ -197,10 +195,10 @@ export class CubeComponent implements OnInit, AfterViewInit {
     const geometry = new THREE.BoxGeometry(51, 10, 1)
     const geometry2 = new THREE.BoxGeometry(1, 10, 51)
 
-    const object1 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
-    const object2 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
-    const object3 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
-    const object4 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
+    const object1 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({color: Math.random() * 0xffffff}))
+    const object2 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({color: Math.random() * 0xffffff}))
+    const object3 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({color: Math.random() * 0xffffff}))
+    const object4 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({color: Math.random() * 0xffffff}))
 
     object1.receiveShadow = true
     object1.castShadow = true
@@ -294,7 +292,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     //   side: THREE.DoubleSide,
     //   shadowSide: 2
     // })
-    const planeMat = new THREE.MeshStandardMaterial({ color: 0xffffff })
+    const planeMat = new THREE.MeshStandardMaterial({color: 0xffffff})
 
     const mesh = new THREE.Mesh(planeGeo, planeMat)
     mesh.receiveShadow = true
@@ -312,7 +310,6 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.scene.background = new THREE.Color(0x555555)
     this.scene.castShadow = true
     this.scene.receiveShadow = true
-
 
     this.addWalls()
     this.generateRacksList(25)
@@ -348,7 +345,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   private startRenderingLoop() {
-    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas })
+    this.renderer = new THREE.WebGLRenderer({canvas: this.canvas})
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap // default THREE.PCFShadowMap
     this.renderer.shadowMap.enabled = true
     this.renderer.setPixelRatio(devicePixelRatio)
@@ -366,11 +363,11 @@ export class CubeComponent implements OnInit, AfterViewInit {
     controls.update()
 
     const component: CubeComponent = this
-      ; (function render() {
-        requestAnimationFrame(render)
-        component.animateCube()
-        component.shadowCube()
-        component.renderer.render(component.scene, component.camera)
-      })()
+    ;(function render() {
+      requestAnimationFrame(render)
+      component.animateCube()
+      component.shadowCube()
+      component.renderer.render(component.scene, component.camera)
+    })()
   }
 }

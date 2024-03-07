@@ -10,7 +10,7 @@
  * 2023-03-12  C2RLO  On-init
  */
 
-import { format } from 'date-fns'
+import {format} from 'date-fns'
 
 /**
  * Export date in format 'yyyy/MM/dd kk:mm:ss.SS'

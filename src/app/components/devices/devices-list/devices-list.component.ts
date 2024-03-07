@@ -1,13 +1,13 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
+import {Component, NgZone, OnInit} from '@angular/core'
+import {ActivatedRoute, Router} from '@angular/router'
 
-import { LogService } from 'src/app/services/log.service'
+import {LogService} from 'src/app/services/log.service'
 
-import { Device } from 'src/app/shared/device'
-import { DeviceService } from 'src/app/services/device.service'
+import {Device} from 'src/app/shared/device'
+import {DeviceService} from 'src/app/services/device.service'
 
-import { Model } from 'src/app/shared/model'
-import { ModelsService } from 'src/app/services/models.service'
+import {Model} from 'src/app/shared/model'
+import {ModelsService} from 'src/app/services/models.service'
 
 @Component({
   selector: 'app-device-list',
@@ -33,7 +33,7 @@ export class DeviceListComponent implements OnInit {
     private router: Router,
     private ngZone: NgZone,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   loadDevices() {
     return this.devicesService.GetDevices().subscribe((data: Device[]) => {
@@ -83,7 +83,7 @@ export class DeviceListComponent implements OnInit {
   EditForm(device: Device) {
     this.selectedDevice = device
     if (device._id !== undefined) {
-      this.router.navigate(['edit-device', device._id], { relativeTo: this.route.parent })
+      this.router.navigate(['edit-device', device._id], {relativeTo: this.route.parent})
     } else {
       console.warn('[DeviceListComponent] Device route.id is undefined')
     }

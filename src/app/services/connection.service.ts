@@ -1,28 +1,25 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
-import { Observable, throwError } from 'rxjs'
-import { catchError, retry } from 'rxjs/operators'
-import { v4 as uuidv4 } from 'uuid'
-import { environment } from '../../environments/environment'
-import { Connection } from '../shared/connection'
-import { LogService } from './log.service'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
+import {Injectable, NgZone} from '@angular/core'
+import {Router} from '@angular/router'
+import {Observable, throwError} from 'rxjs'
+import {catchError, retry} from 'rxjs/operators'
+import {v4 as uuidv4} from 'uuid'
+import {environment} from '../../environments/environment'
+import {Connection} from '../shared/connection'
+import {LogService} from './log.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConnectionService {
-
   baseurl = environment.baseurl
 
   constructor(
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
-    private router: Router,
-  ) {
-
-  }
+    private router: Router
+  ) {}
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -35,7 +32,9 @@ export class ConnectionService {
    * @returns An Observable of type Connection.
    */
   GetConnections(): Observable<Connection[]> {
-    return this.http.get<Connection[]>(environment.baseurl + '/connections/').pipe(retry(1), catchError(this.errorHandl))
+    return this.http
+      .get<Connection[]>(environment.baseurl + '/connections/')
+      .pipe(retry(1), catchError(this.errorHandl))
   }
 
   /**
@@ -110,7 +109,7 @@ export class ConnectionService {
    * @param error - The error object containing the error message and status.
    * @returns - An Observable that emits the error message.
    */
-  errorHandl(error: { error: { message: string }; status: number; message: string }) {
+  errorHandl(error: {error: {message: string}; status: number; message: string}) {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message

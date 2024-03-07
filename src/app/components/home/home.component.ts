@@ -1,15 +1,14 @@
-import { Component } from '@angular/core'
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import {Component, OnInit} from '@angular/core'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   md: string | undefined
-  githubIssuesUrl =
-    'https://api.github.com/karol-preiskorn/3d-inventory-angular-ui/issues'
+  githubIssuesUrl = 'https://api.github.com/karol-preiskorn/3d-inventory-angular-ui/issues'
   githubIssuesUrl2 = 'https://api.github.com/repositories/600698591/issues'
   // TODO: get this form .env
   authToken = ''
@@ -21,21 +20,18 @@ export class HomeComponent {
   } = {
     headers: new HttpHeaders({
       'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
-      'Access-Control-Allow-Headers':
-        'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
+      'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
       'Content-Type': 'application/json',
       Authorization: 'Bearer' + this.authToken,
       'Access-Control-Allow-Origin': 'https://api.github.com/',
     }),
   }
 
-  async ngOnInit() {
-    this.http
-      .get('/assets/README.md', { responseType: 'text' })
-      .subscribe((data: string) => {
-        // console.log('Get Markdown ' + JSON.stringify(data, null, ' '))
-        this.md = data.replaceAll('src/', "");
-      })
+  async ngOnInit(): Promise<void> {
+    this.http.get('/assets/README.md', {responseType: 'text'}).subscribe((data: string) => {
+      // console.log('Get Markdown ' + JSON.stringify(data, null, ' '))
+      this.md = data.replaceAll('src/', '')
+    })
 
     // await this.http
     //   .get(this.githubIssuesUrl, this.httpOptions)

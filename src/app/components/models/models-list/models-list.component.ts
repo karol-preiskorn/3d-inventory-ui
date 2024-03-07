@@ -1,9 +1,8 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
-import { LogService } from 'src/app/services/log.service'
-import { ModelsService } from 'src/app/services/models.service'
-import { Model } from 'src/app/shared/model'
-
+import {Component, NgZone, OnInit} from '@angular/core'
+import {Router} from '@angular/router'
+import {LogService} from 'src/app/services/log.service'
+import {ModelsService} from 'src/app/services/models.service'
+import {Model} from 'src/app/shared/model'
 
 @Component({
   selector: 'app-models-list',
@@ -21,7 +20,7 @@ export class ModelsListComponent implements OnInit {
     private logService: LogService,
     private router: Router,
     private ngZone: NgZone
-  ) { }
+  ) {}
 
   /**
    * Loads the models by calling the GetModels method of the models service.
@@ -51,7 +50,8 @@ export class ModelsListComponent implements OnInit {
       operation: 'Delete',
       component: 'Models',
     })
-    return this.modelsService.DeleteModel(id).subscribe((data: Model) => { // Update the callback function parameter type to Model
+    return this.modelsService.DeleteModel(id).subscribe((data: Model) => {
+      // Update the callback function parameter type to Model
       console.log(data)
       this.loadModels()
       this.router.navigate(['/models-list'])

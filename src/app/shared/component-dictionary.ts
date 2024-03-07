@@ -15,13 +15,12 @@ export interface ComponentDictionaryItem {
 }
 
 export class ComponentDictionary {
-
   list: ComponentDictionaryItem[] = [
-    { name: '', description: '' },
-    { name: 'device', description: '' },
-    { name: 'model', description: '' },
-    { name: 'connection', description: '' },
-    { name: 'attribute', description: '' },
+    {name: '', description: ''},
+    {name: 'device', description: ''},
+    {name: 'model', description: ''},
+    {name: 'connection', description: ''},
+    {name: 'attribute', description: ''},
   ]
 
   get(): ComponentDictionaryItem[] {

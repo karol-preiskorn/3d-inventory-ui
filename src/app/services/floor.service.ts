@@ -1,13 +1,13 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
-import { Observable, throwError } from 'rxjs'
-import { catchError, retry } from 'rxjs/operators'
-import { SyncRequestClient } from 'ts-sync-request'
-import { v4 as uuidv4 } from 'uuid'
-import { environment } from '../../environments/environment'
-import { Floor } from '../shared/floor'
-import { Log, LogService } from './log.service'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
+import {Injectable, NgZone} from '@angular/core'
+import {Router} from '@angular/router'
+import {Observable, throwError} from 'rxjs'
+import {catchError, retry} from 'rxjs/operators'
+import {SyncRequestClient} from 'ts-sync-request'
+import {v4 as uuidv4} from 'uuid'
+import {environment} from '../../environments/environment'
+import {Floor} from '../shared/floor'
+import {Log, LogService} from './log.service'
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,7 @@ export class FloorService {
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
-  ) { }
+  ) {}
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -106,10 +106,7 @@ export class FloorService {
    * @param data - The updated floor data.
    * @returns An Observable that emits the updated floor.
    */
-  UpdateFloor(
-    id: string | null | undefined,
-    data: never
-  ): Observable<Floor> {
+  UpdateFloor(id: string | null | undefined, data: never): Observable<Floor> {
     return this.http
       .put<Floor>(environment.baseurl + '/floor/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
@@ -120,16 +117,16 @@ export class FloorService {
    * @param error - The error object containing the error message and status.
    * @returns An Observable that emits the error message.
    */
-  errorHandl(error: { error: { message: string }; status: unknown; message: Log }): Observable<never> {
-    let errorMessage = '';
+  errorHandl(error: {error: {message: string}; status: unknown; message: Log}): Observable<never> {
+    let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
-      errorMessage = error.error.message;
+      errorMessage = error.error.message
     } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
-    console.log(JSON.stringify(errorMessage, null, ' '));
+    console.log(JSON.stringify(errorMessage, null, ' '))
     return throwError(() => {
-      return errorMessage;
-    });
+      return errorMessage
+    })
   }
 }

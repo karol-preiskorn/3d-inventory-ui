@@ -1,8 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { HttpClientModule } from '@angular/common/http'
-import { ModelAddComponent } from './add-model.component'
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
-import { ReactiveFormsModule, FormGroup } from '@angular/forms'
+import {ComponentFixture, TestBed} from '@angular/core/testing'
+import {HttpClientModule} from '@angular/common/http'
+import {ModelAddComponent} from './add-model.component'
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core'
+import {ReactiveFormsModule} from '@angular/forms'
+
 describe('ModelAddComponent', () => {
   let component: ModelAddComponent
   let fixture: ComponentFixture<ModelAddComponent>

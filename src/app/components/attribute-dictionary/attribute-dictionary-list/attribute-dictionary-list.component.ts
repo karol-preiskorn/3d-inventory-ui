@@ -1,8 +1,8 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
-import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
-import { LogService } from 'src/app/services/log.service'
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import {Component, NgZone, OnInit} from '@angular/core'
+import {Router} from '@angular/router'
+import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
+import {LogService} from 'src/app/services/log.service'
+import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
 
 @Component({
   selector: 'app-attribute-dictionary-list',
@@ -23,13 +23,11 @@ export class AttributeDictionaryListComponent implements OnInit {
     private logService: LogService,
     private router: Router,
     private ngZone: NgZone
-  ) { }
+  ) {}
   loadAttributeDictionary() {
-    return this.attributeDictionaryService
-      .GetAttributeDictionaries()
-      .subscribe((data: AttributeDictionary[]) => {
-        this.attributeDictionaryList = data
-      })
+    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) => {
+      this.attributeDictionaryList = data
+    })
   }
   deleteAttributeDictionary(id: string) {
     this.logService.CreateLog({
@@ -38,18 +36,16 @@ export class AttributeDictionaryListComponent implements OnInit {
       operation: 'Delete',
       component: 'AttributeDictionary',
     })
-    return this.attributeDictionaryService
-      .DeleteAttributeDictionary(id)
-      .subscribe((data: AttributeDictionary) => { // Specify the appropriate type for 'data'
-        console.log(data)
-        this.loadAttributeDictionary()
-        this.router.navigate(['/attribute-dictionary-list'])
-      })
+    return this.attributeDictionaryService.DeleteAttributeDictionary(id).subscribe((data: AttributeDictionary) => {
+      // Specify the appropriate type for 'data'
+      console.log(data)
+      this.loadAttributeDictionary()
+      this.router.navigate(['/attribute-dictionary-list'])
+    })
   }
 
   async CloneAttributeDictionary(id: string) {
-    const id_new: string =
-      this.attributeDictionaryService.CloneAttributeDictionary(id)
+    const id_new: string = this.attributeDictionaryService.CloneAttributeDictionary(id)
     this.logService
       .CreateLog({
         message: id + ' -> ' + id_new,

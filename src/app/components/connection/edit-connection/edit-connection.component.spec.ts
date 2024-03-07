@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing'
+import {ComponentFixture, TestBed} from '@angular/core/testing'
 
-import { ConnectionEditComponent } from './edit-connection.component'
+import {ConnectionEditComponent} from './edit-connection.component'
 
 describe('ConnectionEditComponent', () => {
   let component: ConnectionEditComponent
@@ -8,9 +8,8 @@ describe('ConnectionEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ConnectionEditComponent]
-    })
-      .compileComponents()
+      declarations: [ConnectionEditComponent],
+    }).compileComponents()
 
     fixture = TestBed.createComponent(ConnectionEditComponent)
     component = fixture.componentInstance

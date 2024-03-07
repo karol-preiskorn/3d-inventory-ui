@@ -1,8 +1,8 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
-import { FloorService } from 'src/app/services/floor.service'
-import { LogService } from 'src/app/services/log.service'
-import { Floor } from 'src/app/shared/floor'
+import {Component, NgZone, OnInit} from '@angular/core'
+import {Router} from '@angular/router'
+import {FloorService} from 'src/app/services/floor.service'
+import {LogService} from 'src/app/services/log.service'
+import {Floor} from 'src/app/shared/floor'
 
 @Component({
   selector: 'app-floor-list',
@@ -24,7 +24,7 @@ export class FloorListComponent implements OnInit {
     private logService: LogService,
     private router: Router,
     private ngZone: NgZone
-  ) { }
+  ) {}
 
   loadFloors() {
     return this.floorService.GetFloors().subscribe((data: Floor[]) => {

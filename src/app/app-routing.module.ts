@@ -1,28 +1,28 @@
-import { CommonModule } from '@angular/common'
-import { Injectable, NgModule } from '@angular/core'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { Title } from '@angular/platform-browser'
-import { RouterModule, RouterStateSnapshot, Routes, TitleStrategy, provideRouter } from '@angular/router'
-import { DeviceAddComponent } from 'src/app/components/devices/add-device/add-device.component'
-import { DeviceListComponent } from 'src/app/components/devices/devices-list/devices-list.component'
-import { DeviceEditComponent } from 'src/app/components/devices/edit-device/edit-device.component'
-import { AttributeDictionaryAddComponent } from './components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component'
-import { AttributeDictionaryListComponent } from './components/attribute-dictionary/attribute-dictionary-list/attribute-dictionary-list.component'
-import { AttributeDictionaryEditComponent } from './components/attribute-dictionary/edit-attribute-dictionary/edit-attribute-dictionary.component'
-import { AttributeAddComponent } from './components/attribute/add-attribute/add-attribute.component'
-import { AttributeListComponent } from './components/attribute/attribute-list/attribute-list.component'
-import { AttributeEditComponent } from './components/attribute/edit-attribute/edit-attribute.component'
-import { ConnectionAddComponent } from './components/connection/add-connection/add-connection.component'
-import { ConnectionListComponent } from './components/connection/connection-list/connection-list.component'
-import { ConnectionEditComponent } from './components/connection/edit-connection/edit-connection.component'
-import { CubeComponent } from './components/cube/cube.component'
-import { FloorAddComponent } from './components/floors/add-floor/add-floor.component'
-import { FloorEditComponent } from './components/floors/edit-floor/edit-floor.component'
-import { FloorListComponent } from './components/floors/floor-list/floor-list.component'
-import { HomeComponent } from './components/home/home.component'
-import { ModelAddComponent } from './components/models/add-model/add-model.component'
-import { ModelEditComponent } from './components/models/edit-model/edit-model.component'
-import { ModelsListComponent } from './components/models/models-list/models-list.component'
+import {CommonModule} from '@angular/common'
+import {Injectable, NgModule} from '@angular/core'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+import {Title} from '@angular/platform-browser'
+import {RouterModule, RouterStateSnapshot, Routes, TitleStrategy, provideRouter} from '@angular/router'
+import {DeviceAddComponent} from 'src/app/components/devices/add-device/add-device.component'
+import {DeviceListComponent} from 'src/app/components/devices/devices-list/devices-list.component'
+import {DeviceEditComponent} from 'src/app/components/devices/edit-device/edit-device.component'
+import {AttributeDictionaryAddComponent} from './components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component'
+import {AttributeDictionaryListComponent} from './components/attribute-dictionary/attribute-dictionary-list/attribute-dictionary-list.component'
+import {AttributeDictionaryEditComponent} from './components/attribute-dictionary/edit-attribute-dictionary/edit-attribute-dictionary.component'
+import {AttributeAddComponent} from './components/attribute/add-attribute/add-attribute.component'
+import {AttributeListComponent} from './components/attribute/attribute-list/attribute-list.component'
+import {AttributeEditComponent} from './components/attribute/edit-attribute/edit-attribute.component'
+import {ConnectionAddComponent} from './components/connection/add-connection/add-connection.component'
+import {ConnectionListComponent} from './components/connection/connection-list/connection-list.component'
+import {ConnectionEditComponent} from './components/connection/edit-connection/edit-connection.component'
+import {CubeComponent} from './components/cube/cube.component'
+import {FloorAddComponent} from './components/floors/add-floor/add-floor.component'
+import {FloorEditComponent} from './components/floors/edit-floor/edit-floor.component'
+import {FloorListComponent} from './components/floors/floor-list/floor-list.component'
+import {HomeComponent} from './components/home/home.component'
+import {ModelAddComponent} from './components/models/add-model/add-model.component'
+import {ModelEditComponent} from './components/models/edit-model/edit-model.component'
+import {ModelsListComponent} from './components/models/models-list/models-list.component'
 
 @Injectable()
 export class TemplatePageTitleStrategy extends TitleStrategy {
@@ -151,7 +151,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(
       routes,
-      { enableTracing: false } // <-- debugging purposes only
+      {enableTracing: false} // <-- debugging purposes only
     ),
     CommonModule,
   ],
@@ -164,4 +164,4 @@ const routes: Routes = [
     },
   ],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

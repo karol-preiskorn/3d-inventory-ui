@@ -1,16 +1,16 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
-import { Observable, throwError } from 'rxjs'
-import { catchError, retry } from 'rxjs/operators'
-import { DeviceService } from 'src/app/services/device.service'
-import { ModelsService } from 'src/app/services/models.service'
-import { Attribute } from 'src/app/shared/attribute'
-import { Device } from 'src/app/shared/device'
-import { SyncRequestClient } from 'ts-sync-request/dist'
-import { v4 as uuidv4 } from 'uuid'
-import { environment } from '../../environments/environment'
-import { LogService } from './log.service'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
+import {Injectable, NgZone} from '@angular/core'
+import {Router} from '@angular/router'
+import {Observable, throwError} from 'rxjs'
+import {catchError, retry} from 'rxjs/operators'
+import {DeviceService} from 'src/app/services/device.service'
+import {ModelsService} from 'src/app/services/models.service'
+import {Attribute} from 'src/app/shared/attribute'
+import {Device} from 'src/app/shared/device'
+import {SyncRequestClient} from 'ts-sync-request/dist'
+import {v4 as uuidv4} from 'uuid'
+import {environment} from '../../environments/environment'
+import {LogService} from './log.service'
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +24,7 @@ export class AttributeService {
     private modelService: ModelsService,
     private ngZone: NgZone,
     private router: Router
-  ) { }
+  ) {}
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -37,7 +37,9 @@ export class AttributeService {
    * @returns An Observable that emits an array of Attribute objects.
    */
   GetAttributes(): Observable<Attribute[]> {
-    return this.http.get<Attribute[]>(environment.baseurl + '/attributes/', this.httpOptions).pipe(retry(1), catchError(this.errorHandl))
+    return this.http
+      .get<Attribute[]>(environment.baseurl + '/attributes/', this.httpOptions)
+      .pipe(retry(1), catchError(this.errorHandl))
   }
 
   /**
@@ -71,7 +73,8 @@ export class AttributeService {
   async GetDeviceAttributesPromise(id: string) {
     return this.http
       .get<Attribute[]>(environment.baseurl + '/attributes/device/' + id, this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl)).toPromise()
+      .pipe(retry(1), catchError(this.errorHandl))
+      .toPromise()
   }
 
   /**
@@ -177,7 +180,7 @@ export class AttributeService {
    * @param error - The error object containing the error message and status.
    * @returns An Observable that emits the error message.
    */
-  errorHandl(error: { error: { message: string }; status: number; message: string }) {
+  errorHandl(error: {error: {message: string}; status: number; message: string}) {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message

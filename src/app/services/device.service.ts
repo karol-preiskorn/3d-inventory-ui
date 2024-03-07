@@ -1,14 +1,13 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
-import { Observable, throwError } from 'rxjs'
-import { catchError, map, retry } from 'rxjs/operators'
-import { SyncRequestClient } from 'ts-sync-request/dist'
-import { v4 as uuidv4 } from 'uuid'
-import { environment } from '../../environments/environment'
-import { Device } from '../shared/device'
-import { LogService } from './log.service'
-
+import {HttpClient, HttpHeaders} from '@angular/common/http'
+import {Injectable, NgZone} from '@angular/core'
+import {Router} from '@angular/router'
+import {Observable, throwError} from 'rxjs'
+import {catchError, map, retry} from 'rxjs/operators'
+import {SyncRequestClient} from 'ts-sync-request/dist'
+import {v4 as uuidv4} from 'uuid'
+import {environment} from '../../environments/environment'
+import {Device} from '../shared/device'
+import {LogService} from './log.service'
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +16,6 @@ import { LogService } from './log.service'
  * Service for managing devices.
  */
 export class DeviceService {
-
   baseurl = environment.baseurl
   private objectName = 'devices'
 
@@ -26,7 +24,7 @@ export class DeviceService {
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
-  ) { }
+  ) {}
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -70,13 +68,12 @@ export class DeviceService {
    * @returns An Observable that emits the retrieved Device object.
    */
   GetDeviceSynchro(id: string | null): Observable<Device> {
-    return this.http
-      .get<Device>(environment.baseurl + '/' + this.objectName + '/' + id).pipe(
-        map(res => {
-          return res
-        }),
-        catchError(this.errorHandl)
-      )
+    return this.http.get<Device>(environment.baseurl + '/' + this.objectName + '/' + id).pipe(
+      map((res) => {
+        return res
+      }),
+      catchError(this.errorHandl)
+    )
   }
 
   /**
@@ -121,8 +118,7 @@ export class DeviceService {
           console.log('Create Device: ' + JSON.stringify(v, null, ' '))
           this.ngZone.run(() => this.router.navigateByUrl('device-list'))
         },
-        complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('device-list')),
+        complete: () => this.ngZone.run(() => this.router.navigateByUrl('device-list')),
       })
     })
     return id_uuid
@@ -150,7 +146,7 @@ export class DeviceService {
    * @param error - The error object containing the error message and status.
    * @returns An Observable that emits an error message.
    */
-  errorHandl(error: { error: { message: string }; status: number; message: string }): Observable<never> {
+  errorHandl(error: {error: {message: string}; status: number; message: string}): Observable<never> {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message

@@ -9,8 +9,7 @@
  * 2023-08-03  @karol-preiskorn   Init docs
  */
 
-
-import { Device } from './device'
+import {Device} from './device'
 
 // @TODO #2: Create class deviceLists operated on list of devices
 // @TODO #3: Get list/Find in list

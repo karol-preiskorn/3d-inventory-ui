@@ -1,12 +1,11 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
-import { ActivatedRoute, Router } from '@angular/router'
-import { faker } from '@faker-js/faker'
-import { FloorService } from 'src/app/services/floor.service'
-import { LogIn, LogService } from 'src/app/services/log.service'
-import { Floor, FloorDimension } from 'src/app/shared/floor'
+import {Component, NgZone, OnInit} from '@angular/core'
+import {FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms'
+import {ActivatedRoute, Router} from '@angular/router'
+import {faker} from '@faker-js/faker'
+import {FloorService} from 'src/app/services/floor.service'
+import {LogIn, LogService} from 'src/app/services/log.service'
+import {Floor, FloorDimension} from 'src/app/shared/floor'
 import Validation from 'src/app/shared/validation'
-
 
 @Component({
   selector: 'app-edit-floor',
@@ -53,7 +52,7 @@ export class FloorEditComponent implements OnInit {
     private router: Router,
     private floorService: FloorService,
     private logService: LogService
-  ) { }
+  ) {}
 
   ngOnInit() {
     console.log('Floor!')
@@ -66,19 +65,16 @@ export class FloorEditComponent implements OnInit {
     console.log('edit-device.attributeComponent = ' + this.attributeComponent)
     console.log('edit-device.attributeComponentObject = ' + this.attributeComponentObject)
     // @TODO one line mapping for this.floorForm.setValue(this.floor)
-    console.log(
-      this.floor.dimension.map(d => this.createDimensionGroup(d))
-    )
+    console.log(this.floor.dimension.map((d) => this.createDimensionGroup(d)))
     this.floorForm.controls.id.setValue(id)
     this.floorForm.controls.name.setValue(this.floor.name)
     this.floorForm.controls.address.controls.street.setValue(this.floor.address.street)
     this.floorForm.controls.address.controls.city.setValue(this.floor.address.city)
     this.floorForm.controls.address.controls.country.setValue(this.floor.address.country)
     this.floorForm.controls.address.controls.postcode.setValue(this.floor.address.postcode)
-    this.floorForm.controls.dimension =
-      this.formBuilder.array(
-        this.floor.dimension.map(floor => this.createDimensionGroup(floor))
-      )
+    this.floorForm.controls.dimension = this.formBuilder.array(
+      this.floor.dimension.map((floor) => this.createDimensionGroup(floor))
+    )
   }
   createDimensionGroup(dimension: FloorDimension) {
     return new FormGroup({
@@ -93,23 +89,27 @@ export class FloorEditComponent implements OnInit {
   }
 
   changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.id?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   changeX(e: Event) {
-    this.floorForm.controls.dimension.at(0).controls.x.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.floorForm.controls.dimension.at(0).controls.x.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   changeH(e: Event) {
-    this.floorForm.controls.dimension.at(0).controls.h.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.floorForm.controls.dimension.at(0).controls.h.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   changeXpos(e: Event) {
-    this.floorForm.controls.dimension.at(0).controls.xPos.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.floorForm.controls.dimension
+      .at(0)
+      .controls.xPos.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   changeHpos(e: Event) {
-    this.floorForm.controls.dimension.at(0).controls.hPos.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.floorForm.controls.dimension
+      .at(0)
+      .controls.hPos.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   get id() {
@@ -194,8 +194,7 @@ export class FloorEditComponent implements OnInit {
     this.dimension.push(fg)
   }
 
-  addAllFillDimensions() {
-  }
+  addAllFillDimensions() {}
 
   deleteDimension(i: number) {
     this.dimension.removeAt(i)
@@ -218,12 +217,12 @@ export class FloorEditComponent implements OnInit {
         emitEvent: false,
         onlySelf: true,
       })
-    this.floorForm.controls.dimension.at(i).controls.x.setValue(String(faker.number.int({ min: 2, max: 100 })))
-    this.floorForm.controls.dimension.at(i).controls.y.setValue(String(faker.number.int({ min: 2, max: 100 })))
-    this.floorForm.controls.dimension.at(i).controls.h.setValue(String(faker.number.int({ min: 2, max: 10 })))
-    this.floorForm.controls.dimension.at(i).controls.xPos.setValue(String(faker.number.int({ min: 2, max: 100 })))
-    this.floorForm.controls.dimension.at(i).controls.yPos.setValue(String(faker.number.int({ min: 2, max: 100 })))
-    this.floorForm.controls.dimension.at(i).controls.hPos.setValue(String(faker.number.int({ min: 2, max: 100 })))
+    this.floorForm.controls.dimension.at(i).controls.x.setValue(String(faker.number.int({min: 2, max: 100})))
+    this.floorForm.controls.dimension.at(i).controls.y.setValue(String(faker.number.int({min: 2, max: 100})))
+    this.floorForm.controls.dimension.at(i).controls.h.setValue(String(faker.number.int({min: 2, max: 10})))
+    this.floorForm.controls.dimension.at(i).controls.xPos.setValue(String(faker.number.int({min: 2, max: 100})))
+    this.floorForm.controls.dimension.at(i).controls.yPos.setValue(String(faker.number.int({min: 2, max: 100})))
+    this.floorForm.controls.dimension.at(i).controls.hPos.setValue(String(faker.number.int({min: 2, max: 100})))
   }
 
   submitForm() {

@@ -1,12 +1,12 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
-import { Observable, throwError } from 'rxjs'
-import { catchError, retry } from 'rxjs/operators'
-import { v4 as uuidv4 } from 'uuid'
-import { environment } from '../../environments/environment'
-import { Model } from '../shared/model'
-import { LogService } from './log.service'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
+import {Injectable, NgZone} from '@angular/core'
+import {Router} from '@angular/router'
+import {Observable, throwError} from 'rxjs'
+import {catchError, retry} from 'rxjs/operators'
+import {v4 as uuidv4} from 'uuid'
+import {environment} from '../../environments/environment'
+import {Model} from '../shared/model'
+import {LogService} from './log.service'
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,7 @@ export class ModelsService {
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
-  ) { }
+  ) {}
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -32,9 +32,7 @@ export class ModelsService {
    * @returns An Observable that emits an array of Model objects.
    */
   GetModels(): Observable<Model[]> {
-    return this.http
-      .get<Model[]>(environment.baseurl + '/models/')
-      .pipe(catchError(this.errorHandl))
+    return this.http.get<Model[]>(environment.baseurl + '/models/').pipe(catchError(this.errorHandl))
   }
 
   /**
@@ -67,11 +65,7 @@ export class ModelsService {
   CreateModel(data: Model): Observable<Model> {
     console.log('Service.CreateModel: ' + JSON.stringify(data, null, ' '))
     return this.http
-      .post<Model>(
-        environment.baseurl + '/models/',
-        JSON.stringify(data, null, ' '),
-        this.httpOptions
-      )
+      .post<Model>(environment.baseurl + '/models/', JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -91,8 +85,7 @@ export class ModelsService {
           console.log('Create Model: ' + JSON.stringify(v, null, ' '))
           this.ngZone.run(() => this.router.navigateByUrl('models-list'))
         },
-        complete: () =>
-          this.ngZone.run(() => this.router.navigateByUrl('models-list')),
+        complete: () => this.ngZone.run(() => this.router.navigateByUrl('models-list')),
       })
     })
     console.log('Get after Model: ' + JSON.stringify(this.model, null, ' '))
@@ -107,11 +100,7 @@ export class ModelsService {
    */
   UpdateModel(id: string | null, data: Model): Observable<Model> {
     return this.http
-      .put<Model>(
-        environment.baseurl + '/models/' + id,
-        JSON.stringify(data, null, ' '),
-        this.httpOptions
-      )
+      .put<Model>(environment.baseurl + '/models/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -120,7 +109,7 @@ export class ModelsService {
    * @param error - The error object containing the error message and status.
    * @returns An Observable that emits the error message.
    */
-  errorHandl(error: { error: { message: string }; status: number; message: string }): Observable<never> {
+  errorHandl(error: {error: {message: string}; status: number; message: string}): Observable<never> {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message

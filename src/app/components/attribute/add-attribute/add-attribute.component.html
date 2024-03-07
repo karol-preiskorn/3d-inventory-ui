@@ -2,7 +2,8 @@
   <h2><i class="bi bi-bar-chart"></i> Add Attribute</h2>
   <i class="bi bi-columns"></i>
   <span class="text-primary d-inline-flex focus-ring py-1 px-2 text-decoration-none">
-    {{ this.toString(this.addAttributeFrom.controls.id.value) }}</span>
+    {{ this.toString(this.addAttributeFrom.controls.id.value) }}</span
+  >
   <form [formGroup]="addAttributeFrom" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
     <div class="row g-3">
       <h4>Attribute object</h4>
@@ -11,11 +12,15 @@
           <div class="col">
             <div class="form-group">
               <label for="deviceId" class="form-label">Device</label>
-              <select (change)="changeDeviceId($event)" formControlName="deviceId" [ngClass]="{
+              <select
+                (change)="changeDeviceId($event)"
+                formControlName="deviceId"
+                [ngClass]="{
                   'is-invalid': addAttributeFrom.hasError('atLeastOneValidator'),
                   'is-valid': !addAttributeFrom.hasError('atLeastOneValidator'),
                   'form-select': true
-                }" id="deviceId">
+                }"
+                id="deviceId">
                 <option *ngFor="let deviceObj of deviceDictionary; let i = index" value="{{ deviceObj._id }}">
                   {{ deviceObj.name }}
                 </option>
@@ -31,11 +36,15 @@
           <div class="col">
             <div class="form-group mb-2">
               <label for="modelId" class="form-label">Model</label>
-              <select (change)="changeModelId($event)" formControlName="modelId" [ngClass]="{
-                'is-invalid': addAttributeFrom.hasError('atLeastOneValidator'),
-                'is-valid': !addAttributeFrom.hasError('atLeastOneValidator'),
-                'form-select': true
-              }" id="modelId">
+              <select
+                (change)="changeModelId($event)"
+                formControlName="modelId"
+                [ngClass]="{
+                  'is-invalid': addAttributeFrom.hasError('atLeastOneValidator'),
+                  'is-valid': !addAttributeFrom.hasError('atLeastOneValidator'),
+                  'form-select': true
+                }"
+                id="modelId">
                 <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj._id }}">
                   {{ modelObj.name }}
                 </option>
@@ -51,12 +60,17 @@
           <div class="col">
             <div class="form-group mb-2">
               <label for="connectionId" class="form-label">Connection</label>
-              <select (change)="changeConnectionId($event)" formControlName="connectionId" [ngClass]="{
-                'is-invalid': addAttributeFrom.hasError('atLeastOneValidator'),
-                'is-valid': !addAttributeFrom.hasError('atLeastOneValidator'),
-                'form-select': true
-              }" id="connectionId">
-                <option *ngFor="let connectionObj of connectionDictionary; let i = index"
+              <select
+                (change)="changeConnectionId($event)"
+                formControlName="connectionId"
+                [ngClass]="{
+                  'is-invalid': addAttributeFrom.hasError('atLeastOneValidator'),
+                  'is-valid': !addAttributeFrom.hasError('atLeastOneValidator'),
+                  'form-select': true
+                }"
+                id="connectionId">
+                <option
+                  *ngFor="let connectionObj of connectionDictionary; let i = index"
                   value="{{ connectionObj._id }}">
                   {{ connectionObj.name }}
                 </option>
@@ -74,13 +88,18 @@
       <div class="col">
         <div class="form-group mb-2">
           <label for="attributeDictionaryId" class="form-label">Attribute Dictionary Id</label>
-          <select (change)="changeAttributeDictionaryId($event)" formControlName="attributeDictionaryId"
-            formControlName="attributeDictionaryId" [ngClass]="{
-            'is-invalid': this.addAttributeFrom.controls.attributeDictionaryId.status != 'VALID',
-            'is-valid': this.addAttributeFrom.controls.attributeDictionaryId.status == 'VALID',
-            'form-select': true
-          }" id="attributeDictionaryId">
-            <option *ngFor="let attributeDictionaryObj of attributeDictionary; let i = index"
+          <select
+            (change)="changeAttributeDictionaryId($event)"
+            formControlName="attributeDictionaryId"
+            formControlName="attributeDictionaryId"
+            [ngClass]="{
+              'is-invalid': this.addAttributeFrom.controls.attributeDictionaryId.status != 'VALID',
+              'is-valid': this.addAttributeFrom.controls.attributeDictionaryId.status == 'VALID',
+              'form-select': true
+            }"
+            id="attributeDictionaryId">
+            <option
+              *ngFor="let attributeDictionaryObj of attributeDictionary; let i = index"
               value="{{ attributeDictionaryObj._id }}">
               {{ attributeDictionaryObj.name }}
             </option>
@@ -100,11 +119,16 @@
       <div class="col">
         <div class="form-group mb-2">
           <label for="value" class="form-label">Value</label>
-          <input type="text" formControlName="value" id="id" required [ngClass]="{
-            'is-invalid': this.addAttributeFrom.controls.value.status != 'VALID',
-            'is-valid': this.addAttributeFrom.controls.value.status == 'VALID',
-            'form-control': true
-          }" />
+          <input
+            type="text"
+            formControlName="value"
+            id="id"
+            required
+            [ngClass]="{
+              'is-invalid': this.addAttributeFrom.controls.value.status != 'VALID',
+              'is-valid': this.addAttributeFrom.controls.value.status == 'VALID',
+              'form-control': true
+            }" />
           <div class="invalid-feedback">Please select a valid state.</div>
           <div *ngIf="this.addAttributeFrom.controls.value.errors" class="invalid-feedback">
             <div *ngIf="this.addAttributeFrom.controls.value.errors.required">Value is required</div>
@@ -118,7 +142,9 @@
     <div class="row">
       <div class="col">
         <div class="form-group mb-3">
-          <button type="submit" [disabled]="!(this.addAttributeFrom.valid && this.addAttributeFrom.touched)"
+          <button
+            type="submit"
+            [disabled]="!(this.addAttributeFrom.valid && this.addAttributeFrom.touched)"
             class="btn btn-primary">
             Add attribute
           </button>
@@ -138,7 +164,6 @@
           <div class="log-message">addAttributeFrom.value: {{ toString(addAttributeFrom.value) }}</div>
           <div class="log-message">addAttributeFrom.valid: {{ toString(this.addAttributeFrom.valid) }}</div>
           <div class="log-message">addAttributeFrom.touched: {{ toString(this.addAttributeFrom.touched) }}</div> -->
-
         </div>
       </div>
     </div>

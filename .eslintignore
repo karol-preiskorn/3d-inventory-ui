@@ -8,3 +8,7 @@ node_modules/**
 .husky
 .vscode
 target
+.nyc_output
+.odo
+.vscode
+src/app/components/cube/cube.component.ts

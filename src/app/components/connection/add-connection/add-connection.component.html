@@ -7,21 +7,26 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="name" class="form-label">Name</label>
-          <input formControlName="name" id="name" [ngClass]="{
-                  'is-invalid': this.addConnectionForm.controls.name.status != 'VALID',
-                  'is-valid': this.addConnectionForm.controls.name.status == 'VALID',
-                  'form-control': true
-                }" value="{{ this.addConnectionForm.value.name }}" />
+          <input
+            formControlName="name"
+            id="name"
+            [ngClass]="{
+              'is-invalid': this.addConnectionForm.controls.name.status != 'VALID',
+              'is-valid': this.addConnectionForm.controls.name.status == 'VALID',
+              'form-control': true
+            }"
+            value="{{ this.addConnectionForm.value.name }}" />
           <div *ngIf="addConnectionForm.get('name')?.invalid">
             <div *ngIf="addConnectionForm.get('name')?.errors?.['required']">Name is required.</div>
             <div *ngIf="addConnectionForm.get('name')?.errors?.['minlength']">
               Name must be at least 6 characters long.
             </div>
           </div>
-          <div *ngIf="
-                  (addConnectionForm.get('name')?.dirty || addConnectionForm.get('name')?.touched) &&
-                  addConnectionForm.get('name')?.invalid
-                ">
+          <div
+            *ngIf="
+              (addConnectionForm.get('name')?.dirty || addConnectionForm.get('name')?.touched) &&
+              addConnectionForm.get('name')?.invalid
+            ">
             Please provide connection name.
           </div>
         </div>
@@ -31,11 +36,15 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="deviceIdFrom" class="form-label">Device From</label>
-          <select (change)="changeDeviceFrom($event)" formControlName="deviceIdFrom" [ngClass]="{
-                  'is-invalid': this.addConnectionForm.controls.deviceIdFrom.status != 'VALID',
-                  'is-valid': this.addConnectionForm.controls.deviceIdFrom.status == 'VALID',
-                  'form-select': true
-                }" id="deviceIdFrom">
+          <select
+            (change)="changeDeviceFrom($event)"
+            formControlName="deviceIdFrom"
+            [ngClass]="{
+              'is-invalid': this.addConnectionForm.controls.deviceIdFrom.status != 'VALID',
+              'is-valid': this.addConnectionForm.controls.deviceIdFrom.status == 'VALID',
+              'form-select': true
+            }"
+            id="deviceIdFrom">
             <option *ngFor="let deviceFromObj of deviceList; let i = index" [value]="deviceFromObj._id">
               {{ deviceFromObj.name }}
             </option>
@@ -46,11 +55,15 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="deviceIdTo" class="form-label">Device To</label>
-          <select (change)="changeDeviceTo($event)" formControlName="deviceIdTo" [ngClass]="{
-                  'is-invalid': this.addConnectionForm.controls.deviceIdTo.status != 'VALID',
-                  'is-valid': this.addConnectionForm.controls.deviceIdTo.status == 'VALID',
-                  'form-select': true
-                }" id="deviceIdTo">
+          <select
+            (change)="changeDeviceTo($event)"
+            formControlName="deviceIdTo"
+            [ngClass]="{
+              'is-invalid': this.addConnectionForm.controls.deviceIdTo.status != 'VALID',
+              'is-valid': this.addConnectionForm.controls.deviceIdTo.status == 'VALID',
+              'form-select': true
+            }"
+            id="deviceIdTo">
             <option *ngFor="let deviceToObj of deviceList; let i = index" [value]="deviceToObj._id">
               {{ deviceToObj.name }}
             </option>
@@ -65,7 +78,9 @@
       </div>
     </div>
     <div class="form-group mb-3">
-      <button type="submit" [disabled]="!(this.addConnectionForm.valid && this.addConnectionForm.touched)"
+      <button
+        type="submit"
+        [disabled]="!(this.addConnectionForm.valid && this.addConnectionForm.touched)"
         class="btn btn-primary">
         <i class="bi bi-plus-square"></i> Add connection
       </button>

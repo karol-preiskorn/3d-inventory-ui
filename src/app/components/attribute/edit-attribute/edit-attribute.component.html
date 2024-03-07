@@ -6,11 +6,15 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="deviceId" class="form-label">Device Id</label>
-          <select (change)="changeDeviceId($event)" formControlName="deviceId" [ngClass]="{
+          <select
+            (change)="changeDeviceId($event)"
+            formControlName="deviceId"
+            [ngClass]="{
               'is-invalid': editAttributeForm.hasError('atLeastOneValidator'),
               'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
               'form-select': true
-            }" id="deviceId">
+            }"
+            id="deviceId">
             <option *ngFor="let deviceObj of deviceDictionary; let i = index" value="{{ deviceObj._id }}">
               {{ deviceObj.name }}
             </option>
@@ -26,11 +30,15 @@
       <div class="col">
         <div class="form-group mb-2">
           <label for="modelId" class="form-label">Model Id</label>
-          <select (change)="changeModelId($event)" formControlName="modelId" [ngClass]="{
+          <select
+            (change)="changeModelId($event)"
+            formControlName="modelId"
+            [ngClass]="{
               'is-invalid': editAttributeForm.hasError('atLeastOneValidator'),
               'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
               'form-select': true
-            }" id="modelId">
+            }"
+            id="modelId">
             <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj._id }}">
               {{ modelObj.name }}
             </option>
@@ -46,13 +54,16 @@
       <div class="col">
         <div class="form-group mb-2">
           <label for="connectionId" class="form-label">Connection Id</label>
-          <select (change)="changeConnectionId($event)" formControlName="connectionId" [ngClass]="{
+          <select
+            (change)="changeConnectionId($event)"
+            formControlName="connectionId"
+            [ngClass]="{
               'is-invalid': editAttributeForm.hasError('atLeastOneValidator'),
               'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
               'form-select': true
-            }" id="connectionId">
-            <option *ngFor="let connectionObj of connectionDictionary; let i = index"
-              value="{{ connectionObj._id }}">
+            }"
+            id="connectionId">
+            <option *ngFor="let connectionObj of connectionDictionary; let i = index" value="{{ connectionObj._id }}">
               {{ connectionObj.name }}
             </option>
           </select>
@@ -67,12 +78,17 @@
       <div class="col">
         <div class="form-group mb-2">
           <label for="attributeDictionaryId" class="form-label">Attribute Dictionary Id</label>
-          <select (change)="changeAttributeDictionaryId($event)" formControlName="attributeDictionaryId" [ngClass]="{
+          <select
+            (change)="changeAttributeDictionaryId($event)"
+            formControlName="attributeDictionaryId"
+            [ngClass]="{
               'is-invalid': this.editAttributeForm.controls.attributeDictionaryId.status != 'VALID',
               'is-valid': this.editAttributeForm.controls.attributeDictionaryId.status == 'VALID',
               'form-select': true
-            }" id="attributeDictionaryId">
-            <option *ngFor="let attributeDictionaryObj of attributeDictionary; let i = index"
+            }"
+            id="attributeDictionaryId">
+            <option
+              *ngFor="let attributeDictionaryObj of attributeDictionary; let i = index"
               value="{{ attributeDictionaryObj._id }}">
               {{ attributeDictionaryObj.name }}
             </option>
@@ -92,7 +108,12 @@
       <div class="col">
         <div class="form-group mb-2">
           <label for="value" class="form-label">Value</label>
-          <input type="text" formControlName="value" id="id" required [ngClass]="{
+          <input
+            type="text"
+            formControlName="value"
+            id="id"
+            required
+            [ngClass]="{
               'is-invalid': this.editAttributeForm.controls.value.status != 'VALID',
               'is-valid': this.editAttributeForm.controls.value.status == 'VALID',
               'form-control': true
@@ -109,7 +130,9 @@
     <div class="row">
       <div class="col">
         <div class="form-group mb-3">
-          <button type="submit" [disabled]="!(this.editAttributeForm.valid && this.editAttributeForm.touched)"
+          <button
+            type="submit"
+            [disabled]="!(this.editAttributeForm.valid && this.editAttributeForm.touched)"
             class="btn btn-primary">
             Update attribute
           </button>

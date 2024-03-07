@@ -1,31 +1,31 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { ActivatedRoute, Router } from '@angular/router'
+import {Component, NgZone, OnInit} from '@angular/core'
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
+import {ActivatedRoute, Router} from '@angular/router'
 
-import { LogService } from 'src/app/services/log.service'
-import { ComponentDictionary } from 'src/app/shared/component-dictionary'
+import {LogService} from 'src/app/services/log.service'
+import {ComponentDictionary} from 'src/app/shared/component-dictionary'
 
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
-import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
+import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
+import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
 
-import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
-import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
+import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
+import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
 
-import { Attribute } from 'src/app/shared/attribute'
-import { AttributeService } from 'src/app/services/attribute.service'
+import {Attribute} from 'src/app/shared/attribute'
+import {AttributeService} from 'src/app/services/attribute.service'
 
-import { Device } from 'src/app/shared/device'
-import { DeviceService } from 'src/app/services/device.service'
+import {Device} from 'src/app/shared/device'
+import {DeviceService} from 'src/app/services/device.service'
 
-import { Model } from 'src/app/shared/model'
-import { ModelsService } from 'src/app/services/models.service'
+import {Model} from 'src/app/shared/model'
+import {ModelsService} from 'src/app/services/models.service'
 
-import { Connection } from 'src/app/shared/connection'
-import { ConnectionService } from 'src/app/services/connection.service'
+import {Connection} from 'src/app/shared/connection'
+import {ConnectionService} from 'src/app/services/connection.service'
 
-import { v4 as uuidv4 } from 'uuid'
-import { Subscription } from 'rxjs'
-import { faker } from '@faker-js/faker'
+import {v4 as uuidv4} from 'uuid'
+import {Subscription} from 'rxjs'
+import {faker} from '@faker-js/faker'
 
 import Validation from 'src/app/shared/validation'
 
@@ -46,7 +46,7 @@ export class AttributeAddComponent implements OnInit {
       attributeDictionaryId: new FormControl('', Validators.required),
       value: new FormControl('', Validators.required),
     },
-    { validators: this.valid.atLeastOneValidator }
+    {validators: this.valid.atLeastOneValidator}
   )
 
   attribute: Attribute
@@ -80,7 +80,7 @@ export class AttributeAddComponent implements OnInit {
     private connectionService: ConnectionService,
     private attributeDictionaryService: AttributeDictionaryService,
     private logService: LogService
-  ) { }
+  ) {}
 
   formAttribute() {
     this.addAttributeFrom = this.formBulider.group(
@@ -92,32 +92,32 @@ export class AttributeAddComponent implements OnInit {
         attributeDictionaryId: ['', Validators.required],
         value: ['', Validators.required],
       },
-      { validators: this.valid.atLeastOneValidator }
+      {validators: this.valid.atLeastOneValidator}
     )
   }
 
   changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.id?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   changeModelId(e: Event) {
-    this.modelId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.modelId?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   changeDeviceId(e: Event) {
-    this.deviceId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.deviceId?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   changeConnectionId(e: Event) {
-    this.connectionId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.connectionId?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   changeAttributeDictionaryId(e: Event) {
-    this.attributeDictionaryId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.attributeDictionaryId?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   changeValue(e: Event) {
-    this.value?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.value?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
 
   get id() {

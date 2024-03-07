@@ -5,7 +5,13 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="id" class="form-label">Id</label>
-          <input type="text" formControlName="id" id="id" required readonly [ngClass]="{
+          <input
+            type="text"
+            formControlName="id"
+            id="id"
+            required
+            readonly
+            [ngClass]="{
               'is-invalid': this.form.controls.id.status != 'VALID',
               'is-valid': this.form.controls.id.status == 'VALID',
               'form-control': true
@@ -19,15 +25,20 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="name" class="form-label">Name</label>
-          <textarea [ngClass]="{
+          <textarea
+            [ngClass]="{
               'is-invalid': this.form.controls.name.status != 'VALID',
               'is-valid': this.form.controls.name.status == 'VALID',
               'form-control': true
-            }" formControlName="name" id="name" required>{{ this.form.value.name }}</textarea>
+            }"
+            formControlName="name"
+            id="name"
+            required
+            >{{ this.form.value.name }}</textarea
+          >
           <div *ngIf="this.form.controls.name.errors" class="invalid-feedback">
             <div *ngIf="this.form.controls.name.errors.required">Attribute name is required</div>
-            <div *ngIf="this.form.controls.name.errors.minlength">Attribute name must be at least 6 characters
-            </div>
+            <div *ngIf="this.form.controls.name.errors.minlength">Attribute name must be at least 6 characters</div>
           </div>
         </div>
       </div>
@@ -36,11 +47,15 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="type" class="form-label">Type</label>
-          <select (change)="changeType($event)" formControlName="type" [ngClass]="{
+          <select
+            (change)="changeType($event)"
+            formControlName="type"
+            [ngClass]="{
               'is-invalid': this.form.controls.type.status != 'VALID',
               'is-valid': this.form.controls.type.status == 'VALID',
               'form-select': true
-            }" id="type">
+            }"
+            id="type">
             <option *ngFor="let typeObj of deviceTypeDict.list; let i = index">
               {{ typeObj.name }}
             </option>
@@ -53,11 +68,15 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="category" class="form-label">Category</label>
-          <select (change)="changeCategory($event)" formControlName="category" [ngClass]="{
+          <select
+            (change)="changeCategory($event)"
+            formControlName="category"
+            [ngClass]="{
               'is-invalid': this.form.controls.category.status != 'VALID',
               'is-valid': this.form.controls.category.status == 'VALID',
               'form-select': true
-            }" id="category">
+            }"
+            id="category">
             <option *ngFor="let categoryObj of deviceCategoryDict.list; let i = index">
               {{ categoryObj.name }}
             </option>
@@ -70,16 +89,18 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="component" class="form-label">Component</label>
-          <select (change)="changeCategory($event)" formControlName="component" [ngClass]="{
+          <select
+            (change)="changeCategory($event)"
+            formControlName="component"
+            [ngClass]="{
               'is-invalid': this.form.controls.component.status != 'VALID',
               'is-valid': this.form.controls.component.status == 'VALID',
               'form-select': true
-            }" id="component"
+            }"
+            id="component"
             ngbPopover="Select where you want use this attribute"
             triggers="mouseenter:mouseleave"
-            popoverTitle="Range of use by components"
-
-            >
+            popoverTitle="Range of use by components">
             <option *ngFor="let componentObj of componentDictionary.list; let i = index">
               {{ componentObj.name }}
             </option>
@@ -91,8 +112,7 @@
       </div>
     </div>
     <div class="form-group mb-3">
-      <button type="submit" [disabled]="!(this.form.valid && this.form.touched)"
-        class="btn btn-primary">Update</button>
+      <button type="submit" [disabled]="!(this.form.valid && this.form.touched)" class="btn btn-primary">Update</button>
       <div *ngIf="!(this.form.valid && this.form.touched)" class="invalid-feedback">Form is invalid</div>
     </div>
   </form>
