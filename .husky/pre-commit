@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
 . "$(pwd -- "$0")/.husky/_/husky.sh"
 
-# npx lint-staged
-npm --no-git-tag-version version patch
+npx lint-staged
