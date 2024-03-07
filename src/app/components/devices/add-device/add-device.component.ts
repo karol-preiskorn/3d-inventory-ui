@@ -55,35 +55,29 @@ export class DeviceAddComponent implements OnInit {
   }
 
   loadModels() {
-    const tmp: Model = new Model()
-    return this.modelService.GetModels().subscribe((data: any) => {
-      this.modelList = data
-      this.modelList.unshift(tmp)
+    return this.modelService.GetModels().subscribe((data: Model[]): void => {
+      this.modelList = data as Model[]
     })
   }
 
-  changeId(e: any) {
-    this.id?.setValue(e.target.value, { onlySelf: true })
+  changeId(e: Event) {
+    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeName(e: any) {
-    this.name?.setValue(e.target.value, { onlySelf: true })
+  changeX(e: Event) {
+    this.x?.setValue(Number((e.target as HTMLInputElement).value), { onlySelf: true })
   }
 
-  changeX(e: any) {
-    this.x?.setValue(e.target.value, { onlySelf: true })
+  changeY(e: Event) {
+    this.y?.setValue(Number((e.target as HTMLInputElement).value), { onlySelf: true })
   }
 
-  changeY(e: any) {
-    this.y?.setValue(e.target.value, { onlySelf: true })
+  changeH(e: Event) {
+    this.h?.setValue(Number((e.target as HTMLInputElement).value), { onlySelf: true })
   }
 
-  changeH(e: any) {
-    this.h?.setValue(e.target.value, { onlySelf: true })
-  }
-
-  changeModelId(e: any) {
-    this.modelId?.setValue(e.target.value, { onlySelf: true })
+  changeModelId(e: Event) {
+    this.modelId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   get id() {
@@ -92,6 +86,10 @@ export class DeviceAddComponent implements OnInit {
 
   get name() {
     return this.addDeviceForm.get('name')
+  }
+
+  get modelId() {
+    return this.addDeviceForm.get('modelId')
   }
 
   get x() {
@@ -106,11 +104,7 @@ export class DeviceAddComponent implements OnInit {
     return this.addDeviceForm.get('position')?.get('h')
   }
 
-  get modelId() {
-    return this.addDeviceForm.get('modelId')
-  }
-
-  toString(data: any): string {
+  toString(data: Record<string, unknown>): string {
     return JSON.stringify(data, null, ' ')
   }
 
@@ -129,7 +123,7 @@ export class DeviceAddComponent implements OnInit {
       component: 'Devices',
       message: this.toString(this.addDeviceForm.value),
     })
-    this.devicesService.CreateDevice(this.device).subscribe((res) => {
+    this.devicesService.CreateDevice(this.device).subscribe(() => { // Removed 'res' parameter
       this.ngZone.run(() => this.router.navigateByUrl('device-list'))
     })
   }

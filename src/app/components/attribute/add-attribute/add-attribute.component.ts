@@ -144,7 +144,7 @@ export class AttributeAddComponent implements OnInit {
     return this.addAttributeFrom.get('value')
   }
 
-  toString(data: any): string {
+  toString(data: unknown): string {
     // Specify a more specific type for the 'data' parameter
     return JSON.stringify(data, null, 2)
   }
@@ -166,7 +166,7 @@ export class AttributeAddComponent implements OnInit {
   }
 
   getConnectionList(): Subscription {
-    return this.connectionService.GetConnections().subscribe((data: Connection[]): any => {
+    return this.connectionService.GetConnections().subscribe((data: Connection[]) => {
       const tmp = new Connection()
       data.unshift(tmp)
       this.connectionDictionary = data
@@ -199,7 +199,7 @@ export class AttributeAddComponent implements OnInit {
       this.logService
         .CreateLog({
           objectId: this.addAttributeFrom.get('id')?.value,
-          message: this.toString(this.addAttributeFrom.value),
+          message: this.toString(this.addAttributeFrom.value as Attribute),
           operation: 'Create',
           component: 'Attributes',
         })

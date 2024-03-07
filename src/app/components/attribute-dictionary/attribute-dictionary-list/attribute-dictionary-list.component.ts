@@ -27,7 +27,7 @@ export class AttributeDictionaryListComponent implements OnInit {
   loadAttributeDictionary() {
     return this.attributeDictionaryService
       .GetAttributeDictionaries()
-      .subscribe((data: any) => {
+      .subscribe((data: AttributeDictionary[]) => {
         this.attributeDictionaryList = data
       })
   }
@@ -40,7 +40,7 @@ export class AttributeDictionaryListComponent implements OnInit {
     })
     return this.attributeDictionaryService
       .DeleteAttributeDictionary(id)
-      .subscribe((data: any) => {
+      .subscribe((data: AttributeDictionary) => { // Specify the appropriate type for 'data'
         console.log(data)
         this.loadAttributeDictionary()
         this.router.navigate(['/attribute-dictionary-list'])

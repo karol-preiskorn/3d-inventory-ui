@@ -164,7 +164,7 @@
         <div class="col">
           <div class="form-group mb-3">
             <label for="type" class="form-label">Type</label>
-            <select (change)="changeType($event)" formControlName="type" [ngClass]="{
+            <select (change)="changeTop($event)" formControlName="type" [ngClass]="{
                 'is-invalid': this.addModelForm.controls.type.status != 'VALID',
                 'is-valid': this.addModelForm.controls.type.status == 'VALID',
                 'form-select': true

@@ -4,8 +4,8 @@
     <div class="row">
       <div class="col">
         <label for="id" class="form-label">Id</label>
-        <input type="text" class="form-control" placeholder="Id" aria-label="id" formControlName="_id" id="id"
-          readonly [ngClass]="{
+        <input type="text" class="form-control" placeholder="Id" aria-label="_id" formControlName="_id"
+          formControlName="_id" id="_id" readonly [ngClass]="{
               'is-invalid': this.editDeviceForm.controls._id.status != 'VALID',
               'is-valid': this.editDeviceForm.controls._id.status == 'VALID',
               'form-control': true

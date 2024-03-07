@@ -79,7 +79,7 @@ export class AttributeService {
    * @param id The ID of the model.
    * @returns An Observable that emits an array of Attribute objects.
    */
-  GetModelAtributes(id: string): Observable<Attribute[]> {
+  GetModelAttributes(id: string): Observable<Attribute[]> {
     return this.http
       .get<Attribute[]>(environment.baseurl + '/attributes/model/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))

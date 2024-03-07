@@ -1,5 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -26,19 +26,16 @@ export class ConnectionAddComponent implements OnInit {
   logComponent = 'Connection'
 
   constructor(
-    private formBulider: FormBuilder,
+    private formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router,
     private connectionService: ConnectionService,
     private deviceService: DeviceService,
     private logService: LogService
   ) { }
-  ngOnInit() {
-    this.formConnection()
-    this.getDeviceList()
-  }
+
   formConnection() {
-    this.addConnectionForm = this.formBulider.group({
+    this.addConnectionForm = this.formBuilder.group({
       id: [uuidv4(), [Validators.required, Validators.minLength(36)]],
       name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
       deviceIdTo: ['', [Validators.required]],
@@ -46,17 +43,21 @@ export class ConnectionAddComponent implements OnInit {
     })
   }
 
-  changeId(e: any) {
-    this.id?.setValue(e.target.value, { onlySelf: true })
+  ngOnInit() {
+    this.formConnection()
+    this.getDeviceList()
   }
-  changeName(e: any) {
-    this.name?.setValue(e.target.value, { onlySelf: true })
+  changeId(e: Event) {
+    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
-  changeDeviceTo(e: any) {
-    this.deviceIdTo?.setValue(e.target.value, { onlySelf: true })
+  changeName(e: Event) {
+    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
-  changeDeviceFrom(e: any) {
-    this.deviceIdFrom?.setValue(e.target.value, { onlySelf: true })
+  changeDeviceTo(e: Event) {
+    this.deviceIdTo?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+  changeDeviceFrom(e: Event) {
+    this.deviceIdFrom?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   get id() {
@@ -71,23 +72,19 @@ export class ConnectionAddComponent implements OnInit {
   get deviceIdFrom() {
     return this.addConnectionForm.get('deviceIdFrom')
   }
-
-  toString(data: any): string {
+  toString(data: unknown): string {
     return JSON.stringify(data, null, 2)
   }
-
   getDeviceList() {
-    return this.deviceService.GetDevices().subscribe((data: any) => {
+    return this.deviceService.GetDevices().subscribe((data: Device[]) => {
       const tmp = new Device()
       data.unshift(tmp)
       this.deviceList = data
     })
   }
-
   gotoDevice(deviceId: string) {
     this.router.navigate(['edit-device/', deviceId])
   }
-
   submitForm() {
     this.connectionService.CreateConnection(this.addConnectionForm.value as Connection)
       .subscribe(() => {

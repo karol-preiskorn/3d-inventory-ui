@@ -40,6 +40,7 @@ export class AttributeEditComponent implements OnInit {
   editAttributeForm = new FormGroup(
     {
       _id: new FormControl('', [Validators.required]),
+      _id: new FormControl('', [Validators.required]),
       deviceId: new FormControl(''),
       modelId: new FormControl(''),
       connectionId: new FormControl(''),
@@ -87,7 +88,7 @@ export class AttributeEditComponent implements OnInit {
     )
   }
   constructor(
-    public formBulider: FormBuilder,
+    public formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router,
     public activatedRoute: ActivatedRoute,

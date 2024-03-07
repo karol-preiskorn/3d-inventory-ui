@@ -59,58 +59,47 @@ export class ModelAddComponent implements OnInit {
     public modelsService: ModelsService,
     private logService: LogService
   ) { }
-
-  ngOnInit() {
-    this.isSubmitted = false
+  ngOnInit(): void {
+    // Initialize the model object
+    this.model = new Model()
   }
 
-  changeId(e: any) {
-    this.id?.setValue(e.target.value, { onlySelf: true })
+  changeId(e: Event) {
+    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
-  changeName(e: any) {
-    this.name?.setValue(e.target.value, { onlySelf: true })
+  changeName(e: Event) {
+    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
-
-  changeWidth(e: any) {
-    this.width?.setValue(e.target.value as never, { onlySelf: true })
+  changeWidth(e: Event) {
+    this.width?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
-  changeHeight(e: any) {
-    this.height?.setValue(e.target.value as never, { onlySelf: true })
+  changeHeight(e: Event) {
+    this.height?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
-  changeDepth(e: any) {
-    this.depth?.setValue(e.target.value as never, { onlySelf: true })
+  changeFront(e: Event) {
+    this.front?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
-
-  changeFront(e: any) {
-    this.front?.setValue(e.target.value as never, { onlySelf: true })
+  changeBack(e: Event) {
+    this.back?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
-  changeBack(e: any) {
-    this.back?.setValue(e.target.value as never, { onlySelf: true })
+  changeSide(e: Event) {
+    this.side?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
-  changeSide(e: any) {
-    this.side?.setValue(e.target.value as never, { onlySelf: true })
+  changeTop(e: Event) {
+    this.top?.setValue((e.target as HTMLInputElement).value as never, { onlySelf: true })
   }
-  changeTop(e: any) {
-    this.top?.setValue(e.target.value as never, { onlySelf: true })
+  changeBotom(e: Event) {
+    this.botom?.setValue((e.target as HTMLInputElement).value as never, { onlySelf: true })
   }
-  changeBotom(e: any) {
-    this.botom?.setValue(e.target.value as never, { onlySelf: true })
+  changeCategory(e: Event) {
+    this.category?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
-
-  changeType(e: any) {
-    this.type?.setValue(e.target.value, { onlySelf: true })
-  }
-  changeCategory(e: any) {
-    this.category?.setValue(e.target.value, { onlySelf: true })
-  }
-
   get id() {
     return this.addModelForm.get('id')
   }
   get name() {
     return this.addModelForm.get('name')
   }
-
   get width() {
     return this.addModelForm.get('dimension.width')
   }
@@ -120,7 +109,6 @@ export class ModelAddComponent implements OnInit {
   get depth() {
     return this.addModelForm.get('dimension.depth')
   }
-
   get front() {
     return this.addModelForm.get('texture.front')
   }
@@ -136,14 +124,12 @@ export class ModelAddComponent implements OnInit {
   get botom() {
     return this.addModelForm.get('texture.botom')
   }
-
   get type() {
     return this.addModelForm.get('type')
   }
   get category() {
     return this.addModelForm.get('category')
   }
-
   submitForm() {
     this.modelsService.CreateModel(this.model).subscribe((res) => {
       console.log('Submit Model: ' + JSON.stringify(this.addModelForm.value))
