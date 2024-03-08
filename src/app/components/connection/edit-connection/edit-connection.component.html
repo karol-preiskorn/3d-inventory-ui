@@ -69,7 +69,7 @@
         <div class="form-group mb-3">
           <label for="deviceIdTo" class="form-label">Device To</label>
           <select
-            (change)="changeDeviceTo($event)"
+            (change)="changeDeviceFrom($event)"
             formControlName="deviceIdTo"
             [ngClass]="{
               'is-invalid': this.editConnectionForm.controls.deviceIdTo.status != 'VALID',

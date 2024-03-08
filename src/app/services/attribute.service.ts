@@ -97,7 +97,12 @@ export class AttributeService {
   GetContextAttributes(component: string, item: string): Attribute[] {
     let attributes: Attribute[] = []
     let device: Device = new Device()
-    device = JSON.parse(item)
+    console.error('JSON.parse(item): ' + item)
+    try {
+      device = JSON.parse(item) as Device
+    } catch (error) {
+      console.error('JSON.parse(item): ' + item + ' ' + error)
+    }
     const url_model = environment.baseurl + '/attributes/model/' + device.modelId
     const url_device = environment.baseurl + '/attributes/device/' + device._id
     attributes = new SyncRequestClient().get<Attribute[]>(url_model)

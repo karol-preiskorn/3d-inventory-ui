@@ -64,24 +64,20 @@ export class AttributeListComponent implements OnInit {
 
     this.LoadAttributes()
   }
+
   private LoadAttributes() {
     // @TODO: #62 show data depends of context attributeComponent and attributeComponentObject
     console.log('-------------------<  LoadAttributes  >-------------------')
     if (this.attributeComponent == 'Device' && this.attributeComponentObject != null) {
       console.log(
-        '>>>> LoadAttributes.GetContextAttributes: ' +
-          this.attributeComponent +
-          ' ' +
-          this.attributeComponentObject +
-          ' JSON.stringify: ' +
-          JSON.stringify(this.attributeComponentObject)
+        'LoadAttributes.GetContextAttributes: ' + this.attributeComponent + ' ' + this.attributeComponentObject
       )
       this.attributeList = this.attributeService.GetContextAttributes(
         this.attributeComponent,
         this.attributeComponentObject
       )
     } else {
-      console.log('>>>> LoadAttributes.attributeService.GetAttributesSync()')
+      console.log('LoadAttributes.attributeService.GetAttributesSync()')
       this.attributeList = this.attributeService.GetAttributesSync()
     }
   }
