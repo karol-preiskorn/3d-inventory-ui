@@ -4,16 +4,16 @@
  * @version 2023-08-08  C2RLO    add FormControl<number>(0,
  */
 
-import {Component, OnInit} from '@angular/core'
-import {FormControl, FormGroup, Validators} from '@angular/forms'
-import {ActivatedRoute, Router} from '@angular/router'
-import {DeviceService} from 'src/app/services/device.service'
-import {LogIn, LogService} from 'src/app/services/log.service'
-import {ModelsService} from 'src/app/services/models.service'
-import {Device} from 'src/app/shared/device'
-import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
-import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
-import {Model} from 'src/app/shared/model'
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
+import { DeviceService } from 'src/app/services/device.service'
+import { LogIn, LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Device } from 'src/app/shared/device'
+import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
+import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
+import { Model } from 'src/app/shared/model'
 import Validation from 'src/app/shared/validation'
 
 @Component({
@@ -21,7 +21,7 @@ import Validation from 'src/app/shared/validation'
   templateUrl: './edit-device.component.html',
   styleUrls: ['./edit-device.component.scss'],
 })
-export class DeviceEditComponent implements OnInit {
+export class DeviceEditComponent implements OnInit, AfterViewInit {
   errorMessage: string
   valid: Validation = new Validation()
   inputId = ''
@@ -55,9 +55,15 @@ export class DeviceEditComponent implements OnInit {
     public devicesService: DeviceService,
     private router: Router,
     private logService: LogService,
-    private modelsService: ModelsService
-  ) {}
+    private modelsService: ModelsService,
+    private cdr: ChangeDetectorRef
+  ) { }
+  ngAfterViewInit() {
+    // update your property here
 
+    // detect changes
+    this.cdr.detectChanges()
+  }
   loadModels() {
     return this.modelsService.GetModels().subscribe((data: Model[]): void => {
       this.modelList = data as Model[]
@@ -82,7 +88,7 @@ export class DeviceEditComponent implements OnInit {
 
   reloadComponent(self: boolean, urlToNavigateTo?: string) {
     const url = self ? this.router.url : urlToNavigateTo
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([`/${url}`]).then(() => {
         console.log(`After navigation I am on:${this.router.url}`)
       })
@@ -99,17 +105,17 @@ export class DeviceEditComponent implements OnInit {
 
   changeX(e: Event) {
     const value = parseFloat((e.target as HTMLInputElement).value)
-    this.x?.setValue(value, {onlySelf: true})
+    this.x?.setValue(value, { onlySelf: true })
   }
 
   changeY(e: Event) {
     const value = parseFloat((e.target as HTMLInputElement).value)
-    this.y?.setValue(value, {onlySelf: true})
+    this.y?.setValue(value, { onlySelf: true })
   }
 
   changeH(e: Event) {
     const value = parseFloat((e.target as HTMLInputElement).value)
-    this.h?.setValue(value, {onlySelf: true})
+    this.h?.setValue(value, { onlySelf: true })
   }
 
   get _id() {
@@ -146,7 +152,7 @@ export class DeviceEditComponent implements OnInit {
         objectId: this.editDeviceForm.value._id,
       }
       this.logService.CreateLog(log).subscribe(() => {
-        this.action = JSON.stringify(log)
+        //this.action = JSON.stringify(log)
         //this.reloadComponent(false, 'edit-device/' + this.device.id)
       })
       this.devicesService.UpdateDevice(this.inputId, this.editDeviceForm.value as Device).subscribe(() => {

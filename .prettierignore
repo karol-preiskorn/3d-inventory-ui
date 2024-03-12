@@ -1,7 +1,7 @@
 ﻿# Ignore artifacts:
-build
-coverage
-.angular
+build/*
+coverage/*
+.angular/*
 .husky
 .vscode
 dist

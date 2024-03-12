@@ -1,8 +1,8 @@
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http'
-import {Injectable, Input} from '@angular/core'
-import {Observable, catchError, of, retry, throwError} from 'rxjs'
-import {environment} from '../../environments/environment'
-import {getDateString} from '../shared/utils'
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
+import { Injectable, Input } from '@angular/core'
+import { Observable, catchError, of, retry, throwError } from 'rxjs'
+import { environment } from '../../environments/environment'
+import { getDateString } from '../shared/utils'
 
 export interface LogParamteres {
   component: string
@@ -32,7 +32,7 @@ export class LogService {
   baseurl = environment.baseurl
   @Input() attributeComponentId: string
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -40,67 +40,42 @@ export class LogService {
     }),
   }
 
-  /**
-   * Retrieves the logs from the server.
-   * @returns An Observable that emits an array of Log objectIds.
-   */
   GetLogs(): Observable<Log[]> {
     return this.http.get<Log[]>(environment.baseurl + '/logs').pipe(retry(1), catchError(this.handleError))
   }
 
-  /**
-   * Retrieves the logs for a specific component.
-   * @param component The name of the component.
-   * @returns An Observable that emits an array of Log objectIds.
-   */
   GetComponentLogs(component: string): Observable<Log[]> {
     const url = environment.baseurl + '/logs/component/' + component.toLowerCase()
     console.log('LogComponent.GetComponentLogs(' + component.toLowerCase() + ') ' + url)
     return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
   }
 
-  /**
-   * Retrieves the logs for a specific object.
-   * @param objectId - The name of the objectId.
-   * @returns An Observable that emits an array of Log objectIds.
-   */
+  GetAttributeLogs(component: string): Observable<Log[]> {
+    const url = environment.baseurl + '/logs/device/' + component.toLowerCase()
+    console.log('LogComponent.GetModelLogs(' + component.toLowerCase() + ') ' + url)
+    return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
+  }
+
   GetObjectsLogs(objectId: string): Observable<Log[]> {
     const url = environment.baseurl + '/logs/' + objectId
     console.log('LogService.GetObjectsLogs.url: ' + url)
     return this.http.get<Log[]>(url).pipe(catchError(this.handleErrorTemplate<Log[]>('GetObjectsLogs', [])))
   }
 
-  /**
-   * Retrieves a log by its ID.
-   * @param id The ID of the log to retrieve.
-   * @returns An Observable that emits the retrieved log.
-   */
   GetLogId(id: string | null): Observable<Log> {
     return this.http
       .get<Log>(environment.baseurl + '/logs/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError))
   }
 
-  /**
-   * Deletes a log entry by its ID.
-   * @param id The ID of the log entry to delete.
-   * @returns An Observable that emits the deleted log entry.
-   */
   DeleteLog(id: string): Observable<Log> {
     return this.http
       .delete<Log>(environment.baseurl + '/logs/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError))
   }
 
-  /**
-   * Creates a log entry with the provided data.
-   * @param data The data for the log entry.
-   * @returns An Observable that emits the created log entry.
-   */
-  CreateLog(data: LogIn): Observable<Log> {
-    const log: Log = {
-      _id: '',
-      date: getDateString(),
+  CreateLog(data: LogIn): Observable<Log | LogIn> {
+    const log: LogIn = {
       objectId: data.objectId,
       operation: data.operation,
       component: data.component,
@@ -108,37 +83,21 @@ export class LogService {
     }
     console.log('LogService.CreateLog: ' + JSON.stringify(log, null, ' '))
     return this.http
-      .post<Log>(`${environment.baseurl}/logs/`, JSON.stringify(log, null, ' '), this.httpOptions)
-      .pipe(retry(1), catchError(this.handleErrorTemplate<Log>('CreateLog', log)))
+      .post<Log | LogIn>(`${environment.baseurl}/logs/`, JSON.stringify(log, null, ' '), this.httpOptions)
+      .pipe(retry(1), catchError(this.handleErrorTemplate<LogIn>('CreateLog', log)))
   }
 
-  /**
-   * Posts a log entry to the server.
-   * @param data The log data to be posted.
-   * @returns An Observable that emits the posted log entry.
-   */
   postLog(data: Log): Observable<Log> {
     return this.http
       .post<Log>(`${environment.baseurl}/logs`, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Log>('postLog', data)))
   }
 
-  /**
-   * Extracts the data from the response object.
-   * @param res The response object.
-   * @returns The extracted data.
-   */
   private extractData(res: Response) {
     const body = res.json()
     return body || {}
   }
 
-  /**
-   * Updates a log entry with the specified ID.
-   * @param id - The ID of the log entry to update.
-   * @param data - The updated data for the log entry.
-   * @returns An Observable that emits the updated log entry.
-   */
   UpdateLog(id: string | null, data: JSON): Observable<Log> {
     return this.http
       .put<Log>(environment.baseurl + '/logs/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
@@ -170,7 +129,9 @@ export class LogService {
    */
   private handleErrorTemplate<T>(operation = 'operation', result?: T) {
     return (error: Error): Observable<T> => {
-      console.log(`LogService.handleError----> ${operation} failed: ${error.message}`)
+      console.error(
+        `LogService.handleErrorTemplate: ${operation} failed: ${error.message}`
+      )
       return of(result as T)
     }
   }

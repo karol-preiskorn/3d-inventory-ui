@@ -1,7 +1,4 @@
 #!/usr/bin/env sh
 . "$(pwd -- "$0")/.husky/_/husky.sh"
 
-eslint src
 npx lint-staged
-npx prettier --write .
-git add .

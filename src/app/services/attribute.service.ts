@@ -97,7 +97,7 @@ export class AttributeService {
   GetContextAttributes(component: string, item: string): Attribute[] {
     let attributes: Attribute[] = []
     let device: Device = new Device()
-    console.error('JSON.parse(item): ' + item)
+    console.warn('JSON.parse(item): ' + item)
     try {
       device = JSON.parse(item) as Device
     } catch (error) {
@@ -105,8 +105,16 @@ export class AttributeService {
     }
     const url_model = environment.baseurl + '/attributes/model/' + device.modelId
     const url_device = environment.baseurl + '/attributes/device/' + device._id
-    attributes = new SyncRequestClient().get<Attribute[]>(url_model)
-    attributes.push(...new SyncRequestClient().get<Attribute[]>(url_device))
+    try {
+      attributes = new SyncRequestClient().get<Attribute[]>(url_model)
+    } catch (error) {
+      console.error('SyncRequestClient().get<Attribute[]>: ' + url_model + ' ' + error)
+    }
+    try {
+      attributes.push(...new SyncRequestClient().get<Attribute[]>(url_device))
+    } catch (error) {
+      console.error('SyncRequestClient().get<Attribute[]>: ' + url_device + ' ' + error)
+    }
     console.log('device.id: ' + device._id + ' ' + url_device)
     console.log('device.modelId: ' + device.modelId + ' ' + url_model)
     console.log('GetContextAttributes.attributes: ' + attributes)

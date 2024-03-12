@@ -1,13 +1,13 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http'
-import {Injectable, NgZone} from '@angular/core'
-import {Router} from '@angular/router'
-import {Observable, throwError} from 'rxjs'
-import {catchError, map, retry} from 'rxjs/operators'
-import {SyncRequestClient} from 'ts-sync-request/dist'
-import {v4 as uuidv4} from 'uuid'
-import {environment} from '../../environments/environment'
-import {Device} from '../shared/device'
-import {LogService} from './log.service'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
+import { Observable, of, throwError } from 'rxjs'
+import { catchError, map, retry } from 'rxjs/operators'
+import { SyncRequestClient } from 'ts-sync-request/dist'
+import { v4 as uuidv4 } from 'uuid'
+import { environment } from '../../environments/environment'
+import { Device } from '../shared/device'
+import { LogService } from './log.service'
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +24,7 @@ export class DeviceService {
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router
-  ) {}
+  ) { }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -138,7 +138,13 @@ export class DeviceService {
         JSON.stringify(data, null, ' '),
         this.httpOptions
       )
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(catchError(this.handleErrorTemplate<Device>('UpdateDevice', data)))
+  }
+
+  postDevice(data: Device): Observable<Device> {
+    return this.http
+      .post<Device>(`${environment.baseurl}/devices`, JSON.stringify(data, null, ' '), this.httpOptions)
+      .pipe(retry(1), catchError(this.handleErrorTemplate<Device>('postLog', data)))
   }
 
   /**
@@ -146,17 +152,32 @@ export class DeviceService {
    * @param error - The error object containing the error message and status.
    * @returns An Observable that emits an error message.
    */
-  errorHandl(error: {error: {message: string}; status: number; message: string}): Observable<never> {
+  errorHandl(error: { error: { message: string }; status: number; message: string }): Observable<never> {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message
     } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
+      errorMessage = `Error: ${error.status} Message: ${error.message}`
     }
-    console.log(JSON.stringify(errorMessage, null, ' '))
+    // console.log(`${error.message}`)
 
     return throwError(() => {
       return errorMessage
     })
+  }
+
+  /**
+   * Handle Http operation that failed. Let the app continue.
+   *
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleErrorTemplate<T>(operation = 'operation', result?: T) {
+    return (error: Error): Observable<T> => {
+      console.error(
+        `DeviceService.handleErrorTemplate operation: ${operation}, error: ${error.message}`
+      )
+      return of(result as T)
+    }
   }
 }
