@@ -1,34 +1,34 @@
-import { Component, OnInit, Input } from '@angular/core'
-import { Subscription } from 'rxjs'
+import {Component, OnInit, Input} from '@angular/core'
+import {Subscription} from 'rxjs'
 
-import { Log, LogIn, LogService } from 'src/app/services/log.service'
+import {Log, LogService} from 'src/app/services/log.service'
 
-import { Device } from 'src/app/shared/device'
-import { DeviceService } from 'src/app/services/device.service'
+import {Device} from 'src/app/shared/device'
+import {DeviceService} from 'src/app/services/device.service'
 
-import { Model } from 'src/app/shared/model'
-import { ModelsService } from 'src/app/services/models.service'
+import {Model} from 'src/app/shared/model'
+import {ModelsService} from 'src/app/services/models.service'
 
-import { Connection } from 'src/app/shared/connection'
-import { ConnectionService } from 'src/app/services/connection.service'
+import {Connection} from 'src/app/shared/connection'
+import {ConnectionService} from 'src/app/services/connection.service'
 
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
-import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
+import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
+import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
 
-import { Attribute } from 'src/app/shared/attribute'
-import { AttributeService } from 'src/app/services/attribute.service'
+import {Attribute} from 'src/app/shared/attribute'
+import {AttributeService} from 'src/app/services/attribute.service'
 
-import { Floor } from 'src/app/shared/floor'
-import { FloorService } from 'src/app/services/floor.service'
+import {Floor} from 'src/app/shared/floor'
+import {FloorService} from 'src/app/services/floor.service'
 
 const api = [
-  { component: 'Models', api: 'models' },
-  { component: 'Devices', api: 'devices' },
-  { component: 'Logs', api: 'logs' },
-  { component: 'Attributes', api: 'attributes' },
-  { component: 'Attribute Dictionary', api: 'attribute-dictionary' },
-  { component: 'Connection', api: 'connections' },
-  { component: 'Floor', api: 'floor' },
+  {component: 'Models', api: 'models'},
+  {component: 'Devices', api: 'devices'},
+  {component: 'Logs', api: 'logs'},
+  {component: 'Attributes', api: 'attributes'},
+  {component: 'Attribute Dictionary', api: 'attribute-dictionary'},
+  {component: 'Connection', api: 'connections'},
+  {component: 'Floor', api: 'floor'},
 ]
 
 function isApiSettings(component: string): boolean {
@@ -73,7 +73,7 @@ export class LogComponent implements OnInit {
     private connectionService: ConnectionService,
     private attributeDictionaryService: AttributeDictionaryService,
     private floorService: FloorService
-  ) { }
+  ) {}
 
   loadLog(context: string) {
     //console.log(this.environmentService.isApiSettings(this.component))
@@ -153,6 +153,12 @@ export class LogComponent implements OnInit {
     return JSON.stringify(jLog, null, ' ')
   }
 
+  /**
+   * Retrieves the device list from the device service.
+   * If the device list has already been retrieved, returns null.
+   * Otherwise, subscribes to the GetDevices method of the device service and updates the device list.
+   * @returns An Observable that emits the device list.
+   */
   getDeviceList() {
     if (this.deviceListGet == true) return null
     return this.deviceService.GetDevices().subscribe((data: Device[]) => {
@@ -164,6 +170,11 @@ export class LogComponent implements OnInit {
     })
   }
 
+  /**
+   * Finds the device name based on the provided ID.
+   * @param id - The ID of the device.
+   * @returns The name of the device if found, otherwise undefined.
+   */
   findDeviceName(id: string) {
     return this.deviceList.find((e) => e._id === id)?.name
   }
@@ -210,6 +221,10 @@ export class LogComponent implements OnInit {
     return this.attributeDictionaryList.find((e) => e._id === id)?.name
   }
 
+  /**
+   * Retrieves the attribute list.
+   * @returns {Observable<Attribute[]>} An observable that emits the attribute list.
+   */
   getAttributeList() {
     if (this.attributeListGet == true) return null
     return this.attributeService.GetAttributes().subscribe((data: Attribute[]) => {

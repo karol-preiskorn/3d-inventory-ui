@@ -1,8 +1,7 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
-import { Injectable, Input } from '@angular/core'
-import { Observable, catchError, of, retry, throwError } from 'rxjs'
-import { environment } from '../../environments/environment'
-import { getDateString } from '../shared/utils'
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http'
+import {Injectable, Input} from '@angular/core'
+import {Observable, catchError, of, retry, throwError} from 'rxjs'
+import {environment} from '../../environments/environment'
 
 export interface LogParamteres {
   component: string
@@ -32,7 +31,7 @@ export class LogService {
   baseurl = environment.baseurl
   @Input() attributeComponentId: string
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -129,9 +128,7 @@ export class LogService {
    */
   private handleErrorTemplate<T>(operation = 'operation', result?: T) {
     return (error: Error): Observable<T> => {
-      console.error(
-        `LogService.handleErrorTemplate: ${operation} failed: ${error.message}`
-      )
+      console.error(`LogService.handleErrorTemplate: ${operation} failed: ${error.message}`)
       return of(result as T)
     }
   }
