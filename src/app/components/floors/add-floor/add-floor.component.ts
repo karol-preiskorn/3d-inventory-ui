@@ -195,7 +195,7 @@ export class FloorAddComponent implements OnInit {
       this.logService.CreateLog({
         operation: 'Create',
         component: 'Floor',
-        message: this.toText(this.floorForm.getRawValue()),
+        message: this.floorForm.getRawValue(),
       })
       this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
     })

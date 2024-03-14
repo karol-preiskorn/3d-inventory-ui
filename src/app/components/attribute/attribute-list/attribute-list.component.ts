@@ -84,7 +84,7 @@ export class AttributeListComponent implements OnInit {
 
   DeleteAttribute(id: string) {
     this.logService.CreateLog({
-      message: id,
+      message: {id: id},
       objectId: id,
       operation: 'Delete',
       component: this.component,
@@ -99,7 +99,7 @@ export class AttributeListComponent implements OnInit {
     const id_new: string = this.attributeService.CloneAttribute(id)
     this.logService
       .CreateLog({
-        message: id + ' -> ' + id_new,
+        message: {id: id, id_new: id_new},
         operation: 'Clone',
         component: this.component,
       })

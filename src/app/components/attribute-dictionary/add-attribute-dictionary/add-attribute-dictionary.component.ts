@@ -103,7 +103,7 @@ export class AttributeDictionaryAddComponent implements OnInit {
         this.logService
           .CreateLog({
             objectId: this.addAttributeDictionaryForm.get('id')?.value,
-            message: this.toString(this.addAttributeDictionaryForm.getRawValue()),
+            message: this.addAttributeDictionaryForm.getRawValue(),
             operation: 'Create',
             component: 'Attribute Dictionary',
           })

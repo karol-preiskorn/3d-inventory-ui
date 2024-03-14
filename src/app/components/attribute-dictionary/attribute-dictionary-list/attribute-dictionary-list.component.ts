@@ -31,7 +31,7 @@ export class AttributeDictionaryListComponent implements OnInit {
   }
   deleteAttributeDictionary(id: string) {
     this.logService.CreateLog({
-      message: id,
+      message: {id},
       objectId: id,
       operation: 'Delete',
       component: 'AttributeDictionary',
@@ -48,7 +48,10 @@ export class AttributeDictionaryListComponent implements OnInit {
     const id_new: string = this.attributeDictionaryService.CloneAttributeDictionary(id)
     this.logService
       .CreateLog({
-        message: id + ' -> ' + id_new,
+        message: {
+          id: id,
+          id_new: id_new,
+        },
         operation: 'Clone',
         component: 'AttributeDictionary',
       })

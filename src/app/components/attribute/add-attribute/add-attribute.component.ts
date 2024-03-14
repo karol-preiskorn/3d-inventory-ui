@@ -199,7 +199,7 @@ export class AttributeAddComponent implements OnInit {
       this.logService
         .CreateLog({
           objectId: this.addAttributeFrom.get('id')?.value,
-          message: this.toString(this.addAttributeFrom.value as Attribute),
+          message: this.addAttributeFrom.value as Attribute,
           operation: 'Create',
           component: 'Attribute',
         })

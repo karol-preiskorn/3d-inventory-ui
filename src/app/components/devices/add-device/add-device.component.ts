@@ -121,7 +121,7 @@ export class DeviceAddComponent implements OnInit {
     this.logService.CreateLog({
       operation: 'Create',
       component: 'Device',
-      message: this.toString(this.addDeviceForm.value),
+      message: this.addDeviceForm.value,
     })
     this.devicesService.CreateDevice(this.device).subscribe(() => {
       // Removed 'res' parameter

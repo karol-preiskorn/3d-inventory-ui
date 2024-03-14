@@ -121,7 +121,7 @@ export class ConnectionEditComponent implements OnInit {
       this.logService
         .CreateLog({
           objectId: this.editConnectionForm.get('id')?.value,
-          message: this.toString(this.editConnectionForm.value),
+          message: {value: this.editConnectionForm.value},
           operation: 'Update',
           component: 'Connection',
         })

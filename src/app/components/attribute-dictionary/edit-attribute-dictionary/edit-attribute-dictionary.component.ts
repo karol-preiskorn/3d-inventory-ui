@@ -115,7 +115,7 @@ export class AttributeDictionaryEditComponent implements OnInit {
         this.logService
           .CreateLog({
             objectId: this.form.get('id')?.value,
-            message: this.toString(this.form.value),
+            message: this.form.value,
             operation: 'Update',
             component: 'Attribute Dictionary',
           })

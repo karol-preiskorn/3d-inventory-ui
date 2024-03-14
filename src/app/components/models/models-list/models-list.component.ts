@@ -45,7 +45,7 @@ export class ModelsListComponent implements OnInit {
    */
   DeleteModel(id: string) {
     this.logService.CreateLog({
-      message: id,
+      message: {id: id},
       objectId: id,
       operation: 'Delete',
       component: 'Model',
@@ -68,7 +68,7 @@ export class ModelsListComponent implements OnInit {
     const id_new: string = this.modelsService.CloneModel(id)
     this.logService
       .CreateLog({
-        message: id + ' -> ' + id_new,
+        message: {id: id, new_id: id_new},
         operation: 'Clone',
         component: 'Model',
       })

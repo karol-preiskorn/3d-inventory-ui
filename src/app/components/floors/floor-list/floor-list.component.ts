@@ -34,7 +34,7 @@ export class FloorListComponent implements OnInit {
 
   deleteFloor(id: string) {
     this.logService.CreateLog({
-      message: id,
+      message: {id: id},
       objectId: id,
       operation: 'Delete',
       component: this.component,
@@ -50,7 +50,7 @@ export class FloorListComponent implements OnInit {
     const id_new: string = this.floorService.CloneFloor(id)
     this.logService
       .CreateLog({
-        message: id + ' -> ' + id_new,
+        message: {id: id, id_new: id_new},
         operation: 'Clone',
         component: this.component,
       })

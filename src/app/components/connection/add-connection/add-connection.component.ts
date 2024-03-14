@@ -90,7 +90,7 @@ export class ConnectionAddComponent implements OnInit {
       this.logService
         .CreateLog({
           objectId: this.addConnectionForm.get('id')?.value,
-          message: this.toString(this.addConnectionForm.value),
+          message: this.addConnectionForm.value,
           operation: 'Create',
           component: 'Connection',
         })

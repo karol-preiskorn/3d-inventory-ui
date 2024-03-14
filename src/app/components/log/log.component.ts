@@ -31,6 +31,11 @@ const api = [
   {component: 'Floor', api: 'floor'},
 ]
 
+/**
+ * Checks if the given component is present in the API settings.
+ * @param component - The component to check.
+ * @returns `true` if the component is found in the API settings, `false` otherwise.
+ */
 function isApiSettings(component: string): boolean {
   return api.find((e) => e.component === component) ? true : false
 }
@@ -75,6 +80,10 @@ export class LogComponent implements OnInit {
     private floorService: FloorService
   ) {}
 
+  /**
+   * Loads the log for the specified context.
+   * @param context - The context for which the log is being loaded.
+   */
   loadLog(context: string) {
     //console.log(this.environmentService.isApiSettings(this.component))
     // found log context in share service with store variables
@@ -87,14 +96,27 @@ export class LogComponent implements OnInit {
     }
   }
 
+  /**
+   * Initializes the component.
+   * This method is called after the component has been created and initialized.
+   */
   ngOnInit() {
     this.loadLog('ngOnInit')
   }
 
+  /**
+   * Called whenever one or more input properties of the component change.
+   * @returns void
+   */
   OnChanges() {
     this.loadLog('ngOnChanges')
   }
 
+  /**
+   * Deletes a log entry with the specified ID.
+   * @param id - The ID of the log entry to delete.
+   * @returns An Observable that emits the deleted log entry.
+   */
   DeleteLog(id: string) {
     return this.logService.DeleteLog(id).subscribe((data: Log) => {
       console.log(data)
@@ -103,25 +125,34 @@ export class LogComponent implements OnInit {
     })
   }
 
+  /**
+   * Loads the component logs for the specified ID.
+   * @param id - The ID of the component.
+   * @returns A subscription object for the log data.
+   */
   loadComponentLog(id: string): Subscription {
     return this.logService.GetComponentLogs(id).subscribe((data: Log[]) => {
       console.log('LogComponent.loadComponentLog(' + id + '): ' + JSON.stringify(data, null, ' '))
-
       this.LogList = data
     })
   }
 
+  /**
+   * Loads the objects log for the specified ID.
+   * @param id - The ID of the object.
+   * @returns A Subscription object representing the subscription to the log data.
+   */
   loadObjectsLog(id: string): Subscription {
-    return this.logService.GetObjectsLogs(id).subscribe((data: Log[]) => {
+    return this.logService.GetObjectLogs(id).subscribe((data: Log[]) => {
       console.log('LogComponent.loadObjectsLog(' + id + '): ' + JSON.stringify(data, null, ' '))
       this.LogList = data
     })
   }
 
   /**
-   * @description depends on type log find usable information from message
-   * @param {Log} log
-   * @return {string} information about object
+   * @description Depends on type log find usable information from log.message
+   * @param {Log} log - The log object containing the message.
+   * @return {string} The name found in the log message.
    * @memberof LogComponent
    */
   findNameInLogMessage(log: Log): string {
@@ -130,15 +161,16 @@ export class LogComponent implements OnInit {
       jLog = JSON.parse(JSON.stringify(log.message))
     } catch (error) {
       console.log('findNameInLogMessage: ' + JSON.stringify(log.message) + ' ' + error)
-      return log.message
+      return JSON.stringify(log.message)
     }
     console.log('jLog: ' + JSON.stringify(jLog, null, ' '))
     if (log.component == 'Attribute') {
-      const jAttribute: Attribute = JSON.parse(log.message)
+      const jAttribute: Attribute = log.message as Attribute
       console.log('jAttribute: ' + JSON.stringify(jAttribute, null, ' '))
       console.log('findNameInLogMessage: ' + JSON.stringify(jAttribute, null, ' '))
       if (jAttribute.connectionId != '') {
         this.getConnectionList()
+        console.log('Connection: ' + this.findConnectionName(jAttribute.connectionId as string))
         return 'Connection ' + this.findConnectionName(jAttribute.connectionId as string)
       }
       if (jAttribute.modelId != '') {
@@ -179,6 +211,12 @@ export class LogComponent implements OnInit {
     return this.deviceList.find((e) => e._id === id)?.name
   }
 
+  /**
+   * Retrieves the model list from the model service.
+   * If the model list has already been fetched, it returns null.
+   * Otherwise, it subscribes to the GetModels() method of the model service and updates the model list.
+   * @returns An Observable that emits the model list.
+   */
   getModelList() {
     if (this.modelListGet == true) return null
     return this.modelService.GetModels().subscribe((data: Model[]) => {
@@ -190,10 +228,20 @@ export class LogComponent implements OnInit {
     })
   }
 
+  /**
+   * Finds the model name based on the provided ID.
+   * @param id - The ID of the model.
+   * @returns The name of the model if found, otherwise undefined.
+   */
   findModelName(id: string) {
     return this.modelList.find((e) => e._id === id)?.name
   }
 
+  /**
+   * Retrieves the connection list.
+   *
+   * @returns An Observable that emits the connection list.
+   */
   getConnectionList() {
     if (this.connectionListGet == true) return null
     return this.connectionService.GetConnections().subscribe((data: Connection[]) => {
@@ -204,10 +252,20 @@ export class LogComponent implements OnInit {
     })
   }
 
+  /**
+   * Finds the connection name based on the provided ID.
+   * @param id - The ID of the connection.
+   * @returns The name of the connection if found, otherwise undefined.
+   */
   findConnectionName(id: string) {
     return this.connectionList.find((e) => e._id === id)?.name
   }
 
+  /**
+   * Retrieves the attribute dictionary list.
+   *
+   * @returns An Observable that emits the attribute dictionary list.
+   */
   getAttributeDictionaryList() {
     if (this.attributeDictionaryListGet == true) return null
     return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) => {
@@ -217,6 +275,11 @@ export class LogComponent implements OnInit {
     })
   }
 
+  /**
+   * Finds the name of the attribute dictionary with the given ID.
+   * @param id - The ID of the attribute dictionary.
+   * @returns The name of the attribute dictionary, or undefined if not found.
+   */
   findAttributeDictionaryName(id: string) {
     return this.attributeDictionaryList.find((e) => e._id === id)?.name
   }
@@ -236,10 +299,22 @@ export class LogComponent implements OnInit {
     })
   }
 
+  /**
+   * Finds an attribute in the attribute list based on the given ID.
+   * @param id - The ID of the attribute to find.
+   * @returns The attribute object if found, or undefined if not found.
+   */
   findAttribute(id: string) {
     return this.attributeList.find((e) => e._id === id)
   }
 
+  /**
+   * Retrieves the floor list from the attribute service.
+   * If the attribute list has already been retrieved, returns null.
+   * Otherwise, subscribes to the GetAttributes method of the attribute service
+   * and updates the attribute list with the retrieved data.
+   * @returns An Observable that emits the retrieved attribute list.
+   */
   getFloorList() {
     if (this.attributeListGet == true) return null
     return this.attributeService.GetAttributes().subscribe((data: Attribute[]) => {
@@ -251,6 +326,11 @@ export class LogComponent implements OnInit {
     })
   }
 
+  /**
+   * Finds a floor in the floorList based on the provided id.
+   * @param id - The id of the floor to find.
+   * @returns The found floor object, or undefined if no floor with the given id is found.
+   */
   findFloor(id: string) {
     return this.floorList.find((e) => e.id === id)
   }

@@ -5,7 +5,6 @@
  * @version 2023-06-17 C2RLO  Add attributeDictionaryId
  * @version 2023-05-21 C2RLO  Init
  **/
-import {v4 as uuidv4} from 'uuid'
 
 export class Attribute {
   _id: string
@@ -14,8 +13,4 @@ export class Attribute {
   connectionId: string | null
   attributeDictionaryId: string
   value: string
-
-  constructor() {
-    this._id = uuidv4()
-  }
 }

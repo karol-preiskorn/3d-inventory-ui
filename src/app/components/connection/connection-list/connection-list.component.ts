@@ -61,7 +61,7 @@ export class ConnectionListComponent implements OnInit {
   deleteConnection(id: string) {
     this.logService
       .CreateLog({
-        message: id,
+        message: {id: id},
         objectId: id,
         operation: 'Delete',
         component: 'Connection',
@@ -82,7 +82,7 @@ export class ConnectionListComponent implements OnInit {
     const id_new: string = this.ConnectionService.CloneConnection(id)
     this.logService
       .CreateLog({
-        message: id + ' -> ' + id_new,
+        message: {id: id, id_new: id_new},
         operation: 'Clone',
         component: 'Connection',
       })

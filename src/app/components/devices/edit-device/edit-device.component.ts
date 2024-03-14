@@ -146,7 +146,7 @@ export class DeviceEditComponent implements OnInit, AfterViewInit {
     if (this.editDeviceForm.valid && this.editDeviceForm.touched) {
       console.log('DeviceEditComponent.submitForm(): ' + JSON.stringify(this.editDeviceForm.value, null, 2))
       const log: LogIn = {
-        message: JSON.stringify(this.editDeviceForm.value) as string,
+        message: this.editDeviceForm.value,
         operation: 'Update',
         component: 'Device',
         objectId: this.editDeviceForm.value._id,

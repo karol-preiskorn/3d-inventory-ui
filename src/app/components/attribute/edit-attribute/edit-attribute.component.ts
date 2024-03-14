@@ -177,7 +177,7 @@ export class AttributeEditComponent implements OnInit {
       this.logService
         .CreateLog({
           objectId: this.editAttributeForm.get('id')?.value,
-          message: this.toString(this.editAttributeForm.value),
+          message: this.editAttributeForm.value,
           operation: 'Update',
           component: 'Attribute',
         })

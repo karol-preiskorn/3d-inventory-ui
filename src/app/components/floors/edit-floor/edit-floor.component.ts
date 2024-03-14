@@ -227,7 +227,7 @@ export class FloorEditComponent implements OnInit {
 
   submitForm() {
     const log: LogIn = {
-      message: JSON.stringify(this.floorForm.value) as string,
+      message: this.floorForm.value,
       operation: 'Update',
       component: 'Floor',
       objectId: this.floorForm.value.id,

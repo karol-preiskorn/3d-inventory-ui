@@ -135,7 +135,7 @@ export class ModelAddComponent implements OnInit {
       console.log('Submit Model: ' + JSON.stringify(this.addModelForm.value))
       this.logService
         .CreateLog({
-          message: JSON.stringify(res),
+          message: {id: res},
           operation: 'Create',
           component: 'Model',
         })
