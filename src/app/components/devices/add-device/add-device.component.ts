@@ -120,7 +120,7 @@ export class DeviceAddComponent implements OnInit {
     console.log('Device added!')
     this.logService.CreateLog({
       operation: 'Create',
-      component: 'Devices',
+      component: 'Device',
       message: this.toString(this.addDeviceForm.value),
     })
     this.devicesService.CreateDevice(this.device).subscribe(() => {

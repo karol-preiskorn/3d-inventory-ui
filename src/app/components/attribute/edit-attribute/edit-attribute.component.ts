@@ -179,7 +179,7 @@ export class AttributeEditComponent implements OnInit {
           objectId: this.editAttributeForm.get('id')?.value,
           message: this.toString(this.editAttributeForm.value),
           operation: 'Update',
-          component: 'Attributes',
+          component: 'Attribute',
         })
         .subscribe(() => {
           this.ngZone.run(() => this.router.navigateByUrl('attribute-list'))

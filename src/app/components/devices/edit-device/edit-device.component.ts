@@ -148,7 +148,7 @@ export class DeviceEditComponent implements OnInit, AfterViewInit {
       const log: LogIn = {
         message: JSON.stringify(this.editDeviceForm.value) as string,
         operation: 'Update',
-        component: 'Devices',
+        component: 'Device',
         objectId: this.editDeviceForm.value._id,
       }
       this.logService.CreateLog(log).subscribe(() => {

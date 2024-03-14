@@ -48,7 +48,7 @@ export class ModelsListComponent implements OnInit {
       message: id,
       objectId: id,
       operation: 'Delete',
-      component: 'Models',
+      component: 'Model',
     })
     return this.modelsService.DeleteModel(id).subscribe((data: Model) => {
       // Update the callback function parameter type to Model
@@ -70,7 +70,7 @@ export class ModelsListComponent implements OnInit {
       .CreateLog({
         message: id + ' -> ' + id_new,
         operation: 'Clone',
-        component: 'Models',
+        component: 'Model',
       })
       .subscribe(() => {
         this.ngZone.run(() => this.router.navigateByUrl('models-list'))

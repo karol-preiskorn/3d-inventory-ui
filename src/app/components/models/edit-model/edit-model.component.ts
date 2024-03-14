@@ -144,7 +144,7 @@ export class ModelEditComponent implements OnInit {
     this.logService.CreateLog({
       objectId: this.editModelForm.value.id,
       operation: 'Delete',
-      component: 'Models',
+      component: 'Model',
       message: JSON.stringify(this.editModelForm.value, null, 2),
     })
     this.modelsService.DeleteModel(this.inputId.toString()).subscribe(() => {
@@ -161,7 +161,7 @@ export class ModelEditComponent implements OnInit {
       const log: LogIn = {
         message: JSON.stringify(this.editModelForm.value, null, ' ') as string,
         operation: 'Update',
-        component: 'Models',
+        component: 'Model',
         objectId: this.editModelForm.value.id,
       }
       this.logService.CreateLog(log).subscribe(() => {
