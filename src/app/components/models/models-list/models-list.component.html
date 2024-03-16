@@ -23,7 +23,10 @@
                     currentPage: modelListPage
                   }
           ">
-          <td tooltip="{{ model._id }}">{{ model.name }}</td>
+          <td>
+            {{ model.name }}
+            <p class="fs-7 fw-lighter">{{ model._id }}</p>
+          </td>
           <td>({{ model.dimension.width + ', ' + model.dimension.height + ', ' + model.dimension.depth }})</td>
           <td style="font-size: small">
             <a href="{{ model.texture.front }}">front</a>, <a href="{{ model.texture.back }}">back</a>,

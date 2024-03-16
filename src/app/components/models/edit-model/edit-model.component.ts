@@ -27,9 +27,19 @@ import {Subscription} from 'rxjs'
   styleUrls: ['./edit-model.component.scss'],
 })
 export class ModelEditComponent implements OnInit {
-  inputId: string | number
+  inputId: string = ''
   model: Model
   component = ''
+
+  constructor(
+    public activatedRoute: ActivatedRoute,
+    public modelsService: ModelsService,
+    private ngZone: NgZone,
+    private router: Router,
+    private logService: LogService
+  ) {
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') || ''
+  }
 
   editModelForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -68,14 +78,6 @@ export class ModelEditComponent implements OnInit {
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   isSubmitted = false
-
-  constructor(
-    public activatedRoute: ActivatedRoute,
-    public modelsService: ModelsService,
-    private ngZone: NgZone,
-    private router: Router,
-    private logService: LogService
-  ) {}
 
   ngOnInit() {
     this.getModel()

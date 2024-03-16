@@ -124,20 +124,23 @@ export class DeviceService {
     return id_uuid
   }
 
-  // PUT
   /**
    * Updates a device with the specified ID.
    * @param id - The ID of the device to update.
    * @param data - The updated device data.
    * @returns An Observable that emits the updated device.
    */
-  UpdateDevice(id: string | null, data: Device): Observable<Device> {
+  UpdateDevice(data: Device): Observable<Device> {
+    console.log(
+      'device.service.UpdateDevice: PUT ' +
+        environment.baseurl +
+        '/devices/' +
+        data._id +
+        '  ' +
+        JSON.stringify(data, null, ' ')
+    )
     return this.http
-      .put<Device>(
-        environment.baseurl + '/' + this.objectName + '/' + id,
-        JSON.stringify(data, null, ' '),
-        this.httpOptions
-      )
+      .put<Device>(environment.baseurl + '/devices/' + data._id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(catchError(this.handleErrorTemplate<Device>('UpdateDevice', data)))
   }
 

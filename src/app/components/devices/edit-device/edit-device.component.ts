@@ -155,7 +155,7 @@ export class DeviceEditComponent implements OnInit, AfterViewInit {
         //this.action = JSON.stringify(log)
         //this.reloadComponent(false, 'edit-device/' + this.device.id)
       })
-      this.devicesService.UpdateDevice(this.inputId, this.editDeviceForm.value as Device).subscribe(() => {
+      this.devicesService.UpdateDevice(this.editDeviceForm.value as Device).subscribe(() => {
         //  this.ngZone.run(() => this.router.navigateByUrl('device-list'))
         this.router.navigate(['device-list'])
         // @TODO: #64 goto specific row in list when return form list

@@ -20,7 +20,7 @@
                 }
         ">
         <td tooltip="{{ device._id }}">{{ device.name }}</td>
-        <td>[x: {{ device.position.x }}, y: {{ device.position.y }}, h: {{ device.position.h }}]</td>
+        <td>{{ stringify(device.position) }}</td>
         <td>
           <a href="edit-model/{{ device.modelId }}" tooltip="{{ device.modelId }}"
             ><i class="bi bi-motherboard"></i> {{ this.findModelName(device.modelId) }}</a

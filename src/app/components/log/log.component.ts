@@ -132,7 +132,7 @@ export class LogComponent implements OnInit {
    */
   loadComponentLog(id: string): Subscription {
     return this.logService.GetComponentLogs(id).subscribe((data: Log[]) => {
-      console.log('LogComponent.loadComponentLog(' + id + '): ' + JSON.stringify(data, null, ' '))
+      console.log('LogComponent.loadComponentLog(' + id + '): ' /* + JSON.stringify(data, null, ' ') */)
       this.LogList = data
     })
   }
@@ -144,7 +144,7 @@ export class LogComponent implements OnInit {
    */
   loadObjectsLog(id: string): Subscription {
     return this.logService.GetObjectLogs(id).subscribe((data: Log[]) => {
-      console.log('LogComponent.loadObjectsLog(' + id + '): ' + JSON.stringify(data, null, ' '))
+      console.log('LogComponent.loadObjectsLog(' + id + '): ' /* + JSON.stringify(data, null, ' ') */)
       this.LogList = data
     })
   }
@@ -163,7 +163,7 @@ export class LogComponent implements OnInit {
       console.log('findNameInLogMessage: ' + JSON.stringify(log.message) + ' ' + error)
       return JSON.stringify(log.message)
     }
-    console.log('jLog: ' + JSON.stringify(jLog, null, ' '))
+    // console.log('jLog: ' + JSON.stringify(jLog, null, ' '))
     if (log.component == 'Attribute') {
       const jAttribute: Attribute = log.message as Attribute
       console.log('jAttribute: ' + JSON.stringify(jAttribute, null, ' '))

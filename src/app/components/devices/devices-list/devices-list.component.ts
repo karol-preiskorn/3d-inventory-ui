@@ -92,4 +92,8 @@ export class DeviceListComponent implements OnInit {
   findModelName(id: string): string {
     return this.modelList.find((e: Model) => e._id === id)?.name as string
   }
+
+  stringify(obj: object): string {
+    return JSON.stringify(obj, null, 2)
+  }
 }
