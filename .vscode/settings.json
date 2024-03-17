@@ -1,5 +1,13 @@
 {
-  "cSpell.words": ["Abient", "Interfance", "nobezel", "Objin", "PDU", "Phong", "uuidv"],
+  "cSpell.words": [
+    "Abient",
+    "Interfance",
+    "nobezel",
+    "Objin",
+    "PDU",
+    "Phong",
+    "uuidv"
+  ],
   "todo-tree.tree.showCountsInTree": true,
   "window.title": "${dirty} ${activeEditorMedium}",
   "[python]": {

@@ -39,6 +39,7 @@ export class ModelEditComponent implements OnInit {
     private logService: LogService
   ) {
     this.inputId = this.activatedRoute.snapshot.paramMap.get('id') || ''
+    this.component = this.inputId
   }
 
   editModelForm = new FormGroup({

@@ -102,6 +102,9 @@ export class LogService {
    * @returns An Observable that emits an array of Log objects.
    */
   GetObjectLogs(objectId: string): Observable<Log[]> {
+    if (objectId == null) {
+      return of([])
+    }
     const url = environment.baseurl + '/logs/object/' + objectId
     console.log('LogService.GetObjectLogs: ' + url + ', objectId: ' + objectId)
     return this.http.get<Log[]>(url).pipe(catchError(this.handleErrorTemplate<Log[]>('GetObjectsLogs', [])))

@@ -88,10 +88,17 @@ export class LogComponent implements OnInit {
     //console.log(this.environmentService.isApiSettings(this.component))
     // found log context in share service with store variables
     if (isApiSettings(this.component)) {
-      console.log(context + '.loadComponentLog: ' + this.component)
+      console.log(
+        'LoadCoponent.loadLog: Context: ' +
+          context +
+          ', loadComponentLog: ' +
+          this.component +
+          ' attributeComponentObject: ' +
+          this.attributeComponentObject
+      )
       this.loadComponentLog(this.component)
     } else {
-      console.log(context + '.loadObjectLog: ' + this.component)
+      console.log('LoadCoponent.loadLog: Context: ' + context + ', loadObjectLog: ' + this.component)
       this.loadObjectsLog(this.component)
     }
   }
@@ -288,9 +295,9 @@ export class LogComponent implements OnInit {
    * Retrieves the attribute list.
    * @returns {Observable<Attribute[]>} An observable that emits the attribute list.
    */
-  getAttributeList() {
-    if (this.attributeListGet == true) return null
-    return this.attributeService.GetAttributes().subscribe((data: Attribute[]) => {
+  getAttributeList(): void {
+    if (this.attributeListGet == true) return
+    this.attributeService.GetAttributes().subscribe((data: Attribute[]) => {
       // Specify the correct type for the data parameter
       const tmp = new Attribute()
       data.unshift(tmp)

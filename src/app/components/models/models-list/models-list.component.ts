@@ -1,5 +1,6 @@
 import {Component, NgZone, OnInit} from '@angular/core'
 import {Router} from '@angular/router'
+import {Observable, of} from 'rxjs'
 import {LogService} from 'src/app/services/log.service'
 import {ModelsService} from 'src/app/services/models.service'
 import {Model} from 'src/app/shared/model'
@@ -26,36 +27,33 @@ export class ModelsListComponent implements OnInit {
    * Loads the models by calling the GetModels method of the models service.
    * @returns An Observable that emits the loaded models data.
    */
-  loadModels() {
-    return this.modelsService.GetModels().subscribe((data: Model[]) => {
-      this.ModelsList = data
-    })
+  loadModels(): Observable<Model[]> {
+    return this.modelsService.GetModels()
   }
 
   /**
    * Initializes the component.
    */
-  ngOnInit() {
-    this.loadModels()
+  ngOnInit(): void {
+    this.loadModels().subscribe((data: Model[]) => {
+      this.ModelsList = data
+    })
   }
 
   /**
    * Deletes a model with the specified ID.
    * @param id The ID of the model to delete.
    */
-  DeleteModel(id: string) {
+  DeleteModel(id: string): Observable<Model> {
     this.logService.CreateLog({
       message: {id: id},
       objectId: id,
       operation: 'Delete',
       component: 'Model',
     })
-    return this.modelsService.DeleteModel(id).subscribe((data: Model) => {
-      // Update the callback function parameter type to Model
-      console.log(data)
-      this.loadModels()
-      this.router.navigate(['/models-list'])
-    })
+    this.loadModels()
+    this.router.navigate(['/models-list'])
+    return this.modelsService.DeleteModel(id)
   }
 
   /**
@@ -64,7 +62,7 @@ export class ModelsListComponent implements OnInit {
    * @param id The ID of the model to clone.
    * @returns The ID of the newly cloned model.
    */
-  async CloneModel(id: string) {
+  async CloneModel(id: string): Promise<string> {
     const id_new: string = this.modelsService.CloneModel(id)
     this.logService
       .CreateLog({
@@ -77,12 +75,13 @@ export class ModelsListComponent implements OnInit {
       })
     this.loadModels()
     this.router.navigate(['/models-list'])
+    return id_new
   }
 
   /**
    * Navigates to the 'add-model' route.
    */
-  AddModel() {
+  AddModel(): void {
     this.router.navigate(['/add-model'])
   }
 
@@ -91,9 +90,23 @@ export class ModelsListComponent implements OnInit {
    *
    * @param model The model to be edited.
    */
-  EditModel(model: Model) {
+  EditModel(model: Model): void {
     this.selectedModel = model
     this.router.navigate(['edit-model', model._id])
     this.ngZone.run(() => this.router.navigateByUrl(`edit-model/${model._id}`))
+  }
+
+  /**
+   * Handle Http operation that failed. Let the app continue.
+   *
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   * @returns An Observable with the error result.
+   */
+  private handleErrorTemplate<T>(operation = 'operation', result?: T): (error: Error) => Observable<T> {
+    return (error: Error): Observable<T> => {
+      console.error(`ModelsListComponent.handleErrorTemplate: ${operation} failed: ${error.message}`)
+      return of(result as T)
+    }
   }
 }
