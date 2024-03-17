@@ -1,5 +1,10 @@
-#!/usr/bin/env sh
-. "$(pwd -- "$0")/.husky/_/husky.sh"
+#!/usr/bin/bash
+# File:        /.husky/pre-commit
+# Description: lint and increase path version
+# 2023-11-26  C2RLO    Initial
+
+. "$(dirname "$0")/_/husky.sh"
 
 npm --no-git-tag-version version minor
+git add .
 npx lint-staged

@@ -1,13 +1,10 @@
 import {Component, NgZone, OnInit} from '@angular/core'
 import {Router} from '@angular/router'
-
-import {LogIn, LogService} from 'src/app/services/log.service'
-
-import {Connection} from 'src/app/shared/connection'
 import {ConnectionService} from 'src/app/services/connection.service'
-
-import {Device} from 'src/app/shared/device'
 import {DeviceService} from 'src/app/services/device.service'
+import {LogIn, LogService} from 'src/app/services/log.service'
+import {Connection} from 'src/app/shared/connection'
+import {Device} from 'src/app/shared/device'
 
 @Component({
   selector: 'app-connection-list',
@@ -78,7 +75,7 @@ export class ConnectionListComponent implements OnInit {
     })
   }
 
-  async CloneConnection(id: string) {
+  async cloneConnection(id: string) {
     const id_new: string = this.ConnectionService.CloneConnection(id)
     this.logService
       .CreateLog({
@@ -95,7 +92,7 @@ export class ConnectionListComponent implements OnInit {
   AddForm() {
     this.router.navigateByUrl('add-connection')
   }
-  EditForm(Connection: Connection) {
+  editConnection(Connection: Connection) {
     this.selectedConnection = Connection
     this.router.navigate(['edit-connection', this.selectedConnection._id])
     // this.ngZone.run(() => this.router.navigateByUrl(`edit-device/${id}`))

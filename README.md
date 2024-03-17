@@ -27,7 +27,7 @@
 
 ## About project
 
-Project create `3d inventory`. A simple solution that allows you to build a spatial and database representation of all types of warehouses and server rooms.
+Project create `3d inventory` — solution that allows you to build a spatial and database representation of yours datacenters
 
 <img title="Architecture" src="src/assets/architecture.drawio.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%; margin-bottom: 16px" width="85%">
 

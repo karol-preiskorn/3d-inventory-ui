@@ -1,17 +1,20 @@
+/**
+ * @file /src/app/components/connection/edit-connection/edit-connection.component.ts
+ * @module /src/app/components/connection/edit-connection
+ * @description This file contains the ConnectionEditComponent class, which provides methods for editing a connection.
+ * @version 2024-03-17 C2RLO - Initial new unified version
+ **/
+
 import {Component, NgZone, OnInit} from '@angular/core'
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
 import {ActivatedRoute, Router} from '@angular/router'
-import {v4 as uuidv4} from 'uuid'
-
-import {Device} from 'src/app/shared/device'
-import {DeviceService} from 'src/app/services/device.service'
-
-import {Connection} from 'src/app/shared/connection'
-import {ConnectionService} from 'src/app/services/connection.service'
-
-import {ComponentDictionary} from 'src/app/shared/component-dictionary'
-import {LogService} from 'src/app/services/log.service'
 import {Observable, tap} from 'rxjs'
+import {ConnectionService} from 'src/app/services/connection.service'
+import {DeviceService} from 'src/app/services/device.service'
+import {LogService} from 'src/app/services/log.service'
+import {ComponentDictionary} from 'src/app/shared/component-dictionary'
+import {Connection} from 'src/app/shared/connection'
+import {Device} from 'src/app/shared/device'
 
 @Component({
   selector: 'app-edit-connection',
@@ -20,21 +23,17 @@ import {Observable, tap} from 'rxjs'
 })
 export class ConnectionEditComponent implements OnInit {
   inputId: string
-
-  editConnectionForm = new FormGroup({
-    id: new FormControl('', [Validators.required, Validators.minLength(36)]),
+  form = new FormGroup({
+    id: new FormControl('', [Validators.required, Validators.minLength(24), Validators.maxLength(36)]),
     name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]),
     deviceIdTo: new FormControl('', Validators.required),
     deviceIdFrom: new FormControl('', Validators.required),
   })
-
   connection: Connection = new Connection()
   deviceList: Device[]
   isSubmitted = false
   componentDictionary: ComponentDictionary = new ComponentDictionary()
-
   component = ''
-
   ngOnInit() {
     this.formConnection()
     this.getDeviceList()
@@ -54,16 +53,14 @@ export class ConnectionEditComponent implements OnInit {
     private deviceService: DeviceService,
     private logService: LogService
   ) {}
-
   formConnection() {
-    this.editConnectionForm = this.formBulider.group({
-      id: [uuidv4(), [Validators.required, Validators.minLength(36)]],
+    this.form = this.formBulider.group({
+      id: ['', [Validators.required, Validators.minLength(24)]],
       name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
       deviceIdTo: ['', [Validators.required]],
       deviceIdFrom: ['', [Validators.required]],
     })
   }
-
   changeId(e: Event) {
     this.id?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
@@ -73,24 +70,27 @@ export class ConnectionEditComponent implements OnInit {
   changeDeviceFrom(e: Event) {
     this.deviceIdFrom?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
-
+  changeDeviceTo(e: Event) {
+    this.deviceIdTo?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+  }
   get id() {
-    return this.editConnectionForm.get('id')
+    return this.form.get('id')
   }
   get name() {
-    return this.editConnectionForm.get('name')
+    return this.form.get('name')
   }
   get deviceIdTo() {
-    return this.editConnectionForm.get('deviceIdTo')
+    return this.form.get('deviceIdTo')
   }
   get deviceIdFrom() {
-    return this.editConnectionForm.get('deviceIdFrom')
+    return this.form.get('deviceIdFrom')
   }
-
+  get f(): {[key: string]: AbstractControl} {
+    return this.form.controls
+  }
   toString(data: unknown): string {
     return JSON.stringify(data, null, 2)
   }
-
   getDeviceList() {
     return this.deviceService.GetDevices().subscribe((data: Device[]) => {
       const tmp = new Device()
@@ -98,7 +98,6 @@ export class ConnectionEditComponent implements OnInit {
       this.deviceList = data
     })
   }
-
   private getConnection(id: string): Observable<Connection> {
     return this.connectionService.GetConnection(this.inputId).pipe(
       tap((data: Connection) => {
@@ -106,7 +105,7 @@ export class ConnectionEditComponent implements OnInit {
           'ConnectionEditComponent.connectionService.GetConnection(' + id + ') => ' + JSON.stringify(data, null, ' ')
         )
         this.connection = data
-        this.editConnectionForm.setValue({
+        this.form.setValue({
           id: data._id,
           name: data.name,
           deviceIdTo: data.deviceIdTo,
@@ -115,13 +114,12 @@ export class ConnectionEditComponent implements OnInit {
       })
     )
   }
-
   submitForm() {
-    this.connectionService.UpdateConnection(this.inputId, this.editConnectionForm.value as Connection).subscribe(() => {
+    this.connectionService.UpdateConnection(this.inputId, this.form.value as Connection).subscribe(() => {
       this.logService
         .CreateLog({
-          objectId: this.editConnectionForm.get('id')?.value,
-          message: {value: this.editConnectionForm.value},
+          objectId: this.form.get('id')?.value,
+          message: {value: this.form.value},
           operation: 'Update',
           component: 'Connection',
         })

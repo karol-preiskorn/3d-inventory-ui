@@ -94,7 +94,7 @@ export class LogComponent implements OnInit {
           ', loadComponentLog: ' +
           this.component +
           ' attributeComponentObject: ' +
-          this.attributeComponentObject
+          JSON.stringify(this.attributeComponentObject)
       )
       this.loadComponentLog(this.component)
     } else {

@@ -69,8 +69,8 @@ export class LogService {
    * @returns An Observable that emits an array of Log objects.
    */
   GetComponentLogs(component: string): Observable<Log[]> {
-    const url = environment.baseurl + '/logs/component/' + component.toLowerCase()
-    console.log('LogComponent.GetComponentLogs(' + component.toLowerCase() + ') ' + url)
+    const url = environment.baseurl + '/logs/component/' + component.toLowerCase() + 's'
+    console.log('LogComponent.GetComponentLogs(' + component.toLowerCase() + 's) ' + url)
     return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
   }
 

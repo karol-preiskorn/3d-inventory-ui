@@ -1,7 +1,7 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import {Injectable, NgZone} from '@angular/core'
 import {Router} from '@angular/router'
-import {Observable, throwError} from 'rxjs'
+import {Observable, of, throwError} from 'rxjs'
 import {catchError, retry} from 'rxjs/operators'
 import {v4 as uuidv4} from 'uuid'
 import {environment} from '../../environments/environment'
@@ -56,7 +56,7 @@ export class ConnectionService {
   DeleteConnection(id: string): Observable<Connection> {
     return this.http
       .delete<Connection>(environment.baseurl + '/connections/' + id, this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(retry(1), catchError(this.handleErrorTemplate<Connection>('DeleteConnection')))
   }
 
   /**
@@ -67,7 +67,7 @@ export class ConnectionService {
   CreateConnection(data: Connection): Observable<Connection> {
     return this.http
       .post<Connection>(environment.baseurl + '/connections/', JSON.stringify(data, null, ' '), this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(retry(1), catchError(this.handleErrorTemplate<Connection>('CreateConnection', data)))
   }
 
   /**
@@ -101,7 +101,7 @@ export class ConnectionService {
   UpdateConnection(id: string | null, data: Connection): Observable<Connection> {
     return this.http
       .put<Connection>(environment.baseurl + '/connections/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(retry(1), catchError(this.handleErrorTemplate<Connection>('UpdateConnection', data)))
   }
 
   /**
@@ -121,5 +121,18 @@ export class ConnectionService {
     return throwError(() => {
       return errorMessage
     })
+  }
+
+  /**
+   * Handle Http operation that failed. Let the app continue.
+   *
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleErrorTemplate<T>(operation = 'operation', result?: T) {
+    return (error: Error): Observable<T> => {
+      console.error(`DeviceService.handleErrorTemplate operation: ${operation}, error: ${error.message}`)
+      return of(result as T)
+    }
   }
 }

@@ -19,7 +19,10 @@
                   currentPage: connectionListPage
                 }
         ">
-        <td tooltip="{{ connectionObj._id }}">{{ connectionObj.name }}</td>
+        <td>
+          {{ connectionObj.name }}
+          <div class="deviceid">{{ connectionObj._id }}</div>
+        </td>
         <td>
           <a href="/edit-device/{{ connectionObj.deviceIdFrom }}">
             <i class="bi bi-box"></i> {{ this.findDevice(connectionObj.deviceIdFrom).name }}
@@ -39,22 +42,22 @@
               type="button"
               class="btn btn-success btn-sm move-right"
               id="edit-connection"
-              (click)="EditForm(connectionObj)">
-              Edit
+              (click)="editConnection(connectionObj)">
+              <i class="bi bi-pen"></i>
             </button>
             <button
               type="button"
               id="delete-connection"
               class="btn btn-danger btn-sm"
               (click)="deleteConnection(connectionObj._id)">
-              Delete
+              <i class="bi bi-trash"></i>
             </button>
             <button
               type="button"
               id="clone-connection"
               class="btn btn-info btn-sm"
-              (click)="CloneConnection(connectionObj._id)">
-              Clone
+              (click)="cloneConnection(connectionObj._id)">
+              <i class="bi bi-copy"></i>
             </button>
           </div>
         </td>
