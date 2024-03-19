@@ -69,7 +69,7 @@ export class LogService {
    * @returns An Observable that emits an array of Log objects.
    */
   GetComponentLogs(component: string): Observable<Log[]> {
-    const url = environment.baseurl + '/logs/component/' + component.toLowerCase() + 's'
+    const url = environment.baseurl + '/logs/component/' + component.toLowerCase()
     console.log('LogComponent.GetComponentLogs(' + component.toLowerCase() + 's) ' + url)
     return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
   }
@@ -156,10 +156,11 @@ export class LogService {
    * @param data - The updated log data.
    * @returns An Observable that emits a Log object.
    */
-  UpdateLog(id: string | null, data: JSON): Observable<Log> {
+  UpdateLog(id: string | null, data: JSON): Observable<Log | LogIn> {
+    const sData = JSON.stringify(data, null, ' ')
     return this.http
-      .put<Log>(environment.baseurl + '/logs/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
-      .pipe(retry(1), catchError(this.handleError))
+      .put<Log | LogIn>(environment.baseurl + '/logs/' + id, sData, this.httpOptions)
+      .pipe(retry(1), catchError(this.handleErrorTemplate<LogIn>('UpdateLog', data as unknown as LogIn)))
   }
 
   /**

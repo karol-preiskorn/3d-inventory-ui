@@ -1,8 +1,6 @@
 import {Component, NgZone, OnInit} from '@angular/core'
 import {FormControl, FormGroup, Validators} from '@angular/forms'
 import {Router} from '@angular/router'
-import {v4 as uuidv4} from 'uuid'
-
 import {LogService} from 'src/app/services/log.service'
 import {ModelsService} from 'src/app/services/models.service'
 import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
@@ -16,7 +14,7 @@ import {Model} from 'src/app/shared/model'
 })
 export class ModelAddComponent implements OnInit {
   addModelForm = new FormGroup({
-    id: new FormControl(uuidv4(), [Validators.required, Validators.minLength(4)]),
+    id: new FormControl('', [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     dimension: new FormGroup({
       width: new FormControl('', [

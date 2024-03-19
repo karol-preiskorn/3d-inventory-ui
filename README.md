@@ -16,7 +16,6 @@
   - [Run](#run)
   - [Deploy](#deploy)
     - [Google Cloud](#google-cloud)
-    - [AWS](#aws)
   - [Json server](#json-server)
   - [APIs repos](#apis-repos)
   - [Contributing](#contributing)
@@ -27,15 +26,15 @@
 
 ## About project
 
-Project create `3d inventory` — solution that allows you to build a spatial and database representation of yours datacenters
+Project create ✨`3d inventory`✨— solution that allows you to build a spatial and database representation of yours datacenters
 
 <img title="Architecture" src="src/assets/architecture.drawio.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%; margin-bottom: 16px" width="85%">
 
 Project contain three repos:
 
-- https://github.com/karol-preiskorn/3d-inventory-angular-ui
-- https://github.com/karol-preiskorn/3d-inventory-mongo-api
-- https://github.com/karol-preiskorn/3d-inventory-oracle-api
+- ⚓ https://github.com/karol-preiskorn/3d-inventory-angular-ui
+- ⚓ https://github.com/karol-preiskorn/3d-inventory-mongo-api
+- ⚓ https://github.com/karol-preiskorn/3d-inventory-oracle-api
 
 ## Motivation
 
@@ -43,20 +42,20 @@ I'm programming to incorporate database systems. This project covers relevant to
 
 ## Technology stack
 
-- `Angular` 16+ - as a Corp framework.
+- `Angular` 17+ - as a Corp framework.
 - `Bootstrap` 5.3+ - logic for insert `UI` data
-- `Tree` 150+ - as best graph framework.
-- `MongoAtlas`|`Oracle`|`jsonserver` - I want in this project try different solution and different data structure and storage datamodels (relational and noSQL.
+- `tree.js` 156+ - as best graph framework.
+- `MongoAtlas`|`Oracle` - I want in this project try different solution and different data structure and storage datamodels relational and noSQL.
 - `REST` - prepared `API` in use in `Swagger`.
-- `Podman`|`Google Cloud` as containers
+- `Podman` --> `Google Cloud` as containers
 
 ## Demo
 
-Demo 3d inventory use three.js framework.
+Demo `3d inventory` use `Angular` and `three.js` framework for graphics representation.
 
 [<img title="3-d inventory the video" src="src/assets/img/3d-inventory-demo.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%;" width="85%"/>](https://youtu.be/rNOxpZ0ti1Q '3-d inventory the video')
 
-This project build from this example contain `three.js` in `Angular`[Tutorial to render 3D Cube in Angular + Three.js](https://srivastavaanurag79.medium.com/hello-cube-your-first-three-js-scene-in-angular-176c44b9c6c0).
+This project build from this example contain `three.js` in `Angular` [Tutorial to render 3D Cube in Angular + Three.js](https://srivastavaanurag79.medium.com/hello-cube-your-first-three-js-scene-in-angular-176c44b9c6c0).
 
 ## Data Model
 
@@ -64,7 +63,7 @@ This is implementation parametric generic attribute class. All attributes for `D
 
 Parameters types are defined in `Attribute Dictionary`.
 
-In `Attributes` are stored values defined in `Attributes Dictionary` for `Devices`, `Model` and `Connections`. `Attributes Dictionary` are defined for specyfice.
+In `Attributes` are stored values defined in `Attributes Dictionary` for `Devices`, `Model` and `Connections`. `Attributes Dictionary` are defined for specyfice parameters this entities.
 
 ### Entity model
 
@@ -103,7 +102,7 @@ npm install
 npm run start
 ```
 
-or run separately json-server and ui
+or run separately `json-server` and `ui`
 
 ```bash
 npm run start:json-server
@@ -122,24 +121,9 @@ Build in first terminal: `ng build --watch` in npm alias:
 npm run build
 ```
 
-On the second terminal, install a web server (such as `lite-server`), and run it against the output folder. For example:
-
-```bash
-lite-server --baseDir='dist/3d-inventory-angular-ui/browser'
-```
-
-`npm` alias: `npm run server`
-
 ### Google Cloud
 
 tbc
-
-### AWS
-
-```js
-npm install -g @aws-amplify/cli
-amplify configure
-```
 
 ## Json server
 
@@ -162,7 +146,7 @@ Used by `.env` service `this.environmentServiceClass.getSettings('BASEURL')`.
 ## APIs repos
 
 - Oracle [3d-inventory-oracle-api](https://github.com/karol-preiskorn/3d-inventory-oracle-api)
-- Mongo Atlas [3d-inventory-mongo-api](https://github.com/karol-preiskorn/3d-inventory-mongo-api)
+- Mongo Atlas ✨ [3d-inventory-mongo-api](https://github.com/karol-preiskorn/3d-inventory-mongo-api)
 
 ## Contributing
 

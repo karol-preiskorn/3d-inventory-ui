@@ -1,7 +1,7 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import {Injectable, NgZone} from '@angular/core'
 import {Router} from '@angular/router'
-import {Observable, throwError} from 'rxjs'
+import {Observable, of, throwError} from 'rxjs'
 import {catchError, retry} from 'rxjs/operators'
 import {v4 as uuidv4} from 'uuid'
 import {environment} from '../../environments/environment'
@@ -121,5 +121,18 @@ export class ModelsService {
     return throwError(() => {
       return errorMessage
     })
+  }
+
+  /**
+   * Handle Http operation that failed. Let the app continue.
+   *
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleErrorTemplate<T>(operation = 'operation', result?: T) {
+    return (error: Error): Observable<T> => {
+      console.error(`ModelsService.handleErrorTemplate: ${operation} failed: ${error.message}`)
+      return of(result as T)
+    }
   }
 }

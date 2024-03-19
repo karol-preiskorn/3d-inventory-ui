@@ -35,6 +35,13 @@
                   'is-valid': this.editModelForm.controls.name.status == 'VALID',
                   'form-control': true
                 }"
+                (change)="changeName($event)"
+                formControlName="type"
+                [ngClass]="{
+                  'is-invalid': this.editModelForm.controls.type.status != 'VALID',
+                  'is-valid': this.editModelForm.controls.type.status == 'VALID',
+                  'form-select': true
+                }"
                 formControlName="name"
                 minlength="4"
                 id="name"
@@ -57,6 +64,7 @@
                 maxlength="6"
                 minlength="1"
                 required
+                (change)="changeWidth($event)"
                 [ngClass]="{
                   'is-invalid': this.editModelForm.controls.dimension.controls.width.status != 'VALID',
                   'is-valid': this.editModelForm.controls.dimension.controls.width.status == 'VALID',

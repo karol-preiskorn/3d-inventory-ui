@@ -1,12 +1,12 @@
 import {Component, NgZone, OnInit} from '@angular/core'
-import {FormControl, FormGroup, Validators} from '@angular/forms'
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
 import {ActivatedRoute, Router} from '@angular/router'
+import {Subscription} from 'rxjs'
 import {LogIn, LogService} from 'src/app/services/log.service'
 import {ModelsService} from 'src/app/services/models.service'
 import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
 import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
 import {Model} from 'src/app/shared/model'
-import {Subscription} from 'rxjs'
 
 // interface editModelForm {
 //   _id: FormControl<string | null>
@@ -30,18 +30,7 @@ export class ModelEditComponent implements OnInit {
   inputId: string = ''
   model: Model
   component = ''
-
-  constructor(
-    public activatedRoute: ActivatedRoute,
-    public modelsService: ModelsService,
-    private ngZone: NgZone,
-    private router: Router,
-    private logService: LogService
-  ) {
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') || ''
-    this.component = this.inputId
-  }
-
+  submitted = false
   editModelForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.minLength(4)]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -76,11 +65,52 @@ export class ModelEditComponent implements OnInit {
     category: new FormControl('', Validators.required),
   })
 
+  profileForm: FormGroup
+  editModelFormBuilder: FormGroup
+
+  constructor(
+    private formBuilder: FormBuilder,
+    public activatedRoute: ActivatedRoute,
+    public modelsService: ModelsService,
+    private ngZone: NgZone,
+    private router: Router,
+    private logService: LogService
+  ) {}
+
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   isSubmitted = false
 
   ngOnInit() {
+    this.editModelFormBuilder = this.formBuilder.group({
+      id: ['', [Validators.required, Validators.minLength(4)]],
+      name: ['', [Validators.required, Validators.minLength(4)]],
+      dimension: this.formBuilder.group({
+        width: [
+          '',
+          [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern('^[0-9]*$')],
+        ],
+        height: [
+          '',
+          [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern('^[0-9]*$')],
+        ],
+        depth: [
+          '',
+          [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern('^[0-9]*$')],
+        ],
+      }),
+      texture: this.formBuilder.group({
+        front: ['', null],
+        back: ['', null],
+        side: ['', null],
+        top: ['', null],
+        botom: ['', null],
+      }),
+      type: ['', Validators.required],
+      category: ['', Validators.required],
+    })
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') || ''
+    this.component = this.inputId
     this.getModel()
   }
 
@@ -114,17 +144,28 @@ export class ModelEditComponent implements OnInit {
     })
   }
 
+  onChange(event: Event) {
+    // Get the new input value
+    const newValue = (event.target as HTMLInputElement).value
+    // Perform actions based on the new value
+    console.log('Input value changed:', newValue)
+  }
+
   changeId(e: Event) {
     this.id?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   changeName(e: Event) {
     this.name?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
+  changeWidth(e: Event) {
+    (this.f['dimension'] as FormGroup).controls['width'].setValue((e.target as HTMLInputElement).value, {
+      onlySelf: true,
+    })
+  }
   changeType(e: Event) {
     this.type?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   changeCategory(e: Event) {
-    // Specify the type of 'e' as 'Event'
     this.category?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   get id() {
@@ -138,6 +179,10 @@ export class ModelEditComponent implements OnInit {
   }
   get category() {
     return this.editModelForm.get('category')
+  }
+
+  get f(): {[key: string]: AbstractControl} {
+    return this.editModelForm.controls
   }
 
   /**
@@ -159,6 +204,8 @@ export class ModelEditComponent implements OnInit {
    * If the form is valid and has been touched, it updates the model, creates a log entry, and navigates to the models list.
    */
   submitForm() {
+    this.submitted = true
+
     if (this.editModelForm.valid && this.editModelForm.touched) {
       this.ngZone.run(() => this.router.navigateByUrl('models-list'))
       const log: LogIn = {
