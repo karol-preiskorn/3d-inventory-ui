@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StructuredType class="oracle.dbtools.crest.model.design.datatypes.StructuredType" name="textures" directorySegmentName="seg_0" id="4860645A-A527-14D4-7401-AE8312F907E4">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 14:39:00 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<predefined>false</predefined>
+<final>false</final>
+<instantiable>true</instantiable>
+<attributes itemClass="oracle.dbtools.crest.model.design.datatypes.TypeElement">
+<Attribute name="top" id="09E61F80-0045-D841-66F3-5D4BBCCFF801">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 14:39:00 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<mandatory>false</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<scale>0</scale>
+<size>255</size>
+<type>LOGDT024</type>
+</Attribute>
+<Attribute name="bottom" id="A1452D70-64C3-89F1-C1AF-3A7FF51086E6">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 14:39:00 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<mandatory>false</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<scale>0</scale>
+<size>255</size>
+<type>LOGDT024</type>
+</Attribute>
+<Attribute name="front" id="52FCEF3E-34E1-3C84-C92D-EB6FB592D52B">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 14:39:00 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<mandatory>false</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<scale>0</scale>
+<size>255</size>
+<type>LOGDT024</type>
+</Attribute>
+<Attribute name="back" id="2FB0C82C-EA3C-1731-0CB5-6A85ADDB68B7">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 14:41:14 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<mandatory>false</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<scale>0</scale>
+<size>255</size>
+<type>LOGDT024</type>
+</Attribute>
+<Attribute name="side" id="6C8E8664-D510-09F6-B37A-D4B088BE476C">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 14:41:39 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<mandatory>false</mandatory>
+<precision>0</precision>
+<reference>false</reference>
+<scale>0</scale>
+<size>255</size>
+<type>LOGDT024</type>
+</Attribute>
+</attributes>
+</StructuredType>

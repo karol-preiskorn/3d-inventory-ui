@@ -28,7 +28,7 @@ export class ModelsListComponent implements OnInit {
    * @returns An Observable that emits the loaded models data.
    */
   loadModels(): Observable<Model[]> {
-    return this.modelsService.GetModels()
+    return this.modelsService.GetModels() as Observable<Model[]>
   }
 
   /**
@@ -63,10 +63,10 @@ export class ModelsListComponent implements OnInit {
    * @returns The ID of the newly cloned model.
    */
   async CloneModel(id: string): Promise<string> {
-    const id_new: string = this.modelsService.CloneModel(id)
+    const idCloned = this.modelsService.CloneModel(id)
     this.logService
       .CreateLog({
-        message: {id: id, new_id: id_new},
+        message: {id: id, new_id: idCloned},
         operation: 'Clone',
         component: 'Model',
       })
@@ -75,7 +75,7 @@ export class ModelsListComponent implements OnInit {
       })
     this.loadModels()
     this.router.navigate(['/models-list'])
-    return id_new
+    return idCloned
   }
 
   /**

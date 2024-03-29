@@ -1,0 +1,6 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Role class="oracle.dbtools.crest.model.design.process.Role" name="viewer" directorySegmentName="seg_0" id="53A11109-54A3-C8B8-E587-68ECD26CE00C">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:17:50 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+</Role>

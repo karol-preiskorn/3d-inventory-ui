@@ -1,32 +1,23 @@
 import {Component, NgZone, OnInit} from '@angular/core'
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
 import {ActivatedRoute, Router} from '@angular/router'
-
-import {LogService} from 'src/app/services/log.service'
-import {ComponentDictionary} from 'src/app/shared/component-dictionary'
-
-import {Attribute} from 'src/app/shared/attribute'
-import {AttributeService} from 'src/app/services/attribute.service'
-
-import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
-import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
-
-import {Device} from 'src/app/shared/device'
-import {DeviceService} from 'src/app/services/device.service'
-
-import {Model} from 'src/app/shared/model'
-import {ModelsService} from 'src/app/services/models.service'
-
-import {Connection} from 'src/app/shared/connection'
-import {ConnectionService} from 'src/app/services/connection.service'
-
-import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
-import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
-
-import Validation from 'src/app/shared/validation'
 import {Observable} from 'rxjs'
 import {tap} from 'rxjs/operators'
-import {AbstractControl} from '@angular/forms'
+import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
+import {AttributeService} from 'src/app/services/attribute.service'
+import {ConnectionService} from 'src/app/services/connection.service'
+import {DeviceService} from 'src/app/services/device.service'
+import {LogService} from 'src/app/services/log.service'
+import {ModelsService} from 'src/app/services/models.service'
+import {Attribute} from 'src/app/shared/attribute'
+import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
+import {ComponentDictionary} from 'src/app/shared/component-dictionary'
+import {Connection} from 'src/app/shared/connection'
+import {Device} from 'src/app/shared/device'
+import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
+import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
+import {Model} from 'src/app/shared/model'
+import Validation from 'src/app/shared/validation'
 
 @Component({
   selector: 'app-edit-attribute',
@@ -40,10 +31,10 @@ export class AttributeEditComponent implements OnInit {
   editAttributeForm = new FormGroup(
     {
       _id: new FormControl('', [Validators.required]),
+      attributeDictionaryId: new FormControl('', [Validators.required]),
+      connectionId: new FormControl(''),
       deviceId: new FormControl(''),
       modelId: new FormControl(''),
-      connectionId: new FormControl(''),
-      attributeDictionaryId: new FormControl('', [Validators.required]),
       value: new FormControl('', [Validators.required]),
     },
     {validators: this.valid.atLeastOneValidator}
@@ -109,22 +100,16 @@ export class AttributeEditComponent implements OnInit {
   changeConnectionId(e: Event) {
     this.connectionId?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
-
-  value: AbstractControl | null = null
-
   changeAttributeDictionaryId(e: Event) {
-    this.attributeDictionaryId?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.attributeDictionaryId?.setValue((e.target as HTMLInputElement).value as never, {onlySelf: true})
   }
-
   changeValue(e: Event) {
-    this.value = this.editAttributeForm.get('value')
-    this.value?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.value?.setValue((e.target as HTMLInputElement).value as never, {onlySelf: true})
   }
 
   get id() {
     return this.editAttributeForm.get('id')
   }
-
   get deviceId() {
     return this.editAttributeForm.get('deviceId')
   }
@@ -137,6 +122,13 @@ export class AttributeEditComponent implements OnInit {
   get attributeDictionaryId() {
     return this.editAttributeForm.get('attributeDictionaryId')
   }
+  get name() {
+    return this.editAttributeForm.get('name')
+  }
+  get value() {
+    return this.editAttributeForm.get('value')
+  }
+
   toString(data: unknown): string {
     return JSON.stringify(data, null, ' ')
   }

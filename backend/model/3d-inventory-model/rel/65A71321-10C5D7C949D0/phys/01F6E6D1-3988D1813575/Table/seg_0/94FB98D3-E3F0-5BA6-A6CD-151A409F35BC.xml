@@ -1,57 +1,71 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="CONNECTIONS" directorySegmentName="seg_0" id="94FB98D3-E3F0-5BA6-A6CD-151A409F35BC">
+<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="connections" directorySegmentName="seg_0" id="94FB98D3-E3F0-5BA6-A6CD-151A409F35BC">
 <createdBy>karol</createdBy>
 <createdTime>2022-11-01 07:24:16 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <schemaObject>2E57B3AC-A335-158D-F66B-1F85FCBC80E9</schemaObject>
 <logging>YES</logging>
 <partitionedRowMovement>DISABLE</partitionedRowMovement>
 <temporaryChanged>false</temporaryChanged>
-<user>964258D7-2E36-9C7D-E22B-5B27F93C9262</user>
+<user>D1BF3A8E-E5EC-BF62-4D0E-73025D4AB7DD</user>
 <accessDriverType>oracle_loader</accessDriverType>
 <rejectLimit></rejectLimit>
+<storeAs>CLOB</storeAs>
 <columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
-<ColumnProxy name="DEVICES_ID_FROM" id="5BA77C3B-CCBC-29A0-461B-14034388B854">
+<ColumnProxy name="devicesidfrom" id="5BA77C3B-CCBC-29A0-461B-14034388B854">
 <createdBy>karol</createdBy>
 <createdTime>2023-06-19 07:04:43 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="ID" id="5DA64AFD-87A4-719D-638F-116B7FD0E8B5">
+<ColumnProxy name="_id" id="5DA64AFD-87A4-719D-638F-116B7FD0E8B5">
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 12:36:39 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="DEVICES_ID_TO" id="FA3AFAA3-7471-DE79-90C4-54DFF9BDB209">
+<ColumnProxy name="devicesidto" id="FA3AFAA3-7471-DE79-90C4-54DFF9BDB209">
 <createdBy>karol</createdBy>
 <createdTime>2022-11-01 07:26:49 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 </ColumnProxy>
 </columnProxies>
 <indexProxies>
-<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CONNECTIONS_FROM_TO_IDX" id="445D3EBB-A3C5-A69C-B556-350BA3F12B51">
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="connections__IDX" id="2F3AA8CC-6A14-2480-5010-F60A2CFAF824">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 08:31:08 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<user>D1BF3A8E-E5EC-BF62-4D0E-73025D4AB7DD</user>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="connections__IDXv1" id="3E5739C3-559A-9DC3-D694-1B74D29CB7DC">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 08:31:08 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<user>D1BF3A8E-E5EC-BF62-4D0E-73025D4AB7DD</user>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="connections_from_to_idxv1" id="445D3EBB-A3C5-A69C-B556-350BA3F12B51">
 <createdBy>karol</createdBy>
 <createdTime>2023-04-30 16:14:37 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<schemaObject>2E57B3AC-A335-158D-F66B-1F85FCBC80E9</schemaObject>
 <user>964258D7-2E36-9C7D-E22B-5B27F93C9262</user>
 </IndexProxy>
 </indexProxies>
 <foreignKeys>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="CONNECTIONS_DEVICES_FROM_FK" id="8F35327F-A805-DFD9-AFEC-F5B47D5C7606">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="connections_devices_from_fk" id="8F35327F-A805-DFD9-AFEC-F5B47D5C7606">
 <createdBy>karol</createdBy>
 <createdTime>2023-06-19 07:04:43 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="CONNECTIONS_DEVICES_TO_FK" id="C4CC5C00-14BD-79D1-967B-EDDE64B52067">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="connections_devices_to_fk" id="C4CC5C00-14BD-79D1-967B-EDDE64B52067">
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 12:39:46 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 </ForeignKey>
 </foreignKeys>
 <primaryKeys>
-<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="CONNECTIONS_PK" id="653F44C2-5857-2C68-68FB-07D2CA1AA33B">
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="connections_pk" id="653F44C2-5857-2C68-68FB-07D2CA1AA33B">
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 12:36:39 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
 <indexSort>SORTED</indexSort>
 </PrimaryKey>
 </primaryKeys>

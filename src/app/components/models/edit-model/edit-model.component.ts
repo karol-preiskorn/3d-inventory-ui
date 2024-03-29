@@ -205,7 +205,6 @@ export class ModelEditComponent implements OnInit {
    */
   submitForm() {
     this.submitted = true
-
     if (this.editModelForm.valid && this.editModelForm.touched) {
       this.ngZone.run(() => this.router.navigateByUrl('models-list'))
       const log: LogIn = {
@@ -215,7 +214,7 @@ export class ModelEditComponent implements OnInit {
         objectId: this.editModelForm.value.id,
       }
       this.logService.CreateLog(log).subscribe(() => {
-        console.log(JSON.stringify(log))
+        console.log('logService.CreateLog(log): ' + JSON.stringify(log))
       })
       this.modelsService
         .UpdateModel(this.inputId.toString(), this.editModelForm.value as unknown as Model)

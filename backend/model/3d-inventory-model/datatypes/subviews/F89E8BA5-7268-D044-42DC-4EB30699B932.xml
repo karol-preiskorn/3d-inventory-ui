@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Diagram class="oracle.dbtools.crest.swingui.datatypes.DPVDataTypes" id="F89E8BA5-7268-D044-42DC-4EB30699B932">
+<Diagram class="oracle.dbtools.crest.swingui.datatypes.DPVDataTypes" name="DataTypes" id="F89E8BA5-7268-D044-42DC-4EB30699B932">
 <createdBy>karol</createdBy>
 <modifiedBy>karol</modifiedBy>
 <createdTime>2022-10-31 23:03:38 UTC</createdTime>
@@ -17,6 +17,10 @@
 <OView class="oracle.dbtools.crest.swingui.datatypes.TVStructuredType" oid="47E390DE-0671-C4B1-8428-0F45CBEE18F8" otype="StructuredType" vid="0DA82646-D273-E78C-1B78-554D14116EF1">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="20" y="20" width="100" height="100"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.datatypes.TVStructuredType" oid="4860645A-A527-14D4-7401-AE8312F907E4" otype="StructuredType" vid="D2116411-C9A2-5CF8-C1AB-AB88A1973D95">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="60" y="70" width="100" height="100"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.datatypes.TVStructuredType" oid="F72C39E0-D1CA-8821-2AD7-A1E95A37D3D1" otype="StructuredType" vid="5F070800-0DC4-EFF6-B5C6-1D98A771C151">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -46,6 +50,10 @@
 <OView class="oracle.dbtools.crest.swingui.datatypes.TVStructuredType" oid="47E390DE-0671-C4B1-8428-0F45CBEE18F8" otype="StructuredType" vid="DE49FA3C-81E1-A55B-BFCF-DEFB36E6BDA0">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="20" y="20" width="100" height="100"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.datatypes.TVStructuredType" oid="4860645A-A527-14D4-7401-AE8312F907E4" otype="StructuredType" vid="4F2F2594-A646-C3A0-7908-DB94A32C7148">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="60" y="70" width="100" height="100"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.datatypes.TVStructuredType" oid="F72C39E0-D1CA-8821-2AD7-A1E95A37D3D1" otype="StructuredType" vid="AB7CB6C6-F0A8-CA5F-5289-5CB8C4DA0A4C">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>

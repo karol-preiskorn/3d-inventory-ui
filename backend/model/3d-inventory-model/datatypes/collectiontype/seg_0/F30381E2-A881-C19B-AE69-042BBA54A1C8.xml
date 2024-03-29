@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<CollectionType class="oracle.dbtools.crest.model.design.datatypes.CollectionType" name="type" directorySegmentName="seg_0" id="F30381E2-A881-C19B-AE69-042BBA54A1C8">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 14:52:49 UTC</createdTime>
+<comment><![CDATA[All names entity components of applications data
+]]></comment>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<predefined>false</predefined>
+<dataTypeDescr class="oracle.dbtools.crest.model.design.datatypes.CollectionType$DataTypeWrapper">
+<size>10</size>
+<type>LOGDT024</type>
+<isreference>false</isreference>
+</dataTypeDescr>
+<maxElement>10</maxElement>
+<type>COLLECTION</type>
+<propertyMap>
+<property name="integer" value=""/>
+<property name="number" value=""/>
+<property name="object" value=""/>
+<property name="string" value=""/>
+</propertyMap>
+</CollectionType>

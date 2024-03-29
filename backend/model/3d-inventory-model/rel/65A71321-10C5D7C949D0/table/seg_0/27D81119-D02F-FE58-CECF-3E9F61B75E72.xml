@@ -6,6 +6,8 @@
 <ordsAlias>at</ordsAlias>
 <useDDLTransformationScript>true</useDDLTransformationScript>
 <abbreviation>AT</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<isEngineerToRelation>true</isEngineerToRelation>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
@@ -17,37 +19,9 @@
 <use>2</use>
 <distinctType>05757FF6-B8A9-BC6D-129E-0A32D5FDD869</distinctType>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>50</dataTypeSize>
-<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_ATTRIBUTE_TYPES_ATTRIBUTE_TYPE_ID</notNullConstraintName>
-</Column>
-<Column name="name" id="7B04ADB1-6274-4304-A5C0-5BD0E57DE379">
-<createdBy>karol</createdBy>
-<createdTime>2022-11-01 23:50:32 UTC</createdTime>
-<ownerDesignName>3d-inventory-model</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>50</dataTypeSize>
-<domain>0F082329-443B-2567-7399-838BA8C6A2E2</domain>
-<ownDataTypeParameters>50,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="category" id="0F4396FE-72A8-F5B9-1153-A116AEB15FC3">
-<createdBy>karol</createdBy>
-<createdTime>2022-11-01 23:51:40 UTC</createdTime>
-<commentInRDBMS><![CDATA[agregation attributes types by identyficator]]></commentInRDBMS>
-<ownerDesignName>3d-inventory-model</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>50</dataTypeSize>
-<domain>0F082329-443B-2567-7399-838BA8C6A2E2</domain>
-<ownDataTypeParameters>50,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="type" id="9284B9FE-250C-A2BF-11B5-6B5DABE457C0">
 <createdBy>karol</createdBy>
@@ -82,9 +56,48 @@
 <defaultLabel>Component</defaultLabel>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="name" id="7B04ADB1-6274-4304-A5C0-5BD0E57DE379">
+<createdBy>karol</createdBy>
+<createdTime>2022-11-01 23:50:32 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<domain>0F082329-443B-2567-7399-838BA8C6A2E2</domain>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="category" id="0F4396FE-72A8-F5B9-1153-A116AEB15FC3">
+<createdBy>karol</createdBy>
+<createdTime>2022-11-01 23:51:40 UTC</createdTime>
+<commentInRDBMS><![CDATA[agregation attributes types by identyficator]]></commentInRDBMS>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<domain>0F082329-443B-2567-7399-838BA8C6A2E2</domain>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="attributeDictionary__id" id="9637C8F5-BF76-ECEC-23BB-02E26F0E2FAC">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 15:03:50 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>2</use>
+<distinctType>05757FF6-B8A9-BC6D-129E-0A32D5FDD869</distinctType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4FCEA66D-F50E-01C8-D74B-145624C19537" referredColumn="B23996F3-F359-067C-77B8-31640FCD5B45"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="E941FFD7-F289-E50A-AD34-C35D211F98E1" name="attributeTypesPk">
+<ind_PK_UK id="E941FFD7-F289-E50A-AD34-C35D211F98E1" name="attributetypes_pk">
 <createdBy>karol</createdBy>
 <createdTime>2022-11-01 23:52:49 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
@@ -93,6 +106,25 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="1573A9B6-FC01-B8F4-C7C0-92C8CEC1FD06"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="39801BCC-6A75-9BB3-C932-5506AF723471" name="attributeTypes__idx">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-25 07:59:27 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9637C8F5-BF76-ECEC-23BB-02E26F0E2FAC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7056D46C-C4BC-C7E1-9CE3-431F07BF9D98" name="attributeTypes_attributeDictionary_pk">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 15:00:45 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9637C8F5-BF76-ECEC-23BB-02E26F0E2FAC"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

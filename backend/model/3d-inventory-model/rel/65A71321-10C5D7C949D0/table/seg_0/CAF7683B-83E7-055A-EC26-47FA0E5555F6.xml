@@ -15,10 +15,10 @@
 <commentInRDBMS><![CDATA[universal device identity ]]></commentInRDBMS>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>2</use>
+<distinctType>05757FF6-B8A9-BC6D-129E-0A32D5FDD869</distinctType>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>50</dataTypeSize>
-<domain>0F082329-443B-2567-7399-838BA8C6A2E2</domain>
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_DEVICESv1_DEVICE_ID</notNullConstraintName>
@@ -42,7 +42,7 @@
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>3</use>
-<structuredType>F72C39E0-D1CA-8821-2AD7-A1E95A37D3D1</structuredType>
+<structuredType>F81EAAE1-E160-1336-6163-C9E445276F2E</structuredType>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>50 BYTE</dataTypeSize>
 <ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
@@ -61,54 +61,142 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="textures" directorySegmentName="seg_0" id="29F87831-A939-915C-F6E8-CDD230EBE25D">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 14:42:49 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>4860645A-A527-14D4-7401-AE8312F907E4</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <nestedColumns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<nestedColumn name="dimension.x" id="D277F5CD-48CB-3383-1335-DBCFFCE4E6D5">
+<nestedColumn name="dimension.width" id="9D5CEDEF-35FF-B8E1-EA45-98FAB5ACEB2E">
 <createdBy>karol</createdBy>
-<createdTime>2023-04-30 15:58:44 UTC</createdTime>
+<createdTime>2024-03-24 14:37:58 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <parentObject>D782D3FF-A6EB-2A34-33CF-B67131DA8E65</parentObject>
-<structAttributeID>FC7DDF81-06B8-40F5-BC74-F6A6953685DD</structAttributeID>
+<structAttributeID>FBC013C8-9AD2-109F-E10D-A2C9E5E4B0E2</structAttributeID>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
-<domain>1BBF3132-D8B5-CA9F-97C9-5E2C0481F1FB</domain>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </nestedColumn>
-<nestedColumn name="dimension.y" id="98BEED66-11A5-88D1-9055-81E4AE6E7CE0">
+<nestedColumn name="dimension.height" id="963649F4-E5DE-F6E2-99E4-D5329F999FCC">
 <createdBy>karol</createdBy>
-<createdTime>2023-04-30 15:58:44 UTC</createdTime>
+<createdTime>2024-03-24 14:37:58 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <parentObject>D782D3FF-A6EB-2A34-33CF-B67131DA8E65</parentObject>
-<structAttributeID>944731C5-08C0-50AE-5330-A2DF8947C677</structAttributeID>
+<structAttributeID>1A55C27F-3AFC-15FA-465E-21FC5B2C5CB0</structAttributeID>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
-<domain>1BBF3132-D8B5-CA9F-97C9-5E2C0481F1FB</domain>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </nestedColumn>
-<nestedColumn name="dimension.h" id="35388682-98D2-7D1F-AF52-9FE05A9CD109">
+<nestedColumn name="dimension.depth" id="E1B42771-A67E-499E-1B67-C72C9D57CB69">
 <createdBy>karol</createdBy>
-<createdTime>2023-04-30 15:58:44 UTC</createdTime>
+<createdTime>2024-03-24 14:37:58 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <parentObject>D782D3FF-A6EB-2A34-33CF-B67131DA8E65</parentObject>
-<structAttributeID>98249AAC-4D4D-D4D0-FC94-D3CA66212FCB</structAttributeID>
+<structAttributeID>8448ABA9-4BB1-262A-A4AF-5E24DE4EA91F</structAttributeID>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
-<domain>1BBF3132-D8B5-CA9F-97C9-5E2C0481F1FB</domain>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="textures.top" id="0F4335C9-0643-2734-D7CE-7156F8C1AC2E">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 14:42:49 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>29F87831-A939-915C-F6E8-CDD230EBE25D</parentObject>
+<structAttributeID>09E61F80-0045-D841-66F3-5D4BBCCFF801</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="textures.bottom" id="2E1E0BEB-01B8-2502-6605-67A06491054D">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 14:42:49 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>29F87831-A939-915C-F6E8-CDD230EBE25D</parentObject>
+<structAttributeID>A1452D70-64C3-89F1-C1AF-3A7FF51086E6</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="textures.front" id="0F1403F1-1C3A-B9A4-1D74-63449E523F7E">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 14:42:49 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>29F87831-A939-915C-F6E8-CDD230EBE25D</parentObject>
+<structAttributeID>52FCEF3E-34E1-3C84-C92D-EB6FB592D52B</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="textures.back" id="F4AF5714-E824-EE77-DBE4-144ADA33608E">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 14:42:49 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>29F87831-A939-915C-F6E8-CDD230EBE25D</parentObject>
+<structAttributeID>2FB0C82C-EA3C-1731-0CB5-6A85ADDB68B7</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,0,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</nestedColumn>
+<nestedColumn name="textures.side" id="E04457B5-8DFF-EB5E-87D2-23D74E892923">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 14:42:49 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<parentObject>29F87831-A939-915C-F6E8-CDD230EBE25D</parentObject>
+<structAttributeID>6C8E8664-D510-09F6-B37A-D4B088BE476C</structAttributeID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,0,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </nestedColumn>
 </nestedColumns>

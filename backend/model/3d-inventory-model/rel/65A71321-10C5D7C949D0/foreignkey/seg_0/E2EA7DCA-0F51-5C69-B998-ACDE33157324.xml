@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="4FCEA66D-F50E-01C8-D74B-145624C19537" containerWithKeyObject="27D81119-D02F-FE58-CECF-3E9F61B75E72" localFKIndex="7056D46C-C4BC-C7E1-9CE3-431F07BF9D98" name="attributeTypes_attributeDictionary_pk">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 15:00:45 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<referredTableLongName>3DINV.attributeDictionary</referredTableLongName>
+<deleteRule>CASCADE</deleteRule>
+<referredTableID>F500DD42-6F76-DB1B-3C49-6E21267F7540</referredTableID>
+<keyObject>08D5E526-3E8E-6BA9-EFC1-AC11EAAC008D</keyObject>
+<referredKeyID>08D5E526-3E8E-6BA9-EFC1-AC11EAAC008D</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>_id</refColNames>
+<transferable>false</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

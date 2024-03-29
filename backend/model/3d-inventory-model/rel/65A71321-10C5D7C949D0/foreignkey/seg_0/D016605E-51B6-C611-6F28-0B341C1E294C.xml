@@ -10,7 +10,7 @@
 <keyObject>40653B75-0001-D29B-6CE6-1505F0DA09BC</keyObject>
 <referredKeyID>40653B75-0001-D29B-6CE6-1505F0DA09BC</referredKeyID>
 <mandatory>true</mandatory>
-<refColNames>id</refColNames>
+<refColNames>_id</refColNames>
 <transferable>true</transferable>
 <rely>false</rely>
 <columnDependencyConstraintGenerateName>CONNECTIONS_DEVICES_TO_FK</columnDependencyConstraintGenerateName>

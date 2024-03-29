@@ -1,0 +1,64 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="988E20CC-FC16-A62A-3C62-398BE93A5159" schemaObject="2E57B3AC-A335-158D-F66B-1F85FCBC80E9" name="components">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:43:17 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<ordsAlias>table_6</ordsAlias>
+<abbreviation>co</abbreviation>
+<isEngineerToRelation>true</isEngineerToRelation>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="_id" id="5C67A28B-DD44-55C4-66F7-51B94199709B">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:44:30 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<sourceType>System</sourceType>
+<useDomainConstraints>false</useDomainConstraints>
+<use>2</use>
+<distinctType>05757FF6-B8A9-BC6D-129E-0A32D5FDD869</distinctType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="components" id="AA53D184-075D-8002-61E7-3A578F586D3B">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:45:51 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="collection" id="8BFD521A-F084-741E-0C1C-3C6EE19265F6">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:45:51 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="attributes" id="1C9E6652-11D7-03DD-0AFF-059519D8AB7A">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:45:51 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9ACBA942-2EC8-A5AE-65CE-C79E3397FACC" name="components_pk">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:44:30 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5C67A28B-DD44-55C4-66F7-51B94199709B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

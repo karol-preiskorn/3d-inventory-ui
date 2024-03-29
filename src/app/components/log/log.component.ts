@@ -81,25 +81,23 @@ export class LogComponent implements OnInit {
   ) {}
 
   /**
-   * Loads the log for the specified context.
+   * Loads the log for the specified context. found log context in share service with store variables
    * @param context - The context for which the log is being loaded.
    */
-  loadLog(context: string) {
-    //console.log(this.environmentService.isApiSettings(this.component))
-    // found log context in share service with store variables
-    if (isApiSettings(this.component)) {
+  loadLog(context: string, component: string) {
+    if (isApiSettings(component)) {
       console.log(
-        'LoadCoponent.loadLog: Context: ' +
+        'LoadComponent.loadLog (call loadComponentLog) - Context: ' +
           context +
           ', loadComponentLog: ' +
-          this.component +
+          component +
           ' attributeComponentObject: ' +
           JSON.stringify(this.attributeComponentObject)
       )
-      this.loadComponentLog(this.component)
+      this.loadComponentLog(component)
     } else {
-      console.log('LoadCoponent.loadLog: Context: ' + context + ', loadObjectLog: ' + this.component)
-      this.loadObjectsLog(this.component)
+      console.log('LoadComponent.loadLog (call loadObjectsLog) - Context: ' + context + ', loadObjectLog: ' + component)
+      this.loadObjectsLog(component)
     }
   }
 
@@ -108,7 +106,7 @@ export class LogComponent implements OnInit {
    * This method is called after the component has been created and initialized.
    */
   ngOnInit() {
-    this.loadLog('ngOnInit')
+    this.loadLog('ngOnInit', this.component)
   }
 
   /**
@@ -116,7 +114,7 @@ export class LogComponent implements OnInit {
    * @returns void
    */
   OnChanges() {
-    this.loadLog('ngOnChanges')
+    this.loadLog('ngOnChanges', this.component)
   }
 
   /**
@@ -170,7 +168,7 @@ export class LogComponent implements OnInit {
       console.log('findNameInLogMessage: ' + JSON.stringify(log.message) + ' ' + error)
       return JSON.stringify(log.message)
     }
-    // console.log('jLog: ' + JSON.stringify(jLog, null, ' '))
+    console.log('jLog: ' + JSON.stringify(jLog, null, ' '))
     if (log.component == 'Attribute') {
       const jAttribute: Attribute = log.message as Attribute
       console.log('jAttribute: ' + JSON.stringify(jAttribute, null, ' '))
@@ -301,7 +299,7 @@ export class LogComponent implements OnInit {
       // Specify the correct type for the data parameter
       const tmp = new Attribute()
       data.unshift(tmp)
-      this.attributeList = data
+      this.attributeList = data as Attribute[]
       this.attributeListGet = true
     })
   }
@@ -324,11 +322,14 @@ export class LogComponent implements OnInit {
    */
   getFloorList() {
     if (this.attributeListGet == true) return null
-    return this.attributeService.GetAttributes().subscribe((data: Attribute[]) => {
-      // Specify the correct type for the data parameter
+    return this.attributeService.GetAttributes().subscribe((data: Attribute | Attribute[]) => {
       const tmp = new Attribute()
-      data.unshift(tmp)
-      this.attributeList = data
+      if (Array.isArray(data)) {
+        data.unshift(tmp)
+        this.attributeList = data
+      } else {
+        this.attributeList = [tmp, data]
+      }
       this.attributeListGet = true
     })
   }

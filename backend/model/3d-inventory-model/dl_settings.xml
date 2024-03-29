@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <settings>
-	<logical_type_for_domain_presentation value="false" />
-	<automatic_pk_generation value="true" />
-	<automatic_uk_generation value="true" />
-	<automatic_fk_generation value="true" />
-	<preserve_ddl_generation_options value="true" />
+	<logical_type_for_domain_presentation value="true" />
+	<automatic_pk_generation value="false" />
+	<automatic_uk_generation value="false" />
+	<automatic_fk_generation value="false" />
+	<preserve_ddl_generation_options value="false" />
 	<use_global_design_level_settings value="false" />
 	<use_preferred_classification_types value="false" />
 	<substitution_patterns>
@@ -257,7 +257,7 @@
 	</default_line_widths_and_colors>
 	<naming_standard_rules>
 		<logical>
-			<separator value= "Space" char=" "/>
+			<separator value= "Character" char="_"/>
 			<entity>
 			</entity>
 			<attribute>
@@ -266,30 +266,31 @@
 		<relational>
 			<separator value= "_" abbreviated_only="false"/>
 			<table>
+				<value type="Prime Word" mandatory="true"/>
 			</table>
 			<column>
 			</column>
 		</relational>
 		<domains>
-			<separator value= " "/>
+			<separator value= "_"/>
 			<domain>
 			</domain>
 		</domains>
 		<constraints>
-			<pk value="{table}_PK"/>
-			<fk value="{child}_{parent}_FK"/>
-			<ck value="{table}_CK"/>
-			<un value="{table}_{column}_UN"/>
-			<idx value="{table}_{column}_IDX"/>
-			<automatic_idx value="{table}_{column}_IDX"/>
-			<colck value="CK_{table}_{column}"/>
-			<colnnc value="NNC_{table abbr}_{column}"/>
+			<pk value="{table}_pk"/>
+			<fk value="{child}_{parent}_pk"/>
+			<ck value="{table}_cc"/>
+			<un value="{table}_{column}_uc"/>
+			<idx value="{table}_{column}_idx"/>
+			<automatic_idx value="{table}_{column}_idx"/>
+			<colck value="ccc_{table}_{column}"/>
+			<colnnc value="nnc_{table abbr}_{column}"/>
 			<column_foreign_key value="{ref table}_{ref column}"/>
-			<ui value="{entity} PK"/>
+			<ui value="{entity}_pk"/>
 			<relation_attribute value="{ref entity}_{ref attribute}"/>
-			<surrogate_key value="{table abbr}_PK"/>
-			<surrogate_key_col value="{table abbr}_ID"/>
-			<discriminator_col value="{table abbr}_TYPE"/>
+			<surrogate_key value="{table abbr}_pk"/>
+			<surrogate_key_col value="{table abbr}Id"/>
+			<discriminator_col value="{table abbr}Type"/>
 		</constraints>
 		<glossaries>
 		</glossaries>
@@ -392,12 +393,11 @@
 	</model_compare_storage_props_filter>
 	<naming_options>
 		<model_options objectid="65A71321-1988-4781-04DF-10C5D7C949D0">
-			<naming_option class_name="oracle.dbtools.crest.model.design.relational.Table" max_name_length="64" case_type="0" valid_characters="null" all_valid="true" />
+			<naming_option class_name="oracle.dbtools.crest.model.design.relational.Table" max_name_length="64" case_type="2" valid_characters="null" all_valid="true" />
 			<naming_option class_name="oracle.dbtools.crest.model.design.relational.Column" max_name_length="64" case_type="2" valid_characters="null" all_valid="true" />
 			<naming_option class_name="oracle.dbtools.crest.model.design.relational.TableView" max_name_length="64" case_type="2" valid_characters="null" all_valid="true" />
-			<naming_option class_name="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint" max_name_length="64" case_type="0" valid_characters="null" all_valid="true" />
-			<naming_option class_name="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" max_name_length="128" case_type="2" valid_characters="" all_valid="true" />
 			<naming_option class_name="oracle.dbtools.crest.model.design.relational.Index" max_name_length="64" case_type="0" valid_characters="null" all_valid="true" />
+			<naming_option class_name="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint" max_name_length="64" case_type="0" valid_characters="null" all_valid="true" />
 		</model_options>
 		<model_options objectid="2AFACF62-3AB9-FB10-A4F3-CB8BC231B80E">
 			<naming_option class_name="oracle.dbtools.crest.model.design.logical.Entity" max_name_length="254" case_type="2" valid_characters="null" all_valid="true" />

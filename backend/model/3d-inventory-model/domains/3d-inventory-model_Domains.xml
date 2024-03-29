@@ -54,6 +54,24 @@
 <fileName>3d-inventory-model_Domains</fileName>
 <logicalDatatype>LOGDT011</logicalDatatype>
 </Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="VARCHAR_0_0_50v1" id="5FD10080-F7B5-BA69-67D2-158E6EEF9B83">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 08:31:47 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>50</dataTypeSize>
+<fileName>3d-inventory-model_Domains</fileName>
+<logicalDatatype>LOGDT024</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="VARCHAR_0_0_100v1" id="68276AA3-12F0-B08A-F181-19BAB7E6D2FB">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 09:00:58 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypeSize>100</dataTypeSize>
+<fileName>3d-inventory-model_Domains</fileName>
+<logicalDatatype>LOGDT024</logicalDatatype>
+</Domain>
 <Domain class="oracle.dbtools.crest.model.design.Domain" name="Boolean_0_0_0" id="6A2A2DA1-3F83-C82A-2D58-09F7B105F361">
 <createdBy>karol</createdBy>
 <createdTime>2024-03-04 22:11:42 UTC</createdTime>
@@ -61,6 +79,16 @@
 <avTSortOrder>0</avTSortOrder>
 <fileName>3d-inventory-model_Domains</fileName>
 <logicalDatatype>LOGDT006</logicalDatatype>
+</Domain>
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="NUMERIC_0_0_0v1" id="FFF104D6-9ADE-5F61-73D2-796C6730B514">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 09:00:58 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<avTSortOrder>0</avTSortOrder>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<fileName>3d-inventory-model_Domains</fileName>
+<logicalDatatype>LOGDT019</logicalDatatype>
 </Domain>
 </domains>
 </DomainFile>

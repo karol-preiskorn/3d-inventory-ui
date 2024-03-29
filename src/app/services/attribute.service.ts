@@ -1,7 +1,7 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import {Injectable, NgZone} from '@angular/core'
 import {Router} from '@angular/router'
-import {Observable, throwError} from 'rxjs'
+import {Observable, of, throwError} from 'rxjs'
 import {catchError, retry} from 'rxjs/operators'
 import {DeviceService} from 'src/app/services/device.service'
 import {ModelsService} from 'src/app/services/models.service'
@@ -39,7 +39,10 @@ export class AttributeService {
   GetAttributes(): Observable<Attribute[]> {
     return this.http
       .get<Attribute[]>(environment.baseurl + '/attributes/', this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(
+        retry(1),
+        catchError(this.handleErrorTemplate<Attribute[]>('GetDeviceAttributes', null as unknown as Attribute[]))
+      )
   }
 
   /**
@@ -59,10 +62,13 @@ export class AttributeService {
    * @param id The ID of the device.
    * @returns An Observable that emits an array of Attribute objects.
    */
-  GetDeviceAttributes(id: string): Observable<Attribute[]> {
+  GetDeviceAttributes(id: string): Observable<Attribute | Attribute[]> {
     return this.http
       .get<Attribute[]>(environment.baseurl + '/attributes/device/' + id, this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(
+        retry(1),
+        catchError(this.handleErrorTemplate<Attribute>('GetDeviceAttributes', id as unknown as Attribute))
+      )
   }
 
   /**
@@ -73,7 +79,10 @@ export class AttributeService {
   async GetDeviceAttributesPromise(id: string) {
     return this.http
       .get<Attribute[]>(environment.baseurl + '/attributes/device/' + id, this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(
+        retry(1),
+        catchError(this.handleErrorTemplate<Attribute>('GetDeviceAttributesPromise', id as unknown as Attribute))
+      )
       .toPromise()
   }
 
@@ -82,10 +91,10 @@ export class AttributeService {
    * @param id The ID of the model.
    * @returns An Observable that emits an array of Attribute objects.
    */
-  GetModelAttributes(id: string): Observable<Attribute[]> {
+  GetModelAttributes(id: string): Observable<Attribute | Attribute[]> {
     return this.http
       .get<Attribute[]>(environment.baseurl + '/attributes/model/' + id, this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(retry(1), catchError(this.handleErrorTemplate<Attribute>('GetModelAttributes', id as unknown as Attribute)))
   }
 
   /**
@@ -129,7 +138,7 @@ export class AttributeService {
   GetAttribute(id: string | null): Observable<Attribute> {
     return this.http
       .get<Attribute>(environment.baseurl + '/attributes/' + id, this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(retry(1), catchError(this.handleErrorTemplate<Attribute>('DeleteAttribute', id as unknown as Attribute)))
   }
 
   /**
@@ -140,7 +149,7 @@ export class AttributeService {
   DeleteAttribute(id: string): Observable<Attribute> {
     return this.http
       .delete<Attribute>(environment.baseurl + '/attributes/' + id, this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(retry(1), catchError(this.handleErrorTemplate<Attribute>('DeleteAttribute', id as unknown as Attribute)))
   }
 
   /**
@@ -151,7 +160,7 @@ export class AttributeService {
   CreateAttribute(data: Attribute): Observable<Attribute> {
     return this.http
       .post<Attribute>(environment.baseurl + '/attributes/', JSON.stringify(data, null, ' '), this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(retry(1), catchError(this.handleErrorTemplate<Attribute>('CreateAttribute', data)))
   }
 
   /**
@@ -185,7 +194,7 @@ export class AttributeService {
   UpdateAttribute(id: string | null, data: Attribute): Observable<Attribute> {
     return this.http
       .put<Attribute>(environment.baseurl + '/attributes/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(retry(1), catchError(this.handleErrorTemplate<Attribute>('UpdateModel', data)))
   }
 
   /**
@@ -204,5 +213,17 @@ export class AttributeService {
     return throwError(() => {
       return errorMessage
     })
+  }
+
+  /**
+   * Handle Http operation that failed. Let the app continue.
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleErrorTemplate<T>(operation = 'operation', result?: T) {
+    return (error: Error): Observable<T> => {
+      console.error(`attribute.service.handleErrorTemplate: ${operation} failed: ${error.message}`)
+      return of(result as T)
+    }
   }
 }

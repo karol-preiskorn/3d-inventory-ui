@@ -9,7 +9,7 @@
 <keyObject>653F44C2-5857-2C68-68FB-07D2CA1AA33B</keyObject>
 <referredKeyID>653F44C2-5857-2C68-68FB-07D2CA1AA33B</referredKeyID>
 <mandatory>true</mandatory>
-<refColNames>id</refColNames>
+<refColNames>_id</refColNames>
 <transferable>true</transferable>
 <rely>false</rely>
 <columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>

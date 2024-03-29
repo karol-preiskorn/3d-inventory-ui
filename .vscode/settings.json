@@ -13,5 +13,17 @@
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
-  "python.formatting.provider": "none"
+  "python.formatting.provider": "none",
+  "workbench.colorCustomizations": {
+    "badge.background": "#445691",
+    "statusBar.debuggingBackground": "#005f5f",
+    "statusBar.debuggingForeground": "#ffffff",
+    "statusBar.foreground": "#ffffff",
+    "statusBar.noFolderBackground": "#005f5f",
+    "tree.inactiveIndentGuidesStroke": "#571212",
+    "tree.indentGuidesStroke": "#3f793f",
+    "activityBar.background": "#262F36",
+    "titleBar.activeBackground": "#35414C",
+    "titleBar.activeForeground": "#F9FAFB"
+  }
 }

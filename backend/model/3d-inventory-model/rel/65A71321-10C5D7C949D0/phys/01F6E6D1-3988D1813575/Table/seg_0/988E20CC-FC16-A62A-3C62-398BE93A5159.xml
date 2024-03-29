@@ -1,0 +1,42 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="components" directorySegmentName="seg_0" id="988E20CC-FC16-A62A-3C62-398BE93A5159">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:43:17 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<user>D1BF3A8E-E5EC-BF62-4D0E-73025D4AB7DD</user>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="attributes" id="1C9E6652-11D7-03DD-0AFF-059519D8AB7A">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:45:51 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="_id" id="5C67A28B-DD44-55C4-66F7-51B94199709B">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:44:30 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="collection" id="8BFD521A-F084-741E-0C1C-3C6EE19265F6">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:45:51 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="components" id="AA53D184-075D-8002-61E7-3A578F586D3B">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:45:51 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="components_pk" id="9ACBA942-2EC8-A5AE-65CE-C79E3397FACC">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:44:30 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev20c>

@@ -1,0 +1,56 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="attributeDictionary" directorySegmentName="seg_0" id="F500DD42-6F76-DB1B-3C49-6E21267F7540">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:46:35 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<schemaObject>2E57B3AC-A335-158D-F66B-1F85FCBC80E9</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<user>D1BF3A8E-E5EC-BF62-4D0E-73025D4AB7DD</user>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="category" id="14C883BC-7A68-BDA8-BA89-DF4674DB1936">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 14:52:34 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="name" id="3A280431-AC34-F5EC-7705-75CFEE4C9772">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 14:51:44 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="type" id="6815E9FC-113F-C6C9-B65A-1EA06E51F846">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 14:52:34 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="component" id="96D0437C-5D9F-D48F-2D40-573A5090049C">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:48:58 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="_id" id="B23996F3-F359-067C-77B8-31640FCD5B45">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:48:28 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="attributeDictionary__idx" id="BECAB2DC-97F9-BDCD-0610-98661799691E">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-25 08:01:21 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<user>D1BF3A8E-E5EC-BF62-4D0E-73025D4AB7DD</user>
+</IndexProxy>
+</indexProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="attributesDictionary_pk" id="08D5E526-3E8E-6BA9-EFC1-AC11EAAC008D">
+<createdBy>karol</createdBy>
+<createdTime>2024-03-24 12:48:28 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev20c>
