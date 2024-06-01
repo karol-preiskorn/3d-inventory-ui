@@ -6,7 +6,6 @@
   - [Technology stack](#technology-stack)
   - [Demo](#demo)
   - [Data Model](#data-model)
-    - [Entity model](#entity-model)
     - [Logical model](#logical-model)
     - [List devices](#list-devices)
     - [Models](#models)
@@ -44,7 +43,7 @@ I'm programming to incorporate database systems. This project covers relevant to
 
 - `Angular` 17+ - as a Corp framework.
 - `Bootstrap` 5.3+ - logic for insert `UI` data
-- `tree.js` 156+ - as best graph framework.
+- `tree.js` 163+ - as best graph framework.
 - `MongoAtlas`|`Oracle` - I want in this project try different solution and different data structure and storage datamodels relational and noSQL.
 - `REST` - prepared `API` in use in `Swagger`.
 - `Podman` --> `Google Cloud` as containers
@@ -64,10 +63,6 @@ This is implementation parametric generic attribute class. All attributes for `D
 Parameters types are defined in `Attribute Dictionary`.
 
 In `Attributes` are stored values defined in `Attributes Dictionary` for `Devices`, `Model` and `Connections`. `Attributes Dictionary` are defined for specyfice parameters this entities.
-
-### Entity model
-
-<img title="Entity mode" src="src/assets/Logical.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="85%"/>
 
 ### Logical model
 

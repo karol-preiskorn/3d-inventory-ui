@@ -1,19 +1,4 @@
 {
-  "cSpell.words": [
-    "Abient",
-    "Interfance",
-    "nobezel",
-    "Objin",
-    "PDU",
-    "Phong",
-    "uuidv"
-  ],
-  "todo-tree.tree.showCountsInTree": true,
-  "window.title": "${dirty} ${activeEditorMedium}",
-  "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter"
-  },
-  "python.formatting.provider": "none",
   "workbench.colorCustomizations": {
     "badge.background": "#445691",
     "statusBar.debuggingBackground": "#005f5f",
@@ -21,9 +6,6 @@
     "statusBar.foreground": "#ffffff",
     "statusBar.noFolderBackground": "#005f5f",
     "tree.inactiveIndentGuidesStroke": "#571212",
-    "tree.indentGuidesStroke": "#3f793f",
-    "activityBar.background": "#262F36",
-    "titleBar.activeBackground": "#35414C",
-    "titleBar.activeForeground": "#F9FAFB"
+    "tree.indentGuidesStroke": "#3f793f"
   }
 }
