@@ -3,7 +3,12 @@
   "ignorePaths": [],
   "dictionaryDefinitions": [],
   "dictionaries": [],
-  "words": ["compodoc", "okaidia", "prismjs"],
+  "words": [
+    "compodoc",
+    "okaidia",
+    "packagr",
+    "prismjs"
+  ],
   "ignoreWords": [],
   "import": []
 }

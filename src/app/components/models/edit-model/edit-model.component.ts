@@ -158,7 +158,7 @@ export class ModelEditComponent implements OnInit {
     this.name?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
   changeWidth(e: Event) {
-    (this.f['dimension'] as FormGroup).controls['width'].setValue((e.target as HTMLInputElement).value, {
+    ;(this.f['dimension'] as FormGroup).controls['width'].setValue((e.target as HTMLInputElement).value, {
       onlySelf: true,
     })
   }

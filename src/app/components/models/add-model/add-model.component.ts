@@ -7,6 +7,8 @@ import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
 import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
 import {Model} from 'src/app/shared/model'
 
+import Validation from 'src/app/shared/validation'
+
 @Component({
   selector: 'app-add-model',
   templateUrl: './add-model.component.html',
@@ -43,8 +45,8 @@ export class ModelAddComponent implements OnInit {
       top: new FormControl('', null),
       botom: new FormControl('', null),
     }),
-    type: new FormControl('', Validators.required),
-    category: new FormControl('', Validators.required),
+    type: new FormControl('', null),
+    category: new FormControl('', null),
   })
   model: Model
   isSubmitted = false
@@ -57,8 +59,8 @@ export class ModelAddComponent implements OnInit {
     public modelsService: ModelsService,
     private logService: LogService
   ) {}
+
   ngOnInit(): void {
-    // Initialize the model object
     this.model = new Model()
   }
 
@@ -91,6 +93,9 @@ export class ModelAddComponent implements OnInit {
   }
   changeCategory(e: Event) {
     this.category?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+  }
+  changeType(e: Event) {
+    this.type?.setValue((e.target as HTMLInputElement).value as never, {onlySelf: true})
   }
   get id() {
     return this.addModelForm.get('id')

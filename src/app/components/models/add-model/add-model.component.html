@@ -10,7 +10,7 @@
               [ngClass]="{
                 'is-invalid': this.addModelForm.controls.name.status != 'VALID',
                 'is-valid': this.addModelForm.controls.name.status == 'VALID',
-                'form-control': true
+                'form-control': true,
               }"
               formControlName="name"
               minlength="4"
@@ -37,7 +37,7 @@
               [ngClass]="{
                 'is-invalid': this.addModelForm.controls.dimension.controls.width.status != 'VALID',
                 'is-valid': this.addModelForm.controls.dimension.controls.width.status == 'VALID',
-                'form-control': true
+                'form-control': true,
               }" />
             <div *ngIf="this.addModelForm.controls.dimension.controls.width.errors" class="invalid-feedback">
               <div *ngIf="this.addModelForm.controls.dimension.controls.width.errors.required">Width is required</div>
@@ -65,7 +65,7 @@
               [ngClass]="{
                 'is-invalid': this.addModelForm.controls.dimension.controls.height.status != 'VALID',
                 'is-valid': this.addModelForm.controls.dimension.controls.height.status == 'VALID',
-                'form-control': true
+                'form-control': true,
               }" />
             <div *ngIf="this.addModelForm.controls.dimension.controls.height.errors" class="invalid-feedback">
               <div *ngIf="this.addModelForm.controls.dimension.controls.height.errors.required">Height is required</div>
@@ -88,7 +88,7 @@
               [ngClass]="{
                 'is-invalid': this.addModelForm.controls.dimension.controls.depth.status != 'VALID',
                 'is-valid': this.addModelForm.controls.dimension.controls.depth.status == 'VALID',
-                'form-control': true
+                'form-control': true,
               }" />
             <div *ngIf="this.addModelForm.controls.dimension.controls.depth.errors" class="invalid-feedback">
               <div *ngIf="this.addModelForm.controls.dimension.controls.depth.errors.required">Depth is required</div>
@@ -110,7 +110,7 @@
               [ngClass]="{
                 'is-invalid': this.addModelForm.controls.texture.controls.front.status != 'VALID',
                 'is-valid': this.addModelForm.controls.texture.controls.front.status == 'VALID',
-                'form-control': true
+                'form-control': true,
               }" />
             <div *ngIf="this.addModelForm.controls.texture.controls.front.errors" class="invalid-feedback">
               <div *ngIf="this.addModelForm.controls.texture.controls.front.errors.required">Width is required</div>
@@ -130,7 +130,7 @@
               [ngClass]="{
                 'is-invalid': this.addModelForm.controls.texture.controls.back.status != 'VALID',
                 'is-valid': this.addModelForm.controls.texture.controls.back.status == 'VALID',
-                'form-control': true
+                'form-control': true,
               }" />
             <div *ngIf="this.addModelForm.controls.texture.controls.back.errors" class="invalid-feedback">
               <div *ngIf="this.addModelForm.controls.texture.controls.back.errors.required">back side is required</div>
@@ -150,7 +150,7 @@
               [ngClass]="{
                 'is-invalid': this.addModelForm.controls.texture.controls.side.status != 'VALID',
                 'is-valid': this.addModelForm.controls.texture.controls.side.status == 'VALID',
-                'form-control': true
+                'form-control': true,
               }" />
             <div *ngIf="this.addModelForm.controls.texture.controls.side.errors" class="invalid-feedback">
               <div *ngIf="this.addModelForm.controls.texture.controls.side.errors.required">side is required</div>
@@ -170,7 +170,7 @@
               [ngClass]="{
                 'is-invalid': this.addModelForm.controls.texture.controls.top.status != 'VALID',
                 'is-valid': this.addModelForm.controls.texture.controls.top.status == 'VALID',
-                'form-control': true
+                'form-control': true,
               }" />
             <div *ngIf="this.addModelForm.controls.texture.controls.top.errors" class="invalid-feedback">
               <div *ngIf="this.addModelForm.controls.texture.controls.top.errors">Top is required</div>
@@ -188,7 +188,7 @@
               [ngClass]="{
                 'is-invalid': this.addModelForm.controls.texture.controls.botom.status != 'VALID',
                 'is-valid': this.addModelForm.controls.texture.controls.botom.status == 'VALID',
-                'form-control': true
+                'form-control': true,
               }" />
             <div *ngIf="this.addModelForm.controls.texture.controls.botom.errors" class="invalid-feedback">
               <div *ngIf="this.addModelForm.controls.texture.controls.botom.errors.required">Botom is required</div>
@@ -204,12 +204,12 @@
           <div class="form-group mb-3">
             <label for="type" class="form-label">Type</label>
             <select
-              (change)="changeTop($event)"
+              (change)="changeType($event)"
               formControlName="type"
               [ngClass]="{
                 'is-invalid': this.addModelForm.controls.type.status != 'VALID',
                 'is-valid': this.addModelForm.controls.type.status == 'VALID',
-                'form-select': true
+                'form-select': true,
               }"
               id="type">
               <option *ngFor="let typeObj of deviceTypeDict.list; let i = index">
@@ -230,7 +230,7 @@
               [ngClass]="{
                 'is-invalid': this.addModelForm.controls.category.status != 'VALID',
                 'is-valid': this.addModelForm.controls.category.status == 'VALID',
-                'form-select': true
+                'form-select': true,
               }"
               id="category">
               <option *ngFor="let categoryObj of deviceCategoryDict.list; let i = index">
@@ -250,13 +250,15 @@
             [disabled]="!(addModelForm.valid && addModelForm.touched)"
             class="btn btn-primary"
             (click)="this.submitForm()"
-            tooltip="Update device.">
-            Add
+            tooltip="Create new device model.">
+            Add Model
           </button>
         </div>
+        <div class="col">
+          <p class="">Form Status: {{ addModelForm.status }}.</p>
+          <p class="">Form Value: {{ addModelForm.value | json }}.</p>
+        </div>
       </div>
-      <div *ngIf="addModelForm.valid && addModelForm.touched" class="invalid-feedback">Form is valid</div>
-      <p class="valid-feedback">Form Status: {{ addModelForm.status }}.</p>
     </form>
   </div>
 </div>
