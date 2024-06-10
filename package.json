@@ -59,7 +59,7 @@
     "@angular/compiler": "^17.0.0",
     "@angular/core": "^17.0.0",
     "@angular/forms": "^17.0.0",
-    "@angular/platform-browser": "^17.0.0",
+    "@angular/platform-browser": "^18.0.2",
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/platform-server": "^17.0.0",
     "@angular/router": "^17.0.0",
