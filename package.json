@@ -105,7 +105,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.0.0",
     "@angular-eslint/template-parser": "^18.0.1",
-    "@angular/cli": "^17.0.0",
+    "@angular/cli": "^18.0.3",
     "@angular/compiler-cli": "^17.0.0",
     "@angular/localize": "^17.0.0",
     "@eslint/compat": "^1.0.3",
