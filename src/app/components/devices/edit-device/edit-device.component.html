@@ -10,12 +10,11 @@
           placeholder="Id"
           aria-label="_id"
           formControlName="_id"
-          formControlName="_id"
           id="_id"
           readonly
           [ngClass]="{
-            'is-invalid': this.editDeviceForm.controls._id.status != 'VALID',
-            'is-valid': this.editDeviceForm.controls._id.status == 'VALID',
+            'is-invalid': this.editDeviceForm.controls._id.status !== 'VALID',
+            'is-valid': this.editDeviceForm.controls._id.status === 'VALID',
             'form-control': true,
           }" />
         <div *ngIf="this.editDeviceForm.controls._id.errors" class="invalid-feedback">
@@ -37,8 +36,8 @@
             required
             maxlength="255"
             [ngClass]="{
-              'is-invalid': this.editDeviceForm.controls.name.status != 'VALID',
-              'is-valid': this.editDeviceForm.controls.name.status == 'VALID',
+              'is-invalid': this.editDeviceForm.controls.name.status !== 'VALID',
+              'is-valid': this.editDeviceForm.controls.name.status === 'VALID',
               'form-control': true,
             }" />
           <div *ngIf="this.editDeviceForm.controls.name.errors" class="invalid-feedback">
@@ -48,7 +47,7 @@
         </div>
       </div>
     </div>
-    <div class="row" formGroupName="position" class="row border">
+    <div class="row border">
       <div class="row">Position</div>
       <div class="col">
         <div class="form-group mb-3">
@@ -60,8 +59,8 @@
             id="x"
             required
             [ngClass]="{
-              'is-invalid': this.editDeviceForm.controls.position.controls.x.status != 'VALID',
-              'is-valid': this.editDeviceForm.controls.position.controls.x.status == 'VALID',
+              'is-invalid': this.editDeviceForm.controls.position.controls.x.status !== 'VALID',
+              'is-valid': this.editDeviceForm.controls.position.controls.x.status === 'VALID',
               'form-control': true,
             }" />
         </div>
@@ -79,8 +78,8 @@
             id="y"
             required
             [ngClass]="{
-              'is-invalid': this.editDeviceForm.controls.position.controls.y.status != 'VALID',
-              'is-valid': this.editDeviceForm.controls.position.controls.y.status == 'VALID',
+              'is-invalid': this.editDeviceForm.controls.position.controls.y.status !== 'VALID',
+              'is-valid': this.editDeviceForm.controls.position.controls.y.status === 'VALID',
               'form-control': true,
             }" />
         </div>
@@ -98,12 +97,12 @@
             id="h"
             required
             [ngClass]="{
-              'is-invalid': this.editDeviceForm.controls.position.controls.h.status != 'VALID',
-              'is-valid': this.editDeviceForm.controls.position.controls.h.status == 'VALID',
+              'is-invalid': this.editDeviceForm.controls.position.controls.h.status !== 'VALID',
+              'is-valid': this.editDeviceForm.controls.position.controls.h.status === 'VALID',
               'form-control': true,
             }" />
         </div>
-        <div *ngIf="this.editDeviceForm.controls.position.controls.h.hasError" class="invalid-feedback">
+        <div *ngIf="this.editDeviceForm.controls.position.controls.h.hasError('required')" class="invalid-feedback">
           <div *ngIf="this.editDeviceForm.controls.position.controls.h.hasError('required')">Name is required</div>
         </div>
       </div>
@@ -119,8 +118,8 @@
             id="modelId"
             required
             [ngClass]="{
-              'is-invalid': this.editDeviceForm.controls.modelId.status != 'VALID',
-              'is-valid': this.editDeviceForm.controls.modelId.status == 'VALID',
+              'is-invalid': this.editDeviceForm.controls.modelId.status !== 'VALID',
+              'is-valid': this.editDeviceForm.controls.modelId.status === 'VALID',
               'form-select': true,
             }">
             <option *ngFor="let modelObj of this.modelList; let i = index" value="{{ modelObj._id }}">

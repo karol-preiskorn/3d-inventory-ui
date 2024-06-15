@@ -1,40 +1,33 @@
-﻿/*
-# File:        src/cddi/version-change.js
-# Description:
-# Used by:
-# Dependency:
-#
-# Date        By       Comments
-# ----------  -------  ------------------------------
-# 2023-07-22  C2RLO    add husky comment insteed
-# 2023-07-22  C2RLO    Init (simple-git not install?!)
-*/
-
+﻿const simpleGit = require('simple-git')
+const fs = require('fs')
+const { promisify } = require('util')
+const path = require('path')
 const semver = require('semver')
+const json = require(packagePath)
 
-const simpleGit = require('simple-git')
+const packagePath = path.join(process.cwd(), 'package.json')
 
-const options = {
+const gitOptions = {
   baseDir: process.cwd(),
   binary: 'git',
   maxConcurrentProcesses: 6,
 }
 
-const git = simpleGit(options)
-
-const json = require('./package.json')
+const git = simpleGit(gitOptions)
+const writeFile = promisify(fs.writeFile)
 
 function savePackage() {
-  require('fs').writeFileSync(process.cwd() + '/package.json', JSON.stringify(json, null, 2))
+  writeFile(packagePath, JSON.stringify(json, null, 2))
 }
-async function updateVersion() {
+
+function updateVersion() {
   try {
     if (json.version) {
       const version = semver.parse(json.version)
       version.inc('minor')
       json.version = version.toString()
       savePackage()
-      await git.add('package.json')
+      git.add('package.json')
       process.exit(0)
     }
   } catch (e) {
@@ -42,3 +35,5 @@ async function updateVersion() {
     process.exit(1)
   }
 }
+
+updateVersion()

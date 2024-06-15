@@ -12,7 +12,7 @@
             [ngClass]="{
               'is-invalid': editAttributeForm.hasError('atLeastOneValidator'),
               'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
-              'form-select': true
+              'form-select': true,
             }"
             id="deviceId">
             <option *ngFor="let deviceObj of deviceDictionary; let i = index" value="{{ deviceObj._id }}">
@@ -36,7 +36,7 @@
             [ngClass]="{
               'is-invalid': editAttributeForm.hasError('atLeastOneValidator'),
               'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
-              'form-select': true
+              'form-select': true,
             }"
             id="modelId">
             <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj._id }}">
@@ -60,7 +60,7 @@
             [ngClass]="{
               'is-invalid': editAttributeForm.hasError('atLeastOneValidator'),
               'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
-              'form-select': true
+              'form-select': true,
             }"
             id="connectionId">
             <option *ngFor="let connectionObj of connectionDictionary; let i = index" value="{{ connectionObj._id }}">
@@ -82,9 +82,9 @@
             (change)="changeAttributeDictionaryId($event)"
             formControlName="attributeDictionaryId"
             [ngClass]="{
-              'is-invalid': this.editAttributeForm.controls.attributeDictionaryId.status != 'VALID',
-              'is-valid': this.editAttributeForm.controls.attributeDictionaryId.status == 'VALID',
-              'form-select': true
+              'is-invalid': this.editAttributeForm.controls.attributeDictionaryId.status !== 'VALID',
+              'is-valid': this.editAttributeForm.controls.attributeDictionaryId.status === 'VALID',
+              'form-select': true,
             }"
             id="attributeDictionaryId">
             <option
@@ -114,9 +114,9 @@
             id="id"
             required
             [ngClass]="{
-              'is-invalid': this.editAttributeForm.controls.value.status != 'VALID',
-              'is-valid': this.editAttributeForm.controls.value.status == 'VALID',
-              'form-control': true
+              'is-invalid': this.editAttributeForm.controls.value.status !== 'VALID',
+              'is-valid': this.editAttributeForm.controls.value.status === 'VALID',
+              'form-control': true,
             }" />
           <div *ngIf="this.editAttributeForm.controls.value.errors" class="invalid-feedback">
             <div *ngIf="this.editAttributeForm.controls.value.errors.required">Value is required</div>

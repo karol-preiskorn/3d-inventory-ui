@@ -20,7 +20,7 @@
               : {
                   id: 'attributeListPagination',
                   itemsPerPage: 5,
-                  currentPage: attributePage
+                  currentPage: attributePage,
                 }
         ">
         <td>
@@ -88,6 +88,6 @@
 <div>(attributeComponent == '') {{ attributeComponent == '' }}</div> -->
 
 <app-log
-  *ngIf="attributeComponent == '' || attributeComponent === undefined"
+  *ngIf="attributeComponent === '' || attributeComponent === undefined"
   [attributeComponentObject]="this.device"
   [component]="component"></app-log>

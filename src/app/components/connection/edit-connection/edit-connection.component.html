@@ -12,9 +12,9 @@
             id="name"
             class="form-control"
             [ngClass]="{
-              'is-invalid': this.form.controls.name.status != 'VALID',
-              'is-valid': this.form.controls.name.status == 'VALID',
-              'form-control': true
+              'is-invalid': this.form.controls.name.status !== 'VALID',
+              'is-valid': this.form.controls.name.status === 'VALID',
+              'form-control': true,
             }"
             value="{{ this.form.value.name }}" />
           <div class="valid-feedback">Looks good!</div>
@@ -38,9 +38,9 @@
             (change)="changeDeviceFrom($event)"
             formControlName="deviceIdFrom"
             [ngClass]="{
-              'is-invalid': this.form.controls.deviceIdFrom.status != 'VALID',
-              'is-valid': this.form.controls.deviceIdFrom.status == 'VALID',
-              'form-select': true
+              'is-invalid': this.form.controls.deviceIdFrom.status !== 'VALID',
+              'is-valid': this.form.controls.deviceIdFrom.status === 'VALID',
+              'form-select': true,
             }"
             id="deviceIdFrom"
             ng-class="this.form.controls.deviceIdFrom.status ? 'error' : ''">
@@ -66,9 +66,9 @@
             (change)="changeDeviceFrom($event)"
             formControlName="deviceIdTo"
             [ngClass]="{
-              'is-invalid': this.form.controls.deviceIdTo.status != 'VALID',
-              'is-valid': this.form.controls.deviceIdTo.status == 'VALID',
-              'form-select': true
+              'is-invalid': this.form.controls.deviceIdTo.status !== 'VALID',
+              'is-valid': this.form.controls.deviceIdTo.status === 'VALID',
+              'form-select': true,
             }"
             id="deviceIdTo">
             <option
@@ -95,7 +95,7 @@
         [ngClass]="{
           'is-invalid': !form.valid,
           'is-valid': form.valid,
-          'form-control': true
+          'form-control': true,
         }">
         <i class="bi bi-pencil-square"></i> Update
       </button>

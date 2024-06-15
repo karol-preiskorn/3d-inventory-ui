@@ -7,8 +7,9 @@
 
 import {adjectives, animals, colors, uniqueNamesGenerator} from 'unique-names-generator'
 import {v4 as uuidv4} from 'uuid'
-import {DeviceCategory, DeviceCategoryDict} from './deviceCategories'
-import {DeviceType, DeviceTypeDict} from './deviceTypes'
+
+import {DeviceCategory} from './deviceCategories'
+import {DeviceType} from './deviceTypes'
 
 export class Dimension {
   private _width: number

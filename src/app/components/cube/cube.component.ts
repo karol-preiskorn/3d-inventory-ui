@@ -1,39 +1,27 @@
-/*
- * File:        /src/app/cube/cube.component.ts
- *
- * Description: First tree.js component
- *
- * Todo:
+/**
+ * @description: First tree.js component
+ * @todo:
  *   [x] add cube
  *   [ ] add cube from Angular
  *   [ ] add cube with defined in Ng parameters.
  *
- * Used by:
- *
- * Dependency:
- *
- * Date         By      Comments
- * ----------   -----   ------------------------------
- * 2023-08-08   C2RLO   Starting developing Racks
- * 2023-07-13   C2RLO   Get cube from
- * 2023-04-16   C2RLO   Add cube
+ * @version: 2023-08-08   C2RLO   Starting developing Racks
+ * @version: 2023-07-13   C2RLO   Get cube from
+ * @version: 2023-04-16   C2RLO   Add cube
  */
+
+import {DeviceService} from 'src/app/services/device.service'
+import {LogService} from 'src/app/services/log.service'
+import {ModelsService} from 'src/app/services/models.service'
+import {Device} from 'src/app/shared/device'
+import {Model} from 'src/app/shared/model'
+import * as THREE from 'three'
+import {OrbitControls} from 'three-orbitcontrols-ts'
+import {v4 as uuidv4} from 'uuid'
 
 import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core'
 import {Router} from '@angular/router'
-import {v4 as uuidv4} from 'uuid'
 import {faker} from '@faker-js/faker'
-
-import * as THREE from 'three'
-import {OrbitControls} from 'three-orbitcontrols-ts'
-
-import {LogService} from 'src/app/services/log.service'
-
-import {DeviceService} from 'src/app/services/device.service'
-import {Device} from 'src/app/shared/device'
-
-import {ModelsService} from 'src/app/services/models.service'
-import {Model} from 'src/app/shared/model'
 
 @Component({
   selector: 'app-cube',
@@ -51,8 +39,8 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
   @Input() public cameraZ = 500
   @Input() public fieldOfView = 4
-  @Input('nearClipping') public nearClippingPlane = 0.1
-  @Input('farClipping') public farClippingPlane = 2000
+  @Input() public nearClippingPlane = 0.1
+  @Input() public farClippingPlane = 2000
 
   private camera!: THREE.PerspectiveCamera
 
@@ -362,6 +350,11 @@ export class CubeComponent implements OnInit, AfterViewInit {
     controls.target.set(10, 40, 30)
     controls.update()
 
+    // Remove the aliasing of 'this'
+    // https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+    //
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const component: CubeComponent = this
     ;(function render() {
       requestAnimationFrame(render)

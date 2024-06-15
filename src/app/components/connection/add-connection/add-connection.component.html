@@ -11,9 +11,9 @@
             formControlName="name"
             id="name"
             [ngClass]="{
-              'is-invalid': this.addConnectionForm.controls.name.status != 'VALID',
-              'is-valid': this.addConnectionForm.controls.name.status == 'VALID',
-              'form-control': true
+              'is-invalid': this.addConnectionForm.controls.name.status !== 'VALID',
+              'is-valid': this.addConnectionForm.controls.name.status === 'VALID',
+              'form-control': true,
             }"
             value="{{ this.addConnectionForm.value.name }}" />
           <div *ngIf="addConnectionForm.get('name')?.invalid">
@@ -40,9 +40,9 @@
             (change)="changeDeviceFrom($event)"
             formControlName="deviceIdFrom"
             [ngClass]="{
-              'is-invalid': this.addConnectionForm.controls.deviceIdFrom.status != 'VALID',
-              'is-valid': this.addConnectionForm.controls.deviceIdFrom.status == 'VALID',
-              'form-select': true
+              'is-invalid': this.addConnectionForm.controls.deviceIdFrom.status !== 'VALID',
+              'is-valid': this.addConnectionForm.controls.deviceIdFrom.status === 'VALID',
+              'form-select': true,
             }"
             id="deviceIdFrom">
             <option *ngFor="let deviceFromObj of deviceList; let i = index" [value]="deviceFromObj._id">
@@ -59,9 +59,9 @@
             (change)="changeDeviceTo($event)"
             formControlName="deviceIdTo"
             [ngClass]="{
-              'is-invalid': this.addConnectionForm.controls.deviceIdTo.status != 'VALID',
-              'is-valid': this.addConnectionForm.controls.deviceIdTo.status == 'VALID',
-              'form-select': true
+              'is-invalid': this.addConnectionForm.controls.deviceIdTo.status !== 'VALID',
+              'is-valid': this.addConnectionForm.controls.deviceIdTo.status === 'VALID',
+              'form-select': true,
             }"
             id="deviceIdTo">
             <option *ngFor="let deviceToObj of deviceList; let i = index" [value]="deviceToObj._id">

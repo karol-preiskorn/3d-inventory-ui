@@ -1,12 +1,18 @@
 {
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
   "root": true,
   "ignorePatterns": [
-    "projects/**/*"
+    "node_modules/**/*",
+    "documentation/**/*",
+    ".git/**/*",
+    "dist/**/*"
   ],
   "overrides": [
     {
       "files": [
-        "*.ts"
+        "./**/*.ts"
       ],
       "extends": [
         "eslint:recommended",

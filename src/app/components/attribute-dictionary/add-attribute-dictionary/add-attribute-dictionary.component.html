@@ -10,9 +10,9 @@
         required
         readonly
         [ngClass]="{
-          'is-invalid': this.addAttributeDictionaryForm.controls._id.status != 'VALID',
-          'is-valid': this.addAttributeDictionaryForm.controls._id.status == 'VALID',
-          'form-control': true
+          'is-invalid': this.addAttributeDictionaryForm.controls._id.status !== 'VALID',
+          'is-valid': this.addAttributeDictionaryForm.controls._id.status === 'VALID',
+          'form-control': true,
         }" />
       <div *ngIf="this.addAttributeDictionaryForm.controls._id.errors" class="invalid-feedback">
         <div *ngIf="this.addAttributeDictionaryForm.controls._id.errors.required">Id is required</div>
@@ -25,9 +25,9 @@
       <label for="name" class="form-label">Name</label>
       <textarea
         [ngClass]="{
-          'is-invalid': this.addAttributeDictionaryForm.controls.name.status != 'VALID',
-          'is-valid': this.addAttributeDictionaryForm.controls.name.status == 'VALID',
-          'form-control': true
+          'is-invalid': this.addAttributeDictionaryForm.controls.name.status !== 'VALID',
+          'is-valid': this.addAttributeDictionaryForm.controls.name.status === 'VALID',
+          'form-control': true,
         }"
         formControlName="name"
         id="name"
@@ -49,9 +49,9 @@
             (change)="changeType($event)"
             formControlName="type"
             [ngClass]="{
-              'is-invalid': this.addAttributeDictionaryForm.controls.type.status != 'VALID',
-              'is-valid': this.addAttributeDictionaryForm.controls.type.status == 'VALID',
-              'form-select': true
+              'is-invalid': this.addAttributeDictionaryForm.controls.type.status !== 'VALID',
+              'is-valid': this.addAttributeDictionaryForm.controls.type.status === 'VALID',
+              'form-select': true,
             }"
             id="type">
             <option *ngFor="let typeObj of deviceTypeDict.list; let i = index">
@@ -74,9 +74,9 @@
             formControlName="category"
             id="category"
             [ngClass]="{
-              'is-invalid': this.addAttributeDictionaryForm.controls.category.status != 'VALID',
-              'is-valid': this.addAttributeDictionaryForm.controls.category.status == 'VALID',
-              'form-select': true
+              'is-invalid': this.addAttributeDictionaryForm.controls.category.status !== 'VALID',
+              'is-valid': this.addAttributeDictionaryForm.controls.category.status === 'VALID',
+              'form-select': true,
             }">
             <option *ngFor="let categoryObj of deviceCategoryDict.list; let i = index">
               {{ categoryObj.name }}
@@ -94,9 +94,9 @@
             (change)="changeComponent($event)"
             formControlName="component"
             [ngClass]="{
-              'is-invalid': this.addAttributeDictionaryForm.controls.component.status != 'VALID',
-              'is-valid': this.addAttributeDictionaryForm.controls.component.status == 'VALID',
-              'form-select': true
+              'is-invalid': this.addAttributeDictionaryForm.controls.component.status !== 'VALID',
+              'is-valid': this.addAttributeDictionaryForm.controls.component.status === 'VALID',
+              'form-select': true,
             }"
             id="component">
             <option *ngFor="let componentObj of componentDictionary.list; let i = index">
