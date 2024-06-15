@@ -9,7 +9,7 @@
  * 2023-06-01  C2RLO	  Add optional null
  * 2023-05-21  C2RLO    Init
  */
-import {v4 as uuidv4} from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 
 export class AttributeDictionary {
   _id: string

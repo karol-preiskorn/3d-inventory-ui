@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import {FloorListComponent} from './floor-list.component'
+import { FloorListComponent } from './floor-list.component'
 
 describe('FloorListComponent', () => {
   let component: FloorListComponent

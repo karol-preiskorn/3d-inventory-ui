@@ -1,13 +1,13 @@
-import {LogService} from 'src/app/services/log.service'
-import {ModelsService} from 'src/app/services/models.service'
-import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
-import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
-import {Model} from 'src/app/shared/model'
+import { LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
+import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
+import { Model } from 'src/app/shared/model'
 
-import {Component, NgZone, OnInit} from '@angular/core'
-import {FormControl, FormGroup, Validators} from '@angular/forms'
-import {Router} from '@angular/router'
-import {faker} from '@faker-js/faker'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { faker } from '@faker-js/faker'
 
 @Component({
   selector: 'app-add-model',
@@ -57,7 +57,7 @@ export class ModelAddComponent implements OnInit {
     private ngZone: NgZone,
     private router: Router,
     public modelsService: ModelsService,
-    private logService: LogService
+    private logService: LogService,
   ) {}
 
   ngOnInit(): void {
@@ -65,7 +65,10 @@ export class ModelAddComponent implements OnInit {
   }
 
   changeValue(controlName: string, value: string) {
-    this.getControl(controlName).setValue(value, {onlySelf: true})
+    const control = this.getControl(controlName)
+    if (control) {
+      control.setValue(value, { onlySelf: true })
+    }
   }
 
   getControl(controlName: string) {
@@ -73,7 +76,7 @@ export class ModelAddComponent implements OnInit {
   }
 
   generateModel() {
-    if (this.addModelForm.controls.name) {
+    if (this.addModelForm.controls.name !== null && this.addModelForm.controls.name !== undefined) {
       this.addModelForm.controls.name.setValue(faker.company.name() + ' ' + faker.company.buzzPhrase())
     }
     if (this.addModelForm.controls.dimension.controls.depth) {

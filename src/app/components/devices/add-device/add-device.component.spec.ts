@@ -1,9 +1,9 @@
-import {HttpClientModule} from '@angular/common/http'
-import {ComponentFixture, TestBed} from '@angular/core/testing'
-import {ReactiveFormsModule} from '@angular/forms'
-import {NgxPaginationModule} from 'ngx-pagination'
-import {LogComponent} from '../../log/log.component'
-import {DeviceAddComponent} from './add-device.component'
+import { HttpClientModule } from '@angular/common/http'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { ReactiveFormsModule } from '@angular/forms'
+import { NgxPaginationModule } from 'ngx-pagination'
+import { LogComponent } from '../../log/log.component'
+import { DeviceAddComponent } from './add-device.component'
 describe('DeviceAddComponent', () => {
   let component: DeviceAddComponent
   let fixture: ComponentFixture<DeviceAddComponent>

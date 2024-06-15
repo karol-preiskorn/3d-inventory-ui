@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import {ConnectionEditComponent} from './edit-connection.component'
+import { ConnectionEditComponent } from './edit-connection.component'
 
 describe('ConnectionEditComponent', () => {
   let component: ConnectionEditComponent

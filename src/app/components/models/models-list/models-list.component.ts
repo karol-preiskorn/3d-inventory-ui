@@ -1,9 +1,9 @@
-import {Component, NgZone, OnInit} from '@angular/core'
-import {Router} from '@angular/router'
-import {Observable, of} from 'rxjs'
-import {LogService} from 'src/app/services/log.service'
-import {ModelsService} from 'src/app/services/models.service'
-import {Model} from 'src/app/shared/model'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { Observable, of } from 'rxjs'
+import { LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Model } from 'src/app/shared/model'
 
 @Component({
   selector: 'app-models-list',
@@ -20,7 +20,7 @@ export class ModelsListComponent implements OnInit {
     public modelsService: ModelsService,
     private logService: LogService,
     private router: Router,
-    private ngZone: NgZone
+    private ngZone: NgZone,
   ) {}
 
   /**
@@ -46,7 +46,7 @@ export class ModelsListComponent implements OnInit {
    */
   DeleteModel(id: string) {
     this.logService.CreateLog({
-      message: {id: id},
+      message: { id: id },
       objectId: id,
       operation: 'Delete',
       component: this.component,
@@ -68,7 +68,7 @@ export class ModelsListComponent implements OnInit {
     const idCloned = this.modelsService.CloneModel(id)
     this.logService
       .CreateLog({
-        message: {id: id, new_id: idCloned},
+        message: { id: id, new_id: idCloned },
         operation: 'Clone',
         component: 'Model',
       })

@@ -1,13 +1,13 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http'
-import {Injectable, NgZone} from '@angular/core'
-import {Router} from '@angular/router'
-import {Observable, of, throwError} from 'rxjs'
-import {catchError, map, retry} from 'rxjs/operators'
-import {SyncRequestClient} from 'ts-sync-request/dist'
-import {v4 as uuidv4} from 'uuid'
-import {environment} from '../../environments/environment'
-import {Device} from '../shared/device'
-import {LogService} from './log.service'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
+import { Observable, of, throwError } from 'rxjs'
+import { catchError, map, retry } from 'rxjs/operators'
+import { SyncRequestClient } from 'ts-sync-request/dist'
+import { v4 as uuidv4 } from 'uuid'
+import { environment } from '../../environments/environment'
+import { Device } from '../shared/device'
+import { LogService } from './log.service'
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,7 @@ export class DeviceService {
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
-    private router: Router
+    private router: Router,
   ) {}
 
   httpOptions = {
@@ -72,7 +72,7 @@ export class DeviceService {
       map((res) => {
         return res
       }),
-      catchError(this.errorHandl)
+      catchError(this.errorHandl),
     )
   }
 
@@ -97,7 +97,7 @@ export class DeviceService {
       .post<Device>(
         environment.baseurl + '/' + this.objectName + '/',
         JSON.stringify(data, null, ' '),
-        this.httpOptions
+        this.httpOptions,
       )
       .pipe(retry(1), catchError(this.errorHandl))
   }
@@ -137,7 +137,7 @@ export class DeviceService {
         '/devices/' +
         data._id +
         '  ' +
-        JSON.stringify(data, null, ' ')
+        JSON.stringify(data, null, ' '),
     )
     return this.http
       .put<Device>(environment.baseurl + '/devices/' + data._id, JSON.stringify(data, null, ' '), this.httpOptions)
@@ -155,7 +155,7 @@ export class DeviceService {
    * @param error - The error object containing the error message and status.
    * @returns An Observable that emits an error message.
    */
-  errorHandl(error: {error: {message: string}; status: number; message: string}): Observable<never> {
+  errorHandl(error: { error: { message: string }; status: number; message: string }): Observable<never> {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message

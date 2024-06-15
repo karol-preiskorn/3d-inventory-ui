@@ -1,11 +1,11 @@
-import {Subscription} from 'rxjs'
-import {LogService} from 'src/app/services/log.service'
-import {ModelsService} from 'src/app/services/models.service'
-import {Model} from 'src/app/shared/model'
+import { Subscription } from 'rxjs'
+import { LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Model } from 'src/app/shared/model'
 
-import {Component, NgZone, OnInit} from '@angular/core'
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
-import {ActivatedRoute, Router} from '@angular/router'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'app-edit-model',
@@ -13,6 +13,8 @@ import {ActivatedRoute, Router} from '@angular/router'
   styleUrls: ['./edit-model.component.scss'],
 })
 export class ModelEditComponent implements OnInit {
+  attributeComponent: string = ''
+  attributeComponentObject: string = ''
   inputId: string = ''
   model: Model
   component = ''
@@ -25,12 +27,12 @@ export class ModelEditComponent implements OnInit {
     public modelsService: ModelsService,
     private ngZone: NgZone,
     private router: Router,
-    private logService: LogService
+    private logService: LogService,
   ) {}
 
   ngOnInit() {
     this.editModelForm = this.formBuilder.group({
-      id: ['', [Validators.required, Validators.minLength(4)]],
+      id: ['', [Validators.required, Validators.minLength(10)]],
       name: ['', [Validators.required, Validators.minLength(4)]],
       dimension: this.formBuilder.group({
         width: [
@@ -101,7 +103,7 @@ export class ModelEditComponent implements OnInit {
       objectId: this.editModelForm.value.id,
       operation: 'Delete',
       component: 'Model',
-      message: {id: this.editModelForm.value},
+      message: { id: this.editModelForm.value },
     })
     this.modelsService.DeleteModel(this.inputId.toString()).subscribe(() => {
       this.ngZone.run(() => this.router.navigateByUrl('models-list'))
@@ -113,7 +115,7 @@ export class ModelEditComponent implements OnInit {
     if (this.editModelForm.valid && this.editModelForm.touched) {
       this.ngZone.run(() => this.router.navigateByUrl('models-list'))
       const log = {
-        message: {model: this.editModelForm.value},
+        message: { model: this.editModelForm.value },
         operation: 'Update',
         component: 'Model',
         objectId: this.editModelForm.value.id,

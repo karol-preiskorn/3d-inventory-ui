@@ -1,9 +1,9 @@
 ﻿# Ignore artifacts:
-build/*
-coverage/*
-.angular/*
-.husky
-.vscode
-dist
-node_modules
-documentation
+build/
+coverage/
+.angular/
+.husky/
+.vscode/
+dist/
+node_modules/
+documentation/

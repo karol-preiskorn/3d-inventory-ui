@@ -14,7 +14,7 @@
  * 2023-06-03  C2RLO   Init
  */
 
-import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms'
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms'
 /**
  * @description custm validation form shared module
  * @export
@@ -31,8 +31,8 @@ export default class Validation {
       }
 
       if (control?.value !== checkControl?.value) {
-        controls.get(checkControlName)?.setErrors({matching: true})
-        return {matching: true}
+        controls.get(checkControlName)?.setErrors({ matching: true })
+        return { matching: true }
       } else {
         return null
       }
@@ -53,11 +53,11 @@ export default class Validation {
     if (control.get('connectionId')?.value != '') i++
     console.log('count Ids => ' + i)
     if (i > 1 || i == 0) {
-      return {atLeastOneValidator: true}
+      return { atLeastOneValidator: true }
     } else if (i == 1) {
       return null
     } else {
-      return {atLeastOneValidator: true}
+      return { atLeastOneValidator: true }
     }
   }
   /**

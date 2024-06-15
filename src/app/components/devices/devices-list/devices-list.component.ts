@@ -1,13 +1,13 @@
-import {Component, NgZone, OnInit} from '@angular/core'
-import {ActivatedRoute, Router} from '@angular/router'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { ActivatedRoute, Router } from '@angular/router'
 
-import {LogService} from 'src/app/services/log.service'
+import { LogService } from 'src/app/services/log.service'
 
-import {Device} from 'src/app/shared/device'
-import {DeviceService} from 'src/app/services/device.service'
+import { Device } from 'src/app/shared/device'
+import { DeviceService } from 'src/app/services/device.service'
 
-import {Model} from 'src/app/shared/model'
-import {ModelsService} from 'src/app/services/models.service'
+import { Model } from 'src/app/shared/model'
+import { ModelsService } from 'src/app/services/models.service'
 
 @Component({
   selector: 'app-device-list',
@@ -32,7 +32,7 @@ export class DeviceListComponent implements OnInit {
     private logService: LogService,
     private router: Router,
     private ngZone: NgZone,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   loadDevices() {
@@ -49,7 +49,7 @@ export class DeviceListComponent implements OnInit {
 
   DeleteDevice(id: string) {
     this.logService.CreateLog({
-      message: {id: id},
+      message: { id: id },
       objectId: id,
       operation: 'Delete',
       component: this.component,
@@ -66,7 +66,7 @@ export class DeviceListComponent implements OnInit {
     const id_new: string = this.devicesService.CloneDevice(id)
     this.logService
       .CreateLog({
-        message: {id: id, id_new: id_new},
+        message: { id: id, id_new: id_new },
         operation: 'Clone',
         component: this.component,
       })
@@ -83,7 +83,7 @@ export class DeviceListComponent implements OnInit {
   EditForm(device: Device) {
     this.selectedDevice = device
     if (device._id !== undefined) {
-      this.router.navigate(['edit-device', device._id], {relativeTo: this.route.parent})
+      this.router.navigate(['edit-device', device._id], { relativeTo: this.route.parent })
     } else {
       console.warn('[DeviceListComponent] Device route.id is undefined')
     }

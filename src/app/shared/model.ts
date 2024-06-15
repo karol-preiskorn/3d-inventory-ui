@@ -5,11 +5,11 @@
  * @version: 2023-04-30   C2RLO  Init
  */
 
-import {adjectives, animals, colors, uniqueNamesGenerator} from 'unique-names-generator'
-import {v4 as uuidv4} from 'uuid'
+import { adjectives, animals, colors, uniqueNamesGenerator } from 'unique-names-generator'
+import { v4 as uuidv4 } from 'uuid'
 
-import {DeviceCategory} from './deviceCategories'
-import {DeviceType} from './deviceTypes'
+import { DeviceCategory } from './deviceCategories'
+import { DeviceType } from './deviceTypes'
 
 export class Dimension {
   private _width: number
@@ -128,7 +128,7 @@ export class Model {
         ', type: ' +
         this.type.name +
         ', category: ' +
-        this.category.name
+        this.category.name,
     )
   }
 

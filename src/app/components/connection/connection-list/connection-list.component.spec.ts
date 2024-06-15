@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import {ConnectionListComponent} from './connection-list.component'
+import { ConnectionListComponent } from './connection-list.component'
 
 describe('ConnectionListComponent', () => {
   let component: ConnectionListComponent

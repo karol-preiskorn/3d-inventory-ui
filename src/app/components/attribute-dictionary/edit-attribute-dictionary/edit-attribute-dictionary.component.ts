@@ -1,13 +1,13 @@
-import {Component, NgZone, OnInit} from '@angular/core'
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
-import {ActivatedRoute, Router} from '@angular/router'
-import {Observable, tap} from 'rxjs'
-import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
-import {LogService} from 'src/app/services/log.service'
-import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
-import {ComponentDictionary} from 'src/app/shared/component-dictionary'
-import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
-import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
+import { Observable, tap } from 'rxjs'
+import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
+import { LogService } from 'src/app/services/log.service'
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { ComponentDictionary } from 'src/app/shared/component-dictionary'
+import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
+import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 
 @Component({
   selector: 'app-edit-attribute-dictionary',
@@ -64,7 +64,7 @@ export class AttributeDictionaryEditComponent implements OnInit {
           category: data.category,
           component: data.component,
         })
-      })
+      }),
     )
   }
   constructor(
@@ -73,22 +73,22 @@ export class AttributeDictionaryEditComponent implements OnInit {
     private router: Router,
     public activatedRoute: ActivatedRoute,
     public attributeDictionaryService: AttributeDictionaryService,
-    private logService: LogService
+    private logService: LogService,
   ) {}
   changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
   changeName(e: Event) {
-    this.name?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
   changeType(e: Event) {
-    this.type?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.type?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
   changeCategory(e: Event) {
-    this.category?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.category?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
   changeComponent(e: Event) {
-    this.component?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.component?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
   get id() {
     return this.form.get('id')

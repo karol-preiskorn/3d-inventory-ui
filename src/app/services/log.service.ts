@@ -5,10 +5,10 @@
  * @version 2024-03-14 C2RLO - Initial
  **/
 
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http'
-import {Injectable, Input} from '@angular/core'
-import {Observable, catchError, of, retry, throwError} from 'rxjs'
-import {environment} from '../../environments/environment'
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
+import { Injectable, Input } from '@angular/core'
+import { Observable, catchError, of, retry, throwError } from 'rxjs'
+import { environment } from '../../environments/environment'
 
 /**
  * Represents the parameters for retrieving logs.

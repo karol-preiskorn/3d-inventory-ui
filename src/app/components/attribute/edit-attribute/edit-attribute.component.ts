@@ -1,22 +1,22 @@
-import {Component, NgZone, OnInit} from '@angular/core'
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
-import {ActivatedRoute, Router} from '@angular/router'
-import {Observable} from 'rxjs'
-import {tap} from 'rxjs/operators'
-import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
-import {AttributeService} from 'src/app/services/attribute.service'
-import {ConnectionService} from 'src/app/services/connection.service'
-import {DeviceService} from 'src/app/services/device.service'
-import {LogService} from 'src/app/services/log.service'
-import {ModelsService} from 'src/app/services/models.service'
-import {Attribute} from 'src/app/shared/attribute'
-import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
-import {ComponentDictionary} from 'src/app/shared/component-dictionary'
-import {Connection} from 'src/app/shared/connection'
-import {Device} from 'src/app/shared/device'
-import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
-import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
-import {Model} from 'src/app/shared/model'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
+import { Observable } from 'rxjs'
+import { tap } from 'rxjs/operators'
+import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
+import { AttributeService } from 'src/app/services/attribute.service'
+import { ConnectionService } from 'src/app/services/connection.service'
+import { DeviceService } from 'src/app/services/device.service'
+import { LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Attribute } from 'src/app/shared/attribute'
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { ComponentDictionary } from 'src/app/shared/component-dictionary'
+import { Connection } from 'src/app/shared/connection'
+import { Device } from 'src/app/shared/device'
+import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
+import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
+import { Model } from 'src/app/shared/model'
 import Validation from 'src/app/shared/validation'
 
 @Component({
@@ -37,7 +37,7 @@ export class AttributeEditComponent implements OnInit {
       modelId: new FormControl(''),
       value: new FormControl('', [Validators.required]),
     },
-    {validators: this.valid.atLeastOneValidator}
+    { validators: this.valid.atLeastOneValidator },
   )
 
   attribute: Attribute
@@ -75,7 +75,7 @@ export class AttributeEditComponent implements OnInit {
         console.log('AttributeEditComponent.GetAttribute(' + id + ') => ' + JSON.stringify(data, null, 2))
         this.attribute = data
         this.editAttributeForm.setValue(data)
-      })
+      }),
     )
   }
   constructor(
@@ -88,23 +88,23 @@ export class AttributeEditComponent implements OnInit {
     private modelService: ModelsService,
     private connectionService: ConnectionService,
     private attributeDictionaryService: AttributeDictionaryService,
-    private logService: LogService
+    private logService: LogService,
   ) {}
 
   changeModelId(e: Event) {
-    this.modelId?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.modelId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
   changeDeviceId(e: Event) {
-    this.deviceId?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.deviceId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
   changeConnectionId(e: Event) {
-    this.connectionId?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.connectionId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
   changeAttributeDictionaryId(e: Event) {
-    this.attributeDictionaryId?.setValue((e.target as HTMLInputElement).value as never, {onlySelf: true})
+    this.attributeDictionaryId?.setValue((e.target as HTMLInputElement).value as never, { onlySelf: true })
   }
   changeValue(e: Event) {
-    this.value?.setValue((e.target as HTMLInputElement).value as never, {onlySelf: true})
+    this.value?.setValue((e.target as HTMLInputElement).value as never, { onlySelf: true })
   }
 
   get id() {

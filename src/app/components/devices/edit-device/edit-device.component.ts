@@ -1,13 +1,13 @@
-import {DeviceService} from 'src/app/services/device.service'
-import {LogIn, LogService} from 'src/app/services/log.service'
-import {ModelsService} from 'src/app/services/models.service'
-import {Device} from 'src/app/shared/device'
-import {Model} from 'src/app/shared/model'
+import { DeviceService } from 'src/app/services/device.service'
+import { LogIn, LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Device } from 'src/app/shared/device'
+import { Model } from 'src/app/shared/model'
 import Validation from 'src/app/shared/validation'
 
-import {Component, OnInit} from '@angular/core'
-import {FormControl, FormGroup, Validators} from '@angular/forms'
-import {ActivatedRoute, Router} from '@angular/router'
+import { Component, OnInit } from '@angular/core'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'app-edit-device',
@@ -35,10 +35,10 @@ export class DeviceEditComponent implements OnInit {
     public devicesService: DeviceService,
     private router: Router,
     private logService: LogService,
-    private modelsService: ModelsService
+    private modelsService: ModelsService,
   ) {}
 
-  ngOnInit() {
+  ngOnInit = () => {
     const id: string = this.activatedRoute.snapshot.paramMap.get('id') || ''
     this.loadModels()
     this.device = this.devicesService.getDeviceSynchronize(id)

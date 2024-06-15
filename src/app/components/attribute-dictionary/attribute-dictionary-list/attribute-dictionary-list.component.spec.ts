@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import {AttributeDictionaryListComponent} from './attribute-dictionary-list.component'
+import { AttributeDictionaryListComponent } from './attribute-dictionary-list.component'
 
 describe('AttributeDictionaryListComponent', () => {
   let component: AttributeDictionaryListComponent

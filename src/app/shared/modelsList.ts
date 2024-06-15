@@ -9,7 +9,7 @@
  * 2023-05-16   C2RLO
  */
 
-import {Model} from './model'
+import { Model } from './model'
 export class ModelsList {
   modelsList: Model[] = []
   print() {

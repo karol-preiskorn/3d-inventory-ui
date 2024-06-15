@@ -1,11 +1,11 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http'
-import {Injectable, NgZone} from '@angular/core'
-import {Router} from '@angular/router'
-import {Observable, of} from 'rxjs'
-import {catchError, retry} from 'rxjs/operators'
-import {environment} from '../../environments/environment'
-import {Model} from '../shared/model'
-import {LogService} from './log.service'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
+import { Observable, of } from 'rxjs'
+import { catchError, retry } from 'rxjs/operators'
+import { environment } from '../../environments/environment'
+import { Model } from '../shared/model'
+import { LogService } from './log.service'
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class ModelsService {
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
-    private router: Router
+    private router: Router,
   ) {}
 
   httpOptions = {

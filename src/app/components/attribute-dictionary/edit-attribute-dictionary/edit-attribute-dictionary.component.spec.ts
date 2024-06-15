@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import {AttributeDictionaryEditComponent} from './edit-attribute-dictionary.component'
+import { AttributeDictionaryEditComponent } from './edit-attribute-dictionary.component'
 
 describe('AttributeDictionaryEditComponent', () => {
   let component: AttributeDictionaryEditComponent

@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import {FloorEditComponent} from './edit-floor.component'
+import { FloorEditComponent } from './edit-floor.component'
 
 describe('FloorEditComponent', () => {
   let component: FloorEditComponent

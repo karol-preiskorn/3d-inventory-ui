@@ -1,22 +1,17 @@
-import {Component, OnInit, Input, NgZone} from '@angular/core'
-import {Router} from '@angular/router'
+import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
+import { AttributeService } from 'src/app/services/attribute.service'
+import { ConnectionService } from 'src/app/services/connection.service'
+import { DeviceService } from 'src/app/services/device.service'
+import { LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Attribute } from 'src/app/shared/attribute'
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { Connection } from 'src/app/shared/connection'
+import { Device } from 'src/app/shared/device'
+import { Model } from 'src/app/shared/model'
 
-import {LogService} from 'src/app/services/log.service'
-
-import {Attribute} from 'src/app/shared/attribute'
-import {AttributeService} from 'src/app/services/attribute.service'
-
-import {Device} from 'src/app/shared/device'
-import {DeviceService} from 'src/app/services/device.service'
-
-import {Model} from 'src/app/shared/model'
-import {ModelsService} from 'src/app/services/models.service'
-
-import {Connection} from 'src/app/shared/connection'
-import {ConnectionService} from 'src/app/services/connection.service'
-
-import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
-import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
+import { Component, Input, NgZone, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-attribute-list',
@@ -24,6 +19,10 @@ import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.
   styleUrls: ['./attribute-list.component.scss'],
 })
 export class AttributeListComponent implements OnInit {
+  /**
+   * The attribute component to be displayed.
+   * @type {string}
+   */
   @Input() attributeComponent: string // type of object
   @Input() attributeComponentObject: string // string with Object
 
@@ -49,7 +48,7 @@ export class AttributeListComponent implements OnInit {
     private deviceService: DeviceService,
     private modelService: ModelsService,
     private connectionService: ConnectionService,
-    private attributeDictionaryService: AttributeDictionaryService
+    private attributeDictionaryService: AttributeDictionaryService,
   ) {}
 
   public toString(str: string | number | boolean | object | null | undefined) {
@@ -70,11 +69,11 @@ export class AttributeListComponent implements OnInit {
     console.log('-------------------<  LoadAttributes  >-------------------')
     if (this.attributeComponent == 'Device' && this.attributeComponentObject != null) {
       console.log(
-        'LoadAttributes.GetContextAttributes: ' + this.attributeComponent + ' ' + this.attributeComponentObject
+        'LoadAttributes.GetContextAttributes: ' + this.attributeComponent + ' ' + this.attributeComponentObject,
       )
       this.attributeList = this.attributeService.GetContextAttributes(
         this.attributeComponent,
-        this.attributeComponentObject
+        this.attributeComponentObject,
       )
     } else {
       console.log('LoadAttributes.attributeService.GetAttributesSync()')
@@ -84,7 +83,7 @@ export class AttributeListComponent implements OnInit {
 
   DeleteAttribute(id: string) {
     this.logService.CreateLog({
-      message: {id: id},
+      message: { id: id },
       objectId: id,
       operation: 'Delete',
       component: this.component,
@@ -99,7 +98,7 @@ export class AttributeListComponent implements OnInit {
     const id_new: string = this.attributeService.CloneAttribute(id)
     this.logService
       .CreateLog({
-        message: {id: id, id_new: id_new},
+        message: { id: id, id_new: id_new },
         operation: 'Clone',
         component: this.component,
       })

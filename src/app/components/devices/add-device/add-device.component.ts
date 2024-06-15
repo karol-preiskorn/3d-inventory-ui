@@ -1,17 +1,17 @@
-import {Component, NgZone, OnInit} from '@angular/core'
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
-import {Router} from '@angular/router'
-import {faker} from '@faker-js/faker'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { faker } from '@faker-js/faker'
 
-import {Device} from 'src/app/shared/device'
-import {DeviceService} from 'src/app/services/device.service'
+import { Device } from 'src/app/shared/device'
+import { DeviceService } from 'src/app/services/device.service'
 
-import {LogService} from 'src/app/services/log.service'
-import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
-import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
+import { LogService } from 'src/app/services/log.service'
+import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
+import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 
-import {Model} from 'src/app/shared/model'
-import {ModelsService} from 'src/app/services/models.service'
+import { Model } from 'src/app/shared/model'
+import { ModelsService } from 'src/app/services/models.service'
 
 import Validation from 'src/app/shared/validation'
 
@@ -46,7 +46,7 @@ export class DeviceAddComponent implements OnInit {
     private router: Router,
     public devicesService: DeviceService,
     private modelService: ModelsService,
-    private logService: LogService
+    private logService: LogService,
   ) {}
 
   ngOnInit() {
@@ -58,19 +58,19 @@ export class DeviceAddComponent implements OnInit {
     })
   }
   changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
   changeX(e: Event) {
-    this.x?.setValue(Number((e.target as HTMLInputElement).value), {onlySelf: true})
+    this.x?.setValue(Number((e.target as HTMLInputElement).value), { onlySelf: true })
   }
   changeY(e: Event) {
-    this.y?.setValue(Number((e.target as HTMLInputElement).value), {onlySelf: true})
+    this.y?.setValue(Number((e.target as HTMLInputElement).value), { onlySelf: true })
   }
   changeH(e: Event) {
-    this.h?.setValue(Number((e.target as HTMLInputElement).value), {onlySelf: true})
+    this.h?.setValue(Number((e.target as HTMLInputElement).value), { onlySelf: true })
   }
   changeModelId(e: Event) {
-    this.modelId?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.modelId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   get id() {

@@ -5,16 +5,16 @@
  * @version 2024-03-17 C2RLO - Initial new unified version
  **/
 
-import {Component, NgZone, OnInit} from '@angular/core'
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
-import {ActivatedRoute, Router} from '@angular/router'
-import {Observable, tap} from 'rxjs'
-import {ConnectionService} from 'src/app/services/connection.service'
-import {DeviceService} from 'src/app/services/device.service'
-import {LogService} from 'src/app/services/log.service'
-import {ComponentDictionary} from 'src/app/shared/component-dictionary'
-import {Connection} from 'src/app/shared/connection'
-import {Device} from 'src/app/shared/device'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
+import { Observable, tap } from 'rxjs'
+import { ConnectionService } from 'src/app/services/connection.service'
+import { DeviceService } from 'src/app/services/device.service'
+import { LogService } from 'src/app/services/log.service'
+import { ComponentDictionary } from 'src/app/shared/component-dictionary'
+import { Connection } from 'src/app/shared/connection'
+import { Device } from 'src/app/shared/device'
 
 @Component({
   selector: 'app-edit-connection',
@@ -51,7 +51,7 @@ export class ConnectionEditComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     private connectionService: ConnectionService,
     private deviceService: DeviceService,
-    private logService: LogService
+    private logService: LogService,
   ) {}
   formConnection() {
     this.form = this.formBulider.group({
@@ -62,16 +62,16 @@ export class ConnectionEditComponent implements OnInit {
     })
   }
   changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
   changeName(e: Event) {
-    this.name?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
   changeDeviceFrom(e: Event) {
-    this.deviceIdFrom?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.deviceIdFrom?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
   changeDeviceTo(e: Event) {
-    this.deviceIdTo?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.deviceIdTo?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
   get id() {
     return this.form.get('id')
@@ -85,7 +85,7 @@ export class ConnectionEditComponent implements OnInit {
   get deviceIdFrom() {
     return this.form.get('deviceIdFrom')
   }
-  get f(): {[key: string]: AbstractControl} {
+  get f(): { [key: string]: AbstractControl } {
     return this.form.controls
   }
   toString(data: unknown): string {
@@ -102,7 +102,7 @@ export class ConnectionEditComponent implements OnInit {
     return this.connectionService.GetConnection(this.inputId).pipe(
       tap((data: Connection) => {
         console.log(
-          'ConnectionEditComponent.connectionService.GetConnection(' + id + ') => ' + JSON.stringify(data, null, ' ')
+          'ConnectionEditComponent.connectionService.GetConnection(' + id + ') => ' + JSON.stringify(data, null, ' '),
         )
         this.connection = data
         this.form.setValue({
@@ -111,7 +111,7 @@ export class ConnectionEditComponent implements OnInit {
           deviceIdTo: data.deviceIdTo,
           deviceIdFrom: data.deviceIdFrom,
         })
-      })
+      }),
     )
   }
   submitForm() {
@@ -119,7 +119,7 @@ export class ConnectionEditComponent implements OnInit {
       this.logService
         .CreateLog({
           objectId: this.form.get('id')?.value,
-          message: {value: this.form.value},
+          message: { value: this.form.value },
           operation: 'Update',
           component: 'Connection',
         })

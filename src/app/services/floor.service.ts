@@ -1,13 +1,13 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http'
-import {Injectable, NgZone} from '@angular/core'
-import {Router} from '@angular/router'
-import {Observable, throwError} from 'rxjs'
-import {catchError, retry} from 'rxjs/operators'
-import {SyncRequestClient} from 'ts-sync-request'
-import {v4 as uuidv4} from 'uuid'
-import {environment} from '../../environments/environment'
-import {Floor} from '../shared/floor'
-import {Log, LogService} from './log.service'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
+import { Observable, throwError } from 'rxjs'
+import { catchError, retry } from 'rxjs/operators'
+import { SyncRequestClient } from 'ts-sync-request'
+import { v4 as uuidv4 } from 'uuid'
+import { environment } from '../../environments/environment'
+import { Floor } from '../shared/floor'
+import { Log, LogService } from './log.service'
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +18,7 @@ export class FloorService {
     private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
-    private router: Router
+    private router: Router,
   ) {}
 
   httpOptions = {
@@ -117,7 +117,7 @@ export class FloorService {
    * @param error - The error object containing the error message and status.
    * @returns An Observable that emits the error message.
    */
-  errorHandl(error: {error: {message: string}; status: unknown; message: Log}): Observable<never> {
+  errorHandl(error: { error: { message: string }; status: unknown; message: Log }): Observable<never> {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message

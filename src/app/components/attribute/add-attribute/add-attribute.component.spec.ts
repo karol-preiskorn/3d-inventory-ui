@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import {AttributeAddComponent} from './add-attribute.component'
+import { AttributeAddComponent } from './add-attribute.component'
 
 describe('AttributeAddComponent', () => {
   let component: AttributeAddComponent

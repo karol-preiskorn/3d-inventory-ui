@@ -1,10 +1,10 @@
-import {Component, NgZone, OnInit} from '@angular/core'
-import {Router} from '@angular/router'
-import {ConnectionService} from 'src/app/services/connection.service'
-import {DeviceService} from 'src/app/services/device.service'
-import {LogIn, LogService} from 'src/app/services/log.service'
-import {Connection} from 'src/app/shared/connection'
-import {Device} from 'src/app/shared/device'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { ConnectionService } from 'src/app/services/connection.service'
+import { DeviceService } from 'src/app/services/device.service'
+import { LogIn, LogService } from 'src/app/services/log.service'
+import { Connection } from 'src/app/shared/connection'
+import { Device } from 'src/app/shared/device'
 
 @Component({
   selector: 'app-connection-list',
@@ -28,7 +28,7 @@ export class ConnectionListComponent implements OnInit {
     private router: Router,
     private ngZone: NgZone,
     private deviceService: DeviceService,
-    private logService: LogService
+    private logService: LogService,
   ) {}
 
   loadConnection() {
@@ -58,7 +58,7 @@ export class ConnectionListComponent implements OnInit {
   deleteConnection(id: string) {
     this.logService
       .CreateLog({
-        message: {id: id},
+        message: { id: id },
         objectId: id,
         operation: 'Delete',
         component: 'Connection',
@@ -79,7 +79,7 @@ export class ConnectionListComponent implements OnInit {
     const id_new: string = this.ConnectionService.CloneConnection(id)
     this.logService
       .CreateLog({
-        message: {id: id, id_new: id_new},
+        message: { id: id, id_new: id_new },
         operation: 'Clone',
         component: 'Connection',
       })

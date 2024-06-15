@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import {ConnectionAddComponent} from './add-connection.component'
+import { ConnectionAddComponent } from './add-connection.component'
 
 describe('ConnectionAddComponent', () => {
   let component: ConnectionAddComponent

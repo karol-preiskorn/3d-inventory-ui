@@ -1,6 +1,6 @@
-import {HttpClientTestingModule} from '@angular/common/http/testing'
-import {TestBed} from '@angular/core/testing'
-import {LogService} from './log.service'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { TestBed } from '@angular/core/testing'
+import { LogService } from './log.service'
 
 describe('LogService', () => {
   let service: LogService

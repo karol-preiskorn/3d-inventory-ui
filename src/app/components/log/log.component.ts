@@ -1,34 +1,34 @@
-import {Component, OnInit, Input} from '@angular/core'
-import {Subscription} from 'rxjs'
+import { Component, OnInit, Input } from '@angular/core'
+import { Subscription } from 'rxjs'
 
-import {Log, LogService} from 'src/app/services/log.service'
+import { Log, LogService } from 'src/app/services/log.service'
 
-import {Device} from 'src/app/shared/device'
-import {DeviceService} from 'src/app/services/device.service'
+import { Device } from 'src/app/shared/device'
+import { DeviceService } from 'src/app/services/device.service'
 
-import {Model} from 'src/app/shared/model'
-import {ModelsService} from 'src/app/services/models.service'
+import { Model } from 'src/app/shared/model'
+import { ModelsService } from 'src/app/services/models.service'
 
-import {Connection} from 'src/app/shared/connection'
-import {ConnectionService} from 'src/app/services/connection.service'
+import { Connection } from 'src/app/shared/connection'
+import { ConnectionService } from 'src/app/services/connection.service'
 
-import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
-import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
 
-import {Attribute} from 'src/app/shared/attribute'
-import {AttributeService} from 'src/app/services/attribute.service'
+import { Attribute } from 'src/app/shared/attribute'
+import { AttributeService } from 'src/app/services/attribute.service'
 
-import {Floor} from 'src/app/shared/floor'
-import {FloorService} from 'src/app/services/floor.service'
+import { Floor } from 'src/app/shared/floor'
+import { FloorService } from 'src/app/services/floor.service'
 
 const api = [
-  {component: 'Models', api: 'models'},
-  {component: 'Devices', api: 'devices'},
-  {component: 'Logs', api: 'logs'},
-  {component: 'Attributes', api: 'attributes'},
-  {component: 'Attribute Dictionary', api: 'attribute-dictionary'},
-  {component: 'Connection', api: 'connections'},
-  {component: 'Floor', api: 'floor'},
+  { component: 'Models', api: 'models' },
+  { component: 'Devices', api: 'devices' },
+  { component: 'Logs', api: 'logs' },
+  { component: 'Attributes', api: 'attributes' },
+  { component: 'Attribute Dictionary', api: 'attribute-dictionary' },
+  { component: 'Connection', api: 'connections' },
+  { component: 'Floor', api: 'floor' },
 ]
 
 /**
@@ -77,7 +77,7 @@ export class LogComponent implements OnInit {
     private modelService: ModelsService,
     private connectionService: ConnectionService,
     private attributeDictionaryService: AttributeDictionaryService,
-    private floorService: FloorService
+    private floorService: FloorService,
   ) {}
 
   /**
@@ -92,7 +92,7 @@ export class LogComponent implements OnInit {
           ', loadComponentLog: ' +
           component +
           ' attributeComponentObject: ' +
-          JSON.stringify(this.attributeComponentObject)
+          JSON.stringify(this.attributeComponentObject),
       )
       this.loadComponentLog(component)
     } else {

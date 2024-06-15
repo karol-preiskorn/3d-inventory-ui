@@ -1,12 +1,12 @@
-import {Component, NgZone, OnInit} from '@angular/core'
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
-import {Router} from '@angular/router'
-import {LogService} from 'src/app/services/log.service'
-import {AttributeDictionaryService} from 'src/app/services/attribute-dictionary.service'
-import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
-import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
-import {AttributeDictionary} from 'src/app/shared/attribute-dictionary'
-import {ComponentDictionary} from 'src/app/shared/component-dictionary'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { LogService } from 'src/app/services/log.service'
+import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
+import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
+import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { ComponentDictionary } from 'src/app/shared/component-dictionary'
 
 @Component({
   selector: 'app-add-attribute-dictionary',
@@ -38,7 +38,7 @@ export class AttributeDictionaryAddComponent implements OnInit {
     private ngZone: NgZone,
     private router: Router,
     public attributeDictionaryService: AttributeDictionaryService,
-    private logService: LogService
+    private logService: LogService,
   ) {}
 
   formAttributeDictionary() {
@@ -53,23 +53,23 @@ export class AttributeDictionaryAddComponent implements OnInit {
   }
 
   changeObjectId(e: Event) {
-    this.objectId?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.objectId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeName(e: Event) {
-    this.name?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeType(e: Event) {
-    this.type?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.type?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeCategory(e: Event) {
-    this.category?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.category?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeComponent(e: Event) {
-    this.component?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+    this.component?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   get objectId() {

@@ -1,8 +1,8 @@
-import {Component, NgZone, OnInit} from '@angular/core'
-import {Router} from '@angular/router'
-import {FloorService} from 'src/app/services/floor.service'
-import {LogService} from 'src/app/services/log.service'
-import {Floor} from 'src/app/shared/floor'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { FloorService } from 'src/app/services/floor.service'
+import { LogService } from 'src/app/services/log.service'
+import { Floor } from 'src/app/shared/floor'
 
 @Component({
   selector: 'app-floor-list',
@@ -23,7 +23,7 @@ export class FloorListComponent implements OnInit {
     private floorService: FloorService,
     private logService: LogService,
     private router: Router,
-    private ngZone: NgZone
+    private ngZone: NgZone,
   ) {}
 
   loadFloors() {
@@ -34,7 +34,7 @@ export class FloorListComponent implements OnInit {
 
   deleteFloor(id: string) {
     this.logService.CreateLog({
-      message: {id: id},
+      message: { id: id },
       objectId: id,
       operation: 'Delete',
       component: this.component,
@@ -50,7 +50,7 @@ export class FloorListComponent implements OnInit {
     const id_new: string = this.floorService.CloneFloor(id)
     this.logService
       .CreateLog({
-        message: {id: id, id_new: id_new},
+        message: { id: id, id_new: id_new },
         operation: 'Clone',
         component: this.component,
       })

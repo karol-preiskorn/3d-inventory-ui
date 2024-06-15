@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core'
-import {HttpClient, HttpHeaders} from '@angular/common/http'
+import { Component, OnInit } from '@angular/core'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 @Component({
   selector: 'app-home',
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.http.get('/assets/README.md', {responseType: 'text'}).subscribe((data: string) => {
+    this.http.get('/assets/README.md', { responseType: 'text' }).subscribe((data: string) => {
       // console.log('Get Markdown ' + JSON.stringify(data, null, ' '))
       this.md = data.replaceAll('src/', '')
     })
