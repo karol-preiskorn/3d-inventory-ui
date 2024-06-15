@@ -1,13 +1,13 @@
-import {Component, NgZone, OnInit} from '@angular/core'
-import {FormControl, FormGroup, Validators} from '@angular/forms'
-import {Router} from '@angular/router'
 import {LogService} from 'src/app/services/log.service'
 import {ModelsService} from 'src/app/services/models.service'
 import {DeviceCategoryDict} from 'src/app/shared/deviceCategories'
 import {DeviceTypeDict} from 'src/app/shared/deviceTypes'
 import {Model} from 'src/app/shared/model'
 
-import Validation from 'src/app/shared/validation'
+import {Component, NgZone, OnInit} from '@angular/core'
+import {FormControl, FormGroup, Validators} from '@angular/forms'
+import {Router} from '@angular/router'
+import {faker} from '@faker-js/faker'
 
 @Component({
   selector: 'app-add-model',
@@ -16,7 +16,7 @@ import Validation from 'src/app/shared/validation'
 })
 export class ModelAddComponent implements OnInit {
   addModelForm = new FormGroup({
-    id: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    id: new FormControl('', null),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     dimension: new FormGroup({
       width: new FormControl('', [
@@ -45,13 +45,13 @@ export class ModelAddComponent implements OnInit {
       top: new FormControl('', null),
       botom: new FormControl('', null),
     }),
-    type: new FormControl('', null),
-    category: new FormControl('', null),
+    type: new FormControl('', Validators.required),
+    category: new FormControl('', Validators.required),
   })
   model: Model
   isSubmitted = false
-  deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
-  deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
+  deviceTypeDict = new DeviceTypeDict()
+  deviceCategoryDict = new DeviceCategoryDict()
 
   constructor(
     private ngZone: NgZone,
@@ -64,81 +64,42 @@ export class ModelAddComponent implements OnInit {
     this.model = new Model()
   }
 
-  changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+  changeValue(controlName: string, value: string) {
+    this.getControl(controlName).setValue(value, {onlySelf: true})
   }
-  changeName(e: Event) {
-    this.name?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+
+  getControl(controlName: string) {
+    return this.addModelForm.get(controlName)
   }
-  changeWidth(e: Event) {
-    this.width?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
+
+  generateModel() {
+    if (this.addModelForm.controls.name) {
+      this.addModelForm.controls.name.setValue(faker.company.name() + ' ' + faker.company.buzzPhrase())
+    }
+    if (this.addModelForm.controls.dimension.controls.depth) {
+      this.addModelForm.controls.dimension.controls.depth.setValue(faker.number.int(10).toString())
+    }
+    if (this.addModelForm.controls.dimension.controls.height) {
+      this.addModelForm.controls.dimension.controls.height.setValue(faker.number.int(10).toString())
+    }
+    if (this.addModelForm.controls.dimension.controls.width) {
+      this.addModelForm.controls.dimension.controls.width.setValue(faker.number.int(10).toString())
+    }
+    if (this.addModelForm.controls.type) {
+      this.addModelForm.controls.type.setValue(this.deviceTypeDict.getRandomName())
+    }
+    if (this.addModelForm.controls.category) {
+      this.addModelForm.controls.category.setValue(this.deviceCategoryDict.getRandomName())
+    }
   }
-  changeHeight(e: Event) {
-    this.height?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
-  }
-  changeFront(e: Event) {
-    this.front?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
-  }
-  changeBack(e: Event) {
-    this.back?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
-  }
-  changeSide(e: Event) {
-    this.side?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
-  }
-  changeTop(e: Event) {
-    this.top?.setValue((e.target as HTMLInputElement).value as never, {onlySelf: true})
-  }
-  changeBotom(e: Event) {
-    this.botom?.setValue((e.target as HTMLInputElement).value as never, {onlySelf: true})
-  }
-  changeCategory(e: Event) {
-    this.category?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
-  }
-  changeType(e: Event) {
-    this.type?.setValue((e.target as HTMLInputElement).value as never, {onlySelf: true})
-  }
-  get id() {
-    return this.addModelForm.get('id')
-  }
-  get name() {
-    return this.addModelForm.get('name')
-  }
-  get width() {
-    return this.addModelForm.get('dimension.width')
-  }
-  get height() {
-    return this.addModelForm.get('dimension.height')
-  }
-  get depth() {
-    return this.addModelForm.get('dimension.depth')
-  }
-  get front() {
-    return this.addModelForm.get('texture.front')
-  }
-  get back() {
-    return this.addModelForm.get('texture.back')
-  }
-  get side() {
-    return this.addModelForm.get('texture.side')
-  }
-  get top() {
-    return this.addModelForm.get('texture.top')
-  }
-  get botom() {
-    return this.addModelForm.get('texture.botom')
-  }
-  get type() {
-    return this.addModelForm.get('type')
-  }
-  get category() {
-    return this.addModelForm.get('category')
-  }
+
   submitForm() {
+    console.log('Submit Model: ' + JSON.stringify(this.addModelForm.value))
     this.modelsService.CreateModel(this.model).subscribe((res) => {
-      console.log('Submit Model: ' + JSON.stringify(this.addModelForm.value))
       this.logService
         .CreateLog({
-          message: {id: res},
+          message: this.addModelForm.value,
+          objectId: res._id,
           operation: 'Create',
           component: 'Model',
         })

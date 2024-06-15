@@ -1,7 +1,6 @@
 import {Component, NgZone, OnInit} from '@angular/core'
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
 import {Router} from '@angular/router'
-import {v4 as uuidv4} from 'uuid'
 import {faker} from '@faker-js/faker'
 
 import {Device} from 'src/app/shared/device'
@@ -31,7 +30,7 @@ export class DeviceAddComponent implements OnInit {
   valid: Validation = new Validation()
 
   addDeviceForm = new FormGroup({
-    id: new FormControl(uuidv4(), [Validators.required, Validators.minLength(4)]),
+    id: new FormControl('', null),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     modelId: new FormControl('', Validators.required),
     position: new FormGroup({
@@ -53,29 +52,23 @@ export class DeviceAddComponent implements OnInit {
   ngOnInit() {
     this.loadModels()
   }
-
   loadModels() {
     return this.modelService.GetModels().subscribe((data: Model[]): void => {
       this.modelList = data as Model[]
     })
   }
-
   changeId(e: Event) {
     this.id?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
-
   changeX(e: Event) {
     this.x?.setValue(Number((e.target as HTMLInputElement).value), {onlySelf: true})
   }
-
   changeY(e: Event) {
     this.y?.setValue(Number((e.target as HTMLInputElement).value), {onlySelf: true})
   }
-
   changeH(e: Event) {
     this.h?.setValue(Number((e.target as HTMLInputElement).value), {onlySelf: true})
   }
-
   changeModelId(e: Event) {
     this.modelId?.setValue((e.target as HTMLInputElement).value, {onlySelf: true})
   }
@@ -83,23 +76,18 @@ export class DeviceAddComponent implements OnInit {
   get id() {
     return this.addDeviceForm.get('id')
   }
-
   get name() {
     return this.addDeviceForm.get('name')
   }
-
   get modelId() {
     return this.addDeviceForm.get('modelId')
   }
-
   get x() {
     return this.addDeviceForm.get('position')?.get('x')
   }
-
   get y() {
     return this.addDeviceForm.get('position')?.get('y')
   }
-
   get h() {
     return this.addDeviceForm.get('position')?.get('h')
   }
@@ -121,6 +109,7 @@ export class DeviceAddComponent implements OnInit {
     this.logService.CreateLog({
       operation: 'Create',
       component: 'Device',
+      // objectId: res._id,
       message: this.addDeviceForm.value,
     })
     this.devicesService.CreateDevice(this.device).subscribe(() => {

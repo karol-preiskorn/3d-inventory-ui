@@ -13,7 +13,7 @@
         [ngClass]="{
           'is-invalid': this.addDeviceForm.controls.name.status != 'VALID',
           'is-valid': this.addDeviceForm.controls.name.status == 'VALID',
-          'form-control': true
+          'form-control': true,
         }"></textarea>
       <div *ngIf="this.addDeviceForm.controls.name.errors" class="invalid-feedback">
         <div *ngIf="this.addDeviceForm.controls.name.errors.required">Name is required</div>
@@ -33,7 +33,7 @@
               [ngClass]="{
                 'is-invalid': this.addDeviceForm.controls.position.controls.x.status != 'VALID',
                 'is-valid': this.addDeviceForm.controls.position.controls.x.status == 'VALID',
-                'form-control': true
+                'form-control': true,
               }" />
             <div *ngIf="this.addDeviceForm.controls.position.controls.x.errors" class="invalid-feedback">
               <div *ngIf="this.addDeviceForm.controls.position.controls.x.errors.required">X is required</div>
@@ -54,7 +54,7 @@
               [ngClass]="{
                 'is-invalid': this.addDeviceForm.controls.position.controls.y.status != 'VALID',
                 'is-valid': this.addDeviceForm.controls.position.controls.y.status == 'VALID',
-                'form-control': true
+                'form-control': true,
               }" />
             <div *ngIf="this.addDeviceForm.controls.position.controls.y.errors" class="invalid-feedback">
               <div *ngIf="this.addDeviceForm.controls.position.controls.y.errors.required">Y is required</div>
@@ -75,7 +75,7 @@
               [ngClass]="{
                 'is-invalid': this.addDeviceForm.controls.position.controls.h.status != 'VALID',
                 'is-valid': this.addDeviceForm.controls.position.controls.h.status == 'VALID',
-                'form-control': true
+                'form-control': true,
               }" />
             <div *ngIf="this.addDeviceForm.controls.position.controls.h.errors" class="invalid-feedback">
               <div *ngIf="this.addDeviceForm.controls.position.controls.h.errors.required">H is required</div>
@@ -100,7 +100,7 @@
             [ngClass]="{
               'is-invalid': this.addDeviceForm.controls.modelId.status != 'VALID',
               'is-valid': this.addDeviceForm.controls.modelId.status == 'VALID',
-              'form-select': true
+              'form-select': true,
             }">
             <option *ngFor="let modelObj of this.modelList; let i = index" value="{{ modelObj._id }}">
               {{ modelObj.name }}
@@ -117,7 +117,7 @@
     <div class="d-flex p-2">
       <div class="p-1 g-col-1">
         <button type="submit" [disabled]="!(addDeviceForm.valid && addDeviceForm.touched)" class="btn btn-primary mb-3">
-          Submit
+          <i class="bi bi-file-earmark-plus"></i> Add
         </button>
       </div>
       <div class="p-1 g-col-1">

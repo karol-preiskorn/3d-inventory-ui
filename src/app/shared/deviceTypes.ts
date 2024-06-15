@@ -1,47 +1,39 @@
-﻿/*
- * File:        /src/app/DeviceTypes.ts
- * Description: Defines attribute Device Type list
+﻿/**
+ * @description: Defines attribute Device Type list
  * @memberof    DeviceTypes
- * Dependency:
  *
- * Date        By     Comments
- * ----------  -----  ------------------------
- * 2023-08-03  C2RLO  Add docs
- * 2023-04-11	 C2RLO	convert to DeviceType and DeviceTypeList
- * 2023-02-19	 C2RLO	add findType
- * 2023-02-18  C2RLO  Init
+ * @version: 2023-08-03  C2RLO  Add docs
+ * @version: 2023-04-11	 C2RLO	convert to DeviceType and DeviceTypeList
+ * @version: 2023-02-19	 C2RLO	add findType
+ * @version: 2023-02-18  C2RLO  Init
  */
 
-export interface DeviceTypeInterfance {
+export interface DeviceTypeInterface {
   name: string
   description: string
 }
 
-export type DeviceTypeListType = {name: string; description: string}
+export type DeviceTypeListType = DeviceTypeInterface
 
 export class DeviceType {
   name: string
   description: string
+
   constructor(deviceType: DeviceTypeListType) {
     this.name = deviceType.name
     this.description = deviceType.description
   }
 }
 
-/**
- * @description Dictionarys values
- * @export
- * @class DeviceTypeDict
- */
 export class DeviceTypeDict {
-  list: DeviceType[] = [
+  private list: DeviceType[] = [
     {name: '', description: ''},
     {name: 'Bridge', description: ''},
     {name: 'CoolAir', description: ''},
     {name: 'Copier', description: ''},
     {name: 'Desktop', description: ''},
     {name: 'Firewall', description: ''},
-    {name: 'Getaway', description: ''},
+    {name: 'Gateway', description: ''},
     {name: 'Hubs', description: ''},
     {name: 'Load Balancer', description: ''},
     {name: 'Modem', description: ''},
@@ -62,46 +54,25 @@ export class DeviceTypeDict {
     {name: 'UPS System', description: ''},
     {name: 'Workstations', description: ''},
   ]
+
   get(): DeviceType[] {
     return this.list
   }
 
-  /**
-   * Return random type from deviceTypeList
-   * @return {*}  {string}
-   * @memberof DeviceTypes
-   */
   public getRandom(): DeviceType {
     return this.list[Math.floor(Math.random() * this.list.length)]
   }
 
-  /**
-   * @description Generate random name from disctionary
-   * @return {*}  {string}
-   * @memberof DeviceTypeDict
-   */
   public getRandomName(): string {
     return this.list[Math.floor(Math.random() * this.list.length)].name
   }
 
-  /**
-   * Find specific type in DeviceTypeList
-   *
-   * @param {string} search
-   * @return {*}  {string}
-   * @memberof DeviceTypes
-   */
-  findType(search: string): string | DeviceType {
+  findType(search: string): DeviceType | string {
     const element = this.list.find((e) => e.name === search)
-    return element || search // element?.DeviceType || search
+    return element || search
   }
 
-  /**
-   * @description Find type by name
-   * @param {string} obj
-   * @memberof DeviceTypeDict
-   */
-  findTypeByName(obj: string) {
+  findTypeByName(obj: string): void {
     for (let i = 0; i < this.list.length; i++) {
       if (this.list[i].name === obj) {
         console.log('-->', obj)

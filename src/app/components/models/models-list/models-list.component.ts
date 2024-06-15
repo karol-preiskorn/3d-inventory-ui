@@ -44,16 +44,18 @@ export class ModelsListComponent implements OnInit {
    * Deletes a model with the specified ID.
    * @param id The ID of the model to delete.
    */
-  DeleteModel(id: string): Observable<Model> {
+  DeleteModel(id: string) {
     this.logService.CreateLog({
       message: {id: id},
       objectId: id,
       operation: 'Delete',
-      component: 'Model',
+      component: this.component,
     })
-    this.loadModels()
-    this.router.navigate(['/models-list'])
-    return this.modelsService.DeleteModel(id)
+    return this.modelsService.DeleteModel(id).subscribe(() => {
+      console.log(id + ' deleted')
+      this.ngOnInit()
+      this.router.navigate(['/models-list/'])
+    })
   }
 
   /**

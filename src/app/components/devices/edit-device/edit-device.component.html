@@ -16,7 +16,7 @@
           [ngClass]="{
             'is-invalid': this.editDeviceForm.controls._id.status != 'VALID',
             'is-valid': this.editDeviceForm.controls._id.status == 'VALID',
-            'form-control': true
+            'form-control': true,
           }" />
         <div *ngIf="this.editDeviceForm.controls._id.errors" class="invalid-feedback">
           <div *ngIf="this.editDeviceForm.controls._id.errors.required">Id is required</div>
@@ -39,7 +39,7 @@
             [ngClass]="{
               'is-invalid': this.editDeviceForm.controls.name.status != 'VALID',
               'is-valid': this.editDeviceForm.controls.name.status == 'VALID',
-              'form-control': true
+              'form-control': true,
             }" />
           <div *ngIf="this.editDeviceForm.controls.name.errors" class="invalid-feedback">
             <div *ngIf="this.editDeviceForm.controls.name.errors.required">Name is required</div>
@@ -62,7 +62,7 @@
             [ngClass]="{
               'is-invalid': this.editDeviceForm.controls.position.controls.x.status != 'VALID',
               'is-valid': this.editDeviceForm.controls.position.controls.x.status == 'VALID',
-              'form-control': true
+              'form-control': true,
             }" />
         </div>
         <div *ngIf="this.editDeviceForm.controls.position.controls.x.errors" class="invalid-feedback">
@@ -81,7 +81,7 @@
             [ngClass]="{
               'is-invalid': this.editDeviceForm.controls.position.controls.y.status != 'VALID',
               'is-valid': this.editDeviceForm.controls.position.controls.y.status == 'VALID',
-              'form-control': true
+              'form-control': true,
             }" />
         </div>
         <div *ngIf="this.editDeviceForm.controls.position.controls.y.errors" class="invalid-feedback">
@@ -100,7 +100,7 @@
             [ngClass]="{
               'is-invalid': this.editDeviceForm.controls.position.controls.h.status != 'VALID',
               'is-valid': this.editDeviceForm.controls.position.controls.h.status == 'VALID',
-              'form-control': true
+              'form-control': true,
             }" />
         </div>
         <div *ngIf="this.editDeviceForm.controls.position.controls.h.hasError" class="invalid-feedback">
@@ -121,7 +121,7 @@
             [ngClass]="{
               'is-invalid': this.editDeviceForm.controls.modelId.status != 'VALID',
               'is-valid': this.editDeviceForm.controls.modelId.status == 'VALID',
-              'form-select': true
+              'form-select': true,
             }">
             <option *ngFor="let modelObj of this.modelList; let i = index" value="{{ modelObj._id }}">
               {{ modelObj.name }} ({{ modelObj.type }}/{{ modelObj.category }})
@@ -141,9 +141,9 @@
         [ngClass]="{
           'is-invalid': !(editDeviceForm.valid && editDeviceForm.touched),
           'is-valid': editDeviceForm.valid && editDeviceForm.touched,
-          'form-control': true
+          'form-control': true,
         }">
-        Update
+        <i class="bi bi-floppy"></i> Update
       </button>
 
       <div *ngIf="!(editDeviceForm.invalid && editDeviceForm.touched)" class="invalid-feedback">

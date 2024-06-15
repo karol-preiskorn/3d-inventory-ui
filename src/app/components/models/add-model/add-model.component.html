@@ -249,12 +249,17 @@
             type="button"
             [disabled]="!(addModelForm.valid && addModelForm.touched)"
             class="btn btn-primary"
-            (click)="this.submitForm()"
+            (click)="submitForm()"
             tooltip="Create new device model.">
-            Add Model
+            <i class="bi bi-file-earmark-plus"></i> Add Model
           </button>
         </div>
         <div class="col">
+          <div class="p-1 g-col-1">
+            <button type="button" (click)="generateModel()" class="btn btn-debug">
+              <i class="bi bi-bookmark-plus"></i> Generate random data
+            </button>
+          </div>
           <p class="">Form Status: {{ addModelForm.status }}.</p>
           <p class="">Form Value: {{ addModelForm.value | json }}.</p>
         </div>

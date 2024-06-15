@@ -174,3 +174,5 @@ documentation
 MONGO.md
 .odo
 src/environments/environment.prod.ts
+.nx/cache
+.nx/workspace-data
