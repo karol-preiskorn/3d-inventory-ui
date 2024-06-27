@@ -127,7 +127,7 @@
               'form-select': true,
             }"
           >
-            <option *ngFor="let modelObj of this.modelList; let i = index" value="{{ modelObj._id }}">
+            <option *ngFor="let modelObj of this.modelList; let i = index" value="{{ modelObj.id }}">
               {{ modelObj.name }} ({{ modelObj.type }}/{{ modelObj.category }})
             </option>
           </select>

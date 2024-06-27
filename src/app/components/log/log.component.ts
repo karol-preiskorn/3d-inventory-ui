@@ -1,25 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core'
 import { Subscription } from 'rxjs'
-
-import { Log, LogService } from 'src/app/services/log.service'
-
-import { Device } from 'src/app/shared/device'
-import { DeviceService } from 'src/app/services/device.service'
-
-import { Model } from 'src/app/shared/model'
-import { ModelsService } from 'src/app/services/models.service'
-
-import { Connection } from 'src/app/shared/connection'
-import { ConnectionService } from 'src/app/services/connection.service'
-
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
 import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
-
-import { Attribute } from 'src/app/shared/attribute'
 import { AttributeService } from 'src/app/services/attribute.service'
-
-import { Floor } from 'src/app/shared/floor'
+import { ConnectionService } from 'src/app/services/connection.service'
+import { DeviceService } from 'src/app/services/device.service'
 import { FloorService } from 'src/app/services/floor.service'
+import { Log, LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Attribute } from 'src/app/shared/attribute'
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { Connection } from 'src/app/shared/connection'
+import { Device } from 'src/app/shared/device'
+import { Floor } from 'src/app/shared/floor'
+import { Model } from 'src/app/shared/model'
+
+import { Component, Input, OnInit } from '@angular/core'
 
 const api = [
   { component: 'Models', api: 'models' },
@@ -239,7 +233,7 @@ export class LogComponent implements OnInit {
    * @returns The name of the model if found, otherwise undefined.
    */
   findModelName(id: string) {
-    return this.modelList.find((e) => e._id === id)?.name
+    return this.modelList.find((e) => e.id === id)?.name
   }
 
   /**

@@ -1,19 +1,16 @@
+import { DeviceService } from 'src/app/services/device.service'
+import { LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Device } from 'src/app/shared/device'
+import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
+import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
+import { Model } from 'src/app/shared/model'
+import Validation from 'src/app/shared/validation'
+
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
-
-import { Device } from 'src/app/shared/device'
-import { DeviceService } from 'src/app/services/device.service'
-
-import { LogService } from 'src/app/services/log.service'
-import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
-import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
-
-import { Model } from 'src/app/shared/model'
-import { ModelsService } from 'src/app/services/models.service'
-
-import Validation from 'src/app/shared/validation'
 
 @Component({
   selector: 'app-add-device',
@@ -101,7 +98,7 @@ export class DeviceAddComponent implements OnInit {
     this.addDeviceForm.controls.position.controls.x.setValue(faker.number.int(10))
     this.addDeviceForm.controls.position.controls.y.setValue(faker.number.int(10))
     this.addDeviceForm.controls.position.controls.h.setValue(faker.number.int(10))
-    this.addDeviceForm.controls.modelId.setValue(this.modelList[Math.floor(Math.random() * this.modelList.length)]._id)
+    this.addDeviceForm.controls.modelId.setValue(this.modelList[Math.floor(Math.random() * this.modelList.length)].id)
   }
 
   submitForm() {

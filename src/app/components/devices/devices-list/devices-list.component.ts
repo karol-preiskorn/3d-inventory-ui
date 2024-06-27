@@ -1,13 +1,11 @@
+import { DeviceService } from 'src/app/services/device.service'
+import { LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Device } from 'src/app/shared/device'
+import { Model } from 'src/app/shared/model'
+
 import { Component, NgZone, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
-
-import { LogService } from 'src/app/services/log.service'
-
-import { Device } from 'src/app/shared/device'
-import { DeviceService } from 'src/app/services/device.service'
-
-import { Model } from 'src/app/shared/model'
-import { ModelsService } from 'src/app/services/models.service'
 
 @Component({
   selector: 'app-device-list',
@@ -90,7 +88,7 @@ export class DeviceListComponent implements OnInit {
   }
 
   findModelName(id: string): string {
-    return this.modelList.find((e: Model) => e._id === id)?.name as string
+    return this.modelList.find((e: Model) => e.id === id)?.name as string
   }
 
   stringify(obj: object): string {

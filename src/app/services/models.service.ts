@@ -1,8 +1,10 @@
+import { Observable, of } from 'rxjs'
+import { catchError, retry } from 'rxjs/operators'
+
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable, NgZone } from '@angular/core'
 import { Router } from '@angular/router'
-import { Observable, of } from 'rxjs'
-import { catchError, retry } from 'rxjs/operators'
+
 import { environment } from '../../environments/environment'
 import { Model } from '../shared/model'
 import { LogService } from './log.service'
@@ -83,7 +85,7 @@ export class ModelsService {
         next: (v) => {
           console.log('Create Model: ' + JSON.stringify(v, null, ' '))
           this.ngZone.run(() => this.router.navigateByUrl('models-list'))
-          idConed = v._id
+          idConed = v.id
         },
         complete: () => this.ngZone.run(() => this.router.navigateByUrl('models-list')),
         error: (err) => {

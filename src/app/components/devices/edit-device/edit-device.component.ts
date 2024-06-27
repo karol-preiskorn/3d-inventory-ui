@@ -29,6 +29,9 @@ export class DeviceEditComponent implements OnInit {
       h: new FormControl<number>(0, [Validators.required, this.valid.numberValidator]),
     }),
   })
+  attributeComponent: string
+  attributeComponentObject: string
+  component: string
 
   constructor(
     public activatedRoute: ActivatedRoute,

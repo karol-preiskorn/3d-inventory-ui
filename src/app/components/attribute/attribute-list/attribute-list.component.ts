@@ -129,7 +129,7 @@ export class AttributeListComponent implements OnInit {
     return this.deviceDictionary.find((e) => e._id === id)?.name as string
   }
   findModelName(id: string | null): string {
-    return this.modelDictionary.find((e) => e._id === id)?.name as string
+    return this.modelDictionary.find((e) => e.id === id)?.name as string
   }
   getModelList() {
     return this.modelService.GetModels().subscribe((data: Model[]) => {

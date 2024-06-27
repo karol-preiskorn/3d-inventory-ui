@@ -110,7 +110,7 @@
       "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
       "operation": "Update",
       "component": "Models",
-      "message": "{\"id\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"name\":\"Model 1\",\"dimension\":{\"width\":\"1\",\"height\":\"2\",\"depth\":\"1\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"Bridge\",\"category\":\"Connectivity\"}"
+      "message": "{\"id\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"name\":\"Model 1\",\"dimension\":{\"width\":\"1\",\"height\":\"2\",\"depth\":\"1\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"bottom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"Bridge\",\"category\":\"Connectivity\"}"
     },
     {
       "id": "e1a269c5-3192-4ae9-b477-16a98ad91108",
@@ -126,7 +126,7 @@
       "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
       "operation": "Update",
       "component": "Models",
-      "message": "{\"id\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"name\":\"Model 1\",\"dimension\":{\"width\":\"1\",\"height\":\"2\",\"depth\":\"2\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"Bridge\",\"category\":\"Connectivity\"}"
+      "message": "{\"id\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"name\":\"Model 1\",\"dimension\":{\"width\":\"1\",\"height\":\"2\",\"depth\":\"2\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"bottom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"Bridge\",\"category\":\"Connectivity\"}"
     },
     {
       "id": "37c301cc-e1d7-48ef-acf0-8f378560e386",
@@ -134,7 +134,7 @@
       "object": "850819ca-305e-45e8-ac14-32271aad0ee7",
       "operation": "Update",
       "component": "Models",
-      "message": "{\"id\":\"850819ca-305e-45e8-ac14-32271aad0ee7\",\"name\":\"Model 3\",\"dimension\":{\"width\":\"2\",\"height\":\"3\",\"depth\":\"2\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"Server\",\"category\":\"Facility\"}"
+      "message": "{\"id\":\"850819ca-305e-45e8-ac14-32271aad0ee7\",\"name\":\"Model 3\",\"dimension\":{\"width\":\"2\",\"height\":\"3\",\"depth\":\"2\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"bottom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"Server\",\"category\":\"Facility\"}"
     },
     {
       "id": "00af8550-9459-42c5-90df-9425e13de48e",
@@ -254,7 +254,7 @@
       "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
       "operation": "Update",
       "component": "Models",
-      "message": "{\"id\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"name\":\"Model 1\",\"dimension\":{\"width\":\"1\",\"height\":\"2\",\"depth\":\"2\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"CoolAir\",\"category\":\"Connectivity\"}"
+      "message": "{\"id\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"name\":\"Model 1\",\"dimension\":{\"width\":\"1\",\"height\":\"2\",\"depth\":\"2\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"bottom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"CoolAir\",\"category\":\"Connectivity\"}"
     },
     {
       "id": "4873a7e1-cb11-4046-b640-13a6bee8f44c",
@@ -262,7 +262,7 @@
       "object": "36ae0146-aa2a-4fb1-aa87-4804c23bf30e",
       "operation": "Update",
       "component": "Models",
-      "message": "{\"id\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"name\":\"Model 1\",\"dimension\":{\"width\":\"1\",\"height\":\"2\",\"depth\":\"2\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"CoolAir\",\"category\":\"Facility\"}"
+      "message": "{\"id\":\"36ae0146-aa2a-4fb1-aa87-4804c23bf30e\",\"name\":\"Model 1\",\"dimension\":{\"width\":\"1\",\"height\":\"2\",\"depth\":\"2\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"bottom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"CoolAir\",\"category\":\"Facility\"}"
     },
     {
       "id": "5cf51606-91c7-41e4-8a75-b9d94ac7d97c",
@@ -270,7 +270,7 @@
       "object": "482e0849-2241-4ef3-b316-cdf844befbda",
       "operation": "Update",
       "component": "Models",
-      "message": "{\"id\":\"482e0849-2241-4ef3-b316-cdf844befbda\",\"name\":\"Model 4\",\"dimension\":{\"width\":\"3\",\"height\":\"4\",\"depth\":\"3\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"botom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"Server\",\"category\":\"Facility\"}"
+      "message": "{\"id\":\"482e0849-2241-4ef3-b316-cdf844befbda\",\"name\":\"Model 4\",\"dimension\":{\"width\":\"3\",\"height\":\"4\",\"depth\":\"3\"},\"texture\":{\"front\":\"/assets/r710-2.5-nobezel__29341.png\",\"back\":\"/assets/r710-2.5-nobezel__29341.png\",\"side\":\"/assets/r710-2.5-nobezel__29341.png\",\"top\":\"/assets/r710-2.5-nobezel__29341.png\",\"bottom\":\"/assets/r710-2.5-nobezel__29341.png\"},\"type\":\"Server\",\"category\":\"Facility\"}"
     },
     {
       "id": "3363368c-97ca-4842-aebb-93ac167fd722",
@@ -1023,7 +1023,7 @@
         "back": "/assets/r710-2.5-nobezel__29341.png",
         "side": "/assets/r710-2.5-nobezel__29341.png",
         "top": "/assets/r710-2.5-nobezel__29341.png",
-        "botom": "/assets/r710-2.5-nobezel__29341.png"
+        "bottom": "/assets/r710-2.5-nobezel__29341.png"
       },
       "type": "CoolAir",
       "category": "Facility"
@@ -1041,7 +1041,7 @@
         "back": "/assets/r710-2.5-nobezel__29341.png",
         "side": "/assets/r710-2.5-nobezel__29341.png",
         "top": "/assets/r710-2.5-nobezel__29341.png",
-        "botom": "/assets/r710-2.5-nobezel__29341.png"
+        "bottom": "/assets/r710-2.5-nobezel__29341.png"
       },
       "type": "Router",
       "category": "Site"
@@ -1059,7 +1059,7 @@
         "back": "/assets/r710-2.5-nobezel__29341.png",
         "side": "/assets/r710-2.5-nobezel__29341.png",
         "top": "/assets/r710-2.5-nobezel__29341.png",
-        "botom": "/assets/r710-2.5-nobezel__29341.png"
+        "bottom": "/assets/r710-2.5-nobezel__29341.png"
       },
       "type": "Server",
       "category": "Facility"
@@ -1077,7 +1077,7 @@
         "back": "/assets/r710-2.5-nobezel__29341.png",
         "side": "/assets/r710-2.5-nobezel__29341.png",
         "top": "/assets/r710-2.5-nobezel__29341.png",
-        "botom": "/assets/r710-2.5-nobezel__29341.png"
+        "bottom": "/assets/r710-2.5-nobezel__29341.png"
       },
       "type": "Server",
       "category": "Facility"
@@ -1095,7 +1095,7 @@
         "back": "/assets/r710-2.5-nobezel__29341.png",
         "side": "/assets/r710-2.5-nobezel__29341.png",
         "top": "/assets/r710-2.5-nobezel__29341.png",
-        "botom": "/assets/r710-2.5-nobezel__29341.png"
+        "bottom": "/assets/r710-2.5-nobezel__29341.png"
       },
       "type": "Server",
       "category": "Facility"

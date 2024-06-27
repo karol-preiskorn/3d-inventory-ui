@@ -189,21 +189,21 @@
         </div>
         <div class="col">
           <div class="form-group mb-3">
-            <label for="botom" class="form-label">Botom</label>
+            <label for="bottom" class="form-label">bottom</label>
             <input
               type="text"
-              formControlName="botom"
-              id="botom"
+              formControlName="bottom"
+              id="bottom"
               [ngClass]="{
-                'is-invalid': this.addModelForm.controls.texture.controls.botom.status !== 'VALID',
-                'is-valid': this.addModelForm.controls.texture.controls.botom.status === 'VALID',
+                'is-invalid': this.addModelForm.controls.texture.controls.bottom.status !== 'VALID',
+                'is-valid': this.addModelForm.controls.texture.controls.bottom.status === 'VALID',
                 'form-control': true,
               }"
             />
-            <div *ngIf="this.addModelForm.controls.texture.controls.botom.errors" class="invalid-feedback">
-              <div *ngIf="this.addModelForm.controls.texture.controls.botom.errors.required">Botom is required</div>
-              <div *ngIf="this.addModelForm.controls.texture.controls.botom.errors.minlength">
-                Botom must be at least 2 characters
+            <div *ngIf="this.addModelForm.controls.texture.controls.bottom.errors" class="invalid-feedback">
+              <div *ngIf="this.addModelForm.controls.texture.controls.bottom.errors.required">bottom is required</div>
+              <div *ngIf="this.addModelForm.controls.texture.controls.bottom.errors.minlength">
+                bottom must be at least 2 characters
               </div>
             </div>
           </div>

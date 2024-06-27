@@ -43,7 +43,7 @@ export class ModelAddComponent implements OnInit {
       back: new FormControl('', null),
       side: new FormControl('', null),
       top: new FormControl('', null),
-      botom: new FormControl('', null),
+      bottom: new FormControl('', null),
     }),
     type: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required),
@@ -102,7 +102,7 @@ export class ModelAddComponent implements OnInit {
       this.logService
         .CreateLog({
           message: this.addModelForm.value,
-          objectId: res._id,
+          objectId: res.id,
           operation: 'Create',
           component: 'Model',
         })
