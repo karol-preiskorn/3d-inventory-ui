@@ -1,13 +1,13 @@
-import { LogService } from 'src/app/services/log.service'
-import { ModelsService } from 'src/app/services/models.service'
-import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
-import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
-import { Model } from 'src/app/shared/model'
+import { LogService } from 'src/app/services/log.service';
+import { ModelsService } from 'src/app/services/models.service';
+import { DeviceCategoryDict } from 'src/app/shared/deviceCategories';
+import { DeviceTypeDict } from 'src/app/shared/deviceTypes';
+import { Model } from 'src/app/shared/model';
 
-import { Component, NgZone, OnInit } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
-import { faker } from '@faker-js/faker'
+import { Component, NgZone, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { faker } from '@faker-js/faker';
 
 @Component({
   selector: 'app-add-model',
@@ -102,7 +102,7 @@ export class ModelAddComponent implements OnInit {
       this.logService
         .CreateLog({
           message: this.addModelForm.value,
-          objectId: res.id,
+          objectId: res._id,
           operation: 'Create',
           component: 'Model',
         })

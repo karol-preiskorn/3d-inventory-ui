@@ -5,10 +5,13 @@
  * @version 2024-03-14 C2RLO - Initial
  **/
 
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
-import { Injectable, Input } from '@angular/core'
-import { Observable, catchError, of, retry, throwError } from 'rxjs'
-import { environment } from '../../environments/environment'
+import { ObjectId } from 'mongodb';
+import { catchError, Observable, of, retry, throwError } from 'rxjs';
+
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Injectable, Input } from '@angular/core';
+
+import { environment } from '../../environments/environment';
 
 /**
  * Represents the parameters for retrieving logs.
@@ -22,9 +25,9 @@ export interface LogParamteres {
  * Represents a log entry.
  */
 export interface Log {
-  _id: string // logs uuid4
+  _id: ObjectId // logs uuid4
   date: string // date-time
-  objectId?: string | null // objects uuid4
+  objectId?: ObjectId | null // objects uuid4
   operation: string // Edit, Delete, Create, Update
   component: string // [device, model, category, floor]
   message: object // object json
@@ -34,7 +37,7 @@ export interface Log {
  * Represents the input for creating a log entry.
  */
 export interface LogIn {
-  objectId?: string | null
+  objectId?: ObjectId
   operation: string
   component: string
   message: object
@@ -126,7 +129,7 @@ export class LogService {
    * @param id - The log ID.
    * @returns An Observable that emits a Log object.
    */
-  DeleteLog(id: string): Observable<Log> {
+  DeleteLog(id: ObjectId): Observable<Log> {
     return this.http
       .delete<Log>(environment.baseurl + '/logs/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError))

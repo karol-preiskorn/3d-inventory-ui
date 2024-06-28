@@ -1,13 +1,15 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
-import { Observable, throwError } from 'rxjs'
-import { catchError, retry } from 'rxjs/operators'
-import { SyncRequestClient } from 'ts-sync-request'
-import { v4 as uuidv4 } from 'uuid'
-import { environment } from '../../environments/environment'
-import { Floor } from '../shared/floor'
-import { Log, LogService } from './log.service'
+import { ObjectId } from 'mongodb';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+import { SyncRequestClient } from 'ts-sync-request';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { environment } from '../../environments/environment';
+import { Floor } from '../shared/floor';
+import { Log, LogService } from './log.service';
 
 @Injectable({
   providedIn: 'root',
@@ -49,7 +51,7 @@ export class FloorService {
    * @param id - The ID of the floor to retrieve.
    * @returns An Observable that emits the retrieved floor.
    */
-  GetFloor(id: string | null): Observable<Floor> {
+  GetFloor(id: ObjectId): Observable<Floor> {
     return this.http
       .get<Floor>(environment.baseurl + '/floor/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
@@ -60,7 +62,7 @@ export class FloorService {
    * @param id - The ID of the floor to delete.
    * @returns An Observable that emits the deleted floor.
    */
-  DeleteFloor(id: string): Observable<Floor> {
+  DeleteFloor(id: ObjectId): Observable<Floor> {
     return this.http
       .delete<Floor>(environment.baseurl + '/floor/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
@@ -83,8 +85,8 @@ export class FloorService {
    * @param id - The ID of the floor to clone.
    * @returns The UUID of the cloned floor.
    */
-  CloneFloor(id: string): string {
-    const id_uuid: string = uuidv4()
+  CloneFloor(id: ObjectId): ObjectId {
+    const id_uuid: ObjectId = new ObjectId()
     this.GetFloor(id).subscribe((value: Floor) => {
       console.log('Get Floor: ' + JSON.stringify(value, null, ' '))
       value.id = id_uuid

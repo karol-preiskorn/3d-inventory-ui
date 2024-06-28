@@ -16,9 +16,10 @@
               : {
                   id: 'devicePagination',
                   itemsPerPage: 5,
-                  currentPage: deviceListPage
+                  currentPage: deviceListPage,
                 }
-        ">
+        "
+      >
         <td tooltip="{{ device._id }}">{{ device.name }}</td>
         <td>{{ stringify(device.position) }}</td>
         <td>

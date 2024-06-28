@@ -1,13 +1,14 @@
-import { Observable, of } from 'rxjs'
-import { catchError, retry } from 'rxjs/operators'
+import { ObjectId } from 'mongodb';
+import { Observable, of } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { environment } from '../../environments/environment'
-import { Model } from '../shared/model'
-import { LogService } from './log.service'
+import { environment } from '../../environments/environment';
+import { Model } from '../shared/model';
+import { LogService } from './log.service';
 
 @Injectable({
   providedIn: 'root',
@@ -42,9 +43,9 @@ export class ModelsService {
    * @param id The ID of the model to retrieve.
    * @returns An Observable that emits the retrieved model.
    */
-  GetModel(id: string): Observable<Model> {
+  GetModel(id: ObjectId): Observable<Model> {
     return this.http
-      .get<Model>(environment.baseurl + '/models/' + id, this.httpOptions)
+      .get<Model>(environment.baseurl + '/models/' + String(id), this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Model>('GetModel', id as unknown as Model)))
   }
 
@@ -53,7 +54,7 @@ export class ModelsService {
    * @param id The ID of the model to delete.
    * @returns An Observable that emits the deleted model.
    */
-  DeleteModel(id: string): Observable<Model> {
+  DeleteModel(id: ObjectId): Observable<Model> {
     return this.http
       .delete<Model>(environment.baseurl + '/models/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Model>('DeleteModel', id as unknown as Model)))
@@ -76,7 +77,7 @@ export class ModelsService {
    * @param id - The ID of the model to clone.
    * @returns The UUID of the cloned model.
    */
-  CloneModel(id: string): string {
+  CloneModel(id: ObjectId): string {
     console.log(`ModelService.CloneModel: ${JSON.stringify(id, null, ' ')}`)
     let idConed = ''
     this.GetModel(id).subscribe((value: Model) => {
@@ -85,7 +86,7 @@ export class ModelsService {
         next: (v) => {
           console.log('Create Model: ' + JSON.stringify(v, null, ' '))
           this.ngZone.run(() => this.router.navigateByUrl('models-list'))
-          idConed = v.id
+          idConed = String(v._id) // Convert 'ObjectId' to string
         },
         complete: () => this.ngZone.run(() => this.router.navigateByUrl('models-list')),
         error: (err) => {

@@ -1,8 +1,10 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
-import { FloorService } from 'src/app/services/floor.service'
-import { LogService } from 'src/app/services/log.service'
-import { Floor } from 'src/app/shared/floor'
+import { ObjectId } from 'mongodb';
+import { FloorService } from 'src/app/services/floor.service';
+import { LogService } from 'src/app/services/log.service';
+import { Floor } from 'src/app/shared/floor';
+
+import { Component, NgZone, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-floor-list',
@@ -32,21 +34,22 @@ export class FloorListComponent implements OnInit {
     })
   }
 
-  deleteFloor(id: string) {
+  deleteFloor(id: ObjectId) {
+    const idString = id // Convert ObjectId to string
     this.logService.CreateLog({
-      message: { id: id },
-      objectId: id,
+      message: { id: idString },
+      objectId: idString,
       operation: 'Delete',
       component: this.component,
     })
-    return this.floorService.DeleteFloor(id).subscribe((data: Floor) => {
+    return this.floorService.DeleteFloor(idString).subscribe((data: Floor) => {
       console.log(data)
       this.loadFloors()
       this.router.navigate(['/floor-list/'])
     })
   }
 
-  cloneFloor(id: string) {
+  cloneFloor(id: ObjectId) {
     const id_new: string = this.floorService.CloneFloor(id)
     this.logService
       .CreateLog({

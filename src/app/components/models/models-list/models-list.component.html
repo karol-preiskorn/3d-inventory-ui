@@ -13,7 +13,6 @@
       <tr
         *ngFor="
           let model of ModelsList
-            | keyvalue
             | paginate
               : {
                   id: 'modelListPagination',
@@ -23,27 +22,29 @@
         "
       >
         <td>
-          {{ model.value.name }}
-          <p class="fs-7 fw-lighter deviceid">{{ model.value.id }}</p>
+          {{ model.name }}
+          <p class="fs-7 fw-lighter deviceid">{{ model._id }}</p>
         </td>
         <td>
-          ({{ model.value.dimension }}
-          {{ model.value.dimension.width + ', ' + model.value.dimension.height + ', ' + model.value.dimension.depth }})
+          ({{ model.dimension }}
+          {{ model.dimension.width + ', ' + model.dimension.height + ', ' + model.dimension.depth }})
         </td>
         <td style="font-size: small">
-          <a href="{{ model.texture.front }}">front</a>, <a href="{{ model.texture.back }}">back</a>,
-          <a href="{{ model.texture.side }}">side</a>, <a href="{{ model.texture.top }}">top</a>,
-          <a href="{{ model.texture.bottom }}">bottom</a>
+          <a *ngIf="model.texture" href="{{ model.texture.front }}">front</a>,
+          <a *ngIf="model.texture" href="{{ model.texture.back }}">back</a>,
+          <a *ngIf="model.texture" href="{{ model.texture.side }}">side</a>,
+          <a *ngIf="model.texture" href="{{ model.texture.top }}">top</a>,
+          <a *ngIf="model.texture" href="{{ model.texture.bottom }}">bottom</a>
         </td>
         <td>
           <div class="btn-group" role="group" aria-label="model-operations">
             <button type="button" class="btn btn-success btn-sm move-right" id="edit-device" (click)="EditModel(model)">
               <i class="bi bi-pen"></i>
             </button>
-            <button type="button" id="delete-device" class="btn btn-danger btn-sm" (click)="DeleteModel(model.id)">
+            <button type="button" id="delete-device" class="btn btn-danger btn-sm" (click)="DeleteModel(model._id)">
               <i class="bi bi-trash"></i>
             </button>
-            <button type="button" id="clone-device" class="btn btn-info btn-sm" (click)="CloneModel(model.id)">
+            <button type="button" id="clone-device" class="btn btn-info btn-sm" (click)="CloneModel(model._id)">
               <i class="bi bi-copy"></i>
             </button>
           </div>

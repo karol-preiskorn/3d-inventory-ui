@@ -16,7 +16,7 @@
             }"
             id="deviceId"
           >
-            <option *ngFor="let deviceObj of deviceDictionary; let i = index" value="{{ deviceObj._id }}">
+            <option *ngFor="let deviceObj of deviceDictionary; let i = index" [value]="deviceObj._id.toString()">
               {{ deviceObj.name }}
             </option>
           </select>
@@ -41,7 +41,7 @@
             }"
             id="modelId"
           >
-            <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj.id }}">
+            <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj._id }}">
               {{ modelObj.name }}
             </option>
           </select>
@@ -93,7 +93,7 @@
           >
             <option
               *ngFor="let attributeDictionaryObj of attributeDictionary; let i = index"
-              value="{{ attributeDictionaryObj._id }}"
+              [value]="attributeDictionaryObj._id.toString()"
             >
               {{ attributeDictionaryObj.name }}
             </option>

@@ -1,11 +1,12 @@
-import { DeviceService } from 'src/app/services/device.service'
-import { LogService } from 'src/app/services/log.service'
-import { ModelsService } from 'src/app/services/models.service'
-import { Device } from 'src/app/shared/device'
-import { Model } from 'src/app/shared/model'
+import { ObjectId } from 'mongodb';
+import { DeviceService } from 'src/app/services/device.service';
+import { LogService } from 'src/app/services/log.service';
+import { ModelsService } from 'src/app/services/models.service';
+import { Device } from 'src/app/shared/device';
+import { Model } from 'src/app/shared/model';
 
-import { Component, NgZone, OnInit } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
+import { Component, NgZone, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-device-list',
@@ -45,7 +46,7 @@ export class DeviceListComponent implements OnInit {
     })
   }
 
-  DeleteDevice(id: string) {
+  DeleteDevice(id: ObjectId) {
     this.logService.CreateLog({
       message: { id: id },
       objectId: id,
@@ -60,8 +61,8 @@ export class DeviceListComponent implements OnInit {
     })
   }
 
-  CloneDevice(id: string | null) {
-    const id_new: string = this.devicesService.CloneDevice(id)
+  CloneDevice(id: ObjectId | null) {
+    const id_new: ObjectId = this.devicesService.CloneDevice(id)
     this.logService
       .CreateLog({
         message: { id: id, id_new: id_new },
@@ -87,8 +88,8 @@ export class DeviceListComponent implements OnInit {
     }
   }
 
-  findModelName(id: string): string {
-    return this.modelList.find((e: Model) => e.id === id)?.name as string
+  findModelName(id: ObjectId): string {
+    return this.modelList.find((e: Model) => e._id === id)?.name as string
   }
 
   stringify(obj: object): string {

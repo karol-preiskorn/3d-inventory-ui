@@ -1,17 +1,18 @@
-import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
-import { AttributeService } from 'src/app/services/attribute.service'
-import { ConnectionService } from 'src/app/services/connection.service'
-import { DeviceService } from 'src/app/services/device.service'
-import { LogService } from 'src/app/services/log.service'
-import { ModelsService } from 'src/app/services/models.service'
-import { Attribute } from 'src/app/shared/attribute'
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
-import { Connection } from 'src/app/shared/connection'
-import { Device } from 'src/app/shared/device'
-import { Model } from 'src/app/shared/model'
+import { ObjectId } from 'mongodb';
+import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service';
+import { AttributeService } from 'src/app/services/attribute.service';
+import { ConnectionService } from 'src/app/services/connection.service';
+import { DeviceService } from 'src/app/services/device.service';
+import { LogService } from 'src/app/services/log.service';
+import { ModelsService } from 'src/app/services/models.service';
+import { Attribute } from 'src/app/shared/attribute';
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary';
+import { Connection } from 'src/app/shared/connection';
+import { Device } from 'src/app/shared/device';
+import { Model } from 'src/app/shared/model';
 
-import { Component, Input, NgZone, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
+import { Component, Input, NgZone, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-attribute-list',
@@ -81,7 +82,7 @@ export class AttributeListComponent implements OnInit {
     }
   }
 
-  DeleteAttribute(id: string) {
+  DeleteAttribute(id: ObjectId) {
     this.logService.CreateLog({
       message: { id: id },
       objectId: id,
@@ -94,8 +95,8 @@ export class AttributeListComponent implements OnInit {
       this.router.navigate(['/attribute-dictionary-list'])
     })
   }
-  async CloneAttribute(id: string | null) {
-    const id_new: string = this.attributeService.CloneAttribute(id)
+  async CloneAttribute(id: ObjectId) {
+    const id_new: ObjectId = new ObjectId(id)
     this.logService
       .CreateLog({
         message: { id: id, id_new: id_new },
@@ -113,8 +114,9 @@ export class AttributeListComponent implements OnInit {
     this.selectedAttribute = attribute
     this.router.navigate(['edit-attribute', this.selectedAttribute._id])
   }
-  getDevice(id: string) {
-    return this.deviceService.GetDevice(id).subscribe((data: Device) => {
+  getDevice(id: ObjectId | string) {
+    const objectId = typeof id === 'string' ? new ObjectId(id) : id;
+    return this.deviceService.GetDevice(objectId).subscribe((data: Device) => {
       this.device = data
     })
   }
@@ -125,11 +127,11 @@ export class AttributeListComponent implements OnInit {
       this.deviceDictionary = data
     })
   }
-  findDeviceName(id: string | null): string {
+  findDeviceName(id: ObjectId | null): string {
     return this.deviceDictionary.find((e) => e._id === id)?.name as string
   }
-  findModelName(id: string | null): string {
-    return this.modelDictionary.find((e) => e.id === id)?.name as string
+  findModelName(id: ObjectId | null): string {
+    return this.modelDictionary.find((e) => e._id === id)?.name as string
   }
   getModelList() {
     return this.modelService.GetModels().subscribe((data: Model[]) => {
@@ -145,7 +147,7 @@ export class AttributeListComponent implements OnInit {
       this.connectionDictionary = data
     })
   }
-  findConnectionName(id: string | null): string {
+  findConnectionName(id: ObjectId | null): string {
     return this.connectionDictionary.find((e) => e._id === id)?.name as string
   }
   getAttributeDictionaryList() {
@@ -155,7 +157,7 @@ export class AttributeListComponent implements OnInit {
       this.attributeDictionary = data
     })
   }
-  findAttributeDictionary(id: string | null): string {
+  findAttributeDictionary(id: ObjectId): string {
     return this.attributeDictionary.find((e) => e._id === id)?.name as string
   }
 }

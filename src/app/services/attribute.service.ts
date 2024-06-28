@@ -1,16 +1,18 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
-import { Observable, of, throwError } from 'rxjs'
-import { catchError, retry } from 'rxjs/operators'
-import { DeviceService } from 'src/app/services/device.service'
-import { ModelsService } from 'src/app/services/models.service'
-import { Attribute } from 'src/app/shared/attribute'
-import { Device } from 'src/app/shared/device'
-import { SyncRequestClient } from 'ts-sync-request/dist'
-import { v4 as uuidv4 } from 'uuid'
-import { environment } from '../../environments/environment'
-import { LogService } from './log.service'
+import { ObjectId } from 'mongodb';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+import { DeviceService } from 'src/app/services/device.service';
+import { ModelsService } from 'src/app/services/models.service';
+import { Attribute } from 'src/app/shared/attribute';
+import { Device } from 'src/app/shared/device';
+import { SyncRequestClient } from 'ts-sync-request/dist';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { environment } from '../../environments/environment';
+import { LogService } from './log.service';
 
 @Injectable({
   providedIn: 'root',
@@ -62,7 +64,7 @@ export class AttributeService {
    * @param id The ID of the device.
    * @returns An Observable that emits an array of Attribute objects.
    */
-  GetDeviceAttributes(id: string): Observable<Attribute | Attribute[]> {
+  GetDeviceAttributes(id: ObjectId): Observable<Attribute | Attribute[]> {
     return this.http
       .get<Attribute[]>(environment.baseurl + '/attributes/device/' + id, this.httpOptions)
       .pipe(
@@ -135,7 +137,7 @@ export class AttributeService {
    * @param id The ID of the attribute to retrieve.
    * @returns An Observable that emits the retrieved attribute.
    */
-  GetAttribute(id: string | null): Observable<Attribute> {
+  GetAttribute(id: ObjectId): Observable<Attribute> {
     return this.http
       .get<Attribute>(environment.baseurl + '/attributes/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Attribute>('DeleteAttribute', id as unknown as Attribute)))
@@ -169,11 +171,11 @@ export class AttributeService {
    * @param id - The ID of the attribute to clone.
    * @returns The UUID of the cloned attribute.
    */
-  CloneAttribute(id: string | null): string {
-    const id_uuid: string = uuidv4()
+  CloneAttribute(id: ObjectId): ObjectId {
+    const id_uuid: ObjectId = new ObjectId()
     this.GetAttribute(id).subscribe((value: Attribute) => {
       console.log('Get attribute: ' + JSON.stringify(value, null, ' '))
-      value._id = ''
+      value._id = new ObjectId()
       this.CreateAttribute(value).subscribe({
         next: (v) => {
           console.log('Create attribute: ' + JSON.stringify(v, null, ' '))
@@ -191,7 +193,7 @@ export class AttributeService {
    * @param data - The updated attribute data.
    * @returns An Observable that emits the updated attribute.
    */
-  UpdateAttribute(id: string | null, data: Attribute): Observable<Attribute> {
+  UpdateAttribute(id: ObjectId, data: Attribute): Observable<Attribute> {
     return this.http
       .put<Attribute>(environment.baseurl + '/attributes/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Attribute>('UpdateModel', data)))

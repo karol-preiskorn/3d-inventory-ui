@@ -1,14 +1,11 @@
-﻿/*
- * File:        /src/app/shared/floor.ts
- * Description: Define floor 2d plan of servers rooms
- * Used by:
- * Dependency:
- *
- * Date        By     Comments
- * ----------  -----  ------------------------------
- * 2023-07-25  C2RLO  Convert class to interfance
- * 2023-05-16  C2RLO  Init
+﻿/**
+ * @file:         /src/app/shared/floor.ts
+ * @description:  Define floor 2d plan of servers rooms
+ * @version:      2023-07-25  C2RLO  Convert class to interface
+ * @version:      2023-05-16  C2RLO  Init
  */
+
+import { ObjectId } from 'mongodb';
 
 export interface FloorDimension {
   description: string
@@ -21,7 +18,7 @@ export interface FloorDimension {
 }
 
 export interface Floor {
-  id: string
+  id: ObjectId
   name: string
   address: {
     street: string

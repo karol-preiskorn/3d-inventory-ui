@@ -127,8 +127,8 @@
               'form-select': true,
             }"
           >
-            <option *ngFor="let modelObj of this.modelList; let i = index" value="{{ modelObj.id }}">
-              {{ modelObj.name }} ({{ modelObj.type }}/{{ modelObj.category }})
+            <option *ngFor="let modelObj of this.modelList; let i = index" value="{{ modelObj._id }}">
+              {{ modelObj.name }}
             </option>
           </select>
           <div *ngIf="this.editDeviceForm.controls.modelId.errors" class="invalid-feedback">

@@ -5,16 +5,18 @@
  * @version 2024-03-17 C2RLO - Initial new unified version
  **/
 
-import { Component, NgZone, OnInit } from '@angular/core'
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { ActivatedRoute, Router } from '@angular/router'
-import { Observable, tap } from 'rxjs'
-import { ConnectionService } from 'src/app/services/connection.service'
-import { DeviceService } from 'src/app/services/device.service'
-import { LogService } from 'src/app/services/log.service'
-import { ComponentDictionary } from 'src/app/shared/component-dictionary'
-import { Connection } from 'src/app/shared/connection'
-import { Device } from 'src/app/shared/device'
+import { ObjectId } from 'mongodb';
+import { Observable, tap } from 'rxjs';
+import { ConnectionService } from 'src/app/services/connection.service';
+import { DeviceService } from 'src/app/services/device.service';
+import { LogService } from 'src/app/services/log.service';
+import { ComponentDictionary } from 'src/app/shared/component-dictionary';
+import { Connection } from 'src/app/shared/connection';
+import { Device } from 'src/app/shared/device';
+
+import { Component, NgZone, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-connection',
@@ -24,10 +26,10 @@ import { Device } from 'src/app/shared/device'
 export class ConnectionEditComponent implements OnInit {
   inputId: string
   form = new FormGroup({
-    id: new FormControl('', [Validators.required, Validators.minLength(24), Validators.maxLength(36)]),
+    id: new FormControl(),
     name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]),
-    deviceIdTo: new FormControl('', Validators.required),
-    deviceIdFrom: new FormControl('', Validators.required),
+    deviceIdTo: new FormControl(ObjectId, Validators.required),
+    deviceIdFrom: new FormControl(ObjectId, Validators.required),
   })
   connection: Connection = new Connection()
   deviceList: Device[]

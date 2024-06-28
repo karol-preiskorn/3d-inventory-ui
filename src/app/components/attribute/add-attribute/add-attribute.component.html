@@ -47,7 +47,7 @@
                 }"
                 id="modelId"
               >
-                <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj.id }}">
+                <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj._id }}">
                   {{ modelObj.name }}
                 </option>
               </select>

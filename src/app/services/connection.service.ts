@@ -1,12 +1,15 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
-import { Observable, of, throwError } from 'rxjs'
-import { catchError, retry } from 'rxjs/operators'
-import { v4 as uuidv4 } from 'uuid'
-import { environment } from '../../environments/environment'
-import { Connection } from '../shared/connection'
-import { LogService } from './log.service'
+import { ObjectId } from 'mongodb';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+import { v4 as uuidv4 } from 'uuid';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { environment } from '../../environments/environment';
+import { Connection } from '../shared/connection';
+import { LogService } from './log.service';
 
 @Injectable({
   providedIn: 'root',
@@ -42,7 +45,7 @@ export class ConnectionService {
    * @param id The ID of the connection to retrieve.
    * @returns An Observable that emits the retrieved Connection object.
    */
-  GetConnection(id: string | null): Observable<Connection> {
+  GetConnection(id: ObjectId): Observable<Connection> {
     return this.http
       .get<Connection>(environment.baseurl + '/connections/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
@@ -53,7 +56,7 @@ export class ConnectionService {
    * @param id The ID of the connection to delete.
    * @returns An Observable that emits the deleted Connection object.
    */
-  DeleteConnection(id: string): Observable<Connection> {
+  DeleteConnection(id: ObjectId): Observable<Connection> {
     return this.http
       .delete<Connection>(environment.baseurl + '/connections/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Connection>('DeleteConnection')))
@@ -76,8 +79,8 @@ export class ConnectionService {
    * @param id - The ID of the connection to clone.
    * @returns The UUID of the cloned connection.
    */
-  CloneConnection(id: string): string {
-    const id_uuid: string = uuidv4()
+  CloneConnection(id: ObjectId): ObjectId {
+    const id_uuid = new ObjectId()
     this.GetConnection(id).subscribe((value: Connection) => {
       console.log('Get Connections: ' + JSON.stringify(value))
       value._id = id_uuid

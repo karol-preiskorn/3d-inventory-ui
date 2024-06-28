@@ -107,7 +107,7 @@
               'form-select': true,
             }"
           >
-            <option *ngFor="let modelObj of modelList; let i = index" value="{{ modelObj.id }}">
+            <option *ngFor="let modelObj of modelList; let i = index" value="{{ modelObj._id }}">
               {{ modelObj.name }}
             </option>
           </select>
@@ -118,7 +118,6 @@
       </div>
     </div>
     <p>Form Status: {{ addDeviceForm.status }}</p>
-    <!-- <p>Form Values: {{ toString(addDeviceForm.value) }}</p> -->
     <div class="d-flex p-2">
       <div class="p-1 g-col-1">
         <button type="submit" [disabled]="!(addDeviceForm.valid && addDeviceForm.touched)" class="btn btn-primary mb-3">

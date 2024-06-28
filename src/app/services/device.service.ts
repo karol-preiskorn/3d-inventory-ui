@@ -1,13 +1,15 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
-import { Observable, of, throwError } from 'rxjs'
-import { catchError, map, retry } from 'rxjs/operators'
-import { SyncRequestClient } from 'ts-sync-request/dist'
-import { v4 as uuidv4 } from 'uuid'
-import { environment } from '../../environments/environment'
-import { Device } from '../shared/device'
-import { LogService } from './log.service'
+import { ObjectId } from 'mongodb';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, map, retry } from 'rxjs/operators';
+import { SyncRequestClient } from 'ts-sync-request/dist';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { environment } from '../../environments/environment';
+import { Device } from '../shared/device';
+import { LogService } from './log.service';
 
 @Injectable({
   providedIn: 'root',
@@ -47,7 +49,7 @@ export class DeviceService {
    * @param id The ID of the device to retrieve.
    * @returns An Observable that emits the retrieved device.
    */
-  GetDevice(id: string | null): Observable<Device> {
+  GetDevice(id: ObjectId | null): Observable<Device> {
     return this.http
       .get<Device>(environment.baseurl + '/' + this.objectName + '/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
@@ -81,7 +83,7 @@ export class DeviceService {
    * @param id The ID of the device to delete.
    * @returns An Observable that emits the deleted device.
    */
-  DeleteDevice(id: string | null): Observable<Device> {
+  DeleteDevice(id: ObjectId | null): Observable<Device> {
     return this.http
       .delete<Device>(environment.baseurl + '/' + this.objectName + '/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
@@ -108,11 +110,11 @@ export class DeviceService {
    * @param id - The ID of the device to clone.
    * @returns The UUID of the cloned device.
    */
-  CloneDevice(id: string | null): string {
-    const id_uuid: string = uuidv4()
+  CloneDevice(id: ObjectId | null): ObjectId {
+    const local_id = new ObjectId()
     this.GetDevice(id).subscribe((value: Device) => {
       console.log('Get Device: ' + JSON.stringify(value, null, ' '))
-      value._id = id_uuid
+      value._id = local_id
       this.CreateDevice(value).subscribe({
         next: (v) => {
           console.log('Create Device: ' + JSON.stringify(v, null, ' '))
@@ -121,7 +123,7 @@ export class DeviceService {
         complete: () => this.ngZone.run(() => this.router.navigateByUrl('device-list')),
       })
     })
-    return id_uuid
+    return local_id
   }
 
   /**

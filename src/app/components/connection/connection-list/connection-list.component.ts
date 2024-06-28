@@ -1,10 +1,12 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
-import { ConnectionService } from 'src/app/services/connection.service'
-import { DeviceService } from 'src/app/services/device.service'
-import { LogIn, LogService } from 'src/app/services/log.service'
-import { Connection } from 'src/app/shared/connection'
-import { Device } from 'src/app/shared/device'
+import { ObjectId } from 'mongodb';
+import { ConnectionService } from 'src/app/services/connection.service';
+import { DeviceService } from 'src/app/services/device.service';
+import { LogIn, LogService } from 'src/app/services/log.service';
+import { Connection } from 'src/app/shared/connection';
+import { Device } from 'src/app/shared/device';
+
+import { Component, NgZone, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-connection-list',
@@ -45,17 +47,17 @@ export class ConnectionListComponent implements OnInit {
     })
   }
 
-  findDevice(id: string): Device {
+  findDevice(id: ObjectId): Device {
     let tmp: Device = new Device()
     tmp = this.deviceList.find((e: Device): boolean => e._id === id) || tmp
     return tmp
   }
 
-  gotoDevice(deviceId: string) {
+  gotoDevice(deviceId: ObjectId) {
     this.router.navigate(['edit-device/', deviceId])
   }
 
-  deleteConnection(id: string) {
+  deleteConnection(id: ObjectId) {
     this.logService
       .CreateLog({
         message: { id: id },
@@ -75,7 +77,7 @@ export class ConnectionListComponent implements OnInit {
     })
   }
 
-  async cloneConnection(id: string) {
+  async cloneConnection(id: ObjectId) {
     const id_new: string = this.ConnectionService.CloneConnection(id)
     this.logService
       .CreateLog({

@@ -1,19 +1,20 @@
-import { Subscription } from 'rxjs'
-import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
-import { AttributeService } from 'src/app/services/attribute.service'
-import { ConnectionService } from 'src/app/services/connection.service'
-import { DeviceService } from 'src/app/services/device.service'
-import { FloorService } from 'src/app/services/floor.service'
-import { Log, LogService } from 'src/app/services/log.service'
-import { ModelsService } from 'src/app/services/models.service'
-import { Attribute } from 'src/app/shared/attribute'
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
-import { Connection } from 'src/app/shared/connection'
-import { Device } from 'src/app/shared/device'
-import { Floor } from 'src/app/shared/floor'
-import { Model } from 'src/app/shared/model'
+import { ObjectId } from 'mongodb';
+import { Subscription } from 'rxjs';
+import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service';
+import { AttributeService } from 'src/app/services/attribute.service';
+import { ConnectionService } from 'src/app/services/connection.service';
+import { DeviceService } from 'src/app/services/device.service';
+import { FloorService } from 'src/app/services/floor.service';
+import { Log, LogService } from 'src/app/services/log.service';
+import { ModelsService } from 'src/app/services/models.service';
+import { Attribute } from 'src/app/shared/attribute';
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary';
+import { Connection } from 'src/app/shared/connection';
+import { Device } from 'src/app/shared/device';
+import { Floor } from 'src/app/shared/floor';
+import { Model } from 'src/app/shared/model';
 
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core';
 
 const api = [
   { component: 'Models', api: 'models' },
@@ -116,7 +117,7 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the log entry to delete.
    * @returns An Observable that emits the deleted log entry.
    */
-  DeleteLog(id: string) {
+  DeleteLog(id: ObjectId) {
     return this.logService.DeleteLog(id).subscribe((data: Log) => {
       console.log(data)
       this.OnChanges()
@@ -167,18 +168,20 @@ export class LogComponent implements OnInit {
       const jAttribute: Attribute = log.message as Attribute
       console.log('jAttribute: ' + JSON.stringify(jAttribute, null, ' '))
       console.log('findNameInLogMessage: ' + JSON.stringify(jAttribute, null, ' '))
-      if (jAttribute.connectionId != '') {
+      if (jAttribute.connectionId !== null) {
         this.getConnectionList()
-        console.log('Connection: ' + this.findConnectionName(jAttribute.connectionId as string))
-        return 'Connection ' + this.findConnectionName(jAttribute.connectionId as string)
+        console.log('Connection: ' + this.findConnectionName(jAttribute.connectionId))
+        return 'Connection ' + this.findConnectionName(jAttribute.connectionId)
       }
-      if (jAttribute.modelId != '') {
+      if (jAttribute.modelId !== null) {
         this.getModelList()
-        return 'Model ' + this.findModelName(jAttribute.connectionId as string)
+        if (jAttribute.connectionId !== null) {
+          return 'Model ' + this.findModelName(jAttribute.connectionId)
+        }
       }
-      if (jAttribute.deviceId != '') {
+      if (jAttribute.deviceId !== null) {
         this.getDeviceList()
-        return 'Device ' + this.findDeviceName(jAttribute.connectionId as string)
+        return 'Device ' + this.findDeviceName(jAttribute.connectionId)
       }
     }
     return JSON.stringify(jLog, null, ' ')
@@ -206,8 +209,14 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the device.
    * @returns The name of the device if found, otherwise undefined.
    */
-  findDeviceName(id: string) {
-    return this.deviceList.find((e) => e._id === id)?.name
+  findDeviceName(id: ObjectId) {
+    if (id === null) {
+      return null
+    }
+    if (typeof id === 'string') {
+      id = new ObjectId(id);
+    }
+    return this.deviceList.find((e) => e._id === id)?.name;
   }
 
   /**
@@ -232,8 +241,8 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the model.
    * @returns The name of the model if found, otherwise undefined.
    */
-  findModelName(id: string) {
-    return this.modelList.find((e) => e.id === id)?.name
+  findModelName(id: ObjectId) {
+    return this.modelList.find((e) => e._id === ObjectId.createFromHexString(id.toString()))?.name
   }
 
   /**
@@ -256,8 +265,8 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the connection.
    * @returns The name of the connection if found, otherwise undefined.
    */
-  findConnectionName(id: string) {
-    return this.connectionList.find((e) => e._id === id)?.name
+  findConnectionName(id: ObjectId) {
+    return this.connectionList.find((e) => e._id === ObjectId.createFromHexString(id.toString()))?.name
   }
 
   /**
@@ -279,7 +288,7 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the attribute dictionary.
    * @returns The name of the attribute dictionary, or undefined if not found.
    */
-  findAttributeDictionaryName(id: string) {
+  findAttributeDictionaryName(id: ObjectId) {
     return this.attributeDictionaryList.find((e) => e._id === id)?.name
   }
 
@@ -303,7 +312,7 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the attribute to find.
    * @returns The attribute object if found, or undefined if not found.
    */
-  findAttribute(id: string) {
+  findAttribute(id: ObjectId) {
     return this.attributeList.find((e) => e._id === id)
   }
 
@@ -333,7 +342,7 @@ export class LogComponent implements OnInit {
    * @param id - The id of the floor to find.
    * @returns The found floor object, or undefined if no floor with the given id is found.
    */
-  findFloor(id: string) {
-    return this.floorList.find((e) => e.id === id)
+  findFloor(id: ObjectId) {
+    return this.floorList.find((e) => e.id === ObjectId.createFromHexString(id.toString()))
   }
 }

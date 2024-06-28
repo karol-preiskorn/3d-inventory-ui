@@ -5,7 +5,7 @@
  * 2023-05-21   C2RLO
  */
 
-import { v4 as uuidv4 } from 'uuid'
+import { ObjectId } from 'mongodb';
 
 /**
  * @description Represents a connection between two devices.
@@ -13,15 +13,15 @@ import { v4 as uuidv4 } from 'uuid'
  * @class Connection
  */
 export class Connection {
-  _id: string
+  _id: ObjectId
   name: string
-  deviceIdTo: string
-  deviceIdFrom: string
+  deviceIdTo: ObjectId
+  deviceIdFrom: ObjectId
 
   /**
    * Generates a unique identifier for the connection.
    */
   generate() {
-    this._id = uuidv4()
+    this._id = new ObjectId()
   }
 }

@@ -3,8 +3,8 @@
  * @description: Main class operating on device. Structure data accessed vi Oracle DB/Neo4j
  * @version: 2023-02-18  C2RLO  Init
  */
-import { adjectives, animals, colors, uniqueNamesGenerator } from 'unique-names-generator'
-import { v4 as uuidv4 } from 'uuid'
+import { ObjectId } from 'mongodb';
+import { adjectives, animals, colors, uniqueNamesGenerator } from 'unique-names-generator';
 
 interface Position {
   x: number
@@ -13,9 +13,9 @@ interface Position {
 }
 
 export class Device {
-  _id: string
+  _id: ObjectId
   name: string
-  modelId: string
+  modelId: ObjectId
   position: Position
 
   print(): void {
@@ -35,13 +35,13 @@ export class Device {
 
   // TODO: move it to deviceList
   public _generate() {
-    this._id = uuidv4()
+    this._id = new ObjectId()
     this.name = uniqueNamesGenerator({
       dictionaries: [adjectives, colors, animals],
       style: 'lowerCase',
       separator: '-',
     }) // big_red_donkey
     // get list all models and select random id
-    this.modelId = uuidv4()
+    this.modelId = new ObjectId()
   }
 }

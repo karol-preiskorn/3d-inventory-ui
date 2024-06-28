@@ -1,11 +1,12 @@
-import { Subscription } from 'rxjs'
-import { LogService } from 'src/app/services/log.service'
-import { ModelsService } from 'src/app/services/models.service'
-import { Model } from 'src/app/shared/model'
+import { ObjectId } from 'mongodb';
+import { Subscription } from 'rxjs';
+import { LogService } from 'src/app/services/log.service';
+import { ModelsService } from 'src/app/services/models.service';
+import { Model } from 'src/app/shared/model';
 
-import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { ActivatedRoute, Router } from '@angular/router'
+import { Component, NgZone, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-model',
@@ -15,7 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 export class ModelEditComponent implements OnInit {
   attributeComponent: string = ''
   attributeComponentObject: string = ''
-  inputId: string = ''
+  inputId: ObjectId
   model: Model
   component = ''
   submitted = false
@@ -57,17 +58,17 @@ export class ModelEditComponent implements OnInit {
       }),
     })
 
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') || ''
-    this.component = this.inputId
+    this.inputId = new ObjectId(String(this.activatedRoute.snapshot.paramMap.get('id'))) || new ObjectId()
+    this.component = this.inputId.toHexString()
     this.getModel()
   }
 
   private getModel(): Subscription {
-    return this.modelsService.GetModel(this.inputId.toString()).subscribe((data: Model) => {
+    return this.modelsService.GetModel(this.inputId).subscribe((data: Model) => {
       console.log('GetModel ' + JSON.stringify(data, null, ' '))
       this.model = data
       this.editModelForm.setValue({
-        id: data.id,
+        id: data._id,
         name: data.name,
         dimension: {
           width: data.dimension.width.toString(),
@@ -105,7 +106,7 @@ export class ModelEditComponent implements OnInit {
       component: 'Model',
       message: { id: this.editModelForm.value },
     })
-    this.modelsService.DeleteModel(this.inputId.toString()).subscribe(() => {
+    this.modelsService.DeleteModel(this.inputId).subscribe(() => {
       this.ngZone.run(() => this.router.navigateByUrl('models-list'))
     })
   }
@@ -126,7 +127,7 @@ export class ModelEditComponent implements OnInit {
       this.modelsService
         .UpdateModel(this.inputId.toString(), this.editModelForm.value as unknown as Model)
         .subscribe(() => {
-          this.router.navigate(['edit-model/', this.model.id])
+          this.router.navigate(['edit-model/', this.model._id])
         })
     }
   }
