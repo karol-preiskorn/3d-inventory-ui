@@ -34,9 +34,9 @@ export class AttributeEditComponent implements OnInit {
     {
       _id: new FormControl(new ObjectId(), [Validators.required]),
       attributeDictionaryId: new FormControl(new ObjectId(), [Validators.required]),
-      connectionId: new FormControl(ObjectId),
-      deviceId: new FormControl(),
-      modelId: new FormControl(ObjectId),
+      connectionId: new FormControl(new ObjectId()),
+      deviceId: new FormControl(new ObjectId()),
+      modelId: new FormControl(new ObjectId()),
       value: new FormControl('', [Validators.required]),
     },
     { validators: this.valid.atLeastOneValidator },
@@ -52,19 +52,19 @@ export class AttributeEditComponent implements OnInit {
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   componentDictionary: ComponentDictionary = new ComponentDictionary()
 
-  component: string | ObjectId
+  component: ObjectId
   isSubmitted = false
 
   ngOnInit() {
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') as unknown as ObjectId
     this.getAttribute(this.inputId).subscribe((data: Attribute) => {
       this.attribute = data
       this.editAttributeForm.setValue({
         _id: data._id,
         attributeDictionaryId: data.attributeDictionaryId as ObjectId,
-        connectionId: data.connectionId,
+        connectionId: data.connectionId as unknown as ObjectId,
         deviceId: data.deviceId,
-        modelId: data.modelId,
+        modelId: data.modelId as unknown as ObjectId,
         value: data.value,
       })
     })
@@ -100,18 +100,18 @@ export class AttributeEditComponent implements OnInit {
 
   changeModelId(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    const objectId = new ObjectId(value) as any
+    const objectId = new ObjectId(value)
     this.modelId!.setValue(objectId, { onlySelf: true })
   }
 
   changeDeviceId(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    const objectId = new ObjectId(value) as typeof ObjectId
+    const objectId = new ObjectId(value) as ObjectId
     this.deviceId?.setValue(objectId, { onlySelf: true })
   }
 
   changeConnectionId(e: Event) {
-    this.connectionId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.connectionId?.setValue((e.target as HTMLInputElement).value as unknown as ObjectId, { onlySelf: true })
   }
 
   changeAttributeDictionaryId(e: Event) {

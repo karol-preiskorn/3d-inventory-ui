@@ -1,3 +1,10 @@
+/**
+ * @module /src/app/components/log
+ * @description This file contains the implementation of the LogComponent class, which is responsible for displaying and managing logs in the application.
+ * @version 2024-06-29 C2RLO - Initial
+**/
+
+
 import { ObjectId } from 'mongodb';
 import { Subscription } from 'rxjs';
 import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service';
@@ -43,7 +50,7 @@ function isApiSettings(component: string): boolean {
 export class LogComponent implements OnInit {
   LogList: Log[] = []
 
-  @Input() component = ''
+  @Input() component: ObjectId
   @Input() attributeComponentObject: object = {}
 
   deviceList: Device[]
@@ -76,8 +83,9 @@ export class LogComponent implements OnInit {
   ) {}
 
   /**
-   * Loads the log for the specified context. found log context in share service with store variables
+   * Loads the log for the specified context.
    * @param context - The context for which the log is being loaded.
+   * @param component - The component for which the log is being loaded.
    */
   loadLog(context: string, component: string) {
     if (isApiSettings(component)) {
@@ -101,15 +109,14 @@ export class LogComponent implements OnInit {
    * This method is called after the component has been created and initialized.
    */
   ngOnInit() {
-    this.loadLog('ngOnInit', this.component)
+    this.loadLog('ngOnInit', this.component.toString())
   }
 
   /**
    * Called whenever one or more input properties of the component change.
-   * @returns void
    */
   OnChanges() {
-    this.loadLog('ngOnChanges', this.component)
+    this.loadLog('ngOnChanges', this.component.toString())
   }
 
   /**
@@ -150,10 +157,9 @@ export class LogComponent implements OnInit {
   }
 
   /**
-   * @description Depends on type log find usable information from log.message
-   * @param {Log} log - The log object containing the message.
-   * @return {string} The name found in the log message.
-   * @memberof LogComponent
+   * Depends on type log find usable information from log.message.
+   * @param log - The log object containing the message.
+   * @returns The name found in the log message.
    */
   findNameInLogMessage(log: Log): string {
     let jLog: object
@@ -214,9 +220,9 @@ export class LogComponent implements OnInit {
       return null
     }
     if (typeof id === 'string') {
-      id = new ObjectId(id);
+      id = new ObjectId(id)
     }
-    return this.deviceList.find((e) => e._id === id)?.name;
+    return this.deviceList.find((e) => e._id === id)?.name
   }
 
   /**
@@ -247,7 +253,6 @@ export class LogComponent implements OnInit {
 
   /**
    * Retrieves the connection list.
-   *
    * @returns An Observable that emits the connection list.
    */
   getConnectionList() {
@@ -271,7 +276,6 @@ export class LogComponent implements OnInit {
 
   /**
    * Retrieves the attribute dictionary list.
-   *
    * @returns An Observable that emits the attribute dictionary list.
    */
   getAttributeDictionaryList() {
@@ -294,7 +298,7 @@ export class LogComponent implements OnInit {
 
   /**
    * Retrieves the attribute list.
-   * @returns {Observable<Attribute[]>} An observable that emits the attribute list.
+   * @returns An observable that emits the attribute list.
    */
   getAttributeList(): void {
     if (this.attributeListGet == true) return
@@ -324,6 +328,9 @@ export class LogComponent implements OnInit {
    * @returns An Observable that emits the retrieved attribute list.
    */
   getFloorList() {
+    // Implementation goes here
+  }
+}
     if (this.attributeListGet == true) return null
     return this.attributeService.GetAttributes().subscribe((data: Attribute | Attribute[]) => {
       const tmp = new Attribute()

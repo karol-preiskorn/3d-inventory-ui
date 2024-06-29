@@ -4,7 +4,11 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictPropertyInitialization": false,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "esModuleInterop": true,
+    "experiments": {
+      "topLevelAwait": true
+    }
   },
   "compileOnSave": true,
   "compilerOptions": {
@@ -14,7 +18,10 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
-    "lib": ["es2022", "dom"],
+    "lib": [
+      "es2022",
+      "dom"
+    ],
     "module": "es2022",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
@@ -26,6 +33,15 @@
     "strictPropertyInitialization": false,
     "target": "ES2022"
   },
-  "exclude": ["dist", "release", "node_modules", "src/test.ts", "src/**/*.spec.ts"],
-  "include": ["src/**/*.ts", "src/**/*.d.ts"]
+  "exclude": [
+    "dist",
+    "release",
+    "node_modules",
+    "src/test.ts",
+    "src/**/*.spec.ts"
+  ],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts"
+  ]
 }

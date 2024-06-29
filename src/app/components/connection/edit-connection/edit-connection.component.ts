@@ -15,7 +15,7 @@ import { Connection } from 'src/app/shared/connection';
 import { Device } from 'src/app/shared/device';
 
 import { Component, NgZone, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -24,22 +24,19 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./edit-connection.component.scss'],
 })
 export class ConnectionEditComponent implements OnInit {
-  inputId: string
-  form = new FormGroup({
-    id: new FormControl(),
-    name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]),
-    deviceIdTo: new FormControl(ObjectId, Validators.required),
-    deviceIdFrom: new FormControl(ObjectId, Validators.required),
-  })
+  inputId: ObjectId
+  form = this.createFormGroup()
+
   connection: Connection = new Connection()
   deviceList: Device[]
   isSubmitted = false
   componentDictionary: ComponentDictionary = new ComponentDictionary()
-  component = ''
+  component: ObjectId | string
+
   ngOnInit() {
-    this.formConnection()
+    this.createFormGroup()
     this.getDeviceList()
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') ?? ''
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') as unknown as ObjectId
     this.getConnection(this.inputId).subscribe((data: Connection) => {
       this.connection = data
     })
@@ -47,7 +44,7 @@ export class ConnectionEditComponent implements OnInit {
   }
 
   constructor(
-    public formBulider: FormBuilder,
+    public formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router,
     public activatedRoute: ActivatedRoute,
@@ -55,38 +52,51 @@ export class ConnectionEditComponent implements OnInit {
     private deviceService: DeviceService,
     private logService: LogService,
   ) {}
-  formConnection() {
-    this.form = this.formBulider.group({
-      id: ['', [Validators.required, Validators.minLength(24)]],
+
+  createFormGroup() {
+    return this.formBuilder.group({
+      id: [ObjectId, Validators.required],
       name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
-      deviceIdTo: ['', [Validators.required]],
-      deviceIdFrom: ['', [Validators.required]],
+      deviceIdTo: [ObjectId, [Validators.required]],
+      deviceIdFrom: [ObjectId, [Validators.required]],
     })
   }
+
   changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    if (this.id) {
+      this.id.setValue((e.target as HTMLInputElement).value as null | ObjectId, { onlySelf: true })
+    }
   }
   changeName(e: Event) {
     this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
+
   changeDeviceFrom(e: Event) {
-    this.deviceIdFrom?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    const value = (e.target as HTMLInputElement).value
+    const objectId = new ObjectId(value)
+    this.deviceIdFrom?.setValue(objectId, { onlySelf: true })
   }
+
   changeDeviceTo(e: Event) {
     this.deviceIdTo?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
+
   get id() {
     return this.form.get('id')
   }
+
   get name() {
     return this.form.get('name')
   }
+
   get deviceIdTo() {
     return this.form.get('deviceIdTo')
   }
+
   get deviceIdFrom() {
     return this.form.get('deviceIdFrom')
   }
+
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls
   }
@@ -100,27 +110,29 @@ export class ConnectionEditComponent implements OnInit {
       this.deviceList = data
     })
   }
-  private getConnection(id: string): Observable<Connection> {
+
+  private getConnection(id: ObjectId): Observable<Connection> {
     return this.connectionService.GetConnection(this.inputId).pipe(
       tap((data: Connection) => {
         console.log(
           'ConnectionEditComponent.connectionService.GetConnection(' + id + ') => ' + JSON.stringify(data, null, ' '),
         )
         this.connection = data
-        this.form.setValue({
-          id: data._id,
-          name: data.name,
-          deviceIdTo: data.deviceIdTo,
-          deviceIdFrom: data.deviceIdFrom,
-        })
+        // this.form.setValue({
+        //   id: data._id,
+        //   name: data.name,
+        //   deviceIdTo: data.deviceIdTo,
+        //   deviceIdFrom: data.deviceIdFrom,
+        // })
       }),
     )
   }
+
   submitForm() {
-    this.connectionService.UpdateConnection(this.inputId, this.form.value as Connection).subscribe(() => {
+    this.connectionService.UpdateConnection(this.inputId, this.form.value as unknown as Connection).subscribe(() => {
       this.logService
         .CreateLog({
-          objectId: this.form.get('id')?.value,
+          objectId: this.form.get('id').value as unknown as ObjectId,
           message: { value: this.form.value },
           operation: 'Update',
           component: 'Connection',

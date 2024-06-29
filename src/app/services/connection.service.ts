@@ -1,7 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { v4 as uuidv4 } from 'uuid';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, NgZone } from '@angular/core';
@@ -97,11 +96,11 @@ export class ConnectionService {
 
   /**
    * Updates a connection with the specified ID.
-   * @param id - The ID of the connection to update.
-   * @param data - The updated connection data.
-   * @returns An Observable that emits the updated Connection object.
+   * @param {ObjectId} id - The ID of the connection to update.
+   * @param {Connection} data - The updated connection data.
+   * @returns {Observable<Connection>} An observable that emits the updated connection.
    */
-  UpdateConnection(id: string | null, data: Connection): Observable<Connection> {
+  UpdateConnection(id: ObjectId, data: Connection): Observable<Connection> {
     return this.http
       .put<Connection>(environment.baseurl + '/connections/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Connection>('UpdateConnection', data)))
