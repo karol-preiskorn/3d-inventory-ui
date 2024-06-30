@@ -5,18 +5,18 @@
  * @version 2024-03-17 C2RLO - Initial new unified version
  **/
 
-import { ObjectId } from 'mongodb';
-import { Observable, tap } from 'rxjs';
-import { ConnectionService } from 'src/app/services/connection.service';
-import { DeviceService } from 'src/app/services/device.service';
-import { LogService } from 'src/app/services/log.service';
-import { ComponentDictionary } from 'src/app/shared/component-dictionary';
-import { Connection } from 'src/app/shared/connection';
-import { Device } from 'src/app/shared/device';
+import { ObjectId } from 'mongodb'
+import { Observable, tap } from 'rxjs'
+import { ConnectionService } from 'src/app/services/connection.service'
+import { DeviceService } from 'src/app/services/device.service'
+import { LogService } from 'src/app/services/log.service'
+import { ComponentDictionary } from 'src/app/shared/component-dictionary'
+import { Connection } from 'src/app/shared/connection'
+import { Device } from 'src/app/shared/device'
 
-import { Component, NgZone, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, NgZone, OnInit } from '@angular/core'
+import { AbstractControl, FormBuilder, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'app-edit-connection',
@@ -55,16 +55,18 @@ export class ConnectionEditComponent implements OnInit {
 
   createFormGroup() {
     return this.formBuilder.group({
-      id: [ObjectId, Validators.required],
+      id: [new ObjectId(), Validators.required],
       name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
-      deviceIdTo: [ObjectId, [Validators.required]],
-      deviceIdFrom: [ObjectId, [Validators.required]],
+      deviceIdTo: [new ObjectId(), [Validators.required]],
+      deviceIdFrom: [new ObjectId(), [Validators.required]],
     })
   }
 
   changeId(e: Event) {
     if (this.id) {
-      this.id.setValue((e.target as HTMLInputElement).value as null | ObjectId, { onlySelf: true })
+      const value = (e.target as HTMLInputElement).value
+      const objectId = new ObjectId(value)
+      this.id.setValue(objectId, { onlySelf: true })
     }
   }
   changeName(e: Event) {
@@ -78,7 +80,9 @@ export class ConnectionEditComponent implements OnInit {
   }
 
   changeDeviceTo(e: Event) {
-    this.deviceIdTo?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    const value = (e.target as HTMLInputElement).value
+    const objectId = new ObjectId(value)
+    this.deviceIdTo?.setValue(objectId, { onlySelf: true })
   }
 
   get id() {
@@ -118,12 +122,6 @@ export class ConnectionEditComponent implements OnInit {
           'ConnectionEditComponent.connectionService.GetConnection(' + id + ') => ' + JSON.stringify(data, null, ' '),
         )
         this.connection = data
-        // this.form.setValue({
-        //   id: data._id,
-        //   name: data.name,
-        //   deviceIdTo: data.deviceIdTo,
-        //   deviceIdFrom: data.deviceIdFrom,
-        // })
       }),
     )
   }
@@ -132,7 +130,7 @@ export class ConnectionEditComponent implements OnInit {
     this.connectionService.UpdateConnection(this.inputId, this.form.value as unknown as Connection).subscribe(() => {
       this.logService
         .CreateLog({
-          objectId: this.form.get('id').value as unknown as ObjectId,
+          objectId: this.form.get('id')?.value as unknown as ObjectId,
           message: { value: this.form.value },
           operation: 'Update',
           component: 'Connection',

@@ -2,7 +2,7 @@
   <h2><i class="bi bi-bar-chart"></i> Add Attribute</h2>
   <i class="bi bi-columns"></i>
   <span class="text-primary d-inline-flex focus-ring py-1 px-2 text-decoration-none">
-    {{ this.toString(this.addAttributeFrom.controls.id.value) }}</span
+    {{ this.toString(this.addAttributeFrom.controls._id.value) }}</span
   >
   <form [formGroup]="addAttributeFrom" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
     <div class="row g-3">

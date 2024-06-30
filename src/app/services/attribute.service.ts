@@ -1,18 +1,18 @@
-import { ObjectId } from 'mongodb';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import { DeviceService } from 'src/app/services/device.service';
-import { ModelsService } from 'src/app/services/models.service';
-import { Attribute } from 'src/app/shared/attribute';
-import { Device } from 'src/app/shared/device';
-import { SyncRequestClient } from 'ts-sync-request/dist';
+import { ObjectId } from 'mongodb'
+import { Observable, of, throwError } from 'rxjs'
+import { catchError, retry } from 'rxjs/operators'
+import { DeviceService } from 'src/app/services/device.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Attribute } from 'src/app/shared/attribute'
+import { Device } from 'src/app/shared/device'
+import { SyncRequestClient } from 'ts-sync-request/dist'
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, NgZone } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
 
-import { environment } from '../../environments/environment';
-import { LogService } from './log.service';
+import { environment } from '../../environments/environment'
+import { LogService } from './log.service'
 
 @Injectable({
   providedIn: 'root',
@@ -148,7 +148,7 @@ export class AttributeService {
    * @param id The ID of the attribute to delete.
    * @returns An Observable that emits the deleted attribute.
    */
-  DeleteAttribute(id: string): Observable<Attribute> {
+  DeleteAttribute(id: ObjectId): Observable<Attribute> {
     return this.http
       .delete<Attribute>(environment.baseurl + '/attributes/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Attribute>('DeleteAttribute', id as unknown as Attribute)))

@@ -19,7 +19,7 @@
                 }
         "
       >
-        <td [tooltip]="floor.id.toString()">
+        <td [tooltip]="floor._id.toString()">
           {{ floor.name }}<br />
           <div class="text-body-tertiary small p-2">
             {{ floor.address.street }}<br />
@@ -43,10 +43,10 @@
             <button type="button" class="btn btn-success btn-sm move-right" id="edit-device" (click)="editFloor(floor)">
               Edit
             </button>
-            <button type="button" id="delete-device" class="btn btn-danger btn-sm" (click)="deleteFloor(floor.id)">
+            <button type="button" id="delete-device" class="btn btn-danger btn-sm" (click)="deleteFloor(floor._id)">
               Delete
             </button>
-            <button type="button" id="clone-device" class="btn btn-info btn-sm" (click)="cloneFloor(floor.id)">
+            <button type="button" id="clone-device" class="btn btn-info btn-sm" (click)="cloneFloor(floor._id)">
               Clone
             </button>
           </div>

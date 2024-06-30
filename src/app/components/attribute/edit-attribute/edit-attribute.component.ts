@@ -1,25 +1,25 @@
-import { ObjectId } from 'mongodb';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service';
-import { AttributeService } from 'src/app/services/attribute.service';
-import { ConnectionService } from 'src/app/services/connection.service';
-import { DeviceService } from 'src/app/services/device.service';
-import { LogService } from 'src/app/services/log.service';
-import { ModelsService } from 'src/app/services/models.service';
-import { Attribute } from 'src/app/shared/attribute';
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary';
-import { ComponentDictionary } from 'src/app/shared/component-dictionary';
-import { Connection } from 'src/app/shared/connection';
-import { Device } from 'src/app/shared/device';
-import { DeviceCategoryDict } from 'src/app/shared/deviceCategories';
-import { DeviceTypeDict } from 'src/app/shared/deviceTypes';
-import { Model } from 'src/app/shared/model';
-import Validation from 'src/app/shared/validation';
+import { ObjectId } from 'mongodb'
+import { Observable } from 'rxjs'
+import { tap } from 'rxjs/operators'
+import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
+import { AttributeService } from 'src/app/services/attribute.service'
+import { ConnectionService } from 'src/app/services/connection.service'
+import { DeviceService } from 'src/app/services/device.service'
+import { LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Attribute } from 'src/app/shared/attribute'
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { ComponentDictionary } from 'src/app/shared/component-dictionary'
+import { Connection } from 'src/app/shared/connection'
+import { Device } from 'src/app/shared/device'
+import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
+import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
+import { Model } from 'src/app/shared/model'
+import Validation from 'src/app/shared/validation'
 
-import { Component, NgZone, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'app-edit-attribute',
@@ -86,8 +86,6 @@ export class AttributeEditComponent implements OnInit {
   }
 
   constructor(
-    public formBuilder: FormBuilder,
-    private ngZone: NgZone,
     private router: Router,
     public activatedRoute: ActivatedRoute,
     private attributeService: AttributeService,

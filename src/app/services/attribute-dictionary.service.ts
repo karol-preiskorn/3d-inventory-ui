@@ -1,9 +1,11 @@
+import { ObjectId } from 'mongodb'
+import { Observable, throwError } from 'rxjs'
+import { catchError, retry } from 'rxjs/operators'
+
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable, NgZone } from '@angular/core'
 import { Router } from '@angular/router'
-import { Observable, throwError } from 'rxjs'
-import { catchError, retry } from 'rxjs/operators'
-import { v4 as uuidv4 } from 'uuid'
+
 import { environment } from '../../environments/environment'
 import { AttributeDictionary } from '../shared/attribute-dictionary'
 import { LogService } from './log.service'
@@ -39,7 +41,7 @@ export class AttributeDictionaryService {
    * @param id - The ID of the attribute dictionary to retrieve.
    * @returns An Observable that emits the retrieved AttributeDictionary.
    */
-  GetAttributeDictionary(id: string | null): Observable<AttributeDictionary> {
+  GetAttributeDictionary(id: ObjectId | null): Observable<AttributeDictionary> {
     return this.http
       .get<AttributeDictionary>(environment.baseurl + '/attribute-dictionary/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
@@ -49,7 +51,7 @@ export class AttributeDictionaryService {
    * @param id The ID of the attribute dictionary to delete.
    * @returns An Observable that emits the deleted attribute dictionary.
    */
-  DeleteAttributeDictionary(id: string): Observable<AttributeDictionary> {
+  DeleteAttributeDictionary(id: ObjectId): Observable<AttributeDictionary> {
     return this.http
       .delete<AttributeDictionary>(environment.baseurl + '/attributesDictionary/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
@@ -74,8 +76,8 @@ export class AttributeDictionaryService {
    * @param id - The ID of the attribute dictionary to clone.
    * @returns The UUID of the cloned attribute dictionary.
    */
-  CloneAttributeDictionary(id: string): string {
-    const id_uuid: string = uuidv4()
+  CloneAttributeDictionary(id: ObjectId): ObjectId {
+    const id_uuid: ObjectId = new ObjectId()
     this.GetAttributeDictionary(id).subscribe((value: AttributeDictionary) => {
       console.log('Get attributes: ' + JSON.stringify(value, null, ' '))
       value._id = id_uuid
@@ -95,7 +97,7 @@ export class AttributeDictionaryService {
    * @param data - The updated attribute dictionary data.
    * @returns An observable that emits the updated attribute dictionary.
    */
-  UpdateAttributeDictionary(id: string | null, data: AttributeDictionary): Observable<AttributeDictionary> {
+  UpdateAttributeDictionary(id: ObjectId | null, data: AttributeDictionary): Observable<AttributeDictionary> {
     return this.http
       .put<AttributeDictionary>(
         environment.baseurl + '/attributesDictionary/' + id,

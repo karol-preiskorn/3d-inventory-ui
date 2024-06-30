@@ -1,18 +1,18 @@
-import { ObjectId } from 'mongodb';
-import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service';
-import { AttributeService } from 'src/app/services/attribute.service';
-import { ConnectionService } from 'src/app/services/connection.service';
-import { DeviceService } from 'src/app/services/device.service';
-import { LogService } from 'src/app/services/log.service';
-import { ModelsService } from 'src/app/services/models.service';
-import { Attribute } from 'src/app/shared/attribute';
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary';
-import { Connection } from 'src/app/shared/connection';
-import { Device } from 'src/app/shared/device';
-import { Model } from 'src/app/shared/model';
+import { ObjectId } from 'mongodb'
+import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
+import { AttributeService } from 'src/app/services/attribute.service'
+import { ConnectionService } from 'src/app/services/connection.service'
+import { DeviceService } from 'src/app/services/device.service'
+import { LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Attribute } from 'src/app/shared/attribute'
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { Connection } from 'src/app/shared/connection'
+import { Device } from 'src/app/shared/device'
+import { Model } from 'src/app/shared/model'
 
-import { Component, Input, NgZone, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, NgZone, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-attribute-list',
@@ -61,7 +61,6 @@ export class AttributeListComponent implements OnInit {
     this.getModelList()
     this.getConnectionList()
     this.getAttributeDictionaryList()
-
     this.LoadAttributes()
   }
 
@@ -95,6 +94,7 @@ export class AttributeListComponent implements OnInit {
       this.router.navigate(['/attribute-dictionary-list'])
     })
   }
+
   async CloneAttribute(id: ObjectId) {
     const id_new: ObjectId = new ObjectId(id)
     this.logService
@@ -107,19 +107,23 @@ export class AttributeListComponent implements OnInit {
         this.ngZone.run(() => this.router.navigateByUrl('attributes-list'))
       })
   }
+
   AddAttribute() {
     this.router.navigateByUrl('add-attribute')
   }
+
   EditAttribute(attribute: Attribute) {
     this.selectedAttribute = attribute
     this.router.navigate(['edit-attribute', this.selectedAttribute._id])
   }
+
   getDevice(id: ObjectId | string) {
-    const objectId = typeof id === 'string' ? new ObjectId(id) : id;
+    const objectId = typeof id === 'string' ? new ObjectId(id) : new ObjectId(id)
     return this.deviceService.GetDevice(objectId).subscribe((data: Device) => {
       this.device = data
     })
   }
+
   getDeviceList() {
     return this.deviceService.GetDevices().subscribe((data: Device[]) => {
       const tmp = new Device()
@@ -127,12 +131,19 @@ export class AttributeListComponent implements OnInit {
       this.deviceDictionary = data
     })
   }
+
   findDeviceName(id: ObjectId | null): string {
-    return this.deviceDictionary.find((e) => e._id === id)?.name as string
+    if (id === null) {
+      return ''
+    }
+    const objectId = typeof id === 'string' ? new ObjectId(id) : new ObjectId(id)
+    return this.deviceDictionary.find((e) => e._id === objectId)?.name as string
   }
+
   findModelName(id: ObjectId | null): string {
     return this.modelDictionary.find((e) => e._id === id)?.name as string
   }
+
   getModelList() {
     return this.modelService.GetModels().subscribe((data: Model[]) => {
       const tmp = new Model()
@@ -140,6 +151,7 @@ export class AttributeListComponent implements OnInit {
       this.modelDictionary = data
     })
   }
+
   getConnectionList() {
     return this.connectionService.GetConnections().subscribe((data: Connection[]) => {
       const tmp = new Connection()
@@ -147,9 +159,11 @@ export class AttributeListComponent implements OnInit {
       this.connectionDictionary = data
     })
   }
+
   findConnectionName(id: ObjectId | null): string {
     return this.connectionDictionary.find((e) => e._id === id)?.name as string
   }
+
   getAttributeDictionaryList() {
     return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) => {
       const tmp = new AttributeDictionary()
@@ -157,6 +171,7 @@ export class AttributeListComponent implements OnInit {
       this.attributeDictionary = data
     })
   }
+
   findAttributeDictionary(id: ObjectId): string {
     return this.attributeDictionary.find((e) => e._id === id)?.name as string
   }

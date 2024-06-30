@@ -1,10 +1,10 @@
-import { ObjectId } from 'mongodb';
-import { FloorService } from 'src/app/services/floor.service';
-import { LogService } from 'src/app/services/log.service';
-import { Floor } from 'src/app/shared/floor';
+import { ObjectId } from 'mongodb'
+import { FloorService } from 'src/app/services/floor.service'
+import { LogService } from 'src/app/services/log.service'
+import { Floor } from 'src/app/shared/floor'
 
-import { Component, NgZone, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, NgZone, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-floor-list',
@@ -50,7 +50,7 @@ export class FloorListComponent implements OnInit {
   }
 
   cloneFloor(id: ObjectId) {
-    const id_new: string = this.floorService.CloneFloor(id)
+    const id_new: ObjectId = this.floorService.CloneFloor(id)
     this.logService
       .CreateLog({
         message: { id: id, id_new: id_new },
@@ -69,6 +69,6 @@ export class FloorListComponent implements OnInit {
 
   editFloor(floor: Floor) {
     this.selectedFloor = floor
-    this.router.navigate(['edit-floor/', floor.id])
+    this.router.navigate(['edit-floor/', floor._id])
   }
 }

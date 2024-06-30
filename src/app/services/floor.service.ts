@@ -1,15 +1,15 @@
-import { ObjectId } from 'mongodb';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import { SyncRequestClient } from 'ts-sync-request';
+import { ObjectId } from 'mongodb'
+import { Observable, throwError } from 'rxjs'
+import { catchError, retry } from 'rxjs/operators'
+import { SyncRequestClient } from 'ts-sync-request'
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, NgZone } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
 
-import { environment } from '../../environments/environment';
-import { Floor } from '../shared/floor';
-import { Log, LogService } from './log.service';
+import { environment } from '../../environments/environment'
+import { Floor } from '../shared/floor'
+import { Log, LogService } from './log.service'
 
 @Injectable({
   providedIn: 'root',
@@ -89,7 +89,7 @@ export class FloorService {
     const id_uuid: ObjectId = new ObjectId()
     this.GetFloor(id).subscribe((value: Floor) => {
       console.log('Get Floor: ' + JSON.stringify(value, null, ' '))
-      value.id = id_uuid
+      value._id = id_uuid
       this.CreateFloor(value).subscribe({
         next: (v) => {
           console.log('Create Floor: ' + JSON.stringify(v, null, ' '))

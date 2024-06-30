@@ -16,7 +16,7 @@
             }"
             id="deviceId"
           >
-            <option *ngFor="let deviceObj of deviceDictionary; let i = index" [value]="deviceObj._id.toString()">
+            <option *ngFor="let deviceObj of deviceDictionary; let i = index" [value]="deviceObj._id">
               {{ deviceObj.name }}
             </option>
           </select>

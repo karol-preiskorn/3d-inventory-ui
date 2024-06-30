@@ -1,12 +1,12 @@
-import { ObjectId } from 'mongodb';
-import { DeviceService } from 'src/app/services/device.service';
-import { LogService } from 'src/app/services/log.service';
-import { ModelsService } from 'src/app/services/models.service';
-import { Device } from 'src/app/shared/device';
-import { Model } from 'src/app/shared/model';
+import { ObjectId } from 'mongodb'
+import { DeviceService } from 'src/app/services/device.service'
+import { LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Device } from 'src/app/shared/device'
+import { Model } from 'src/app/shared/model'
 
-import { Component, NgZone, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, NgZone, OnInit } from '@angular/core'
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'app-device-list',
@@ -46,10 +46,10 @@ export class DeviceListComponent implements OnInit {
     })
   }
 
-  DeleteDevice(id: ObjectId) {
+  DeleteDevice(id: ObjectId | null) {
     this.logService.CreateLog({
       message: { id: id },
-      objectId: id,
+      objectId: id as ObjectId | undefined,
       operation: 'Delete',
       component: this.component,
     })

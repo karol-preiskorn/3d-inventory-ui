@@ -17,9 +17,10 @@
           <tbody>
             <tr
               *ngFor="
-                let log of LogList | paginate: {id: 'logPagination', itemsPerPage: 5, currentPage: pageLog};
+                let log of LogList | paginate: { id: 'logPagination', itemsPerPage: 5, currentPage: pageLog };
                 let i = index
-              ">
+              "
+            >
               <td>{{ log.date }}</td>
               <td>{{ log.operation }}</td>
               <td>{{ log.component }}</td>

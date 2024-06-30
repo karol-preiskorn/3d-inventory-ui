@@ -1,33 +1,25 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { ActivatedRoute, Router } from '@angular/router'
-
-import { LogService } from 'src/app/services/log.service'
-import { ComponentDictionary } from 'src/app/shared/component-dictionary'
-
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { ObjectId } from 'mongodb'
+import { Subscription } from 'rxjs'
 import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
-
+import { AttributeService } from 'src/app/services/attribute.service'
+import { ConnectionService } from 'src/app/services/connection.service'
+import { DeviceService } from 'src/app/services/device.service'
+import { LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Attribute } from 'src/app/shared/attribute'
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { ComponentDictionary } from 'src/app/shared/component-dictionary'
+import { Connection } from 'src/app/shared/connection'
+import { Device } from 'src/app/shared/device'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
-
-import { Attribute } from 'src/app/shared/attribute'
-import { AttributeService } from 'src/app/services/attribute.service'
-
-import { Device } from 'src/app/shared/device'
-import { DeviceService } from 'src/app/services/device.service'
-
 import { Model } from 'src/app/shared/model'
-import { ModelsService } from 'src/app/services/models.service'
-
-import { Connection } from 'src/app/shared/connection'
-import { ConnectionService } from 'src/app/services/connection.service'
-
-import { v4 as uuidv4 } from 'uuid'
-import { Subscription } from 'rxjs'
-import { faker } from '@faker-js/faker'
-
 import Validation from 'src/app/shared/validation'
+
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { faker } from '@faker-js/faker'
 
 @Component({
   selector: 'app-add-attribute',
@@ -39,11 +31,11 @@ export class AttributeAddComponent implements OnInit {
 
   addAttributeFrom = new FormGroup(
     {
-      id: new FormControl('', [Validators.required, Validators.minLength(36)]),
-      deviceId: new FormControl('', this.valid.atLeastOneValidator),
-      modelId: new FormControl('', this.valid.atLeastOneValidator),
-      connectionId: new FormControl('', this.valid.atLeastOneValidator),
-      attributeDictionaryId: new FormControl('', Validators.required),
+      id: new FormControl(new ObjectId(), [Validators.required]),
+      deviceId: new FormControl(new ObjectId() || null, this.valid.atLeastOneValidator),
+      modelId: new FormControl(new ObjectId() || null, this.valid.atLeastOneValidator),
+      connectionId: new FormControl(new ObjectId() || null, this.valid.atLeastOneValidator),
+      attributeDictionaryId: new FormControl(new ObjectId(), Validators.required),
       value: new FormControl('', Validators.required),
     },
     { validators: this.valid.atLeastOneValidator },
@@ -70,10 +62,9 @@ export class AttributeAddComponent implements OnInit {
   }
 
   constructor(
-    public formBulider: FormBuilder,
+    public formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router,
-    public activatedRoute: ActivatedRoute,
     private attributeService: AttributeService,
     private deviceService: DeviceService,
     private modelService: ModelsService,
@@ -83,13 +74,13 @@ export class AttributeAddComponent implements OnInit {
   ) {}
 
   formAttribute() {
-    this.addAttributeFrom = this.formBulider.group(
+    this.addAttributeFrom = this.formBuilder.group(
       {
-        id: [uuidv4(), [Validators.required, Validators.minLength(36)]],
-        deviceId: [''],
-        modelId: [''],
-        connectionId: [''],
-        attributeDictionaryId: ['', Validators.required],
+        id: [new ObjectId(), Validators.required],
+        deviceId: [new ObjectId() || null],
+        modelId: [new ObjectId() || null],
+        connectionId: [new ObjectId() || null],
+        attributeDictionaryId: [new ObjectId(), Validators.required],
         value: ['', Validators.required],
       },
       { validators: this.valid.atLeastOneValidator },
@@ -101,19 +92,25 @@ export class AttributeAddComponent implements OnInit {
   }
 
   changeModelId(e: Event) {
-    this.modelId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.modelId?.setValue(new ObjectId((e.target as HTMLInputElement).value), { onlySelf: true })
   }
 
   changeDeviceId(e: Event) {
-    this.deviceId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    const value = (e.target as HTMLInputElement).value
+    const objectId = new ObjectId(value)
+    this.deviceId?.setValue(objectId, { onlySelf: true })
   }
 
   changeConnectionId(e: Event) {
-    this.connectionId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    const value = (e.target as HTMLInputElement).value
+    const objectId = new ObjectId(value)
+    this.connectionId?.setValue(objectId, { onlySelf: true })
   }
 
   changeAttributeDictionaryId(e: Event) {
-    this.attributeDictionaryId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    const value = (e.target as HTMLInputElement).value
+    const objectId = new ObjectId(value)
+    this.attributeDictionaryId?.setValue(objectId, { onlySelf: true })
   }
 
   changeValue(e: Event) {
@@ -198,7 +195,7 @@ export class AttributeAddComponent implements OnInit {
     this.attributeService.CreateAttribute(this.addAttributeFrom.value as Attribute).subscribe(() => {
       this.logService
         .CreateLog({
-          objectId: this.addAttributeFrom.get('id')?.value,
+          objectId: this.addAttributeFrom.get('_id')?.value as unknown as ObjectId,
           message: this.addAttributeFrom.value as Attribute,
           operation: 'Create',
           component: 'Attribute',

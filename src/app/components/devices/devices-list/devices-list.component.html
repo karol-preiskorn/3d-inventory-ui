@@ -24,7 +24,7 @@
         <td>{{ stringify(device.position) }}</td>
         <td>
           <a href="edit-model/{{ device.modelId }}" tooltip="{{ device.modelId }}"
-            ><i class="bi bi-motherboard"></i> {{ this.findModelName(device.modelId) }}</a
+            ><i class="bi bi-motherboard"></i> {{ device.modelId ? this.findModelName(device.modelId) : '' }}</a
           >
         </td>
         <td>

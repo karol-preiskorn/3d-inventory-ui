@@ -1,11 +1,13 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
-import { ActivatedRoute, Router } from '@angular/router'
-import { faker } from '@faker-js/faker'
+import { ObjectId } from 'mongodb'
 import { FloorService } from 'src/app/services/floor.service'
 import { LogIn, LogService } from 'src/app/services/log.service'
 import { Floor, FloorDimension } from 'src/app/shared/floor'
 import Validation from 'src/app/shared/validation'
+
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
+import { faker } from '@faker-js/faker'
 
 @Component({
   selector: 'app-edit-floor',
@@ -234,7 +236,7 @@ export class FloorEditComponent implements OnInit {
       message: this.floorForm.value,
       operation: 'Update',
       component: 'Floor',
-      objectId: this.floorForm.value.id,
+      objectId: new ObjectId(this.floorForm.value.id as string),
     }
     this.logService.CreateLog(log).subscribe(() => {
       //this.floor = JSON.stringify(log)

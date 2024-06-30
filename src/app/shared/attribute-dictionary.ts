@@ -1,18 +1,13 @@
 ﻿/*
- * File:        /src/app/shared/attribute_dictionary.ts
- * Description:
- * Used by:     AttributeDictionary service, component
- * Dependency:  -
+ * Description:  AttributeDictionary service, component
  *
- * Date         By        Comments
- * ----------  -------  ------------------------------
  * 2023-06-01  C2RLO	  Add optional null
  * 2023-05-21  C2RLO    Init
  */
-import { v4 as uuidv4 } from 'uuid'
+import { ObjectId } from 'mongodb'
 
 export class AttributeDictionary {
-  _id: string
+  _id: ObjectId
   name?: string
   category?: string
   type?: string
@@ -21,6 +16,6 @@ export class AttributeDictionary {
   //TODO: problem with generate id during create object
   //TODO: unify all definition entity as class | interfance or
   generate() {
-    this._id = uuidv4()
+    this._id = new ObjectId()
   }
 }

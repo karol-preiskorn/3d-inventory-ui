@@ -2,26 +2,25 @@
  * @module /src/app/components/log
  * @description This file contains the implementation of the LogComponent class, which is responsible for displaying and managing logs in the application.
  * @version 2024-06-29 C2RLO - Initial
-**/
+ **/
 
+import { ObjectId } from 'mongodb'
+import { Subscription } from 'rxjs'
+import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
+import { AttributeService } from 'src/app/services/attribute.service'
+import { ConnectionService } from 'src/app/services/connection.service'
+import { DeviceService } from 'src/app/services/device.service'
+import { FloorService } from 'src/app/services/floor.service'
+import { Log, LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Attribute } from 'src/app/shared/attribute'
+import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+import { Connection } from 'src/app/shared/connection'
+import { Device } from 'src/app/shared/device'
+import { Floor } from 'src/app/shared/floor'
+import { Model } from 'src/app/shared/model'
 
-import { ObjectId } from 'mongodb';
-import { Subscription } from 'rxjs';
-import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service';
-import { AttributeService } from 'src/app/services/attribute.service';
-import { ConnectionService } from 'src/app/services/connection.service';
-import { DeviceService } from 'src/app/services/device.service';
-import { FloorService } from 'src/app/services/floor.service';
-import { Log, LogService } from 'src/app/services/log.service';
-import { ModelsService } from 'src/app/services/models.service';
-import { Attribute } from 'src/app/shared/attribute';
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary';
-import { Connection } from 'src/app/shared/connection';
-import { Device } from 'src/app/shared/device';
-import { Floor } from 'src/app/shared/floor';
-import { Model } from 'src/app/shared/model';
-
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'
 
 const api = [
   { component: 'Models', api: 'models' },
@@ -50,7 +49,7 @@ function isApiSettings(component: string): boolean {
 export class LogComponent implements OnInit {
   LogList: Log[] = []
 
-  @Input() component: ObjectId
+  @Input() component: ObjectId | string
   @Input() attributeComponentObject: object = {}
 
   deviceList: Device[]
@@ -187,7 +186,7 @@ export class LogComponent implements OnInit {
       }
       if (jAttribute.deviceId !== null) {
         this.getDeviceList()
-        return 'Device ' + this.findDeviceName(jAttribute.connectionId)
+        return 'Device ' + this.findDeviceName(jAttribute.deviceId)
       }
     }
     return JSON.stringify(jLog, null, ' ')
@@ -216,13 +215,16 @@ export class LogComponent implements OnInit {
    * @returns The name of the device if found, otherwise undefined.
    */
   findDeviceName(id: ObjectId) {
+    let l_id: ObjectId
     if (id === null) {
       return null
     }
     if (typeof id === 'string') {
-      id = new ObjectId(id)
+      l_id = new ObjectId(id)
+    } else {
+      l_id = id
     }
-    return this.deviceList.find((e) => e._id === id)?.name
+    return this.deviceList.find((e) => e._id === l_id)?.name
   }
 
   /**
@@ -329,8 +331,6 @@ export class LogComponent implements OnInit {
    */
   getFloorList() {
     // Implementation goes here
-  }
-}
     if (this.attributeListGet == true) return null
     return this.attributeService.GetAttributes().subscribe((data: Attribute | Attribute[]) => {
       const tmp = new Attribute()
@@ -350,6 +350,6 @@ export class LogComponent implements OnInit {
    * @returns The found floor object, or undefined if no floor with the given id is found.
    */
   findFloor(id: ObjectId) {
-    return this.floorList.find((e) => e.id === ObjectId.createFromHexString(id.toString()))
+    return this.floorList.find((e) => e._id === ObjectId.createFromHexString(id.toString()))
   }
 }

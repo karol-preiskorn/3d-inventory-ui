@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb'
 import { DeviceService } from 'src/app/services/device.service'
 import { LogIn, LogService } from 'src/app/services/log.service'
 import { ModelsService } from 'src/app/services/models.service'
@@ -20,9 +21,9 @@ export class DeviceEditComponent implements OnInit {
   valid: Validation = new Validation() // Add this line to define the 'valid' property
 
   editDeviceForm = new FormGroup({
-    _id: new FormControl('', [Validators.required, Validators.minLength(24)]),
+    _id: new FormControl(new ObjectId(), Validators.required),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    modelId: new FormControl('', Validators.required),
+    modelId: new FormControl(new ObjectId(), Validators.required),
     position: new FormGroup({
       x: new FormControl<number>(0, [Validators.required, this.valid.numberValidator]),
       y: new FormControl<number>(0, [Validators.required, this.valid.numberValidator]),
@@ -45,7 +46,16 @@ export class DeviceEditComponent implements OnInit {
     const id: string = this.activatedRoute.snapshot.paramMap.get('id') || ''
     this.loadModels()
     this.device = this.devicesService.getDeviceSynchronize(id)
-    this.editDeviceForm.patchValue(this.device)
+    this.editDeviceForm.patchValue({
+      _id: this.device._id as unknown as ObjectId,
+      name: this.device.name,
+      modelId: this.device.modelId as unknown as ObjectId,
+      position: {
+        x: this.device.position.x,
+        y: this.device.position.y,
+        h: this.device.position.h,
+      },
+    })
   }
 
   loadModels = () => {
@@ -61,10 +71,10 @@ export class DeviceEditComponent implements OnInit {
         message: this.editDeviceForm.value,
         operation: 'Update',
         component: 'Device',
-        objectId: this.editDeviceForm.value._id,
+        objectId: this.editDeviceForm.value._id as unknown as ObjectId,
       }
       this.logService.CreateLog(log).subscribe(() => {
-        this.devicesService.UpdateDevice(this.editDeviceForm.value as Device).subscribe(() => {
+        this.devicesService.UpdateDevice(this.editDeviceForm.value as unknown as Device).subscribe(() => {
           this.router.navigate(['device-list'])
         })
       })

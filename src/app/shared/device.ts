@@ -3,8 +3,8 @@
  * @description: Main class operating on device. Structure data accessed vi Oracle DB/Neo4j
  * @version: 2023-02-18  C2RLO  Init
  */
-import { ObjectId } from 'mongodb';
-import { adjectives, animals, colors, uniqueNamesGenerator } from 'unique-names-generator';
+import { ObjectId } from 'mongodb'
+import { adjectives, animals, colors, uniqueNamesGenerator } from 'unique-names-generator'
 
 interface Position {
   x: number
@@ -13,7 +13,7 @@ interface Position {
 }
 
 export class Device {
-  _id: ObjectId
+  _id: ObjectId | null
   name: string
   modelId: ObjectId
   position: Position

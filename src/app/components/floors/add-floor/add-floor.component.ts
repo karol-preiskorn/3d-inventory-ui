@@ -1,12 +1,14 @@
+import { ObjectId } from 'mongodb'
+import { FloorService } from 'src/app/services/floor.service'
+import { LogService } from 'src/app/services/log.service'
+import Validation from 'src/app/shared/validation'
+
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
-import { v4 as uuidv4 } from 'uuid'
 import { faker } from '@faker-js/faker'
-import { LogService } from 'src/app/services/log.service'
+
 import { Floor } from '../../../shared/floor.js'
-import { FloorService } from 'src/app/services/floor.service'
-import Validation from 'src/app/shared/validation'
 
 @Component({
   selector: 'app-add-floor',
@@ -29,7 +31,7 @@ export class FloorAddComponent implements OnInit {
   })
 
   floorForm = new FormGroup({
-    id: new FormControl(uuidv4(), [Validators.required, Validators.minLength(36)]),
+    _id: new FormControl(new ObjectId(), [Validators.required]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     address: new FormGroup({
       street: new FormControl('', Validators.required),
@@ -41,18 +43,18 @@ export class FloorAddComponent implements OnInit {
   })
 
   constructor(
-    private formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router,
     private floorService: FloorService,
     private logService: LogService,
   ) {}
+
   ngOnInit(): void {
     throw new Error('Method not implemented.')
   }
 
   changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this._id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeName(e: Event) {
@@ -95,7 +97,7 @@ export class FloorAddComponent implements OnInit {
       .controls.hPos.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  get id() {
+  get _id() {
     return this.floorForm.get('id')
   }
 
