@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb'
 import { Subscription } from 'rxjs'
 import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
 import { AttributeService } from 'src/app/services/attribute.service'
@@ -31,11 +30,11 @@ export class AttributeAddComponent implements OnInit {
 
   addAttributeFrom = new FormGroup(
     {
-      id: new FormControl(new ObjectId(), [Validators.required]),
-      deviceId: new FormControl(new ObjectId() || null, this.valid.atLeastOneValidator),
-      modelId: new FormControl(new ObjectId() || null, this.valid.atLeastOneValidator),
-      connectionId: new FormControl(new ObjectId() || null, this.valid.atLeastOneValidator),
-      attributeDictionaryId: new FormControl(new ObjectId(), Validators.required),
+      id: new FormControl('', [Validators.required]),
+      deviceId: new FormControl<string | null>(null),
+      modelId: new FormControl<string | null>(null),
+      connectionId: new FormControl<string | null>(null),
+      attributeDictionaryId: new FormControl('', Validators.required),
       value: new FormControl('', Validators.required),
     },
     { validators: this.valid.atLeastOneValidator },
@@ -76,11 +75,11 @@ export class AttributeAddComponent implements OnInit {
   formAttribute() {
     this.addAttributeFrom = this.formBuilder.group(
       {
-        id: [new ObjectId(), Validators.required],
-        deviceId: [new ObjectId() || null],
-        modelId: [new ObjectId() || null],
-        connectionId: [new ObjectId() || null],
-        attributeDictionaryId: [new ObjectId(), Validators.required],
+        id: ['', Validators.required],
+        deviceId: [''],
+        modelId: [''],
+        connectionId: [''],
+        attributeDictionaryId: ['', Validators.required],
         value: ['', Validators.required],
       },
       { validators: this.valid.atLeastOneValidator },
@@ -88,28 +87,30 @@ export class AttributeAddComponent implements OnInit {
   }
 
   changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    const value = (e.target as HTMLInputElement).value
+    const objectId = uuidv4.toString().substr(6, 36)
+    this.id?.setValue(objectId, { onlySelf: true })
   }
 
   changeModelId(e: Event) {
-    this.modelId?.setValue(new ObjectId((e.target as HTMLInputElement).value), { onlySelf: true })
+    this.modelId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeDeviceId(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    const objectId = new ObjectId(value)
+    const objectId = uuidv4.toString().substr(6, 36)
     this.deviceId?.setValue(objectId, { onlySelf: true })
   }
 
   changeConnectionId(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    const objectId = new ObjectId(value)
+    const objectId = uuidv4.toString().substr(6, 36)
     this.connectionId?.setValue(objectId, { onlySelf: true })
   }
 
   changeAttributeDictionaryId(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    const objectId = new ObjectId(value)
+    const objectId = uuidv4.toString().substr(6, 36)
     this.attributeDictionaryId?.setValue(objectId, { onlySelf: true })
   }
 
@@ -143,7 +144,7 @@ export class AttributeAddComponent implements OnInit {
 
   toString(data: unknown): string {
     // Specify a more specific type for the 'data' parameter
-    return JSON.stringify(data, null, 2)
+    return JSON.stringify(data, null, 2) as string
   }
 
   getDeviceList(): Subscription {
@@ -195,7 +196,7 @@ export class AttributeAddComponent implements OnInit {
     this.attributeService.CreateAttribute(this.addAttributeFrom.value as Attribute).subscribe(() => {
       this.logService
         .CreateLog({
-          objectId: this.addAttributeFrom.get('_id')?.value as unknown as ObjectId,
+          objectId: this.addAttributeFrom.get('_id')?.value,
           message: this.addAttributeFrom.value as Attribute,
           operation: 'Create',
           component: 'Attribute',
@@ -205,4 +206,7 @@ export class AttributeAddComponent implements OnInit {
         })
     })
   }
+}
+function uuidv4() {
+  throw new Error('Function not implemented.')
 }

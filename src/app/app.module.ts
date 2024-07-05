@@ -1,11 +1,11 @@
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { MarkdownModule } from 'ngx-markdown';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http'; // Add this line
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -49,7 +49,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LogComponent } from './components/log/log.component';
 import { ModelAddComponent } from './components/models/add-model/add-model.component';
 import { ModelEditComponent } from './components/models/edit-model/edit-model.component';
-import { ModelsListComponent } from './components/models/models-list/models-list.component';
+import { ModelsListComponent } from './components/models/model-list/model-list.component';
 import { AttributeDictionaryService } from './services/attribute-dictionary.service';
 import { AttributeService } from './services/attribute.service';
 import { DeviceService } from './services/device.service';
@@ -87,22 +87,18 @@ import { ModelsService } from './services/models.service';
     FloorListComponent,
     FloorEditComponent,
     FloorAddComponent,
+
     LogComponent,
   ],
   imports: [
     AppRoutingModule,
-    BrowserAnimationsModule,
-    BsDropdownModule.forRoot(),
-    HttpClientModule,
+    BrowserModule,
+    CommonModule,
+    HttpClientModule, // Add this line
     MarkdownModule,
     NgbPopoverModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    TooltipModule.forRoot(),
-    HttpClientXsrfModule.withOptions({
-      cookieName: 'My-Xsrf-Cookie',
-      headerName: 'My-Xsrf-Header',
-    }),
   ],
   providers: [
     DeviceService,
@@ -111,7 +107,7 @@ import { ModelsService } from './services/models.service';
     AttributeDictionaryService,
     AttributeService,
     FloorService,
-    CustomErrorHandler,npm 
+    CustomErrorHandler,
   ],
   bootstrap: [AppComponent],
 })

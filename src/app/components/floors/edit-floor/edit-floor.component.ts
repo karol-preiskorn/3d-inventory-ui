@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb'
 import { FloorService } from 'src/app/services/floor.service'
 import { LogIn, LogService } from 'src/app/services/log.service'
 import { Floor, FloorDimension } from 'src/app/shared/floor'
@@ -236,13 +235,14 @@ export class FloorEditComponent implements OnInit {
       message: this.floorForm.value,
       operation: 'Update',
       component: 'Floor',
-      objectId: new ObjectId(this.floorForm.value.id as string),
+      objectId: this.floorForm.value.id as string,
     }
     this.logService.CreateLog(log).subscribe(() => {
       //this.floor = JSON.stringify(log)
       //  this.reloadComponent(false, 'edit-floor/' + this.floor.id)
     })
-    this.floorService.UpdateFloor(this.floorForm.value.id, this.floorForm.getRawValue() as never).subscribe(() => {
+    const id = this.floorForm.value.id || ''
+    this.floorService.UpdateFloor(id, this.floorForm.getRawValue() as never).subscribe(() => {
       console.log('Floor updated!')
       this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
     })

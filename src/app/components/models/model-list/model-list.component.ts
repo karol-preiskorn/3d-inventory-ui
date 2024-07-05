@@ -1,22 +1,21 @@
-import { ObjectId } from 'mongodb';
-import { Observable, of } from 'rxjs';
-import { LogService } from 'src/app/services/log.service';
-import { ModelsService } from 'src/app/services/models.service';
-import { Model } from 'src/app/shared/model';
+import { Observable, of } from 'rxjs'
+import { LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Model } from 'src/app/shared/model'
 
-import { Component, NgZone, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, NgZone, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-models-list',
-  templateUrl: './models-list.component.html',
-  styleUrls: ['./models-list.component.scss'],
+  templateUrl: './model-list.component.html',
+  styleUrls: ['./model-list.component.scss'],
 })
 export class ModelsListComponent implements OnInit {
   ModelsList: Array<Model> = []
   selectedModel: Model
   modelListPage = 1
-  component = 'Models'
+  component: string = 'Models'
 
   constructor(
     public modelsService: ModelsService,
@@ -46,7 +45,7 @@ export class ModelsListComponent implements OnInit {
    * Deletes a model with the specified ID.
    * @param id The ID of the model to delete.
    */
-  DeleteModel(id: ObjectId) {
+  DeleteModel(id: string) {
     this.logService.CreateLog({
       message: { id: id },
       objectId: id,
@@ -66,7 +65,7 @@ export class ModelsListComponent implements OnInit {
    * @param id The ID of the model to clone.
    * @returns The ID of the newly cloned model.
    */
-  async CloneModel(id: ObjectId): Promise<string> {
+  async CloneModel(id: string): Promise<string> {
     const idCloned = this.modelsService.CloneModel(id)
     this.logService
       .CreateLog({

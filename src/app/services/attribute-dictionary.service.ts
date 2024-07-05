@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb'
 import { Observable, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 
@@ -41,7 +40,7 @@ export class AttributeDictionaryService {
    * @param id - The ID of the attribute dictionary to retrieve.
    * @returns An Observable that emits the retrieved AttributeDictionary.
    */
-  GetAttributeDictionary(id: ObjectId | null): Observable<AttributeDictionary> {
+  GetAttributeDictionary(id: string): Observable<AttributeDictionary> {
     return this.http
       .get<AttributeDictionary>(environment.baseurl + '/attribute-dictionary/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
@@ -51,7 +50,7 @@ export class AttributeDictionaryService {
    * @param id The ID of the attribute dictionary to delete.
    * @returns An Observable that emits the deleted attribute dictionary.
    */
-  DeleteAttributeDictionary(id: ObjectId): Observable<AttributeDictionary> {
+  DeleteAttributeDictionary(id: string): Observable<AttributeDictionary> {
     return this.http
       .delete<AttributeDictionary>(environment.baseurl + '/attributesDictionary/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
@@ -76,11 +75,9 @@ export class AttributeDictionaryService {
    * @param id - The ID of the attribute dictionary to clone.
    * @returns The UUID of the cloned attribute dictionary.
    */
-  CloneAttributeDictionary(id: ObjectId): ObjectId {
-    const id_uuid: ObjectId = new ObjectId()
+  CloneAttributeDictionary(id: string): string {
     this.GetAttributeDictionary(id).subscribe((value: AttributeDictionary) => {
       console.log('Get attributes: ' + JSON.stringify(value, null, ' '))
-      value._id = id_uuid
       this.CreateAttributeDictionary(value).subscribe({
         next: (v) => {
           console.log('Create attributes: ' + JSON.stringify(v, null, ' '))
@@ -89,7 +86,7 @@ export class AttributeDictionaryService {
         complete: () => this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list')),
       })
     })
-    return id_uuid
+    return 'x'
   }
   /**
    * Updates an attribute dictionary with the specified ID.
@@ -97,7 +94,7 @@ export class AttributeDictionaryService {
    * @param data - The updated attribute dictionary data.
    * @returns An observable that emits the updated attribute dictionary.
    */
-  UpdateAttributeDictionary(id: ObjectId | null, data: AttributeDictionary): Observable<AttributeDictionary> {
+  UpdateAttributeDictionary(id: string | null, data: AttributeDictionary): Observable<AttributeDictionary> {
     return this.http
       .put<AttributeDictionary>(
         environment.baseurl + '/attributesDictionary/' + id,

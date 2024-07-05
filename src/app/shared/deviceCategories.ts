@@ -1,11 +1,5 @@
 ﻿/*
- * File:        /src/app/deviceCategories.ts
  * Description: Define DeviceCategoryTypes and access to this dictionary
- * Used by:
- * Dependency:
- *
- * Date        By     Comments
- * ----------  -----  ---------------------------------------------------------
  * 2023-02-18  C2RLO
  */
 
@@ -44,14 +38,6 @@ export class DeviceCategoryDict {
     return deviceCategory.name == searchCategory
   }
 
-  // findCategoryImplementation(this: DeviceCategoryDict[], searchCategory: string): DeviceCategoryDict[] {
-  //   return this.filter((category) => this.findCategory(category, searchCategory))
-  // }
-
-  // getCat(category: string): string {
-  //   return this.deviceCategories.find((element) => element.Category === category)?.Category
-  // }
-
   public getRandom(): DeviceCategory {
     return this.list[Math.floor(Math.random() * this.list.length)]
   }
@@ -60,6 +46,3 @@ export class DeviceCategoryDict {
     return this.list[Math.floor(Math.random() * this.list.length)].name
   }
 }
-
-// var devicesT = new DeviceCategory()
-// var r = devicesT.findCategoryImplementation('Site')

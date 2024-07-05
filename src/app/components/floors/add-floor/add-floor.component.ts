@@ -1,14 +1,14 @@
-import { ObjectId } from 'mongodb'
 import { FloorService } from 'src/app/services/floor.service'
 import { LogService } from 'src/app/services/log.service'
 import Validation from 'src/app/shared/validation'
 
+import { CommonModule } from '@angular/common'
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
 
-import { Floor } from '../../../shared/floor.js'
+import { Floor } from '../../../shared/floor'
 
 @Component({
   selector: 'app-add-floor',
@@ -31,7 +31,7 @@ export class FloorAddComponent implements OnInit {
   })
 
   floorForm = new FormGroup({
-    _id: new FormControl(new ObjectId(), [Validators.required]),
+    _id: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     address: new FormGroup({
       street: new FormControl('', Validators.required),
@@ -54,7 +54,9 @@ export class FloorAddComponent implements OnInit {
   }
 
   changeId(e: Event) {
-    this._id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    const value = (e.target as HTMLInputElement).value
+    const objectId = value
+    this._id?.setValue(objectId, { onlySelf: true })
   }
 
   changeName(e: Event) {
@@ -98,7 +100,7 @@ export class FloorAddComponent implements OnInit {
   }
 
   get _id() {
-    return this.floorForm.get('id')
+    return this.floorForm.get('_id')
   }
 
   get name() {

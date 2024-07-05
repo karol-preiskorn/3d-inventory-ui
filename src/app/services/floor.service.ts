@@ -1,7 +1,7 @@
-import { ObjectId } from 'mongodb'
 import { Observable, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 import { SyncRequestClient } from 'ts-sync-request'
+import { v4 as uuidv4 } from 'uuid'
 
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable, NgZone } from '@angular/core'
@@ -51,7 +51,7 @@ export class FloorService {
    * @param id - The ID of the floor to retrieve.
    * @returns An Observable that emits the retrieved floor.
    */
-  GetFloor(id: ObjectId): Observable<Floor> {
+  GetFloor(id: string): Observable<Floor> {
     return this.http
       .get<Floor>(environment.baseurl + '/floor/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
@@ -62,7 +62,7 @@ export class FloorService {
    * @param id - The ID of the floor to delete.
    * @returns An Observable that emits the deleted floor.
    */
-  DeleteFloor(id: ObjectId): Observable<Floor> {
+  DeleteFloor(id: string): Observable<Floor> {
     return this.http
       .delete<Floor>(environment.baseurl + '/floor/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
@@ -85,8 +85,8 @@ export class FloorService {
    * @param id - The ID of the floor to clone.
    * @returns The UUID of the cloned floor.
    */
-  CloneFloor(id: ObjectId): ObjectId {
-    const id_uuid: ObjectId = new ObjectId()
+  CloneFloor(id: string): string {
+    const id_uuid: string = uuidv4.toString().substr(6, 36)
     this.GetFloor(id).subscribe((value: Floor) => {
       console.log('Get Floor: ' + JSON.stringify(value, null, ' '))
       value._id = id_uuid
@@ -108,7 +108,7 @@ export class FloorService {
    * @param data - The updated floor data.
    * @returns An Observable that emits the updated floor.
    */
-  UpdateFloor(id: string | null | undefined, data: never): Observable<Floor> {
+  UpdateFloor(id: string, data: never): Observable<Floor> {
     return this.http
       .put<Floor>(environment.baseurl + '/floor/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))

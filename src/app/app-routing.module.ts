@@ -1,11 +1,13 @@
+import { DeviceAddComponent } from 'src/app/components/devices/add-device/add-device.component'
+import { DeviceListComponent } from 'src/app/components/devices/devices-list/devices-list.component'
+import { DeviceEditComponent } from 'src/app/components/devices/edit-device/edit-device.component'
+
 import { CommonModule } from '@angular/common'
 import { Injectable, NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { Title } from '@angular/platform-browser'
-import { RouterModule, RouterStateSnapshot, Routes, TitleStrategy, provideRouter } from '@angular/router'
-import { DeviceAddComponent } from 'src/app/components/devices/add-device/add-device.component'
-import { DeviceListComponent } from 'src/app/components/devices/devices-list/devices-list.component'
-import { DeviceEditComponent } from 'src/app/components/devices/edit-device/edit-device.component'
+import { provideRouter, RouterModule, RouterStateSnapshot, Routes, TitleStrategy } from '@angular/router'
+
 import { AttributeDictionaryAddComponent } from './components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component'
 import { AttributeDictionaryListComponent } from './components/attribute-dictionary/attribute-dictionary-list/attribute-dictionary-list.component'
 import { AttributeDictionaryEditComponent } from './components/attribute-dictionary/edit-attribute-dictionary/edit-attribute-dictionary.component'
@@ -22,7 +24,7 @@ import { FloorListComponent } from './components/floors/floor-list/floor-list.co
 import { HomeComponent } from './components/home/home.component'
 import { ModelAddComponent } from './components/models/add-model/add-model.component'
 import { ModelEditComponent } from './components/models/edit-model/edit-model.component'
-import { ModelsListComponent } from './components/models/models-list/models-list.component'
+import { ModelsListComponent } from './components/models/model-list/model-list.component'
 
 @Injectable()
 export class TemplatePageTitleStrategy extends TitleStrategy {

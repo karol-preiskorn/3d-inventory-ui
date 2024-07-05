@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb'
 import { ConnectionService } from 'src/app/services/connection.service'
 import { DeviceService } from 'src/app/services/device.service'
 import { LogIn, LogService } from 'src/app/services/log.service'
@@ -41,23 +40,21 @@ export class ConnectionListComponent implements OnInit {
 
   getDeviceList() {
     return this.deviceService.GetDevices().subscribe((data: Device[]) => {
-      const tmp = new Device()
-      data.unshift(tmp)
       this.deviceList = data
     })
   }
 
-  findDevice(id: ObjectId): Device {
-    let tmp: Device = new Device()
-    tmp = this.deviceList.find((e: Device): boolean => e._id === id) || tmp
-    return tmp
+  findDevice(id: string): Device {
+    let device: Device = new Device()
+    device = this.deviceList.find((e: Device): boolean => e._id === id) || device
+    return device
   }
 
-  gotoDevice(deviceId: ObjectId) {
+  gotoDevice(deviceId: string) {
     this.router.navigate(['edit-device/', deviceId])
   }
 
-  deleteConnection(id: ObjectId) {
+  deleteConnection(id: string) {
     this.logService
       .CreateLog({
         message: { id: id },
@@ -77,8 +74,8 @@ export class ConnectionListComponent implements OnInit {
     })
   }
 
-  async cloneConnection(id: ObjectId) {
-    const id_new: ObjectId = this.ConnectionService.CloneConnection(id)
+  async cloneConnection(id: string) {
+    const id_new: string = this.ConnectionService.CloneConnection(id)
     this.logService
       .CreateLog({
         message: { id: id, id_new: id_new },
@@ -88,15 +85,14 @@ export class ConnectionListComponent implements OnInit {
       .subscribe(() => {
         this.ngZone.run(() => this.router.navigateByUrl('connection-list'))
       })
-    // this.loadConnection()
-    // this.router.navigate(['/attribute-dictionary-list'])
   }
+
   AddForm() {
     this.router.navigateByUrl('add-connection')
   }
+
   editConnection(Connection: Connection) {
     this.selectedConnection = Connection
     this.router.navigate(['edit-connection', this.selectedConnection._id])
-    // this.ngZone.run(() => this.router.navigateByUrl(`edit-device/${id}`))
   }
 }

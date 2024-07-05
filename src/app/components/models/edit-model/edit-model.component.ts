@@ -1,22 +1,23 @@
-import { ObjectId } from 'mongodb';
-import { Subscription } from 'rxjs';
-import { LogService } from 'src/app/services/log.service';
-import { ModelsService } from 'src/app/services/models.service';
-import { Model } from 'src/app/shared/model';
+import { Subscription } from 'rxjs'
+import { LogService } from 'src/app/services/log.service'
+import { ModelsService } from 'src/app/services/models.service'
+import { Model } from 'src/app/shared/model'
 
-import { Component, NgZone, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'app-edit-model',
   templateUrl: './edit-model.component.html',
   styleUrls: ['./edit-model.component.scss'],
+  providers: [CommonModule],
 })
 export class ModelEditComponent implements OnInit {
   attributeComponent: string = ''
   attributeComponentObject: string = ''
-  inputId: ObjectId
+  inputId: string
   model: Model
   component = ''
   submitted = false
@@ -58,8 +59,8 @@ export class ModelEditComponent implements OnInit {
       }),
     })
 
-    this.inputId = new ObjectId(String(this.activatedRoute.snapshot.paramMap.get('id'))) || new ObjectId()
-    this.component = this.inputId.toHexString()
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') as string
+    this.component = this.inputId.toString()
     this.getModel()
   }
 

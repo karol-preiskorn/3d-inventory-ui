@@ -4,7 +4,6 @@
  * @version 2024-06-29 C2RLO - Initial
  **/
 
-import { ObjectId } from 'mongodb'
 import { Subscription } from 'rxjs'
 import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
 import { AttributeService } from 'src/app/services/attribute.service'
@@ -49,7 +48,7 @@ function isApiSettings(component: string): boolean {
 export class LogComponent implements OnInit {
   LogList: Log[] = []
 
-  @Input() component: ObjectId | string
+  @Input() component: string
   @Input() attributeComponentObject: object = {}
 
   deviceList: Device[]
@@ -92,13 +91,15 @@ export class LogComponent implements OnInit {
         'LoadComponent.loadLog (call loadComponentLog) - Context: ' +
           context +
           ', loadComponentLog: ' +
-          component +
+          (component ?? '') +
           ' attributeComponentObject: ' +
           JSON.stringify(this.attributeComponentObject),
       )
       this.loadComponentLog(component)
     } else {
-      console.log('LoadComponent.loadLog (call loadObjectsLog) - Context: ' + context + ', loadObjectLog: ' + component)
+      console.log(
+        'LoadComponent.loadLog (call loadObjectsLog) - Context: ' + context + ', loadObjectLog: ' + (component ?? ''),
+      )
       this.loadObjectsLog(component)
     }
   }
@@ -123,7 +124,7 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the log entry to delete.
    * @returns An Observable that emits the deleted log entry.
    */
-  DeleteLog(id: ObjectId) {
+  DeleteLog(id: string) {
     return this.logService.DeleteLog(id).subscribe((data: Log) => {
       console.log(data)
       this.OnChanges()
@@ -168,7 +169,6 @@ export class LogComponent implements OnInit {
       console.log('findNameInLogMessage: ' + JSON.stringify(log.message) + ' ' + error)
       return JSON.stringify(log.message)
     }
-    //console.log('jLog: ' + JSON.stringify(jLog, null, ' '))
     if (log.component == 'Attribute') {
       const jAttribute: Attribute = log.message as Attribute
       console.log('jAttribute: ' + JSON.stringify(jAttribute, null, ' '))
@@ -214,17 +214,8 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the device.
    * @returns The name of the device if found, otherwise undefined.
    */
-  findDeviceName(id: ObjectId) {
-    let l_id: ObjectId
-    if (id === null) {
-      return null
-    }
-    if (typeof id === 'string') {
-      l_id = new ObjectId(id)
-    } else {
-      l_id = id
-    }
-    return this.deviceList.find((e) => e._id === l_id)?.name
+  findDeviceName(id: string) {
+    return this.deviceList.find((e) => e._id === id)?.name
   }
 
   /**
@@ -249,8 +240,8 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the model.
    * @returns The name of the model if found, otherwise undefined.
    */
-  findModelName(id: ObjectId) {
-    return this.modelList.find((e) => e._id === ObjectId.createFromHexString(id.toString()))?.name
+  findModelName(id: string) {
+    return this.modelList.find((e) => e._id === id)?.name
   }
 
   /**
@@ -272,8 +263,8 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the connection.
    * @returns The name of the connection if found, otherwise undefined.
    */
-  findConnectionName(id: ObjectId) {
-    return this.connectionList.find((e) => e._id === ObjectId.createFromHexString(id.toString()))?.name
+  findConnectionName(id: string) {
+    return this.connectionList.find((e) => e._id === id)?.name
   }
 
   /**
@@ -294,7 +285,7 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the attribute dictionary.
    * @returns The name of the attribute dictionary, or undefined if not found.
    */
-  findAttributeDictionaryName(id: ObjectId) {
+  findAttributeDictionaryName(id: string) {
     return this.attributeDictionaryList.find((e) => e._id === id)?.name
   }
 
@@ -318,7 +309,7 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the attribute to find.
    * @returns The attribute object if found, or undefined if not found.
    */
-  findAttribute(id: ObjectId) {
+  findAttribute(id: string) {
     return this.attributeList.find((e) => e._id === id)
   }
 
@@ -349,7 +340,7 @@ export class LogComponent implements OnInit {
    * @param id - The id of the floor to find.
    * @returns The found floor object, or undefined if no floor with the given id is found.
    */
-  findFloor(id: ObjectId) {
-    return this.floorList.find((e) => e._id === ObjectId.createFromHexString(id.toString()))
+  findFloor(id: string) {
+    return this.floorList.find((e) => e._id === id)
   }
 }

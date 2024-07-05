@@ -18,12 +18,10 @@
                   itemsPerPage: 5,
                   currentPage: deviceListPage,
                 }
-        "
-      >
-        <td tooltip="{{ device._id }}">{{ device.name }}</td>
+        ">
         <td>{{ stringify(device.position) }}</td>
         <td>
-          <a href="edit-model/{{ device.modelId }}" tooltip="{{ device.modelId }}"
+          <a title="{{ device._id }} {{ device.name }}" href="edit-model/{{ device.modelId }}"
             ><i class="bi bi-motherboard"></i> {{ device.modelId ? this.findModelName(device.modelId) : '' }}</a
           >
         </td>

@@ -18,8 +18,7 @@
                   itemsPerPage: 5,
                   currentPage: connectionListPage,
                 }
-        "
-      >
+        ">
         <td>
           {{ connectionObj.name }}
           <div class="deviceid">{{ connectionObj._id }}</div>
@@ -33,7 +32,7 @@
         <td>
           <a href="/edit-device/{{ connectionObj.deviceIdTo }}">
             <i class="bi bi-box"></i> {{ this.findDevice(connectionObj.deviceIdTo).name }}
-            {{ this.findDevice(connectionObj.deviceIdTo).makeDeviceString }}
+            {{ this.findDevice(connectionObj.deviceIdTo).toString() }}
           </a>
           <div class="deviceid">{{ connectionObj.deviceIdTo }}</div>
         </td>
@@ -43,24 +42,21 @@
               type="button"
               class="btn btn-success btn-sm move-right"
               id="edit-connection"
-              (click)="editConnection(connectionObj)"
-            >
+              (click)="editConnection(connectionObj)">
               <i class="bi bi-pen"></i>
             </button>
             <button
               type="button"
               id="delete-connection"
               class="btn btn-danger btn-sm"
-              (click)="deleteConnection(connectionObj._id)"
-            >
+              (click)="deleteConnection(connectionObj._id)">
               <i class="bi bi-trash"></i>
             </button>
             <button
               type="button"
               id="clone-connection"
               class="btn btn-info btn-sm"
-              (click)="cloneConnection(connectionObj._id)"
-            >
+              (click)="cloneConnection(connectionObj._id)">
               <i class="bi bi-copy"></i>
             </button>
           </div>

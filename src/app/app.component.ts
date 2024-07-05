@@ -1,5 +1,4 @@
 import { Component } from '@angular/core'
-import { setTheme } from 'ngx-bootstrap/utils'
 
 @Component({
   selector: 'app-root',
@@ -23,8 +22,8 @@ export class AppComponent {
   currentYearLong(): number {
     return new Date().getFullYear()
   }
-
-  constructor() {
-    setTheme('bs5')
+  changeTheme(theme: string) {
+    const body = document.body as HTMLElement
+    body.setAttribute('data-bs-theme', theme)
   }
 }

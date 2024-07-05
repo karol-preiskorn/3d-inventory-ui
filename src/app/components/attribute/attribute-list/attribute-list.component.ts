@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb'
 import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
 import { AttributeService } from 'src/app/services/attribute.service'
 import { ConnectionService } from 'src/app/services/connection.service'
@@ -81,7 +80,7 @@ export class AttributeListComponent implements OnInit {
     }
   }
 
-  DeleteAttribute(id: ObjectId) {
+  DeleteAttribute(id: string) {
     this.logService.CreateLog({
       message: { id: id },
       objectId: id,
@@ -95,11 +94,10 @@ export class AttributeListComponent implements OnInit {
     })
   }
 
-  async CloneAttribute(id: ObjectId) {
-    const id_new: ObjectId = new ObjectId(id)
+  async CloneAttribute(id: string) {
     this.logService
       .CreateLog({
-        message: { id: id, id_new: id_new },
+        message: { id: id, id_new: 'todo!' },
         operation: 'Clone',
         component: this.component,
       })
@@ -117,9 +115,8 @@ export class AttributeListComponent implements OnInit {
     this.router.navigate(['edit-attribute', this.selectedAttribute._id])
   }
 
-  getDevice(id: ObjectId | string) {
-    const objectId = typeof id === 'string' ? new ObjectId(id) : new ObjectId(id)
-    return this.deviceService.GetDevice(objectId).subscribe((data: Device) => {
+  getDevice(id: string) {
+    return this.deviceService.GetDevice(id).subscribe((data: Device) => {
       this.device = data
     })
   }
@@ -132,15 +129,14 @@ export class AttributeListComponent implements OnInit {
     })
   }
 
-  findDeviceName(id: ObjectId | null): string {
+  findDeviceName(id: string): string {
     if (id === null) {
       return ''
     }
-    const objectId = typeof id === 'string' ? new ObjectId(id) : new ObjectId(id)
-    return this.deviceDictionary.find((e) => e._id === objectId)?.name as string
+    return this.deviceDictionary.find((e) => e._id === id)?.name as string
   }
 
-  findModelName(id: ObjectId | null): string {
+  findModelName(id: string): string {
     return this.modelDictionary.find((e) => e._id === id)?.name as string
   }
 
@@ -160,7 +156,7 @@ export class AttributeListComponent implements OnInit {
     })
   }
 
-  findConnectionName(id: ObjectId | null): string {
+  findConnectionName(id: string): string {
     return this.connectionDictionary.find((e) => e._id === id)?.name as string
   }
 
@@ -172,7 +168,7 @@ export class AttributeListComponent implements OnInit {
     })
   }
 
-  findAttributeDictionary(id: ObjectId): string {
+  findAttributeDictionary(id: string): string {
     return this.attributeDictionary.find((e) => e._id === id)?.name as string
   }
 }

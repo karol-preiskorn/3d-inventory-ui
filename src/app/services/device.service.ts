@@ -1,15 +1,15 @@
-import { ObjectId } from 'mongodb';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, map, retry } from 'rxjs/operators';
-import { SyncRequestClient } from 'ts-sync-request/dist';
+import { Observable, of, throwError } from 'rxjs'
+import { catchError, map, retry } from 'rxjs/operators'
+import { SyncRequestClient } from 'ts-sync-request/dist'
+import { v4 as uuidv4 } from 'uuid' // Import the uuidv4 function from the uuid library
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, NgZone } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
 
-import { environment } from '../../environments/environment';
-import { Device } from '../shared/device';
-import { LogService } from './log.service';
+import { environment } from '../../environments/environment'
+import { Device } from '../shared/device'
+import { LogService } from './log.service'
 
 @Injectable({
   providedIn: 'root',
@@ -49,7 +49,7 @@ export class DeviceService {
    * @param id The ID of the device to retrieve.
    * @returns An Observable that emits the retrieved device.
    */
-  GetDevice(id: ObjectId | null): Observable<Device> {
+  GetDevice(id: string): Observable<Device> {
     return this.http
       .get<Device>(environment.baseurl + '/' + this.objectName + '/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
@@ -60,7 +60,7 @@ export class DeviceService {
    * @param id - The ID of the device to retrieve.
    * @returns A synchronous request client for getting the device.
    */
-  getDeviceSynchronize(id: string | null) {
+  getDeviceSynchronize(id: string) {
     return new SyncRequestClient().get<Device>(environment.baseurl + '/' + this.objectName + '/' + id)
   }
 
@@ -69,7 +69,7 @@ export class DeviceService {
    * @param id The ID of the device to retrieve.
    * @returns An Observable that emits the retrieved Device object.
    */
-  GetDeviceSynchro(id: string | null): Observable<Device> {
+  GetDeviceSynchro(id: string): Observable<Device> {
     return this.http.get<Device>(environment.baseurl + '/' + this.objectName + '/' + id).pipe(
       map((res) => {
         return res
@@ -83,7 +83,7 @@ export class DeviceService {
    * @param id The ID of the device to delete.
    * @returns An Observable that emits the deleted device.
    */
-  DeleteDevice(id: ObjectId | null): Observable<Device> {
+  DeleteDevice(id: string): Observable<Device> {
     return this.http
       .delete<Device>(environment.baseurl + '/' + this.objectName + '/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
@@ -110,8 +110,8 @@ export class DeviceService {
    * @param id - The ID of the device to clone.
    * @returns The UUID of the cloned device.
    */
-  CloneDevice(id: ObjectId | null): ObjectId {
-    const local_id = new ObjectId()
+  CloneDevice(id: string): string {
+    const local_id = uuidv4().toString().substr(6, 36) // Call the uuidv4 function to generate a UUID
     this.GetDevice(id).subscribe((value: Device) => {
       console.log('Get Device: ' + JSON.stringify(value, null, ' '))
       value._id = local_id

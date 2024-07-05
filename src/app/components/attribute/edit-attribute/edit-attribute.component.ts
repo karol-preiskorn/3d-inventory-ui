@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb'
 import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
 import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
@@ -16,6 +15,7 @@ import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
 import { Model } from 'src/app/shared/model'
 import Validation from 'src/app/shared/validation'
+import { v4 as uuidv4 } from 'uuid'
 
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
@@ -27,16 +27,16 @@ import { ActivatedRoute, Router } from '@angular/router'
   styleUrls: ['./edit-attribute.component.scss'],
 })
 export class AttributeEditComponent implements OnInit {
-  inputId: ObjectId
+  inputId: string
   valid: Validation = new Validation()
 
   editAttributeForm = new FormGroup(
     {
-      _id: new FormControl(new ObjectId(), [Validators.required]),
-      attributeDictionaryId: new FormControl(new ObjectId(), [Validators.required]),
-      connectionId: new FormControl(new ObjectId()),
-      deviceId: new FormControl(new ObjectId()),
-      modelId: new FormControl(new ObjectId()),
+      _id: new FormControl('', [Validators.required]),
+      attributeDictionaryId: new FormControl('', [Validators.required]),
+      connectionId: new FormControl(''),
+      deviceId: new FormControl(''),
+      modelId: new FormControl(''),
       value: new FormControl('', [Validators.required]),
     },
     { validators: this.valid.atLeastOneValidator },
@@ -52,19 +52,19 @@ export class AttributeEditComponent implements OnInit {
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   componentDictionary: ComponentDictionary = new ComponentDictionary()
 
-  component: ObjectId
+  component: string
   isSubmitted = false
 
   ngOnInit() {
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') as unknown as ObjectId
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') || ''
     this.getAttribute(this.inputId).subscribe((data: Attribute) => {
       this.attribute = data
       this.editAttributeForm.setValue({
         _id: data._id,
-        attributeDictionaryId: data.attributeDictionaryId as ObjectId,
-        connectionId: data.connectionId as unknown as ObjectId,
+        attributeDictionaryId: data.attributeDictionaryId,
+        connectionId: data.connectionId,
         deviceId: data.deviceId,
-        modelId: data.modelId as unknown as ObjectId,
+        modelId: data.modelId,
         value: data.value,
       })
     })
@@ -75,7 +75,7 @@ export class AttributeEditComponent implements OnInit {
     this.component = this.inputId
   }
 
-  private getAttribute(id: ObjectId): Observable<Attribute> {
+  private getAttribute(id: string): Observable<Attribute> {
     return this.attributeService.GetAttribute(id).pipe(
       tap((data: Attribute) => {
         console.log('AttributeEditComponent.GetAttribute(' + id + ') => ' + JSON.stringify(data, null, 2))
@@ -87,37 +87,38 @@ export class AttributeEditComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private attributeService: AttributeService,
     private deviceService: DeviceService,
     private modelService: ModelsService,
     private connectionService: ConnectionService,
     private attributeDictionaryService: AttributeDictionaryService,
     private logService: LogService,
+    private ngZone: NgZone,
   ) {}
 
   changeModelId(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    const objectId = new ObjectId(value)
+    const objectId = uuidv4.toString()
     this.modelId!.setValue(objectId, { onlySelf: true })
   }
 
   changeDeviceId(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    const objectId = new ObjectId(value) as ObjectId
+    const objectId = uuidv4.toString()
     this.deviceId?.setValue(objectId, { onlySelf: true })
   }
 
   changeConnectionId(e: Event) {
-    this.connectionId?.setValue((e.target as HTMLInputElement).value as unknown as ObjectId, { onlySelf: true })
+    this.connectionId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeAttributeDictionaryId(e: Event) {
-    this.attributeDictionaryId?.setValue((e.target as HTMLInputElement).value as never, { onlySelf: true })
+    this.attributeDictionaryId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeValue(e: Event) {
-    this.value?.setValue((e.target as HTMLInputElement).value as never, { onlySelf: true })
+    this.value?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   get id() {
@@ -160,7 +161,7 @@ export class AttributeEditComponent implements OnInit {
     })
   }
 
-  findDeviceName(id: ObjectId) {
+  findDeviceName(id: string) {
     return this.deviceDictionary.find((e) => e._id === id)?.name
   }
 

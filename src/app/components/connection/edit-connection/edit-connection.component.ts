@@ -5,7 +5,6 @@
  * @version 2024-03-17 C2RLO - Initial new unified version
  **/
 
-import { ObjectId } from 'mongodb'
 import { Observable, tap } from 'rxjs'
 import { ConnectionService } from 'src/app/services/connection.service'
 import { DeviceService } from 'src/app/services/device.service'
@@ -24,19 +23,19 @@ import { ActivatedRoute, Router } from '@angular/router'
   styleUrls: ['./edit-connection.component.scss'],
 })
 export class ConnectionEditComponent implements OnInit {
-  inputId: ObjectId
+  inputId: string
   form = this.createFormGroup()
 
   connection: Connection = new Connection()
   deviceList: Device[]
   isSubmitted = false
   componentDictionary: ComponentDictionary = new ComponentDictionary()
-  component: ObjectId | string
+  component: string
 
   ngOnInit() {
     this.createFormGroup()
     this.getDeviceList()
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') as unknown as ObjectId
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') ?? ''
     this.getConnection(this.inputId).subscribe((data: Connection) => {
       this.connection = data
     })
@@ -55,17 +54,17 @@ export class ConnectionEditComponent implements OnInit {
 
   createFormGroup() {
     return this.formBuilder.group({
-      id: [new ObjectId(), Validators.required],
+      id: ['', Validators.required],
       name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
-      deviceIdTo: [new ObjectId(), [Validators.required]],
-      deviceIdFrom: [new ObjectId(), [Validators.required]],
+      deviceIdTo: ['', [Validators.required]],
+      deviceIdFrom: ['', [Validators.required]],
     })
   }
 
   changeId(e: Event) {
     if (this.id) {
       const value = (e.target as HTMLInputElement).value
-      const objectId = new ObjectId(value)
+      const objectId = value
       this.id.setValue(objectId, { onlySelf: true })
     }
   }
@@ -75,13 +74,13 @@ export class ConnectionEditComponent implements OnInit {
 
   changeDeviceFrom(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    const objectId = new ObjectId(value)
+    const objectId = value
     this.deviceIdFrom?.setValue(objectId, { onlySelf: true })
   }
 
   changeDeviceTo(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    const objectId = new ObjectId(value)
+    const objectId = value
     this.deviceIdTo?.setValue(objectId, { onlySelf: true })
   }
 
@@ -115,7 +114,7 @@ export class ConnectionEditComponent implements OnInit {
     })
   }
 
-  private getConnection(id: ObjectId): Observable<Connection> {
+  private getConnection(id: string): Observable<Connection> {
     return this.connectionService.GetConnection(this.inputId).pipe(
       tap((data: Connection) => {
         console.log(
@@ -130,7 +129,7 @@ export class ConnectionEditComponent implements OnInit {
     this.connectionService.UpdateConnection(this.inputId, this.form.value as unknown as Connection).subscribe(() => {
       this.logService
         .CreateLog({
-          objectId: this.form.get('id')?.value as unknown as ObjectId,
+          objectId: this.form.get('id')?.value ?? undefined,
           message: { value: this.form.value },
           operation: 'Update',
           component: 'Connection',

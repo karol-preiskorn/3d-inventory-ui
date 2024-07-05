@@ -1,11 +1,5 @@
 ﻿/*
- * File:        /src/app/shared/component-dictionary.ts
  * Description:
- * Used by:
- * Dependency:
- *
- * Date        By       Comments
- * ----------  -------  ------------------------------
  * 2023-06-03  C2RLO
  */
 

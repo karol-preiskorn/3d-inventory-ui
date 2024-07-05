@@ -1,6 +1,3 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { ActivatedRoute, Router } from '@angular/router'
 import { Observable, tap } from 'rxjs'
 import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
 import { LogService } from 'src/app/services/log.service'
@@ -8,6 +5,10 @@ import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
 import { ComponentDictionary } from 'src/app/shared/component-dictionary'
 import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
 import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
+
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'app-edit-attribute-dictionary',
@@ -22,15 +23,17 @@ export class AttributeDictionaryEditComponent implements OnInit {
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   componentDictionary: ComponentDictionary = new ComponentDictionary()
-  logComponent = ''
+  logComponent: string
+
   ngOnInit() {
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id')!
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') || ''
     this.getAttributeDictionary(this.inputId).subscribe((data: AttributeDictionary) => {
       this.attributeDictionary = data
     })
     this.logComponent = this.inputId
     this.formAttributeDictionary()
   }
+
   editAttributeDictionaryForm = new FormGroup({
     _id: new FormControl('', [Validators.required, Validators.minLength(24)]),
     objectId: new FormControl('', [Validators.required, Validators.minLength(10)]),
@@ -49,10 +52,12 @@ export class AttributeDictionaryEditComponent implements OnInit {
       component: ['', [Validators.required]],
     })
   }
+
   private getInput() {
     return this.activatedRoute.snapshot.paramMap.get('id')
   }
-  private getAttributeDictionary(id: string | null): Observable<AttributeDictionary> {
+
+  private getAttributeDictionary(id: string): Observable<AttributeDictionary> {
     return this.attributeDictionaryService.GetAttributeDictionary(id).pipe(
       tap((data: AttributeDictionary) => {
         console.log('GetAttributeDictionary(' + this.inputId + ') => ' + JSON.stringify(data, null, 2))
@@ -67,6 +72,7 @@ export class AttributeDictionaryEditComponent implements OnInit {
       }),
     )
   }
+
   constructor(
     public formBuilder: FormBuilder,
     private ngZone: NgZone,
@@ -75,27 +81,35 @@ export class AttributeDictionaryEditComponent implements OnInit {
     public attributeDictionaryService: AttributeDictionaryService,
     private logService: LogService,
   ) {}
+
   changeId(e: Event) {
     this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
+
   changeName(e: Event) {
     this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
+
   changeType(e: Event) {
     this.type?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
+
   changeCategory(e: Event) {
     this.category?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
+
   changeComponent(e: Event) {
     this.component?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
+
   get id() {
     return this.form.get('id')
   }
+
   get name() {
     return this.form.get('name')
   }
+
   get type() {
     return this.form.get('type')
   }

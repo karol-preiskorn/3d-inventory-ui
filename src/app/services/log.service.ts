@@ -5,7 +5,6 @@
  * @version 2024-03-14 C2RLO - Initial
  **/
 
-import { ObjectId } from 'mongodb'
 import { catchError, Observable, of, retry, throwError } from 'rxjs'
 
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
@@ -25,9 +24,9 @@ export interface LogParamteres {
  * Represents a log entry.
  */
 export interface Log {
-  _id: ObjectId
+  _id: string
   date: string
-  objectId?: ObjectId
+  objectId?: string
   operation: string // [create, update, delete, clone]
   component: string // [device, model, category, floor]
   message: object // object json
@@ -37,7 +36,7 @@ export interface Log {
  * Represents the input for creating a log entry.
  */
 export interface LogIn {
-  objectId?: string | ObjectId | undefined
+  objectId?: string
   operation: string
   component: string
   message: object
@@ -82,7 +81,7 @@ export class LogService {
    * @param id - The device ID.
    * @returns An Observable that emits an array of Log objects.
    */
-  GetDeviceLogs(id: ObjectId): Observable<Log[]> {
+  GetDeviceLogs(id: string): Observable<Log[]> {
     const url = environment.baseurl + '/logs/device/' + id
     console.log('LogComponent.GetDeviceLogs(' + id + ') ' + url)
     return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
@@ -93,7 +92,7 @@ export class LogService {
    * @param id - The attribute ID.
    * @returns An Observable that emits an array of Log objects.
    */
-  GetAttributeLogs(id: ObjectId): Observable<Log[]> {
+  GetAttributeLogs(id: string): Observable<Log[]> {
     const url = environment.baseurl + '/logs/attribute/' + id
     console.log('LogComponent.GetAttributeLogs(' + id + ') ' + url)
     return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
@@ -118,7 +117,7 @@ export class LogService {
    * @param id - The log ID.
    * @returns An Observable that emits a Log object.
    */
-  GetLogId(id: ObjectId): Observable<Log> {
+  GetLogId(id: string): Observable<Log> {
     return this.http
       .get<Log>(environment.baseurl + '/logs/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError))
@@ -129,7 +128,7 @@ export class LogService {
    * @param id - The log ID.
    * @returns An Observable that emits a Log object.
    */
-  DeleteLog(id: string | ObjectId): Observable<Log> {
+  DeleteLog(id: string): Observable<Log> {
     return this.http
       .delete<Log>(environment.baseurl + '/logs/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError))

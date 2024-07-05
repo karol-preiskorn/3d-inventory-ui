@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb'
 import { Observable, of, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 import { DeviceService } from 'src/app/services/device.service'
@@ -64,7 +63,7 @@ export class AttributeService {
    * @param id The ID of the device.
    * @returns An Observable that emits an array of Attribute objects.
    */
-  GetDeviceAttributes(id: ObjectId): Observable<Attribute | Attribute[]> {
+  GetDeviceAttributes(id: string): Observable<Attribute | Attribute[]> {
     return this.http
       .get<Attribute[]>(environment.baseurl + '/attributes/device/' + id, this.httpOptions)
       .pipe(
@@ -137,7 +136,7 @@ export class AttributeService {
    * @param id The ID of the attribute to retrieve.
    * @returns An Observable that emits the retrieved attribute.
    */
-  GetAttribute(id: ObjectId): Observable<Attribute> {
+  GetAttribute(id: string): Observable<Attribute> {
     return this.http
       .get<Attribute>(environment.baseurl + '/attributes/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Attribute>('DeleteAttribute', id as unknown as Attribute)))
@@ -148,7 +147,7 @@ export class AttributeService {
    * @param id The ID of the attribute to delete.
    * @returns An Observable that emits the deleted attribute.
    */
-  DeleteAttribute(id: ObjectId): Observable<Attribute> {
+  DeleteAttribute(id: string): Observable<Attribute> {
     return this.http
       .delete<Attribute>(environment.baseurl + '/attributes/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Attribute>('DeleteAttribute', id as unknown as Attribute)))
@@ -171,11 +170,9 @@ export class AttributeService {
    * @param id - The ID of the attribute to clone.
    * @returns The UUID of the cloned attribute.
    */
-  CloneAttribute(id: ObjectId): ObjectId {
-    const id_uuid: ObjectId = new ObjectId()
+  CloneAttribute(id: string): string {
     this.GetAttribute(id).subscribe((value: Attribute) => {
       console.log('Get attribute: ' + JSON.stringify(value, null, ' '))
-      value._id = new ObjectId()
       this.CreateAttribute(value).subscribe({
         next: (v) => {
           console.log('Create attribute: ' + JSON.stringify(v, null, ' '))
@@ -184,7 +181,7 @@ export class AttributeService {
         complete: () => this.ngZone.run(() => this.router.navigateByUrl('attribute-list')),
       })
     })
-    return id_uuid
+    return ''
   }
 
   /**
@@ -193,7 +190,7 @@ export class AttributeService {
    * @param data - The updated attribute data.
    * @returns An Observable that emits the updated attribute.
    */
-  UpdateAttribute(id: ObjectId, data: Attribute): Observable<Attribute> {
+  UpdateAttribute(id: string, data: Attribute): Observable<Attribute> {
     return this.http
       .put<Attribute>(environment.baseurl + '/attributes/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Attribute>('UpdateModel', data)))

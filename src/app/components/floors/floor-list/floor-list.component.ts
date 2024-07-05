@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb'
 import { FloorService } from 'src/app/services/floor.service'
 import { LogService } from 'src/app/services/log.service'
 import { Floor } from 'src/app/shared/floor'
@@ -14,8 +13,8 @@ import { Router } from '@angular/router'
 export class FloorListComponent implements OnInit {
   floorList: Floor[] = []
   selectedFloor: Floor
-  component = 'Floor'
-  floorListPage = 1
+  component: string = 'Floor'
+  floorListPage: number = 1
 
   ngOnInit() {
     this.loadFloors()
@@ -34,7 +33,7 @@ export class FloorListComponent implements OnInit {
     })
   }
 
-  deleteFloor(id: ObjectId) {
+  deleteFloor(id: string) {
     const idString = id // Convert ObjectId to string
     this.logService.CreateLog({
       message: { id: idString },
@@ -49,8 +48,8 @@ export class FloorListComponent implements OnInit {
     })
   }
 
-  cloneFloor(id: ObjectId) {
-    const id_new: ObjectId = this.floorService.CloneFloor(id)
+  cloneFloor(id: string) {
+    const id_new: string = this.floorService.CloneFloor(id)
     this.logService
       .CreateLog({
         message: { id: id, id_new: id_new },

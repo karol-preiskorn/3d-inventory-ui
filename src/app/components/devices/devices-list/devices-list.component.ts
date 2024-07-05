@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb'
 import { DeviceService } from 'src/app/services/device.service'
 import { LogService } from 'src/app/services/log.service'
 import { ModelsService } from 'src/app/services/models.service'
@@ -46,10 +45,10 @@ export class DeviceListComponent implements OnInit {
     })
   }
 
-  DeleteDevice(id: ObjectId | null) {
+  DeleteDevice(id: string) {
     this.logService.CreateLog({
       message: { id: id },
-      objectId: id as ObjectId | undefined,
+      objectId: id,
       operation: 'Delete',
       component: this.component,
     })
@@ -61,8 +60,8 @@ export class DeviceListComponent implements OnInit {
     })
   }
 
-  CloneDevice(id: ObjectId | null) {
-    const id_new: ObjectId = this.devicesService.CloneDevice(id)
+  CloneDevice(id: string) {
+    const id_new: string = this.devicesService.CloneDevice(id)
     this.logService
       .CreateLog({
         message: { id: id, id_new: id_new },
@@ -88,7 +87,7 @@ export class DeviceListComponent implements OnInit {
     }
   }
 
-  findModelName(id: ObjectId): string {
+  findModelName(id: string): string {
     return this.modelList.find((e: Model) => e._id === id)?.name as string
   }
 

@@ -1,14 +1,13 @@
-import { ObjectId } from 'mongodb';
-import { Observable, of } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable, of } from 'rxjs'
+import { catchError, retry } from 'rxjs/operators'
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, NgZone } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
 
-import { environment } from '../../environments/environment';
-import { Model } from '../shared/model';
-import { LogService } from './log.service';
+import { environment } from '../../environments/environment'
+import { Model } from '../shared/model'
+import { LogService } from './log.service'
 
 @Injectable({
   providedIn: 'root',
@@ -43,7 +42,7 @@ export class ModelsService {
    * @param id The ID of the model to retrieve.
    * @returns An Observable that emits the retrieved model.
    */
-  GetModel(id: ObjectId): Observable<Model> {
+  GetModel(id: string): Observable<Model> {
     return this.http
       .get<Model>(environment.baseurl + '/models/' + String(id), this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Model>('GetModel', id as unknown as Model)))
@@ -54,7 +53,7 @@ export class ModelsService {
    * @param id The ID of the model to delete.
    * @returns An Observable that emits the deleted model.
    */
-  DeleteModel(id: ObjectId): Observable<Model> {
+  DeleteModel(id: string): Observable<Model> {
     return this.http
       .delete<Model>(environment.baseurl + '/models/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Model>('DeleteModel', id as unknown as Model)))
@@ -77,7 +76,7 @@ export class ModelsService {
    * @param id - The ID of the model to clone.
    * @returns The UUID of the cloned model.
    */
-  CloneModel(id: ObjectId): string {
+  CloneModel(id: string): string {
     console.log(`ModelService.CloneModel: ${JSON.stringify(id, null, ' ')}`)
     let idConed = ''
     this.GetModel(id).subscribe((value: Model) => {

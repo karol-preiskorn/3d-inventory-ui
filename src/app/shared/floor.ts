@@ -5,8 +5,6 @@
  * @version:      2023-05-16  C2RLO  Init
  */
 
-import { ObjectId } from 'mongodb'
-
 export interface FloorDimension {
   description: string
   x: string
@@ -18,7 +16,7 @@ export interface FloorDimension {
 }
 
 export interface Floor {
-  _id: ObjectId
+  _id: string
   name: string
   address: {
     street: string

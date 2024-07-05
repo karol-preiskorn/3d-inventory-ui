@@ -1,8 +1,9 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
 import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
 import { LogService } from 'src/app/services/log.service'
 import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
+
+import { Component, NgZone, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-attribute-dictionary-list',
@@ -32,7 +33,7 @@ export class AttributeDictionaryListComponent implements OnInit {
   deleteAttributeDictionary(id: string) {
     this.logService.CreateLog({
       message: { id },
-      objectId: id,
+      objectId: id.toString(),
       operation: 'Delete',
       component: 'AttributeDictionary',
     })
@@ -61,9 +62,11 @@ export class AttributeDictionaryListComponent implements OnInit {
     // this.loadAttributeDictionary()
     // this.router.navigate(['/attribute-dictionary-list'])
   }
+
   AddForm() {
     this.router.navigateByUrl('add-attribute-dictionary')
   }
+
   EditForm(attributeDictionary: AttributeDictionary) {
     this.selectedAttributeDictionary = attributeDictionary
     this.router.navigate(['edit-attribute-dictionary', this.selectedAttributeDictionary._id])
