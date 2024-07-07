@@ -31,13 +31,12 @@ const api = [
   { component: 'Floor', api: 'floor' },
 ]
 
-/**
- * Checks if the given component is present in the API settings.
- * @param component - The component to check.
- * @returns `true` if the component is found in the API settings, `false` otherwise.
- */
-function isApiSettings(component: string): boolean {
+function isApiName(component: string): boolean {
   return api.find((e) => e.component === component) ? true : false
+}
+
+function isComponentName(apiName: string): boolean {
+  return api.find((e) => e.api === apiName) ? true : false
 }
 
 @Component({
@@ -86,7 +85,7 @@ export class LogComponent implements OnInit {
    * @param component - The component for which the log is being loaded.
    */
   loadLog(context: string, component: string) {
-    if (isApiSettings(component)) {
+    if (isApiName(component)) {
       console.log(
         'LoadComponent.loadLog (call loadComponentLog) - Context: ' +
           context +
@@ -201,7 +200,6 @@ export class LogComponent implements OnInit {
   getDeviceList() {
     if (this.deviceListGet == true) return null
     return this.deviceService.GetDevices().subscribe((data: Device[]) => {
-      // Specify the correct type for the data parameter
       const tmp = new Device()
       data.unshift(tmp)
       this.deviceList = data

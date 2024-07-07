@@ -19,10 +19,14 @@
                   currentPage: deviceListPage,
                 }
         ">
-        <td>{{ stringify(device.position) }}</td>
         <td>
-          <a title="{{ device._id }} {{ device.name }}" href="edit-model/{{ device.modelId }}"
-            ><i class="bi bi-motherboard"></i> {{ device.modelId ? this.findModelName(device.modelId) : '' }}</a
+          <a title="{{ device._id }}">{{ device.name }}</a>
+        </td>
+        <td>({{ device.position.x }}, {{ device.position.y }}, {{ device.position.h }})</td>
+        <td>
+          <a title="{{ device.modelId }}" href="edit-model/{{ device.modelId }}"
+            ><i class="bi bi-motherboard"></i>
+            {{ device.modelId === null ? 'is null' : FindModelName(device.modelId) }}</a
           >
         </td>
         <td>

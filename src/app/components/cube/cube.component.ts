@@ -92,7 +92,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
   getRandomY = () => Math.round(Math.random() * 40 - 20)
   getRandomH = () => Math.round(Math.random() * 10)
 
-  checkDistaceInDeviceList() {
+  checkDistanceInDeviceList() {
     let x = this.getRandomX()
     let y = this.getRandomY()
     let distance = true
@@ -132,7 +132,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
   generateRacksList(count: number) {
     for (let i = 0; i < count; i++) {
-      this.checkDistaceInDeviceList()
+      this.checkDistanceInDeviceList()
       this.racks.push(this.generateRandomDeviceRack())
     }
   }

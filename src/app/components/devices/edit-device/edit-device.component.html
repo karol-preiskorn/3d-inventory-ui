@@ -13,14 +13,12 @@
           id="_id"
           readonly
           [ngClass]="{
-            'is-invalid': this.editDeviceForm.controls._id.status !== 'VALID',
-            'is-valid': this.editDeviceForm.controls._id.status === 'VALID',
-            'form-control': true,
-          }"
-        />
-        <div *ngIf="this.editDeviceForm.controls._id.errors" class="invalid-feedback">
-          <div *ngIf="this.editDeviceForm.controls._id.errors.required">Id is required</div>
-          <div *ngIf="this.editDeviceForm.controls._id.errors.minlength">Id must be at least 4 characters</div>
+            'is-invalid': editDeviceForm.controls._id.status !== 'VALID',
+            'is-valid': editDeviceForm.controls._id.status === 'VALID',
+          }" />
+        <div *ngIf="editDeviceForm.controls._id.errors" class="invalid-feedback">
+          <div *ngIf="editDeviceForm.controls._id.errors.required">Id is required</div>
+          <div *ngIf="editDeviceForm.controls._id.errors.minlength">Id must be at least 4 characters</div>
         </div>
       </div>
       <div class="col">
@@ -31,20 +29,18 @@
             class="form-control"
             placeholder="Device's name"
             aria-label="name"
-            formControlName="name"
+            [formControlName]="'name'"
             minlength="4"
             id="name"
             required
             maxlength="255"
             [ngClass]="{
-              'is-invalid': this.editDeviceForm.controls.name.status !== 'VALID',
-              'is-valid': this.editDeviceForm.controls.name.status === 'VALID',
-              'form-control': true,
-            }"
-          />
-          <div *ngIf="this.editDeviceForm.controls.name.errors" class="invalid-feedback">
-            <div *ngIf="this.editDeviceForm.controls.name.errors.required">Name is required</div>
-            <div *ngIf="this.editDeviceForm.controls.name.errors.minlength">Name must be at least 4 characters</div>
+              'is-invalid': editDeviceForm.controls.name.status !== 'VALID',
+              'is-valid': editDeviceForm.controls.name.status === 'VALID',
+            }" />
+          <div *ngIf="editDeviceForm.controls.name.errors" class="invalid-feedback">
+            <div *ngIf="editDeviceForm.controls.name.errors.required">Name is required</div>
+            <div *ngIf="editDeviceForm.controls.name.errors.minlength">Name must be at least 4 characters</div>
           </div>
         </div>
       </div>
@@ -56,19 +52,20 @@
           <label for="x" class="form-label">x</label>
           <input
             type="text"
-            formControlName="x"
+            [formControlName]="'x'"
             class="form-control"
             id="x"
+            aria-label="x"
+            placeholder="x"
             required
+            [valueAsNumber]="editDeviceForm.controls.position.controls.x.value"
             [ngClass]="{
-              'is-invalid': this.editDeviceForm.controls.position.controls.x.status !== 'VALID',
-              'is-valid': this.editDeviceForm.controls.position.controls.x.status === 'VALID',
-              'form-control': true,
-            }"
-          />
+              'is-invalid': editDeviceForm.controls.position.controls.x.status !== 'VALID',
+              'is-valid': editDeviceForm.controls.position.controls.x.status === 'VALID',
+            }" />
         </div>
-        <div *ngIf="this.editDeviceForm.controls.position.controls.x.errors" class="invalid-feedback">
-          <div *ngIf="this.editDeviceForm.controls.position.controls.x.errors.required">Name is required</div>
+        <div *ngIf="editDeviceForm.controls.position.controls.x.errors" class="invalid-feedback">
+          <div *ngIf="editDeviceForm.controls.position.controls.x.errors.required">Name is required</div>
         </div>
       </div>
       <div class="col">
@@ -76,19 +73,20 @@
           <label for="y" class="form-label">y</label>
           <input
             type="text"
-            formControlName="y"
+            [formControlName]="'y'"
+            aria-label="y"
+            placeholder="y"
             class="form-control"
             id="y"
+            [value]="editDeviceForm.controls.position.controls.y.value"
             required
             [ngClass]="{
-              'is-invalid': this.editDeviceForm.controls.position.controls.y.status !== 'VALID',
-              'is-valid': this.editDeviceForm.controls.position.controls.y.status === 'VALID',
-              'form-control': true,
-            }"
-          />
+              'is-invalid': editDeviceForm.controls.position.controls.y.status !== 'VALID',
+              'is-valid': editDeviceForm.controls.position.controls.y.status === 'VALID',
+            }" />
         </div>
-        <div *ngIf="this.editDeviceForm.controls.position.controls.y.errors" class="invalid-feedback">
-          <div *ngIf="this.editDeviceForm.controls.position.controls.y.errors.required">Name is required</div>
+        <div *ngIf="editDeviceForm.controls.position.controls.y.errors" class="invalid-feedback">
+          <div *ngIf="editDeviceForm.controls.position.controls.y.errors.required">Name is required</div>
         </div>
       </div>
       <div class="col">
@@ -99,16 +97,17 @@
             formControlName="h"
             class="form-control"
             id="h"
+            [value]="editDeviceForm.controls.position.controls.h.value"
+            aria-label="h"
+            placeholder="h"
             required
             [ngClass]="{
-              'is-invalid': this.editDeviceForm.controls.position.controls.h.status !== 'VALID',
-              'is-valid': this.editDeviceForm.controls.position.controls.h.status === 'VALID',
-              'form-control': true,
-            }"
-          />
+              'is-invalid': editDeviceForm.controls.position.controls.h.status !== 'VALID',
+              'is-valid': editDeviceForm.controls.position.controls.h.status === 'VALID',
+            }" />
         </div>
-        <div *ngIf="this.editDeviceForm.controls.position.controls.h.hasError('required')" class="invalid-feedback">
-          <div *ngIf="this.editDeviceForm.controls.position.controls.h.hasError('required')">Name is required</div>
+        <div *ngIf="editDeviceForm.controls.position.controls.h.hasError('required')" class="invalid-feedback">
+          <div *ngIf="editDeviceForm.controls.position.controls.h.hasError('required')">Name is required</div>
         </div>
       </div>
     </div>
@@ -122,17 +121,15 @@
             id="modelId"
             required
             [ngClass]="{
-              'is-invalid': this.editDeviceForm.controls.modelId.status !== 'VALID',
-              'is-valid': this.editDeviceForm.controls.modelId.status === 'VALID',
-              'form-select': true,
-            }"
-          >
-            <option *ngFor="let modelObj of this.modelList; let i = index" value="{{ modelObj._id }}">
+              'is-invalid': editDeviceForm.controls.modelId.status !== 'VALID',
+              'is-valid': editDeviceForm.controls.modelId.status === 'VALID',
+            }">
+            <option *ngFor="let modelObj of modelList; let i = index" value="{{ modelObj._id }}">
               {{ modelObj.name }}
             </option>
           </select>
-          <div *ngIf="this.editDeviceForm.controls.modelId.errors" class="invalid-feedback">
-            <div *ngIf="this.editDeviceForm.controls.modelId.errors.required">Name is required</div>
+          <div *ngIf="editDeviceForm.controls.modelId.errors" class="invalid-feedback">
+            <div *ngIf="editDeviceForm.controls.modelId.errors.required">Name is required</div>
           </div>
         </div>
       </div>
@@ -145,9 +142,7 @@
         [ngClass]="{
           'is-invalid': !(editDeviceForm.valid && editDeviceForm.touched),
           'is-valid': editDeviceForm.valid && editDeviceForm.touched,
-          'form-control': true,
-        }"
-      >
+        }">
         <i class="bi bi-floppy"></i> Update
       </button>
 
@@ -161,12 +156,8 @@
   </form>
 </div>
 
-<!-- <div>attributeComponent: {{ attributeComponent }}</div>
-<div>attributeComponentObject: {{ attributeComponentObject }}</div> -->
-
 <app-attribute-list
   [attributeComponent]="attributeComponent"
-  [attributeComponentObject]="attributeComponentObject"
-></app-attribute-list>
+  [attributeComponentObject]="attributeComponentObject"></app-attribute-list>
 
 <app-log [component]="component"></app-log>

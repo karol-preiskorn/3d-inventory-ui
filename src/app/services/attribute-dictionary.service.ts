@@ -1,13 +1,13 @@
-import { Observable, throwError } from 'rxjs'
-import { catchError, retry } from 'rxjs/operators'
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { environment } from '../../environments/environment'
-import { AttributeDictionary } from '../shared/attribute-dictionary'
-import { LogService } from './log.service'
+import { environment } from '../../environments/environment';
+import { AttributeDictionary } from '../shared/attribute-dictionary';
+import { LogService } from './log.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +23,9 @@ export class AttributeDictionaryService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
     }),
   }
   /**
