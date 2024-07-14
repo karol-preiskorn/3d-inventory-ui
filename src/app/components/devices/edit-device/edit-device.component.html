@@ -45,13 +45,13 @@
         </div>
       </div>
     </div>
-    <div class="row border">
+    <div class="row border" formGroupName="position">
       <div class="row">Position</div>
       <div class="col">
         <div class="form-group mb-3">
           <label for="x" class="form-label">x</label>
           <input
-            type="text"
+            type="number"
             [formControlName]="'x'"
             class="form-control"
             id="x"
@@ -72,7 +72,7 @@
         <div class="form-group mb-3">
           <label for="y" class="form-label">y</label>
           <input
-            type="text"
+            type="number"
             [formControlName]="'y'"
             aria-label="y"
             placeholder="y"
@@ -93,7 +93,7 @@
         <div class="form-group mb-3">
           <label for="h" class="form-label">h</label>
           <input
-            type="text"
+            type="number"
             formControlName="h"
             class="form-control"
             id="h"

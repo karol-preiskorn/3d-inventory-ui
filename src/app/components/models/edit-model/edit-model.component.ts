@@ -1,12 +1,13 @@
 import { Subscription } from 'rxjs'
-import { LogService } from 'src/app/services/log.service'
-import { ModelsService } from 'src/app/services/models.service'
-import { Model } from 'src/app/shared/model'
 
 import { CommonModule } from '@angular/common'
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
+
+import { LogService } from '../../../services/log.service'
+import { ModelsService } from '../../../services/models.service'
+import { Model } from '../../../shared/model'
 
 @Component({
   selector: 'app-edit-model',

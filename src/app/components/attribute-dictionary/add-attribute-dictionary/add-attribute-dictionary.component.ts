@@ -1,13 +1,13 @@
-import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
-import { LogService } from 'src/app/services/log.service'
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
-import { ComponentDictionary } from 'src/app/shared/component-dictionary'
-import { DeviceCategoryDict } from 'src/app/shared/deviceCategories'
-import { DeviceTypeDict } from 'src/app/shared/deviceTypes'
-
 import { Component, Inject, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
+
+import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
+import { LogService } from '../../../services/log.service'
+import { AttributeDictionary } from '../../../shared/attribute-dictionary'
+import { ComponentDictionary } from '../../../shared/component-dictionary'
+import { DeviceCategoryDict } from '../../../shared/deviceCategories'
+import { DeviceTypeDict } from '../../../shared/deviceTypes'
 
 @Component({
   selector: 'app-add-attribute-dictionary',

@@ -1,17 +1,17 @@
-import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
-import { AttributeService } from 'src/app/services/attribute.service'
-import { ConnectionService } from 'src/app/services/connection.service'
-import { DeviceService } from 'src/app/services/device.service'
-import { LogService } from 'src/app/services/log.service'
-import { ModelsService } from 'src/app/services/models.service'
-import { Attribute } from 'src/app/shared/attribute'
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
-import { Connection } from 'src/app/shared/connection'
-import { Device } from 'src/app/shared/device'
-import { Model } from 'src/app/shared/model'
-
 import { Component, Input, NgZone, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
+
+import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
+import { AttributeService } from '../../../services/attribute.service'
+import { ConnectionService } from '../../../services/connection.service'
+import { DeviceService } from '../../../services/device.service'
+import { LogService } from '../../../services/log.service'
+import { ModelsService } from '../../../services/models.service'
+import { Attribute } from '../../../shared/attribute'
+import { AttributeDictionary } from '../../../shared/attribute-dictionary'
+import { Connection } from '../../../shared/connection'
+import { Device } from '../../../shared/device'
+import { Model } from '../../../shared/model'
 
 @Component({
   selector: 'app-attribute-list',
@@ -151,7 +151,8 @@ export class AttributeListComponent implements OnInit {
   getConnectionList() {
     return this.connectionService.GetConnections().subscribe((data: Connection[]) => {
       const tmp = new Connection()
-      data = [tmp, ...data]
+      // data = [tmp, ...data]
+      data.unshift(tmp)
       this.connectionDictionary = data
     })
   }

@@ -1,7 +1,3 @@
-import { DeviceAddComponent } from 'src/app/components/devices/add-device/add-device.component'
-import { DeviceListComponent } from 'src/app/components/devices/devices-list/devices-list.component'
-import { DeviceEditComponent } from 'src/app/components/devices/edit-device/edit-device.component'
-
 import { CommonModule } from '@angular/common'
 import { Injectable, NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
@@ -18,6 +14,9 @@ import { ConnectionAddComponent } from './components/connection/add-connection/a
 import { ConnectionListComponent } from './components/connection/connection-list/connection-list.component'
 import { ConnectionEditComponent } from './components/connection/edit-connection/edit-connection.component'
 import { CubeComponent } from './components/cube/cube.component'
+import { DeviceAddComponent } from './components/devices/add-device/add-device.component'
+import { DeviceListComponent } from './components/devices/devices-list/devices-list.component'
+import { DeviceEditComponent } from './components/devices/edit-device/edit-device.component'
 import { FloorAddComponent } from './components/floors/add-floor/add-floor.component'
 import { FloorEditComponent } from './components/floors/edit-floor/edit-floor.component'
 import { FloorListComponent } from './components/floors/floor-list/floor-list.component'

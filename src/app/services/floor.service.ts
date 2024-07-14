@@ -34,7 +34,7 @@ export class FloorService {
    * @returns An Observable that emits an array of Floor objects.
    */
   GetFloors(): Observable<Floor[]> {
-    return this.http.get<Floor[]>(environment.baseurl + '/floor/').pipe(retry(1), catchError(this.errorHandl))
+    return this.http.get<Floor[]>(environment.baseurl + '/floors/').pipe(retry(1), catchError(this.errorHandl))
   }
 
   /**
@@ -43,7 +43,7 @@ export class FloorService {
    * @returns The floor object.
    */
   getFloorSynchronize(id: string | null): Floor {
-    return new SyncRequestClient().get<Floor>(environment.baseurl + '/floor/' + id)
+    return new SyncRequestClient().get<Floor>(environment.baseurl + '/floors/' + id)
   }
 
   /**

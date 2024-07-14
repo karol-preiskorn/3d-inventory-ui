@@ -10,11 +10,6 @@
  * @version: 2023-04-16   C2RLO   Add cube
  */
 
-import { DeviceService } from 'src/app/services/device.service'
-import { LogService } from 'src/app/services/log.service'
-import { ModelsService } from 'src/app/services/models.service'
-import { Device } from 'src/app/shared/device'
-import { Model } from 'src/app/shared/model'
 import * as THREE from 'three'
 import { OrbitControls } from 'three-orbitcontrols-ts'
 import { v4 as uuidv4 } from 'uuid'
@@ -22,6 +17,12 @@ import { v4 as uuidv4 } from 'uuid'
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
+
+import { DeviceService } from '../../services/device.service'
+import { LogService } from '../../services/log.service'
+import { ModelsService } from '../../services/models.service'
+import { Device } from '../../shared/device'
+import { Model } from '../../shared/model'
 
 @Component({
   selector: 'app-cube',

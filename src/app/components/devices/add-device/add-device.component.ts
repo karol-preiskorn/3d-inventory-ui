@@ -1,16 +1,16 @@
-import { DeviceService } from 'src/app/services/device.service';
-import { LogService } from 'src/app/services/log.service';
-import { ModelsService } from 'src/app/services/models.service';
-import { Device } from 'src/app/shared/device';
-import { DeviceCategoryDict } from 'src/app/shared/deviceCategories';
-import { DeviceTypeDict } from 'src/app/shared/deviceTypes';
-import { Model } from 'src/app/shared/model';
-import Validation from 'src/app/shared/validation';
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { faker } from '@faker-js/faker'
 
-import { Component, NgZone, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { faker } from '@faker-js/faker';
+import { DeviceService } from '../../../services/device.service'
+import { LogService } from '../../../services/log.service'
+import { ModelsService } from '../../../services/models.service'
+import { Device } from '../../../shared/device'
+import { DeviceCategoryDict } from '../../../shared/deviceCategories'
+import { DeviceTypeDict } from '../../../shared/deviceTypes'
+import { Model } from '../../../shared/model'
+import Validation from '../../../shared/validation'
 
 @Component({
   selector: 'app-add-device',

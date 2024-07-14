@@ -1,11 +1,11 @@
-import { DeviceService } from 'src/app/services/device.service'
-import { LogService } from 'src/app/services/log.service'
-import { ModelsService } from 'src/app/services/models.service'
-import { Device } from 'src/app/shared/device'
-import { Model } from 'src/app/shared/model'
-
 import { Component, NgZone, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
+
+import { DeviceService } from '../../../services/device.service'
+import { LogService } from '../../../services/log.service'
+import { ModelsService } from '../../../services/models.service'
+import { Device } from '../../../shared/device'
+import { Model } from '../../../shared/model'
 
 @Component({
   selector: 'app-device-list',

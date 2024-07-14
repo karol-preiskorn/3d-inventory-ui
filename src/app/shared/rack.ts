@@ -16,10 +16,10 @@
  * 2023-08-08  C2RLO  Init racks
  */
 
-import { LogService } from 'src/app/services/log.service'
-import { DeviceService } from 'src/app/services/device.service'
-import { Device } from 'src/app/shared/device'
-import { ModelsService } from 'src/app/services/models.service'
+import { DeviceService } from '../services/device.service'
+import { LogService } from '../services/log.service'
+import { ModelsService } from '../services/models.service'
+import { Device } from './device'
 
 export class Rack {
   device: Device

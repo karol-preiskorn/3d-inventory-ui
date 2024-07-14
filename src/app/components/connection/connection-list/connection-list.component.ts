@@ -1,11 +1,11 @@
-import { ConnectionService } from 'src/app/services/connection.service'
-import { DeviceService } from 'src/app/services/device.service'
-import { LogIn, LogService } from 'src/app/services/log.service'
-import { Connection } from 'src/app/shared/connection'
-import { Device } from 'src/app/shared/device'
-
 import { Component, NgZone, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
+
+import { ConnectionService } from '../../../services/connection.service'
+import { DeviceService } from '../../../services/device.service'
+import { LogIn, LogService } from '../../../services/log.service'
+import { Connection } from '../../../shared/connection'
+import { Device } from '../../../shared/device'
 
 @Component({
   selector: 'app-connection-list',

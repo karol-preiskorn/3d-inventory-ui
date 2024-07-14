@@ -1,9 +1,9 @@
-import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
-import { LogService } from 'src/app/services/log.service'
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
-
 import { Component, NgZone, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
+
+import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
+import { LogService } from '../../../services/log.service'
+import { AttributeDictionary } from '../../../shared/attribute-dictionary'
 
 @Component({
   selector: 'app-attribute-dictionary-list',

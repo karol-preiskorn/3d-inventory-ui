@@ -1,14 +1,13 @@
-import { FloorService } from 'src/app/services/floor.service'
-import { LogService } from 'src/app/services/log.service'
-import Validation from 'src/app/shared/validation'
-
 import { CommonModule } from '@angular/common'
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
 
+import { FloorService } from '../../../services/floor.service'
+import { LogService } from '../../../services/log.service'
 import { Floor } from '../../../shared/floor'
+import Validation from '../../../shared/validation'
 
 @Component({
   selector: 'app-add-floor',

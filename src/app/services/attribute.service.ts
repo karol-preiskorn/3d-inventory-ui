@@ -1,9 +1,5 @@
 import { Observable, of, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
-import { DeviceService } from 'src/app/services/device.service'
-import { ModelsService } from 'src/app/services/models.service'
-import { Attribute } from 'src/app/shared/attribute'
-import { Device } from 'src/app/shared/device'
 import { SyncRequestClient } from 'ts-sync-request/dist'
 
 import { HttpClient, HttpHeaders } from '@angular/common/http'
@@ -11,7 +7,11 @@ import { Injectable, NgZone } from '@angular/core'
 import { Router } from '@angular/router'
 
 import { environment } from '../../environments/environment'
+import { Attribute } from '../shared/attribute'
+import { Device } from '../shared/device'
+import { DeviceService } from './device.service'
 import { LogService } from './log.service'
+import { ModelsService } from './models.service'
 
 @Injectable({
   providedIn: 'root',

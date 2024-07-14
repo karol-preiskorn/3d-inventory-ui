@@ -20,6 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "sourceMap": true,
             "outputPath": "dist",
             "index": "./src/index.html",
             "main": "./src/main.ts",
@@ -82,7 +83,6 @@
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
               "namedChunks": true
             }
           },
@@ -92,7 +92,7 @@
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "buildTarget": "3d-inventory-angular-ui:build:development",
-            "proxyConfig": "src/proxy.conf.json"
+            "proxyConfig": "src/proxy.conf.json",
           },
           "configurations": {
             "production": {

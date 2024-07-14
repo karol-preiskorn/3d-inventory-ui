@@ -1,14 +1,14 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */ {
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictPropertyInitialization": false,
-    "strictTemplates": true,
     "esModuleInterop": true,
     "experiments": {
       "topLevelAwait": true
-    }
+    },
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictPropertyInitialization": false,
+    "strictTemplates": true
   },
   "compileOnSave": true,
   "compilerOptions": {
@@ -27,7 +27,11 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "outDir": "./dist/out-tsc",
-    "paths": {},
+    "paths": {
+      "*": [
+        "node_modules/*"
+      ]
+    },
     "sourceMap": true,
     "strict": true,
     "strictPropertyInitialization": false,

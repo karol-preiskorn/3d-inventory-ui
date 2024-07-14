@@ -1,12 +1,12 @@
-import { FloorService } from 'src/app/services/floor.service'
-import { LogIn, LogService } from 'src/app/services/log.service'
-import { Floor, FloorDimension } from 'src/app/shared/floor'
-import Validation from 'src/app/shared/validation'
-
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
+
+import { FloorService } from '../../../services/floor.service'
+import { LogIn, LogService } from '../../../services/log.service'
+import { Floor, FloorDimension } from '../../../shared/floor'
+import Validation from '../../../shared/validation'
 
 @Component({
   selector: 'app-edit-floor',

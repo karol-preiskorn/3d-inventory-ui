@@ -5,21 +5,22 @@
  **/
 
 import { Subscription } from 'rxjs'
-import { AttributeDictionaryService } from 'src/app/services/attribute-dictionary.service'
-import { AttributeService } from 'src/app/services/attribute.service'
-import { ConnectionService } from 'src/app/services/connection.service'
-import { DeviceService } from 'src/app/services/device.service'
-import { FloorService } from 'src/app/services/floor.service'
-import { Log, LogService } from 'src/app/services/log.service'
-import { ModelsService } from 'src/app/services/models.service'
-import { Attribute } from 'src/app/shared/attribute'
-import { AttributeDictionary } from 'src/app/shared/attribute-dictionary'
-import { Connection } from 'src/app/shared/connection'
-import { Device } from 'src/app/shared/device'
-import { Floor } from 'src/app/shared/floor'
-import { Model } from 'src/app/shared/model'
 
 import { Component, Input, OnInit } from '@angular/core'
+
+import { AttributeDictionaryService } from '../../services/attribute-dictionary.service'
+import { AttributeService } from '../../services/attribute.service'
+import { ConnectionService } from '../../services/connection.service'
+import { DeviceService } from '../../services/device.service'
+import { FloorService } from '../../services/floor.service'
+import { Log, LogService } from '../../services/log.service'
+import { ModelsService } from '../../services/models.service'
+import { Attribute } from '../../shared/attribute'
+import { AttributeDictionary } from '../../shared/attribute-dictionary'
+import { Connection } from '../../shared/connection'
+import { Device } from '../../shared/device'
+import { Floor } from '../../shared/floor'
+import { Model } from '../../shared/model'
 
 const api = [
   { component: 'Models', api: 'models' },
@@ -28,7 +29,7 @@ const api = [
   { component: 'Attributes', api: 'attributes' },
   { component: 'Attribute Dictionary', api: 'attribute-dictionary' },
   { component: 'Connection', api: 'connections' },
-  { component: 'Floor', api: 'floor' },
+  { component: 'Floors', api: 'floors' },
 ]
 
 function isApiName(component: string): boolean {
@@ -108,14 +109,14 @@ export class LogComponent implements OnInit {
    * This method is called after the component has been created and initialized.
    */
   ngOnInit() {
-    this.loadLog('ngOnInit', this.component.toString())
+    this.loadLog('ngOnInit', this.component)
   }
 
   /**
    * Called whenever one or more input properties of the component change.
    */
   OnChanges() {
-    this.loadLog('ngOnChanges', this.component.toString())
+    this.loadLog('ngOnChanges', this.component)
   }
 
   /**
@@ -244,6 +245,7 @@ export class LogComponent implements OnInit {
 
   /**
    * Retrieves the connection list.
+
    * @returns An Observable that emits the connection list.
    */
   getConnectionList() {

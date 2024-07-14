@@ -21,6 +21,7 @@
         ">
         <td>
           <a title="{{ device._id }}">{{ device.name }}</a>
+          <p class="fs-7 fw-lighter deviceid">{{ device._id }}</p>
         </td>
         <td>({{ device.position.x }}, {{ device.position.y }}, {{ device.position.h }})</td>
         <td>
@@ -28,6 +29,7 @@
             ><i class="bi bi-motherboard"></i>
             {{ device.modelId === null ? 'is null' : FindModelName(device.modelId) }}</a
           >
+          <p class="fs-7 fw-lighter deviceid">{{ device.modelId }}</p>
         </td>
         <td>
           <div class="btn-group float-md-end" role="group" aria-label="device-operations">

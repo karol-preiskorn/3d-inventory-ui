@@ -6,16 +6,17 @@
  **/
 
 import { Observable, tap } from 'rxjs'
-import { ConnectionService } from 'src/app/services/connection.service'
-import { DeviceService } from 'src/app/services/device.service'
-import { LogService } from 'src/app/services/log.service'
-import { ComponentDictionary } from 'src/app/shared/component-dictionary'
-import { Connection } from 'src/app/shared/connection'
-import { Device } from 'src/app/shared/device'
 
 import { Component, NgZone, OnInit } from '@angular/core'
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
+
+import { ConnectionService } from '../../../services/connection.service'
+import { DeviceService } from '../../../services/device.service'
+import { LogService } from '../../../services/log.service'
+import { ComponentDictionary } from '../../../shared/component-dictionary'
+import { Connection } from '../../../shared/connection'
+import { Device } from '../../../shared/device'
 
 @Component({
   selector: 'app-edit-connection',

@@ -1,13 +1,13 @@
-import { LogService } from 'src/app/services/log.service';
-import { ModelsService } from 'src/app/services/models.service';
-import { DeviceCategoryDict } from 'src/app/shared/deviceCategories';
-import { DeviceTypeDict } from 'src/app/shared/deviceTypes';
-import { Model } from 'src/app/shared/model';
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { faker } from '@faker-js/faker'
 
-import { Component, NgZone, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { faker } from '@faker-js/faker';
+import { LogService } from '../../../services/log.service'
+import { ModelsService } from '../../../services/models.service'
+import { DeviceCategoryDict } from '../../../shared/deviceCategories'
+import { DeviceTypeDict } from '../../../shared/deviceTypes'
+import { Model } from '../../../shared/model'
 
 @Component({
   selector: 'app-add-model',
