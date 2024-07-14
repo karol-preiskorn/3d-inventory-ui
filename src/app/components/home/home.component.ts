@@ -34,7 +34,8 @@ export class HomeComponent implements OnInit {
       console.log('Get Markdown ' + JSON.stringify(data, null, ' '))
       this.md = data.replaceAll('src/', '')
     })
-    await this.http.get(this.githubIssuesUrl, this.httpOptions).subscribe((data) => {
+
+    this.http.get(this.githubIssuesUrl, this.httpOptions).subscribe((data) => {
       console.log('Get Issues ' + JSON.stringify(data, null, ' '))
       this.issues = data as string
     })

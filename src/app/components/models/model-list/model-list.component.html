@@ -24,10 +24,7 @@
           {{ model.name }}
           <p class="fs-7 fw-lighter deviceid">{{ model._id }}</p>
         </td>
-        <td>
-          ({{ model.dimension }}
-          {{ model.dimension.width + ', ' + model.dimension.height + ', ' + model.dimension.depth }})
-        </td>
+        <td>({{ model.dimension.width + ', ' + model.dimension.height + ', ' + model.dimension.depth }})</td>
         <td style="font-size: small">
           <a *ngIf="model.texture" href="{{ model.texture.front }}">front</a>,
           <a *ngIf="model.texture" href="{{ model.texture.back }}">back</a>,
