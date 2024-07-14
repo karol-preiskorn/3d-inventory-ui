@@ -2,11 +2,11 @@
 
 - [3d inventory](#3d-inventory)
   - [About project](#about-project)
-  - [Motivation](#motivation)
   - [Technology stack](#technology-stack)
   - [Demo](#demo)
   - [Data Model](#data-model)
     - [Logical model](#logical-model)
+  - [Aplication](#aplication)
     - [List devices](#list-devices)
     - [Models](#models)
     - [Attributes](#attributes)
@@ -14,8 +14,7 @@
     - [Connections](#connections)
   - [Run](#run)
   - [Deploy](#deploy)
-    - [Google Cloud](#google-cloud)
-  - [Json server](#json-server)
+  - [Google Cloud](#google-cloud)
   - [APIs repos](#apis-repos)
   - [Contributing](#contributing)
   - [Next todo](#next-todo)
@@ -25,7 +24,11 @@
 
 ## About project
 
-Project create ✨`3d inventory`✨— solution that allows you to build a spatial and database representation of yours datacenters
+Project create ✨`3d inventory`✨— solution that allows you to build a spatial and database representation of yours datacenters.
+
+    Motivation
+
+    I'm programming to incorporate database systems. This project it is sandbox to covers relevant topics and issues related to create simple and efficient platform for IT inventory.
 
 <img title="Architecture" src="src/assets/architecture.drawio.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%; margin-bottom: 16px" width="85%">
 
@@ -34,10 +37,6 @@ Project contain three repos:
 - ⚓ https://github.com/karol-preiskorn/3d-inventory-angular-ui
 - ⚓ https://github.com/karol-preiskorn/3d-inventory-mongo-api
 - ⚓ https://github.com/karol-preiskorn/3d-inventory-oracle-api
-
-## Motivation
-
-I'm programming to incorporate database systems. This project covers relevant topics and issues related to create simple and efficient platform for IT inventory.
 
 ## Technology stack
 
@@ -66,7 +65,11 @@ In `Attributes` are stored values defined in `Attributes Dictionary` for `Device
 
 ### Logical model
 
+Relational data model is maped to noSQL model im MondoDb.
+
 <img title="Logical model" src="src/assets/3d-inventory.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="85%"/>
+
+## Aplication
 
 ### List devices
 
@@ -116,27 +119,9 @@ Build in first terminal: `ng build --watch` in npm alias:
 npm run build
 ```
 
-### Google Cloud
+## Google Cloud
 
 tbc
-
-## Json server
-
-For testing UI API run `jsonserver`.
-
-In `npm` run script:
-
-```js
-"jsonserver:devices": "json-server --watch devices.json"
-```
-
-Server `url`:
-
-```json
-baseurl = 'http://localhost:3000';
-```
-
-Used by `.env` service `this.environmentServiceClass.getSettings('BASEURL')`.
 
 ## APIs repos
 

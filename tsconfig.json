@@ -27,11 +27,6 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "outDir": "./dist/out-tsc",
-    "paths": {
-      "*": [
-        "node_modules/*"
-      ]
-    },
     "sourceMap": true,
     "strict": true,
     "strictPropertyInitialization": false,
