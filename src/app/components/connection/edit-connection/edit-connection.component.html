@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <h2><i class="bi bi-ethernet"></i> Edit Connection</h2>
-  {{ this.toString(this.form.controls.id.value) }}
+
   <form [formGroup]="form" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
     <div class="row">
       <div class="col">
@@ -17,6 +17,7 @@
               'form-control': true,
             }"
             value="{{ this.form.value.name }}" />
+          <div class="fs-7 fw-lighter">{{ this.form.value._id }}</div>
           <div class="valid-feedback">Looks good!</div>
           <div class="invalid-feedback">Please choose a name 6 char len.</div>
 

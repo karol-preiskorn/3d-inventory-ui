@@ -1,14 +1,12 @@
 /**
- * @file /src/app/components/connection/edit-connection/edit-connection.component.ts
- * @module /src/app/components/connection/edit-connection
  * @description This file contains the ConnectionEditComponent class, which provides methods for editing a connection.
  * @version 2024-03-17 C2RLO - Initial new unified version
  **/
 
-import { Observable, tap } from 'rxjs'
+import { Observable, Subscription, tap } from 'rxjs'
 
 import { Component, NgZone, OnInit } from '@angular/core'
-import { AbstractControl, FormBuilder, Validators } from '@angular/forms'
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 
 import { ConnectionService } from '../../../services/connection.service'
@@ -26,7 +24,6 @@ import { Device } from '../../../shared/device'
 export class ConnectionEditComponent implements OnInit {
   inputId: string
   form = this.createFormGroup()
-
   connection: Connection = new Connection()
   deviceList: Device[]
   isSubmitted = false
@@ -34,11 +31,19 @@ export class ConnectionEditComponent implements OnInit {
   component: string
 
   ngOnInit() {
-    this.createFormGroup()
     this.getDeviceList()
     this.inputId = this.activatedRoute.snapshot.paramMap.get('id') ?? ''
     this.getConnection(this.inputId).subscribe((data: Connection) => {
       this.connection = data
+      this.component = this.inputId
+      this.form = this.createFormGroup()
+      console.log('ConnectionEditComponent.ngOnInit() => ' + JSON.stringify(this.connection, null, ' '))
+      this.form.patchValue({
+        _id: this.connection._id,
+        name: this.connection.name,
+        deviceIdTo: this.connection.deviceIdTo,
+        deviceIdFrom: this.connection.deviceIdFrom,
+      })
     })
     this.component = this.inputId
   }
@@ -54,21 +59,22 @@ export class ConnectionEditComponent implements OnInit {
   ) {}
 
   createFormGroup() {
-    return this.formBuilder.group({
-      id: ['', Validators.required],
-      name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
-      deviceIdTo: ['', [Validators.required]],
-      deviceIdFrom: ['', [Validators.required]],
+    return new FormGroup({
+      _id: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]),
+      deviceIdTo: new FormControl('', [Validators.required]),
+      deviceIdFrom: new FormControl('', [Validators.required]),
     })
   }
 
   changeId(e: Event) {
     if (this.id) {
       const value = (e.target as HTMLInputElement).value
-      const objectId = value
+      const objectId = value as never
       this.id.setValue(objectId, { onlySelf: true })
     }
   }
+
   changeName(e: Event) {
     this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
@@ -104,9 +110,11 @@ export class ConnectionEditComponent implements OnInit {
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls
   }
+
   toString(data: unknown): string {
     return JSON.stringify(data, null, 2)
   }
+
   getDeviceList() {
     return this.deviceService.GetDevices().subscribe((data: Device[]) => {
       const tmp = new Device()
@@ -116,7 +124,7 @@ export class ConnectionEditComponent implements OnInit {
   }
 
   private getConnection(id: string): Observable<Connection> {
-    return this.connectionService.GetConnection(this.inputId).pipe(
+    return this.connectionService.GetConnection(id).pipe(
       tap((data: Connection) => {
         console.log(
           'ConnectionEditComponent.connectionService.GetConnection(' + id + ') => ' + JSON.stringify(data, null, ' '),
@@ -130,10 +138,10 @@ export class ConnectionEditComponent implements OnInit {
     this.connectionService.UpdateConnection(this.inputId, this.form.value as unknown as Connection).subscribe(() => {
       this.logService
         .CreateLog({
-          objectId: this.form.get('id')?.value ?? undefined,
-          message: { value: this.form.value },
-          operation: 'Update',
           component: 'Connection',
+          objectId: this.form.value._id as string,
+          operation: 'Update',
+          message: { value: this.form.value },
         })
         .subscribe(() => {
           this.ngZone.run(() => this.router.navigateByUrl('connection-list'))

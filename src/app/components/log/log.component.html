@@ -18,7 +18,10 @@
         ">
         <td>{{ log.date }}</td>
         <td>{{ log.operation }}</td>
-        <td>{{ log.component }}</td>
+        <td>
+          {{ log.component }}
+          <div class="deviceid">{{ log.objectId }}</div>
+        </td>
         <td>{{ findNameInLogMessage(log) }}</td>
         <td>
           <button type="button" id="delete-device" class="btn btn-danger btn-sm" (click)="DeleteLog(log._id)">

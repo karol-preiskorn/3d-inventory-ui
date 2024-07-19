@@ -1,9 +1,8 @@
 /**
  * @description: First tree.js component
  * @todo:
- *   [x] add cube
+ *   [ ] ashow cue diefinied in 3d-inventory db
  *   [ ] add cube from Angular
- *   [ ] add cube with defined in Ng parameters.
  *
  * @version: 2023-08-08   C2RLO   Starting developing Racks
  * @version: 2023-07-13   C2RLO   Get cube from
@@ -11,7 +10,7 @@
  */
 
 import * as THREE from 'three'
-import { OrbitControls } from 'three-orbitcontrols-ts'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { v4 as uuidv4 } from 'uuid'
 
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
@@ -26,8 +25,8 @@ import { Model } from '../../shared/model'
 
 @Component({
   selector: 'app-cube',
-  templateUrl: './cube.component.html',
-  styleUrls: ['./cube.component.scss'],
+  templateUrl: './3d.component.html',
+  styleUrls: ['./3d.component.scss'],
 })
 export class CubeComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas')
@@ -80,8 +79,8 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.loadDevices()
-    this.loadModels()
+    // this.loadDevices()
+    // this.loadModels()
   }
 
   ngAfterViewInit() {
@@ -301,8 +300,8 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.scene.receiveShadow = true
 
     this.addWalls()
-    this.generateRacksList(25)
-    this.createRacksList3d()
+    // this.generateRacksList(25)
+    // this.createRacksList3d()
 
     this.directionalLight()
     this.directionalLight2()

@@ -29,7 +29,9 @@ const api = [
   { component: 'Attributes', api: 'attributes' },
   { component: 'Attribute Dictionary', api: 'attribute-dictionary' },
   { component: 'Connection', api: 'connections' },
+  { component: 'Connections', api: 'connections' },
   { component: 'Floors', api: 'floors' },
+  { component: '3d', api: '3d' },
 ]
 
 function isApiName(component: string): boolean {
