@@ -8,7 +8,7 @@
  * @version: 2023-07-13   C2RLO   Get cube from
  * @version: 2023-04-16   C2RLO   Add cube
  */
-
+import { Observable } from 'rxjs'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { v4 as uuidv4 } from 'uuid'
@@ -78,9 +78,13 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.cube.receiveShadow = true
   }
 
-  ngOnInit(): void {
-    // this.loadDevices()
-    // this.loadModels()
+  async ngOnInit(): Promise<void> {
+    await this.loadDevices()
+    await this.loadModels()
+    console.log('Device list: ' + this.deviceList.length)
+    console.dir(this.deviceList)
+    console.log('Model list: ' + this.modelList.length)
+    console.dir(this.modelList)
   }
 
   ngAfterViewInit() {
@@ -150,6 +154,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   createDevice3d(box_x: number, box_y: number, box_z: number, pos_x: number, pos_y: number, pos_z: number) {
+    console.log('createDevice3d parameters: ', box_x, box_y, box_z, pos_x, pos_y, pos_z)
     const geometry = new THREE.BoxGeometry(box_x, box_y, box_z)
     this.material.color = new THREE.Color(Math.random() * 0xffffff)
     const sphereMaterial = new THREE.MeshStandardMaterial({ color: Math.random() * 0xffffff })
@@ -167,15 +172,55 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.scene.add(object)
   }
 
-  loadDevices() {
-    return this.devicesService.GetDevices().subscribe((data: Device[]) => {
-      this.deviceList = data as Device[]
+  async loadDevices(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.devicesService.GetDevices().subscribe({
+        next: (data: Device[]) => {
+          this.deviceList = data as Device[]
+          resolve()
+        },
+        error: (error) => {
+          reject(error)
+        },
+      })
     })
   }
 
-  loadModels() {
-    return this.modelsService.GetModels().subscribe((data: Model[]): void => {
-      this.modelList = data as Model[]
+  async loadModels(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.modelsService.GetModels().subscribe({
+        next: (data: Model[]) => {
+          this.modelList = data as Model[]
+          resolve()
+        },
+        error: (error) => {
+          reject(error)
+        },
+      })
+    })
+  }
+
+  FindModelName(id: string): string {
+    // console.info('[FindModelName] try find model name by id: ' + id)
+    let model = this.modelList.find((e: Model) => e._id === id)?.name as string
+    if (model === undefined) {
+      model = 'Unknown'
+    }
+    return model
+  }
+
+  createDeviceList3d(deviceList: Device[], modelList: Model[]): void {
+    deviceList.forEach((device: Device) => {
+      let model: Model = modelList.find((e: Model) => e._id === device.modelId) as Model
+      this.createDevice3d(
+        model.dimension.width,
+        model.dimension.height,
+        model.dimension.height,
+        device.position.x,
+        device.position.y,
+        device.position.h,
+      )
+      console.log('Create device: ' + device.name + ' ' + device.position.x + ' ' + device.position.y)
     })
   }
 
@@ -290,6 +335,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   private createScene() {
+    console.log('Create scene')
     this.scene = new THREE.Scene()
 
     const planeSize = 80
@@ -302,6 +348,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.addWalls()
     // this.generateRacksList(25)
     // this.createRacksList3d()
+    this.createDeviceList3d(this.deviceList, this.modelList)
 
     this.directionalLight()
     this.directionalLight2()

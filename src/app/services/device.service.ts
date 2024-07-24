@@ -1,15 +1,15 @@
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, map, retry } from 'rxjs/operators';
-import { SyncRequestClient } from 'ts-sync-request/dist';
-import { v4 as uuidv4 } from 'uuid'; // Import the uuidv4 function from the uuid library
+import { Observable, of, throwError } from 'rxjs'
+import { catchError, map, retry } from 'rxjs/operators'
+import { SyncRequestClient } from 'ts-sync-request/dist'
+import { v4 as uuidv4 } from 'uuid' // Import the uuidv4 function from the uuid library
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, NgZone } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
 
-import { environment } from '../../environments/environment';
-import { Device } from '../shared/device';
-import { LogService } from './log.service';
+import { environment } from '../../environments/environment'
+import { Device } from '../shared/device'
+import { LogService } from './log.service'
 
 @Injectable({
   providedIn: 'root',

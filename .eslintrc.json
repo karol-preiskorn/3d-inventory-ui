@@ -1,11 +1,11 @@
 {
-  "build": {
-    "builder": "@angular-devkit/build-angular:browser",
-    "options": {
-      "allowedCommonJsDependencies": [
-        "lodash"
-      ]
-    }
+  "env": {
+    "es2022": true,
+    "jasmine": false,
+    "jest": true,
+    "jest/globals": true,
+    "mongo": true,
+    "node": true
   },
   "ignorePatterns": [
     "./node_modules/**/*",
@@ -19,7 +19,10 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:jest/recommended",
+        "plugin:jest/style",
+        "prettier"
       ],
       "files": [
         "./src/*.ts"
@@ -55,7 +58,13 @@
     }
   ],
   "parserOptions": {
-    "ecmaVersion": 6
+    "ecmaVersion": 2022,
+    "project": true,
+    "sourceType": "module",
+    "tsconfigRootDir": "."
   },
+  "plugins": [
+    "jest"
+  ],
   "root": true
 }

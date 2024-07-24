@@ -51,7 +51,7 @@ const routes: Routes = [
     title: 'Home',
   },
   {
-    path: 'cube',
+    path: '3d',
     component: CubeComponent,
     title: '3d',
   },
