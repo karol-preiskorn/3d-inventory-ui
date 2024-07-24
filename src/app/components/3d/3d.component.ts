@@ -8,20 +8,20 @@
  * @version: 2023-07-13   C2RLO   Get cube from
  * @version: 2023-04-16   C2RLO   Add cube
  */
-import { Observable } from 'rxjs'
-import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { v4 as uuidv4 } from 'uuid'
+import { Observable } from 'rxjs';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { v4 as uuidv4 } from 'uuid';
 
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
-import { Router } from '@angular/router'
-import { faker } from '@faker-js/faker'
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { faker } from '@faker-js/faker';
 
-import { DeviceService } from '../../services/device.service'
-import { LogService } from '../../services/log.service'
-import { ModelsService } from '../../services/models.service'
-import { Device } from '../../shared/device'
-import { Model } from '../../shared/model'
+import { DeviceService } from '../../services/device.service';
+import { LogService } from '../../services/log.service';
+import { ModelsService } from '../../services/models.service';
+import { Device } from '../../shared/device';
+import { Model } from '../../shared/model';
 
 @Component({
   selector: 'app-cube',
@@ -78,9 +78,11 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.cube.receiveShadow = true
   }
 
-  async ngOnInit(): Promise<void> {
-    await this.loadDevices()
-    await this.loadModels()
+  async ngOnInit(): Promise<void> {}
+
+  loadDevisesAndModels() {
+    this.loadDevices()
+    this.loadModels()
     console.log('Device list: ' + this.deviceList.length)
     console.dir(this.deviceList)
     console.log('Model list: ' + this.modelList.length)
@@ -88,6 +90,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.loadDevisesAndModels()
     this.createScene()
     this.startRenderingLoop()
   }
@@ -210,12 +213,14 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   createDeviceList3d(deviceList: Device[], modelList: Model[]): void {
+    console.log('Create device list 3d')
+
     deviceList.forEach((device: Device) => {
       let model: Model = modelList.find((e: Model) => e._id === device.modelId) as Model
       this.createDevice3d(
         model.dimension.width,
         model.dimension.height,
-        model.dimension.height,
+        model.dimension.depth,
         device.position.x,
         device.position.y,
         device.position.h,
