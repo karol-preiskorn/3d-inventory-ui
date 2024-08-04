@@ -1,11 +1,11 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
+import { Component, NgZone, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { DeviceService } from '../../../services/device.service'
-import { LogService } from '../../../services/log.service'
-import { ModelsService } from '../../../services/models.service'
-import { Device } from '../../../shared/device'
-import { Model } from '../../../shared/model'
+import { DeviceService } from '../../../services/device.service';
+import { LogService } from '../../../services/log.service';
+import { ModelsService } from '../../../services/models.service';
+import { Device } from '../../../shared/device';
+import { Model } from '../../../shared/model';
 
 @Component({
   selector: 'app-device-list',
@@ -61,8 +61,8 @@ export class DeviceListComponent implements OnInit {
   }
 
   CloneDevice(id: string) {
-    const idNew: object = this.devicesService.CloneDevice(id)
-    console.info('Cloned device id: ' + id + ' to id: ' + idNew.toString())
+    const idNew: object = this.devicesService.CloneDevice({ id })
+    console.info('Cloned device id: ' + id + ' to result CloneDevice id: ' + JSON.stringify(idNew))
     this.logService
       .CreateLog({
         message: { id: id, id_new: idNew },

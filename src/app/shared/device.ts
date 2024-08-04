@@ -10,6 +10,7 @@ export interface Device {
 }
 
 export interface DeviceCreate {
+  _id?: string
   name: string
   modelId: string
   position: { x: number; y: number; h: number }
