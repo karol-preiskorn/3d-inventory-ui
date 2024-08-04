@@ -8,20 +8,22 @@
  * @version: 2023-07-13   C2RLO   Get cube from
  * @version: 2023-04-16   C2RLO   Add cube
  */
-import { Observable } from 'rxjs';
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { v4 as uuidv4 } from 'uuid';
 
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { faker } from '@faker-js/faker';
+import { Observable } from 'rxjs'
+import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
+import { Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 
-import { DeviceService } from '../../services/device.service';
-import { LogService } from '../../services/log.service';
-import { ModelsService } from '../../services/models.service';
-import { Device } from '../../shared/device';
-import { Model } from '../../shared/model';
+import { HttpClient } from '@angular/common/http'
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
+import { tr } from '@faker-js/faker'
+
+import { DeviceService } from '../../services/device.service'
+import { ModelsService } from '../../services/models.service'
+import { Device } from '../../shared/device'
+import { Model } from '../../shared/model'
 
 @Component({
   selector: 'app-cube',
@@ -36,7 +38,6 @@ export class CubeComponent implements OnInit, AfterViewInit {
   @Input() public rotationSpeedY = 0.1
   @Input() public size = 30
   @Input() public texture = '/assets/r710-2.5-nobezel__29341.png'
-
   @Input() public cameraZ = 500
   @Input() public fieldOfView = 4
   @Input() public nearClippingPlane = 0.1
@@ -55,105 +56,45 @@ export class CubeComponent implements OnInit, AfterViewInit {
     map: this.loader.load(this.texture),
   })
 
-  //private material = new THREE.ShadowMaterial()
-
   private cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material)
 
   private renderer!: THREE.WebGLRenderer
   private scene!: THREE.Scene
 
-  private racks: Array<Device> = []
-  private deviceList: Device[] = []
-  private modelList: Model[] = []
+  deviceList: Device[] = []
+  modelList: Model[] = []
 
   component = 'Cube'
+
+  devices$: Observable<Device[]>
+  resolveDeviceList: Device[] = []
+
+  ngOnInit() {
+    console.log('ngOnInit')
+    this.deviceList = this.route.snapshot.data.resolveDeviceList
+    this.modelList = this.route.snapshot.data.resolveModelList
+    // this.loadDevices()
+    // this.loadModels()
+  }
 
   constructor(
     private devicesService: DeviceService,
     private modelsService: ModelsService,
-    private logService: LogService,
-    private router: Router,
+    private HttpClient: HttpClient,
+    private route: ActivatedRoute,
   ) {
+    console.log('constructor')
     this.material.opacity = 0.8
     this.cube.receiveShadow = true
   }
 
-  async ngOnInit(): Promise<void> {}
-
-  loadDevisesAndModels() {
-    this.loadDevices()
-    this.loadModels()
-    console.log('Device list: ' + this.deviceList.length)
-    console.dir(this.deviceList)
-    console.log('Model list: ' + this.modelList.length)
-    console.dir(this.modelList)
-  }
-
   ngAfterViewInit() {
-    this.loadDevisesAndModels()
+    console.log('ngAfterViewInit')
+    // this.loadDevices()
+    // this.loadDevices2()
+    //  this.loadModels()
     this.createScene()
     this.startRenderingLoop()
-  }
-
-  getRandomX = () => Math.round(Math.random() * 40 - 20)
-  getRandomY = () => Math.round(Math.random() * 40 - 20)
-  getRandomH = () => Math.round(Math.random() * 10)
-
-  checkDistanceInDeviceList() {
-    let x = this.getRandomX()
-    let y = this.getRandomY()
-    let distance = true
-    let counter = 0
-    while (distance == true && counter < 10) {
-      this.racks.forEach((element) => {
-        // console.log('Generate rack (' + x + ', ' + y + ') ' + Math.sqrt(Math.pow(Math.abs(x - element.x), 2) + Math.pow(Math.abs(y - element.y), 2)))
-        if (
-          Math.sqrt(Math.pow(Math.abs(x - element.position.x), 2) + Math.pow(Math.abs(y - element.position.y), 2)) < 8
-        ) {
-          distance = false
-        }
-        counter = counter + 1
-      })
-      if (distance == (false as boolean)) {
-        x = this.getRandomX()
-        y = this.getRandomY()
-        // distance = true
-      }
-      counter = counter + 1
-    }
-  }
-
-  generateRandomDeviceRack(): Device {
-    return {
-      _id: uuidv4.toString(),
-      name: faker.company.name() + ' - ' + faker.company.buzzPhrase(),
-      position: {
-        x: this.getRandomX(),
-        y: this.getRandomY(),
-        h: this.getRandomH(),
-      },
-      // modelId: this.modelList[Math.floor(Math.random() * this.modelList.length)].id
-      modelId: this.modelList[Math.floor(Math.random() * this.modelList.length)]._id,
-    } as Device
-  }
-
-  generateRacksList(count: number) {
-    for (let i = 0; i < count; i++) {
-      this.checkDistanceInDeviceList()
-      this.racks.push(this.generateRandomDeviceRack())
-    }
-  }
-
-  createRacksList3d(): void {
-    this.racks.forEach((element) => {
-      this.createRack3d(element.position.x, element.position.y, Math.round(Math.random() * 10))
-    })
-  }
-
-  createRack3d(floor_x: number, floor_y: number, h: number): void {
-    for (let i = 0; i < h; i++) {
-      this.createDevice3d(3, 1, 3, floor_x, i + 0.5, floor_y)
-    }
   }
 
   createDevice3d(box_x: number, box_y: number, box_z: number, pos_x: number, pos_y: number, pos_z: number) {
@@ -163,10 +104,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     const sphereMaterial = new THREE.MeshStandardMaterial({ color: Math.random() * 0xffffff })
     this.material.opacity = 0.75
 
-    const object = new THREE.Mesh(
-      geometry,
-      sphereMaterial /* new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }) */,
-    )
+    const object = new THREE.Mesh(geometry, sphereMaterial)
     object.position.x = pos_x
     object.position.y = pos_y
     object.position.z = pos_z
@@ -175,31 +113,17 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.scene.add(object)
   }
 
-  async loadDevices(): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-      this.devicesService.GetDevices().subscribe({
-        next: (data: Device[]) => {
-          this.deviceList = data as Device[]
-          resolve()
-        },
-        error: (error) => {
-          reject(error)
-        },
-      })
+  loadDevices() {
+    console.log('loadDevices')
+    return this.devicesService.GetDevices().subscribe((data: Device[]): void => {
+      this.deviceList = data as Device[]
     })
   }
 
-  async loadModels(): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-      this.modelsService.GetModels().subscribe({
-        next: (data: Model[]) => {
-          this.modelList = data as Model[]
-          resolve()
-        },
-        error: (error) => {
-          reject(error)
-        },
-      })
+  loadModels() {
+    console.log('loadModels')
+    return this.modelsService.GetModels().subscribe((data: Model[]): void => {
+      this.modelList = data as Model[]
     })
   }
 
@@ -212,11 +136,12 @@ export class CubeComponent implements OnInit, AfterViewInit {
     return model
   }
 
-  createDeviceList3d(deviceList: Device[], modelList: Model[]): void {
+  createDeviceList3d(): void {
     console.log('Create device list 3d')
-
-    deviceList.forEach((device: Device) => {
-      let model: Model = modelList.find((e: Model) => e._id === device.modelId) as Model
+    console.log('Device list: ' + this.deviceList.length)
+    console.log('Model list: ' + this.modelList.length)
+    this.deviceList.forEach((device: Device) => {
+      let model: Model = this.modelList.find((e: Model) => e._id === device.modelId) as Model
       this.createDevice3d(
         model.dimension.width,
         model.dimension.height,
@@ -325,18 +250,52 @@ export class CubeComponent implements OnInit, AfterViewInit {
     texture.repeat.set(repeats, repeats)
 
     const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize)
-    // const planeMat = new THREE.MeshPhongMaterial({
-    //   map: texture,
-    //   side: THREE.DoubleSide,
-    //   shadowSide: 2
-    // })
     const planeMat = new THREE.MeshStandardMaterial({ color: 0xffffff })
 
     const mesh = new THREE.Mesh(planeGeo, planeMat)
     mesh.receiveShadow = true
-    // mesh.castShadow = true
+    mesh.castShadow = true
     mesh.rotation.x = Math.PI * -0.5
     this.scene.add(mesh)
+  }
+
+  materials = [
+    new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true }), // front
+    new THREE.MeshPhongMaterial({ color: 0xffffff }), // side
+  ]
+
+  textMesh1: THREE.Mesh
+  group = new THREE.Group()
+
+  addText() {
+    let text = '3d Inventory'
+    const loader = new FontLoader()
+    loader.load('./../../../assets/fonts/Fira Code Retina_Regular.json', (font: Font) => {
+      const textGeo = new TextGeometry('3d invetory', {
+        font: font,
+        size: 7,
+        height: 1,
+        curveSegments: 8,
+        bevelThickness: 0.1,
+        bevelSize: 0.1,
+        bevelEnabled: true,
+      })
+
+      const material = new THREE.MeshBasicMaterial({ color: 0x995050 })
+      const textMesh = new THREE.Mesh(textGeo, material)
+      textMesh.position.x = -30
+      textMesh.position.y = 0
+      textMesh.position.z = 30
+
+      textMesh.rotation.x = 0
+      textMesh.rotation.y = Math.PI * 2
+      this.scene.add(textMesh)
+    })
+  }
+
+  addAxis() {
+    const axesHelper = new THREE.AxesHelper(35)
+    this.scene.add(axesHelper)
   }
 
   private createScene() {
@@ -350,15 +309,20 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.scene.castShadow = true
     this.scene.receiveShadow = true
 
+    this.scene.fog = new THREE.Fog(0x333333, 200, 1500)
+
     this.addWalls()
-    // this.generateRacksList(25)
-    // this.createRacksList3d()
-    this.createDeviceList3d(this.deviceList, this.modelList)
 
     this.directionalLight()
     this.directionalLight2()
-    //this.addLight()
-    //this.addAbientLight()
+
+    this.addText()
+    this.addAxis()
+
+    // this.loadDevices()
+    // this.loadModels()
+
+    this.createDeviceList3d()
 
     const aspectRatio = this.getAspectRatio()
     this.camera = new THREE.PerspectiveCamera(

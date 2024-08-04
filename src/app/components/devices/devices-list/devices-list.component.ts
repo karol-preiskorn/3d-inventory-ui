@@ -61,10 +61,11 @@ export class DeviceListComponent implements OnInit {
   }
 
   CloneDevice(id: string) {
-    const id_new: string = this.devicesService.CloneDevice(id)
+    const idNew: object = this.devicesService.CloneDevice(id)
+    console.info('Cloned device id: ' + id + ' to id: ' + idNew.toString())
     this.logService
       .CreateLog({
-        message: { id: id, id_new: id_new },
+        message: { id: id, id_new: idNew },
         operation: 'Clone',
         component: this.component,
       })
