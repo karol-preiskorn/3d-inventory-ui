@@ -1,22 +1,21 @@
-﻿/*
- * File:        /src/app/shared/validation.ts
- * Description: Angular Custom Validator to implement password and confirm password validation..
- *                – First, the validator returns null (meaning validation has passed) if there is any error
- *                  on the control that we want to check (confirm password).
- *                – Then, the validator checks that two fields match or not and set error on checking
- *                  control if validation fails.
- * Used by:     src/app/components/attribute-dictionary/add-attribute-dictionary
- * Dependency:
+﻿/**
+ * @description Angular Custom Validator to implement password and confirm password validation.
  *
- * Date        By      Comments
- * ----------  ------  ------------------------------
- * 2023-06-18	 C2RLO	 Add atLeastOneValidator
- * 2023-06-03  C2RLO   Init
+ *  – First, the validator returns null (meaning validation has passed) if there is any error
+ *    on the control that we want to check (confirm password).
+ *  – Then, the validator checks that two fields match or not and set error on checking
+ *    control if validation fails.
+ *
+ * @used    src/app/components/attribute-dictionary/add-attribute-dictionary
+ * @version 2023-06-18 C2RLO Add atLeastOneValidator
+ * @version 2023-06-03 C2RLO Init
+ * @public
  */
 
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms'
+
 /**
- * @description custm validation form shared module
+ * @description custom validation form shared module
  * @export
  * @class Validation
  */
@@ -67,7 +66,8 @@ export default class Validation {
    * @memberof Validation
    */
   numberValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    if (isNaN(control?.value)) {
+    const value = control?.value
+    if (typeof value !== 'number' || isNaN(value)) {
       return {
         number: true,
       }

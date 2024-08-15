@@ -18,14 +18,16 @@
       "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-type-checked",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:jest/recommended",
         "plugin:jest/style",
-        "prettier"
+        "prettier",
+        "plugin:@angular-eslint/recommended"
       ],
       "files": [
-        "./src/*.ts"
+        "src/**/*/*.ts"
       ],
       "rules": {
         "@angular-eslint/component-selector": [
@@ -43,7 +45,8 @@
             "style": "camelCase",
             "type": "attribute"
           }
-        ]
+        ],
+        "@angular-eslint/no-input-rename": "off"
       }
     },
     {

@@ -51,7 +51,7 @@ export class DeviceAddComponent implements OnInit {
   }
   loadModels() {
     return this.modelService.GetModels().subscribe((data: Model[]): void => {
-      this.modelList = data as Model[]
+      this.modelList = data
     })
   }
   changeId(e: Event) {

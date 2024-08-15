@@ -301,7 +301,7 @@ export class LogComponent implements OnInit {
       // Specify the correct type for the data parameter
       const tmp = new Attribute()
       data.unshift(tmp)
-      this.attributeList = data as Attribute[]
+      this.attributeList = data
       this.attributeListGet = true
     })
   }

@@ -23,7 +23,7 @@ export class AppComponent {
     return new Date().getFullYear()
   }
   changeTheme(theme: string) {
-    const body = document.body as HTMLElement
+    const body = document.body
     body.setAttribute('data-bs-theme', theme)
   }
 }

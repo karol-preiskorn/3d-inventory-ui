@@ -2,25 +2,44 @@
  * @description: Main class operating on device. Structure data accessed via Oracle DB/Mongo
  * @version: 2023-02-18  C2RLO  Init
  **/
+
+export interface Position {
+  x: number
+  y: number
+  h: number
+}
+
 export interface Device {
   _id: string
   name: string
   modelId: string
-  position: { x: number; y: number; h: number }
+  position: Position
 }
 
 export interface DeviceCreate {
   _id?: string
   name: string
   modelId: string
-  position: { x: number; y: number; h: number }
+  position: Position
 }
 
 export class Device {
   _id: string
   name: string
   modelId: string
-  position: { x: number; y: number; h: number }
+  position: Position
+
+  constructor(name?: string, modelId?: string, position?: Position) {
+    if (name && modelId && position) {
+      this.name = name
+      this.modelId = modelId
+      this.position = position
+    }
+  }
+
+  toString(): string {
+    return `Device ID: ${this._id}, Name: ${this.name}`
+  }
 }
 
 // tests

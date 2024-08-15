@@ -145,7 +145,7 @@ export class AttributeAddComponent implements OnInit {
 
   toString(data: unknown): string {
     // Specify a more specific type for the 'data' parameter
-    return JSON.stringify(data, null, 2) as string
+    return JSON.stringify(data, null, 2)
   }
 
   getDeviceList(): Subscription {

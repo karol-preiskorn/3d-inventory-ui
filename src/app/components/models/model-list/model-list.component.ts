@@ -30,7 +30,7 @@ export class ModelsListComponent implements OnInit {
    * @returns An Observable that emits the loaded models data.
    */
   loadModels(): Observable<Model[]> {
-    return this.modelsService.GetModels() as Observable<Model[]>
+    return this.modelsService.GetModels()
   }
 
   /**

@@ -14,7 +14,7 @@ import { Log, LogIn, LogService } from './log.service';
   providedIn: 'root',
 })
 /**
- * Service for managing devices.
+ * Service for managing devices in mongoAtlas
  */
 export class DeviceService {
   baseurl = environment.baseurl
@@ -61,6 +61,7 @@ export class DeviceService {
 
   /**
    * Retrieves a device by its ID and returns a synchronous request client.
+   *
    * @param id - The ID of the device to retrieve.
    * @returns A synchronous request client for getting the device.
    */
@@ -70,6 +71,7 @@ export class DeviceService {
 
   /**
    * Retrieves a device synchronously by its ID.
+   *
    * @param id The ID of the device to retrieve.
    * @returns An Observable that emits the retrieved Device object.
    */
@@ -121,7 +123,7 @@ export class DeviceService {
     let result: any = {} // Update the type of result to any
     this.GetDevice(id).subscribe((value: Device) => {
       console.info('Get Device: ' + JSON.stringify(value, null, ' '))
-      let deviceToCreate = value as DeviceCreate
+      const deviceToCreate = value as DeviceCreate
       if (deviceToCreate.hasOwnProperty('_id')) {
         delete deviceToCreate['_id']
       }
@@ -152,6 +154,7 @@ export class DeviceService {
 
   /**
    * Updates a device with the specified ID.
+   *
    * @param id - The ID of the device to update.
    * @param data - The updated device data.
    * @returns An Observable that emits the updated device.
@@ -178,6 +181,7 @@ export class DeviceService {
 
   /**
    * Handles the error response from the server.
+   *
    * @param error - The error object containing the error message and status.
    * @returns An Observable that emits an error message.
    */

@@ -41,7 +41,7 @@ export class DeviceListComponent implements OnInit {
 
   loadModels() {
     return this.modelsService.GetModels().subscribe((data: Model[]): void => {
-      this.modelList = data as Model[]
+      this.modelList = data
     })
   }
 

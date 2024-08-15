@@ -9,21 +9,21 @@
  * @version: 2023-04-16   C2RLO   Add cube
  */
 
-import { Observable } from 'rxjs'
-import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
-import { Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
+import { Observable } from 'rxjs';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
+import { Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 
-import { HttpClient } from '@angular/common/http'
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
-import { tr } from '@faker-js/faker'
+import { HttpClient } from '@angular/common/http';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { tr } from '@faker-js/faker';
 
-import { DeviceService } from '../../services/device.service'
-import { ModelsService } from '../../services/models.service'
-import { Device } from '../../shared/device'
-import { Model } from '../../shared/model'
+import { DeviceService } from '../../services/device.service';
+import { ModelsService } from '../../services/models.service';
+import { Device } from '../../shared/device';
+import { Model } from '../../shared/model';
 
 @Component({
   selector: 'app-cube',
@@ -116,14 +116,14 @@ export class CubeComponent implements OnInit, AfterViewInit {
   loadDevices() {
     console.log('loadDevices')
     return this.devicesService.GetDevices().subscribe((data: Device[]): void => {
-      this.deviceList = data as Device[]
+      this.deviceList = data
     })
   }
 
   loadModels() {
     console.log('loadModels')
     return this.modelsService.GetModels().subscribe((data: Model[]): void => {
-      this.modelList = data as Model[]
+      this.modelList = data
     })
   }
 
@@ -141,7 +141,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     console.log('Device list: ' + this.deviceList.length)
     console.log('Model list: ' + this.modelList.length)
     this.deviceList.forEach((device: Device) => {
-      let model: Model = this.modelList.find((e: Model) => e._id === device.modelId) as Model
+      const model: Model = this.modelList.find((e: Model) => e._id === device.modelId) as Model
       this.createDevice3d(
         model.dimension.width,
         model.dimension.height,
@@ -268,12 +268,12 @@ export class CubeComponent implements OnInit, AfterViewInit {
   group = new THREE.Group()
 
   addText() {
-    let text = '3d Inventory'
+    const text = '3d Inventory'
     const loader = new FontLoader()
     loader.load('./../../../assets/fonts/Fira Code Retina_Regular.json', (font: Font) => {
       const textGeo = new TextGeometry('3d invetory', {
         font: font,
-        size: 7,
+        size: 4,
         height: 1,
         curveSegments: 8,
         bevelThickness: 0.1,
@@ -283,9 +283,9 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
       const material = new THREE.MeshBasicMaterial({ color: 0x995050 })
       const textMesh = new THREE.Mesh(textGeo, material)
-      textMesh.position.x = -30
-      textMesh.position.y = 0
-      textMesh.position.z = 30
+      textMesh.position.x = -18
+      textMesh.position.y = 2
+      textMesh.position.z = 25
 
       textMesh.rotation.x = 0
       textMesh.rotation.y = Math.PI * 2
