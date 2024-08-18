@@ -3,18 +3,18 @@
  * @version 2024-03-17 C2RLO - Initial new unified version
  **/
 
-import { Observable, Subscription, tap } from 'rxjs'
+import { firstValueFrom, Observable, tap } from 'rxjs';
 
-import { Component, NgZone, OnInit } from '@angular/core'
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { ActivatedRoute, Router } from '@angular/router'
+import { Component, NgZone, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { ConnectionService } from '../../../services/connection.service'
-import { DeviceService } from '../../../services/device.service'
-import { LogService } from '../../../services/log.service'
-import { ComponentDictionary } from '../../../shared/component-dictionary'
-import { Connection } from '../../../shared/connection'
-import { Device } from '../../../shared/device'
+import { ConnectionService } from '../../../services/connection.service';
+import { DeviceService } from '../../../services/device.service';
+import { LogService } from '../../../services/log.service';
+import { ComponentDictionary } from '../../../shared/component-dictionary';
+import { Connection } from '../../../shared/connection';
+import { Device } from '../../../shared/device';
 
 @Component({
   selector: 'app-edit-connection',
@@ -23,12 +23,24 @@ import { Device } from '../../../shared/device'
 })
 export class ConnectionEditComponent implements OnInit {
   inputId: string
-  form = this.createFormGroup()
-  connection: Connection = new Connection()
+  form: FormGroup
+  connection: Connection
   deviceList: Device[]
   isSubmitted = false
   componentDictionary: ComponentDictionary = new ComponentDictionary()
   component: string
+
+  constructor(
+    public formBuilder: FormBuilder,
+    private ngZone: NgZone,
+    private router: Router,
+    public activatedRoute: ActivatedRoute,
+    private connectionService: ConnectionService,
+    private deviceService: DeviceService,
+    private logService: LogService,
+  ) {
+    this.form = this.createFormGroup()
+  }
 
   ngOnInit() {
     this.getDeviceList()
@@ -46,19 +58,10 @@ export class ConnectionEditComponent implements OnInit {
       })
     })
     this.component = this.inputId
+    this.connection = new Connection()
   }
 
-  constructor(
-    public formBuilder: FormBuilder,
-    private ngZone: NgZone,
-    private router: Router,
-    public activatedRoute: ActivatedRoute,
-    private connectionService: ConnectionService,
-    private deviceService: DeviceService,
-    private logService: LogService,
-  ) {}
-
-  createFormGroup() {
+  createFormGroup = () => {
     return new FormGroup({
       _id: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]),
@@ -67,7 +70,7 @@ export class ConnectionEditComponent implements OnInit {
     })
   }
 
-  changeId(e: Event) {
+  changeId = (e: Event): void => {
     if (this.id) {
       const value = (e.target as HTMLInputElement).value
       const objectId = value as never
@@ -75,17 +78,17 @@ export class ConnectionEditComponent implements OnInit {
     }
   }
 
-  changeName(e: Event) {
+  changeName = (e: Event): void => {
     this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeDeviceFrom(e: Event) {
+  changeDeviceFrom = (e: Event): void => {
     const value = (e.target as HTMLInputElement).value
     const objectId = value
     this.deviceIdFrom?.setValue(objectId, { onlySelf: true })
   }
 
-  changeDeviceTo(e: Event) {
+  changeDeviceTo = (e: Event): void => {
     const value = (e.target as HTMLInputElement).value
     const objectId = value
     this.deviceIdTo?.setValue(objectId, { onlySelf: true })
@@ -134,19 +137,18 @@ export class ConnectionEditComponent implements OnInit {
     )
   }
 
-  submitForm() {
-    this.connectionService.UpdateConnection(this.inputId, this.form.value as unknown as Connection).subscribe(() => {
-      this.logService
-        .CreateLog({
-          component: 'Connection',
-          objectId: this.form.value._id as string,
-          operation: 'Update',
-          message: { value: this.form.value },
-        })
-        .subscribe(() => {
-          this.ngZone.run(() => this.router.navigateByUrl('connection-list'))
-          this.router.navigate(['connection-list'])
-        })
-    })
+  async submitForm() {
+    const formValue = this.form.value as unknown as Connection
+    await firstValueFrom(this.connectionService.UpdateConnection(this.inputId, this.form.value as Connection))
+    await firstValueFrom(
+      this.logService.CreateLog({
+        component: 'Connection',
+        objectId: formValue._id,
+        operation: 'Update',
+        message: { value: this.form.value as unknown },
+      }),
+    )
+    await this.ngZone.run(() => this.router.navigateByUrl('connection-list')).catch(() => {})
+    await this.router.navigate(['connection-list']).catch(() => {})
   }
 }

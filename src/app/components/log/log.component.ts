@@ -2,25 +2,26 @@
  * @module /src/app/components/log
  * @description This file contains the implementation of the LogComponent class, which is responsible for displaying and managing logs in the application.
  * @version 2024-06-29 C2RLO - Initial
+ * @public
  **/
 
-import { Subscription } from 'rxjs'
+import { Subscription } from 'rxjs';
 
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core';
 
-import { AttributeDictionaryService } from '../../services/attribute-dictionary.service'
-import { AttributeService } from '../../services/attribute.service'
-import { ConnectionService } from '../../services/connection.service'
-import { DeviceService } from '../../services/device.service'
-import { FloorService } from '../../services/floor.service'
-import { Log, LogService } from '../../services/log.service'
-import { ModelsService } from '../../services/models.service'
-import { Attribute } from '../../shared/attribute'
-import { AttributeDictionary } from '../../shared/attribute-dictionary'
-import { Connection } from '../../shared/connection'
-import { Device } from '../../shared/device'
-import { Floor } from '../../shared/floor'
-import { Model } from '../../shared/model'
+import { AttributeDictionaryService } from '../../services/attribute-dictionary.service';
+import { AttributeService } from '../../services/attribute.service';
+import { ConnectionService } from '../../services/connection.service';
+import { DeviceService } from '../../services/device.service';
+import { FloorService } from '../../services/floor.service';
+import { Log, LogService } from '../../services/log.service';
+import { ModelsService } from '../../services/models.service';
+import { Attribute } from '../../shared/attribute';
+import { AttributeDictionary } from '../../shared/attribute-dictionary';
+import { Connection } from '../../shared/connection';
+import { Device } from '../../shared/device';
+import { Floor } from '../../shared/floor';
+import { Model } from '../../shared/model';
 
 const api = [
   { component: 'Models', api: 'models' },
@@ -38,6 +39,7 @@ function isApiName(component: string): boolean {
   return api.find((e) => e.component === component) ? true : false
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function isComponentName(apiName: string): boolean {
   return api.find((e) => e.api === apiName) ? true : false
 }
@@ -51,7 +53,7 @@ export class LogComponent implements OnInit {
   LogList: Log[] = []
 
   @Input() component: string
-  @Input() attributeComponentObject: object = {}
+  @Input() attributeComponentObject: Device = new Device()
 
   deviceList: Device[]
   modelList: Model[]
@@ -164,11 +166,11 @@ export class LogComponent implements OnInit {
    * @returns The name found in the log message.
    */
   findNameInLogMessage(log: Log): string {
-    let jLog: object
+    let jLog: Log
     try {
-      jLog = JSON.parse(JSON.stringify(log.message))
-    } catch (error) {
-      console.log('findNameInLogMessage: ' + JSON.stringify(log.message) + ' ' + error)
+      jLog = JSON.parse(JSON.stringify(log.message)) as Log
+    } catch (error: unknown) {
+      console.log(`findNameInLogMessage: ${String(log.message)} is not a JSON string` + String(error))
       return JSON.stringify(log.message)
     }
     if (log.component == 'Attribute') {

@@ -1,19 +1,19 @@
-﻿/*
- * File:        @/src/app/shared/rack.ts
+﻿/**
+ * @file        @/src/app/shared/rack.ts
  *
- * Description: modeling rack -< devices
+ * @description  modeling rack -< devices
  *
  * how modeling relations between devices and rack?
  *   units: Array<Device>
  *   units: Array<_DeviceId>
  *   units
  *
- * Used by:
- * Dependency:
+ * @used       rack.component.ts
+ * @dependency DeviceService, LogService, ModelsService
  *
- * Date        By     Comments
- * ----------  -----  ---------------
- * 2023-08-08  C2RLO  Init racks
+ * @version 2023-08-08  C2RLO  Init racks
+ * @public
+ * @export
  */
 
 import { DeviceService } from '../services/device.service'
@@ -22,8 +22,8 @@ import { ModelsService } from '../services/models.service'
 import { Device } from './device'
 
 export class Rack {
-  device: Device
-  units: Array<Device> // rendudance we need only Id
+  device: Device = new Device()
+  units: Array<Device> = [] // rendudance we need only Id
 
   constructor(
     private devicesService: DeviceService,

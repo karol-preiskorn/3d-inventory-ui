@@ -9,21 +9,21 @@
  * @version: 2023-04-16   C2RLO   Add cube
  */
 
-import { Observable } from 'rxjs';
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
-import { Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+import { Observable } from 'rxjs'
+import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
+import { Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 
-import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { tr } from '@faker-js/faker';
+import { HttpClient } from '@angular/common/http'
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
+import { tr } from '@faker-js/faker'
 
-import { DeviceService } from '../../services/device.service';
-import { ModelsService } from '../../services/models.service';
-import { Device } from '../../shared/device';
-import { Model } from '../../shared/model';
+import { DeviceService } from '../../services/device.service'
+import { ModelsService } from '../../services/models.service'
+import { Device } from '../../shared/device'
+import { Model } from '../../shared/model'
 
 @Component({
   selector: 'app-cube',
@@ -32,7 +32,7 @@ import { Model } from '../../shared/model';
 })
 export class CubeComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas')
-  private canvasRef: ElementRef
+  private canvasRef!: ElementRef
 
   @Input() public rotationSpeedX = 0.1
   @Input() public rotationSpeedY = 0.1

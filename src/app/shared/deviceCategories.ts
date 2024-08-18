@@ -4,8 +4,8 @@
  */
 
 export class DeviceCategory {
-  name: string
-  description: string
+  name: string = ''
+  description: string = ''
 }
 
 export class DeviceCategoryDict {

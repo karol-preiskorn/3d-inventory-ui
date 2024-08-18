@@ -6,13 +6,13 @@
  *  – Then, the validator checks that two fields match or not and set error on checking
  *    control if validation fails.
  *
- * @used    src/app/components/attribute-dictionary/add-attribute-dictionary
+ * @used by: src/app/components/connection/edit-connection/edit-connection.component.ts
  * @version 2023-06-18 C2RLO Add atLeastOneValidator
  * @version 2023-06-03 C2RLO Init
  * @public
  */
 
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms'
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 /**
  * @description custom validation form shared module
@@ -66,7 +66,7 @@ export default class Validation {
    * @memberof Validation
    */
   numberValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    const value = control?.value
+    const value: number = control?.value as number
     if (typeof value !== 'number' || isNaN(value)) {
       return {
         number: true,

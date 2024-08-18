@@ -7,6 +7,8 @@
     "compodoc",
     "okaidia",
     "packagr",
+    "preeslint",
+    "prestart",
     "prismjs",
     "tseslint",
     "uuidv"

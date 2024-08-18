@@ -1,26 +1,25 @@
-import { Observable } from 'rxjs'
-import { tap } from 'rxjs/operators'
-import { v4 as uuidv4 } from 'uuid'
-
-import { Component, NgZone, OnInit } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
+import { Component, NgZone, OnInit } from '@angular/core'
 
-import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
-import { AttributeService } from '../../../services/attribute.service'
-import { ConnectionService } from '../../../services/connection.service'
-import { DeviceService } from '../../../services/device.service'
-import { LogService } from '../../../services/log.service'
-import { ModelsService } from '../../../services/models.service'
 import { Attribute } from '../../../shared/attribute'
 import { AttributeDictionary } from '../../../shared/attribute-dictionary'
+import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
+import { AttributeService } from '../../../services/attribute.service'
 import { ComponentDictionary } from '../../../shared/component-dictionary'
 import { Connection } from '../../../shared/connection'
+import { ConnectionService } from '../../../services/connection.service'
 import { Device } from '../../../shared/device'
 import { DeviceCategoryDict } from '../../../shared/deviceCategories'
+import { DeviceService } from '../../../services/device.service'
 import { DeviceTypeDict } from '../../../shared/deviceTypes'
+import { LogService } from '../../../services/log.service'
 import { Model } from '../../../shared/model'
+import { ModelsService } from '../../../services/models.service'
+import { Observable } from 'rxjs'
 import Validation from '../../../shared/validation'
+import { tap } from 'rxjs/operators'
+import { v4 as uuidv4 } from 'uuid'
 
 @Component({
   selector: 'app-edit-attribute',
@@ -31,17 +30,7 @@ export class AttributeEditComponent implements OnInit {
   inputId: string
   valid: Validation = new Validation()
 
-  editAttributeForm = new FormGroup(
-    {
-      _id: new FormControl('', [Validators.required]),
-      attributeDictionaryId: new FormControl('', [Validators.required]),
-      connectionId: new FormControl(''),
-      deviceId: new FormControl(''),
-      modelId: new FormControl(''),
-      value: new FormControl('', [Validators.required]),
-    },
-    { validators: this.valid.atLeastOneValidator },
-  )
+  editAttributeForm: FormGroup
 
   attribute: Attribute
   deviceDictionary: Device[]
@@ -96,18 +85,40 @@ export class AttributeEditComponent implements OnInit {
     private attributeDictionaryService: AttributeDictionaryService,
     private logService: LogService,
     private ngZone: NgZone,
-  ) {}
+  ) {
+    this.editAttributeForm = new FormGroup(
+      {
+        _id: new FormControl('', [Validators.required]),
+        attributeDictionaryId: new FormControl('', [Validators.required]),
+        connectionId: new FormControl(''),
+        deviceId: new FormControl(''),
+        modelId: new FormControl(''),
+        value: new FormControl('', [Validators.required]),
+      },
+      { validators: [this.atLeastOneValidator.bind(this)] },
+    )
+  }
+
+  private atLeastOneValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      const formGroup = control as FormGroup
+      const values = Object.values(formGroup.controls)
+      const hasValue = values.some((control) => control.value !== null && control.value !== '')
+      return hasValue ? null : { atLeastOne: true }
+    }
+  }
 
   changeModelId(e: Event) {
     const value = (e.target as HTMLInputElement).value
     const objectId = uuidv4.toString()
     this.modelId!.setValue(objectId, { onlySelf: true })
+    return value
   }
 
   changeDeviceId(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    const objectId = uuidv4.toString()
-    this.deviceId?.setValue(objectId, { onlySelf: true })
+    //const objectId = new mongodb.ObjectId().toString() // This line creates a new ObjectId and converts it to a string
+    return value
   }
 
   changeConnectionId(e: Event) {
@@ -199,7 +210,9 @@ export class AttributeEditComponent implements OnInit {
           component: 'Attribute',
         })
         .subscribe(() => {
-          this.ngZone.run(() => this.router.navigateByUrl('attribute-list'))
+          this.ngZone.run(async () => {
+            await this.router.navigateByUrl('attribute-list')
+          })
         })
     })
   }

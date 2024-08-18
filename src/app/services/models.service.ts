@@ -14,7 +14,7 @@ import { LogService } from './log.service'
 })
 export class ModelsService {
   baseurl = environment.baseurl
-  model: Model
+  model: Model = {} as Model
   constructor(
     private http: HttpClient,
     private logService: LogService,

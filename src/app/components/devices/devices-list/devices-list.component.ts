@@ -1,11 +1,11 @@
-import { Component, NgZone, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, NgZone, OnInit } from '@angular/core'
+import { ActivatedRoute, Router } from '@angular/router'
 
-import { DeviceService } from '../../../services/device.service';
-import { LogService } from '../../../services/log.service';
-import { ModelsService } from '../../../services/models.service';
-import { Device } from '../../../shared/device';
-import { Model } from '../../../shared/model';
+import { DeviceService } from '../../../services/device.service'
+import { LogService } from '../../../services/log.service'
+import { ModelsService } from '../../../services/models.service'
+import { Device } from '../../../shared/device'
+import { Model } from '../../../shared/model'
 
 @Component({
   selector: 'app-device-list',
@@ -46,43 +46,55 @@ export class DeviceListComponent implements OnInit {
   }
 
   DeleteDevice(id: string) {
-    this.logService.CreateLog({
-      message: { id: id },
-      objectId: id,
-      operation: 'Delete',
-      component: this.component,
-    })
-    return this.devicesService.DeleteDevice(id).subscribe(() => {
-      console.log(id + ' deleted')
-      this.loadDevices()
-      this.loadModels()
-      this.router.navigate(['/device-list/'])
-    })
+    this.logService
+      .CreateLog({
+        message: { id: id },
+        objectId: id,
+        operation: 'Delete',
+        component: this.component,
+      })
+      .subscribe({
+        next: () => {
+          this.devicesService.DeleteDevice(id).subscribe({
+            next: () => {
+              console.log(id + ' deleted')
+              this.loadDevices()
+              this.loadModels()
+              void this.router.navigate(['/device-list/'], { relativeTo: this.route, skipLocationChange: true })
+            },
+            error: (err) => {
+              console.error('Error deleting device:', err)
+            },
+          })
+        },
+        error: (err) => {
+          console.error('Error creating log:', err)
+        },
+      })
   }
 
-  CloneDevice(id: string) {
-    const idNew: object = this.devicesService.CloneDevice({ id })
+  async CloneDevice(id: string) {
+    const idNew: object = this.devicesService.CloneDevice(id)
     console.info('Cloned device id: ' + id + ' to result CloneDevice id: ' + JSON.stringify(idNew))
-    this.logService
+    await this.logService
       .CreateLog({
         message: { id: id, id_new: idNew },
         operation: 'Clone',
         component: this.component,
       })
-      .subscribe(() => {
-        this.ngZone.run(() => this.router.navigateByUrl('device-list'))
-      })
+      .toPromise()
+    await this.ngZone.run(() => this.router.navigateByUrl('device-list'))
     this.loadDevices()
   }
 
-  AddForm() {
-    this.router.navigateByUrl('/add-device')
+  async AddForm() {
+    await this.router.navigateByUrl('/add-device')
   }
 
-  EditForm(device: Device) {
+  async EditForm(device: Device) {
     this.selectedDevice = device
     if (device._id !== undefined) {
-      this.router.navigate(['edit-device', device._id], { relativeTo: this.route.parent })
+      await this.router.navigate(['edit-device', device._id], { relativeTo: this.route.parent })
     } else {
       console.warn('[DeviceListComponent] Device route.id is undefined')
     }

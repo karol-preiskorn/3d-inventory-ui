@@ -1,12 +1,22 @@
 ﻿/*
  * Description:  AttributeDictionary service, component
  *
- * 2023-06-01  C2RLO	  Add optional null
- * 2023-05-21  C2RLO    Init
  */
 
+/**
+ * Represents an attribute dictionary.
+ */
 export class AttributeDictionary {
   _id: string
+
+  constructor() {
+    this._id = ''
+    this.name = ''
+    this.category = ''
+    this.type = ''
+    this.component = ''
+  }
+
   name?: string
   category?: string
   type?: string

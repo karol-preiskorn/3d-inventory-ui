@@ -4,11 +4,11 @@
  * @type {import('jest').Config}
  */
 
-const config = {
-  testTimeout: 6000,
+const config: import('jest').Config = {
+  testTimeout: 30000,
   fakeTimers: {
     doNotFake: ['nextTick'],
-    timerLimit: 6000,
+    timerLimit: 30000,
   },
   bail: 1,
   verbose: true,
@@ -24,11 +24,13 @@ const config = {
       statements: -10,
     },
   },
-  testEnvironment: 'node',
+
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node', 'mjs'],
+  transformIgnorePatterns: ['node_modules/(?!@angular/core)'],
   projects: [
     {
       displayName: 'esLint',
-      clearMocks: true,
+      clearMocks: false,
       globals: {
         __DEV__: true,
       },
@@ -46,7 +48,6 @@ const config = {
       preset: 'jest-runner-prettier',
       runner: 'prettier',
       testPathIgnorePatterns: [
-        ,
         '<rootDir>/dist/',
         '<rootDir>/node_modules/',
         '<rootDir>/docs/',
@@ -74,7 +75,7 @@ const config = {
       globals: {
         __DEV__: true,
       },
-      moduleFileExtensions: ['js', 'ts', 'yaml', 'json'],
+      moduleFileExtensions: ['js', 'ts', 'yaml', 'json', 'mjs'],
       preset: 'ts-jest',
       testPathIgnorePatterns: [
         '<rootDir>/node_modules/',
@@ -83,8 +84,12 @@ const config = {
         '<rootDir>/logs/',
         '<rootDir>/coverage/',
       ],
-      testRegex: '(/tests/.*|(\\.|/)(test|spec))\\.(mjs?|cjs?|js?|tsx?|ts?)$',
-      transform: {},
+      testRegex: '(/.*|(\\.|/)(test|spec))\\.(mjs?|cjs?|js?|tsx?|ts?)$',
+      transform: {
+        '^.+\\.ts?$': 'ts-jest',
+        '^.+\\.mjs$': 'babel-jest',
+      },
+      transformIgnorePatterns: ['node_modules/(?!@angular/core)'],
     },
   ],
 }

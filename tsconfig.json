@@ -1,5 +1,4 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
-{
+/* To learn more about this file see: https://angular.io/config/tsconfig. */ {
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "esModuleInterop": true,
@@ -8,14 +7,14 @@
     },
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
+    "strictPropertyInitialization": false,
     "strictTemplates": true
   },
   "compileOnSave": true,
   "compilerOptions": {
     "baseUrl": "./",
-    "declaration": true,
+    "declaration": false,
     "downlevelIteration": true,
-    "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
@@ -23,7 +22,7 @@
       "es2022",
       "dom"
     ],
-    "module": "commonjs",
+    "module": "es2022",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
@@ -34,17 +33,12 @@
     "target": "ES2022",
     "types": [
       "jest"
-    ],
-    "useDefineForClassFields": false
+    ]
   },
   "exclude": [
     "src/**/*.spec.ts"
   ],
   "include": [
-    "src/**/*.ts",
-    "src/*.ts"
-  ],
-  "parserOptions": {
-    "project": "./tsconfig.eslint.json"
-  }
+    "src/**/*.ts"
+  ]
 }

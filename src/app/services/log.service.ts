@@ -5,12 +5,12 @@
  * @version 2024-03-14 C2RLO - Initial
  **/
 
-import { catchError, Observable, of, retry, throwError } from 'rxjs';
+import { catchError, Observable, of, retry, throwError } from 'rxjs'
 
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Injectable, Input } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
+import { Injectable, Input } from '@angular/core'
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment'
 
 /**
  * Represents the parameters for retrieving logs.
@@ -47,7 +47,7 @@ export interface LogIn {
 })
 export class LogService {
   baseurl = environment.baseurl
-  @Input() attributeComponentId: string
+  @Input() attributeComponentId?: string
 
   constructor(private http: HttpClient) {}
 

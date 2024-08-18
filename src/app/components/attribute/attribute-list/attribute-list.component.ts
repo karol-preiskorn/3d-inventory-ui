@@ -1,17 +1,19 @@
-import { Component, Input, NgZone, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
+import { lastValueFrom } from 'rxjs';
 
-import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
-import { AttributeService } from '../../../services/attribute.service'
-import { ConnectionService } from '../../../services/connection.service'
-import { DeviceService } from '../../../services/device.service'
-import { LogService } from '../../../services/log.service'
-import { ModelsService } from '../../../services/models.service'
-import { Attribute } from '../../../shared/attribute'
-import { AttributeDictionary } from '../../../shared/attribute-dictionary'
-import { Connection } from '../../../shared/connection'
-import { Device } from '../../../shared/device'
-import { Model } from '../../../shared/model'
+import { Component, Input, NgZone, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service';
+import { AttributeService } from '../../../services/attribute.service';
+import { ConnectionService } from '../../../services/connection.service';
+import { DeviceService } from '../../../services/device.service';
+import { LogService } from '../../../services/log.service';
+import { ModelsService } from '../../../services/models.service';
+import { Attribute } from '../../../shared/attribute';
+import { AttributeDictionary } from '../../../shared/attribute-dictionary';
+import { Connection } from '../../../shared/connection';
+import { Device } from '../../../shared/device';
+import { Model } from '../../../shared/model';
 
 @Component({
   selector: 'app-attribute-list',
@@ -66,7 +68,7 @@ export class AttributeListComponent implements OnInit {
   private LoadAttributes() {
     // @TODO: #62 show data depends of context attributeComponent and attributeComponentObject
     console.log('-------------------<  LoadAttributes  >-------------------')
-    if (this.attributeComponent == 'Device' && this.attributeComponentObject != null) {
+    if (this.attributeComponent === 'Device' && this.attributeComponentObject != null) {
       console.log(
         'LoadAttributes.GetContextAttributes: ' + this.attributeComponent + ' ' + this.attributeComponentObject,
       )
@@ -80,44 +82,65 @@ export class AttributeListComponent implements OnInit {
     }
   }
 
-  DeleteAttribute(id: string) {
-    this.logService.CreateLog({
-      message: { id: id },
-      objectId: id,
-      operation: 'Delete',
-      component: this.component,
-    })
-    return this.attributeService.DeleteAttribute(id).subscribe((data: Attribute) => {
+  async navigateMethod() {
+    try {
+      // Perform some operations here
+      await this.router.navigate(['/attribute-dictionary-list'])
+    } catch (error) {
+      console.error('Navigation error:', error)
+    }
+  }
+  async DeleteAttribute(id: string) {
+    try {
+      await this.logService
+        .CreateLog({
+          message: { id: id },
+          objectId: id,
+          operation: 'Delete',
+          component: this.component,
+        })
+        .toPromise() // Convert observable to promise and await it
+
+      const data: Attribute = await lastValueFrom(this.attributeService.DeleteAttribute(id)) // Await the deletion
+
       console.log(data)
       this.LoadAttributes()
-      this.router.navigate(['/attribute-dictionary-list'])
-    })
+      await this.navigateMethod()
+    } catch (error) {
+      console.error('Error deleting attribute:', error)
+    }
   }
 
   async CloneAttribute(id: string) {
-    this.logService
+    await this.logService
       .CreateLog({
         message: { id: id, id_new: 'todo!' },
         operation: 'Clone',
         component: this.component,
       })
-      .subscribe(() => {
-        this.ngZone.run(() => this.router.navigateByUrl('attributes-list'))
-      })
+      .toPromise()
+    await this.ngZone.run(() => this.router.navigateByUrl('attributes-list'))
   }
 
-  AddAttribute() {
-    this.router.navigateByUrl('add-attribute')
+  async AddAttribute() {
+    await this.router.navigateByUrl('add-attribute')
   }
 
-  EditAttribute(attribute: Attribute) {
+  async EditAttribute(attribute: Attribute) {
     this.selectedAttribute = attribute
-    this.router.navigate(['edit-attribute', this.selectedAttribute._id])
+    await this.router.navigate(['edit-attribute', this.selectedAttribute._id])
   }
 
-  getDevice(id: string) {
-    return this.deviceService.GetDevice(id).subscribe((data: Device) => {
-      this.device = data
+  etDevice(id: string) {
+    return this.deviceService.GetDevices().subscribe((data: Device[]) => {
+      const foundDevice = data.find((device: Device): boolean => device._id === id)
+      if (foundDevice) {
+        this.device = foundDevice
+      } else {
+        console.error(`Device with id ${id} not found`)
+        // Handle the case where the device is not found, e.g., set this.device to null or show an error message
+        this.device = new Device() // or null
+      }
     })
   }
 
