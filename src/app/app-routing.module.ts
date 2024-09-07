@@ -74,6 +74,7 @@ const routes: Routes = [
   },
   {
     path: '3d',
+    path: '3d',
     component: CubeComponent,
     title: '3d',
     resolve: {
