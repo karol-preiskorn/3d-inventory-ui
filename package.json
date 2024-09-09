@@ -66,7 +66,7 @@
     "@angular/platform-server": "^18.2.0",
     "@angular/router": "^18.2.0",
     "@compodoc/compodoc": "^1.1.25",
-    "@faker-js/faker": "^8.4.1",
+    "@faker-js/faker": "^9.0.0",
     "@jest/globals": "^29.7.0",
     "@ng-bootstrap/ng-bootstrap": "^17.0.0",
     "@octokit/core": "^6.1.2",
