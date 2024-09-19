@@ -24,6 +24,7 @@ import { DeviceService } from '../../services/device.service'
 import { ModelsService } from '../../services/models.service'
 import { Device } from '../../shared/device'
 import { Model } from '../../shared/model'
+import { Random3d } from './3d'
 
 const materials = [
   new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true }), // front
