@@ -1,13 +1,12 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable, NgZone } from '@angular/core'
+import { Log, LogIn, LogService } from './log.service'
 import { Observable, of } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
-
-import { environment } from '../../environments/environment'
 import { Model } from '../shared/model'
-import { LogService } from './log.service'
+import { Router } from '@angular/router'
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root',
@@ -50,6 +49,7 @@ export class ModelsService {
 
   /**
    * Deletes a model by its ID.
+   *
    * @param id The ID of the model to delete.
    * @returns An Observable that emits the deleted model.
    */
@@ -61,6 +61,7 @@ export class ModelsService {
 
   /**
    * Creates a new model.
+   *
    * @param data The data of the model to be created.
    * @returns An Observable that emits the created model.
    */
@@ -73,33 +74,47 @@ export class ModelsService {
 
   /**
    * Clones a model with the specified ID.
+   *
    * @param id - The ID of the model to clone.
    * @returns The UUID of the cloned model.
    */
-  CloneModel(id: string): string {
+  async CloneModel(id: string): Promise<string> {
     console.log(`ModelService.CloneModel: ${JSON.stringify(id, null, ' ')}`)
     let idConed = ''
+    let modelToCreate: Model = {} as Model
     this.GetModel(id).subscribe((value: Model) => {
-      console.log('Get Model: ' + JSON.stringify(value, null, ' '))
-      this.CreateModel(value).subscribe({
-        next: (v) => {
-          console.log('Create Model: ' + JSON.stringify(v, null, ' '))
-          this.ngZone.run(() => this.router.navigateByUrl('models-list'))
-          idConed = String(v._id) // Convert 'ObjectId' to string
+      modelToCreate = value
+      if (modelToCreate._id !== undefined) {
+        delete (modelToCreate as { _id?: string })._id
+      }
+      modelToCreate.name += ' (Clone)'
+      this.CreateModel(modelToCreate).subscribe({
+        next: (createdModel) => {
+          idConed = String(createdModel._id)
+          const log: LogIn = {
+            objectId: createdModel._id,
+            operation: 'Clone',
+            component: 'Model',
+            message: createdModel,
+          }
+          this.http
+            .post<Log | LogIn>(`${environment.baseurl}/logs/`, log, this.httpOptions)
+            .pipe(retry(1), catchError(this.handleErrorTemplate<LogIn>('CreateLog for CloneModel', log)))
+            .subscribe()
         },
         complete: () => this.ngZone.run(() => this.router.navigateByUrl('models-list')),
         error: (err) => {
-          console.error(err) // Fix: Replace 'error' with 'err'
+          console.error(err)
           catchError(this.handleErrorTemplate<Model>('CloneModel', value))
         },
       })
     })
-    console.log('Get after Model: ' + JSON.stringify(this.model, null, ' '))
     return idConed
   }
 
   /**
    * Updates a model with the specified ID.
+   *
    * @param id - The ID of the model to update.
    * @param data - The updated data for the model.
    * @returns An Observable that emits the updated model.

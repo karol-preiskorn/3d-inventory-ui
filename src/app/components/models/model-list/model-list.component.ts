@@ -1,11 +1,10 @@
+import { Component, NgZone, OnInit } from '@angular/core'
 import { Observable, of } from 'rxjs'
 
-import { Component, NgZone, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
-
 import { LogService } from '../../../services/log.service'
-import { ModelsService } from '../../../services/models.service'
 import { Model } from '../../../shared/model'
+import { ModelsService } from '../../../services/models.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-models-list',
@@ -67,7 +66,7 @@ export class ModelsListComponent implements OnInit {
    * @returns The ID of the newly cloned model.
    */
   async CloneModel(id: string): Promise<string> {
-    const idCloned = this.modelsService.CloneModel(id)
+    const idCloned = await this.modelsService.CloneModel(id)
     this.logService
       .CreateLog({
         message: { id: id, new_id: idCloned },

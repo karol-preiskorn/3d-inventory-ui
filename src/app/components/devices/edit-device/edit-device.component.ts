@@ -1,17 +1,14 @@
-import { lastValueFrom } from 'rxjs';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
+import { Component, OnInit } from '@angular/core'
+import { LogIn, LogService } from '../../../services/log.service'
 
-import { Component, OnInit } from '@angular/core';
-import {
-    AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators
-} from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-
-import { DeviceService } from '../../../services/device.service';
-import { LogIn, LogService } from '../../../services/log.service';
-import { ModelsService } from '../../../services/models.service';
-import { Device } from '../../../shared/device';
-import { Model } from '../../../shared/model';
-import Validation from '../../../shared/validation';
+import { Device } from '../../../shared/device'
+import { DeviceService } from '../../../services/device.service'
+import { Model } from '../../../shared/model'
+import { ModelsService } from '../../../services/models.service'
+import Validation from '../../../shared/validation'
+import { lastValueFrom } from 'rxjs'
 
 @Component({
   selector: 'app-edit-device',
@@ -34,14 +31,14 @@ export class DeviceEditComponent implements OnInit {
   }
 
   createFormGroup = () => {
-    return new FormGroup({
-      _id: new FormControl('', Validators.required),
-      name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      modelId: new FormControl('', Validators.required),
-      position: new FormGroup({
-        x: new FormControl(0, [Validators.required, this.numberValidator]),
-        y: new FormControl(0, [Validators.required]),
-        h: new FormControl(0, [Validators.required]),
+    return this.formBulider.group({
+      _id: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(4)]],
+      modelId: ['', Validators.required],
+      position: this.formBulider.group({
+        x: [0, [Validators.required, this.numberValidator]],
+        y: [0, [Validators.required]],
+        h: [0, [Validators.required]],
       }),
     })
   }
@@ -51,6 +48,7 @@ export class DeviceEditComponent implements OnInit {
   component: string
 
   constructor(
+    private formBulider: FormBuilder,
     public activatedRoute: ActivatedRoute,
     public devicesService: DeviceService,
     private router: Router,
@@ -138,14 +136,15 @@ export class DeviceEditComponent implements OnInit {
   }
 
   get x() {
-    return this.editDeviceForm.get('x')
+    console.info('x:=' + this.editDeviceForm.controls.position.get('x'))
+    return this.editDeviceForm.controls.position.get('x')
   }
 
   get y() {
-    return this.editDeviceForm.get('y')
+    return this.editDeviceForm.controls.position.get('y')
   }
 
   get h() {
-    return this.editDeviceForm.get('h')
+    return this.editDeviceForm.controls.position.get('h')
   }
 }

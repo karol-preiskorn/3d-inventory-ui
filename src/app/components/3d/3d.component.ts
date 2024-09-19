@@ -1,8 +1,8 @@
 /**
- * @description: First tree.js component
+ * @description: 3D component for Angular
  * @todo:
- *   [ ] ashow cue diefinied in 3d-inventory db
- *   [ ] add cube from Angular
+ *   [ ] show cue diefinied in 3d-inventory DB.
+ *   [ ] add cube from Angular.
  *
  * @version: 2023-08-08   C2RLO   Starting developing Racks
  * @version: 2023-07-13   C2RLO   Get cube from
@@ -24,6 +24,11 @@ import { DeviceService } from '../../services/device.service'
 import { ModelsService } from '../../services/models.service'
 import { Device } from '../../shared/device'
 import { Model } from '../../shared/model'
+
+const materials = [
+  new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true }), // front
+  new THREE.MeshPhongMaterial({ color: 0xffffff }), // side
+]
 
 @Component({
   selector: 'app-cube',
@@ -106,8 +111,8 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
     const object = new THREE.Mesh(geometry, sphereMaterial)
     object.position.x = pos_x
-    object.position.y = pos_y
-    object.position.z = pos_z
+    object.position.y = pos_z
+    object.position.z = pos_y
     object.castShadow = true
     object.receiveShadow = true
     this.scene.add(object)
@@ -187,14 +192,11 @@ export class CubeComponent implements OnInit, AfterViewInit {
     light.position.set(30, 10, 50)
     light.castShadow = true
 
-    light.position.set(15, 20, 10)
-    light.castShadow = true // default false
-
     //Set up shadow properties for the light
     light.shadow.mapSize.width = 3000 // default
     light.shadow.mapSize.height = 3000 // default
-    light.shadow.camera.near = 1000 // default
-    light.shadow.camera.far = 2000 // default
+    light.shadow.camera.near = 2000 // default
+    light.shadow.camera.far = 3000 // default
 
     this.scene.add(light)
 
@@ -204,17 +206,17 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
   directionalLight() {
     const light2 = new THREE.DirectionalLight(0xffffff, 1.3)
-    light2.position.set(-20, 30, 20)
+    light2.position.set(-35, 35, 20)
     light2.castShadow = true
     this.scene.add(light2)
 
-    const lightHelper2 = new THREE.DirectionalLightHelper(light2, 1)
+    const lightHelper2 = new THREE.DirectionalLightHelper(light2, 2)
     this.scene.add(lightHelper2)
   }
 
-  directionalLight2() {
+  directionalLight3() {
     const light3 = new THREE.DirectionalLight(0xffffff, 0.8)
-    light3.position.set(20, 20, 25)
+    light3.position.set(30, 20, 25)
     light3.castShadow = true
     this.scene.add(light3)
 
@@ -271,7 +273,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     const text = '3d Inventory'
     const loader = new FontLoader()
     loader.load('./../../../assets/fonts/Fira Code Retina_Regular.json', (font: Font) => {
-      const textGeo = new TextGeometry('3d invetory', {
+      const textGeo = new TextGeometry(text, {
         font: font,
         size: 4,
         height: 1,
@@ -296,6 +298,26 @@ export class CubeComponent implements OnInit, AfterViewInit {
   addAxis() {
     const axesHelper = new THREE.AxesHelper(35)
     this.scene.add(axesHelper)
+
+    const loader = new FontLoader()
+    loader.load('./../../../assets/fonts/Fira Code Retina_Regular.json', (font: Font) => {
+      const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff })
+
+      const createTextMesh = (text: string, position: THREE.Vector3) => {
+        const textGeo3 = new TextGeometry(text, {
+          font: font,
+          size: 4,
+          depth: 1,
+        })
+        const textMesh = new THREE.Mesh(textGeo3, textMaterial)
+        textMesh.position.copy(position)
+        this.scene.add(textMesh)
+      }
+
+      createTextMesh('X', new THREE.Vector3(36, 0, 0))
+      createTextMesh('Y', new THREE.Vector3(0, 36, 0))
+      createTextMesh('Z', new THREE.Vector3(0, 0, 36))
+    })
   }
 
   private createScene() {
@@ -314,7 +336,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.addWalls()
 
     this.directionalLight()
-    this.directionalLight2()
+    this.directionalLight3()
 
     this.addText()
     this.addAxis()
@@ -360,6 +382,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     const near = 0.01
     const far = 3000
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
+
     camera.position.set(10, 20, 20)
 
     const controls = new OrbitControls(camera, this.canvas)

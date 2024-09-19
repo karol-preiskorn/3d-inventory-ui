@@ -1,19 +1,18 @@
-import { lastValueFrom } from 'rxjs';
+import { Component, Input, NgZone, OnInit } from '@angular/core'
 
-import { Component, Input, NgZone, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service';
-import { AttributeService } from '../../../services/attribute.service';
-import { ConnectionService } from '../../../services/connection.service';
-import { DeviceService } from '../../../services/device.service';
-import { LogService } from '../../../services/log.service';
-import { ModelsService } from '../../../services/models.service';
-import { Attribute } from '../../../shared/attribute';
-import { AttributeDictionary } from '../../../shared/attribute-dictionary';
-import { Connection } from '../../../shared/connection';
-import { Device } from '../../../shared/device';
-import { Model } from '../../../shared/model';
+import { Attribute } from '../../../shared/attribute'
+import { AttributeDictionary } from '../../../shared/attribute-dictionary'
+import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
+import { AttributeService } from '../../../services/attribute.service'
+import { Connection } from '../../../shared/connection'
+import { ConnectionService } from '../../../services/connection.service'
+import { Device } from '../../../shared/device'
+import { DeviceService } from '../../../services/device.service'
+import { LogService } from '../../../services/log.service'
+import { Model } from '../../../shared/model'
+import { ModelsService } from '../../../services/models.service'
+import { Router } from '@angular/router'
+import { lastValueFrom } from 'rxjs'
 
 @Component({
   selector: 'app-attribute-list',

@@ -1,23 +1,23 @@
 # 3d inventory
 
-- [3d inventory](#3d-inventory)
-  - [About project](#about-project)
-  - [Technology stack](#technology-stack)
-  - [Demo](#demo)
-  - [Data Model](#data-model)
-    - [Logical model](#logical-model)
-  - [Aplication](#aplication)
-    - [List devices](#list-devices)
-    - [Models](#models)
-    - [Attributes](#attributes)
-    - [Attribute Dictionary](#attribute-dictionary)
-    - [Connections](#connections)
-  - [Run](#run)
-  - [Deploy](#deploy)
-  - [Google Cloud](#google-cloud)
-  - [APIs repos](#apis-repos)
-  - [Contributing](#contributing)
-  - [Next todo](#next-todo)
+1. [3d inventory](#3d-inventory)
+   1. [About project](#about-project)
+   2. [Technology stack](#technology-stack)
+   3. [Demo](#demo)
+   4. [Data Model](#data-model)
+      1. [Logical model](#logical-model)
+   5. [Aplication](#aplication)
+      1. [List devices](#list-devices)
+      2. [Models](#models)
+      3. [Attributes](#attributes)
+      4. [Attribute Dictionary](#attribute-dictionary)
+      5. [Connections](#connections)
+   6. [Run](#run)
+   7. [Deploy](#deploy)
+   8. [Google Cloud](#google-cloud)
+   9. [APIs repos](#apis-repos)
+   10. [Contributing](#contributing)
+   11. [Next todo](#next-todo)
 
 [![wakatime](https://wakatime.com/badge/user/3bbeedbe-0c6a-4a01-b3cd-a85d319a03bf/project/018c62ce-6164-4200-bca9-be53af7f6d80.svg)](https://wakatime.com/badge/user/3bbeedbe-0c6a-4a01-b3cd-a85d319a03bf/project/018c62ce-6164-4200-bca9-be53af7f6d80) [![GitHub latest commit](https://badgen.net/github/last-commit/karol-preiskorn/3d-inventory-angular-ui)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/commit/) [![GitHub stars](https://img.shields.io/github/stars/karol-preiskorn/3d-inventory-angular-ui.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/stargazers/) [![GitHub issues](https://img.shields.io/github/issues/karol-preiskorn/3d-inventory-angular-ui.svg)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/issues/)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/) [![TypeScript](https://img.shields.io/badge/--3178C6?logo=typescript&logoColor=ffffff)](https://www.typescriptlang.org/) [![Npm](https://badgen.net/badge/icon/npm?icon=npm&label)](https://https://npmjs.com/) [![GitHub license](https://badgen.net/github/license/karol-preiskorn/3d-inventory-angular-ui)](https://github.com/karol-preiskorn/3d-inventory-angular-ui/blob/master/LICENSE)
@@ -150,3 +150,4 @@ Not forget about [code guide-lines](https://github.com/Microsoft/TypeScript/wiki
 - [x] Add light/dark theme switch in `UI`
 - [ ] Use <https://formly.dev/> ?
 - [ ] Create blog on GitHub Pages or use <https://ultimasolution.pl>
+- [ ] Try use NgDoc to document how to use code https://medium.com/@askoropad/ngdoc-documentation-for-angular-projects-3f6ea8fc22b0

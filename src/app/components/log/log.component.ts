@@ -5,23 +5,22 @@
  * @public
  **/
 
-import { Subscription } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core'
+import { Log, LogService } from '../../services/log.service'
 
-import { Component, Input, OnInit } from '@angular/core';
-
-import { AttributeDictionaryService } from '../../services/attribute-dictionary.service';
-import { AttributeService } from '../../services/attribute.service';
-import { ConnectionService } from '../../services/connection.service';
-import { DeviceService } from '../../services/device.service';
-import { FloorService } from '../../services/floor.service';
-import { Log, LogService } from '../../services/log.service';
-import { ModelsService } from '../../services/models.service';
-import { Attribute } from '../../shared/attribute';
-import { AttributeDictionary } from '../../shared/attribute-dictionary';
-import { Connection } from '../../shared/connection';
-import { Device } from '../../shared/device';
-import { Floor } from '../../shared/floor';
-import { Model } from '../../shared/model';
+import { Attribute } from '../../shared/attribute'
+import { AttributeDictionary } from '../../shared/attribute-dictionary'
+import { AttributeDictionaryService } from '../../services/attribute-dictionary.service'
+import { AttributeService } from '../../services/attribute.service'
+import { Connection } from '../../shared/connection'
+import { ConnectionService } from '../../services/connection.service'
+import { Device } from '../../shared/device'
+import { DeviceService } from '../../services/device.service'
+import { Floor } from '../../shared/floor'
+import { FloorService } from '../../services/floor.service'
+import { Model } from '../../shared/model'
+import { ModelsService } from '../../services/models.service'
+import { Subscription } from 'rxjs'
 
 const api = [
   { component: 'Models', api: 'models' },
@@ -57,7 +56,7 @@ export class LogComponent implements OnInit {
 
   deviceList: Device[]
   modelList: Model[]
-  connectionList: Connection[]
+  connectionList: Connection[] = []
   attributeDictionaryList: AttributeDictionary[]
   attributeList: Attribute[]
   floorList: Floor[]
@@ -254,6 +253,7 @@ export class LogComponent implements OnInit {
    */
   getConnectionList() {
     if (this.connectionListGet == true) return null
+    this.connectionList = [] // Initialize the connectionList array
     return this.connectionService.GetConnections().subscribe((data: Connection[]) => {
       data.forEach((connection) => {
         this.connectionList.push(connection)
