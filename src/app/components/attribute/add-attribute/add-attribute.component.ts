@@ -190,7 +190,7 @@ export class AttributeAddComponent implements OnInit {
    * @memberof AttributeAddComponent
    */
   generateAttributeDictionary() {
-    this.addAttributeFrom.controls.value.setValue(faker.company.name() + ' - ' + faker.company.bs())
+    this.addAttributeFrom.controls.value.setValue(faker.company.name() + ' - ' + faker.company.catchPhraseNoun())
   }
 
   submitForm(): void {

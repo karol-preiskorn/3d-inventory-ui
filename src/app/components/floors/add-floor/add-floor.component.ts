@@ -172,7 +172,7 @@ export class FloorAddComponent implements OnInit {
   }
 
   generateFloor() {
-    this.floorForm.controls.name.setValue(faker.company.name() + ' - ' + faker.company.bs())
+    this.floorForm.controls.name.setValue(faker.company.name() + ' - ' + faker.company.catchPhraseNoun())
     this.floorForm.controls.address.controls.street.setValue(
       faker.location.street() + ' ' + faker.location.buildingNumber(),
     )

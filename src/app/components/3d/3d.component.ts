@@ -9,22 +9,21 @@
  * @version: 2023-04-16   C2RLO   Add cube
  */
 
-import { Observable } from 'rxjs'
-import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
-import { Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
+import { Observable } from 'rxjs';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
+import { Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 
-import { HttpClient } from '@angular/common/http'
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
-import { tr } from '@faker-js/faker'
+import { HttpClient } from '@angular/common/http';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { tr } from '@faker-js/faker';
 
-import { DeviceService } from '../../services/device.service'
-import { ModelsService } from '../../services/models.service'
-import { Device } from '../../shared/device'
-import { Model } from '../../shared/model'
-import { Random3d } from './3d'
+import { DeviceService } from '../../services/device.service';
+import { ModelsService } from '../../services/models.service';
+import { Device } from '../../shared/device';
+import { Model } from '../../shared/model';
 
 const materials = [
   new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true }), // front
@@ -90,7 +89,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
   ) {
     console.log('constructor')
-    this.material.opacity = 0.8
+    this.material.opacity = 1
     this.cube.receiveShadow = true
   }
 
@@ -108,7 +107,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     const geometry = new THREE.BoxGeometry(box_x, box_y, box_z)
     this.material.color = new THREE.Color(Math.random() * 0xffffff)
     const sphereMaterial = new THREE.MeshStandardMaterial({ color: Math.random() * 0xffffff })
-    this.material.opacity = 0.75
+    this.material.opacity = 1
 
     const object = new THREE.Mesh(geometry, sphereMaterial)
     object.position.x = pos_x
@@ -196,7 +195,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     //Set up shadow properties for the light
     light.shadow.mapSize.width = 3000 // default
     light.shadow.mapSize.height = 3000 // default
-    light.shadow.camera.near = 2000 // default
+    light.shadow.camera.near = 1000 // default
     light.shadow.camera.far = 3000 // default
 
     this.scene.add(light)
@@ -216,7 +215,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   directionalLight3() {
-    const light3 = new THREE.DirectionalLight(0xffffff, 0.8)
+    const light3 = new THREE.DirectionalLight(0xffffff, 1)
     light3.position.set(30, 20, 25)
     light3.castShadow = true
     this.scene.add(light3)
@@ -227,7 +226,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
   addAbientLight() {
     const color = 0xffffff
-    const intensity = 0.9
+    const intensity = 2
     const lightAbient = new THREE.AmbientLight(color, intensity)
     lightAbient.castShadow = true
     this.scene.add(lightAbient)
@@ -287,7 +286,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
       const material = new THREE.MeshBasicMaterial({ color: 0x995050 })
       const textMesh = new THREE.Mesh(textGeo, material)
       textMesh.position.x = -18
-      textMesh.position.y = 2
+      textMesh.position.y = 5
       textMesh.position.z = 25
 
       textMesh.rotation.x = 0
@@ -297,7 +296,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   addAxis() {
-    const axesHelper = new THREE.AxesHelper(35)
+    const axesHelper = new THREE.AxesHelper(45)
     this.scene.add(axesHelper)
 
     const loader = new FontLoader()
@@ -332,7 +331,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.scene.castShadow = true
     this.scene.receiveShadow = true
 
-    this.scene.fog = new THREE.Fog(0x333333, 200, 1500)
+    //this.scene.fog = new THREE.Fog(0x333333, 200, 1500)
 
     this.addWalls()
 
@@ -358,7 +357,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.camera.position.x = 500
     this.camera.position.y = 500
     const controls = new OrbitControls(this.camera, this.canvas)
-    this.camera.zoom = 0.8
+    this.camera.zoom = 0.7
     controls.target.set(0, 0, 0)
     controls.enablePan = true
     controls.enableZoom = true
