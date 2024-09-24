@@ -106,7 +106,7 @@
     "ts-sync-request": "^1.4.1",
     "tslib": "^2.7.0",
     "winston": "^3.14.2",
-    "zone.js": "~0.14.0"
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^18.0.0",
