@@ -1,14 +1,17 @@
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms'
-import { ActivatedRoute, Router } from '@angular/router'
-import { Component, OnInit } from '@angular/core'
-import { LogIn, LogService } from '../../../services/log.service'
+import { lastValueFrom } from 'rxjs';
 
-import { Device } from '../../../shared/device'
-import { DeviceService } from '../../../services/device.service'
-import { Model } from '../../../shared/model'
-import { ModelsService } from '../../../services/models.service'
-import Validation from '../../../shared/validation'
-import { lastValueFrom } from 'rxjs'
+import { Component, OnInit } from '@angular/core';
+import {
+    AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators
+} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { DeviceService } from '../../../services/device.service';
+import { LogIn, LogService } from '../../../services/log.service';
+import { ModelsService } from '../../../services/models.service';
+import { Device } from '../../../shared/device';
+import { Model } from '../../../shared/model';
+import Validation from '../../../shared/validation';
 
 @Component({
   selector: 'app-edit-device',
@@ -24,7 +27,7 @@ export class DeviceEditComponent implements OnInit {
   // Arrow function for number validation
   numberValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const value: number = control.value as number
-    if (isNaN(Number(value)) || Number(value) < 0) {
+    if (Number.isNaN(value) || Number(value) < 0) {
       return { invalidNumber: true }
     }
     return null

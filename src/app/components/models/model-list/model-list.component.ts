@@ -1,10 +1,11 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { Observable, of } from 'rxjs'
+import { Observable, of } from 'rxjs';
 
-import { LogService } from '../../../services/log.service'
-import { Model } from '../../../shared/model'
-import { ModelsService } from '../../../services/models.service'
-import { Router } from '@angular/router'
+import { Component, NgZone, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { LogService } from '../../../services/log.service';
+import { ModelsService } from '../../../services/models.service';
+import { Model } from '../../../shared/model';
 
 @Component({
   selector: 'app-models-list',

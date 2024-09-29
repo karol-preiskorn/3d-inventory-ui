@@ -5,22 +5,21 @@
  * @public
  **/
 
-import { Component, Input, OnInit } from '@angular/core'
-import { Log, LogService } from '../../services/log.service'
+import { Subscription } from 'rxjs';
 
-import { Attribute } from '../../shared/attribute'
-import { AttributeDictionary } from '../../shared/attribute-dictionary'
-import { AttributeDictionaryService } from '../../services/attribute-dictionary.service'
-import { AttributeService } from '../../services/attribute.service'
-import { Connection } from '../../shared/connection'
-import { ConnectionService } from '../../services/connection.service'
-import { Device } from '../../shared/device'
-import { DeviceService } from '../../services/device.service'
-import { Floor } from '../../shared/floor'
-import { FloorService } from '../../services/floor.service'
-import { Model } from '../../shared/model'
-import { ModelsService } from '../../services/models.service'
-import { Subscription } from 'rxjs'
+import { Component, Input, OnInit } from '@angular/core';
+
+import { AttributeDictionaryService } from '../../services/attribute-dictionary.service';
+import { ConnectionService } from '../../services/connection.service';
+import { DeviceService } from '../../services/device.service';
+import { FloorService } from '../../services/floor.service';
+import { Log, LogService } from '../../services/log.service';
+import { ModelsService } from '../../services/models.service';
+import { AttributeDictionary } from '../../shared/attribute-dictionary';
+import { Connection } from '../../shared/connection';
+import { Device } from '../../shared/device';
+import { Floor } from '../../shared/floor';
+import { Model } from '../../shared/model';
 
 const api = [
   { component: 'Models', api: 'models' },
@@ -58,7 +57,6 @@ export class LogComponent implements OnInit {
   modelList: Model[]
   connectionList: Connection[] = []
   attributeDictionaryList: AttributeDictionary[]
-  attributeList: Attribute[]
   floorList: Floor[]
 
   deviceListGet = false
@@ -75,7 +73,6 @@ export class LogComponent implements OnInit {
 
   constructor(
     public logService: LogService,
-    private attributeService: AttributeService,
     private deviceService: DeviceService,
     private modelService: ModelsService,
     private connectionService: ConnectionService,
@@ -171,26 +168,6 @@ export class LogComponent implements OnInit {
     } catch (error: unknown) {
       console.log(`findNameInLogMessage: ${String(log.message)} is not a JSON string` + String(error))
       return JSON.stringify(log.message)
-    }
-    if (log.component == 'Attribute') {
-      const jAttribute: Attribute = log.message as Attribute
-      console.log('jAttribute: ' + JSON.stringify(jAttribute, null, ' '))
-      console.log('findNameInLogMessage: ' + JSON.stringify(jAttribute, null, ' '))
-      if (jAttribute.connectionId !== null) {
-        this.getConnectionList()
-        console.log('Connection: ' + this.findConnectionName(jAttribute.connectionId))
-        return 'Connection ' + this.findConnectionName(jAttribute.connectionId)
-      }
-      if (jAttribute.modelId !== null) {
-        this.getModelList()
-        if (jAttribute.connectionId !== null) {
-          return 'Model ' + this.findModelName(jAttribute.connectionId)
-        }
-      }
-      if (jAttribute.deviceId !== null) {
-        this.getDeviceList()
-        return 'Device ' + this.findDeviceName(jAttribute.deviceId)
-      }
     }
     return JSON.stringify(jLog, null, ' ')
   }
@@ -291,52 +268,6 @@ export class LogComponent implements OnInit {
    */
   findAttributeDictionaryName(id: string) {
     return this.attributeDictionaryList.find((e) => e._id === id)?.name
-  }
-
-  /**
-   * Retrieves the attribute list.
-   * @returns An observable that emits the attribute list.
-   */
-  getAttributeList(): void {
-    if (this.attributeListGet == true) return
-    this.attributeService.GetAttributes().subscribe((data: Attribute[]) => {
-      // Specify the correct type for the data parameter
-      const tmp = new Attribute()
-      data.unshift(tmp)
-      this.attributeList = data
-      this.attributeListGet = true
-    })
-  }
-
-  /**
-   * Finds an attribute in the attribute list based on the given ID.
-   * @param id - The ID of the attribute to find.
-   * @returns The attribute object if found, or undefined if not found.
-   */
-  findAttribute(id: string) {
-    return this.attributeList.find((e) => e._id === id)
-  }
-
-  /**
-   * Retrieves the floor list from the attribute service.
-   * If the attribute list has already been retrieved, returns null.
-   * Otherwise, subscribes to the GetAttributes method of the attribute service
-   * and updates the attribute list with the retrieved data.
-   * @returns An Observable that emits the retrieved attribute list.
-   */
-  getFloorList() {
-    // Implementation goes here
-    if (this.attributeListGet == true) return null
-    return this.attributeService.GetAttributes().subscribe((data: Attribute | Attribute[]) => {
-      const tmp = new Attribute()
-      if (Array.isArray(data)) {
-        data.unshift(tmp)
-        this.attributeList = data
-      } else {
-        this.attributeList = [tmp, data]
-      }
-      this.attributeListGet = true
-    })
   }
 
   /**

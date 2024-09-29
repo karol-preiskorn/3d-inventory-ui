@@ -1,13 +1,13 @@
-import { Subscription } from 'rxjs'
+import { Subscription } from 'rxjs';
 
-import { CommonModule } from '@angular/common'
-import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { ActivatedRoute, Router } from '@angular/router'
+import { CommonModule } from '@angular/common';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { LogService } from '../../../services/log.service'
-import { ModelsService } from '../../../services/models.service'
-import { Model } from '../../../shared/model'
+import { LogService } from '../../../services/log.service';
+import { ModelsService } from '../../../services/models.service';
+import { Model } from '../../../shared/model';
 
 @Component({
   selector: 'app-edit-model',
@@ -31,9 +31,18 @@ export class ModelEditComponent implements OnInit {
     private ngZone: NgZone,
     private router: Router,
     private logService: LogService,
-  ) {}
+  ) {
+    this.editModelFormBulider()
+  }
 
   ngOnInit() {
+    this.editModelFormBulider()
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') as string
+    this.component = this.inputId.toString()
+    this.getModel()
+  }
+
+  private editModelFormBulider() {
     this.editModelForm = this.formBuilder.group({
       id: ['', [Validators.required, Validators.minLength(10)]],
       name: ['', [Validators.required, Validators.minLength(4)]],
@@ -59,10 +68,6 @@ export class ModelEditComponent implements OnInit {
         bottom: ['', null],
       }),
     })
-
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') as string
-    this.component = this.inputId.toString()
-    this.getModel()
   }
 
   private getModel(): Subscription {

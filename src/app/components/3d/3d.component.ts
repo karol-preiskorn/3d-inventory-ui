@@ -224,12 +224,12 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.scene.add(lightHelper3)
   }
 
-  addAbientLight() {
+  addAmbientLight() {
     const color = 0xffffff
     const intensity = 2
-    const lightAbient = new THREE.AmbientLight(color, intensity)
-    lightAbient.castShadow = true
-    this.scene.add(lightAbient)
+    const lightAmbient = new THREE.AmbientLight(color, intensity)
+    lightAmbient.castShadow = true
+    this.scene.add(lightAmbient)
   }
 
   private animateCube() {
@@ -272,15 +272,19 @@ export class CubeComponent implements OnInit, AfterViewInit {
   addText() {
     const text = '3d Inventory'
     const loader = new FontLoader()
+    this.addTextOnWall(loader, text)
+  }
+
+  private addTextOnWall(loader: FontLoader, text: string) {
     loader.load('./../../../assets/fonts/Fira Code Retina_Regular.json', (font: Font) => {
       const textGeo = new TextGeometry(text, {
-        font: font,
-        size: 4,
-        height: 1,
-        curveSegments: 8,
-        bevelThickness: 0.1,
-        bevelSize: 0.1,
-        bevelEnabled: true,
+      font: font,
+      size: 4,
+      height: 1,
+      curveSegments: 8,
+      bevelThickness: 0.1,
+      bevelSize: 0.1,
+      bevelEnabled: true,
       })
 
       const material = new THREE.MeshBasicMaterial({ color: 0x995050 })
@@ -292,6 +296,10 @@ export class CubeComponent implements OnInit, AfterViewInit {
       textMesh.rotation.x = 0
       textMesh.rotation.y = Math.PI * 2
       this.scene.add(textMesh)
+    },
+    undefined,
+    (error) => {
+      console.error('An error occurred while loading the font:', error)
     })
   }
 
