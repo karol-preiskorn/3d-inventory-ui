@@ -50,10 +50,9 @@
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <importedID>C316C6D4-AB19-0255-8F8A-3B591C0F1E60</importedID>
 <useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>50</dataTypeSize>
-<domain>5FD10080-F7B5-BA69-67D2-158E6EEF9B83</domain>
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_DEVICES_DEVICE_NAME</notNullConstraintName>
@@ -72,6 +71,18 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <notNullConstraintName>NNC_DEVICES_DEVICE_TYPE</notNullConstraintName>
 </Column>
+<Column name="attributes" id="1A82443E-9904-DC1C-918C-941ACF109473">
+<createdBy>karol</createdBy>
+<createdTime>2024-09-29 17:18:51 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>4</use>
+<collectionType>1564D210-9927-FBAA-042F-CD67B0C13363</collectionType>
+<structuredType>47E390DE-0671-C4B1-8428-0F45CBEE18F8</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <nestedColumns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <nestedColumn name="position.x" id="D7536EA0-C1E2-9A63-C017-90CDF0676A46">
@@ -86,7 +97,7 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
-<domain>1BBF3132-D8B5-CA9F-97C9-5E2C0481F1FB</domain>
+<domain>B470C1E0-2A77-31E2-2C3B-BED92FF2C8AB</domain>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </nestedColumn>
@@ -102,7 +113,7 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
-<domain>1BBF3132-D8B5-CA9F-97C9-5E2C0481F1FB</domain>
+<domain>B470C1E0-2A77-31E2-2C3B-BED92FF2C8AB</domain>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </nestedColumn>
@@ -118,7 +129,7 @@
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>0</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
-<domain>1BBF3132-D8B5-CA9F-97C9-5E2C0481F1FB</domain>
+<domain>B470C1E0-2A77-31E2-2C3B-BED92FF2C8AB</domain>
 <ownDataTypeParameters>,0,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </nestedColumn>

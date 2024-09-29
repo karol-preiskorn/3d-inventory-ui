@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F500DD42-6F76-DB1B-3C49-6E21267F7540" schemaObject="2E57B3AC-A335-158D-F66B-1F85FCBC80E9" name="attributeDictionary">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F500DD42-6F76-DB1B-3C49-6E21267F7540" schemaObject="2E57B3AC-A335-158D-F66B-1F85FCBC80E9" name="attributesDictionary">
 <createdBy>karol</createdBy>
 <createdTime>2024-03-24 12:46:35 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
@@ -25,9 +25,9 @@
 <createdBy>karol</createdBy>
 <createdTime>2024-03-24 12:48:58 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<domain>4E45A331-20F8-027B-F0C5-063352EECAA2</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -45,24 +45,17 @@
 <Column name="type" id="6815E9FC-113F-C6C9-B65A-1EA06E51F846">
 <createdBy>karol</createdBy>
 <createdTime>2024-03-24 14:52:34 UTC</createdTime>
+<commentInRDBMS><![CDATA[integer
+number
+string
+object]]></commentInRDBMS>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
-<use>4</use>
+<use>1</use>
 <collectionType>F30381E2-A881-C19B-AE69-042BBA54A1C8</collectionType>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="category" id="14C883BC-7A68-BDA8-BA89-DF4674DB1936">
-<createdBy>karol</createdBy>
-<createdTime>2024-03-24 14:52:34 UTC</createdTime>
-<ownerDesignName>3d-inventory-model</ownerDesignName>
-<sourceType>Manual</sourceType>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<collectionType>C4B5C766-560F-EACF-8907-1DA45C3F2857</collectionType>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<domain>4E45A331-20F8-027B-F0C5-063352EECAA2</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
@@ -78,6 +71,18 @@
 <colUsage columnID="B23996F3-F359-067C-77B8-31640FCD5B45"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="94A8E1AE-919E-4B08-D59E-10F8A2E09517" name="attributeDictionary__uc">
+<createdBy>karol</createdBy>
+<createdTime>2024-09-29 16:58:22 UTC</createdTime>
+<ownerDesignName>3d-inventory-model</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="96D0437C-5D9F-D48F-2D40-573A5090049C"/>
+<colUsage columnID="3A280431-AC34-F5EC-7705-75CFEE4C9772"/>
+<colUsage columnID="6815E9FC-113F-C6C9-B65A-1EA06E51F846"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="BECAB2DC-97F9-BDCD-0610-98661799691E" name="attributeDictionary__idx">
 <createdBy>karol</createdBy>
 <createdTime>2024-03-25 08:01:21 UTC</createdTime>
@@ -86,7 +91,7 @@
 <indexColumnUsage>
 <colUsage columnID="96D0437C-5D9F-D48F-2D40-573A5090049C"/>
 <colUsage columnID="3A280431-AC34-F5EC-7705-75CFEE4C9772"/>
-<colUsage columnID="14C883BC-7A68-BDA8-BA89-DF4674DB1936"/>
+<colUsage columnID="6815E9FC-113F-C6C9-B65A-1EA06E51F846"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
