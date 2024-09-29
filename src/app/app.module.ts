@@ -21,15 +21,6 @@ import {
     AttributeDictionaryEditComponent
 } from './components/attribute-dictionary/edit-attribute-dictionary/edit-attribute-dictionary.component';
 import {
-    AttributeAddComponent
-} from './components/attribute/add-attribute/add-attribute.component';
-import {
-    AttributeListComponent
-} from './components/attribute/attribute-list/attribute-list.component';
-import {
-    AttributeEditComponent
-} from './components/attribute/edit-attribute/edit-attribute.component';
-import {
     ConnectionAddComponent
 } from './components/connection/add-connection/add-connection.component';
 import {
@@ -53,7 +44,6 @@ import { AsyncObservablePipeComponent } from './pipe/pipe.component';
 import { ResolverDevice } from './resolverDevice';
 import { ResolverModel } from './resolverModel';
 import { AttributeDictionaryService } from './services/attribute-dictionary.service';
-import { AttributeService } from './services/attribute.service';
 import { DeviceService } from './services/device.service';
 import { CustomErrorHandler } from './services/errorHandler.service';
 import { FloorService } from './services/floor.service';
@@ -74,10 +64,6 @@ import { ModelsService } from './services/models.service';
     AttributeDictionaryAddComponent,
     AttributeDictionaryEditComponent,
 
-    AttributeListComponent,
-    AttributeAddComponent,
-    AttributeEditComponent,
-
     AppComponent,
     HomeComponent,
     CubeComponent,
@@ -97,8 +83,8 @@ import { ModelsService } from './services/models.service';
   imports: [
     AppRoutingModule,
     BrowserModule,
-    CommonModule,
     HttpClientModule,
+    CommonModule,
     NgbPopoverModule,
     NgxPaginationModule,
     ReactiveFormsModule,
@@ -109,7 +95,6 @@ import { ModelsService } from './services/models.service';
     ModelsService,
     LogService,
     AttributeDictionaryService,
-    AttributeService,
     FloorService,
     CustomErrorHandler,
     ResolverDevice,

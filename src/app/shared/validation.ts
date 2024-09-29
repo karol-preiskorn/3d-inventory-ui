@@ -67,7 +67,7 @@ export default class Validation {
    */
   numberValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const value: number = control?.value as number
-    if (typeof value !== 'number' || isNaN(value)) {
+    if (typeof value !== 'number' || Number.isNaN(value)) {
       return {
         number: true,
       }

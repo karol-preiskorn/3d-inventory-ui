@@ -63,4 +63,4 @@
     <pagination-controls (pageChange)="modelListPage = $event" id="modelListPagination"></pagination-controls>
   </div>
 </div>
-<app-log [component]="component"></app-log>
+<app-log *ngIf="component" [component]="component"></app-log>
