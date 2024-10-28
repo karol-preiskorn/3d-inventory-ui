@@ -170,6 +170,6 @@
     "typescript": "^5.5.0",
     "typescript-eslint": "^8.6.0",
     "unique-names-generator": "^4.7.1",
-    "uuid": "^10.0.0"
+    "uuid": "^11.0.1"
   }
 }
