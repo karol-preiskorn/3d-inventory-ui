@@ -3,18 +3,7 @@
   "ignorePaths": [],
   "dictionaryDefinitions": [],
   "dictionaries": [],
-  "words": [
-    "compodoc",
-    "Hpos",
-    "okaidia",
-    "packagr",
-    "Phong",
-    "preeslint",
-    "prestart",
-    "prismjs",
-    "tseslint",
-    "uuidv"
-  ],
+  "words": ["compodoc", "Hpos", "okaidia", "packagr", "Phong", "preeslint", "prestart", "prismjs", "tseslint", "uuidv", "werkzeug"],
   "ignoreWords": [],
   "import": []
 }

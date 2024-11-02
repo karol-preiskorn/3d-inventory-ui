@@ -13,6 +13,7 @@
 
 import os
 import argparse
+from werkzeug.security import safe_join
 import subprocess
 
 def main():
@@ -28,7 +29,7 @@ def main():
     files_processed = 0
     files_watermarked = 0
     subprocess.call(['rm', '%s//*-watermark.png' % (args.root)])
-    for dirName, subdirList, fileList in os.walk(args.root):
+    for dirName, subdirList, fileList in os.walk(safe_join(os.getcwd(), args.root)):
         if args.exclude is not None and args.exclude in dirName:
             continue
         #print('Walking directory: %s' % dirName)
