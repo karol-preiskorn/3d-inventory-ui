@@ -87,7 +87,6 @@ const config: import('jest').Config = {
       testRegex: '(/.*|(\\.|/)(test|spec))\\.(mjs?|cjs?|js?|tsx?|ts?)$',
       transform: {
         '^.+\\.ts?$': 'ts-jest',
-        '^.+\\.mjs$': 'babel-jest',
       },
       transformIgnorePatterns: ['node_modules/(?!@angular/core)'],
     },

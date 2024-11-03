@@ -152,4 +152,3 @@ Pull requests are welcome. For major changes, please open an [issue](https://git
   - [ ] Start writing blog articles.
 - [x] Try using NgDoc to document [how to use code with NgDoc](https://medium.com/@askoropad/ngdoc-documentation-for-angular-projects-3f6ea8fc22b0).
   - [ ] Use tsdoc (middle fun).
-
