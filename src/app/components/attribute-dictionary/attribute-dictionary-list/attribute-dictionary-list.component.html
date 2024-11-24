@@ -4,10 +4,10 @@
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Category</th>
-          <th scope="col">Type</th>
           <th scope="col">Component</th>
+          <th scope="col">Type</th>
+          <th scope="col">Name</th>
+          <th scope="col">Units</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -22,10 +22,12 @@
                     currentPage: attributeDictionaryPage
                   }
           ">
-          <td title="{{ attributeDictionary._id }}">{{ attributeDictionary.name }}</td>
-          <td>{{ attributeDictionary.category }}</td>
+          <td>{{ attributeDictionary.component }}
+              <p class="fs-7 fw-lighter deviceid">{{ attributeDictionary._id }}</p>
+          </td>
           <td>{{ attributeDictionary.type }}</td>
-          <td>{{ attributeDictionary.component }}</td>
+          <td title="{{ attributeDictionary._id }}">{{ attributeDictionary.name }}</td>
+          <td>{{ attributeDictionary.units }}</td>
           <td>
             <div class="btn-group float-md-end" role="group" aria-label="attributeDictionary-operations">
               <button

@@ -3,10 +3,6 @@
  * @todo:
  *   [ ] show cue diefinied in 3d-inventory DB.
  *   [ ] add cube from Angular.
- *
- * @version: 2023-08-08   C2RLO   Starting developing Racks
- * @version: 2023-07-13   C2RLO   Get cube from
- * @version: 2023-04-16   C2RLO   Add cube
  */
 
 import { Observable } from 'rxjs';
@@ -18,7 +14,6 @@ import { Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { tr } from '@faker-js/faker';
 
 import { DeviceService } from '../../services/device.service';
 import { ModelsService } from '../../services/models.service';

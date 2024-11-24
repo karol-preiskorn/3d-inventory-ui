@@ -45,7 +45,7 @@ export class AttributeDictionaryService {
    */
   GetAttributeDictionary(id: string): Observable<AttributeDictionary> {
     return this.http
-      .get<AttributeDictionary>(environment.baseurl + '/attribute-dictionary/' + id, this.httpOptions)
+      .get<AttributeDictionary>(environment.baseurl + '/attributesDictionary/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
   /**
@@ -100,7 +100,7 @@ export class AttributeDictionaryService {
   UpdateAttributeDictionary(id: string | null, data: AttributeDictionary): Observable<AttributeDictionary> {
     return this.http
       .put<AttributeDictionary>(
-        environment.baseurl + '/attributesDictionary/' + id,
+        environment.baseurl + `/attributesDictionary/${id}`,
         JSON.stringify(data, null, ' '),
         this.httpOptions,
       )
@@ -118,7 +118,7 @@ export class AttributeDictionaryService {
     } else {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
-    console.log(JSON.stringify(errorMessage, null, ' '))
+    //console.log(JSON.stringify(errorMessage, null, ' '))
     return throwError(() => {
       return errorMessage
     })

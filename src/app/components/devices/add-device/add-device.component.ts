@@ -1,16 +1,16 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
-import { faker } from '@faker-js/faker'
+import { Component, NgZone, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { faker } from '@faker-js/faker';
 
-import { DeviceService } from '../../../services/device.service'
-import { LogService } from '../../../services/log.service'
-import { ModelsService } from '../../../services/models.service'
-import { Device } from '../../../shared/device'
-import { DeviceCategoryDict } from '../../../shared/deviceCategories'
-import { DeviceTypeDict } from '../../../shared/deviceTypes'
-import { Model } from '../../../shared/model'
-import Validation from '../../../shared/validation'
+import { DeviceService } from '../../../services/device.service';
+import { LogService } from '../../../services/log.service';
+import { ModelsService } from '../../../services/models.service';
+import { ComponentDictionary } from '../../../shared/attribute-dictionary-component';
+import { TypeDictionary } from '../../../shared/attribute-dictionary-type';
+import { Device } from '../../../shared/device';
+import { Model } from '../../../shared/model';
+import Validation from '../../../shared/validation';
 
 @Component({
   selector: 'app-add-device',
@@ -20,8 +20,8 @@ import Validation from '../../../shared/validation'
 export class DeviceAddComponent implements OnInit {
   device: Device
   isSubmitted = false
-  deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
-  deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
+  componentDictionary: ComponentDictionary = new ComponentDictionary()
+  typeDictionary: TypeDictionary = new TypeDictionary()
   model: Model = new Model()
   modelList: Model[]
   valid: Validation = new Validation()
@@ -98,9 +98,7 @@ export class DeviceAddComponent implements OnInit {
     this.addDeviceForm.controls.position.controls.x.setValue(faker.number.int(10))
     this.addDeviceForm.controls.position.controls.y.setValue(faker.number.int(10))
     this.addDeviceForm.controls.position.controls.h.setValue(faker.number.int(10))
-    this.addDeviceForm.controls.modelId.setValue(
-      this.modelList[Math.floor(Math.random() * this.modelList.length)]._id.toString(),
-    )
+    this.addDeviceForm.controls.modelId.setValue(this.modelList[Math.floor(Math.random() * this.modelList.length)]._id.toString())
   }
 
   submitForm() {

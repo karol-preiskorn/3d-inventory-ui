@@ -1,7 +1,7 @@
 /**
  * @module /src/app/components/log
  * @description This file contains the implementation of the LogComponent class, which is responsible for displaying and managing logs in the application.
- * @version 2024-06-29 C2RLO - Initial
+ * @module log
  * @public
  **/
 
@@ -22,24 +22,28 @@ import { Floor } from '../../shared/floor';
 import { Model } from '../../shared/model';
 
 const api = [
-  { component: 'Models', api: 'models' },
-  { component: 'Devices', api: 'devices' },
-  { component: 'Logs', api: 'logs' },
-  { component: 'Attributes', api: 'attributes' },
-  { component: 'Attribute Dictionary', api: 'attribute-dictionary' },
-  { component: 'Connection', api: 'connections' },
-  { component: 'Connections', api: 'connections' },
-  { component: 'Floors', api: 'floors' },
-  { component: '3d', api: '3d' },
+  { component: 'Model', name: 'Model' },
+  { component: 'Models', name: 'Model' },
+  { component: 'Device', name: 'Device' },
+  { component: 'Devices', name: 'Device' },
+  { component: 'Log', name: 'Log' },
+  { component: 'Logs', name: 'Log' },
+  { component: 'Attributes', name: 'Attribute' },
+  { component: 'Attribute Dictionary', name: 'Attribute Dictionary' },
+  { component: 'Connection', name: 'Connection' },
+  { component: 'Connections', name: 'Connection' },
+  { component: 'Floor', name: 'Floor' },
+  { component: 'Floors', name: 'Floor' },
+  { component: '3d', name: '3d' },
 ]
+
+function getComponentName(component: string): string | undefined {
+  const found = api.find((e) => e.component === component);
+  return found ? found.name : undefined;
+}
 
 function isApiName(component: string): boolean {
   return api.find((e) => e.component === component) ? true : false
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function isComponentName(apiName: string): boolean {
-  return api.find((e) => e.api === apiName) ? true : false
 }
 
 @Component({
@@ -87,21 +91,30 @@ export class LogComponent implements OnInit {
    */
   loadLog(context: string, component: string) {
     if (isApiName(component)) {
-      console.log(
-        'LoadComponent.loadLog (call loadComponentLog) - Context: ' +
-          context +
-          ', loadComponentLog: ' +
-          (component ?? '') +
-          ' attributeComponentObject: ' +
-          JSON.stringify(this.attributeComponentObject),
-      )
-      this.loadComponentLog(component)
+      const componentName = this.getComponentName(component)
+      console.warn(
+        `[LoadComponent.loadLog] Context: ${context}, getComponentName(${component})->${componentName}. AttributeComponentObject: ${JSON.stringify(this.attributeComponentObject)}`)
+
+      if (componentName) {
+        console.info(`[LoadComponent.loadLog] Component name for getComponentName(${component}) -> ${componentName} - component.`)
+        this.loadComponentLog(componentName);
+      } else {
+        console.error(`[LoadComponent.loadLog] Component name for getComponentName(${component}) -> ${componentName} - component is undefined.`)
+      }
     } else {
-      console.log(
-        'LoadComponent.loadLog (call loadObjectsLog) - Context: ' + context + ', loadObjectLog: ' + (component ?? ''),
-      )
+      console.error(`[LoadComponent.loadLog] Context: ${context} isApiName(${component}) - not found.`)
       this.loadObjectsLog(component)
     }
+  }
+
+  /**
+   * Retrieves the component name based on the provided component string.
+   * @param component - The component string.
+   * @returns The name of the component if found, otherwise undefined.
+   */
+  getComponentName(component: string): string | undefined {
+    const found = api.find((e) => e.component === component);
+    return found ? found.name : undefined;
   }
 
   /**
@@ -139,7 +152,7 @@ export class LogComponent implements OnInit {
    */
   loadComponentLog(id: string): Subscription {
     return this.logService.GetComponentLogs(id).subscribe((data: Log[]) => {
-      console.log('LogComponent.loadComponentLog(' + id + '): ' /* + JSON.stringify(data, null, ' ') */)
+      console.log(`LogComponent.loadComponentLogi(${id}):  + ${JSON.stringify(data)}.`)
       this.LogList = data
     })
   }
@@ -151,7 +164,7 @@ export class LogComponent implements OnInit {
    */
   loadObjectsLog(id: string): Subscription {
     return this.logService.GetObjectLogs(id).subscribe((data: Log[]) => {
-      console.log('LogComponent.loadObjectsLog(' + id + '): ' /* + JSON.stringify(data, null, ' ') */)
+      console.log(`LogComponent.loadObjectsLog(${id}): ${JSON.stringify(data, null, ' ')}`)
       this.LogList = data
     })
   }

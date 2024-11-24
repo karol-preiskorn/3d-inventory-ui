@@ -1,13 +1,12 @@
-import { Component, Inject, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
+import { Component, Inject, NgZone, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
-import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
-import { LogService } from '../../../services/log.service'
-import { AttributeDictionary } from '../../../shared/attribute-dictionary'
-import { ComponentDictionary } from '../../../shared/component-dictionary'
-import { DeviceCategoryDict } from '../../../shared/deviceCategories'
-import { DeviceTypeDict } from '../../../shared/deviceTypes'
+import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service';
+import { LogService } from '../../../services/log.service';
+import { AttributeDictionary } from '../../../shared/attribute-dictionary';
+import { ComponentDictionary } from '../../../shared/attribute-dictionary-component';
+import { TypeDictionary } from '../../../shared/attribute-dictionary-type';
 
 @Component({
   selector: 'app-add-attribute-dictionary',
@@ -16,18 +15,15 @@ import { DeviceTypeDict } from '../../../shared/deviceTypes'
 })
 export class AttributeDictionaryAddComponent implements OnInit {
   addAttributeDictionaryForm: FormGroup<{
-    _id: FormControl<string | null>
-    objectId: FormControl<string | null>
-    name: FormControl<string | null>
-    type: FormControl<string | null>
-    category: FormControl<string | null>
     component: FormControl<string | null>
+    type: FormControl<string | null>
+    name: FormControl<string | null>
+    units: FormControl<string | null>
   }>
   attributeDictionary: AttributeDictionary
   isSubmitted = false
-  deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
-  deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   componentDictionary: ComponentDictionary = new ComponentDictionary()
+  typeDictionary: TypeDictionary = new TypeDictionary()
   logComponent = 'AttributeDictionary'
 
   ngOnInit() {
@@ -44,53 +40,43 @@ export class AttributeDictionaryAddComponent implements OnInit {
 
   formAttributeDictionary() {
     this.addAttributeDictionaryForm = this.formBuilder.group({
-      _id: ['', [Validators.required]],
-      objectId: ['', [Validators.required, Validators.minLength(24)]],
-      name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
-      type: ['', [Validators.required]],
-      category: ['', [Validators.required]],
       component: ['', [Validators.required]],
+      type: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      units: ['', [Validators.required]],
     })
   }
 
-  changeObjectId(e: Event) {
-    this.objectId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
-  }
-
-  changeName(e: Event) {
-    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  changeComponent(e: Event) {
+    this.addAttributeDictionaryForm.get('component')?.setValue((e.target as HTMLSelectElement).value, { onlySelf: true })
   }
 
   changeType(e: Event) {
-    this.type?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.addAttributeDictionaryForm.get('type')?.setValue((e.target as HTMLSelectElement).value, { onlySelf: true })
   }
 
-  changeCategory(e: Event) {
-    this.category?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  changeName(e: Event) {
+    this.addAttributeDictionaryForm.get('name')?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeComponent(e: Event) {
-    this.component?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  changeUnits(e: Event) {
+    this.addAttributeDictionaryForm.get('units')?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  get objectId() {
-    return this.addAttributeDictionaryForm.get('objectId')
-  }
-
-  get name() {
-    return this.addAttributeDictionaryForm.get('name')
+  get component() {
+    return this.addAttributeDictionaryForm.get('component')
   }
 
   get type() {
     return this.addAttributeDictionaryForm.get('type')
   }
 
-  get category() {
-    return this.addAttributeDictionaryForm.get('category')
+  get name() {
+    return this.addAttributeDictionaryForm.get('name')
   }
 
-  get component() {
-    return this.addAttributeDictionaryForm.get('component')
+  get units() {
+    return this.addAttributeDictionaryForm.get('units')
   }
 
   toString(data: unknown): string {
@@ -98,20 +84,18 @@ export class AttributeDictionaryAddComponent implements OnInit {
   }
 
   submitForm() {
-    this.attributeDictionaryService
-      .CreateAttributeDictionary(this.addAttributeDictionaryForm.value as unknown as AttributeDictionary)
-      .subscribe(() => {
-        this.logService
-          .CreateLog({
-            objectId: this.addAttributeDictionaryForm.get('id')?.value,
-            message: this.addAttributeDictionaryForm.getRawValue(),
-            operation: 'Create',
-            component: 'Attribute Dictionary',
-          })
-          .subscribe(() => {
-            this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))
-            this.router.navigate(['attribute-dictionary-list'])
-          })
-      })
+    this.attributeDictionaryService.CreateAttributeDictionary(this.addAttributeDictionaryForm.value as unknown as AttributeDictionary).subscribe(() => {
+      this.logService
+        .CreateLog({
+          objectId: this.addAttributeDictionaryForm.get('id')?.value,
+          message: this.addAttributeDictionaryForm.getRawValue(),
+          operation: 'Create',
+          component: 'Attribute Dictionary',
+        })
+        .subscribe(() => {
+          this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))
+          this.router.navigate(['attribute-dictionary-list'])
+        })
+    })
   }
 }

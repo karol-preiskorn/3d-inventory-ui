@@ -3,13 +3,12 @@
   <form [formGroup]="form" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
     <div class="row">
       <div class="col">
-        <label for="id" class="form-label">Id</label>
+        <label for="_id" class="form-label">Id</label>
         <input
           type="text"
           class="form-control"
-          formControlName="id"
+          formControlName="_id"
           aria-label="_id"
-          id="_id"
           required
           readonly
           [ngClass]="{
@@ -22,24 +21,32 @@
           <div *ngIf="this.form.controls._id.errors.minlength">Id must be at least 4 characters</div>
         </div>
       </div>
+    </div>
+
+    <div class="row">
       <div class="col">
         <div class="form-group mb-3">
-          <label for="name" class="form-label">Name</label>
-          <textarea
+          <label for="component" class="form-label">Component</label>
+          <select
+            (change)="changeComponent($event)"
             class="form-control"
+            formControlName="component"
+            aria-label="component"
+            id="component"
+            ngbPopover="Select where you want use this attribute"
+            triggers="mouseenter:mouseleave"
+            popoverTitle="Range of use by components"
             [ngClass]="{
-              'is-invalid': this.form.controls.name.status !== 'VALID',
-              'is-valid': this.form.controls.name.status === 'VALID',
-              'form-control': true,
-            }"
-            formControlName="name"
-            id="name"
-            required
-            >{{ this.form.value.name }}</textarea
-          >
-          <div *ngIf="this.form.controls.name.errors" class="invalid-feedback">
-            <div *ngIf="this.form.controls.name.errors.required">Attribute name is required</div>
-            <div *ngIf="this.form.controls.name.errors.minlength">Attribute name must be at least 6 characters</div>
+              'is-invalid': this.form.controls.component.status !== 'VALID',
+              'is-valid': this.form.controls.component.status === 'VALID',
+              'form-select': true,
+            }">
+            <option *ngFor="let componentObj of componentDictionary.list; let i = index">
+              {{ componentObj.name }}
+            </option>
+          </select>
+          <div *ngIf="this.form.controls.component.errors" class="invalid-feedback">
+            <div *ngIf="this.form.controls.component.errors.required">Component is required</div>
           </div>
         </div>
       </div>
@@ -58,63 +65,68 @@
               'form-select': true,
             }"
             id="type">
-            <option *ngFor="let typeObj of deviceTypeDict['list']; let i = index">
+            <option *ngFor="let typeObj of typeDictionary['list']; let i = index">
               {{ typeObj.name }}
             </option>
           </select>
-          <div *ngIf="this.form.controls.category.errors" class="invalid-feedback">
-            <div *ngIf="this.form.controls.category.errors.required">Category is required</div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-group mb-3">
-          <label for="category" class="form-label">Category</label>
-          <select
-            (change)="changeCategory($event)"
-            class="form-control"
-            formControlName="category"
-            [ngClass]="{
-              'is-invalid': this.form.controls.category.status !== 'VALID',
-              'is-valid': this.form.controls.category.status === 'VALID',
-              'form-select': true,
-            }"
-            id="category">
-            <option *ngFor="let categoryObj of deviceCategoryDict.list; let i = index">
-              {{ categoryObj.name }}
-            </option>
-          </select>
-          <div *ngIf="this.form.controls.category.errors" class="invalid-feedback">
-            <div *ngIf="this.form.controls.category.errors.required">Category is required</div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-group mb-3">
-          <label for="component" class="form-label">Component</label>
-          <select
-            (change)="changeCategory($event)"
-            class="form-control"
-            formControlName="component"
-            [ngClass]="{
-              'is-invalid': this.form.controls.component.status !== 'VALID',
-              'is-valid': this.form.controls.component.status === 'VALID',
-              'form-select': true,
-            }"
-            id="component"
-            ngbPopover="Select where you want use this attribute"
-            triggers="mouseenter:mouseleave"
-            popoverTitle="Range of use by components">
-            <option *ngFor="let componentObj of componentDictionary.list; let i = index">
-              {{ componentObj.name }}
-            </option>
-          </select>
-          <div *ngIf="this.form.controls.component.errors" class="invalid-feedback">
-            <div *ngIf="this.form.controls.component.errors.required">Component is required</div>
+          <div *ngIf="this.form.controls.type.errors" class="invalid-feedback">
+            <div *ngIf="this.form.controls.type.errors.required">Type is required</div>
           </div>
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group mb-2">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Attribute dictionary name"
+            aria-label="name"
+            [ngClass]="{
+              'is-invalid': this.form.controls.name.status !== 'VALID',
+              'is-valid': this.form.controls.name.status === 'VALID',
+              'form-control': true,
+            }"
+            formControlName="name"
+            minlength="3"
+            id="name"
+            required
+            maxlength="255" />
+          <div *ngIf="this.form.controls.name.errors" class="invalid-feedback">
+            <div *ngIf="this.form.controls.name.errors.required">Attribute name is required</div>
+            <div *ngIf="this.form.controls.name.errors.minlength">Attribute name must be at least 6 characters</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="form-group mb-3">
+          <label for="units" class="form-label">Units</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Attribute units ie. m, cm, mm, etc."
+            aria-label="units"
+            formControlName="units"
+            maxlength="255"
+            id="units"
+            [ngClass]="{
+              'is-invalid': this.form.controls.units.status !== 'VALID',
+              'is-valid': this.form.controls.units.status === 'VALID',
+              'form-select': true,
+            }" />
+          <div *ngIf="this.form.controls.units.errors" class="invalid-feedback">
+            <div *ngIf="this.form.controls.units.errors.required">Attribute units is required</div>
+            <div *ngIf="this.form.controls.units.errors.minlength">Attribute units must be at least 1 characters</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="form-group mb-3">
       <button type="submit" [disabled]="!(this.form.valid && this.form.touched)" class="btn btn-primary">Update</button>
       <div *ngIf="!(this.form.valid && this.form.touched)" class="invalid-feedback">Form is invalid</div>
