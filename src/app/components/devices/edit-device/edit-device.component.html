@@ -99,7 +99,7 @@
             placeholder="h"
             required
             [ngClass]="{
-              'is-invalid': this.x?.status !== 'VALID',
+              'is-invalid': editDeviceForm.get('position')?.get('h')?.status !== 'VALID',
               'is-valid': editDeviceForm.get('position')?.get('h')?.status === 'VALID',
             }" />
         </div>

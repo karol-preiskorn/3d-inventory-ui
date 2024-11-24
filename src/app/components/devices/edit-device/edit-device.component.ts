@@ -27,7 +27,7 @@ export class DeviceEditComponent implements OnInit {
   // Arrow function for number validation
   numberValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const value: number = control.value as number
-    if (Number.isNaN(value) || Number(value) < 0) {
+    if (Number.isNaN(value) || Number(value) > 100 || Number(value) < -100) {
       return { invalidNumber: true }
     }
     return null
@@ -40,8 +40,8 @@ export class DeviceEditComponent implements OnInit {
       modelId: ['', Validators.required],
       position: this.formBulider.group({
         x: [0, [Validators.required, this.numberValidator]],
-        y: [0, [Validators.required]],
-        h: [0, [Validators.required]],
+        y: [0, [Validators.required, this.numberValidator]],
+        h: [0, [Validators.required, this.numberValidator]],
       }),
     })
   }
