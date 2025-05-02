@@ -13,16 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        *ngFor="
-          let attribute of attributeList
-            | paginate
-              : {
-                  id: 'attributeListPagination',
-                  itemsPerPage: 5,
-                  currentPage: attributePage,
-                }
-        ">
+      <tr *ngFor="let attribute of attributeList | slice: (attributePage - 1) * pageSize : attributePage * pageSize">
         <td>
           <div title="{{ attribute._id }}">#</div>
         </td>
@@ -50,7 +41,7 @@
         </td>
         <td>{{ attribute.value }}</td>
         <td>
-          <div class="btn-group float-md-end" role="group" aria-label="attribute-operations">
+          <fieldset class="btn-group float-md-end" aria-label="attribute-operations">
             <button
               type="button"
               class="btn btn-success btn-sm move-right"
@@ -72,7 +63,7 @@
               (click)="CloneAttribute(attribute._id)">
               Clone
             </button>
-          </div>
+          </fieldset>
         </td>
       </tr>
     </tbody>
@@ -80,7 +71,14 @@
   <button type="button" class="btn btn-success btn-sm" (click)="AddAttribute()">
     <i class="bi bi-plus-lg"></i> Add
   </button>
-  <pagination-controls (pageChange)="attributePage = $event" id="attributeListPagination"></pagination-controls>
+  <ngb-pagination
+    [(page)]="attributePage"
+    [pageSize]="pageSize"
+    [collectionSize]="totalItems"
+    [maxSize]="5"
+    [boundaryLinks]="true"
+    aria-label="Attribute pagination">
+  </ngb-pagination>
 </div>
 
 <div class="fs-7 fw-lighter deviceid">attributeComponent: {{ this.attributeComponent }}</div>
@@ -92,4 +90,5 @@
 <app-log
   *ngIf="attributeComponent === '' || attributeComponent === undefined"
   [attributeComponentObject]="this.device"
-  [component]="component"></app-log>
+  [component]="component">
+</app-log>

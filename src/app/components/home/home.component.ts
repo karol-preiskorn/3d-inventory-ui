@@ -1,12 +1,14 @@
-import { provideMarkdown } from 'ngx-markdown';
+import { MarkdownModule } from 'ngx-markdown'
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Component, NgModule, OnInit } from '@angular/core'
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  imports: [CommonModule, MarkdownModule], // Add the module here
 })
 export class HomeComponent implements OnInit {
   md: string | undefined
@@ -15,8 +17,10 @@ export class HomeComponent implements OnInit {
   authToken = ''
   baseUrl = 'https://api.github.com'
   issues = ''
+  issuesJson: string = ''
+  isDebugMode: boolean = false
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
   httpOptions: {
     headers: HttpHeaders
   } = {
@@ -29,7 +33,7 @@ export class HomeComponent implements OnInit {
     }),
   }
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     this.http.get('/assets/README.md', { responseType: 'text' }).subscribe((data: string) => {
       console.log('Get Markdown ' + JSON.stringify(data, null, ' '))
       this.md = data.replaceAll('src/', '')

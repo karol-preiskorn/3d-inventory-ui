@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { Component, NgZone, OnInit } from '@angular/core'
+import { ReactiveFormsModule } from '@angular/forms'
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
@@ -13,11 +14,13 @@ import Validation from '../../../shared/validation'
   selector: 'app-add-floor',
   templateUrl: './add-floor.component.html',
   styleUrls: ['./add-floor.component.scss'],
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class FloorAddComponent implements OnInit {
   floor: Floor
   isSubmitted = false
   valid: Validation = new Validation()
+  isSubmitDisabled: boolean = false // Add this property and initialize it as needed
 
   dimensionFormGroup = new FormGroup({
     description: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -172,7 +175,7 @@ export class FloorAddComponent implements OnInit {
   }
 
   generateFloor() {
-    this.floorForm.controls.name.setValue(faker.company.name() + ' - ' + faker.company.bs())
+    this.floorForm.controls.name.setValue(faker.company.name() + ' - ' + faker.company.buzzPhrase())
     this.floorForm.controls.address.controls.street.setValue(
       faker.location.street() + ' ' + faker.location.buildingNumber(),
     )
@@ -199,11 +202,7 @@ export class FloorAddComponent implements OnInit {
   submitForm() {
     this.floorService.CreateFloor(this.floorForm.getRawValue() as Floor).subscribe(() => {
       console.log('Floor added!')
-      this.logService.CreateLog({
-        operation: 'Create',
-        component: 'Floor',
-        message: this.floorForm.getRawValue(),
-      })
+      this.logService.CreateLog({ operation: 'Create', component: 'Floor', message: this.floorForm.getRawValue() })
       this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
     })
   }

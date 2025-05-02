@@ -24,13 +24,8 @@ import { DeviceService } from '../../services/device.service'
 import { ModelsService } from '../../services/models.service'
 import { Device } from '../../shared/device'
 import { Model } from '../../shared/model'
-import { Random3d } from './3d'
 
-@Component({
-  selector: 'app-cube',
-  templateUrl: './3d.component.html',
-  styleUrls: ['./3d.component.scss'],
-})
+@Component({ selector: 'app-cube', templateUrl: './3d.component.html', styleUrls: ['./3d.component.scss'] })
 export class CubeComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas')
   private canvasRef!: ElementRef
@@ -53,9 +48,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
   private loader = new THREE.TextureLoader()
   private geometry = new THREE.BoxGeometry(4, 2, 1)
 
-  private material = new THREE.MeshBasicMaterial({
-    map: this.loader.load(this.texture),
-  })
+  private material = new THREE.MeshBasicMaterial({ map: this.loader.load(this.texture) })
 
   private cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material)
 
@@ -275,7 +268,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
       const textGeo = new TextGeometry('3d invetory', {
         font: font,
         size: 4,
-        height: 1,
+        depth: 1,
         curveSegments: 8,
         bevelThickness: 0.1,
         bevelSize: 0.1,
@@ -371,7 +364,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     // https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
     //
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
+
     const component: CubeComponent = this
     ;(function render() {
       requestAnimationFrame(render)

@@ -1,26 +1,28 @@
 import { Subscription } from 'rxjs'
 
 import { CommonModule } from '@angular/common'
-import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { Component, Input, NgZone, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 
 import { LogService } from '../../../services/log.service'
 import { ModelsService } from '../../../services/models.service'
 import { Model } from '../../../shared/model'
+import { LogComponent } from '../../log/log.component' // Import the standalone app-log component
 
 @Component({
   selector: 'app-edit-model',
   templateUrl: './edit-model.component.html',
   styleUrls: ['./edit-model.component.scss'],
-  providers: [CommonModule],
+  providers: [CommonModule, LogComponent],
+  imports: [CommonModule, ReactiveFormsModule, LogComponent],
 })
 export class ModelEditComponent implements OnInit {
   attributeComponent: string = ''
   attributeComponentObject: string = ''
   inputId: string
   model: Model
-  component = ''
+  component = 'EditModel'
   submitted = false
   editModelForm: FormGroup
 

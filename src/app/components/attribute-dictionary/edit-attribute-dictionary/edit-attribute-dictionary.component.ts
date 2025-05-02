@@ -1,7 +1,7 @@
 import { Observable, tap } from 'rxjs'
 
 import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 
 import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
@@ -10,11 +10,15 @@ import { AttributeDictionary } from '../../../shared/attribute-dictionary'
 import { ComponentDictionary } from '../../../shared/component-dictionary'
 import { DeviceCategoryDict } from '../../../shared/deviceCategories'
 import { DeviceTypeDict } from '../../../shared/deviceTypes'
+import { LogComponent } from '../../log/log.component'
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-edit-attribute-dictionary',
   templateUrl: './edit-attribute-dictionary.component.html',
   styleUrls: ['./edit-attribute-dictionary.component.scss'],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, LogComponent],
 })
 export class AttributeDictionaryEditComponent implements OnInit {
   inputId: string

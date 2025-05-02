@@ -2,7 +2,7 @@
   <h3><i class="bi bi-building"></i> Add Floor</h3>
   <form [formGroup]="floorForm" (ngSubmit)="submitForm()" class="g-3 needs-validation" novalidate>
     <div class="form-group mb-3">
-      <label for="id" class="form-label">Id: {{ this.floorForm.controls._id.value }} </label>
+      <label for="id" class="form-label">Id: {{ floor._id }} </label>
     </div>
 
     <div class="col border">
@@ -15,11 +15,10 @@
           maxlength="4000"
           required
           [ngClass]="{
-            'is-invalid': this.floorForm.controls.name.status !== 'VALID',
-            'is-valid': this.floorForm.controls.name.status === 'VALID',
+            'is-invalid': this.floorForm.controls.name.invalid,
+            'is-valid': this.floorForm.controls.name.valid,
             'form-control': true,
-          }"
-        ></textarea>
+          }"></textarea>
         <div *ngIf="this.floorForm.controls.name.errors" class="invalid-feedback">
           <div *ngIf="this.floorForm.controls.name.errors.required">Name is required</div>
           <div *ngIf="this.floorForm.controls.name.errors.minlength">Name must be at least 4 characters</div>
@@ -37,11 +36,10 @@
                 id="street"
                 required
                 [ngClass]="{
-                  'is-invalid': this.floorForm.controls.address.controls.street.status !== 'VALID',
+                  'is-invalid': this.floorForm.controls.address.controls.street.invalid,
                   'is-valid': this.floorForm.controls.address.controls.street.status === 'VALID',
                   'form-control': true,
-                }"
-              />
+                }" />
               <div *ngIf="this.floorForm.controls.address.controls.street.errors" class="invalid-feedback">
                 <div *ngIf="this.floorForm.controls.address.controls.street.errors.required">Street is required</div>
                 <div *ngIf="this.floorForm.controls.address.controls.street.errors.minlength">
@@ -59,11 +57,10 @@
                 id="city"
                 required
                 [ngClass]="{
-                  'is-invalid': this.floorForm.controls.address.controls.city.status !== 'VALID',
-                  'is-valid': this.floorForm.controls.address.controls.city.status === 'VALID',
+                  'is-invalid': this.floorForm.controls.address.controls.city.invalid,
+                  'is-valid': this.floorForm.controls.address.controls.city.valid,
                   'form-control': true,
-                }"
-              />
+                }" />
               <div *ngIf="this.floorForm.controls.address.controls.city.errors" class="invalid-feedback">
                 <div *ngIf="this.floorForm.controls.address.controls.city.errors.required">City is required</div>
                 <div *ngIf="this.floorForm.controls.address.controls.city.errors.minlength">
@@ -81,11 +78,10 @@
                 id="country"
                 required
                 [ngClass]="{
-                  'is-invalid': this.floorForm.controls.address.controls.country.status !== 'VALID',
-                  'is-valid': this.floorForm.controls.address.controls.country.status === 'VALID',
+                  'is-invalid': this.floorForm.controls.address.controls.country.invalid,
+                  'is-valid': this.floorForm.controls.address.controls.country.valid,
                   'form-control': true,
-                }"
-              />
+                }" />
               <div *ngIf="this.floorForm.controls.address.controls.country.errors" class="invalid-feedback">
                 <div *ngIf="this.floorForm.controls.address.controls.country.errors.required">country is required</div>
                 <div *ngIf="this.floorForm.controls.address.controls.country.errors.minlength">
@@ -103,11 +99,10 @@
                 id="postcode"
                 required
                 [ngClass]="{
-                  'is-invalid': this.floorForm.controls.address.controls.postcode.status !== 'VALID',
+                  'is-invalid': this.floorForm.controls.address.controls.postcode.invalid,
                   'is-valid': this.floorForm.controls.address.controls.postcode.status === 'VALID',
                   'form-control': true,
-                }"
-              />
+                }" />
               <div *ngIf="this.floorForm.controls.address.controls.postcode.errors" class="invalid-feedback">
                 <div *ngIf="this.floorForm.controls.address.controls.postcode.errors.required">
                   postcode is required
@@ -139,15 +134,13 @@
                     maxlength="4000"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.description.status !== 'VALID',
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.description.invalid,
                       'is-valid': this.floorForm.controls.dimension.at(i).controls.description.status === 'VALID',
                       'form-control': true,
-                    }"
-                  ></textarea>
+                    }"></textarea>
                   <div
                     *ngIf="this.floorForm.controls.dimension.at(i).controls.description.errors"
-                    class="invalid-feedback"
-                  >
+                    class="invalid-feedback">
                     <div *ngIf="this.floorForm.controls.dimension.at(i).controls.description.errors?.required">
                       description is required
                     </div>
@@ -168,11 +161,10 @@
                     id="xPos"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.xPos.status !== 'VALID',
-                      'is-valid': this.floorForm.controls.dimension.at(i).controls.xPos.status === 'VALID',
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.xPos.invalid,
+                      'is-valid': this.floorForm.controls.dimension.at(i).controls.xPos.valid,
                       'form-control': true,
-                    }"
-                  />
+                    }" />
                   <div *ngIf="this.floorForm.controls.dimension.at(i).controls.xPos.errors" class="invalid-feedback">
                     <div *ngIf="this.floorForm.controls.dimension.at(i).controls.xPos.errors?.required">
                       X position is required
@@ -192,11 +184,10 @@
                     id="yPos"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.yPos.status !== 'VALID',
-                      'is-valid': this.floorForm.controls.dimension.at(i).controls.yPos.status === 'VALID',
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.yPos.invalid,
+                      'is-valid': this.floorForm.controls.dimension.at(i).controls.yPos.valid,
                       'form-control': true,
-                    }"
-                  />
+                    }" />
                   <div *ngIf="this.floorForm.controls.dimension.at(i).controls.yPos.errors" class="invalid-feedback">
                     <div *ngIf="this.floorForm.controls.dimension.at(i).controls.yPos.errors?.required">
                       Y is required
@@ -216,11 +207,10 @@
                     id="hPos"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.hPos.status !== 'VALID',
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.hPos.invalid,
                       'is-valid': this.floorForm.controls.dimension.at(i).controls.hPos.status === 'VALID',
                       'form-control': true,
-                    }"
-                  />
+                    }" />
                   <div *ngIf="this.floorForm.controls.dimension.at(i).controls.hPos.errors" class="invalid-feedback">
                     <div *ngIf="this.floorForm.controls.dimension.at(i).controls.hPos.errors?.required">
                       H is required
@@ -242,11 +232,10 @@
                     id="x"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.x.status !== 'VALID',
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.x.invalid,
                       'is-valid': this.floorForm.controls.dimension.at(i).controls.x.status === 'VALID',
                       'form-control': true,
-                    }"
-                  />
+                    }" />
                   <div *ngIf="this.floorForm.controls.dimension.at(i).controls.x.errors" class="invalid-feedback">
                     <div *ngIf="this.floorForm.controls.dimension.at(i).controls.x.errors?.required">X is required</div>
                     <div *ngIf="this.floorForm.controls.dimension.at(i).controls.x.errors?.minlength">
@@ -264,11 +253,10 @@
                     id="y"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.y.status !== 'VALID',
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.y.invalid,
                       'is-valid': this.floorForm.controls.dimension.at(i).controls.y.status === 'VALID',
                       'form-control': true,
-                    }"
-                  />
+                    }" />
                   <div *ngIf="this.floorForm.controls.dimension.at(i).controls.y.errors" class="invalid-feedback">
                     <div *ngIf="this.floorForm.controls.dimension.at(i).controls.y.errors?.required">Y is required</div>
                     <div *ngIf="this.floorForm.controls.dimension.at(i).controls.y.errors?.minlength">
@@ -286,11 +274,10 @@
                     id="h"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.h.status !== 'VALID',
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.h.invalid,
                       'is-valid': this.floorForm.controls.dimension.at(i).controls.h.status === 'VALID',
                       'form-control': true,
-                    }"
-                  />
+                    }" />
                   <div *ngIf="this.floorForm.controls.dimension.at(i).controls.h.errors" class="invalid-feedback">
                     <div *ngIf="this.floorForm.controls.dimension.at(i).controls.h.errors?.required">h is required</div>
                     <div *ngIf="this.floorForm.controls.dimension.at(i).controls.h.errors?.minlength">
@@ -312,7 +299,7 @@
                 </button>
               </div>
               <div class="p-1 g-col-1 column-gap-3">
-                <button type="button" (click)="this.generateDimension(i)" class="btn btn-debug">
+                <button type="button" (click)="generateDimension(i)" class="btn btn-debug">
                   <i class="bi bi-bookmark-plus"></i> Generate random Dimension {{ i }}
                 </button>
               </div>
@@ -327,7 +314,7 @@
         </p>
         <div class="d-flex p-2">
           <div class="p-1 g-col-1">
-            <button type="submit" [disabled]="!(floorForm.valid && floorForm.touched)" class="btn btn-primary mb-3">
+            <button type="submit" [disabled]="isSubmitDisabled" class="btn btn-primary mb-3">
               <i class="bi bi-save"></i> Save
             </button>
           </div>

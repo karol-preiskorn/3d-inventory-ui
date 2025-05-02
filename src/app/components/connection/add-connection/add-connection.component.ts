@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid'
 
 import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 
 import { ConnectionService } from '../../../services/connection.service'
@@ -10,11 +10,14 @@ import { LogService } from '../../../services/log.service'
 import { ComponentDictionary } from '../../../shared/component-dictionary'
 import { Connection } from '../../../shared/connection'
 import { Device } from '../../../shared/device'
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-add-connection',
   templateUrl: './add-connection.component.html',
   styleUrls: ['./add-connection.component.scss'],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class ConnectionAddComponent implements OnInit {
   addConnectionForm: FormGroup

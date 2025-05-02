@@ -1,4 +1,4 @@
-import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms'
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, NgZone, OnInit } from '@angular/core'
 
@@ -20,11 +20,15 @@ import { Observable } from 'rxjs'
 import Validation from '../../../shared/validation'
 import { tap } from 'rxjs/operators'
 import { v4 as uuidv4 } from 'uuid'
+import { CommonModule } from '@angular/common'
+import { LogComponent } from "../../log/log.component";
 
 @Component({
   selector: 'app-edit-attribute',
   templateUrl: './edit-attribute.component.html',
   styleUrls: ['./edit-attribute.component.scss'],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, LogComponent],
 })
 export class AttributeEditComponent implements OnInit {
   inputId: string

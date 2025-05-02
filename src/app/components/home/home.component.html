@@ -2,5 +2,7 @@
   <markdown [data]="md"></markdown>
 </div>
 <div class="border p-6">
-  {{ issues | json }}
+  <div *ngIf="isDebugMode">
+    {{ issuesJson }}
+  </div>
 </div>

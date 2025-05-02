@@ -82,13 +82,13 @@ export class ModelsService {
     this.GetModel(id).subscribe((value: Model) => {
       console.log('Get Model: ' + JSON.stringify(value, null, ' '))
       this.CreateModel(value).subscribe({
-        next: (v) => {
+        next: (v: Model) => {
           console.log('Create Model: ' + JSON.stringify(v, null, ' '))
           this.ngZone.run(() => this.router.navigateByUrl('models-list'))
           idConed = String(v._id) // Convert 'ObjectId' to string
         },
         complete: () => this.ngZone.run(() => this.router.navigateByUrl('models-list')),
-        error: (err) => {
+        error: (err: any) => {
           console.error(err) // Fix: Replace 'error' with 'err'
           catchError(this.handleErrorTemplate<Model>('CloneModel', value))
         },

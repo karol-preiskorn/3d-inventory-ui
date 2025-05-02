@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <h3>Logs {{ this.component }}</h3>
+  <h3>Logs {{ component }}</h3>
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -11,25 +11,28 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        *ngFor="
-          let log of LogList | paginate: { id: 'logPagination', itemsPerPage: 5, currentPage: pageLog };
-          let i = index
-        ">
+      <tr *ngFor="let log of LogList | slice: (logListPage - 1) * pageSize : logListPage * pageSize">
         <td>{{ log.date }}</td>
         <td>{{ log.operation }}</td>
         <td>
           {{ log.component }}
-          <div class="deviceid">{{ log.objectId }}</div>
+          <span class="deviceid">{{ log.objectId }}</span>
         </td>
         <td>{{ findNameInLogMessage(log) }}</td>
         <td>
-          <button type="button" id="delete-device" class="btn btn-danger btn-sm" (click)="DeleteLog(log._id)">
+          <button type="button" id="delete-log" class="btn btn-danger btn-sm" (click)="DeleteLog(log._id)">
             <i class="bi bi-trash"></i>
           </button>
         </td>
       </tr>
     </tbody>
   </table>
-  <pagination-controls (pageChange)="pageLog = $event" id="logPagination"></pagination-controls>
+  <ngb-pagination
+    [pageSize]="pageSize"
+    [collectionSize]="totalItems"
+    [maxSize]="5"
+    [boundaryLinks]="true"
+    aria-label="Log pagination"
+    [(page)]="logListPage">
+  </ngb-pagination>
 </div>

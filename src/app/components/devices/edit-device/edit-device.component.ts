@@ -1,22 +1,33 @@
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom } from 'rxjs'
 
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'
+import { Component, OnInit } from '@angular/core'
 import {
-    AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators
-} from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-
-import { DeviceService } from '../../../services/device.service';
-import { LogIn, LogService } from '../../../services/log.service';
-import { ModelsService } from '../../../services/models.service';
-import { Device } from '../../../shared/device';
-import { Model } from '../../../shared/model';
-import Validation from '../../../shared/validation';
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
+import { DeviceService } from '../../../services/device.service'
+import { LogIn, LogService } from '../../../services/log.service'
+import { ModelsService } from '../../../services/models.service'
+import { Device } from '../../../shared/device'
+import { Model } from '../../../shared/model'
+import Validation from '../../../shared/validation'
+import { AttributeListComponent } from '../../attribute/attribute-list/attribute-list.component'
+import { LogComponent } from '../../log/log.component'
 
 @Component({
   selector: 'app-edit-device',
   templateUrl: './edit-device.component.html',
   styleUrls: ['./edit-device.component.scss'],
+  imports: [ReactiveFormsModule, CommonModule, NgbPaginationModule, LogComponent, AttributeListComponent],
 })
 export class DeviceEditComponent implements OnInit {
   device: Device = new Device()
@@ -53,13 +64,14 @@ export class DeviceEditComponent implements OnInit {
   constructor(
     public activatedRoute: ActivatedRoute,
     public devicesService: DeviceService,
-    private router: Router,
-    private logService: LogService,
-    private modelsService: ModelsService,
+    private readonly router: Router,
+    private readonly logService: LogService,
+    private readonly modelsService: ModelsService,
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
-    const id = this.activatedRoute.snapshot.paramMap.get('id') || ''
+    const id = this.activatedRoute.snapshot.paramMap.get('id') ?? ''
     this.attributeComponent = 'device'
     this.component = id
     this.loadModels()
@@ -74,7 +86,22 @@ export class DeviceEditComponent implements OnInit {
         },
       })
     }
-    this.editDeviceForm = this.createFormGroup() // Initialize the editDeviceForm property
+    this.editDeviceForm = this.formBuilder.group({
+      id: ['', [Validators.required, Validators.minLength(10)]],
+      name: ['', [Validators.required, Validators.minLength(4)]],
+      dimension: this.formBuilder.group({
+        width: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+        height: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+        depth: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      }),
+      texture: this.formBuilder.group({
+        front: [''],
+        back: [''],
+        side: [''],
+        top: [''],
+        bottom: [''],
+      }),
+    })
     if (this.editDeviceForm) {
       this.editDeviceForm.patchValue({
         _id: this.device._id,

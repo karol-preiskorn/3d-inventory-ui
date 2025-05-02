@@ -1,24 +1,29 @@
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom } from 'rxjs'
 
-import { Component, Input, NgZone, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, NgZone, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 
-import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service';
-import { AttributeService } from '../../../services/attribute.service';
-import { ConnectionService } from '../../../services/connection.service';
-import { DeviceService } from '../../../services/device.service';
-import { LogService } from '../../../services/log.service';
-import { ModelsService } from '../../../services/models.service';
-import { Attribute } from '../../../shared/attribute';
-import { AttributeDictionary } from '../../../shared/attribute-dictionary';
-import { Connection } from '../../../shared/connection';
-import { Device } from '../../../shared/device';
-import { Model } from '../../../shared/model';
+import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
+import { AttributeService } from '../../../services/attribute.service'
+import { ConnectionService } from '../../../services/connection.service'
+import { DeviceService } from '../../../services/device.service'
+import { LogService } from '../../../services/log.service'
+import { ModelsService } from '../../../services/models.service'
+import { Attribute } from '../../../shared/attribute'
+import { AttributeDictionary } from '../../../shared/attribute-dictionary'
+import { Connection } from '../../../shared/connection'
+import { Device } from '../../../shared/device'
+import { Model } from '../../../shared/model'
+import { CommonModule } from '@angular/common'
+import { LogComponent } from '../../log/log.component'
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-attribute-list',
   templateUrl: './attribute-list.component.html',
   styleUrls: ['./attribute-list.component.scss'],
+  standalone: true,
+  imports: [CommonModule, LogComponent, NgbPaginationModule],
 })
 export class AttributeListComponent implements OnInit {
   /**
@@ -30,7 +35,9 @@ export class AttributeListComponent implements OnInit {
 
   attributeList: Attribute[] = []
   selectedAttribute: Attribute
-  attributePage = 1
+  attributePage = 1 // Current page
+  pageSize = 10 // Number of items per page
+  totalItems = 0 // Total number of items
   component = 'Attributes'
 
   deviceDictionary: Device[] = []
@@ -79,6 +86,7 @@ export class AttributeListComponent implements OnInit {
     } else {
       console.log('LoadAttributes.attributeService.GetAttributesSync()')
       this.attributeList = this.attributeService.GetAttributesSync()
+      this.totalItems = this.attributeList.length // Set total items
     }
   }
 

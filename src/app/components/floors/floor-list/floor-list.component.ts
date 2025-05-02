@@ -1,14 +1,19 @@
+import { CommonModule } from '@angular/common'
 import { Component, NgZone, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
 import { FloorService } from '../../../services/floor.service'
 import { LogService } from '../../../services/log.service'
 import { Floor } from '../../../shared/floor'
+import { LogComponent } from '../../log/log.component'
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-floor-list',
   templateUrl: './floor-list.component.html',
   styleUrls: ['./floor-list.component.scss'],
+  standalone: true,
+  imports: [CommonModule, NgbPaginationModule, LogComponent],
 })
 export class FloorListComponent implements OnInit {
   floorList: Floor[] = []
@@ -20,11 +25,18 @@ export class FloorListComponent implements OnInit {
     this.loadFloors()
   }
 
+  onPageChange(page: number): void {
+    this.floorListPage = page
+  }
+  onPageSizeChange(pageSize: number): void {
+    this.floorListPage = pageSize
+  }
+
   constructor(
-    private floorService: FloorService,
-    private logService: LogService,
-    private router: Router,
-    private ngZone: NgZone,
+    private readonly floorService: FloorService,
+    private readonly logService: LogService,
+    private readonly router: Router,
+    private readonly ngZone: NgZone,
   ) {}
 
   loadFloors() {

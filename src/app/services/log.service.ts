@@ -188,10 +188,10 @@ export class LogService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleErrorTemplate<T>(operation = 'operation', result?: T) {
-    return (error: Error): Observable<T> => {
-      console.error(`LogService.handleErrorTemplate: ${operation} failed: ${error.message}`)
-      return of(result as T)
+  private handleErrorTemplate<T>(operationName = 'operation', result?: T) {
+    return (error: HttpErrorResponse): Observable<T> => {
+      console.error(`LogService.handleErrorTemplate: ${operationName} failed. Error message: ${error.message}, Stack: ${error}`)
+      return of(result!)
     }
   }
 }

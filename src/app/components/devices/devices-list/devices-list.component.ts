@@ -6,11 +6,16 @@ import { LogService } from '../../../services/log.service'
 import { ModelsService } from '../../../services/models.service'
 import { Device } from '../../../shared/device'
 import { Model } from '../../../shared/model'
+import { LogComponent } from '../../log/log.component'
+import { CommonModule } from '@angular/common'
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-device-list',
   templateUrl: './devices-list.component.html',
   styleUrls: ['./devices-list.component.scss'],
+  standalone: true,
+  imports: [CommonModule, NgbPaginationModule, LogComponent],
 })
 export class DeviceListComponent implements OnInit {
   deviceList: Device[] = []
@@ -25,12 +30,12 @@ export class DeviceListComponent implements OnInit {
   }
 
   constructor(
-    private devicesService: DeviceService,
-    private modelsService: ModelsService,
-    private logService: LogService,
-    private router: Router,
-    private ngZone: NgZone,
-    private route: ActivatedRoute,
+    private readonly devicesService: DeviceService,
+    private readonly modelsService: ModelsService,
+    private readonly logService: LogService,
+    private readonly router: Router,
+    private readonly ngZone: NgZone,
+    private readonly route: ActivatedRoute,
   ) {}
 
   loadDevices() {
@@ -103,9 +108,7 @@ export class DeviceListComponent implements OnInit {
   FindModelName(id: string): string {
     // console.info('[FindModelName] try find model name by id: ' + id)
     let model = this.modelList.find((e: Model) => e._id === id)?.name as string
-    if (model === undefined) {
-      model = 'Unknown'
-    }
+    model ??= 'Unknown'
     return model
   }
 
