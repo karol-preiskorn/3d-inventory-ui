@@ -3,6 +3,7 @@
     "unional.vscode-sort-package-json",
     "ms-vscode.js-debug-nightly",
     "firefox-devtools.vscode-firefox-debug",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "yoavbls.pretty-ts-errors"
   ]
 }

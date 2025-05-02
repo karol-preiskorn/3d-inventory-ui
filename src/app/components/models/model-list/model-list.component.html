@@ -10,16 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        *ngFor="
-          let model of ModelsList
-            | paginate
-              : {
-                  id: 'modelListPagination',
-                  itemsPerPage: 10,
-                  currentPage: modelListPage,
-                }
-        ">
+      <tr *ngFor="let model of ModelsList | slice: (modelListPage - 1) * pageSize : modelListPage * pageSize">
         <td>
           {{ model.name }}
           <p class="fs-7 fw-lighter deviceid">{{ model._id }}</p>
@@ -33,7 +24,7 @@
           <a *ngIf="model.texture" href="{{ model.texture.bottom }}">bottom</a>
         </td>
         <td>
-          <div class="btn-group" role="group" aria-label="model-operations">
+          <fieldset class="btn-group" aria-label="model-operations">
             <button type="button" class="btn btn-success btn-sm move-right" id="edit-device" (click)="EditModel(model)">
               <i class="bi bi-pen"></i>
             </button>
@@ -43,12 +34,12 @@
             <button type="button" id="clone-device" class="btn btn-info btn-sm" (click)="CloneModel(model._id)">
               <i class="bi bi-copy"></i>
             </button>
-          </div>
+          </fieldset>
         </td>
       </tr>
     </tbody>
   </table>
-  <div class="btn-group me-3 mb-3" role="group" aria-label="model-operations">
+  <fieldset class="btn-group me-3 mb-3" aria-label="model-operations">
     <button
       type="button"
       class="btn btn-success btn-sm move-right mb-3"
@@ -58,9 +49,16 @@
       (click)="AddModel()">
       <i class="bi bi-plus-lg"></i> Add
     </button>
-  </div>
+  </fieldset>
   <div class="me-3 gap-3 mb-3">
-    <pagination-controls (pageChange)="modelListPage = $event" id="modelListPagination"></pagination-controls>
+    <ngb-pagination
+      [(page)]="modelListPage"
+      [pageSize]="pageSize"
+      [collectionSize]="totalItems"
+      [maxSize]="5"
+      [boundaryLinks]="true"
+      aria-label="Model pagination">
+    </ngb-pagination>
   </div>
 </div>
 <app-log *ngIf="component" [component]="component"></app-log>

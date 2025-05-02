@@ -4,17 +4,23 @@ import { Router } from '@angular/router'
 import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
 import { LogService } from '../../../services/log.service'
 import { AttributeDictionary } from '../../../shared/attribute-dictionary'
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
+import { CommonModule } from '@angular/common'
+import { LogComponent } from '../../log/log.component'
 
 @Component({
   selector: 'app-attribute-dictionary-list',
   templateUrl: './attribute-dictionary-list.component.html',
   styleUrls: ['./attribute-dictionary-list.component.scss'],
+  standalone: true,
+  imports: [CommonModule, LogComponent, NgbPaginationModule],
 })
 export class AttributeDictionaryListComponent implements OnInit {
   attributeDictionaryList: AttributeDictionary[] = []
   selectedAttributeDictionary: AttributeDictionary
   attributeDictionaryPage = 1
   component = 'Attribute Dictionary'
+  pageSize: number = 10
 
   ngOnInit() {
     this.loadAttributeDictionary()
@@ -29,6 +35,11 @@ export class AttributeDictionaryListComponent implements OnInit {
     return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) => {
       this.attributeDictionaryList = data
     })
+  }
+  deleteAttribute(attributeId: string): void {
+    // Implement the logic to delete the attribute
+    console.log(`Deleting attribute with ID: ${attributeId}`)
+    // Add your deletion logic here
   }
   deleteAttributeDictionary(id: string) {
     this.logService.CreateLog({

@@ -83,28 +83,16 @@ export class ModelsService {
     let idConed = ''
     let modelToCreate: Model = {} as Model
     this.GetModel(id).subscribe((value: Model) => {
-      modelToCreate = value
-      if (modelToCreate._id !== undefined) {
-        delete (modelToCreate as { _id?: string })._id
-      }
-      modelToCreate.name += ' (Clone)'
-      this.CreateModel(modelToCreate).subscribe({
-        next: (createdModel) => {
-          idConed = String(createdModel._id)
-          const log: LogIn = {
-            objectId: createdModel._id,
-            operation: 'Clone',
-            component: 'Model',
-            message: createdModel,
-          }
-          this.http
-            .post<Log | LogIn>(`${environment.baseurl}/logs/`, log, this.httpOptions)
-            .pipe(retry(1), catchError(this.handleErrorTemplate<LogIn>('CreateLog for CloneModel', log)))
-            .subscribe()
+      console.log('Get Model: ' + JSON.stringify(value, null, ' '))
+      this.CreateModel(value).subscribe({
+        next: (v: Model) => {
+          console.log('Create Model: ' + JSON.stringify(v, null, ' '))
+          this.ngZone.run(() => this.router.navigateByUrl('models-list'))
+          idConed = String(v._id) // Convert 'ObjectId' to string
         },
         complete: () => this.ngZone.run(() => this.router.navigateByUrl('models-list')),
-        error: (err) => {
-          console.error(err)
+        error: (err: any) => {
+          console.error(err) // Fix: Replace 'error' with 'err'
           catchError(this.handleErrorTemplate<Model>('CloneModel', value))
         },
       })

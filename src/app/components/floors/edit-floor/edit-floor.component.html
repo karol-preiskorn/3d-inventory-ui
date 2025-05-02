@@ -2,7 +2,7 @@
   <h3><i class="bi bi-building"></i> Edit Floor</h3>
   <form [formGroup]="floorForm" (ngSubmit)="submitForm()" class="g-3 needs-validation" novalidate>
     <div class="form-group mb-3">
-      <label for="/" class="form-label"><i class="bi bi-app"></i> {{ this.floorForm.controls.id.value }}</label>
+      <label for="id" class="form-label"><i class="bi bi-app"></i> {{ floorForm.get('id')?.value }}</label>
     </div>
 
     <h4>Address</h4>
@@ -17,7 +17,7 @@
           maxlength="50"
           required
           [ngClass]="{
-            'is-invalid': this.floorForm.controls.name.status !== 'VALID',
+            'is-invalid': floorForm.get('name')?.status !== 'VALID',
             'is-valid': this.floorForm.controls.name.status === 'VALID',
             'form-select': true,
           }"></textarea>
@@ -32,9 +32,11 @@
           <div class="col">
             <div class="form-group mb-3">
               <label for="street" class="form-label">Street</label>
-              <div *ngIf="this.floorForm.controls.address.controls.street.errors" class="invalid-feedback">
-                <div *ngIf="this.floorForm.controls.address.controls.street.errors.required">street is required</div>
-                <div *ngIf="this.floorForm.controls.address.controls.street.errors.minlength">
+              <div *ngIf="floorForm.get('address.street')?.errors" class="invalid-feedback">
+                <div *ngIf="this.floorForm.controls.address?.controls?.street?.errors?.required">
+                  street is required
+                </div>
+                <div *ngIf="this.floorForm.controls.address?.controls?.street?.errors?.minlength">
                   street must be at least 1 characters
                 </div>
               </div>
@@ -49,7 +51,7 @@
                 id="city"
                 required
                 [ngClass]="{
-                  'is-invalid': this.floorForm.controls.address.controls.city.status !== 'VALID',
+                  'is-invalid': this.floorForm.get('address.city')?.status !== 'VALID',
                   'is-valid': this.floorForm.controls.address.controls.city.status === 'VALID',
                   'form-control': true,
                 }" />
@@ -70,7 +72,7 @@
                 id="country"
                 required
                 [ngClass]="{
-                  'is-invalid': this.floorForm.controls.address.controls.country.status !== 'VALID',
+                  'is-invalid': floorForm.get('address.country')?.status !== 'VALID',
                   'is-valid': this.floorForm.controls.address.controls.country.status === 'VALID',
                   'form-control': true,
                 }" />
@@ -91,14 +93,14 @@
                 id="postcode"
                 required
                 [ngClass]="{
-                  'is-invalid': this.floorForm.controls.address.controls.postcode.status !== 'VALID',
+                  'is-invalid': this.floorForm.get('address.postcode')?.status !== 'VALID',
                   'is-valid': this.floorForm.controls.address.controls.postcode.status === 'VALID',
                   'form-control': true,
                 }" />
               <div *ngIf="this.floorForm.controls.address.controls.postcode.errors" class="invalid-feedback">
                 <div *ngIf="this.floorForm.controls.address.controls.postcode.errors.required">code is required</div>
                 <div *ngIf="this.floorForm.controls.address.controls.postcode.errors.minlength">
-                  Postcode must be at least 5 characters
+                  Postcode must be at least 5 characters long
                 </div>
               </div>
             </div>
@@ -122,14 +124,10 @@
                     maxlength="4000"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.description.status !== 'VALID',
-                      'is-valid': this.floorForm.controls.dimension.at(i).controls.description.status === 'VALID',
+                      'is-invalid': floorForm.get(['dimension', i, 'description'])?.status !== 'VALID',
+                      'is-valid': floorForm.get(['dimension', i, 'description'])?.status === 'VALID',
                       'form-control': true,
-                    }"
-                    [value]="this.floorForm.controls.dimension.at(i).controls.description.value"
-                    >{{ this.floorForm.controls.dimension.at(i).controls.description.value }}
-                  {{ this.floorForm.controls.dimension.at(i).controls.description.value }}</textarea
-                  >
+                    }"></textarea>
                   <div
                     *ngIf="this.floorForm.controls.dimension.at(i).controls.description.errors"
                     class="invalid-feedback">
@@ -137,7 +135,7 @@
                       Description is required.
                     </div>
                     <div *ngIf="this.floorForm.controls.dimension.at(i).controls.description.errors?.minlength">
-                      description must be at least 4 characters and max 4000.
+                      Description must be between 4 and 4000 characters.
                     </div>
                   </div>
                 </div>
@@ -153,7 +151,7 @@
                     id="xPos"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.xPos.status !== 'VALID',
+                      'is-invalid': floorForm.get(['dimension', i, 'xPos'])?.status !== 'VALID',
                       'is-valid': this.floorForm.controls.dimension.at(i).controls.xPos.status === 'VALID',
                       'form-control': true,
                     }" />
@@ -176,8 +174,8 @@
                     id="yPos"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.yPos.status !== 'VALID',
-                      'is-valid': this.floorForm.controls.dimension.at(i).controls.yPos.status === 'VALID',
+                      'is-invalid': floorForm.get(['dimension', i, 'yPos'])?.status !== 'VALID',
+                      'is-valid': floorForm.get(['dimension', i, 'yPos'])?.status === 'VALID',
                       'form-control': true,
                     }" />
                   <div *ngIf="this.floorForm.controls.dimension.at(i).controls.yPos.errors" class="invalid-feedback">
@@ -199,8 +197,8 @@
                     id="hPos"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.hPos.status !== 'VALID',
-                      'is-valid': this.floorForm.controls.dimension.at(i).controls.hPos.status === 'VALID',
+                      'is-invalid': floorForm.get(['dimension', i, 'hPos'])?.status !== 'VALID',
+                      'is-valid': floorForm.get(['dimension', i, 'hPos'])?.status === 'VALID',
                       'form-control': true,
                     }" />
                   <div *ngIf="this.floorForm.controls.dimension.at(i).controls.hPos.errors" class="invalid-feedback">
@@ -224,7 +222,7 @@
                     id="x"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.x.status !== 'VALID',
+                      'is-invalid': floorForm.get(['dimension', i, 'x'])?.status !== 'VALID',
                       'is-valid': this.floorForm.controls.dimension.at(i).controls.x.status === 'VALID',
                       'form-control': true,
                     }" />
@@ -245,8 +243,8 @@
                     id="y"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.y.status !== 'VALID',
-                      'is-valid': this.floorForm.controls.dimension.at(i).controls.y.status === 'VALID',
+                      'is-invalid': floorForm.get(['dimension', i, 'y'])?.status !== 'VALID',
+                      'is-valid': floorForm.get(['dimension', i, 'y'])?.status === 'VALID',
                       'form-control': true,
                     }" />
                   <div *ngIf="this.floorForm.controls.dimension.at(i).controls.y.errors" class="invalid-feedback">
@@ -266,8 +264,8 @@
                     id="h"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.h.status !== 'VALID',
-                      'is-valid': this.floorForm.controls.dimension.at(i).controls.h.status === 'VALID',
+                      'is-invalid': floorForm.get(['dimension', i, 'h'])?.status !== 'VALID',
+                      'is-valid': floorForm.get(['dimension', i, 'h'])?.status === 'VALID',
                       'form-control': true,
                     }" />
                   <div *ngIf="this.floorForm.controls.dimension.at(i).controls.h.errors" class="invalid-feedback">
@@ -282,32 +280,31 @@
             <div class="d-flex p-2">
               <div class="p-1 g-col-1">
                 <button type="button" (click)="addDimension()" class="btn btn-secondary">
-                  <i class="bi bi-file-earmark-plus"></i> Add Dimension
+                  <i class="bi bi-file-earmark-plus"></i> Add New Dimension
                 </button>
               </div>
               <div class="p-1 g-col-1 column-gap-3">
                 <button type="button" (click)="deleteDimension(i)" class="btn btn-warning">
-                  <i class="bi bi-file-earmark-minus"></i> Delete Dimension
+                  <i class="bi bi-file-earmark-minus"></i> Delete Dimension {{ i }}
                 </button>
               </div>
               <div class="p-1 g-col-1 column-gap-3">
-                <button type="button" (click)="this.generateDimension(i)" class="btn btn-debug">
+                <button type="button" (click)="generateDimension(i)" class="btn btn-debug">
                   <i class="bi bi-bookmark-plus"></i> Generate random Dimension {{ i }}
                 </button>
               </div>
             </div>
           </div>
-        </div>
 
-        <p>Form Status: {{ floorForm.status }}</p>
-        <!-- <p>Form Values: {{ toString(floorForm.value) }}</p> -->
-        <div class="form-group mb-3">
-          <button type="submit" [disabled]="!(floorForm.valid && floorForm.touched)" class="btn btn-primary mb-3">
-            <i class="bi bi-save"></i> Update
-          </button>
+          <p>Form Status: {{ floorForm.status }}</p>
+          <div class="form-group mb-3">
+            <button type="submit" [disabled]="!floorForm.valid" class="btn btn-primary mb-3">
+              <i class="bi bi-save"></i> Update
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </form>
+  <app-log [component]="component"></app-log>
 </div>
-<app-log [component]="component"></app-log>

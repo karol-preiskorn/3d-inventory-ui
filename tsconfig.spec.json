@@ -8,6 +8,10 @@
       "@angular/localize"
     ]
   },
+  "parserOptions": {
+    "project": "./tsconfig.spec.json",
+    "tsconfigRootDir": "."
+  },
   "files": [
     "src/test.ts",
     "src/polyfills.ts"
@@ -15,5 +19,8 @@
   "include": [
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
+  ],
+  "ignores": [
+    "src/**/*.spec.ts"
   ]
 }

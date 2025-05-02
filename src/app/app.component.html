@@ -1,29 +1,54 @@
 <!doctype html>
 <html id="0" lang="en" [attr.data-bs-theme]="myTheme">
-  <head>
-    <meta charset="utf-8" />
-    <title>3d inventory</title>
-    <base href="/" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  </head>
 
-  <body class="d-grid">
-    <header>
-      <nav class="navbar navbar-expand-sm p-2">
-        <div class="container-fluid nav nav-pills">
-          <a class="navbar-brand nav-link" id="title" routerLink="/home" routerLinkActive="active fluffy" ariaCurrentWhenActive="page">3d inventory</a>
-          <a class="nav-link" routerLink="/3d" routerLinkActive="active fluffy" ariaCurrentWhenActive="page"><i class="bi bi-box"></i> 3d</a>
-          <a class="nav-link" routerLink="/floor-list" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="bi bi-building"></i> Floors</a>
-          <a class="nav-link" routerLink="/device-list" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="bi bi-hdd"></i> Devices</a>
-          <a class="nav-link" routerLink="/models-list" routerLinkActive="active" ariaCurrentWhenActive="page"><i class="bi bi-motherboard"></i> Models</a>
-          <a class="nav-link" routerLink="/attribute-dictionary-list" routerLinkActive="active" ariaCurrentWhenActive="page"
-            ><i class="bi bi-grid-3x3-gap"></i> Attr. Dictionary</a
-          >
-          <a class="nav-link" routerLink="/connection-list" routerLinkActive="active" ariaCurrentWhenActive="page"
-            ><i class="bi bi-ethernet"></i> Connections</a
-          >
+<head>
+  <meta charset="utf-8" />
+  <title>3d inventory</title>
+  <base href="/" />
+</head>
+
+<body class="d-grid">
+  <header>
+    <nav class="navbar navbar-expand-sm p-2">
+      <div class="container-fluid nav nav-pills">
+        <a class="navbar-brand nav-link" id="title" routerLink="/home" routerLinkActive="active fluffy"
+          ariaCurrentWhenActive="page">3d inventory</a>
+        <a class="nav-link" routerLink="/3d" routerLinkActive="active fluffy" ariaCurrentWhenActive="page"><i
+            class="bi bi-box"></i> 3d</a>
+        <a class="nav-link" routerLink="/floor-list" routerLinkActive="active" ariaCurrentWhenActive="page"><i
+            class="bi bi-building"></i> Floors</a>
+        <a class="nav-link" routerLink="/device-list" routerLinkActive="active" ariaCurrentWhenActive="page"><i
+            class="bi bi-hdd"></i> Devices</a>
+        <a class="nav-link" routerLink="/models-list" routerLinkActive="active" ariaCurrentWhenActive="page"><i
+            class="bi bi-motherboard"></i> Models</a>
+
+        <ul class="nav nav-pills">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle disabled" data-bs-toggle="dropdown" href="#" role="button" aria-disabled="true" aria-expanded="false">Users</a>
+            <button class="nav-link dropdown-toggle" data-bs-toggle="dropdown" type="button" aria-expanded="false">
+              Attributes
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" routerLink="/attribute-list" routerLinkActive="active"
+                  aria-current="page"><i class="bi bi-bar-chart"></i> Attributes</a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/attribute-dictionary-list" routerLinkActive="active"
+                  aria-current="page"><i class="bi bi-grid-3x3-gap"></i> Attr. Dictionary</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <a class="nav-link" routerLink="/connection-list" routerLinkActive="active" ariaCurrentWhenActive="page"><i
+            class="bi bi-ethernet"></i> Connections</a>
+        <ul class="nav nav-pills">
+          <li class="nav-item dropdown">
+            <button class="nav-link dropdown-toggle" data-bs-toggle="dropdown" type="button" aria-expanded="false"
+              (keydown)="handleKeyDown($event)">
+              Users
+            </button>
+
             <ul class="dropdown-menu">
               <li><a class="dropdown-item disabled" routerLinkActive="disabled" aria-disabled="true" href="#">Users</a></li>
               <li><a class="dropdown-item disabled" routerLinkActive="disabled" aria-disabled="true" href="#">Roles</a></li>
@@ -36,42 +61,50 @@
               <li><a class="dropdown-item disabled" routerLinkActive="disabled" aria-disabled="true" href="#">Register</a></li>
             </ul>
           </li>
+        </ul>
 
-          <form class="d-flex">
-            <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search" />
-          </form>
-          <div class="form-check form-switch">
-            <input (click)="themeSwitch()" class="form-check-input column-gap-2" type="checkbox" id="flexSwitchCheckDefault" />
-            <label class="form-check-label" for="flexSwitchCheckDefault"><i class="bi bi-brightness-high"></i></label>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <main [attr.data-bs-theme]="myTheme">
-      <div class="container-fluid">
-        <router-outlet></router-outlet>
-      </div>
-    </main>
-    <footer style="vertical-align: bottom; margin-left: auto; margin-right: auto">
-      <div class="row" style="height: auto">
-        <div class="col-9">
-          <div class="p-2">
-            © 2022-{{ currentYearLong() }} Copyright:
-            <a href="https://github.com/karol-preiskorn/3d-inventory">ultimasolution.pl</a>
-          </div>
-        </div>
-        <div class="col-8 text-center">
-          <a class="btn btn-floating m-1 p-1" role="button" href="https://github.com/karol-preiskorn/3d-inventory-angular-ui">
-            <i class="bi bi-github" style="font-size: 1.2rem; color: rgb(82, 90, 105)"></i>
-          </a>
-          <a class="btn btn-floating m-1 p-1" role="button" href="https://www.ultimasolution.pl/3d-inventory/">
-            <i class="bi bi-wordpress" style="font-size: 1.2em; color: cornflowerblue"></i>
-          </a>
-          <a class="btn btn-floating m-1 p-1" role="button" href="https://www.facebook.com/ultimasolution">
-            <i class="bi bi-facebook" style="font-size: 1.2em; color: cornflowerblue"></i>
-          </a>
+        <form class="d-flex">
+          <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search" />
+        </form>
+        <div class="form-check form-switch">
+          <input (click)="themeSwitch()" (keydown)="handleKeyDown($event)" class="form-check-input column-gap-2"
+            type="checkbox" id="flexSwitchCheckDefault" />
+          <label class="form-check-label" for="flexSwitchCheckDefault"><i
+              class="bi bi-brightness-high"></i></label>
         </div>
       </div>
-    </footer>
-  </body>
+    </nav>
+  </header>
+  <main [attr.data-bs-theme]="myTheme">
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+  <footer style="vertical-align: auto; margin-left: auto; margin-right: auto">
+    <div class="row" style="height: fit-content">
+      <div class="col-9">
+        <div class="p-2">
+          © 2022-{{ currentYearLong() }} Copyright:
+          <a href="https://github.com/karol-preiskorn/3d-inventory">ultimasolution.pl</a>
+        </div>
+      </div>
+      <div class="col-8 text-center">
+        <button class="btn btn-floating m-1 p-1"
+          (click)="openWindow('https://github.com/karol-preiskorn/3d-inventory-angular-ui')"
+          onKeyDown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); window.open('https://github.com/karol-preiskorn/3d-inventory-angular-ui', '_blank'); }">
+          <i class="bi bi-github" style="font-size: 1.2rem; color: rgb(82, 90, 105)"></i>
+        </button>
+        <button class="btn btn-floating m-1 p-1" (click)="openLink('https://www.ultimasolution.pl/3d-inventory/')"
+          (keydown)="handleKeydown($event, 'https://www.ultimasolution.pl/3d-inventory/')">
+          <i class="bi bi-wordpress" style="font-size: 1.2em; color: cornflowerblue"></i>
+        </button>
+        <button class="btn btn-floating m-1 p-1" (click)="openLink('https://www.facebook.com/ultimasolution')"
+          (keydown)="openFacebookLink($event)">
+          <i class="bi bi-facebook" style="font-size: 1.2em; color: cornflowerblue"></i>
+        </button>
+      </div>
+    </div>
+  </footer>
+</body>
+
 </html>

@@ -1,21 +1,24 @@
-import { Component, NgZone, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { faker } from '@faker-js/faker';
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { faker } from '@faker-js/faker'
 
-import { DeviceService } from '../../../services/device.service';
-import { LogService } from '../../../services/log.service';
-import { ModelsService } from '../../../services/models.service';
-import { ComponentDictionary } from '../../../shared/attribute-dictionary-component';
-import { TypeDictionary } from '../../../shared/attribute-dictionary-type';
-import { Device } from '../../../shared/device';
-import { Model } from '../../../shared/model';
-import Validation from '../../../shared/validation';
+import { DeviceService } from '../../../services/device.service'
+import { LogService } from '../../../services/log.service'
+import { ModelsService } from '../../../services/models.service'
+import { Device } from '../../../shared/device'
+import { DeviceCategoryDict } from '../../../shared/deviceCategories'
+import { DeviceTypeDict } from '../../../shared/deviceTypes'
+import { Model } from '../../../shared/model'
+import Validation from '../../../shared/validation'
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-add-device',
   templateUrl: './add-device.component.html',
   styleUrls: ['./add-device.component.scss'],
+  standalone: true,
+  imports: [ReactiveFormsModule, CommonModule],
 })
 export class DeviceAddComponent implements OnInit {
   device: Device

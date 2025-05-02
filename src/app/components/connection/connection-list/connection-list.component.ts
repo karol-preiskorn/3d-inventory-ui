@@ -1,16 +1,21 @@
-import { Component, NgZone, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, NgZone, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 
-import { ConnectionService } from '../../../services/connection.service';
-import { DeviceService } from '../../../services/device.service';
-import { LogIn, LogService } from '../../../services/log.service';
-import { Connection } from '../../../shared/connection';
-import { Device } from '../../../shared/device';
+import { ConnectionService } from '../../../services/connection.service'
+import { DeviceService } from '../../../services/device.service'
+import { LogIn, LogService } from '../../../services/log.service'
+import { Connection } from '../../../shared/connection'
+import { Device } from '../../../shared/device'
+import { CommonModule } from '@angular/common'
+import { LogComponent } from '../../log/log.component'
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-connection-list',
   templateUrl: './connection-list.component.html',
   styleUrls: ['./connection-list.component.scss'],
+  imports: [CommonModule, LogComponent, NgbPaginationModule],
+  standalone: true,
 })
 export class ConnectionListComponent implements OnInit {
   connectionList: Connection[] = []
@@ -18,6 +23,7 @@ export class ConnectionListComponent implements OnInit {
   connectionListPage = 1
   deviceList: Device[] = []
   component = 'Connections'
+  pageSize: number = 5
 
   ngOnInit() {
     this.loadConnection()

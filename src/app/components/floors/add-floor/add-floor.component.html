@@ -2,7 +2,7 @@
   <h3><i class="bi bi-building"></i> Add Floor</h3>
   <form [formGroup]="floorForm" (ngSubmit)="submitForm()" class="g-3 needs-validation" novalidate>
     <div class="form-group mb-3">
-      <label for="id" class="form-label">Id: {{ this.floorForm.controls._id.value }} </label>
+      <label for="id" class="form-label">Id: {{ floor._id }} </label>
     </div>
 
     <div class="col border">
@@ -15,8 +15,8 @@
           maxlength="4000"
           required
           [ngClass]="{
-            'is-invalid': this.floorForm.controls.name.status !== 'VALID',
-            'is-valid': this.floorForm.controls.name.status === 'VALID',
+            'is-invalid': this.floorForm.controls.name.invalid,
+            'is-valid': this.floorForm.controls.name.valid,
             'form-control': true,
           }"></textarea>
         <div *ngIf="this.floorForm.controls.name.errors" class="invalid-feedback">
@@ -36,8 +36,8 @@
                 id="street"
                 required
                 [ngClass]="{
-                  'is-invalid': floorForm.controls.address.controls.street.status !== 'VALID',
-                  'is-valid': floorForm.controls.address.controls.street.status === 'VALID',
+                  'is-invalid': this.floorForm.controls.address.controls.street.invalid,
+                  'is-valid': this.floorForm.controls.address.controls.street.status === 'VALID',
                   'form-control': true,
                 }" />
               <div *ngIf="this.floorForm.controls.address.controls.street.errors" class="invalid-feedback">
@@ -57,8 +57,8 @@
                 id="city"
                 required
                 [ngClass]="{
-                  'is-invalid': this.floorForm.controls.address.controls.city.status !== 'VALID',
-                  'is-valid': this.floorForm.controls.address.controls.city.status === 'VALID',
+                  'is-invalid': this.floorForm.controls.address.controls.city.invalid,
+                  'is-valid': this.floorForm.controls.address.controls.city.valid,
                   'form-control': true,
                 }" />
               <div *ngIf="this.floorForm.controls.address.controls.city.errors" class="invalid-feedback">
@@ -78,8 +78,8 @@
                 id="country"
                 required
                 [ngClass]="{
-                  'is-invalid': this.floorForm.controls.address.controls.country.status !== 'VALID',
-                  'is-valid': this.floorForm.controls.address.controls.country.status === 'VALID',
+                  'is-invalid': this.floorForm.controls.address.controls.country.invalid,
+                  'is-valid': this.floorForm.controls.address.controls.country.valid,
                   'form-control': true,
                 }" />
               <div *ngIf="this.floorForm.controls.address.controls.country.errors" class="invalid-feedback">
@@ -99,7 +99,7 @@
                 id="postcode"
                 required
                 [ngClass]="{
-                  'is-invalid': this.floorForm.controls.address.controls.postcode.status !== 'VALID',
+                  'is-invalid': this.floorForm.controls.address.controls.postcode.invalid,
                   'is-valid': this.floorForm.controls.address.controls.postcode.status === 'VALID',
                   'form-control': true,
                 }" />
@@ -134,7 +134,7 @@
                     maxlength="4000"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.description.status !== 'VALID',
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.description.invalid,
                       'is-valid': this.floorForm.controls.dimension.at(i).controls.description.status === 'VALID',
                       'form-control': true,
                     }"></textarea>
@@ -161,8 +161,8 @@
                     id="xPos"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.xPos.status !== 'VALID',
-                      'is-valid': this.floorForm.controls.dimension.at(i).controls.xPos.status === 'VALID',
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.xPos.invalid,
+                      'is-valid': this.floorForm.controls.dimension.at(i).controls.xPos.valid,
                       'form-control': true,
                     }" />
                   <div *ngIf="this.floorForm.controls.dimension.at(i).controls.xPos.errors" class="invalid-feedback">
@@ -184,8 +184,8 @@
                     id="yPos"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.yPos.status !== 'VALID',
-                      'is-valid': this.floorForm.controls.dimension.at(i).controls.yPos.status === 'VALID',
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.yPos.invalid,
+                      'is-valid': this.floorForm.controls.dimension.at(i).controls.yPos.valid,
                       'form-control': true,
                     }" />
                   <div *ngIf="this.floorForm.controls.dimension.at(i).controls.yPos.errors" class="invalid-feedback">
@@ -207,7 +207,7 @@
                     id="hPos"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.hPos.status !== 'VALID',
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.hPos.invalid,
                       'is-valid': this.floorForm.controls.dimension.at(i).controls.hPos.status === 'VALID',
                       'form-control': true,
                     }" />
@@ -232,7 +232,7 @@
                     id="x"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.x.status !== 'VALID',
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.x.invalid,
                       'is-valid': this.floorForm.controls.dimension.at(i).controls.x.status === 'VALID',
                       'form-control': true,
                     }" />
@@ -253,7 +253,7 @@
                     id="y"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.y.status !== 'VALID',
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.y.invalid,
                       'is-valid': this.floorForm.controls.dimension.at(i).controls.y.status === 'VALID',
                       'form-control': true,
                     }" />
@@ -274,7 +274,7 @@
                     id="h"
                     required
                     [ngClass]="{
-                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.h.status !== 'VALID',
+                      'is-invalid': this.floorForm.controls.dimension.at(i).controls.h.invalid,
                       'is-valid': this.floorForm.controls.dimension.at(i).controls.h.status === 'VALID',
                       'form-control': true,
                     }" />
@@ -299,7 +299,7 @@
                 </button>
               </div>
               <div class="p-1 g-col-1 column-gap-3">
-                <button type="button" (click)="this.generateDimension(i)" class="btn btn-debug">
+                <button type="button" (click)="generateDimension(i)" class="btn btn-debug">
                   <i class="bi bi-bookmark-plus"></i> Generate random Dimension {{ i }}
                 </button>
               </div>
@@ -314,7 +314,7 @@
         </p>
         <div class="d-flex p-2">
           <div class="p-1 g-col-1">
-            <button type="submit" [disabled]="!(floorForm.valid && floorForm.touched)" class="btn btn-primary mb-3">
+            <button type="submit" [disabled]="isSubmitDisabled" class="btn btn-primary mb-3">
               <i class="bi bi-save"></i> Save
             </button>
           </div>

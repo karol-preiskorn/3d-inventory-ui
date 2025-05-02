@@ -7,11 +7,14 @@ import { FloorService } from '../../../services/floor.service'
 import { LogIn, LogService } from '../../../services/log.service'
 import { Floor, FloorDimension } from '../../../shared/floor'
 import Validation from '../../../shared/validation'
+import { LogComponent } from '../../log/log.component'
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-edit-floor',
   templateUrl: './edit-floor.component.html',
   styleUrls: ['./edit-floor.component.scss'],
+  imports: [CommonModule, ReactiveFormsModule, LogComponent],
 })
 export class FloorEditComponent implements OnInit {
   floor: Floor
@@ -45,14 +48,14 @@ export class FloorEditComponent implements OnInit {
   })
 
   constructor(
-    private formBuilder: FormBuilder,
+    private readonly formBuilder: FormBuilder,
     public activatedRoute: ActivatedRoute,
 
     public ReactiveFormsModule: ReactiveFormsModule,
-    private ngZone: NgZone,
-    private router: Router,
-    private floorService: FloorService,
-    private logService: LogService,
+    private readonly ngZone: NgZone,
+    private readonly router: Router,
+    private readonly floorService: FloorService,
+    private readonly logService: LogService,
   ) {}
 
   ngOnInit() {
@@ -65,7 +68,7 @@ export class FloorEditComponent implements OnInit {
     this.attributeComponentObject = JSON.stringify(this.floor)
     console.log('edit-device.attributeComponent = ' + this.attributeComponent)
     console.log('edit-device.attributeComponentObject = ' + this.attributeComponentObject)
-    // @TODO one line mapping for this.floorForm.setValue(this.floor)
+    // TODO: one line mapping for this.floorForm.setValue(this.floor)
     console.log(this.floor.dimension.map((d) => this.createDimensionGroup(d)))
     this.floorForm.controls.id.setValue(id)
     this.floorForm.controls.name.setValue(this.floor.name)
@@ -206,7 +209,7 @@ export class FloorEditComponent implements OnInit {
   }
 
   generateFloor() {
-    this.floorForm.controls.name.setValue(faker.company.name() + ' - ' + faker.company.catchPhrase())
+    this.floorForm.controls.name.setValue(faker.company.name() + ' - ' + faker.company.buzzPhrase())
     this.floorForm.controls.address.controls.street.setValue(
       faker.location.street() + ' ' + faker.location.buildingNumber(),
     )

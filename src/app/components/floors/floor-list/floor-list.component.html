@@ -8,17 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        *ngFor="
-          let floor of floorList
-            | paginate
-              : {
-                  id: 'floorPagination',
-                  itemsPerPage: 5,
-                  currentPage: floorListPage,
-                }
-        "
-      >
+      <tr *ngFor="let floor of floorList | slice: (floorListPage - 1) * 5 : floorListPage * 5">
         <td>
           {{ floor.name }}<br />
           <div class="text-body-tertiary small p-2">
@@ -39,7 +29,7 @@
           </div>
         </td>
         <td>
-          <div class="btn-group float-md-end" role="group" aria-label="device-operations">
+          <fieldset class="btn-group float-md-end" aria-label="device-operations">
             <button type="button" class="btn btn-success btn-sm move-right" id="edit-device" (click)="editFloor(floor)">
               Edit
             </button>
@@ -49,7 +39,7 @@
             <button type="button" id="clone-device" class="btn btn-info btn-sm" (click)="cloneFloor(floor._id)">
               Clone
             </button>
-          </div>
+          </fieldset>
         </td>
       </tr>
     </tbody>
@@ -57,7 +47,14 @@
   <button type="button" class="btn btn-success btn-sm move-right mb-3" (click)="addFloor()">
     <i class="bi bi-plus-lg"></i> Add
   </button>
-  <pagination-controls (pageChange)="floorListPage = $event" id="floorPagination"></pagination-controls>
+  <ngb-pagination
+    [(page)]="floorListPage"
+    [pageSize]="5"
+    [collectionSize]="floorList.length"
+    [maxSize]="5"
+    [boundaryLinks]="true"
+    aria-label="Attribute pagination">
+  </ngb-pagination>
 </div>
 
-<app-log [component]="component"></app-log>
+<app-log *ngIf="component" [component]="component"></app-log>

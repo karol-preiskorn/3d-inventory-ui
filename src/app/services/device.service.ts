@@ -14,9 +14,9 @@ import { Log, LogIn } from './log.service'
 })
 export class DeviceService {
   baseurl = environment.baseurl
-  private objectName = 'devices'
+  private readonly objectName = 'devices'
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -68,6 +68,7 @@ export class DeviceService {
       name: '',
       modelId: '',
       position: { x: 0, y: 0, h: 0 },
+      isDebugMode: false,
     }
     this.getDeviceSynchronize(id).subscribe((value: Device) => {
       console.info('Get Device: ' + JSON.stringify(value, null, ' '))
@@ -117,7 +118,6 @@ export class DeviceService {
       .pipe(retry(1), catchError(this.handleErrorTemplate<Device>('postDevice', data)))
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private handleErrorTemplate<T>(operation: string, _result?: T) {
     return (error: Error): Observable<T> => {
       console.error(`DeviceService.handleErrorTemplate operation: ${operation}, error: ${error.message}`)

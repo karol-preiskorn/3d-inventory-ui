@@ -1,17 +1,21 @@
-import { Component, Inject, NgZone, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, Inject, NgZone, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
 
-import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service';
-import { LogService } from '../../../services/log.service';
-import { AttributeDictionary } from '../../../shared/attribute-dictionary';
-import { ComponentDictionary } from '../../../shared/attribute-dictionary-component';
-import { TypeDictionary } from '../../../shared/attribute-dictionary-type';
+import { CommonModule } from '@angular/common'
+import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
+import { LogService } from '../../../services/log.service'
+import { AttributeDictionary } from '../../../shared/attribute-dictionary'
+import { ComponentDictionary } from '../../../shared/component-dictionary'
+import { DeviceCategoryDict } from '../../../shared/deviceCategories'
+import { DeviceTypeDict } from '../../../shared/deviceTypes'
 
 @Component({
   selector: 'app-add-attribute-dictionary',
   templateUrl: './add-attribute-dictionary.component.html',
   styleUrls: ['./add-attribute-dictionary.component.scss'],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class AttributeDictionaryAddComponent implements OnInit {
   addAttributeDictionaryForm: FormGroup<{

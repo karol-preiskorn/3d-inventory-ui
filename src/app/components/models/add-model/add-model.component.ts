@@ -1,7 +1,10 @@
-import { Component, NgZone, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { faker } from '@faker-js/faker';
+import { environment } from 'src/environments/environment'
+
+import { CommonModule } from '@angular/common'
+import { Component, NgZone, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { faker } from '@faker-js/faker'
 
 import { LogService } from '../../../services/log.service';
 import { ModelsService } from '../../../services/models.service';
@@ -13,40 +16,64 @@ import { Model } from '../../../shared/model';
   selector: 'app-add-model',
   templateUrl: './add-model.component.html',
   styleUrls: ['./add-model.component.scss'],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class ModelAddComponent implements OnInit {
-  addModelForm = new FormGroup({
-    id: new FormControl('', null),
-    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    dimension: new FormGroup({
-      width: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern('^[0-9]*$')]),
-      height: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern('^[0-9]*$')]),
-      depth: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern('^[0-9]*$')]),
-    }),
-    texture: new FormGroup({
-      front: new FormControl('', null),
-      back: new FormControl('', null),
-      side: new FormControl('', null),
-      top: new FormControl('', null),
-      bottom: new FormControl('', null),
-    }),
-    type: new FormControl('', Validators.required),
-    category: new FormControl('', Validators.required),
-  })
+  addModelForm: FormGroup
   model: Model
   isSubmitted = false
-  componentDictionary: ComponentDictionary = new ComponentDictionary()
-  typeDictionary: TypeDictionary = new TypeDictionary()
+  deviceTypeDict = new DeviceTypeDict()
+  deviceCategoryDict = new DeviceCategoryDict()
+  isSubmitDisabled: boolean = false
+  isProduction: boolean = environment.production
 
   constructor(
-    private ngZone: NgZone,
-    private router: Router,
+    private readonly ngZone: NgZone,
+    private readonly router: Router,
     public modelsService: ModelsService,
-    private logService: LogService,
+    private readonly logService: LogService,
+    private readonly formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
     this.model = new Model()
+    this.addModelForm = this.formBuilder.group({
+      id: ['', null],
+      name: ['', [Validators.required, Validators.minLength(4)]],
+      dimension: this.formBuilder.group({
+        width: [
+          '',
+          [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern('^[0-9]*$')],
+        ],
+        height: [
+          '',
+          [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern('^[0-9]*$')],
+        ],
+        depth: [
+          '',
+          [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern('^[0-9]*$')],
+        ],
+      }),
+      texture: this.formBuilder.group({
+        front: ['', null],
+        back: ['', null],
+        side: ['', null],
+        top: ['', null],
+        bottom: ['', null],
+      }),
+      type: ['', Validators.required],
+      category: ['', Validators.required],
+    })
+  }
+
+  get textureGroup(): FormGroup {
+    return this.addModelForm.get('texture') as FormGroup
+  }
+
+  isFieldInvalid(fieldPath: string): boolean {
+    const control = this.addModelForm.get(fieldPath)
+    return control ? control.invalid && (control.touched || control.dirty) : false
   }
 
   changeValue(controlName: string, value: string) {
@@ -64,15 +91,20 @@ export class ModelAddComponent implements OnInit {
     if (this.addModelForm.controls.name !== null && this.addModelForm.controls.name !== undefined) {
       this.addModelForm.controls.name.setValue(faker.company.name() + ' ' + faker.company.buzzPhrase())
     }
-    if (this.addModelForm.controls.dimension.controls.depth) {
-      this.addModelForm.controls.dimension.controls.depth.setValue(faker.number.int(10).toString())
+    const dimensionGroup = this.addModelForm.get('dimension') as FormGroup
+    if (dimensionGroup?.get('depth')) {
+      dimensionGroup.get('depth')?.setValue(faker.number.int(10).toString())
     }
-    if (this.addModelForm.controls.dimension.controls.height) {
-      this.addModelForm.controls.dimension.controls.height.setValue(faker.number.int(10).toString())
+    if (dimensionGroup?.get('height')) {
+      dimensionGroup.get('height')?.setValue(faker.number.int(10).toString())
     }
-    if (this.addModelForm.controls.dimension.controls.width) {
-      this.addModelForm.controls.dimension.controls.width.setValue(faker.number.int(10).toString())
+    if (dimensionGroup?.get('width')) {
+      dimensionGroup.controls['width'].setValue(faker.number.int(10).toString())
     }
+  }
+
+  getFormValues(): string {
+    return JSON.stringify(this.addModelForm.value, null, 2) // Pretty-print the form values
   }
 
   submitForm() {

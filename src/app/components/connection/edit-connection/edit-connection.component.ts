@@ -3,23 +3,26 @@
  * @version 2024-03-17 C2RLO - Initial new unified version
  **/
 
-import { firstValueFrom, Observable, tap } from 'rxjs';
+import { firstValueFrom, Observable, tap } from 'rxjs'
+import { ReactiveFormsModule } from '@angular/forms'
 
-import { Component, NgZone, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, NgZone, OnInit } from '@angular/core'
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router'
 
-import { ConnectionService } from '../../../services/connection.service';
-import { DeviceService } from '../../../services/device.service';
-import { LogService } from '../../../services/log.service';
-import { ComponentDictionary } from '../../../shared/attribute-dictionary-component';
-import { Connection } from '../../../shared/connection';
-import { Device } from '../../../shared/device';
+import { ConnectionService } from '../../../services/connection.service'
+import { DeviceService } from '../../../services/device.service'
+import { LogService } from '../../../services/log.service'
+import { ComponentDictionary } from '../../../shared/component-dictionary'
+import { Connection } from '../../../shared/connection'
+import { Device } from '../../../shared/device'
+import { CommonModule } from '@angular/common'
+import { LogComponent } from '../../log/log.component'
 
 @Component({
   selector: 'app-edit-connection',
   templateUrl: './edit-connection.component.html',
-  styleUrls: ['./edit-connection.component.scss'],
+  imports: [ReactiveFormsModule, CommonModule, LogComponent],
 })
 export class ConnectionEditComponent implements OnInit {
   inputId: string

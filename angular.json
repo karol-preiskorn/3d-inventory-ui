@@ -92,7 +92,7 @@
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "buildTarget": "3d-inventory-angular-ui:build:development",
-            "proxyConfig": "src/proxy.conf.json",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {

@@ -9,16 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        *ngFor="
-          let device of deviceList
-            | paginate
-              : {
-                  id: 'devicePagination',
-                  itemsPerPage: 5,
-                  currentPage: deviceListPage,
-                }
-        ">
+      <tr *ngFor="let device of deviceList | slice: (deviceListPage - 1) * 5 : deviceListPage * 5">
         <td>
           <a title="{{ device._id }}">{{ device.name }}</a>
           <p class="fs-7 fw-lighter deviceid">{{ device._id }}</p>
@@ -32,7 +23,7 @@
           <p class="fs-7 fw-lighter deviceid">{{ device.modelId }}</p>
         </td>
         <td>
-          <div class="btn-group float-md-end" role="group" aria-label="device-operations">
+          <fieldset class="btn-group float-md-end" aria-label="device-operations">
             <button type="button" class="btn btn-success btn-sm move-right" id="edit-device" (click)="EditForm(device)">
               <i class="bi bi-pen"></i>
             </button>
@@ -42,7 +33,7 @@
             <button type="button" id="clone-device" class="btn btn-light btn-sm" (click)="CloneDevice(device._id)">
               <i class="bi bi-copy"></i>
             </button>
-          </div>
+          </fieldset>
         </td>
       </tr>
     </tbody>
@@ -50,7 +41,14 @@
   <button type="button" class="btn btn-success btn-sm move-right mb-3" (click)="AddForm()">
     <i class="bi bi-plus-lg"></i> Add
   </button>
-  <pagination-controls (pageChange)="deviceListPage = $event" id="devicePagination"></pagination-controls>
+  <ngb-pagination
+    [(page)]="deviceListPage"
+    [pageSize]="5"
+    [collectionSize]="deviceList.length"
+    [maxSize]="5"
+    [boundaryLinks]="true"
+    aria-label="Attribute pagination">
+  </ngb-pagination>
 </div>
 
 <app-log [component]="component"></app-log>

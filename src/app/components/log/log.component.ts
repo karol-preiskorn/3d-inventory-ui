@@ -1,25 +1,42 @@
 /**
- * @module /src/app/components/log
- * @description This file contains the implementation of the LogComponent class, which is responsible for displaying and managing logs in the application.
- * @module log
- * @public
- **/
+ * Represents the LogComponent, which is responsible for managing and displaying logs
+ * related to various components and objects in the application.
+ *
+ * This component interacts with multiple services to fetch and display logs, as well as
+ * retrieve related data such as devices, models, connections, attributes, and floors.
+ * It provides methods for loading logs, deleting logs, and finding related information
+ * based on log messages.
+ *
+ * @remarks
+ * - The component uses Angular',s `OnInit` lifecycle hook to initialize and load logs.
+ * - It also listens for changes in input properties to reload logs dynamically.
+ * - The component relies on various services to fetch data and manage logs.
+ *
+ * @example
+ * <app-log [component]="'Devices'" [attributeComponentObject]="deviceObject"></app-log>
+ *
+ * @see {@link LogService}, {@link AttributeService}, {@link DeviceService}, {@link ModelsService}, {@link ConnectionService}, {@link AttributeDictionaryService}, {@link FloorService}
+ */
 
-import { Subscription } from 'rxjs';
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap'
+import { Subscription } from 'rxjs'
 
-import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'
+import { Component, Input, OnInit } from '@angular/core'
 
-import { AttributeDictionaryService } from '../../services/attribute-dictionary.service';
-import { ConnectionService } from '../../services/connection.service';
-import { DeviceService } from '../../services/device.service';
-import { FloorService } from '../../services/floor.service';
-import { Log, LogService } from '../../services/log.service';
-import { ModelsService } from '../../services/models.service';
-import { AttributeDictionary } from '../../shared/attribute-dictionary';
-import { Connection } from '../../shared/connection';
-import { Device } from '../../shared/device';
-import { Floor } from '../../shared/floor';
-import { Model } from '../../shared/model';
+import { AttributeDictionaryService } from '../../services/attribute-dictionary.service'
+import { AttributeService } from '../../services/attribute.service'
+import { ConnectionService } from '../../services/connection.service'
+import { DeviceService } from '../../services/device.service'
+import { FloorService } from '../../services/floor.service'
+import { Log, LogService } from '../../services/log.service'
+import { ModelsService } from '../../services/models.service'
+import { Attribute } from '../../shared/attribute'
+import { AttributeDictionary } from '../../shared/attribute-dictionary'
+import { Connection } from '../../shared/connection'
+import { Device } from '../../shared/device'
+import { Floor } from '../../shared/floor'
+import { Model } from '../../shared/model'
 
 const api = [
   { component: 'Model', name: 'Model' },
@@ -43,16 +60,25 @@ function getComponentName(component: string): string | undefined {
 }
 
 function isApiName(component: string): boolean {
-  return api.find((e) => e.component === component) ? true : false
+  return !!api.find((e) => e.component === component)
+}
+
+function isComponentName(apiName: string): boolean {
+  return api.some((e) => e.api === apiName)
 }
 
 @Component({
   selector: 'app-log',
   templateUrl: './log.component.html',
   styleUrls: ['./log.component.scss'],
+  standalone: true,
+  imports: [CommonModule, NgbPagination],
 })
 export class LogComponent implements OnInit {
   LogList: Log[] = []
+  logListPage = 1 // Current page
+  pageSize = 10 // Number of items per page
+  totalItems = 0 // Total number of items
 
   @Input() component: string
   @Input() attributeComponentObject: Device = new Device()
@@ -170,7 +196,7 @@ export class LogComponent implements OnInit {
   }
 
   /**
-   * Depends on type log find usable information from log.message.
+   * Depends on type log find usable information selector: 'app-log', from log.message.
    * @param log - The log object containing the message.
    * @returns The name found in the log message.
    */

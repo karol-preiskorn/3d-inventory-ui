@@ -10,7 +10,7 @@ import { Device } from './shared/device'
 export class ResolverDevice implements Resolve<Observable<Device[]>> {
   constructor(private api: DeviceService) {}
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<Device[]> {
     console.log('Resolver')
     return this.api.GetDevices()

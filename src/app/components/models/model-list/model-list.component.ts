@@ -1,28 +1,34 @@
-import { Observable, of } from 'rxjs';
+import { Component, NgZone, OnInit } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { Router } from '@angular/router'
+import { of, Observable } from 'rxjs'
 
-import { Component, NgZone, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { LogService } from '../../../services/log.service';
-import { ModelsService } from '../../../services/models.service';
-import { Model } from '../../../shared/model';
+import { LogService } from '../../../services/log.service'
+import { ModelsService } from '../../../services/models.service'
+import { Model } from '../../../shared/model'
+import { LogComponent } from '../../log/log.component'
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-models-list',
   templateUrl: './model-list.component.html',
   styleUrls: ['./model-list.component.scss'],
+  standalone: true,
+  imports: [CommonModule, NgbPagination, LogComponent], // Add LogComponent to imports
 })
 export class ModelsListComponent implements OnInit {
-  ModelsList: Array<Model> = []
-  selectedModel: Model
-  modelListPage = 1
+  modelListPage: number = 1
+  pageSize = 10 // Number of items per page
+  totalItems = 0 // Total number of items
+  ModelsList: Array<any> = []
   component: string = 'Models'
+  selectedModel: Model | null = null // Declare selectedModel property
 
   constructor(
+    private readonly router: Router,
+    private readonly ngZone: NgZone,
     public modelsService: ModelsService,
-    private logService: LogService,
-    private router: Router,
-    private ngZone: NgZone,
+    private readonly logService: LogService,
   ) {}
 
   /**
@@ -40,6 +46,7 @@ export class ModelsListComponent implements OnInit {
     this.loadModels().subscribe((data: Model[]) => {
       this.ModelsList = data
     })
+    console.log(`ModelsListComponent initialized with component: ${this.component}`)
   }
 
   /**
@@ -47,12 +54,7 @@ export class ModelsListComponent implements OnInit {
    * @param id The ID of the model to delete.
    */
   DeleteModel(id: string) {
-    this.logService.CreateLog({
-      message: { id: id },
-      objectId: id,
-      operation: 'Delete',
-      component: this.component,
-    })
+    this.logService.CreateLog({ message: { id: id }, objectId: id, operation: 'Delete', component: this.component })
     return this.modelsService.DeleteModel(id).subscribe(() => {
       console.log(id + ' deleted')
       this.ngOnInit()
@@ -69,11 +71,7 @@ export class ModelsListComponent implements OnInit {
   async CloneModel(id: string): Promise<string> {
     const idCloned = await this.modelsService.CloneModel(id)
     this.logService
-      .CreateLog({
-        message: { id: id, new_id: idCloned },
-        operation: 'Clone',
-        component: 'Model',
-      })
+      .CreateLog({ message: { id: id, new_id: idCloned }, operation: 'Clone', component: 'Model' })
       .subscribe(() => {
         this.ngZone.run(() => this.router.navigateByUrl('models-list'))
       })
@@ -95,7 +93,7 @@ export class ModelsListComponent implements OnInit {
    * @param model The model to be edited.
    */
   EditModel(model: Model): void {
-    this.selectedModel = model
+    this.selectedModel = model // Assign the selected model
     this.router.navigate(['edit-model', model._id])
     this.ngZone.run(() => this.router.navigateByUrl(`edit-model/${model._id}`))
   }

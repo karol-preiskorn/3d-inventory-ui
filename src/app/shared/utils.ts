@@ -3,11 +3,6 @@
  * Description: Diff rest TS function shared by all Components
  * Used by:     LogService
  * Dependency:
- *
- * Date        By     Comments
- * ----------  -----  ---------------------------------------------------------
- * 2023-04-02	vC2RLO  Fix + and add seconds to show in LogService
- * 2023-03-12  C2RLO  On-init
  */
 
 import { format } from 'date-fns'

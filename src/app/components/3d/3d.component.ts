@@ -15,21 +15,12 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { DeviceService } from '../../services/device.service';
-import { ModelsService } from '../../services/models.service';
-import { Device } from '../../shared/device';
-import { Model } from '../../shared/model';
+import { DeviceService } from '../../services/device.service'
+import { ModelsService } from '../../services/models.service'
+import { Device } from '../../shared/device'
+import { Model } from '../../shared/model'
 
-const materials = [
-  new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true }), // front
-  new THREE.MeshPhongMaterial({ color: 0xffffff }), // side
-]
-
-@Component({
-  selector: 'app-cube',
-  templateUrl: './3d.component.html',
-  styleUrls: ['./3d.component.scss'],
-})
+@Component({ selector: 'app-cube', templateUrl: './3d.component.html', styleUrls: ['./3d.component.scss'] })
 export class CubeComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas')
   private canvasRef!: ElementRef
@@ -52,9 +43,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
   private loader = new THREE.TextureLoader()
   private geometry = new THREE.BoxGeometry(4, 2, 1)
 
-  private material = new THREE.MeshBasicMaterial({
-    map: this.loader.load(this.texture),
-  })
+  private material = new THREE.MeshBasicMaterial({ map: this.loader.load(this.texture) })
 
   private cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material)
 
@@ -281,8 +270,16 @@ export class CubeComponent implements OnInit, AfterViewInit {
   addText() {
     const text = '3d Inventory'
     const loader = new FontLoader()
-    this.addTextOnWall(loader, text)
-  }
+    loader.load('./../../../assets/fonts/Fira Code Retina_Regular.json', (font: Font) => {
+      const textGeo = new TextGeometry('3d invetory', {
+        font: font,
+        size: 4,
+        depth: 1,
+        curveSegments: 8,
+        bevelThickness: 0.1,
+        bevelSize: 0.1,
+        bevelEnabled: true,
+      })
 
   private addTextOnWall(loader: FontLoader, text: string) {
     loader.load(
@@ -408,7 +405,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     // https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
     //
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
+
     const component: CubeComponent = this
     ;(function render() {
       requestAnimationFrame(render)

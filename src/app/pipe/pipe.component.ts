@@ -1,6 +1,6 @@
-import { interval } from 'rxjs';
+import { interval, Observable, Observer } from 'rxjs';
 
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
