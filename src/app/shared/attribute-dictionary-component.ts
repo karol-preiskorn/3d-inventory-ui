@@ -3,25 +3,25 @@
  * 2023-06-03  C2RLO
  */
 
-export interface ComponentDictionaryItem {
+export interface Component {
   name: string
   description: string
 }
 
 export class ComponentDictionary {
-  list: ComponentDictionaryItem[] = [
+  list: Component[] = [
     { name: '', description: '' },
-    { name: 'device', description: '' },
-    { name: 'model', description: '' },
-    { name: 'connection', description: '' },
-    { name: 'attribute', description: '' },
+    { name: 'Device', description: '' },
+    { name: 'Model', description: '' },
+    { name: 'Connection', description: '' },
+    { name: 'Attribute', description: '' },
   ]
 
-  get(): ComponentDictionaryItem[] {
+  get(): Component[] {
     return this.list
   }
 
-  public getRandom(): ComponentDictionaryItem {
+  public getRandom(): Component {
     return this.list[Math.floor(Math.random() * this.list.length)]
   }
 
@@ -29,7 +29,7 @@ export class ComponentDictionary {
     return this.list[Math.floor(Math.random() * this.list.length)].name
   }
 
-  findType(search: string): string | ComponentDictionaryItem {
+  findType(search: string): string | Component {
     const element = this.list.find((e) => e.name === search)
     return element || search // element?.DeviceType || search
   }

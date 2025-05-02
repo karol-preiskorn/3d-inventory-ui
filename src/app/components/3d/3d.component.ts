@@ -1,24 +1,19 @@
 /**
- * @description: First tree.js component
+ * @description: 3D component for Angular
  * @todo:
- *   [ ] ashow cue diefinied in 3d-inventory db
- *   [ ] add cube from Angular
- *
- * @version: 2023-08-08   C2RLO   Starting developing Racks
- * @version: 2023-07-13   C2RLO   Get cube from
- * @version: 2023-04-16   C2RLO   Add cube
+ *   [ ] show cue diefinied in 3d-inventory DB.
+ *   [ ] add cube from Angular.
  */
 
-import { Observable } from 'rxjs'
-import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
-import { Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
+import { Observable } from 'rxjs';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
+import { Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 
-import { HttpClient } from '@angular/common/http'
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
-import { tr } from '@faker-js/faker'
+import { HttpClient } from '@angular/common/http';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { DeviceService } from '../../services/device.service'
 import { ModelsService } from '../../services/models.service'
@@ -78,7 +73,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
   ) {
     console.log('constructor')
-    this.material.opacity = 0.8
+    this.material.opacity = 1
     this.cube.receiveShadow = true
   }
 
@@ -96,15 +91,37 @@ export class CubeComponent implements OnInit, AfterViewInit {
     const geometry = new THREE.BoxGeometry(box_x, box_y, box_z)
     this.material.color = new THREE.Color(Math.random() * 0xffffff)
     const sphereMaterial = new THREE.MeshStandardMaterial({ color: Math.random() * 0xffffff })
-    this.material.opacity = 0.75
+    this.material.opacity = 1
 
     const object = new THREE.Mesh(geometry, sphereMaterial)
     object.position.x = pos_x
-    object.position.y = pos_y
-    object.position.z = pos_z
+    object.position.y = pos_z
+    object.position.z = pos_y
     object.castShadow = true
     object.receiveShadow = true
     this.scene.add(object)
+
+    const axesHelper = new THREE.AxesHelper(45)
+    this.scene.add(axesHelper)
+
+    const loader = new FontLoader()
+    loader.load('./../../../assets/fonts/Fira Code Retina_Regular.json', (font: Font) => {
+      const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff })
+
+      const createTextMesh = (text: string, position: THREE.Vector3) => {
+        const textGeo3 = new TextGeometry(text, {
+          font: font,
+          size: 10,
+          depth: 10,
+        })
+        const textMesh = new THREE.Mesh(textGeo3, textMaterial)
+        object.position.x = pos_x + 8
+        object.position.y = pos_z + 5
+        object.position.z = pos_y + 8
+        textMesh.position.copy(object.position)
+        this.scene.add(textMesh)
+      }
+    })
   }
 
   loadDevices() {
@@ -136,15 +153,8 @@ export class CubeComponent implements OnInit, AfterViewInit {
     console.log('Model list: ' + this.modelList.length)
     this.deviceList.forEach((device: Device) => {
       const model: Model = this.modelList.find((e: Model) => e._id === device.modelId) as Model
-      this.createDevice3d(
-        model.dimension.width,
-        model.dimension.height,
-        model.dimension.depth,
-        device.position.x,
-        device.position.y,
-        device.position.h,
-      )
-      console.log('Create device: ' + device.name + ' ' + device.position.x + ' ' + device.position.y)
+      this.createDevice3d(model.dimension.width, model.dimension.height, model.dimension.depth, device.position.x, device.position.y, device.position.h)
+      console.log(`Create device: ${device.name} (${device.position.x}, ${device.position.y})`)
     })
   }
 
@@ -177,18 +187,15 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   addLight() {
-    const light = new THREE.DirectionalLight(0xffffff, 2)
-    light.position.set(30, 10, 50)
+    const light = new THREE.DirectionalLight(0xffffff, 1)
+    light.position.set(30, 20, 20)
     light.castShadow = true
 
-    light.position.set(15, 20, 10)
-    light.castShadow = true // default false
-
     //Set up shadow properties for the light
-    light.shadow.mapSize.width = 3000 // default
-    light.shadow.mapSize.height = 3000 // default
-    light.shadow.camera.near = 1000 // default
-    light.shadow.camera.far = 2000 // default
+    light.shadow.mapSize.width = 4000 // default
+    light.shadow.mapSize.height = 4000 // default
+    light.shadow.camera.near = 2500 // default
+    light.shadow.camera.far = 3000 // default
 
     this.scene.add(light)
 
@@ -197,31 +204,30 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   directionalLight() {
-    const light2 = new THREE.DirectionalLight(0xffffff, 1.3)
-    light2.position.set(-20, 30, 20)
+    const light2 = new THREE.DirectionalLight(0xffffff, 0.3)
+    light2.position.set(-45, 45, 20)
     light2.castShadow = true
     this.scene.add(light2)
 
-    const lightHelper2 = new THREE.DirectionalLightHelper(light2, 1)
+    const lightHelper2 = new THREE.DirectionalLightHelper(light2, 2)
     this.scene.add(lightHelper2)
   }
 
-  directionalLight2() {
-    const light3 = new THREE.DirectionalLight(0xffffff, 0.8)
-    light3.position.set(20, 20, 25)
+  directionalLight3() {
+    const light3 = new THREE.DirectionalLight(0xffffff, 1.5)
+    light3.position.set(45, 35, 20)
     light3.castShadow = true
     this.scene.add(light3)
 
-    const lightHelper3 = new THREE.DirectionalLightHelper(light3, 1)
+    const lightHelper3 = new THREE.DirectionalLightHelper(light3, 1.3)
     this.scene.add(lightHelper3)
   }
 
-  addAbientLight() {
+  addAmbientLight() {
     const color = 0xffffff
-    const intensity = 0.9
-    const lightAbient = new THREE.AmbientLight(color, intensity)
-    lightAbient.castShadow = true
-    this.scene.add(lightAbient)
+    const lightAmbient = new THREE.AmbientLight(color, 2)
+    lightAmbient.castShadow = true
+    this.scene.add(lightAmbient)
   }
 
   private animateCube() {
@@ -275,21 +281,60 @@ export class CubeComponent implements OnInit, AfterViewInit {
         bevelEnabled: true,
       })
 
-      const material = new THREE.MeshBasicMaterial({ color: 0x995050 })
-      const textMesh = new THREE.Mesh(textGeo, material)
-      textMesh.position.x = -18
-      textMesh.position.y = 2
-      textMesh.position.z = 25
+  private addTextOnWall(loader: FontLoader, text: string) {
+    loader.load(
+      './../../../assets/fonts/Fira Code Retina_Regular.json',
+      (font: Font) => {
+        const textGeo = new TextGeometry(text, {
+          font: font,
+          size: 4,
+          height: 1,
+          curveSegments: 8,
+          bevelThickness: 0.1,
+          bevelSize: 0.1,
+          bevelEnabled: true,
+        })
 
-      textMesh.rotation.x = 0
-      textMesh.rotation.y = Math.PI * 2
-      this.scene.add(textMesh)
-    })
+        const material = new THREE.MeshBasicMaterial({ color: 0x995050 })
+        const textMesh = new THREE.Mesh(textGeo, material)
+        textMesh.position.x = -18
+        textMesh.position.y = 5
+        textMesh.position.z = 25
+
+        textMesh.rotation.x = 0
+        textMesh.rotation.y = Math.PI * 2
+        this.scene.add(textMesh)
+      },
+      undefined,
+      (error) => {
+        console.error('An error occurred while loading the font:', error)
+      },
+    )
   }
 
   addAxis() {
-    const axesHelper = new THREE.AxesHelper(35)
+    const axesHelper = new THREE.AxesHelper(45)
     this.scene.add(axesHelper)
+
+    const loader = new FontLoader()
+    loader.load('./../../../assets/fonts/Fira Code Retina_Regular.json', (font: Font) => {
+      const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff })
+
+      const createTextMesh = (text: string, position: THREE.Vector3) => {
+        const textGeo3 = new TextGeometry(text, {
+          font: font,
+          size: 4,
+          depth: 1,
+        })
+        const textMesh = new THREE.Mesh(textGeo3, textMaterial)
+        textMesh.position.copy(position)
+        this.scene.add(textMesh)
+      }
+
+      createTextMesh('X', new THREE.Vector3(36, 0, 0))
+      createTextMesh('Y', new THREE.Vector3(0, 36, 0))
+      createTextMesh('Z', new THREE.Vector3(0, 0, 36))
+    })
   }
 
   private createScene() {
@@ -303,12 +348,12 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.scene.castShadow = true
     this.scene.receiveShadow = true
 
-    this.scene.fog = new THREE.Fog(0x333333, 200, 1500)
+    //this.scene.fog = new THREE.Fog(0x333333, 200, 1500)
 
     this.addWalls()
 
     this.directionalLight()
-    this.directionalLight2()
+    this.directionalLight3()
 
     this.addText()
     this.addAxis()
@@ -319,17 +364,12 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.createDeviceList3d()
 
     const aspectRatio = this.getAspectRatio()
-    this.camera = new THREE.PerspectiveCamera(
-      this.fieldOfView,
-      aspectRatio,
-      this.nearClippingPlane,
-      this.farClippingPlane,
-    )
+    this.camera = new THREE.PerspectiveCamera(this.fieldOfView, aspectRatio, this.nearClippingPlane, this.farClippingPlane)
     this.camera.position.z = 500
     this.camera.position.x = 500
     this.camera.position.y = 500
     const controls = new OrbitControls(this.camera, this.canvas)
-    this.camera.zoom = 0.8
+    this.camera.zoom = 0.7
     controls.target.set(0, 0, 0)
     controls.enablePan = true
     controls.enableZoom = true
@@ -354,6 +394,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     const near = 0.01
     const far = 3000
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
+
     camera.position.set(10, 20, 20)
 
     const controls = new OrbitControls(camera, this.canvas)

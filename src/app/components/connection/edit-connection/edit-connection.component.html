@@ -52,11 +52,9 @@
               {{ deviceFromObj.name }}
             </option>
           </select>
+          <div class="fs-7 fw-lighter">{{ this.form.value.deviceIdFrom }}</div>
           <div *ngIf="this.form.controls.deviceIdFrom.errors" class="invalid-feedback">
             <div *ngIf="this.form.controls.deviceIdFrom.errors.required">attributeDictionaryId is required</div>
-          </div>
-          <div class="log-message">
-            {{ this.toString(this.form.controls.deviceIdFrom.value) }}
           </div>
         </div>
       </div>
@@ -79,11 +77,9 @@
               {{ deviceToObj.name }}
             </option>
           </select>
+          <div class="fs-7 fw-lighter">{{ this.form.value.deviceIdTo }}</div>
           <div *ngIf="this.form.controls.deviceIdTo.errors" class="invalid-feedback">
             <div *ngIf="this.form.controls.deviceIdTo.errors.required">attributeDictionaryId is required</div>
-          </div>
-          <div class="log-message">
-            {{ this.toString(this.form.controls.deviceIdTo.value) }}
           </div>
         </div>
       </div>

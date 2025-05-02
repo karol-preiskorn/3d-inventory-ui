@@ -40,8 +40,8 @@
               'is-valid': editDeviceForm.controls.x.status === 'VALID',
             }" />
         </div>
-        <div *ngIf="editDeviceForm.controls.x.errors" class="invalid-feedback">
-          <div *ngIf="editDeviceForm.controls.x.errors.required">Name is required</div>
+        <div *ngIf="editDeviceForm.get('position')?.get('x')?.errors" class="invalid-feedback">
+          <div *ngIf="editDeviceForm.get('position')?.get('x')?.errors?.required">x is required</div>
         </div>
       </div>
       <div class="col">
@@ -53,8 +53,8 @@
               'is-valid': editDeviceForm.controls.y.status === 'VALID',
             }" />
         </div>
-        <div *ngIf="editDeviceForm.controls.y.errors" class="invalid-feedback">
-          <div *ngIf="editDeviceForm.controls.y.errors.required">Name is required</div>
+        <div *ngIf="editDeviceForm.get('position')?.get('y')?.errors" class="invalid-feedback">
+          <div *ngIf="editDeviceForm.get('position')?.get('y')?.errors?.required">y is required</div>
         </div>
       </div>
       <div class="col">
@@ -66,8 +66,8 @@
               'is-valid': editDeviceForm.controls.h.status === 'VALID',
             }" />
         </div>
-        <div *ngIf="editDeviceForm.controls.h.hasError('required')" class="invalid-feedback">
-          <div *ngIf="editDeviceForm.controls.h.hasError('required')">Name is required</div>
+        <div *ngIf="editDeviceForm.get('position')?.get('h')?.errors" class="invalid-feedback">
+          <div *ngIf="editDeviceForm.get('position')?.get('h')?.errors?.required">h is required</div>
         </div>
       </div>
     </div>

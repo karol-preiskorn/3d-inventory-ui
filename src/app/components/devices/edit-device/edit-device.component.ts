@@ -38,21 +38,21 @@ export class DeviceEditComponent implements OnInit {
   // Arrow function for number validation
   numberValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const value: number = control.value as number
-    if (isNaN(Number(value)) || Number(value) < 0) {
+    if (Number.isNaN(value) || Number(value) > 100 || Number(value) < -100) {
       return { invalidNumber: true }
     }
     return null
   }
 
   createFormGroup = () => {
-    return new FormGroup({
-      _id: new FormControl('', Validators.required),
-      name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      modelId: new FormControl('', Validators.required),
-      position: new FormGroup({
-        x: new FormControl(0, [Validators.required, this.numberValidator]),
-        y: new FormControl(0, [Validators.required]),
-        h: new FormControl(0, [Validators.required]),
+    return this.formBulider.group({
+      _id: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(4)]],
+      modelId: ['', Validators.required],
+      position: this.formBulider.group({
+        x: [0, [Validators.required, this.numberValidator]],
+        y: [0, [Validators.required, this.numberValidator]],
+        h: [0, [Validators.required, this.numberValidator]],
       }),
     })
   }
@@ -62,6 +62,7 @@ export class DeviceEditComponent implements OnInit {
   component: string
 
   constructor(
+    private formBulider: FormBuilder,
     public activatedRoute: ActivatedRoute,
     public devicesService: DeviceService,
     private readonly router: Router,
@@ -165,14 +166,15 @@ export class DeviceEditComponent implements OnInit {
   }
 
   get x() {
-    return this.editDeviceForm.get('x')
+    console.info('x:=' + this.editDeviceForm.controls.position.get('x'))
+    return this.editDeviceForm.controls.position.get('x')
   }
 
   get y() {
-    return this.editDeviceForm.get('y')
+    return this.editDeviceForm.controls.position.get('y')
   }
 
   get h() {
-    return this.editDeviceForm.get('h')
+    return this.editDeviceForm.controls.position.get('h')
   }
 }

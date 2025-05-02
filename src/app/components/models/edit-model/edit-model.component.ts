@@ -1,4 +1,4 @@
-import { Subscription } from 'rxjs'
+import { Subscription } from 'rxjs';
 
 import { CommonModule } from '@angular/common'
 import { Component, Input, NgZone, OnInit } from '@angular/core'
@@ -33,9 +33,18 @@ export class ModelEditComponent implements OnInit {
     private ngZone: NgZone,
     private router: Router,
     private logService: LogService,
-  ) {}
+  ) {
+    this.editModelFormBulider()
+  }
 
   ngOnInit() {
+    this.editModelFormBulider()
+    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') as string
+    this.component = this.inputId.toString()
+    this.getModel()
+  }
+
+  private editModelFormBulider() {
     this.editModelForm = this.formBuilder.group({
       id: ['', [Validators.required, Validators.minLength(10)]],
       name: ['', [Validators.required, Validators.minLength(4)]],
@@ -61,10 +70,6 @@ export class ModelEditComponent implements OnInit {
         bottom: ['', null],
       }),
     })
-
-    this.inputId = this.activatedRoute.snapshot.paramMap.get('id') as string
-    this.component = this.inputId.toString()
-    this.getModel()
   }
 
   private getModel(): Subscription {

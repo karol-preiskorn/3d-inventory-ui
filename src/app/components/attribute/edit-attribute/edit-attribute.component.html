@@ -14,7 +14,8 @@
               'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
               'form-select': true,
             }"
-            id="deviceId">
+            id="deviceId"
+          >
             <option *ngFor="let deviceObj of deviceDictionary; let i = index" [value]="deviceObj._id">
               {{ deviceObj.name }}
             </option>
@@ -38,7 +39,8 @@
               'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
               'form-select': true,
             }"
-            id="modelId">
+            id="modelId"
+          >
             <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj._id }}">
               {{ modelObj.name }}
             </option>
@@ -62,7 +64,8 @@
               'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
               'form-select': true,
             }"
-            id="connectionId">
+            id="connectionId"
+          >
             <option *ngFor="let connectionObj of connectionDictionary; let i = index" value="{{ connectionObj._id }}">
               {{ connectionObj.name }}
             </option>
@@ -86,10 +89,12 @@
               'is-valid': this.editAttributeForm.controls.attributeDictionaryId.status === 'VALID',
               'form-select': true,
             }"
-            id="attributeDictionaryId">
+            id="attributeDictionaryId"
+          >
             <option
               *ngFor="let attributeDictionaryObj of attributeDictionary; let i = index"
-              [value]="attributeDictionaryObj._id.toString()">
+              [value]="attributeDictionaryObj._id.toString()"
+            >
               {{ attributeDictionaryObj.name }}
             </option>
           </select>
@@ -117,7 +122,8 @@
               'is-invalid': this.editAttributeForm.controls.value.status !== 'VALID',
               'is-valid': this.editAttributeForm.controls.value.status === 'VALID',
               'form-control': true,
-            }" />
+            }"
+          />
           <div *ngIf="this.editAttributeForm.controls.value.errors" class="invalid-feedback">
             <div *ngIf="this.editAttributeForm.controls.value.errors.required">Value is required</div>
             <div *ngIf="this.editAttributeForm.controls.value.errors.minlength">
@@ -133,7 +139,8 @@
           <button
             type="submit"
             [disabled]="!(this.editAttributeForm.valid && this.editAttributeForm.touched)"
-            class="btn btn-primary">
+            class="btn btn-primary"
+          >
             Update attribute
           </button>
           <!-- <div *ngIf="!(this.editAttributeForm.valid && this.editAttributeForm.touched)" class="invalid-feedback">

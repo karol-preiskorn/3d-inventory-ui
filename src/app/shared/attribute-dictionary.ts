@@ -1,24 +1,19 @@
-﻿/*
- * Description:  AttributeDictionary service, component
- *
- */
-
-/**
+﻿/**
  * Represents an attribute dictionary.
  */
 export class AttributeDictionary {
-  _id: string
+
+  _id!: string
+  component?: string
+  type?: string
+  name?: string
+  units?: string
 
   constructor() {
     this._id = ''
-    this.name = ''
-    this.category = ''
-    this.type = ''
     this.component = ''
+    this.type = ''
+    this.name = ''
+    this.units = ''
   }
-
-  name?: string
-  category?: string
-  type?: string
-  component?: string
 }

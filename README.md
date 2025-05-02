@@ -1,34 +1,35 @@
 # 3d inventory
 
-- [3d inventory](#3d-inventory)
-  - [About project](#about-project)
-  - [Technology stack](#technology-stack)
-  - [Demo](#demo)
-  - [Data Model](#data-model)
-    - [Logical model](#logical-model)
-  - [Aplication](#aplication)
-    - [List devices](#list-devices)
-    - [Models](#models)
-    - [Attributes](#attributes)
-    - [Attribute Dictionary](#attribute-dictionary)
-    - [Connections](#connections)
-  - [Run](#run)
-  - [Deploy](#deploy)
-  - [Google Cloud](#google-cloud)
-  - [APIs repos](#apis-repos)
-  - [Contributing](#contributing)
-  - [Next todo](#next-todo)
+1. [3d inventory](#3d-inventory)
+   1. [About project](#about-project)
+      1. [Motivation](#motivation)
+   2. [Technology stack](#technology-stack)
+   3. [Demo](#demo)
+   4. [Data Model](#data-model)
+      1. [Logical model](#logical-model)
+   5. [Aplication](#aplication)
+      1. [List devices](#list-devices)
+      2. [Models](#models)
+      3. [Attributes](#attributes)
+      4. [Attribute Dictionary](#attribute-dictionary)
+      5. [Connections](#connections)
+   6. [Run](#run)
+   7. [Deploy](#deploy)
+   8. [Google Cloud](#google-cloud)
+   9. [APIs repos](#apis-repos)
+   10. [Contributing](#contributing)
+   11. [Next todo/progress/ideas](#next-todoprogressideas)
 
 [![wakatime](https://wakatime.com/badge/user/3bbeedbe-0c6a-4a01-b3cd-a85d319a03bf/project/018c62ce-6164-4200-bca9-be53af7f6d80.svg)](https://wakatime.com/badge/user/3bbeedbe-0c6a-4a01-b3cd-a85d319a03bf/project/018c62ce-6164-4200-bca9-be53af7f6d80) [![GitHub latest commit](https://badgen.net/github/last-commit/karol-preiskorn/3d-inventory-angular-ui)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/commit/) [![GitHub stars](https://img.shields.io/github/stars/karol-preiskorn/3d-inventory-angular-ui.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/stargazers/) [![GitHub issues](https://img.shields.io/github/issues/karol-preiskorn/3d-inventory-angular-ui.svg)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/issues/)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/) [![TypeScript](https://img.shields.io/badge/--3178C6?logo=typescript&logoColor=ffffff)](https://www.typescriptlang.org/) [![Npm](https://badgen.net/badge/icon/npm?icon=npm&label)](https://https://npmjs.com/) [![GitHub license](https://badgen.net/github/license/karol-preiskorn/3d-inventory-angular-ui)](https://github.com/karol-preiskorn/3d-inventory-angular-ui/blob/master/LICENSE)
 
 ## About project
 
-Project create ✨`3d inventory`✨— solution that allows you to build a spatial and database representation of yours datacenters.
+The ✨`3d inventory`✨ project allows you to build a spatial and database representation of your datacenters.
 
-    Motivation
+### Motivation
 
-    I'm programming to incorporate database systems. This project it is sandbox to covers relevant topics and issues related to create simple and efficient platform for IT inventory.
+This project serves as a sandbox to explore relevant topics and issues related to creating a simple and efficient platform for IT inventory.
 
 <img title="Architecture" src="src/assets/architecture.drawio.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%; margin-bottom: 16px" width="85%">
 
@@ -57,39 +58,39 @@ This project build from this example contain `three.js` in `Angular` [Tutorial t
 
 ## Data Model
 
-This is implementation parametric generic attribute class. All attributes for `Devices`, `Models` and `Connections` are stored in this model.
+This is the implementation of a parametric generic attribute class. All attributes for `Devices`, `Models`, and `Connections` are stored in this model.
 
-Parameters types are defined in `Attribute Dictionary`.
+Parameter types are defined in the `Attribute Dictionary`.
 
-In `Attributes` are stored values defined in `Attributes Dictionary` for `Devices`, `Model` and `Connections`. `Attributes Dictionary` are defined for specyfice parameters this entities.
+In `Attributes`, values defined in the `Attribute Dictionary` for `Devices`, `Models`, and `Connections` are stored. The `Attribute Dictionary` specifies parameters for these entities.
 
 ### Logical model
 
 Relational data model is maped to noSQL model im MondoDb.
 
-<img title="Logical model" src="src/assets/3d-inventory.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="85%"/>
+<img title="Logical model" src="src/assets/img/3d-inventory-data-model.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%;" width="85%"/>
 
 ## Aplication
 
 ### List devices
 
-<img title="List devices" src="src/assets/img/Screenshot%202023-07-14%20at%2008-48-50%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
+<img title="List devices" src="src/assets/img/Screenshot%202023-07-14%20at%2008-48-50%203d%20inventory-watermark.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%;" width="80%"/>
 
 ### Models
 
-<img title="Models" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-31%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
+<img title="Models" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-31%203d%20inventory-watermark.png" style="filter: drop-shadow(8px 8px 8pxblack); border-radius: 1% 1% 1% 1%;" width="80%"/>
 
 ### Attributes
 
-<img title="Attributes" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-42%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
+<img title="Attributes" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-42%203d%20inventory-watermark.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%;" width="80%"/>
 
 ### Attribute Dictionary
 
-<img title="Attribute Dictionary" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-51%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
+<img title="Attribute Dictionary" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-51%203d%20inventory-watermark.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%;" width="80%"/>
 
 ### Connections
 
-<img title="Connections" src="src/assets/img/Screenshot%202023-07-14%20at%2008-50-00%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
+<img title="Connections" src="src/assets/img/Screenshot%202023-07-14%20at%2008-50-00%203d%20inventory-watermark.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%;" width="80%"/>
 
 ## Run
 
@@ -130,23 +131,24 @@ tbc
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an [issue](https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues/new) first to discuss what you would like to change.
-Please make sure to update tests as appropriate.
-Not forget about [code guide-lines](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines).
+Pull requests are welcome. For major changes, please open an [issue](https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues/new) first to discuss what you would like to change. Please make sure to update tests as appropriate. Don't forget about the [code guidelines](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines).
 
-## Next todo
+## Next todo/progress/ideas
 
-- [ ] connection between showing 3d and defined devices.
-- [x] build interfance to Mongo Atlas
-- [x] Set position and model in data ans show this data in `3d`.
-- [ ] Show attributes of `DEVICES`, `MODELS` and `CONNECTIONS`. Waiting for MongoDB|Oracle API.
-- [x] Generate `FLOOR`
-- [ ] as array of square (x, y, h)
-- [x] Use `Mongo` to strore `JSON` data. (starting)
-- [x] `Docker` -> serve application in `Github Pages` --> `AWS EC2`
-- [ ] Use Dev container in `GitHub` for development.
-- [ ] Recognize `Grunt`/`Glup` to `CI`/`DI` use in this project.
-- [x] Add actual tasks form `GitHub` during build in README.md.
-- [x] Add light/dark theme switch in `UI`
+- [x] Connection between showing 3D and defined devices.
+- [x] Build interface to Mongo Atlas.
+- [x] Set position and model in data and show this data in `3D`.
+- [ ] Show attributes of `DEVICES`, `MODELS`, and `CONNECTIONS`.
+  - [ ] Attributes will show as a table of AttributesDictionary types + value.
+- [x] Generate `FLOOR`.
+  - [x] As an array of squares (x, y, h).
+- [x] `Docker` -> Serve application in `GitHub Pages` --> `AWS EC2`.
+- [ ] ~~Use Dev container in `GitHub` for development.~~
+- [x] Recognize `Grunt`/`Gulp` to `CI`/`CD` use in this project.
+- [x] Add actual tasks from `GitHub` during build in README.md.
+- [x] Add light/dark theme switch in `UI`.
 - [ ] Use <https://formly.dev/> ?
-- [ ] Create blog on GitHub Pages or use <https://ultimasolution.pl>
+- [ ] Create blog on GitHub Pages or use <https://ultimasolution.pl>.
+  - [ ] Start writing blog articles.
+- [x] Try using NgDoc to document [how to use code with NgDoc](https://medium.com/@askoropad/ngdoc-documentation-for-angular-projects-3f6ea8fc22b0).
+  - [ ] Use tsdoc (middle fun).

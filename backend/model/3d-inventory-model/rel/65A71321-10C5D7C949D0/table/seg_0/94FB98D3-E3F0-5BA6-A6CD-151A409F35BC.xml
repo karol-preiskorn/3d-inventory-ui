@@ -86,24 +86,6 @@
 <colUsage columnID="5BA77C3B-CCBC-29A0-461B-14034388B854"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="2F3AA8CC-6A14-2480-5010-F60A2CFAF824" name="connections__IDX">
-<createdBy>karol</createdBy>
-<createdTime>2024-03-24 08:31:08 UTC</createdTime>
-<ownerDesignName>3d-inventory-model</ownerDesignName>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="FA3AFAA3-7471-DE79-90C4-54DFF9BDB209"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="3E5739C3-559A-9DC3-D694-1B74D29CB7DC" name="connections__IDXv1">
-<createdBy>karol</createdBy>
-<createdTime>2024-03-24 08:31:08 UTC</createdTime>
-<ownerDesignName>3d-inventory-model</ownerDesignName>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="5BA77C3B-CCBC-29A0-461B-14034388B854"/>
-</indexColumnUsage>
-</ind_PK_UK>
 <ind_PK_UK id="C4CC5C00-14BD-79D1-967B-EDDE64B52067" name="connections_devices_to_fk">
 <createdBy>karol</createdBy>
 <createdTime>2023-05-20 12:39:46 UTC</createdTime>

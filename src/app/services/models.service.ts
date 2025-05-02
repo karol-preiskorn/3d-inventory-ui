@@ -1,13 +1,12 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable, NgZone } from '@angular/core'
+import { Log, LogIn, LogService } from './log.service'
 import { Observable, of } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
-
-import { environment } from '../../environments/environment'
 import { Model } from '../shared/model'
-import { LogService } from './log.service'
+import { Router } from '@angular/router'
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root',
@@ -50,6 +49,7 @@ export class ModelsService {
 
   /**
    * Deletes a model by its ID.
+   *
    * @param id The ID of the model to delete.
    * @returns An Observable that emits the deleted model.
    */
@@ -61,6 +61,7 @@ export class ModelsService {
 
   /**
    * Creates a new model.
+   *
    * @param data The data of the model to be created.
    * @returns An Observable that emits the created model.
    */
@@ -73,12 +74,14 @@ export class ModelsService {
 
   /**
    * Clones a model with the specified ID.
+   *
    * @param id - The ID of the model to clone.
    * @returns The UUID of the cloned model.
    */
-  CloneModel(id: string): string {
+  async CloneModel(id: string): Promise<string> {
     console.log(`ModelService.CloneModel: ${JSON.stringify(id, null, ' ')}`)
     let idConed = ''
+    let modelToCreate: Model = {} as Model
     this.GetModel(id).subscribe((value: Model) => {
       console.log('Get Model: ' + JSON.stringify(value, null, ' '))
       this.CreateModel(value).subscribe({
@@ -94,12 +97,12 @@ export class ModelsService {
         },
       })
     })
-    console.log('Get after Model: ' + JSON.stringify(this.model, null, ' '))
     return idConed
   }
 
   /**
    * Updates a model with the specified ID.
+   *
    * @param id - The ID of the model to update.
    * @param data - The updated data for the model.
    * @returns An Observable that emits the updated model.

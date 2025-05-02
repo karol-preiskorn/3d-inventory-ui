@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs'
 
 import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
 
@@ -20,14 +20,11 @@ import { DeviceCategoryDict } from '../../../shared/deviceCategories'
 import { DeviceTypeDict } from '../../../shared/deviceTypes'
 import { Model } from '../../../shared/model'
 import Validation from '../../../shared/validation'
-import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-add-attribute',
   templateUrl: './add-attribute.component.html',
   styleUrls: ['./add-attribute.component.scss'],
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
 })
 export class AttributeAddComponent implements OnInit {
   valid: Validation = new Validation()
@@ -193,7 +190,7 @@ export class AttributeAddComponent implements OnInit {
    * @memberof AttributeAddComponent
    */
   generateAttributeDictionary() {
-    this.addAttributeFrom.controls.value.setValue(faker.company.name() + ' - ' + faker.company.buzzPhrase())
+    this.addAttributeFrom.controls.value.setValue(faker.company.name() + ' - ' + faker.company.bs())
   }
 
   submitForm(): void {

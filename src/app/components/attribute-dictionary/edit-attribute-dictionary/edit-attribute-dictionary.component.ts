@@ -1,4 +1,4 @@
-import { Observable, tap } from 'rxjs'
+import { Observable, tap } from 'rxjs';
 
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
@@ -22,57 +22,58 @@ import { CommonModule } from '@angular/common'
 })
 export class AttributeDictionaryEditComponent implements OnInit {
   inputId: string
-  form: FormGroup // Specify the type as FormGroup
+  form: FormGroup
   attributeDictionary: AttributeDictionary
   isSubmitted = false
-  deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
-  deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   componentDictionary: ComponentDictionary = new ComponentDictionary()
+  typeDictionary: TypeDictionary = new TypeDictionary()
   logComponent: string
 
   ngOnInit() {
+    this.formAttributeDictionary()
     this.inputId = this.activatedRoute.snapshot.paramMap.get('id') || ''
     this.getAttributeDictionary(this.inputId).subscribe((data: AttributeDictionary) => {
+      //console.log('+++GetAttributeDictionary(' + this.inputId + ') => ' + JSON.stringify(data, null, 2))
       this.attributeDictionary = data
+      if (this.form) {
+        this.form.patchValue({
+          _id: this.attributeDictionary._id,
+          component: this.attributeDictionary.component,
+          type: this.attributeDictionary.type,
+          name: this.attributeDictionary.name,
+          units: this.attributeDictionary.units,
+        })
+      }
     })
     this.logComponent = this.inputId
-    this.formAttributeDictionary()
   }
 
-  editAttributeDictionaryForm = new FormGroup({
-    _id: new FormControl('', [Validators.required, Validators.minLength(24)]),
-    objectId: new FormControl('', [Validators.required, Validators.minLength(10)]),
-    name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]),
-    type: new FormControl('', Validators.required),
-    category: new FormControl('', Validators.required),
-    component: new FormControl('', Validators.required),
-  })
   formAttributeDictionary() {
-    this.editAttributeDictionaryForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       _id: new FormControl('', [Validators.required, Validators.minLength(24)]),
-      objectId: ['', [Validators.required, Validators.minLength(24)]],
-      name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
-      type: ['', [Validators.required]],
-      category: ['', [Validators.required]],
       component: ['', [Validators.required]],
+      type: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      units: ['', [Validators.required]],
     })
   }
 
   private getInput() {
-    return this.activatedRoute.snapshot.paramMap.get('id')
+    return this.activatedRoute.snapshot.paramMap.get('_id')
   }
 
   private getAttributeDictionary(id: string): Observable<AttributeDictionary> {
+    console.log('++GetAttributeDictionary(' + this.inputId + ') => ' + JSON.stringify(id, null, 2))
     return this.attributeDictionaryService.GetAttributeDictionary(id).pipe(
       tap((data: AttributeDictionary) => {
-        console.log('GetAttributeDictionary(' + this.inputId + ') => ' + JSON.stringify(data, null, 2))
+        //console.log('+GetAttributeDictionary(' + this.inputId + ') => ' + JSON.stringify(data, null, 2))
         this.attributeDictionary = data
         this.form.setValue({
-          id: data._id,
-          name: data.name,
-          type: data.type,
-          category: data.category,
+          _id: data._id,
           component: data.component,
+          type: data.type,
+          name: data.name,
+          units: data.units,
         })
       }),
     )
@@ -88,52 +89,56 @@ export class AttributeDictionaryEditComponent implements OnInit {
   ) {}
 
   changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
-  }
-
-  changeName(e: Event) {
-    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
-  }
-
-  changeType(e: Event) {
-    this.type?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
-  }
-
-  changeCategory(e: Event) {
-    this.category?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this._id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeComponent(e: Event) {
     this.component?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  get id() {
-    return this.form.get('id')
+  changeType(e: Event) {
+    this.type?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+
+  changeName(e: Event) {
+    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+
+  changeUnits(e: Event) {
+    this.units?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+
+  get _id() {
+    return this.form.get('_id')
+  }
+
+  get component() {
+    return this.form.get('component')
+  }
+
+  get type() {
+    return this.form.get('type')
   }
 
   get name() {
     return this.form.get('name')
   }
 
-  get type() {
-    return this.form.get('type')
+  get units() {
+    return this.form.get('units')
   }
-  get category() {
-    return this.form.get('category')
-  }
-  get component() {
-    return this.form.get('component')
-  }
+
   toString(data: unknown): string {
     return JSON.stringify(data, null, ' ')
   }
+
   submitForm() {
-    this.attributeDictionaryService
-      .UpdateAttributeDictionary(this.inputId, this.form.value as AttributeDictionary)
-      .subscribe(() => {
+    if (this.form.valid && this.form.touched) {
+      this.attributeDictionaryService.UpdateAttributeDictionary(this.inputId, this.form.value as AttributeDictionary).subscribe(() => {
+        console.log('form.submitForm(): ' + JSON.stringify(this.form.value, null, 2))
         this.logService
           .CreateLog({
-            objectId: this.form.get('id')?.value,
+            objectId: this.form.get('_id')?.value,
             message: this.form.value,
             operation: 'Update',
             component: 'Attribute Dictionary',
@@ -143,5 +148,6 @@ export class AttributeDictionaryEditComponent implements OnInit {
             this.router.navigate(['attribute-dictionary-list'])
           })
       })
+    }
   }
 }

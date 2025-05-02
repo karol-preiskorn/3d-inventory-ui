@@ -1,24 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <DomainFile class="oracle.dbtools.crest.model.design.DomainFileWrapper" fileName="3d-inventory-model_Domains">
 <domains>
-<Domain class="oracle.dbtools.crest.model.design.Domain" name="VARCHAR_0_0_50" id="0F082329-443B-2567-7399-838BA8C6A2E2">
-<createdBy>karol</createdBy>
-<createdTime>2024-03-04 22:11:42 UTC</createdTime>
-<ownerDesignName>3d-inventory-model</ownerDesignName>
-<avTSortOrder>0</avTSortOrder>
-<dataTypeSize>50</dataTypeSize>
-<fileName>3d-inventory-model_Domains</fileName>
-<logicalDatatype>LOGDT024</logicalDatatype>
-</Domain>
-<Domain class="oracle.dbtools.crest.model.design.Domain" name="VARCHAR_0_0_0" id="162C6B29-BE1F-72D5-B51C-76B042C15438">
-<createdBy>karol</createdBy>
-<createdTime>2024-03-04 22:11:42 UTC</createdTime>
-<ownerDesignName>3d-inventory-model</ownerDesignName>
-<avTSortOrder>0</avTSortOrder>
-<fileName>3d-inventory-model_Domains</fileName>
-<logicalDatatype>LOGDT024</logicalDatatype>
-</Domain>
-<Domain class="oracle.dbtools.crest.model.design.Domain" name="VARCHAR_0_0_4000" id="183CF5A4-B558-A2B7-6ACA-7DB8CFF54CFC">
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="VARCHAR_4000" id="183CF5A4-B558-A2B7-6ACA-7DB8CFF54CFC">
 <createdBy>karol</createdBy>
 <createdTime>2024-03-04 22:11:42 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
@@ -27,7 +10,7 @@
 <fileName>3d-inventory-model_Domains</fileName>
 <logicalDatatype>LOGDT024</logicalDatatype>
 </Domain>
-<Domain class="oracle.dbtools.crest.model.design.Domain" name="NUMERIC_0_0_0" id="1BBF3132-D8B5-CA9F-97C9-5E2C0481F1FB">
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="NUMERIC" id="1BBF3132-D8B5-CA9F-97C9-5E2C0481F1FB">
 <createdBy>karol</createdBy>
 <createdTime>2024-03-04 22:11:42 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
@@ -37,16 +20,7 @@
 <fileName>3d-inventory-model_Domains</fileName>
 <logicalDatatype>LOGDT019</logicalDatatype>
 </Domain>
-<Domain class="oracle.dbtools.crest.model.design.Domain" name="VARCHAR_0_0_100" id="4E45A331-20F8-027B-F0C5-063352EECAA2">
-<createdBy>karol</createdBy>
-<createdTime>2024-03-04 22:11:42 UTC</createdTime>
-<ownerDesignName>3d-inventory-model</ownerDesignName>
-<avTSortOrder>0</avTSortOrder>
-<dataTypeSize>100</dataTypeSize>
-<fileName>3d-inventory-model_Domains</fileName>
-<logicalDatatype>LOGDT024</logicalDatatype>
-</Domain>
-<Domain class="oracle.dbtools.crest.model.design.Domain" name="Integer_0_0_0" id="5DF11CBB-1D09-8B18-EC6F-683B3EA47346">
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Integer" id="5DF11CBB-1D09-8B18-EC6F-683B3EA47346">
 <createdBy>karol</createdBy>
 <createdTime>2024-03-04 22:11:42 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
@@ -54,41 +28,13 @@
 <fileName>3d-inventory-model_Domains</fileName>
 <logicalDatatype>LOGDT011</logicalDatatype>
 </Domain>
-<Domain class="oracle.dbtools.crest.model.design.Domain" name="VARCHAR_0_0_50v1" id="5FD10080-F7B5-BA69-67D2-158E6EEF9B83">
-<createdBy>karol</createdBy>
-<createdTime>2024-03-24 08:31:47 UTC</createdTime>
-<ownerDesignName>3d-inventory-model</ownerDesignName>
-<avTSortOrder>0</avTSortOrder>
-<dataTypeSize>50</dataTypeSize>
-<fileName>3d-inventory-model_Domains</fileName>
-<logicalDatatype>LOGDT024</logicalDatatype>
-</Domain>
-<Domain class="oracle.dbtools.crest.model.design.Domain" name="VARCHAR_0_0_100v1" id="68276AA3-12F0-B08A-F181-19BAB7E6D2FB">
-<createdBy>karol</createdBy>
-<createdTime>2024-03-24 09:00:58 UTC</createdTime>
-<ownerDesignName>3d-inventory-model</ownerDesignName>
-<avTSortOrder>0</avTSortOrder>
-<dataTypeSize>100</dataTypeSize>
-<fileName>3d-inventory-model_Domains</fileName>
-<logicalDatatype>LOGDT024</logicalDatatype>
-</Domain>
-<Domain class="oracle.dbtools.crest.model.design.Domain" name="Boolean_0_0_0" id="6A2A2DA1-3F83-C82A-2D58-09F7B105F361">
+<Domain class="oracle.dbtools.crest.model.design.Domain" name="Boolean" id="6A2A2DA1-3F83-C82A-2D58-09F7B105F361">
 <createdBy>karol</createdBy>
 <createdTime>2024-03-04 22:11:42 UTC</createdTime>
 <ownerDesignName>3d-inventory-model</ownerDesignName>
 <avTSortOrder>0</avTSortOrder>
 <fileName>3d-inventory-model_Domains</fileName>
 <logicalDatatype>LOGDT006</logicalDatatype>
-</Domain>
-<Domain class="oracle.dbtools.crest.model.design.Domain" name="NUMERIC_0_0_0v1" id="FFF104D6-9ADE-5F61-73D2-796C6730B514">
-<createdBy>karol</createdBy>
-<createdTime>2024-03-24 09:00:58 UTC</createdTime>
-<ownerDesignName>3d-inventory-model</ownerDesignName>
-<avTSortOrder>0</avTSortOrder>
-<dataTypePrecision>0</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-<fileName>3d-inventory-model_Domains</fileName>
-<logicalDatatype>LOGDT019</logicalDatatype>
 </Domain>
 </domains>
 </DomainFile>

@@ -13,6 +13,8 @@
 
 import os
 import argparse
+from werkzeug.security import safe_join
+import subprocess
 
 def main():
     parser = argparse.ArgumentParser(description='Add watermarks to images in path')
@@ -26,8 +28,8 @@ def main():
 
     files_processed = 0
     files_watermarked = 0
-    os.system('rm %s//*-watermark.png' % (args.root))
-    for dirName, subdirList, fileList in os.walk(args.root):
+    subprocess.call(['rm', '%s//*-watermark.png' % (args.root)])
+    for dirName, subdirList, fileList in os.walk(safe_join(os.getcwd(), args.root)):
         if args.exclude is not None and args.exclude in dirName:
             continue
         #print('Walking directory: %s' % dirName)
@@ -41,7 +43,7 @@ def main():
                 if not os.path.exists(new_name):
                     files_watermarked += 1
                     print('    Convert %s to %s' % (orig, new_name))
-                    os.system('composite -dissolve 25%% -gravity SouthEast -geometry +5+5 %s "%s" "%s"' % (args.watermark, orig, new_name))
+                    subprocess.call(['composite', '-dissolve', '25%', '-gravity', 'SouthEast', '-geometry', '+5+5', args.watermark, orig, new_name])
 
     print("Files Processed: %s" % "{:,}".format(files_processed))
     print("Files Watermarked: %s" % "{:,}".format(files_watermarked))

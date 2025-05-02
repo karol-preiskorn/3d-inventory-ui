@@ -1,5 +1,5 @@
-import { Component, NgZone, OnInit } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
+import { Component, NgZone, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { DeviceService } from '../../../services/device.service'
 import { LogService } from '../../../services/log.service'
@@ -21,7 +21,7 @@ export class DeviceListComponent implements OnInit {
   deviceList: Device[] = []
   modelList: Model[] = []
   selectedDevice: Device
-  component = 'Devices'
+  component = 'Device'
   deviceListPage = 1
 
   ngOnInit() {

@@ -69,7 +69,7 @@ export class ModelsListComponent implements OnInit {
    * @returns The ID of the newly cloned model.
    */
   async CloneModel(id: string): Promise<string> {
-    const idCloned = this.modelsService.CloneModel(id)
+    const idCloned = await this.modelsService.CloneModel(id)
     this.logService
       .CreateLog({ message: { id: id, new_id: idCloned }, operation: 'Clone', component: 'Model' })
       .subscribe(() => {

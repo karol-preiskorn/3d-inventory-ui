@@ -6,11 +6,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
 
-import { LogService } from '../../../services/log.service'
-import { ModelsService } from '../../../services/models.service'
-import { DeviceCategoryDict } from '../../../shared/deviceCategories'
-import { DeviceTypeDict } from '../../../shared/deviceTypes'
-import { Model } from '../../../shared/model'
+import { LogService } from '../../../services/log.service';
+import { ModelsService } from '../../../services/models.service';
+import { ComponentDictionary } from '../../../shared/attribute-dictionary-component';
+import { TypeDictionary } from '../../../shared/attribute-dictionary-type';
+import { Model } from '../../../shared/model';
 
 @Component({
   selector: 'app-add-model',
@@ -100,12 +100,6 @@ export class ModelAddComponent implements OnInit {
     }
     if (dimensionGroup?.get('width')) {
       dimensionGroup.controls['width'].setValue(faker.number.int(10).toString())
-    }
-    if (this.addModelForm.controls.type) {
-      this.addModelForm.controls.type.setValue(this.deviceTypeDict.getRandomName())
-    }
-    if (this.addModelForm.controls.category) {
-      this.addModelForm.controls.category.setValue(this.deviceCategoryDict.getRandomName())
     }
   }
 
