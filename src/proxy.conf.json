@@ -1,6 +1,8 @@
 {
   "/api": {
     "target": "https://172.17.0.2:3001",
-    "secure": false
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
   }
 }

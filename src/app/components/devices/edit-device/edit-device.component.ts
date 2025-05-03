@@ -51,8 +51,8 @@ export class DeviceEditComponent implements OnInit {
       modelId: new FormControl('', Validators.required),
       position: new FormGroup({
         x: new FormControl(0, [Validators.required, this.numberValidator]),
-        y: new FormControl(0, [Validators.required]),
-        h: new FormControl(0, [Validators.required]),
+        y: new FormControl(0, [Validators.required, this.numberValidator]),
+        h: new FormControl(0, [Validators.required, this.numberValidator]),
       }),
     })
   }
@@ -87,20 +87,14 @@ export class DeviceEditComponent implements OnInit {
       })
     }
     this.editDeviceForm = this.formBuilder.group({
-      id: ['', [Validators.required, Validators.minLength(10)]],
+      _id: ['', [Validators.required, Validators.minLength(4)]],
       name: ['', [Validators.required, Validators.minLength(4)]],
-      dimension: this.formBuilder.group({
-        width: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-        height: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-        depth: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      position: this.formBuilder.group({
+        x: ['', [Validators.required]],
+        y: ['', [Validators.required]],
+        h: ['', [Validators.required]],
       }),
-      texture: this.formBuilder.group({
-        front: [''],
-        back: [''],
-        side: [''],
-        top: [''],
-        bottom: [''],
-      }),
+      modelId: ['', [Validators.required]],
     })
     if (this.editDeviceForm) {
       this.editDeviceForm.patchValue({

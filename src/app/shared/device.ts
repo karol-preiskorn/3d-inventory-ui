@@ -51,7 +51,7 @@ export class Device {
   /**
    * Indicates whether debug mode is enabled.
    */
-  isDebugMode = false
+  isDebugMode: boolean = false
 
   /**
    * Creates an instance of the Device class.

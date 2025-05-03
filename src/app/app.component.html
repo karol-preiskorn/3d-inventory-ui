@@ -82,23 +82,19 @@
   </main>
   <footer style="vertical-align: auto; margin-left: auto; margin-right: auto">
     <div class="row" style="height: fit-content">
-      <div class="col-9">
-        <div class="p-2">
-          © 2022-{{ currentYearLong() }} Copyright:
-          <a href="https://github.com/karol-preiskorn/3d-inventory">ultimasolution.pl</a>
-        </div>
-      </div>
-      <div class="col-8 text-center">
-        <button class="btn btn-floating m-1 p-1"
-          (click)="openWindow('https://github.com/karol-preiskorn/3d-inventory-angular-ui')"
+      <div class="m-1 p-1 text-center">
+        <span>© 2022-{{ currentYearLong() }} Copyright <a
+            href="https://github.com/karol-preiskorn/3d-inventory">ultimasolution.pl</a>
+        </span>
+        <button class="btn p-1" (click)="openWindow('https://github.com/karol-preiskorn/3d-inventory-angular-ui')"
           onKeyDown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); window.open('https://github.com/karol-preiskorn/3d-inventory-angular-ui', '_blank'); }">
           <i class="bi bi-github" style="font-size: 1.2rem; color: rgb(82, 90, 105)"></i>
         </button>
-        <button class="btn btn-floating m-1 p-1" (click)="openLink('https://www.ultimasolution.pl/3d-inventory/')"
+        <button class="btn p-1" (click)="openLink('https://www.ultimasolution.pl/3d-inventory/')"
           (keydown)="handleKeydown($event, 'https://www.ultimasolution.pl/3d-inventory/')">
           <i class="bi bi-wordpress" style="font-size: 1.2em; color: cornflowerblue"></i>
         </button>
-        <button class="btn btn-floating m-1 p-1" (click)="openLink('https://www.facebook.com/ultimasolution')"
+        <button class="btn p-1" (click)="openLink('https://www.facebook.com/ultimasolution')"
           (keydown)="openFacebookLink($event)">
           <i class="bi bi-facebook" style="font-size: 1.2em; color: cornflowerblue"></i>
         </button>
