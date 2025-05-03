@@ -1,6 +1,6 @@
 {
   "name": "3d-inventory-angular-ui",
-  "version": "0.40.0",
+  "version": "0.41.0",
   "private": true,
   "type": "module",
   "browser": {
@@ -24,7 +24,7 @@
     "lint:prettier": "prettier --write src/**/*.ts",
     "pre-commit": "lint-staged",
     "prestart": "(fuser -n tcp -k 4200)&",
-    "start": "npm --no-git-tag-version version patch && npm run cp && ng serve --watch",
+    "start": "npm run cp && ng serve --watch",
     "test": "jest",
     "upgrade-full": "npm-check-updates -u && npm upgrade",
     "watch": "npm --no-git-tag-version version patch && ng serve --watch"

@@ -6,7 +6,9 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { ModelsService } from './services/models.service';
 import { Model } from './shared/model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root', // This ensures it is available application-wide
+})
 export class ResolverModel implements Resolve<Observable<Model[]>> {
   constructor(private modelsService: ModelsService) {}
 

@@ -1,12 +1,8 @@
 /**
  * @description: First tree.js component
  * @todo:
- *   [ ] ashow cue diefinied in 3d-inventory db
+ *   [ ] show cube defined in 3d-inventory db
  *   [ ] add cube from Angular
- *
- * @version: 2023-08-08   C2RLO   Starting developing Racks
- * @version: 2023-07-13   C2RLO   Get cube from
- * @version: 2023-04-16   C2RLO   Add cube
  */
 
 import { Observable } from 'rxjs'
@@ -18,7 +14,7 @@ import { Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 import { HttpClient } from '@angular/common/http'
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { tr } from '@faker-js/faker'
+// Removed unused import
 
 import { DeviceService } from '../../services/device.service'
 import { ModelsService } from '../../services/models.service'
@@ -65,7 +61,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     console.log('ngOnInit')
-    this.deviceList = this.route.snapshot.data.resolveDeviceList
+    this.deviceList = this.route.snapshot.data.resolveDeviceList || []
     this.modelList = this.route.snapshot.data.resolveModelList
     // this.loadDevices()
     // this.loadModels()
@@ -74,8 +70,9 @@ export class CubeComponent implements OnInit, AfterViewInit {
   constructor(
     private devicesService: DeviceService,
     private modelsService: ModelsService,
-    private HttpClient: HttpClient,
+    // Removed unused property
     private route: ActivatedRoute,
+    private http: HttpClient,
   ) {
     console.log('constructor')
     this.material.opacity = 0.8
@@ -123,7 +120,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
   FindModelName(id: string): string {
     // console.info('[FindModelName] try find model name by id: ' + id)
-    let model = this.modelList.find((e: Model) => e._id === id)?.name as string
+    let model = this.modelList.find((e: Model) => e._id === id)?.name ?? 'Unknown'
     if (model === undefined) {
       model = 'Unknown'
     }
@@ -135,7 +132,11 @@ export class CubeComponent implements OnInit, AfterViewInit {
     console.log('Device list: ' + this.deviceList.length)
     console.log('Model list: ' + this.modelList.length)
     this.deviceList.forEach((device: Device) => {
-      const model: Model = this.modelList.find((e: Model) => e._id === device.modelId) as Model
+      const model: Model | undefined = this.modelList.find((e: Model) => e._id === device.modelId)
+      if (!model) {
+        console.warn(`Model with id ${device.modelId} not found. Skipping device ${device.name}.`)
+        return
+      }
       this.createDevice3d(
         model.dimension.width,
         model.dimension.height,
@@ -183,7 +184,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
     light.position.set(15, 20, 10)
     light.castShadow = true // default false
-
+    light.shadow.camera.near = 0.5 // adjusted to a typical value
     //Set up shadow properties for the light
     light.shadow.mapSize.width = 3000 // default
     light.shadow.mapSize.height = 3000 // default
@@ -196,32 +197,60 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.scene.add(lightHelper)
   }
 
-  directionalLight() {
-    const light2 = new THREE.DirectionalLight(0xffffff, 1.3)
-    light2.position.set(-20, 30, 20)
+  addDirectionalLight1() {
+    const light2 = new THREE.DirectionalLight(0xffffff, 2)
+    light2.position.set(-20, 30, 50)
     light2.castShadow = true
+    light2.shadow.camera.near = 0.5 // default
+    light2.shadow.camera.far = 2000 // default
+    light2.shadow.mapSize.width = 3000 // default
+    light2.shadow.mapSize.height = 3000 // default
+
+    light2.shadow.camera.near = 1000 // default
+    light2.shadow.camera.far = 2000 // default
+    light2.shadow.camera.left = -10
+    light2.shadow.camera.right = 10
+    light2.shadow.camera.top = 10
+    light2.shadow.camera.bottom = -10
+    light2.shadow.camera.near = 0.5
+    light2.shadow.camera.far = 2000
     this.scene.add(light2)
 
-    const lightHelper2 = new THREE.DirectionalLightHelper(light2, 1)
+    const lightHelper2 = new THREE.DirectionalLightHelper(light2, 8, 0xff0000)
     this.scene.add(lightHelper2)
   }
 
-  directionalLight2() {
-    const light3 = new THREE.DirectionalLight(0xffffff, 0.8)
-    light3.position.set(20, 20, 25)
+  addDirectionalLight2() {
+    const light3 = new THREE.DirectionalLight(0xffffff, 3)
+    light3.color.setHSL(0.1, 1, 0.95)
+    light3.position.set(20, 40, 25)
     light3.castShadow = true
+    light3.shadow.camera.near = 0.5 // default
+    light3.shadow.camera.far = 2000 // default
+    light3.shadow.mapSize.width = 3000 // default
+    light3.shadow.mapSize.height = 3000 // default
+    light3.shadow.camera.near = 1000 // default
+    light3.shadow.camera.far = 2000 // default
+    light3.shadow.camera.left = -10
+    light3.shadow.camera.right = 10
+    light3.shadow.camera.top = 10
+    light3.shadow.camera.bottom = -10
+    light3.shadow.camera.near = 0.5
     this.scene.add(light3)
 
-    const lightHelper3 = new THREE.DirectionalLightHelper(light3, 1)
+    const lightHelper3 = new THREE.DirectionalLightHelper(light3, 20, 0x00ff00)
+    lightHelper3.position.set(40, 40, 45)
+
+    lightHelper3.castShadow = true
     this.scene.add(lightHelper3)
   }
 
-  addAbientLight() {
+  addAmbientLight() {
     const color = 0xffffff
     const intensity = 0.9
-    const lightAbient = new THREE.AmbientLight(color, intensity)
-    lightAbient.castShadow = true
-    this.scene.add(lightAbient)
+    const lightAmbient = new THREE.AmbientLight(color, intensity)
+    lightAmbient.castShadow = true
+    this.scene.add(lightAmbient)
   }
 
   private animateCube() {
@@ -254,37 +283,40 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   materials = [
-    new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true }), // front
-    new THREE.MeshPhongMaterial({ color: 0xffffff }), // side
+    new THREE.MeshStandardMaterial({ color: 0xffffff, flatShading: true }), // front
+    new THREE.MeshStandardMaterial({ color: 0xffffff }), // side
   ]
 
   textMesh1: THREE.Mesh
   group = new THREE.Group()
 
   addText() {
-    const text = '3d Inventory'
+    // Removed unused variable
     const loader = new FontLoader()
-    loader.load('./../../../assets/fonts/Fira Code Retina_Regular.json', (font: Font) => {
-      const textGeo = new TextGeometry('3d invetory', {
-        font: font,
-        size: 4,
-        depth: 1,
-        curveSegments: 8,
-        bevelThickness: 0.1,
-        bevelSize: 0.1,
-        bevelEnabled: true,
+    this.http
+      .get('/assets/fonts/FiraCode_Retina_Regular.json', { responseType: 'text' })
+      .subscribe((fontData: string) => {
+        const font = loader.parse(JSON.parse(fontData))
+        const textGeo = new TextGeometry('3d inventory', {
+          font: font,
+          size: 4,
+          depth: 1,
+          curveSegments: 8,
+          bevelThickness: 0.1,
+          bevelSize: 0.1,
+          bevelEnabled: true,
+        })
+
+        const material = new THREE.MeshBasicMaterial({ color: 0x995050 })
+        const textMesh = new THREE.Mesh(textGeo, material)
+        textMesh.position.x = -18
+        textMesh.position.y = 2
+        textMesh.position.z = 25
+
+        textMesh.rotation.x = 0
+        textMesh.rotation.y = Math.PI * 2
+        this.scene.add(textMesh)
       })
-
-      const material = new THREE.MeshBasicMaterial({ color: 0x995050 })
-      const textMesh = new THREE.Mesh(textGeo, material)
-      textMesh.position.x = -18
-      textMesh.position.y = 2
-      textMesh.position.z = 25
-
-      textMesh.rotation.x = 0
-      textMesh.rotation.y = Math.PI * 2
-      this.scene.add(textMesh)
-    })
   }
 
   addAxis() {
@@ -300,15 +332,14 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.addPlane(planeSize)
 
     this.scene.background = new THREE.Color(0x555555)
-    this.scene.castShadow = true
-    this.scene.receiveShadow = true
+    // Removed invalid properties castShadow and receiveShadow from THREE.Scene
 
     this.scene.fog = new THREE.Fog(0x333333, 200, 1500)
 
     this.addWalls()
 
-    this.directionalLight()
-    this.directionalLight2()
+    this.addDirectionalLight1()
+    this.addDirectionalLight2()
 
     this.addText()
     this.addAxis()
@@ -349,10 +380,10 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.renderer.setPixelRatio(devicePixelRatio)
     this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight)
 
-    const fov = 1000
-    const aspect = 1 // the canvas default
+    const fov = 75
     const near = 0.01
     const far = 3000
+    const aspect = this.canvas.clientWidth / this.canvas.clientHeight
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
     camera.position.set(10, 20, 20)
 
@@ -360,17 +391,14 @@ export class CubeComponent implements OnInit, AfterViewInit {
     controls.target.set(10, 40, 30)
     controls.update()
 
-    // Remove the aliasing of 'this'
-    // https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
-    //
+    this.render = this.render.bind(this)
+    requestAnimationFrame(this.render)
+  }
 
-    const component: CubeComponent = this
-    ;(function render() {
-      requestAnimationFrame(render)
-      component.animateCube()
-      component.shadowCube()
-      component.renderer.render(component.scene, component.camera)
-    })()
+  private render() {
+    requestAnimationFrame(this.render)
+    this.animateCube()
+    this.shadowCube()
+    this.renderer.render(this.scene, this.camera)
   }
 }

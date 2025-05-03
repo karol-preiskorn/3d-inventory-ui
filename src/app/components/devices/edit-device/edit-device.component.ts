@@ -71,6 +71,18 @@ export class DeviceEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Initialize the form group first
+    this.editDeviceForm = this.formBuilder.group({
+      _id: ['', [Validators.required, Validators.minLength(4)]],
+      name: ['', [Validators.required, Validators.minLength(4)]],
+      position: this.formBuilder.group({
+        x: ['', [Validators.required, this.numberValidator]],
+        y: ['', [Validators.required, this.numberValidator]],
+        h: ['', [Validators.required, this.numberValidator]],
+      }),
+      modelId: ['', [Validators.required]],
+    })
+
     const id = this.activatedRoute.snapshot.paramMap.get('id') ?? ''
     this.attributeComponent = 'device'
     this.component = id
@@ -80,31 +92,21 @@ export class DeviceEditComponent implements OnInit {
       this.devicesService.getDeviceSynchronize(id).subscribe({
         next: (device: Device) => {
           this.device = device
+
+          // Patch the form only after it has been initialized
+          this.editDeviceForm.patchValue({
+            _id: this.device._id,
+            name: this.device.name,
+            modelId: this.device.modelId,
+            position: {
+              x: this.device.position.x,
+              y: this.device.position.y,
+              h: this.device.position.h,
+            },
+          })
         },
         error: (error) => {
           console.error('Error fetching device:', error)
-        },
-      })
-    }
-    this.editDeviceForm = this.formBuilder.group({
-      _id: ['', [Validators.required, Validators.minLength(4)]],
-      name: ['', [Validators.required, Validators.minLength(4)]],
-      position: this.formBuilder.group({
-        x: ['', [Validators.required]],
-        y: ['', [Validators.required]],
-        h: ['', [Validators.required]],
-      }),
-      modelId: ['', [Validators.required]],
-    })
-    if (this.editDeviceForm) {
-      this.editDeviceForm.patchValue({
-        _id: this.device._id,
-        name: this.device.name,
-        modelId: this.device.modelId,
-        position: {
-          x: this.device.position.x,
-          y: this.device.position.y,
-          h: this.device.position.h,
         },
       })
     }
@@ -150,6 +152,26 @@ export class DeviceEditComponent implements OnInit {
     }
   }
 
+  get _id() {
+    return this.editDeviceForm.get('_id')
+  }
+
+  get position() {
+    return this.editDeviceForm.get('position')
+  }
+
+  get positionX() {
+    return this.editDeviceForm.get('position.x')
+  }
+
+  get positionY() {
+    return this.editDeviceForm.get('position.y')
+  }
+
+  get positionH() {
+    return this.editDeviceForm.get('position.h')
+  }
+
   get name() {
     return this.editDeviceForm.get('name')
   }
@@ -159,14 +181,14 @@ export class DeviceEditComponent implements OnInit {
   }
 
   get x() {
-    return this.editDeviceForm.get('x')
+    return this.editDeviceForm.get('position.x')
   }
 
   get y() {
-    return this.editDeviceForm.get('y')
+    return this.editDeviceForm.get('position.y')
   }
 
   get h() {
-    return this.editDeviceForm.get('h')
+    return this.editDeviceForm.get('position.h')
   }
 }

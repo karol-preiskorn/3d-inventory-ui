@@ -139,7 +139,7 @@ export class AttributeListComponent implements OnInit {
     await this.router.navigate(['edit-attribute', this.selectedAttribute._id])
   }
 
-  etDevice(id: string) {
+  getDevice(id: string) {
     return this.deviceService.GetDevices().subscribe((data: Device[]) => {
       const foundDevice = data.find((device: Device): boolean => device._id === id)
       if (foundDevice) {
@@ -180,12 +180,16 @@ export class AttributeListComponent implements OnInit {
   }
 
   getConnectionList() {
-    return this.connectionService.GetConnections().subscribe((data: Connection[]) => {
-      const tmp = new Connection()
-      // data = [tmp, ...data]
-      data.unshift(tmp)
-      this.connectionDictionary = data
-    })
+    return this.connectionService.GetConnections().subscribe(
+      (data: Connection[]) => {
+        const tmp = new Connection()
+        data.unshift(tmp)
+        this.connectionDictionary = data
+      },
+      (error) => {
+        console.error('Error fetching connections:', error)
+      },
+    )
   }
 
   findConnectionName(id: string): string {

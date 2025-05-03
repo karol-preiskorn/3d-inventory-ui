@@ -21,7 +21,7 @@ import Validation from '../../../shared/validation'
 import { tap } from 'rxjs/operators'
 import { v4 as uuidv4 } from 'uuid'
 import { CommonModule } from '@angular/common'
-import { LogComponent } from "../../log/log.component";
+import { LogComponent } from '../../log/log.component'
 
 @Component({
   selector: 'app-edit-attribute',

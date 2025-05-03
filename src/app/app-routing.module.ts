@@ -76,29 +76,8 @@ export const routes: Routes = [
   { path: 'edit-floor/:id', component: FloorEditComponent, title: 'Edit Floor' },
 ]
 
-// @NgModule({
-//   imports: [
-//     ReactiveFormsModule,
-//     FormsModule,
-//     RouterModule.forRoot(
-//       routes,
-//       { enableTracing: false }, // <-- debugging purposes only
-//     ),
-//     CommonModule,
-//   ],
-//   exports: [RouterModule],
-//   providers: [provideRouter(routes), { provide: TitleStrategy, useClass: TemplatePageTitleStrategy }],
-// })
-//export class AppRoutingModule {}
-
-// export const routes: Routes = [
-//   { path: '', component: HomeComponent },
-//   { path: 'devices', component: DeviceListComponent },
-//   { path: 'devices/add', component: DeviceAddComponent },
-//   { path: 'device-list', component: DeviceListComponent },
-//   { path: 'devices/edit/:id', component: DeviceEditComponent },
-//   // Add other routes here
-// ]
-
-@NgModule({ imports: [RouterModule.forRoot(routes)], exports: [RouterModule] })
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
 export class AppRoutingModule {}

@@ -4,14 +4,13 @@
     <div class="row">
       <div class="col">
         <label for="id" class="form-label">Id</label>
-        <input type="text" class="form-control" placeholder="Id" aria-label="id" formControlName="id" id="id"
+        <input type="text" class="form-control" placeholder="Id" aria-label="id" formControlName="_id" id="id"
           readonly [ngClass]="{
-            'is-invalid': editDeviceForm.controls.id.status !== 'VALID',
-            'is-valid': editDeviceForm.controls.id.status === 'VALID',
+            'is-invalid': editDeviceForm.controls._id.status !== 'VALID',
+            'is-valid': editDeviceForm.controls._id.status === 'VALID',
           }" />
-        <div *ngIf="editDeviceForm.controls.id.errors" class="invalid-feedback">
-          <div *ngIf="editDeviceForm.controls.id.errors.required">Id is required</div>
-          <div *ngIf="editDeviceForm.controls.id.errors.minlength">Id must be at least 4 characters</div>
+        <div *ngIf="editDeviceForm.get('_id')?.errors" class="invalid-feedback">
+          <div *ngIf="editDeviceForm.controls._id?.errors?.required">Id is required</div>
         </div>
       </div>
       <div class="col">
@@ -40,7 +39,8 @@
                   'is-valid': editDeviceForm.get('position.x')?.status === 'VALID',
                 }" />
         </div>
-        <div *ngIf="editDeviceForm.get('position.x') && editDeviceForm.get('position.x')?.errors" class="invalid-feedback">
+        <div *ngIf="editDeviceForm.get('position.x') && editDeviceForm.get('position.x')?.errors"
+          class="invalid-feedback">
           <div *ngIf="editDeviceForm.get('position.x')?.errors?.required">x is required</div>
           <div *ngIf="editDeviceForm.get('position.x')?.errors?.minlength">x must be at least 4 characters</div>
           <div *ngIf="editDeviceForm.get('position.x')?.errors?.maxlength">x must be at most 255 characters</div>

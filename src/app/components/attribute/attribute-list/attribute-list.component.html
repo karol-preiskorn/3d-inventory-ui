@@ -13,53 +13,43 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let attribute of attributeList | slice: (attributePage - 1) * pageSize : attributePage * pageSize">
+      <tr
+        *ngFor="let attribute of attributeList | slice: (attributePage - 1) * pageSize : attributePage * pageSize">
         <td>
           <div title="{{ attribute._id }}">#</div>
         </td>
         <td>
           <a href="edit-device/{{ attribute.deviceId }}" title="{{ attribute.deviceId }}">{{
             findDeviceName(attribute.deviceId || '')
-          }}</a>
+            }}</a>
         </td>
         <td>
           <a href="edit-model/{{ attribute.modelId }}" title="{{ attribute.modelId }}">{{
             findModelName(attribute.modelId || '')
-          }}</a>
+            }}</a>
         </td>
         <td>
           <a href="edit-connection/{{ attribute.connectionId }}" title="{{ attribute.connectionId }}">{{
             findConnectionName(attribute.connectionId || '')
-          }}</a>
+            }}</a>
         </td>
         <td>
-          <a
-            href="edit-attribute-dictionary/{{ attribute.attributeDictionaryId }}"
-            title="{{ attribute.attributeDictionaryId }}"
-            >{{ findAttributeDictionary(attribute.attributeDictionaryId) }}</a
-          >
+          <a href="edit-attribute-dictionary/{{ attribute.attributeDictionaryId }}"
+            title="{{ attribute.attributeDictionaryId }}">{{
+            findAttributeDictionary(attribute.attributeDictionaryId) }}</a>
         </td>
         <td>{{ attribute.value }}</td>
         <td>
           <fieldset class="btn-group float-md-end" aria-label="attribute-operations">
-            <button
-              type="button"
-              class="btn btn-success btn-sm move-right"
-              id="edit-attribute"
+            <button type="button" class="btn btn-success btn-sm move-right" id="edit-attribute"
               (click)="EditAttribute(attribute)">
               Edit
             </button>
-            <button
-              type="button"
-              id="delete-attribute"
-              class="btn btn-danger btn-sm"
+            <button type="button" id="delete-attribute" class="btn btn-danger btn-sm"
               (click)="DeleteAttribute(attribute._id)">
               Delete
             </button>
-            <button
-              type="button"
-              id="clone-attribute"
-              class="btn btn-info btn-sm"
+            <button type="button" id="clone-attribute" class="btn btn-info btn-sm"
               (click)="CloneAttribute(attribute._id)">
               Clone
             </button>
@@ -71,24 +61,18 @@
   <button type="button" class="btn btn-success btn-sm" (click)="AddAttribute()">
     <i class="bi bi-plus-lg"></i> Add
   </button>
-  <ngb-pagination
-    [(page)]="attributePage"
-    [pageSize]="pageSize"
-    [collectionSize]="totalItems"
-    [maxSize]="5"
-    [boundaryLinks]="true"
-    aria-label="Attribute pagination">
+  <ngb-pagination [(page)]="attributePage" [pageSize]="pageSize" [collectionSize]="totalItems" [maxSize]="5"
+    [boundaryLinks]="true" aria-label="Attribute pagination">
   </ngb-pagination>
 </div>
 
 <div class="fs-7 fw-lighter deviceid">attributeComponent: {{ this.attributeComponent }}</div>
 <div class="fs-7 fw-lighter deviceid">attributeComponentObject: {{ this.attributeComponentObject }}</div>
 <div class="fs-7 fw-lighter deviceid">attributeComponent === '': {{ attributeComponent === '' }}</div>
-<div class="fs-7 fw-lighter deviceid">attributeComponent === undefined: {{ attributeComponent === undefined }}</div>
+<div class="fs-7 fw-lighter deviceid">attributeComponent === undefined: {{ attributeComponent === undefined }}
+</div>
 <div class="fs-7 fw-lighter deviceid">component: {{ component }}</div>
 
-<app-log
-  *ngIf="attributeComponent === '' || attributeComponent === undefined"
-  [attributeComponentObject]="this.device"
-  [component]="component">
+<app-log *ngIf="attributeComponent === '' || attributeComponent === undefined"
+  [attributeComponentObject]="this.device" [component]="component">
 </app-log>
