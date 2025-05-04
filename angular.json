@@ -28,7 +28,7 @@
             "tsConfig": "./tsconfig.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "./src/assets/favicon/favicon.ico",
+              "./src/favicon.ico",
               "./src/assets",
               {
                 "glob": "*.svg",
@@ -40,7 +40,8 @@
               "./src/styles.scss",
               "./node_modules/bootstrap/scss/bootstrap.scss",
               "./node_modules/bootstrap-icons/font/bootstrap-icons.scss",
-              "./node_modules/prismjs/themes/prism-okaidia.css"
+              "./node_modules/prismjs/themes/prism-okaidia.css",
+              "./node_modules/font-awesome/css/font-awesome.min.css"
             ],
             "scripts": [
               "./node_modules/bootstrap/dist/js/bootstrap.bundle.js",

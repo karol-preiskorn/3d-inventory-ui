@@ -38,7 +38,7 @@ export class DeviceEditComponent implements OnInit {
   // Arrow function for number validation
   numberValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const value: number = control.value as number
-    if (isNaN(Number(value)) || Number(value) < 0) {
+    if (isNaN(Number(value)) || Number(value) < -20 || Number(value) > 20) {
       return { invalidNumber: true }
     }
     return null
@@ -50,7 +50,7 @@ export class DeviceEditComponent implements OnInit {
       name: new FormControl('', [Validators.required, Validators.minLength(4)]),
       modelId: new FormControl('', Validators.required),
       position: new FormGroup({
-        x: new FormControl(0, [Validators.required, this.numberValidator]),
+        x: new FormControl(0, [Validators.required, this.numberValidator, Validators.min(-20), Validators.max(20)]),
         y: new FormControl(0, [Validators.required, this.numberValidator]),
         h: new FormControl(0, [Validators.required, this.numberValidator]),
       }),
@@ -76,9 +76,9 @@ export class DeviceEditComponent implements OnInit {
       _id: ['', [Validators.required, Validators.minLength(4)]],
       name: ['', [Validators.required, Validators.minLength(4)]],
       position: this.formBuilder.group({
-        x: ['', [Validators.required, this.numberValidator]],
-        y: ['', [Validators.required, this.numberValidator]],
-        h: ['', [Validators.required, this.numberValidator]],
+        x: ['', [Validators.required, this.numberValidator, Validators.min(-20), Validators.max(20)]],
+        y: ['', [Validators.required, this.numberValidator, Validators.min(-20), Validators.max(20)]],
+        h: ['', [Validators.required, this.numberValidator, Validators.min(-20), Validators.max(20)]],
       }),
       modelId: ['', [Validators.required]],
     })

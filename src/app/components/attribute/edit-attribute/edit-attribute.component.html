@@ -7,7 +7,7 @@
         <div class="form-group mb-3">
           <label for="deviceId" class="form-label">Device Id</label>
           <select (change)="changeDeviceId($event)" formControlName="deviceId" [ngClass]="{
-              'is-invalid': editAttributeForm.hasError('atLeastOneValidator'),
+              'is-invalid': editAttributeForm.get('deviceId')?.hasError('atLeastOneValidator'),
               'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
               'form-select': true,
             }" id="deviceId">
@@ -40,7 +40,7 @@
           </div>
           <div class="log-message">
             {{ toString(editAttributeForm.controls.modelId.value) }}
-            s </div>
+          </div>
         </div>
       </div>
       <div class="col">
@@ -68,8 +68,8 @@
         <div class="form-group mb-2">
           <label for="attributeDictionaryId" class="form-label">Attribute Dictionary Id</label>
           <select (change)="changeAttributeDictionaryId($event)" formControlName="attributeDictionaryId" [ngClass]="{
-              'is-invalid': editAttributeForm.hasError('required', 'attributeDictionaryId'),
-              'is-valid': !editAttributeForm.hasError('required', 'attributeDictionaryId'),
+              'is-invalid': editAttributeForm.get('attributeDictionaryId')?.hasError('required'),
+              'is-valid': !editAttributeForm.get('attributeDictionaryId')?.hasError('required'),
               'form-select': true,
             }" id="attributeDictionaryId">
             <option *ngFor="let attributeDictionaryObj of attributeDictionary; let i = index"
@@ -77,8 +77,8 @@
               {{ attributeDictionaryObj.name }}
             </option>
           </select>
-          <div *ngIf="this.editAttributeForm.controls.attributeDictionaryId.errors" class="invalid-feedback">
-            <div *ngIf="this.editAttributeForm.controls.attributeDictionaryId.errors.required">
+          <div *ngIf="this.editAttributeForm.controls.attributeDictionaryId?.errors" class="invalid-feedback">
+            <div *ngIf="this.editAttributeForm.controls.attributeDictionaryId?.errors?.required">
               attributeDictionaryId is required
             </div>
           </div>
@@ -93,14 +93,15 @@
         <div class="form-group mb-2">
           <label for="value" class="form-label">Value</label>
           <input type="text" formControlName="value" id="value" required [ngClass]="{
-              'is-invalid': this.editAttributeForm.controls.value.status !== 'VALID',
+              'is-invalid': this.editAttributeForm.get('value')?.status !== 'VALID',
               'is-valid': this.editAttributeForm.controls.value.status === 'VALID',
               'form-control': true,
             }" />
           <div *ngIf="this.editAttributeForm.controls.value.errors" class="invalid-feedback">
             <div *ngIf="this.editAttributeForm.controls.value.errors.required">Value is required</div>
             <div *ngIf="this.editAttributeForm.controls.value.errors.minlength">
-              Value must be at least 250 characters
+              Value must be at least {{ this.editAttributeForm.controls.value.errors.minlength.requiredLength }}
+              characters
             </div>
           </div>
         </div>
@@ -125,5 +126,7 @@
     </div>
   </form>
 </div>
-<!-- The <app-log> component is used to display logs or debugging information related to the current component -->
+<!-- The <app-log> component is used to display logs or debugging information related to the current component.
+     It shows the state of the component, including form values, validation statuses, and any errors encountered.
+     This helps developers understand the current state of the application and troubleshoot issues effectively. -->
 <app-log [component]="component"></app-log>

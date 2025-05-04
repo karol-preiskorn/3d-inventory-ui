@@ -88,17 +88,27 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.startRenderingLoop()
   }
 
+  /**
+   * Creates a 3D device object and adds it to the scene.
+   *
+   * @param box_x - The width of the 3D box geometry.
+   * @param box_y - The height of the 3D box geometry.
+   * @param box_z - The depth of the 3D box geometry.
+   * @param pos_x - The x-coordinate position of the 3D object in the scene.
+   * @param pos_y - The y-coordinate position of the 3D object in the scene.
+   * @param pos_z - The z-coordinate position of the 3D object in the scene.
+   */
   createDevice3d(box_x: number, box_y: number, box_z: number, pos_x: number, pos_y: number, pos_z: number) {
     console.log('createDevice3d parameters: ', box_x, box_y, box_z, pos_x, pos_y, pos_z)
     const geometry = new THREE.BoxGeometry(box_x, box_y, box_z)
     this.material.color = new THREE.Color(Math.random() * 0xffffff)
     const sphereMaterial = new THREE.MeshStandardMaterial({ color: Math.random() * 0xffffff })
-    this.material.opacity = 0.75
+    this.material.opacity = 0.4
 
     const object = new THREE.Mesh(geometry, sphereMaterial)
     object.position.x = pos_x
-    object.position.y = pos_y
-    object.position.z = pos_z
+    object.position.y = pos_z + box_z / 2
+    object.position.z = pos_y
     object.castShadow = true
     object.receiveShadow = true
     this.scene.add(object)
@@ -127,10 +137,11 @@ export class CubeComponent implements OnInit, AfterViewInit {
     return model
   }
 
-  createDeviceList3d(): void {
+  generate3DDeviceList(): void {
     console.log('Create device list 3d')
     console.log('Device list: ' + this.deviceList.length)
     console.log('Model list: ' + this.modelList.length)
+    const createdDevices: string[] = []
     this.deviceList.forEach((device: Device) => {
       const model: Model | undefined = this.modelList.find((e: Model) => e._id === device.modelId)
       if (!model) {
@@ -145,8 +156,9 @@ export class CubeComponent implements OnInit, AfterViewInit {
         device.position.y,
         device.position.h,
       )
-      console.log('Create device: ' + device.name + ' ' + device.position.x + ' ' + device.position.y)
+      createdDevices.push(`Device: ${device.name}, Position: (${device.position.x}, ${device.position.y})`)
     })
+    console.log('Created devices:', createdDevices.join('; '))
   }
 
   addWalls() {
@@ -201,19 +213,14 @@ export class CubeComponent implements OnInit, AfterViewInit {
     const light2 = new THREE.DirectionalLight(0xffffff, 2)
     light2.position.set(-20, 30, 50)
     light2.castShadow = true
-    light2.shadow.camera.near = 0.5 // default
-    light2.shadow.camera.far = 2000 // default
-    light2.shadow.mapSize.width = 3000 // default
-    light2.shadow.mapSize.height = 3000 // default
-
-    light2.shadow.camera.near = 1000 // default
-    light2.shadow.camera.far = 2000 // default
+    light2.shadow.camera.bottom = -10
+    light2.shadow.camera.far = 2000
     light2.shadow.camera.left = -10
+    light2.shadow.camera.near = 1000 // default
     light2.shadow.camera.right = 10
     light2.shadow.camera.top = 10
-    light2.shadow.camera.bottom = -10
-    light2.shadow.camera.near = 0.5
-    light2.shadow.camera.far = 2000
+    light2.shadow.mapSize.height = 3000 // default
+    light2.shadow.mapSize.width = 3000 // default
     this.scene.add(light2)
 
     const lightHelper2 = new THREE.DirectionalLightHelper(light2, 8, 0xff0000)
@@ -225,17 +232,14 @@ export class CubeComponent implements OnInit, AfterViewInit {
     light3.color.setHSL(0.1, 1, 0.95)
     light3.position.set(20, 40, 25)
     light3.castShadow = true
-    light3.shadow.camera.near = 0.5 // default
-    light3.shadow.camera.far = 2000 // default
-    light3.shadow.mapSize.width = 3000 // default
-    light3.shadow.mapSize.height = 3000 // default
-    light3.shadow.camera.near = 1000 // default
+    light3.shadow.camera.bottom = -10
     light3.shadow.camera.far = 2000 // default
     light3.shadow.camera.left = -10
+    light3.shadow.camera.near = 1000 // default
     light3.shadow.camera.right = 10
     light3.shadow.camera.top = 10
-    light3.shadow.camera.bottom = -10
-    light3.shadow.camera.near = 0.5
+    light3.shadow.mapSize.height = 3000 // default
+    light3.shadow.mapSize.width = 3000 // default
     this.scene.add(light3)
 
     const lightHelper3 = new THREE.DirectionalLightHelper(light3, 20, 0x00ff00)
@@ -347,12 +351,12 @@ export class CubeComponent implements OnInit, AfterViewInit {
     // this.loadDevices()
     // this.loadModels()
 
-    this.createDeviceList3d()
+    this.generate3DDeviceList()
 
-    const aspectRatio = this.getAspectRatio()
+    this.generate3DDeviceList()
     this.camera = new THREE.PerspectiveCamera(
       this.fieldOfView,
-      aspectRatio,
+      this.getAspectRatio(),
       this.nearClippingPlane,
       this.farClippingPlane,
     )

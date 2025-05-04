@@ -1,22 +1,17 @@
 <div class="container-fluid">
   <h3><i class="bi bi-hdd"></i> Add Device</h3>
   <form [formGroup]="addDeviceForm" (ngSubmit)="submitForm()" class="g-3 needs-validation" novalidate>
-    <label for="id">Id</label>
-    <input type="text" formControlName="id" id="id" />
+    <div class="form-group mb-3">
+      <label for="id">Id</label>
+      <input class="form-group mb-3 form-control" type="text" formControlName="id" id="id" readonly />
+    </div>
     <div class="form-group mb-3">
       <label for="name" class="form-label">Name</label>
-      <textarea
-        formControlName="name"
-        rows="2"
-        minlength="4"
-        maxlength="50"
-        required
-        [ngClass]="{
+      <textarea formControlName="name" rows="2" required [ngClass]="{
           'is-invalid': addDeviceForm.controls.name.status !== 'VALID',
           'is-valid': addDeviceForm.controls.name.status === 'VALID',
           'form-control': true,
-        }"
-      ></textarea>
+        }"></textarea>
       <div *ngIf="addDeviceForm.controls.name.errors" class="invalid-feedback">
         <div *ngIf="addDeviceForm.controls.name.errors.required">Name is required</div>
         <div *ngIf="addDeviceForm.controls.name.errors.minlength">Name must be at least 4 characters</div>
@@ -27,21 +22,16 @@
         <div class="col">
           <div class="form-group mb-3">
             <label for="x" class="form-label">x</label>
-            <input
-              type="text"
-              formControlName="x"
-              id="x"
-              required
-              [ngClass]="{
-                'is-invalid': addDeviceForm.controls.position.controls.x.status !== 'VALID',
-                'is-valid': addDeviceForm.controls.position.controls.x.status === 'VALID',
-                'form-control': true,
-              }"
-            />
-            <div *ngIf="addDeviceForm.controls.position.controls.x.errors" class="invalid-feedback">
-              <div *ngIf="addDeviceForm.controls.position.controls.x.errors.required">X is required</div>
-              <div *ngIf="addDeviceForm.controls.position.controls.x.errors.minlength">
-                X must be at least 1 character
+            <input type="number" formControlName="x" class="form-control" id="x" aria-label="x" placeholder="x"
+              required [ngClass]="{
+                  'is-invalid': addDeviceForm.get('position.x') && addDeviceForm.get('position.x')?.status !== 'VALID',
+                  'is-valid': addDeviceForm.get('position.x')?.status === 'VALID',
+                }" />
+            <div *ngIf="addDeviceForm.get('position.x')?.errors" class="invalid-feedback">
+              <div *ngIf="addDeviceForm.get('position.x')?.errors?.required">X is required</div>
+              <div
+                *ngIf="addDeviceForm.get('position.x')?.errors?.min || addDeviceForm.get('position.x')?.errors?.max">
+                X must be at bettween -20 and 20
               </div>
             </div>
           </div>
@@ -49,21 +39,16 @@
         <div class="col">
           <div class="form-group mb-3">
             <label for="y" class="form-label">y</label>
-            <input
-              type="text"
-              formControlName="y"
-              id="y"
-              required
-              [ngClass]="{
-                'is-invalid': addDeviceForm.controls.position.controls.y.status !== 'VALID',
-                'is-valid': addDeviceForm.controls.position.controls.y.status === 'VALID',
-                'form-control': true,
-              }"
-            />
-            <div *ngIf="addDeviceForm.controls.position.controls.y.errors" class="invalid-feedback">
-              <div *ngIf="addDeviceForm.controls.position.controls.y.errors.required">Y is required</div>
-              <div *ngIf="addDeviceForm.controls.position.controls.y.errors.minlength">
-                Y must be at least 1 character
+            <input type="number" formControlName="y" class="form-control" id="y" aria-label="y" placeholder="y"
+              required [ngClass]="{
+                  'is-invalid': addDeviceForm.get('position.y') && addDeviceForm.get('position.y')?.status !== 'VALID',
+                  'is-valid': addDeviceForm.get('position.y')?.status === 'VALID',
+                }" />
+            <div *ngIf="addDeviceForm.get('position.y')?.errors" class="invalid-feedback">
+              <div *ngIf="addDeviceForm.get('position.y')?.errors?.required">Y is required</div>
+              <div
+                *ngIf="addDeviceForm.get('position.y')?.errors?.min || addDeviceForm.get('position.y')?.errors?.max">
+                X must be at bettween -20 and 20
               </div>
             </div>
           </div>
@@ -71,21 +56,18 @@
         <div class="col">
           <div class="form-group mb-3">
             <label for="h" class="form-label">h</label>
-            <input
-              type="text"
-              formControlName="h"
-              id="h"
-              required
-              [ngClass]="{
-                'is-invalid': addDeviceForm.controls.position.controls.h.status !== 'VALID',
-                'is-valid': addDeviceForm.controls.position.controls.h.status === 'VALID',
-                'form-control': true,
-              }"
-            />
-            <div *ngIf="addDeviceForm.controls.position.controls.h.errors" class="invalid-feedback"></div>
-            <div *ngIf="addDeviceForm.controls.position.controls.h.errors?.required">H is required</div>
-            <div *ngIf="addDeviceForm.controls.position.controls.h.errors?.minlength">
-              H must be at least 1 character
+            <input type="number" formControlName="h" class="form-control" id="h" aria-label="h" placeholder="h"
+              required [ngClass]="{
+                  'is-invalid': addDeviceForm.get('position.h') && addDeviceForm.get('position.h')?.status !== 'VALID',
+                  'is-valid': addDeviceForm.get('position.h')?.status === 'VALID',
+                }" />
+            <div *ngIf="addDeviceForm.get('position.h')?.errors" class="invalid-feedback">
+              <div *ngIf="addDeviceForm.get('position.h')?.errors?.required">H is required
+              </div>
+              <div
+                *ngIf="addDeviceForm.get('position.h')?.errors?.min || addDeviceForm.get('position.h')?.errors?.max">
+                H must be at bettween -20 and 20
+              </div>
             </div>
           </div>
         </div>
@@ -95,18 +77,12 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="modelId" class="form-label">Model</label>
-          <select
-            (change)="changeModelId($event)"
-            formControlName="modelId"
-            class="form-select"
-            id="modelId"
-            required
-            [ngClass]="{
+          <select (change)="changeModelId($event)" formControlName="modelId" class="form-select" id="modelId"
+            required [ngClass]="{
               'is-invalid': addDeviceForm.controls.modelId.status !== 'VALID',
               'is-valid': addDeviceForm.controls.modelId.status === 'VALID',
               'form-select': true,
-            }"
-          >
+            }">
             <option *ngFor="let modelObj of modelList; let i = index" value="{{ modelObj._id }}">
               {{ modelObj.name }}
             </option>
@@ -120,7 +96,8 @@
     <p>Form Status: {{ addDeviceForm.status }}</p>
     <div class="d-flex p-2">
       <div class="p-1 g-col-1">
-        <button type="submit" [disabled]="!(addDeviceForm.valid && addDeviceForm.touched)" class="btn btn-primary mb-3">
+        <button type="submit" [disabled]="!(addDeviceForm.valid && addDeviceForm.touched)"
+          class="btn btn-primary mb-3">
           <i class="bi bi-file-earmark-plus"></i> Add
         </button>
       </div>

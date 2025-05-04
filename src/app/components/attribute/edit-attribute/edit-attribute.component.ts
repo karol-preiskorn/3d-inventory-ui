@@ -1,5 +1,13 @@
 import { Component, NgZone, OnInit } from '@angular/core'
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms'
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidatorFn,
+  Validators,
+  ValidationErrors,
+} from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 
 import { CommonModule } from '@angular/common'
@@ -107,7 +115,7 @@ export class AttributeEditComponent implements OnInit {
         modelId: new FormControl(''),
         value: new FormControl('', [Validators.required]),
       },
-      { validators: [this.atLeastOneValidator.bind(this)] },
+      { validators: this.atLeastOneValidator() },
     )
   }
 
@@ -115,7 +123,7 @@ export class AttributeEditComponent implements OnInit {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
       const formGroup = control as FormGroup
       const values = Object.values(formGroup.controls)
-      const hasValue = values.some((control) => control.value !== null && control.value !== '')
+      const hasValue = values.some((control) => control.enabled && control.value !== null && control.value !== '')
       return hasValue ? null : { atLeastOne: true }
     }
   }
@@ -180,19 +188,18 @@ export class AttributeEditComponent implements OnInit {
   getDeviceList() {
     this.deviceService.GetDevices().subscribe((data: Device[]) => {
       const tmp = new Device()
-      data.unshift(tmp)
-      this.deviceDictionary = data
+      this.deviceDictionary = [tmp, ...data]
     })
   }
 
   findDeviceName(id: string) {
-    return this.deviceDictionary.find((e) => e._id === id)?.name
+    return this.deviceDictionary?.find((e) => e._id === id)?.name
   }
 
   getModelList() {
     this.modelService.GetModels().subscribe((data: Model[]) => {
-      const tmp = new Model()
-      data.unshift(tmp)
+      const placeholderModel = { _id: '', name: 'Select a model' } as Model
+      data.unshift(placeholderModel)
       this.modelDictionary = data
     })
   }

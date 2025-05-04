@@ -2,7 +2,9 @@ import { Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
+import { switchMap } from 'rxjs'
 
+import { CommonModule } from '@angular/common'
 import { DeviceService } from '../../../services/device.service'
 import { LogService } from '../../../services/log.service'
 import { ModelsService } from '../../../services/models.service'
@@ -11,7 +13,6 @@ import { DeviceCategoryDict } from '../../../shared/deviceCategories'
 import { DeviceTypeDict } from '../../../shared/deviceTypes'
 import { Model } from '../../../shared/model'
 import Validation from '../../../shared/validation'
-import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-add-device',
@@ -29,16 +30,35 @@ export class DeviceAddComponent implements OnInit {
   modelList: Model[]
   valid: Validation = new Validation()
 
-  addDeviceForm = new FormGroup({
-    id: new FormControl('', null),
-    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    modelId: new FormControl('', Validators.required),
-    position: new FormGroup({
-      x: new FormControl<number>(0, [Validators.required, this.valid.numberValidator]),
-      y: new FormControl<number>(0, [Validators.required, this.valid.numberValidator]),
-      h: new FormControl<number>(0, [Validators.required, this.valid.numberValidator]),
-    }),
-  })
+  addDeviceForm: FormGroup
+
+  private initializeForm() {
+    this.addDeviceForm = new FormGroup({
+      id: new FormControl(''),
+      name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      modelId: new FormControl('', Validators.required),
+      position: new FormGroup({
+        x: new FormControl<number>(0, [
+          Validators.required,
+          this.valid.numberValidator,
+          Validators.min(-20),
+          Validators.max(20),
+        ]),
+        y: new FormControl<number>(0, [
+          Validators.required,
+          this.valid.numberValidator,
+          Validators.min(-20),
+          Validators.max(20),
+        ]),
+        h: new FormControl<number>(0, [
+          Validators.required,
+          this.valid.numberValidator,
+          Validators.min(-20),
+          Validators.max(20),
+        ]),
+      }),
+    })
+  }
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,7 +67,9 @@ export class DeviceAddComponent implements OnInit {
     public devicesService: DeviceService,
     private modelService: ModelsService,
     private logService: LogService,
-  ) {}
+  ) {
+    this.initializeForm()
+  }
 
   ngOnInit() {
     this.loadModels()
@@ -92,31 +114,64 @@ export class DeviceAddComponent implements OnInit {
     return this.addDeviceForm.get('position')?.get('h')
   }
 
+  get _id() {
+    return this.addDeviceForm.get('_id')
+  }
+
+  get position() {
+    return this.addDeviceForm.get('position')
+  }
+
+  get positionX() {
+    return this.addDeviceForm.get('position')?.get('x')
+  }
+
+  get positionY() {
+    return this.addDeviceForm.get('position')?.get('y')
+  }
+
+  get positionH() {
+    return this.addDeviceForm.get('position')?.get('h')
+  }
+
   toString(data: Record<string, unknown>): string {
     return JSON.stringify(data, null, ' ')
   }
 
   generateDevice() {
     this.addDeviceForm.controls.name.setValue(faker.company.name() + ' - ' + faker.company.buzzPhrase())
-    this.addDeviceForm.controls.position.controls.x.setValue(faker.number.int(10))
-    this.addDeviceForm.controls.position.controls.y.setValue(faker.number.int(10))
-    this.addDeviceForm.controls.position.controls.h.setValue(faker.number.int(10))
-    this.addDeviceForm.controls.modelId.setValue(
-      this.modelList[Math.floor(Math.random() * this.modelList.length)]._id.toString(),
-    )
+    const positionGroup = this.addDeviceForm.get('position') as FormGroup
+    positionGroup.get('x')?.setValue(faker.number.int({ max: 10 }))
+    positionGroup.get('y')?.setValue(faker.number.int({ max: 10 }))
+    positionGroup.get('h')?.setValue(faker.number.int({ max: 10 }))
+    if (this.modelList && this.modelList.length > 0) {
+      this.addDeviceForm.controls.modelId.setValue(
+        this.modelList[Math.floor(Math.random() * this.modelList.length)]._id.toString(),
+      )
+    } else {
+      console.warn('Model list is empty or undefined. Cannot generate device modelId.')
+    }
   }
 
   submitForm() {
+    if (this.addDeviceForm.invalid) {
+      return
+    }
     console.log('Device added!')
-    this.logService.CreateLog({
-      operation: 'Create',
-      component: 'Device',
-      // objectId: res._id,
-      message: this.addDeviceForm.value,
-    })
-    this.devicesService.CreateDevice(this.device).subscribe(() => {
-      // Removed 'res' parameter
-      this.ngZone.run(() => this.router.navigateByUrl('device-list'))
-    })
+    this.logService
+      .CreateLog({
+        operation: 'Create',
+        component: 'Device',
+        message: this.addDeviceForm.value,
+      })
+      .pipe(switchMap(() => this.devicesService.CreateDevice(this.addDeviceForm.value)))
+      .subscribe({
+        next: () => {
+          this.ngZone.run(() => this.router.navigateByUrl('device-list'))
+        },
+        error: (err) => {
+          console.error('Error occurred:', err)
+        },
+      })
   }
 }
