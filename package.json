@@ -61,7 +61,7 @@
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
     "@octokit/core": "^6.1.5",
     "bootstrap": "^5.3.5",
-    "bootstrap-icons": "^1.11.3",
+    "bootstrap-icons": "^1.11.4",
     "browserify-zlib": "^0.2.0",
     "chalk": "^5.4.1",
     "cors": "^2.8.5",

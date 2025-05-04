@@ -1,20 +1,16 @@
 <div class="container-fluid">
   <h2><i class="bi bi-bar-chart"></i> Edit Attribute</h2>
-  <div>{{ this.toString(this.editAttributeForm.controls._id.value) }}</div>
+  <div>{{ editAttributeForm.controls._id.value | json }}</div>
   <form [formGroup]="editAttributeForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
     <div class="row">
       <div class="col">
         <div class="form-group mb-3">
           <label for="deviceId" class="form-label">Device Id</label>
-          <select
-            (change)="changeDeviceId($event)"
-            formControlName="deviceId"
-            [ngClass]="{
+          <select (change)="changeDeviceId($event)" formControlName="deviceId" [ngClass]="{
               'is-invalid': editAttributeForm.hasError('atLeastOneValidator'),
               'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
               'form-select': true,
-            }"
-            id="deviceId">
+            }" id="deviceId">
             <option *ngFor="let deviceObj of deviceDictionary; let i = index" [value]="deviceObj._id">
               {{ deviceObj.name }}
             </option>
@@ -23,22 +19,18 @@
             One of field: deviceId, modelId or connectionId is required
           </div>
           <div class="log-message">
-            {{ this.toString(this.editAttributeForm.controls.deviceId.value) }}
+            {{ toString(editAttributeForm.controls.deviceId.value) }}
           </div>
         </div>
       </div>
       <div class="col">
         <div class="form-group mb-2">
           <label for="modelId" class="form-label">Model Id</label>
-          <select
-            (change)="changeModelId($event)"
-            formControlName="modelId"
-            [ngClass]="{
+          <select (change)="changeModelId($event)" formControlName="modelId" [ngClass]="{
               'is-invalid': editAttributeForm.hasError('atLeastOneValidator'),
               'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
               'form-select': true,
-            }"
-            id="modelId">
+            }" id="modelId">
             <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj._id }}">
               {{ modelObj.name }}
             </option>
@@ -47,23 +39,20 @@
             One of field: deviceId, modelId or connectionId is required
           </div>
           <div class="log-message">
-            {{ this.toString(this.editAttributeForm.controls.modelId.value) }}
-          </div>
+            {{ toString(editAttributeForm.controls.modelId.value) }}
+            s </div>
         </div>
       </div>
       <div class="col">
         <div class="form-group mb-2">
           <label for="connectionId" class="form-label">Connection Id</label>
-          <select
-            (change)="changeConnectionId($event)"
-            formControlName="connectionId"
-            [ngClass]="{
+          <select (change)="changeConnectionId($event)" formControlName="connectionId" [ngClass]="{
               'is-invalid': editAttributeForm.hasError('atLeastOneValidator'),
               'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
               'form-select': true,
-            }"
-            id="connectionId">
-            <option *ngFor="let connectionObj of connectionDictionary; let i = index" value="{{ connectionObj._id }}">
+            }" id="connectionId">
+            <option *ngFor="let connectionObj of connectionDictionary; let i = index"
+              value="{{ connectionObj._id }}">
               {{ connectionObj.name }}
             </option>
           </select>
@@ -71,24 +60,19 @@
             One of field: deviceId, modelId or connectionId is required
           </div>
           <div class="log-message">
-            {{ this.toString(this.editAttributeForm.controls.connectionId.value) }}
+            {{ toString(editAttributeForm.controls.connectionId.value) }}
           </div>
         </div>
       </div>
       <div class="col">
         <div class="form-group mb-2">
           <label for="attributeDictionaryId" class="form-label">Attribute Dictionary Id</label>
-          <select
-            (change)="changeAttributeDictionaryId($event)"
-            formControlName="attributeDictionaryId"
-            [ngClass]="{
-              'is-invalid': this.editAttributeForm.controls.attributeDictionaryId.status !== 'VALID',
-              'is-valid': this.editAttributeForm.controls.attributeDictionaryId.status === 'VALID',
+          <select (change)="changeAttributeDictionaryId($event)" formControlName="attributeDictionaryId" [ngClass]="{
+              'is-invalid': editAttributeForm.hasError('required', 'attributeDictionaryId'),
+              'is-valid': !editAttributeForm.hasError('required', 'attributeDictionaryId'),
               'form-select': true,
-            }"
-            id="attributeDictionaryId">
-            <option
-              *ngFor="let attributeDictionaryObj of attributeDictionary; let i = index"
+            }" id="attributeDictionaryId">
+            <option *ngFor="let attributeDictionaryObj of attributeDictionary; let i = index"
               [value]="attributeDictionaryObj._id.toString()">
               {{ attributeDictionaryObj.name }}
             </option>
@@ -99,7 +83,7 @@
             </div>
           </div>
           <div class="log-message">
-            {{ this.toString(this.editAttributeForm.controls.attributeDictionaryId.value) }}
+            {{ editAttributeForm.controls.attributeDictionaryId.value?.toString() }}
           </div>
         </div>
       </div>
@@ -108,12 +92,7 @@
       <div class="col">
         <div class="form-group mb-2">
           <label for="value" class="form-label">Value</label>
-          <input
-            type="text"
-            formControlName="value"
-            id="id"
-            required
-            [ngClass]="{
+          <input type="text" formControlName="value" id="value" required [ngClass]="{
               'is-invalid': this.editAttributeForm.controls.value.status !== 'VALID',
               'is-valid': this.editAttributeForm.controls.value.status === 'VALID',
               'form-control': true,
@@ -121,7 +100,7 @@
           <div *ngIf="this.editAttributeForm.controls.value.errors" class="invalid-feedback">
             <div *ngIf="this.editAttributeForm.controls.value.errors.required">Value is required</div>
             <div *ngIf="this.editAttributeForm.controls.value.errors.minlength">
-              Value must be at less 250 characters
+              Value must be at least 250 characters
             </div>
           </div>
         </div>
@@ -130,9 +109,7 @@
     <div class="row">
       <div class="col">
         <div class="form-group mb-3">
-          <button
-            type="submit"
-            [disabled]="!(this.editAttributeForm.valid && this.editAttributeForm.touched)"
+          <button type="submit" [disabled]="!(editAttributeForm.valid && editAttributeForm.touched)"
             class="btn btn-primary">
             Update attribute
           </button>
@@ -148,4 +125,5 @@
     </div>
   </form>
 </div>
+<!-- The <app-log> component is used to display logs or debugging information related to the current component -->
 <app-log [component]="component"></app-log>

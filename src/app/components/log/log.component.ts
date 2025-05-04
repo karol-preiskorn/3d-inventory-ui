@@ -186,6 +186,12 @@ export class LogComponent implements OnInit {
    */
   findNameInLogMessage(log: Log): string {
     let jLog: Log
+    let findConnetctionNameValue: string
+
+    if (!log) {
+      console.error('Log message is undefined')
+      return ''
+    }
     try {
       jLog = JSON.parse(JSON.stringify(log.message)) as Log
     } catch (error: unknown) {
@@ -193,23 +199,38 @@ export class LogComponent implements OnInit {
       return JSON.stringify(log.message)
     }
     if (log.component == 'Attribute') {
-      const jAttribute: Attribute = log.message as Attribute
-      console.log('jAttribute: ' + JSON.stringify(jAttribute, null, ' '))
-      console.log('findNameInLogMessage: ' + JSON.stringify(jAttribute, null, ' '))
-      if (jAttribute.connectionId !== null) {
-        this.getConnectionList()
-        console.log('Connection: ' + this.findConnectionName(jAttribute.connectionId))
-        return 'Connection ' + this.findConnectionName(jAttribute.connectionId)
-      }
-      if (jAttribute.modelId !== null) {
-        this.getModelList()
-        if (jAttribute.connectionId !== null) {
-          return 'Model ' + this.findModelName(jAttribute.connectionId)
+      const logMessageAttribute: Partial<Attribute> = log.message as Partial<Attribute>
+      console.log('logMessageAttribute: ' + JSON.stringify(logMessageAttribute, null, ' '))
+      if (!logMessageAttribute) {
+        if (
+          (logMessageAttribute as Partial<Attribute>).connectionId !== null &&
+          (logMessageAttribute as Partial<Attribute>).connectionId !== undefined
+        ) {
+          this.getConnectionList()
+          ;(findConnetctionNameValue = this.findConnectionName(
+            (logMessageAttribute as Partial<Attribute>).connectionId ?? '',
+          )),
+            console.log(
+              `Find ConnectionName for Attribute (${(logMessageAttribute as Partial<Attribute>)?.connectionId ?? 'Unknown'}): ${findConnetctionNameValue}`,
+            )
+          return 'Connection ' + findConnetctionNameValue
         }
-      }
-      if (jAttribute.deviceId !== null) {
-        this.getDeviceList()
-        return 'Device ' + this.findDeviceName(jAttribute.deviceId)
+        if (
+          (logMessageAttribute as Attribute).modelId !== null &&
+          (logMessageAttribute as Attribute).modelId !== undefined
+        ) {
+          this.getModelList()
+          if ((logMessageAttribute as Partial<Attribute>).connectionId !== null) {
+            return 'Model ' + this.findModelName((logMessageAttribute as Partial<Attribute>).modelId ?? '')
+          }
+        }
+        if (
+          (logMessageAttribute as Attribute).deviceId !== null &&
+          (logMessageAttribute as Attribute).deviceId !== undefined
+        ) {
+          this.getDeviceList()
+          return 'Device ' + this.findDeviceName((logMessageAttribute as Partial<Attribute>).deviceId ?? '')
+        }
       }
     }
     return JSON.stringify(jLog, null, ' ')
@@ -267,18 +288,22 @@ export class LogComponent implements OnInit {
   }
 
   /**
-   * Retrieves the connection list.
-
+   * Retrieves the connection list from the connection service.
+   * If the connection list has already been fetched, it returns null.
+   * Otherwise, it subscribes to the GetConnections() method of the connection service and updates the connection list.
    * @returns An Observable that emits the connection list.
+   * Fetches the list of connections from the connection service and assigns it to the `connectionList` property.
+   * Logs an error message to the console if the request fails.
    */
-  getConnectionList() {
-    if (this.connectionListGet == true) return null
-    return this.connectionService.GetConnections().subscribe((data: Connection[]) => {
-      data.forEach((connection) => {
-        this.connectionList.push(connection)
-      })
-      this.connectionListGet = true
-    })
+  getConnectionList(): void {
+    this.connectionService.GetConnections().subscribe(
+      (data) => {
+        this.connectionList = data
+      },
+      (error) => {
+        console.error('Error fetching connection list:', error)
+      },
+    )
   }
 
   /**
@@ -286,8 +311,19 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the connection.
    * @returns The name of the connection if found, otherwise undefined.
    */
-  findConnectionName(id: string) {
-    return this.connectionList.find((e) => e._id === id)?.name
+  findConnectionName(connectionId: string): string {
+    if (!this.connectionList || this.connectionList.length === 0) {
+      console.warn('Connection list is empty or not initialized')
+      return 'Unknown Connection'
+    }
+
+    const connection = this.connectionList.find((conn) => conn._id === connectionId)
+    if (!connection) {
+      console.warn(`No connection found for ID: ${connectionId}`)
+      return 'Unknown Connection'
+    }
+
+    return connection.name
   }
 
   /**

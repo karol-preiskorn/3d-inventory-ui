@@ -1,26 +1,26 @@
+import { Component, NgZone, OnInit } from '@angular/core'
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
-import { Component, NgZone, OnInit } from '@angular/core'
 
-import { Attribute } from '../../../shared/attribute'
-import { AttributeDictionary } from '../../../shared/attribute-dictionary'
-import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
-import { AttributeService } from '../../../services/attribute.service'
-import { ComponentDictionary } from '../../../shared/component-dictionary'
-import { Connection } from '../../../shared/connection'
-import { ConnectionService } from '../../../services/connection.service'
-import { Device } from '../../../shared/device'
-import { DeviceCategoryDict } from '../../../shared/deviceCategories'
-import { DeviceService } from '../../../services/device.service'
-import { DeviceTypeDict } from '../../../shared/deviceTypes'
-import { LogService } from '../../../services/log.service'
-import { Model } from '../../../shared/model'
-import { ModelsService } from '../../../services/models.service'
+import { CommonModule } from '@angular/common'
 import { Observable } from 'rxjs'
-import Validation from '../../../shared/validation'
 import { tap } from 'rxjs/operators'
 import { v4 as uuidv4 } from 'uuid'
-import { CommonModule } from '@angular/common'
+import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
+import { AttributeService } from '../../../services/attribute.service'
+import { ConnectionService } from '../../../services/connection.service'
+import { DeviceService } from '../../../services/device.service'
+import { LogService } from '../../../services/log.service'
+import { ModelsService } from '../../../services/models.service'
+import { Attribute } from '../../../shared/attribute'
+import { AttributeDictionary } from '../../../shared/attribute-dictionary'
+import { ComponentDictionary } from '../../../shared/component-dictionary'
+import { Connection } from '../../../shared/connection'
+import { Device } from '../../../shared/device'
+import { DeviceCategoryDict } from '../../../shared/deviceCategories'
+import { DeviceTypeDict } from '../../../shared/deviceTypes'
+import { Model } from '../../../shared/model'
+import Validation from '../../../shared/validation'
 import { LogComponent } from '../../log/log.component'
 
 @Component({
@@ -54,12 +54,12 @@ export class AttributeEditComponent implements OnInit {
     this.getAttribute(this.inputId).subscribe((data: Attribute) => {
       this.attribute = data
       this.editAttributeForm.setValue({
-        _id: data._id,
-        attributeDictionaryId: data.attributeDictionaryId,
-        connectionId: data.connectionId,
-        deviceId: data.deviceId,
-        modelId: data.modelId,
-        value: data.value,
+        _id: data._id || '',
+        attributeDictionaryId: data.attributeDictionaryId || '', // Default to an empty string
+        connectionId: data.connectionId || '',
+        deviceId: data.deviceId || '',
+        modelId: data.modelId || '',
+        value: data.value || '',
       })
     })
     this.getDeviceList()
@@ -67,14 +67,22 @@ export class AttributeEditComponent implements OnInit {
     this.getConnectionList()
     this.getAttributeDictionaryList()
     this.component = this.inputId
+    this.getAttributeDictionaryList()
   }
 
   private getAttribute(id: string): Observable<Attribute> {
     return this.attributeService.GetAttribute(id).pipe(
       tap((data: Attribute) => {
-        console.log('AttributeEditComponent.GetAttribute(' + id + ') => ' + JSON.stringify(data, null, 2))
+        console.log('AttributeEditComponent.getAttribute(' + id + ') => ' + JSON.stringify(data, null, 2))
         this.attribute = data
-        this.editAttributeForm.setValue(data)
+        this.editAttributeForm.patchValue({
+          _id: data._id,
+          attributeDictionaryId: data.attributeDictionaryId,
+          connectionId: data.connectionId,
+          deviceId: data.deviceId,
+          modelId: data.modelId,
+          value: data.value,
+        })
       }),
     )
   }
