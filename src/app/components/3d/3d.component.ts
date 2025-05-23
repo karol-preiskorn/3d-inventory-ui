@@ -88,6 +88,17 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.startRenderingLoop()
   }
 
+  getContrastColor(hexColor: number): number {
+    // Convert hex to RGB
+    const r = (hexColor >> 16) & 0xff
+    const g = (hexColor >> 8) & 0xff
+    const b = hexColor & 0xff
+    // Calculate luminance
+    const luminance = (0.299 * r + 0.587 * g + 0.124 * b) / 255
+    // Return black for light colors, white for dark colors
+    return luminance > 0.5 ? 0x000000 : 0xffffff
+  }
+
   /**
    * Creates a 3D device object and adds it to the scene.
    *
@@ -98,20 +109,60 @@ export class CubeComponent implements OnInit, AfterViewInit {
    * @param pos_y - The y-coordinate position of the 3D object in the scene.
    * @param pos_z - The z-coordinate position of the 3D object in the scene.
    */
-  createDevice3d(box_x: number, box_y: number, box_z: number, pos_x: number, pos_y: number, pos_z: number) {
+
+  createDevice3d(
+    device_name: string,
+    box_x: number,
+    box_y: number,
+    box_z: number,
+    pos_x: number,
+    pos_y: number,
+    pos_z: number,
+  ) {
     console.log('createDevice3d parameters: ', box_x, box_y, box_z, pos_x, pos_y, pos_z)
     const geometry = new THREE.BoxGeometry(box_x, box_y, box_z)
-    this.material.color = new THREE.Color(Math.random() * 0xffffff)
-    const sphereMaterial = new THREE.MeshStandardMaterial({ color: Math.random() * 0xffffff })
-    this.material.opacity = 0.4
+    let color = Math.random() * 0xffffff
+    // Compute a contrasting color (black or white) for the given color
+
+    const colorText = this.getContrastColor(color)
+    this.material.color = new THREE.Color(color)
+    const sphereMaterial = new THREE.MeshStandardMaterial({ color: color })
+    this.material.opacity = 0.3
 
     const object = new THREE.Mesh(geometry, sphereMaterial)
     object.position.x = pos_x
-    object.position.y = pos_z + box_z / 2
+    object.position.y = Math.round(pos_z + box_z / 2)
     object.position.z = pos_y
     object.castShadow = true
     object.receiveShadow = true
     this.scene.add(object)
+
+    const loader = new FontLoader()
+    this.http
+      .get('/assets/fonts/FiraCode_Retina_Regular.json', { responseType: 'text' })
+      .subscribe((fontData: string) => {
+        const font = loader.parse(JSON.parse(fontData))
+        const textGeo = new TextGeometry(device_name, {
+          font: font,
+          size: 0.8,
+          depth: 0.1,
+          curveSegments: 22,
+          bevelThickness: 0.1,
+          bevelSize: 0.1,
+          bevelEnabled: true,
+        })
+
+        const material = new THREE.MeshBasicMaterial({ color: colorText })
+        const textMesh = new THREE.Mesh(textGeo, material)
+        textMesh.position.x = pos_x - (device_name.length * 0.7) / 2
+        textMesh.position.y = Math.round(pos_z + box_z) + 0.3
+        textMesh.position.z = pos_y
+
+        textMesh.rotation.x = 0
+        textMesh.rotation.y = 0
+        textMesh.rotation.z = Math.PI * 2
+        this.scene.add(textMesh)
+      })
   }
 
   loadDevices() {
@@ -149,6 +200,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
         return
       }
       this.createDevice3d(
+        device.name,
         model.dimension.width,
         model.dimension.height,
         model.dimension.depth,
@@ -156,6 +208,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
         device.position.y,
         device.position.h,
       )
+
       createdDevices.push(`Device: ${device.name}, Position: (${device.position.x}, ${device.position.y})`)
     })
     console.log('Created devices:', createdDevices.join('; '))
@@ -350,8 +403,6 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
     // this.loadDevices()
     // this.loadModels()
-
-    this.generate3DDeviceList()
 
     this.generate3DDeviceList()
     this.camera = new THREE.PerspectiveCamera(

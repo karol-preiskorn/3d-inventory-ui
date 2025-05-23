@@ -59,7 +59,7 @@ export const routes: Routes = [
     component: AttributeDictionaryListComponent,
     title: 'Attribute Dictionary List',
   },
-  { path: 'add-attribute-dictionary', component: AttributeDictionaryAddComponent },
+  { path: 'add-attribute-dictionary', component: AttributeDictionaryAddComponent, title: 'Add Attribute Dictionary' },
   {
     path: 'edit-attribute-dictionary/:id',
     component: AttributeDictionaryEditComponent,

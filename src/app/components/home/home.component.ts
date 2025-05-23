@@ -1,5 +1,4 @@
-import { MarkdownModule } from 'ngx-markdown'
-
+import { MarkdownModule, MarkdownService } from 'ngx-markdown'
 import { CommonModule } from '@angular/common'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Component, NgModule, OnInit } from '@angular/core'
@@ -8,36 +7,46 @@ import { Component, NgModule, OnInit } from '@angular/core'
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [CommonModule, MarkdownModule], // Add the module here
+  imports: [CommonModule, MarkdownModule],
+  providers: [MarkdownService],
+  standalone: true,
 })
 export class HomeComponent implements OnInit {
   md: string | undefined
   githubIssuesUrl = 'https://api.github.com/karol-preiskorn/3d-inventory-angular-ui/issues'
   githubIssuesUrl2 = 'https://api.github.com/repositories/600698591/issues'
-  authToken = ''
+  authToken = 'your-valid-token-here' // Replace with a valid token or dynamically fetch it
   baseUrl = 'https://api.github.com'
   issues = ''
   issuesJson: string = ''
   isDebugMode: boolean = false
 
-  constructor(private readonly http: HttpClient) {}
-  httpOptions: {
-    headers: HttpHeaders
-  } = {
-    headers: new HttpHeaders({
-      'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer' + this.authToken,
-      'Access-Control-Allow-Origin': 'https://api.github.com/',
-    }),
+  toggleDebugMode() {
+    this.isDebugMode = !this.isDebugMode
   }
 
-  ngOnInit(): void {
-    this.http.get('/assets/README.md', { responseType: 'text' }).subscribe((data: string) => {
-      console.log('Get Markdown ' + JSON.stringify(data, null, ' '))
-      this.md = data.replaceAll('src/', '')
+  constructor(
+    private readonly http: HttpClient,
+    private readonly markdownService: MarkdownService,
+  ) {
+    console.log('Markdown constructor: ' + JSON.stringify(this.md, null, ' '))
+    this.http.get('/assets/README.md', { responseType: 'text' }).subscribe({
+      next: (data: string) => {
+        data = data.replace(/src\//g, '')
+        this.md = data
+      },
+      error: (err) => {
+        console.error('Error fetching Markdown:', err)
+      },
+      complete: () => {
+        console.log('Markdown fetch completed.')
+      },
     })
+
+    if (!this.authToken) {
+      console.error('Authorization token is missing. Please set a valid token.')
+      return
+    }
 
     this.http.get(this.githubIssuesUrl, this.httpOptions).subscribe((data) => {
       console.log('Get Issues ' + JSON.stringify(data, null, ' '))
@@ -45,27 +54,30 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  httpOptions: {
+    headers: HttpHeaders
+  } = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.authToken,
+    }),
+  }
+
+  ngOnInit(): void {
+    console.log('Markdown ngOnInit: ' + JSON.stringify(this.md, null, ' '))
+    // No need to set renderer here; bind [data]="md" in your template
+    // Removed invalid renderer event binding as 'on' does not exist on '_Renderer'
+  }
+
   onLoad(data: unknown) {
-    console.log(this.md + ' ' + data)
+    console.log('onLoad: ' + this.md)
   }
 
   onError(data: unknown) {
-    console.log(this.md + ' ' + data)
+    console.log('onError: ' + this.md)
   }
 
-  // async getIssues() {
-  //   const octokit = new Octokit({ auth: `personal-access-token123` })
-  //   const { data: root } = await octokit.request('GET /')
-  //   console.log(root)
-  //   octokit.rest.users.getAuthenticated()
-  //   octokit
-  //     .paginate(
-  //       'GET /repos/{owner}/{repo}/issues',
-  //       { owner: 'octokit', repo: 'rest.js' },
-  //       (response: { data: any[] }) => response.data.map((issue: { title: any }) => issue.title),
-  //     )
-  //     .then((issueTitles: string[]) => {
-  //       // issueTitles is now an array with the titles only
-  //     })
-  // }
+  onSuccess(data: unknown) {
+    console.log('onSuccess: ' + this.md)
+  }
 }

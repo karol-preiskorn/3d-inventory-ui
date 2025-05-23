@@ -1,8 +1,7 @@
-<div class="border p-6">
-  <markdown [data]="md"></markdown>
-</div>
-<div class="border p-6">
-  <div *ngIf="isDebugMode">
-    {{ issuesJson }}
+<div class="flex flex-col gap-4">
+  <h1 class="text-3xl font-bold">Home</h1>
+  <h2 class="text-gray-700">Welcome to the home page!</h2>
+  <div class="border p-6">
+    <markdown [data]="md"></markdown>
   </div>
 </div>
