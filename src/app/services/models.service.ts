@@ -64,11 +64,16 @@ export class ModelsService {
    * @param data The data of the model to be created.
    * @returns An Observable that emits the created model.
    */
-  CreateModel(data: Model): Observable<Model> {
+  CreateModel(data: Model): Observable<{ acknowledged: boolean; insertedId: string } | Model> {
     console.log('Service.CreateModel: ' + JSON.stringify(data, null, ' '))
     return this.http
       .post<Model>(environment.baseurl + '/models/', JSON.stringify(data, null, ' '), this.httpOptions)
-      .pipe(retry(1), catchError(this.handleErrorTemplate<Model>('CreateModel', data)))
+      .pipe(
+        retry(1),
+        catchError(
+          this.handleErrorTemplate<{ acknowledged: boolean; insertedId: string } | Model>('CreateModel', data),
+        ),
+      )
   }
 
   /**
@@ -81,18 +86,22 @@ export class ModelsService {
     let idConed = ''
     this.GetModel(id).subscribe((value: Model) => {
       console.log('Get Model: ' + JSON.stringify(value, null, ' '))
-      this.CreateModel(value).subscribe({
-        next: (v: Model) => {
+      this.CreateModel(value).subscribe(
+        (v: Model | { acknowledged: boolean; insertedId: string }) => {
           console.log('Create Model: ' + JSON.stringify(v, null, ' '))
+          if ('_id' in v) {
+            idConed = String(v._id) // Convert 'ObjectId' to string
+          } else if ('insertedId' in v) {
+            idConed = String(v.insertedId)
+          }
           this.ngZone.run(() => this.router.navigateByUrl('models-list'))
-          idConed = String(v._id) // Convert 'ObjectId' to string
         },
-        complete: () => this.ngZone.run(() => this.router.navigateByUrl('models-list')),
-        error: (err: any) => {
-          console.error(err) // Fix: Replace 'error' with 'err'
+        (err: any) => {
+          console.error(err)
           catchError(this.handleErrorTemplate<Model>('CloneModel', value))
         },
-      })
+        () => this.ngZone.run(() => this.router.navigateByUrl('models-list')),
+      )
     })
     console.log('Get after Model: ' + JSON.stringify(this.model, null, ' '))
     return idConed

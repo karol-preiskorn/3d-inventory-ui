@@ -20,6 +20,7 @@ import { DeviceService } from '../../services/device.service'
 import { ModelsService } from '../../services/models.service'
 import { Device } from '../../shared/device'
 import { Model } from '../../shared/model'
+import { environment } from '../../../environments/environment'
 
 @Component({ selector: 'app-cube', templateUrl: './3d.component.html', styleUrls: ['./3d.component.scss'] })
 export class CubeComponent implements OnInit, AfterViewInit {
@@ -94,9 +95,58 @@ export class CubeComponent implements OnInit, AfterViewInit {
     const g = (hexColor >> 8) & 0xff
     const b = hexColor & 0xff
     // Calculate luminance
-    const luminance = (0.299 * r + 0.587 * g + 0.124 * b) / 255
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
     // Return black for light colors, white for dark colors
     return luminance > 0.5 ? 0x000000 : 0xffffff
+  }
+
+  /**
+   * Generates a random pastel color as a THREE.Color instance.
+   * @returns {THREE.Color} A random pastel color.
+   */
+  getRandomPastelColor(): THREE.Color {
+    // Pastel colors have high lightness and low-medium saturation
+    const hue = Math.random()
+    const saturation = 0.4 + Math.random() * 0.2 // 0.4 - 0.6
+    const lightness = 0.7 + Math.random() * 0.2 // 0.7 - 0.9
+    const color = new THREE.Color()
+    color.setHSL(hue, saturation, lightness)
+    return color
+  }
+
+  /**
+   * Generates a random natural-looking color as a THREE.Color instance.
+   * Natural colors are less saturated and have moderate lightness.
+   * @returns {THREE.Color} A random natural color.
+   */
+  getRandomNaturalColor(): THREE.Color {
+    // Use HSL: moderate saturation, moderate lightness
+    const hue = Math.random() // 0-1
+    const saturation = 0.25 + Math.random() * 0.25 // 0.25-0.5
+    const lightness = 0.35 + Math.random() * 0.3 // 0.35-0.65
+    const color = new THREE.Color()
+    color.setHSL(hue, saturation, lightness)
+    return color
+  }
+
+  /**
+   * Generates a harmonic color palette as an array of THREE.Color.
+   * The palette is based on a base hue and evenly spaced around the color wheel.
+   * @param count Number of colors in the palette (default: 5)
+   */
+  generateHarmonicPaletteColors(count: number = 5): THREE.Color[] {
+    const colors: THREE.Color[] = []
+    const baseHue = Math.random()
+    const saturation = 0.5
+    const lightness = 0.7
+    for (let i = 0; i < count; i++) {
+      // Evenly distribute hues around the color wheel
+      const hue = (baseHue + i / count) % 1
+      const color = new THREE.Color()
+      color.setHSL(hue, saturation, lightness)
+      colors.push(color)
+    }
+    return colors
   }
 
   /**
@@ -121,13 +171,19 @@ export class CubeComponent implements OnInit, AfterViewInit {
   ) {
     console.log('createDevice3d parameters: ', box_x, box_y, box_z, pos_x, pos_y, pos_z)
     const geometry = new THREE.BoxGeometry(box_x, box_y, box_z)
-    let color = Math.random() * 0xffffff
+    let color = this.getRandomNaturalColor()
     // Compute a contrasting color (black or white) for the given color
 
-    const colorText = this.getContrastColor(color)
+    const colorText = this.getContrastColor(color.getHex())
     this.material.color = new THREE.Color(color)
     const sphereMaterial = new THREE.MeshStandardMaterial({ color: color })
-    this.material.opacity = 0.3
+    this.material.depthTest = false
+    this.material.depthWrite = false
+    this.material.needsUpdate = true
+    this.material.opacity = 0.8
+    this.material.side = THREE.DoubleSide
+    this.material.transparent = true
+    this.material.wireframe = true
 
     const object = new THREE.Mesh(geometry, sphereMaterial)
     object.position.x = pos_x
@@ -155,7 +211,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
         const material = new THREE.MeshBasicMaterial({ color: colorText })
         const textMesh = new THREE.Mesh(textGeo, material)
         textMesh.position.x = pos_x - (device_name.length * 0.7) / 2
-        textMesh.position.y = Math.round(pos_z + box_z) + 0.3
+        textMesh.position.y = Math.round(pos_z + box_z) + 0.2
         textMesh.position.z = pos_y
 
         textMesh.rotation.x = 0
@@ -217,11 +273,11 @@ export class CubeComponent implements OnInit, AfterViewInit {
   addWalls() {
     const geometry = new THREE.BoxGeometry(51, 10, 1)
     const geometry2 = new THREE.BoxGeometry(1, 10, 51)
-
-    const object1 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
-    const object2 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
-    const object3 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
-    const object4 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
+    let color = this.getRandomNaturalColor()
+    const object1 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: color }))
+    const object2 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: color }))
+    const object3 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: color }))
+    const object4 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: color }))
 
     object1.receiveShadow = true
     object1.castShadow = true
@@ -263,10 +319,18 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   addDirectionalLight1() {
-    const light2 = new THREE.DirectionalLight(0xffffff, 2)
+    let fogNear = 1
+    if (this.scene.fog instanceof THREE.Fog) {
+      fogNear = this.scene.fog.near
+    }
+    const lightIntensity = Math.min(2, Math.max(0.5, 1 / fogNear)) // Adjust intensity dynamically
+    const light2 = new THREE.DirectionalLight(0xffffff, lightIntensity)
     light2.position.set(-20, 30, 50)
-    light2.castShadow = true
-    light2.shadow.camera.bottom = -10
+    light2.shadow.camera.bottom = -50
+    light2.shadow.camera.top = 50
+    light2.shadow.camera.left = -50
+    light2.shadow.camera.right = 50
+    light2.shadow.camera.near = 0.5 // adjusted to a typical value
     light2.shadow.camera.far = 2000
     light2.shadow.camera.left = -10
     light2.shadow.camera.near = 1000 // default
@@ -276,13 +340,18 @@ export class CubeComponent implements OnInit, AfterViewInit {
     light2.shadow.mapSize.width = 3000 // default
     this.scene.add(light2)
 
-    const lightHelper2 = new THREE.DirectionalLightHelper(light2, 8, 0xff0000)
-    this.scene.add(lightHelper2)
+    if (!environment.production) {
+      const lightHelper2 = new THREE.DirectionalLightHelper(light2, 8, 0xff0000)
+      this.scene.add(lightHelper2)
+    }
   }
 
   addDirectionalLight2() {
-    const light3 = new THREE.DirectionalLight(0xffffff, 3)
-    light3.color.setHSL(0.1, 1, 0.95)
+    const light3 = new THREE.DirectionalLight(0xffffff, 1.5)
+    const LIGHT3_HUE = 0.1
+    const LIGHT3_SATURATION = 1
+    const LIGHT3_LIGHTNESS = 0.95
+    light3.color.setHSL(LIGHT3_HUE, LIGHT3_SATURATION, LIGHT3_LIGHTNESS)
     light3.position.set(20, 40, 25)
     light3.castShadow = true
     light3.shadow.camera.bottom = -10
@@ -295,7 +364,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     light3.shadow.mapSize.width = 3000 // default
     this.scene.add(light3)
 
-    const lightHelper3 = new THREE.DirectionalLightHelper(light3, 20, 0x00ff00)
+    const lightHelper3 = new THREE.DirectionalLightHelper(light3, 20, 0xdcffee)
     lightHelper3.position.set(40, 40, 45)
 
     lightHelper3.castShadow = true
@@ -303,8 +372,8 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   addAmbientLight() {
-    const color = 0xffffff
-    const intensity = 0.9
+    const color = 0xafffff
+    const intensity = 8
     const lightAmbient = new THREE.AmbientLight(color, intensity)
     lightAmbient.castShadow = true
     this.scene.add(lightAmbient)
@@ -358,17 +427,26 @@ export class CubeComponent implements OnInit, AfterViewInit {
           font: font,
           size: 4,
           depth: 1,
-          curveSegments: 8,
+          curveSegments: 20,
           bevelThickness: 0.1,
           bevelSize: 0.1,
           bevelEnabled: true,
         })
 
-        const material = new THREE.MeshBasicMaterial({ color: 0x995050 })
+        const material = new THREE.MeshBasicMaterial({ color: this.getRandomPastelColor() })
         const textMesh = new THREE.Mesh(textGeo, material)
-        textMesh.position.x = -18
-        textMesh.position.y = 2
+        textMesh.position.x = -21
+        textMesh.position.y = 3
         textMesh.position.z = 25
+
+        textMesh.castShadow = true
+        textMesh.receiveShadow = true
+        textMesh.material.depthTest = false
+        textMesh.material.depthWrite = false
+        textMesh.material.needsUpdate = true
+        textMesh.material.opacity = 0.8
+        textMesh.material.side = THREE.DoubleSide
+        textMesh.material.transparent = true
 
         textMesh.rotation.x = 0
         textMesh.rotation.y = Math.PI * 2
@@ -376,9 +454,77 @@ export class CubeComponent implements OnInit, AfterViewInit {
       })
   }
 
+  /**
+   * Adds an axis helper to the scene for debugging or visualization purposes.
+   */
   addAxis() {
     const axesHelper = new THREE.AxesHelper(35)
     this.scene.add(axesHelper)
+
+    // Add arrows for each axis
+    const arrowLength = 40
+    const arrowHeadLength = 5
+    const arrowHeadWidth = 3
+
+    // X axis arrow (red)
+    const xDir = new THREE.Vector3(1, 0, 0)
+    const xOrigin = new THREE.Vector3(0, 0, 0)
+    const xColor = 0xff0000
+    const xArrow = new THREE.ArrowHelper(xDir, xOrigin, arrowLength, xColor, arrowHeadLength, arrowHeadWidth)
+    this.scene.add(xArrow)
+
+    // Y axis arrow (green)
+    const yDir = new THREE.Vector3(0, 1, 0)
+    const yColor = 0x00ff00
+    const yArrow = new THREE.ArrowHelper(yDir, xOrigin, arrowLength, yColor, arrowHeadLength, arrowHeadWidth)
+    this.scene.add(yArrow)
+
+    // Z axis arrow (blue)
+    const zDir = new THREE.Vector3(0, 0, 1)
+    const zColor = 0x0000ff
+    const zArrow = new THREE.ArrowHelper(zDir, xOrigin, arrowLength, zColor, arrowHeadLength, arrowHeadWidth)
+    this.scene.add(zArrow)
+
+    // Add labels for each axis
+    const loader = new FontLoader()
+    this.http
+      .get('/assets/fonts/FiraCode_Retina_Regular.json', { responseType: 'text' })
+      .subscribe((fontData: string) => {
+        const font = loader.parse(JSON.parse(fontData))
+
+        // X axis label
+        const xGeo = new TextGeometry('X', {
+          font: font,
+          size: 2,
+          depth: 0.2,
+        })
+        const xMat = new THREE.MeshBasicMaterial({ color: 0xff0000 })
+        const xMesh = new THREE.Mesh(xGeo, xMat)
+        xMesh.position.set(arrowLength + 1, 0, 0)
+        this.scene.add(xMesh)
+
+        // Y axis label
+        const yGeo = new TextGeometry('Y', {
+          font: font,
+          size: 2,
+          depth: 0.2,
+        })
+        const yMat = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+        const yMesh = new THREE.Mesh(yGeo, yMat)
+        yMesh.position.set(0, arrowLength + 1, 0)
+        this.scene.add(yMesh)
+
+        // Z axis label
+        const zGeo = new TextGeometry('Z', {
+          font: font,
+          size: 2,
+          depth: 0.2,
+        })
+        const zMat = new THREE.MeshBasicMaterial({ color: 0x0000ff })
+        const zMesh = new THREE.Mesh(zGeo, zMat)
+        zMesh.position.set(0, 0, arrowLength + 1)
+        this.scene.add(zMesh)
+      })
   }
 
   private createScene() {

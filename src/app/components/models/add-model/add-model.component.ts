@@ -39,7 +39,6 @@ export class ModelAddComponent implements OnInit {
   ngOnInit(): void {
     this.model = new Model()
     this.addModelForm = this.formBuilder.group({
-      id: ['', null],
       name: ['', [Validators.required, Validators.minLength(4)]],
       dimension: this.formBuilder.group({
         width: [
@@ -56,14 +55,12 @@ export class ModelAddComponent implements OnInit {
         ],
       }),
       texture: this.formBuilder.group({
-        front: ['', null],
-        back: ['', null],
-        side: ['', null],
-        top: ['', null],
-        bottom: ['', null],
+        front: ['', []],
+        back: ['', []],
+        side: ['', []],
+        top: ['', []],
+        bottom: ['', []],
       }),
-      type: ['', Validators.required],
-      category: ['', Validators.required],
     })
   }
 
@@ -115,11 +112,12 @@ export class ModelAddComponent implements OnInit {
 
   submitForm() {
     console.log('Submit Model: ' + JSON.stringify(this.addModelForm.value))
-    this.modelsService.CreateModel(this.model).subscribe((res) => {
+    const createModelReturn = this.modelsService.CreateModel(this.addModelForm.value).subscribe((res) => {
+      console.log('Model created: ' + JSON.stringify(res, null, 2))
       this.logService
         .CreateLog({
           message: this.addModelForm.value,
-          objectId: res._id,
+          objectId: (res as any).insertedId ? (res as any).insertedId : (res as any).id,
           operation: 'Create',
           component: 'Model',
         })
