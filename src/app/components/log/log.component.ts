@@ -164,6 +164,7 @@ export class LogComponent implements OnInit {
     return this.logService.GetComponentLogs(id).subscribe((data: Log[]) => {
       console.log('LogComponent.loadComponentLog(' + id + '): ' /* + JSON.stringify(data, null, ' ') */)
       this.LogList = data
+      this.totalItems = this.LogList.length // Update totalItems for pagination
     })
   }
 
@@ -176,6 +177,7 @@ export class LogComponent implements OnInit {
     return this.logService.GetObjectLogs(id).subscribe((data: Log[]) => {
       console.log('LogComponent.loadObjectsLog(' + id + '): ' /* + JSON.stringify(data, null, ' ') */)
       this.LogList = data
+      this.totalItems = this.LogList.length // Update totalItems for pagination
     })
   }
 
