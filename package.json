@@ -59,7 +59,7 @@
     "@faker-js/faker": "^9.7.0",
     "@jest/globals": "^29.7.0",
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
-    "@octokit/core": "^6.1.5",
+    "@octokit/core": "^7.0.2",
     "bootstrap": "^5.3.5",
     "bootstrap-icons": "^1.11.4",
     "browserify-zlib": "^0.2.0",
