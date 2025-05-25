@@ -41,6 +41,11 @@ export class DeviceListComponent implements OnInit {
   loadDevices() {
     return this.devicesService.GetDevices().subscribe((data: Device[]) => {
       this.deviceList = data
+      // Reset page if current page is out of range
+      const maxPage = Math.ceil(this.deviceList.length / 5) || 1
+      if (this.deviceListPage > maxPage) {
+        this.deviceListPage = maxPage
+      }
     })
   }
 

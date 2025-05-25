@@ -56,7 +56,7 @@ export class DeviceService {
     return this.http
       .post<Device>(
         environment.baseurl + '/' + this.objectName + '/',
-        JSON.stringify(data, null, ' '),
+        JSON.stringify(data, null, 2),
         this.httpOptions,
       )
       .pipe(retry(1), catchError(this.handleErrorTemplate<Device>('CreateDevice', data)))

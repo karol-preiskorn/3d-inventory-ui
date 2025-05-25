@@ -13,6 +13,7 @@ import { DeviceCategoryDict } from '../../../shared/deviceCategories'
 import { DeviceTypeDict } from '../../../shared/deviceTypes'
 import { Model } from '../../../shared/model'
 import Validation from '../../../shared/validation'
+import { t } from '@faker-js/faker/dist/airline-BUL6NtOJ'
 
 @Component({
   selector: 'app-add-device',
@@ -34,7 +35,6 @@ export class DeviceAddComponent implements OnInit {
 
   private initializeForm() {
     this.addDeviceForm = new FormGroup({
-      id: new FormControl(''),
       name: new FormControl('', [Validators.required, Validators.minLength(4)]),
       modelId: new FormControl('', Validators.required),
       position: new FormGroup({
@@ -74,48 +74,51 @@ export class DeviceAddComponent implements OnInit {
   ngOnInit() {
     this.loadModels()
   }
+
   loadModels() {
     return this.modelService.GetModels().subscribe((data: Model[]): void => {
       this.modelList = data
     })
   }
-  changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+
+  changeName(e: Event) {
+    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
+
   changeX(e: Event) {
     this.x?.setValue(Number((e.target as HTMLInputElement).value), { onlySelf: true })
   }
+
   changeY(e: Event) {
     this.y?.setValue(Number((e.target as HTMLInputElement).value), { onlySelf: true })
   }
+
   changeH(e: Event) {
     this.h?.setValue(Number((e.target as HTMLInputElement).value), { onlySelf: true })
   }
+
   changeModelId(e: Event) {
     this.modelId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  get id() {
-    return this.addDeviceForm.get('id')
-  }
   get name() {
     return this.addDeviceForm.get('name')
   }
+
   get modelId() {
     return this.addDeviceForm.get('modelId')
   }
+
   get x() {
     return this.addDeviceForm.get('position')?.get('x')
   }
+
   get y() {
     return this.addDeviceForm.get('position')?.get('y')
   }
+
   get h() {
     return this.addDeviceForm.get('position')?.get('h')
-  }
-
-  get _id() {
-    return this.addDeviceForm.get('_id')
   }
 
   get position() {
@@ -157,21 +160,25 @@ export class DeviceAddComponent implements OnInit {
     if (this.addDeviceForm.invalid) {
       return
     }
-    console.log('Device added!')
-    this.logService
-      .CreateLog({
-        operation: 'Create',
-        component: 'Device',
-        message: this.addDeviceForm.value,
-      })
-      .pipe(switchMap(() => this.devicesService.CreateDevice(this.addDeviceForm.value)))
-      .subscribe({
-        next: () => {
+    console.log('Submit Form Add Device: ' + JSON.stringify(this.addDeviceForm.value))
+    this.devicesService.CreateDevice(this.addDeviceForm.value).subscribe((res) => {
+      console.log('Device response: ' + JSON.stringify(res, null, 2))
+      this.isSubmitted = true
+      const insertedId = (res as any).insertedId ? (res as any).insertedId : (res as any).id
+      let device = this.addDeviceForm.value as Device
+      device = { ...device, _id: insertedId || '' } // Ensure _id is set
+      this.device = device
+      console.log('Device with _id ' + insertedId + ' created: ' + JSON.stringify(device, null, 2))
+      this.logService
+        .CreateLog({
+          message: device,
+          objectId: insertedId,
+          operation: 'Create',
+          component: 'Device',
+        })
+        .subscribe(() => {
           this.ngZone.run(() => this.router.navigateByUrl('device-list'))
-        },
-        error: (err) => {
-          console.error('Error occurred:', err)
-        },
-      })
+        })
+    })
   }
 }

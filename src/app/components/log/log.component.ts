@@ -188,7 +188,7 @@ export class LogComponent implements OnInit {
    */
   findNameInLogMessage(log: Log): string {
     let jLog: Log
-    let findConnetctionNameValue: string
+    let findConnectionNameValue: string
 
     if (!log) {
       console.error('Log message is undefined')
@@ -209,13 +209,13 @@ export class LogComponent implements OnInit {
           (logMessageAttribute as Partial<Attribute>).connectionId !== undefined
         ) {
           this.getConnectionList()
-          ;(findConnetctionNameValue = this.findConnectionName(
+          ;(findConnectionNameValue = this.findConnectionName(
             (logMessageAttribute as Partial<Attribute>).connectionId ?? '',
           )),
             console.log(
-              `Find ConnectionName for Attribute (${(logMessageAttribute as Partial<Attribute>)?.connectionId ?? 'Unknown'}): ${findConnetctionNameValue}`,
+              `Find ConnectionName for Attribute (${(logMessageAttribute as Partial<Attribute>)?.connectionId ?? 'Unknown'}): ${findConnectionNameValue}`,
             )
-          return 'Connection ' + findConnetctionNameValue
+          return 'Connection ' + findConnectionNameValue
         }
         if (
           (logMessageAttribute as Attribute).modelId !== null &&
