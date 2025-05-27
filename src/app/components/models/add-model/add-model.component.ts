@@ -9,7 +9,7 @@ import { faker } from '@faker-js/faker'
 import { LogService } from '../../../services/log.service'
 import { ModelsService } from '../../../services/models.service'
 import { DeviceCategoryDict } from '../../../shared/deviceCategories'
-import { DeviceTypeDict } from '../../../shared/deviceTypes'
+import { DeviceTypeDict } from '../../../shared/DeviceTypes'
 import { Model } from '../../../shared/model'
 
 @Component({

@@ -52,50 +52,68 @@
       </div>
       <div class="col">
         <div class="form-group mb-3">
-          <label for="category" class="form-label">Category</label>
-          <select (change)="changeCategory($event)" formControlName="category" id="category" [ngClass]="{
-              'is-invalid': this.addAttributeDictionaryForm.controls.category.status !== 'VALID',
-              'is-valid': this.addAttributeDictionaryForm.controls.category.status === 'VALID',
+          <label for="componentName" class="form-label">Component Name</label>
+          <select (change)="changeComponentName($event)" formControlName="componentName" id="componentName"
+            [ngClass]="{
+              'is-invalid': this.addAttributeDictionaryForm.controls.componentName.status !== 'VALID',
+              'is-valid': this.addAttributeDictionaryForm.controls.componentName.status === 'VALID',
               'form-select': true,
             }">
-            <option *ngFor="let categoryObj of deviceCategoryDict.list; let i = index">
-              {{ categoryObj.name }}
+            <option *ngFor="let componentObj of componentDictionary.getAll(); let i = index">
+              {{ componentObj.name }}
             </option>
           </select>
-          <div *ngIf="this.addAttributeDictionaryForm.controls.category.errors" class="invalid-feedback">
-            <div *ngIf="this.addAttributeDictionaryForm.controls.category.errors.required">Category is required
+          <div *ngIf="this.addAttributeDictionaryForm.controls.componentName.errors" class="invalid-feedback">
+            <div *ngIf="this.addAttributeDictionaryForm.controls.componentName.errors.required">Component Name is
+              required
             </div>
           </div>
         </div>
       </div>
       <div class="col">
         <div class="form-group mb-3">
-          <label for="component" class="form-label">Component</label>
-          <select (change)="changeComponent($event)" formControlName="component" [ngClass]="{
-              'is-invalid': this.addAttributeDictionaryForm.controls.component.status !== 'VALID',
-              'is-valid': this.addAttributeDictionaryForm.controls.component.status === 'VALID',
+          <label for="unit" class="form-label">Unit</label>
+          <select (change)="changeUnit($event)" formControlName="unit" [ngClass]="{
+              'is-invalid': this.addAttributeDictionaryForm.controls.unit.status !== 'VALID',
+              'is-valid': this.addAttributeDictionaryForm.controls.unit.status === 'VALID',
               'form-select': true,
-            }" id="component">
-            <option *ngFor="let componentObj of componentDictionary.list; let i = index">
+            }" id="unit">
+            <option *ngFor="let componentObj of componentDictionary.getAll(); let i = index">
               {{ componentObj.name }}
             </option>
           </select>
-          <div *ngIf="this.addAttributeDictionaryForm.controls.component.errors" class="invalid-feedback">
-            <div *ngIf="this.addAttributeDictionaryForm.controls.component.errors.required">Component is required
+          <div *ngIf="this.addAttributeDictionaryForm.controls.unit.errors" class="invalid-feedback">
+            <div *ngIf="this.addAttributeDictionaryForm.controls.unit.errors.required">Unit is required
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="form-group mb-3">
-      <button type="submit"
-        [disabled]="!(this.addAttributeDictionaryForm.valid && this.addAttributeDictionaryForm.touched)"
-        class="btn btn-primary">
-        Add model
-      </button>
-      <div *ngIf="!(this.addAttributeDictionaryForm.valid && this.addAttributeDictionaryForm.touched)"
-        class="invalid-feedback">
-        Form is invalid
+    <div class="row">
+      <div class="col">
+        <div class="form-group mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea formControlName="description" id="description" [ngClass]="{
+              'is-invalid': this.addAttributeDictionaryForm.controls.description.status !== 'VALID',
+              'is-valid': this.addAttributeDictionaryForm.controls.description.status === 'VALID',
+              'form-control': true,
+            }">{{ this.addAttributeDictionaryForm.value.description }}</textarea>
+          <div *ngIf="this.addAttributeDictionaryForm.controls.description.errors" class="invalid-feedback">
+            <div *ngIf="this.addAttributeDictionaryForm.controls.description.errors.required">Description is
+              required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <button type="submit"
+          [disabled]="isFormInvalid"
+          class="btn btn-primary">
+          Add model
+        </button>
+        <div *ngIf="isFormInvalid"
+          class="form-error-message">
+          Form is invalid
+        </div>
       </div>
     </div>
   </form>

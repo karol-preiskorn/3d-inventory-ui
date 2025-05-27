@@ -3,7 +3,7 @@ import { Router } from '@angular/router'
 
 import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
 import { LogService } from '../../../services/log.service'
-import { AttributeDictionary } from '../../../shared/attribute-dictionary'
+import { AttributesDictionary } from '../../../shared/AttributesDictionary'
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
 import { CommonModule } from '@angular/common'
 import { LogComponent } from '../../log/log.component'
@@ -16,10 +16,12 @@ import { LogComponent } from '../../log/log.component'
   imports: [CommonModule, LogComponent, NgbPaginationModule],
 })
 export class AttributeDictionaryListComponent implements OnInit {
-  attributeDictionaryList: AttributeDictionary[] = []
-  selectedAttributeDictionary: AttributeDictionary
+  attributeDictionaryList: AttributesDictionary[] = []
+  selectedAttributeDictionary: AttributesDictionary
   attributeDictionaryPage = 1
-  component = 'Attribute Dictionary'
+  component = 'attributesDictionary'
+  isComponent = true
+  componentName = 'Attributes Dictionary'
   pageSize: number = 10
 
   ngOnInit() {
@@ -32,15 +34,17 @@ export class AttributeDictionaryListComponent implements OnInit {
     private ngZone: NgZone,
   ) {}
   loadAttributeDictionary() {
-    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) => {
+    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributesDictionary[]) => {
       this.attributeDictionaryList = data
     })
   }
+
   deleteAttribute(attributeId: string): void {
     // Implement the logic to delete the attribute
     console.log(`Deleting attribute with ID: ${attributeId}`)
     // Add your deletion logic here
   }
+
   deleteAttributeDictionary(id: string) {
     this.logService.CreateLog({
       message: { id },
@@ -48,7 +52,7 @@ export class AttributeDictionaryListComponent implements OnInit {
       operation: 'Delete',
       component: 'AttributeDictionary',
     })
-    return this.attributeDictionaryService.DeleteAttributeDictionary(id).subscribe((data: AttributeDictionary) => {
+    return this.attributeDictionaryService.DeleteAttributeDictionary(id).subscribe((data: AttributesDictionary) => {
       // Specify the appropriate type for 'data'
       console.log(data)
       this.loadAttributeDictionary()
@@ -56,20 +60,22 @@ export class AttributeDictionaryListComponent implements OnInit {
     })
   }
 
-  async CloneAttributeDictionary(id: string) {
-    const id_new: string = this.attributeDictionaryService.CloneAttributeDictionary(id)
-    this.logService
-      .CreateLog({
-        message: {
-          id: id,
-          id_new: id_new,
-        },
-        operation: 'Clone',
-        component: 'AttributeDictionary',
-      })
-      .subscribe(() => {
-        this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))
-      })
+  CloneAttributeDictionary(id: string) {
+    this.attributeDictionaryService.CloneAttributeDictionary(id).subscribe((cloned: AttributesDictionary) => {
+      const id_new: string = cloned._id
+      this.logService
+        .CreateLog({
+          message: {
+            id: id,
+            id_new: id_new,
+          },
+          operation: 'Clone',
+          component: 'AttributeDictionary',
+        })
+        .subscribe(() => {
+          this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))
+        })
+    })
     // this.loadAttributeDictionary()
     // this.router.navigate(['/attribute-dictionary-list'])
   }
@@ -78,7 +84,7 @@ export class AttributeDictionaryListComponent implements OnInit {
     this.router.navigateByUrl('add-attribute-dictionary')
   }
 
-  EditForm(attributeDictionary: AttributeDictionary) {
+  EditForm(attributeDictionary: AttributesDictionary) {
     this.selectedAttributeDictionary = attributeDictionary
     this.router.navigate(['edit-attribute-dictionary', this.selectedAttributeDictionary._id])
     // this.ngZone.run(() => this.router.navigateByUrl(`edit-device/${id}`))

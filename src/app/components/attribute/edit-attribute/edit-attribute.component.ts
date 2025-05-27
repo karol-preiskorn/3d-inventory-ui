@@ -21,12 +21,12 @@ import { DeviceService } from '../../../services/device.service'
 import { LogService } from '../../../services/log.service'
 import { ModelsService } from '../../../services/models.service'
 import { Attribute } from '../../../shared/attribute'
-import { AttributeDictionary } from '../../../shared/attribute-dictionary'
-import { ComponentDictionary } from '../../../shared/component-dictionary'
+import { AttributesDictionary } from '../../../shared/AttributesDictionary'
+import { ComponentDictionary } from '../../../shared/ComponentDictionary'
 import { Connection } from '../../../shared/connection'
 import { Device } from '../../../shared/device'
 import { DeviceCategoryDict } from '../../../shared/deviceCategories'
-import { DeviceTypeDict } from '../../../shared/deviceTypes'
+import { DeviceTypeDict } from '../../../shared/DeviceTypes'
 import { Model } from '../../../shared/model'
 import Validation from '../../../shared/validation'
 import { LogComponent } from '../../log/log.component'
@@ -48,7 +48,7 @@ export class AttributeEditComponent implements OnInit {
   deviceDictionary: Device[]
   modelDictionary: Model[]
   connectionDictionary: Connection[]
-  attributeDictionary: AttributeDictionary[]
+  attributeDictionary: AttributesDictionary[]
 
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
@@ -212,8 +212,8 @@ export class AttributeEditComponent implements OnInit {
   }
 
   getAttributeDictionaryList() {
-    this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) => {
-      const tmp = new AttributeDictionary()
+    this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributesDictionary[]) => {
+      const tmp = new AttributesDictionary()
       this.attributeDictionary = [tmp, ...data]
     })
   }

@@ -10,7 +10,7 @@ import { DeviceService } from '../../../services/device.service'
 import { LogService } from '../../../services/log.service'
 import { ModelsService } from '../../../services/models.service'
 import { Attribute } from '../../../shared/attribute'
-import { AttributeDictionary } from '../../../shared/attribute-dictionary'
+import { AttributesDictionary } from '../../../shared/AttributesDictionary'
 import { Connection } from '../../../shared/connection'
 import { Device } from '../../../shared/device'
 import { Model } from '../../../shared/model'
@@ -43,7 +43,7 @@ export class AttributeListComponent implements OnInit {
   deviceDictionary: Device[] = []
   modelDictionary: Model[] = []
   connectionDictionary: Connection[] = []
-  attributeDictionary: AttributeDictionary[] = []
+  attributeDictionary: AttributesDictionary[] = []
 
   device: Device = new Device() // for find attributes
   model: Model
@@ -197,8 +197,8 @@ export class AttributeListComponent implements OnInit {
   }
 
   getAttributeDictionaryList() {
-    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) => {
-      const tmp = new AttributeDictionary()
+    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributesDictionary[]) => {
+      const tmp = new AttributesDictionary()
       data = [tmp, ...data]
       this.attributeDictionary = data
     })

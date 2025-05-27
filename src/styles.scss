@@ -22,6 +22,12 @@
   border-radius: 8px;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 [data-theme='light'] {
   --header-background-color: #ffffff;
   --header-border-color: #e5e8ea;
@@ -43,7 +49,19 @@
   --header-theme-switch-checked-background-color: #2196f3;
 
   --main-content-background-color: #231f20;
+  --main-content-border-color: #e5e8ea;
+  body {
+    display: flex;
+    flex-direction: column;
+    background-color: #231f20;
+  }
+
+  main {
+    flex: 1;
+    padding: 20px;
+  }
   --main-content-text-color: #ffffff;
+  --bs-background-color: #231f20;
 }
 
 .deviceid {
