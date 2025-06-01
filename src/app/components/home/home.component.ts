@@ -1,18 +1,17 @@
-import { MarkdownModule, MarkdownService } from 'ngx-markdown'
 import { CommonModule } from '@angular/common'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Component, NgModule, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
+import { Converter } from 'showdown'
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [CommonModule, MarkdownModule],
-  providers: [MarkdownService],
+  imports: [CommonModule],
   standalone: true,
 })
 export class HomeComponent implements OnInit {
-  md: string | undefined
+  md: string = ''
   githubIssuesUrl = 'https://api.github.com/karol-preiskorn/3d-inventory-angular-ui/issues'
   githubIssuesUrl2 = 'https://api.github.com/repositories/600698591/issues'
   authToken = 'your-valid-token-here' // Replace with a valid token or dynamically fetch it
@@ -25,23 +24,38 @@ export class HomeComponent implements OnInit {
     this.isDebugMode = !this.isDebugMode
   }
 
-  constructor(
-    private readonly http: HttpClient,
-    private readonly markdownService: MarkdownService,
-  ) {
+  constructor(private readonly http: HttpClient) {
     console.log('Markdown constructor: ' + JSON.stringify(this.md, null, ' '))
-    this.http.get('/assets/README.md', { responseType: 'text' }).subscribe({
-      next: (data: string) => {
+    this.http.get('/assets/README.md', { responseType: 'text' }).subscribe(
+      (data: string) => {
         data = data.replace(/src\//g, '')
-        this.md = data
+        const converter = new Converter()
+        converter.setFlavor('github')
+        converter.setOption('tasklists', true)
+        converter.setOption('tables', 'true')
+        converter.setOption('strikethrough', 'true')
+        converter.setOption('ghCompatibleHeaderId', 'true')
+        converter.setOption('emoji', 'true')
+        converter.setOption('simplifiedAutoLink', 'true')
+        converter.setOption('openLinksInNewWindow', 'true')
+        converter.setOption('headerLevelStart', 2) // Start headers from level 2
+        converter.setOption('literalMidWordUnderscores', 'true')
+        converter.setOption('literalMidWordAsterisks', 'true')
+        converter.setOption('disableForced4SpacesIndentedSublists', 'true')
+        converter.setOption('ghMentions', 'true')
+        converter.setOption('ghCodeBlocks', 'true')
+        converter.setOption('ghMentionsStyle', 'github')
+        converter.setOption('ghMentionsLink', '<a href="https://github.com/{{username}}">{{username}}</a>')
+        const html = converter.makeHtml(data)
+        this.md = html
       },
-      error: (err) => {
+      (err) => {
         console.error('Error fetching Markdown:', err)
       },
-      complete: () => {
+      () => {
         console.log('Markdown fetch completed.')
       },
-    })
+    )
 
     if (!this.authToken) {
       console.error('Authorization token is missing. Please set a valid token.')

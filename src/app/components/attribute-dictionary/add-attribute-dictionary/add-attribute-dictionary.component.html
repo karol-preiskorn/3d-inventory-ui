@@ -2,26 +2,12 @@
   <h2><i class="bi bi-grid-3x3-gap"></i> Add Attribute Dictionary</h2>
   <form [formGroup]="addAttributeDictionaryForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
     <div class="form-group mb-3">
-      <label for="id" class="form-label">Id</label>
-      <input type="text" formControlName="id" id="id" required readonly [ngClass]="{
-          'is-invalid': this.addAttributeDictionaryForm.controls._id.status !== 'VALID',
-          'is-valid': this.addAttributeDictionaryForm.controls._id.status === 'VALID',
-          'form-control': true,
-        }" />
-      <div *ngIf="this.addAttributeDictionaryForm.controls._id.errors" class="invalid-feedback">
-        <div *ngIf="this.addAttributeDictionaryForm.controls._id.errors.required">Id is required</div>
-        <div *ngIf="this.addAttributeDictionaryForm.controls._id.errors.minlength">
-          Id must be at least 4 characters
-        </div>
-      </div>
-    </div>
-    <div class="form-group mb-3">
       <label for="name" class="form-label">Name</label>
       <textarea [ngClass]="{
           'is-invalid': this.addAttributeDictionaryForm.controls.name.status !== 'VALID',
           'is-valid': this.addAttributeDictionaryForm.controls.name.status === 'VALID',
           'form-control': true,
-        }" formControlName="name" id="name" required>{{ this.addAttributeDictionaryForm.value.name }}</textarea>
+        }" formControlName="name" id="name" required></textarea>
       <div *ngIf="this.addAttributeDictionaryForm.controls.name.errors" class="invalid-feedback">
         <div *ngIf="this.addAttributeDictionaryForm.controls.name.errors.required">Attribute name is required</div>
         <div *ngIf="this.addAttributeDictionaryForm.controls.name.errors.minlength">
@@ -78,7 +64,7 @@
               'is-valid': this.addAttributeDictionaryForm.controls.unit.status === 'VALID',
               'form-select': true,
             }" id="unit">
-            <option *ngFor="let componentObj of componentDictionary.getAll(); let i = index">
+            <option *ngFor="let componentObj of unitDictionary.getAllUnits(); let i = index">
               {{ componentObj.name }}
             </option>
           </select>
@@ -105,13 +91,10 @@
         </div>
       </div>
       <div class="form-group mb-3">
-        <button type="submit"
-          [disabled]="isFormInvalid"
-          class="btn btn-primary">
+        <button type="submit" [disabled]="isFormInvalid" class="btn btn-primary">
           Add model
         </button>
-        <div *ngIf="isFormInvalid"
-          class="form-error-message">
+        <div *ngIf="isFormInvalid" class="form-error-message">
           Form is invalid
         </div>
       </div>

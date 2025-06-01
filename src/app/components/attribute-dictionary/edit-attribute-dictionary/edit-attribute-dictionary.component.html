@@ -58,7 +58,7 @@
               'is-valid': editAttributeDictionaryForm.controls.componentName.status === 'VALID',
               'form-select': true,
             }" id="category">
-              <option *ngFor="let categoryObj of (deviceCategoryDict?.list ?? []); let i = index">
+              <option *ngFor="let categoryObj of (componentDictionary?.getAll() ?? []); let i = index">
                 {{ categoryObj.name }}
               </option>
             </select>

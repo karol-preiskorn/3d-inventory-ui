@@ -8,7 +8,7 @@
           <label for="deviceId" class="form-label">Device Id</label>
           <select (change)="changeDeviceId($event)" formControlName="deviceId" [ngClass]="{
               'is-invalid': editAttributeForm.get('deviceId')?.hasError('atLeastOneValidator'),
-              'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
+              'is-valid': !editAttributeForm.get('modelId')?.hasError('atLeastOneValidator'),
               'form-select': true,
             }" id="deviceId">
             <option *ngFor="let deviceObj of deviceDictionary; let i = index" [value]="deviceObj._id">
@@ -27,11 +27,11 @@
         <div class="form-group mb-2">
           <label for="modelId" class="form-label">Model Id</label>
           <select (change)="changeModelId($event)" formControlName="modelId" [ngClass]="{
-              'is-invalid': editAttributeForm.hasError('atLeastOneValidator'),
+              'is-invalid': editAttributeForm.get('modelId')?.hasError('atLeastOneValidator'),
               'is-valid': !editAttributeForm.hasError('atLeastOneValidator'),
               'form-select': true,
             }" id="modelId">
-            <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj._id }}">
+            <option *ngFor="let modelObj of modelDictionary; let i = index" [value]="modelObj._id">
               {{ modelObj.name }}
             </option>
           </select>

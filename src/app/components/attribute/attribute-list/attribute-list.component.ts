@@ -98,6 +98,7 @@ export class AttributeListComponent implements OnInit {
       console.error('Navigation error:', error)
     }
   }
+
   async DeleteAttribute(id: string) {
     try {
       await this.logService
@@ -120,14 +121,21 @@ export class AttributeListComponent implements OnInit {
   }
 
   async CloneAttribute(id: string) {
-    await this.logService
-      .CreateLog({
-        message: { id: id, id_new: 'todo!' },
-        operation: 'Clone',
-        component: this.component,
-      })
-      .toPromise()
-    await this.ngZone.run(() => this.router.navigateByUrl('attributes-list'))
+    try {
+      // Clone the attribute and get the new attribute's ID
+      const newId = this.attributeService.CloneAttribute(id)
+      await this.logService
+        .CreateLog({
+          message: { id, id_new: newId },
+          operation: 'Clone',
+          component: this.component,
+        })
+        .toPromise()
+      this.LoadAttributes()
+      await this.router.navigateByUrl('attributes-list')
+    } catch (error) {
+      console.error('Error cloning attribute:', error)
+    }
   }
 
   async AddAttribute() {

@@ -1,26 +1,26 @@
 <!doctype html>
-<html id="0" lang="en" [attr.data-bs-theme]="myTheme">
+<html lang="en" [attr.data-bs-theme]="myTheme">
 
 <head>
   <meta charset="utf-8" />
   <title>3d inventory</title>
   <base href="/" />
-  <link rel="icon" href="data:;base64,=">
+  <link rel="icon" href="assets/favicon.ico">
 </head>
 
 <body class="d-grid">
   <header>
-    <nav class="navbar navbar-expand-sm p-2">
-      <div class="container-fluid nav nav-pills">
-        <a class="navbar-brand nav-link" id="title" routerLink="/home" routerLinkActive="active fluffy"
-          ariaCurrentWhenActive="page">3d inventory</a>
-        <a class="nav-link" routerLink="/3d" routerLinkActive="active fluffy" ariaCurrentWhenActive="page"><i
+    <nav class="navbar navbar-expand-sm p-1">
+      <div class="container nav nav-pills">
+        <a class="navbar-brand nav-link" routerLink="/home" routerLinkActive="active fluffy" aria-current="page">3d
+          inventory</a>
+        <a class="nav-link" routerLink="/3d" routerLinkActive="active fluffy" aria-current="page"><i
             class="bi bi-box"></i> 3d</a>
-        <a class="nav-link" routerLink="/floor-list" routerLinkActive="active" ariaCurrentWhenActive="page"><i
+        <a class="nav-link" routerLink="/floor-list" routerLinkActive="active" aria-current="page"><i
             class="bi bi-building"></i> Floors</a>
-        <a class="nav-link" routerLink="/device-list" routerLinkActive="active" ariaCurrentWhenActive="page"><i
+        <a class="nav-link" routerLink="/device-list" routerLinkActive="active" aria-current="page"><i
             class="bi bi-hdd"></i> Devices</a>
-        <a class="nav-link" routerLink="/models-list" routerLinkActive="active" ariaCurrentWhenActive="page"><i
+        <a class="nav-link" routerLink="/models-list" routerLinkActive="active" aria-current="page"><i
             class="bi bi-motherboard"></i> Models</a>
 
         <ul class="nav nav-pills">
@@ -41,7 +41,7 @@
           </li>
         </ul>
 
-        <a class="nav-link" routerLink="/connection-list" routerLinkActive="active" ariaCurrentWhenActive="page"><i
+        <a class="nav-link" routerLink="/connection-list" routerLinkActive="active" aria-current="page"><i
             class="bi bi-ethernet"></i> Connections</a>
         <ul class="nav nav-pills">
           <li class="nav-item dropdown">
@@ -81,18 +81,18 @@
       <router-outlet></router-outlet>
     </div>
   </main>
-  <footer style="vertical-align: auto; margin-left: auto; margin-right: auto">
-    <div class="row" style="height: fit-content">
+  <footer class="footer-style">
+    <div class="row fit-content-height">
       <div class="m-1 p-1 text-center">
         <span>© 2022-{{ currentYearLong() }} Copyright <a
             href="https://github.com/karol-preiskorn/3d-inventory">ultimasolution.pl</a>
         </span>
         <button class="btn p-1" (click)="openWindow('https://github.com/karol-preiskorn/3d-inventory-angular-ui')"
-          onKeyDown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); window.open('https://github.com/karol-preiskorn/3d-inventory-angular-ui', '_blank'); }">
+          (keydown)="handleKeyDown($event)">
           <i class="bi bi-github" style="font-size: 1.2rem; color: rgb(82, 90, 105)"></i>
         </button>
         <button class="btn p-1" (click)="openLink('https://www.ultimasolution.pl/3d-inventory/')"
-          (keydown)="handleKeydown($event, 'https://www.ultimasolution.pl/3d-inventory/')">
+          (keydown)="handleKeyDown($event)">
           <i class="bi bi-wordpress" style="font-size: 1.2em; color: cornflowerblue"></i>
         </button>
         <button class="btn p-1" (click)="openLink('https://www.facebook.com/ultimasolution')"

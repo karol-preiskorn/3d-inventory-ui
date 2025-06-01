@@ -69,10 +69,18 @@ export class AttributeDictionaryService {
    * @param data The attribute dictionary data to create.
    * @returns An Observable emitting the created AttributesDictionary.
    */
-  CreateAttributeDictionary(data: Partial<AttributesDictionary>): Observable<AttributesDictionary> {
+  /**
+   * Creates a new attribute dictionary.
+   * @param data - The attribute dictionary data to create.
+   * @returns An Observable emitting the created AttributesDictionary.
+   */
+  CreateAttributeDictionary(data: Omit<AttributesDictionary, '_id'>): Observable<AttributesDictionary> {
+    if (!data || !data.name || !data.type || !data.componentName) {
+      return throwError(() => new Error('Missing required attribute dictionary fields.'));
+    }
     return this.http
-      .post<AttributesDictionary>(`${environment.baseurl}/attributesDictionary/`, data, this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandler))
+      .post<AttributesDictionary>(`${this.baseurl}/attributesDictionary/`, data, this.httpOptions)
+      .pipe(retry(1), catchError(this.errorHandler));
   }
 
   /**

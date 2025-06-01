@@ -1,13 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core'
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  ValidatorFn,
-  Validators,
-  ValidationErrors,
-} from '@angular/forms'
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 
 import { CommonModule } from '@angular/common'
@@ -197,42 +189,99 @@ export class AttributeEditComponent implements OnInit {
   }
 
   getModelList() {
-    this.modelService.GetModels().subscribe((data: Model[]) => {
-      const placeholderModel = { _id: '', name: 'Select a model' } as Model
-      data.unshift(placeholderModel)
-      this.modelDictionary = data
+    this.modelService.GetModels().subscribe({
+      next: (data: Model[]) => {
+        const placeholderModel = new Model()
+        this.modelDictionary = [placeholderModel, ...data]
+      },
+      error: (error) => {
+        console.error('Error fetching models:', error)
+        this.logService
+          .CreateLog({
+            objectId: '',
+            message: { error: `Error fetching models: ${error.message}` },
+            operation: 'Fetch',
+            component: 'Model',
+          })
+          .subscribe()
+      },
     })
   }
 
   getConnectionList() {
-    this.connectionService.GetConnections().subscribe((data: Connection[]) => {
-      const tmp = new Connection()
-      this.connectionDictionary = [tmp, ...data]
+    this.connectionService.GetConnections().subscribe({
+      next: (data: Connection[]) => {
+        const placeholderConnection = new Connection()
+        this.connectionDictionary = [placeholderConnection, ...data]
+      },
+      error: (error) => {
+        console.error('Error fetching connections:', error)
+        this.logService
+          .CreateLog({
+            objectId: '',
+            message: { error: `Error fetching connections: ${error.message}` },
+            operation: 'Fetch',
+            component: 'Connection',
+          })
+          .subscribe()
+      },
     })
   }
 
   getAttributeDictionaryList() {
-    this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributesDictionary[]) => {
-      const tmp = new AttributesDictionary()
-      this.attributeDictionary = [tmp, ...data]
+    this.attributeDictionaryService.GetAttributeDictionaries().subscribe({
+      next: (data: AttributesDictionary[]) => {
+        const placeholder = new AttributesDictionary()
+        this.attributeDictionary = [placeholder, ...data]
+      },
+      error: (error) => {
+        console.error('Error fetching attribute dictionaries:', error)
+        this.logService
+          .CreateLog({
+            objectId: '',
+            message: { error: `Error fetching attribute dictionaries: ${error.message}` },
+            operation: 'Fetch',
+            component: 'AttributesDictionary',
+          })
+          .subscribe()
+      },
     })
   }
 
   submitForm() {
+    if (this.editAttributeForm.invalid) {
+      this.editAttributeForm.markAllAsTouched()
+      return
+    }
+
     const attributeValue: Attribute = this.editAttributeForm.value as Attribute
-    this.attributeService.UpdateAttribute(this.inputId, attributeValue).subscribe(() => {
-      this.logService
-        .CreateLog({
-          objectId: attributeValue._id,
-          message: attributeValue,
-          operation: 'Update',
-          component: 'Attribute',
-        })
-        .subscribe(() => {
-          this.ngZone.run(async () => {
-            await this.router.navigateByUrl('attribute-list')
+
+    this.attributeService.UpdateAttribute(this.inputId, attributeValue).subscribe({
+      next: () => {
+        this.logService
+          .CreateLog({
+            objectId: attributeValue._id,
+            message: attributeValue,
+            operation: 'Update',
+            component: 'Attribute',
           })
-        })
+          .subscribe({
+            complete: () => {
+              this.ngZone.run(() => {
+                this.router.navigateByUrl('attribute-list')
+              })
+            },
+          })
+      },
+      error: (error) => {
+        console.error('Error updating attribute:', error)
+        this.logService.CreateLog({
+          objectId: attributeValue._id,
+          message: { error: error.message },
+          operation: 'UpdateError',
+          component: 'Attribute',
+        }).subscribe()
+      },
     })
   }
 }

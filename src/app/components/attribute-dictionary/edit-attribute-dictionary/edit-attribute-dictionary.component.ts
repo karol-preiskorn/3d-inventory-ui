@@ -154,9 +154,10 @@ export class AttributeDictionaryEditComponent implements OnInit {
       .UpdateAttributeDictionary(this.inputId, this.editAttributeDictionaryForm.value as AttributesDictionary)
       .subscribe({
         next: () => {
+          const { _id } = this.editAttributeDictionaryForm.value
           this.logService
             .CreateLog({
-              objectId: this.editAttributeDictionaryForm.get('id')?.value,
+              objectId: _id,
               message: this.editAttributeDictionaryForm.value,
               operation: 'Update',
               component: 'attributesDictionary',

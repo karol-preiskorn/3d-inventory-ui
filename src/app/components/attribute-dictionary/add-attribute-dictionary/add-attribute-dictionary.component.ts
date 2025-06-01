@@ -1,6 +1,6 @@
 import { Component, Inject, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
+import { Router, Resolve } from '@angular/router'
 
 import { CommonModule } from '@angular/common'
 import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
@@ -9,6 +9,7 @@ import { AttributesDictionary } from '../../../shared/AttributesDictionary'
 import { ComponentDictionary } from '../../../shared/ComponentDictionary'
 import { DeviceCategoryDict } from '../../../shared/deviceCategories'
 import { DeviceTypeDict } from '../../../shared/DeviceTypes'
+import { UnitDictionary } from 'src/app/shared/UnitDictionary'
 
 @Component({
   selector: 'app-add-attribute-dictionary',
@@ -19,7 +20,6 @@ import { DeviceTypeDict } from '../../../shared/DeviceTypes'
 })
 export class AttributeDictionaryAddComponent implements OnInit {
   addAttributeDictionaryForm: FormGroup<{
-    _id: FormControl<string | null>
     name: FormControl<string | null>
     componentName: FormControl<string | null>
     unit: FormControl<string | null>
@@ -31,6 +31,7 @@ export class AttributeDictionaryAddComponent implements OnInit {
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   componentDictionary: ComponentDictionary = new ComponentDictionary()
+  unitDictionary: UnitDictionary = new UnitDictionary()
   logComponent = 'AttributeDictionary'
 
   ngOnInit() {
@@ -47,7 +48,6 @@ export class AttributeDictionaryAddComponent implements OnInit {
 
   formAttributeDictionary() {
     this.addAttributeDictionaryForm = this.formBuilder.group({
-      _id: ['', [Validators.required]],
       name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
       componentName: ['', [Validators.required]],
       unit: ['', [Validators.required]],
@@ -110,13 +110,14 @@ export class AttributeDictionaryAddComponent implements OnInit {
   submitForm() {
     this.attributeDictionaryService
       .CreateAttributeDictionary(this.addAttributeDictionaryForm.value as unknown as AttributesDictionary)
-      .subscribe(() => {
+      .subscribe((createdAttribute) => {
+        const _id = createdAttribute._id
         this.logService
           .CreateLog({
-            objectId: this.addAttributeDictionaryForm.get('id')?.value,
+            objectId: _id,
             message: this.addAttributeDictionaryForm.getRawValue(),
             operation: 'Create',
-            component: 'Attribute Dictionary',
+            component: 'attributesDictionary',
           })
           .subscribe(() => {
             this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))
