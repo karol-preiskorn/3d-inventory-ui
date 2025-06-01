@@ -153,7 +153,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "karma-jsdom-launcher": "^18.0.0",
     "lint-staged": "^16.0.0",
-    "ng-packagr": "^19.2.2",
+    "ng-packagr": "^20.0.0",
     "nyc": "^17.1.0",
     "prettier": "3.5.3",
     "three": "^0.176.0",
