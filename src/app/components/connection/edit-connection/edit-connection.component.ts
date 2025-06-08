@@ -145,7 +145,7 @@ export class ConnectionEditComponent implements OnInit {
     await firstValueFrom(this.connectionService.UpdateConnection(this.inputId, this.form.value as Connection))
     await firstValueFrom(
       this.logService.CreateLog({
-        component: 'Connection',
+        component: 'connections',
         objectId: formValue._id,
         operation: 'Update',
         message: { value: this.form.value as unknown },

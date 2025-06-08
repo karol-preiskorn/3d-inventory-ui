@@ -203,7 +203,7 @@ export class AttributeAddComponent implements OnInit {
           objectId: this.addAttributeFrom.get('_id')?.value,
           message: this.addAttributeFrom.value as Attribute,
           operation: 'Create',
-          component: 'Attribute',
+          component: 'attributes',
         })
         .subscribe(() => {
           this.ngZone.run(() => this.router.navigateByUrl('attribute-list'))

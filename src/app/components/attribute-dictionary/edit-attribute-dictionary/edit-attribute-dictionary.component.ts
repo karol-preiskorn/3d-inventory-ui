@@ -169,6 +169,12 @@ export class AttributeDictionaryEditComponent implements OnInit {
         },
         error: (err) => {
           console.error('Error updating attribute dictionary:', err)
+          this.logService.CreateLog({
+            objectId: this.editAttributeDictionaryForm.value._id,
+            message: this.editAttributeDictionaryForm.value,
+            operation: 'Update',
+            component: 'attributesDictionary',
+          })
           // Optionally, display an error message to the user
         },
       })

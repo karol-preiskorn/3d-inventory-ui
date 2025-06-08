@@ -38,7 +38,8 @@ export class AttributeListComponent implements OnInit {
   attributePage = 1 // Current page
   pageSize = 10 // Number of items per page
   totalItems = 0 // Total number of items
-  component = 'Attributes'
+  component = 'attributes'
+  componentName = 'Attributes'
 
   deviceDictionary: Device[] = []
   modelDictionary: Model[] = []
@@ -64,28 +65,28 @@ export class AttributeListComponent implements OnInit {
     return JSON.stringify(str, null, 2)
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getDeviceList()
     this.getModelList()
     this.getConnectionList()
     this.getAttributeDictionaryList()
-    this.LoadAttributes()
+    await this.LoadAttributes()
   }
 
-  private LoadAttributes() {
+  private async LoadAttributes() {
     // @TODO: #62 show data depends of context attributeComponent and attributeComponentObject
     console.log('-------------------<  LoadAttributes  >-------------------')
     if (this.attributeComponent === 'Device' && this.attributeComponentObject != null) {
       console.log(
         'LoadAttributes.GetContextAttributes: ' + this.attributeComponent + ' ' + this.attributeComponentObject,
       )
-      this.attributeList = this.attributeService.GetContextAttributes(
+      this.attributeList = await this.attributeService.GetContextAttributes(
         this.attributeComponent,
         this.attributeComponentObject,
       )
     } else {
       console.log('LoadAttributes.attributeService.GetAttributesSync()')
-      this.attributeList = this.attributeService.GetAttributesSync()
+      this.attributeList = await this.attributeService.GetAttributesSync()
       this.totalItems = this.attributeList.length // Set total items
     }
   }

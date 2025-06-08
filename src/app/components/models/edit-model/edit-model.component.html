@@ -5,19 +5,14 @@
       <div class="col">
         <div class="form-group mb-2">
           <label for="form-id" class="form-label">Id</label>
-          <input
-            type="text"
-            readonly
-            formControlName="id"
-            id="form-id"
-            class="form-control mb-2"
-            [maxLength]="36"
+          <input type="text" readonly formControlName="id" id="form-id" class="form-control mb-2" [maxLength]="36"
             [ngClass]="{
               'is-invalid': editModelForm.get('id')?.status !== 'VALID',
               'is-valid': editModelForm.get('id')?.status === 'VALID',
             }" />
           <div *ngIf="editModelForm.get('id')?.errors" class="invalid-feedback">
-            <div *ngIf="editModelForm.controls.id?.errors?.required || editModelForm.controls.id?.errors?.minlength">
+            <div
+              *ngIf="editModelForm.controls.id?.errors?.required || editModelForm.controls.id?.errors?.minlength">
               Id is required and must be at least 4 characters
             </div>
           </div>
@@ -26,22 +21,14 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="name" class="form-label">Name</label>
-          <input
-            minlength="4"
-            id="name"
-            type="text"
-            placeholder="Model's name"
-            aria-label="name"
-            [formControlName]="'name'"
-            required
-            maxlength="255"
-            class="form-control"
-            [ngClass]="{
+          <input minlength="4" id="name" type="text" placeholder="Model's name" aria-label="name"
+            [formControlName]="'name'" required maxlength="255" class="form-control" [ngClass]="{
               'is-invalid': editModelForm.get('name')?.status !== 'VALID',
               'is-valid': editModelForm.get('name')?.status === 'VALID',
             }" />
           <div *ngIf="editModelForm.get('name')?.errors" class="invalid-feedback">
-            <div *ngIf="editModelForm.controls.name.errors?.required || editModelForm.controls.name.errors?.minlength">
+            <div
+              *ngIf="editModelForm.controls.name.errors?.required || editModelForm.controls.name.errors?.minlength">
               Name is required and must be at least 4 characters
             </div>
           </div>
@@ -52,41 +39,27 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="width" class="form-label">Width</label>
-          <input
-            class="form-control"
-            type="number"
-            formControlName="width"
-            id="width"
-            minlength="1"
-            maxlength="6"
-            required
-            [ngClass]="{
+          <input class="form-control" type="number" formControlName="width" id="width" minlength="1" maxlength="6"
+            required [ngClass]="{
               'is-invalid': editModelForm.get('dimension.width')?.status !== 'VALID',
               'is-valid': editModelForm.get('dimension.width')?.status === 'VALID',
             }" />
           <div *ngIf="editModelForm.get('dimension.width')?.errors" class="invalid-feedback"></div>
           <div>Width is required and must be at least 1 number</div>
-          <div *ngIf="editModelForm.get('dimension.width')?.errors?.maxlength">Width must be less than 6 numbers</div>
+          <div *ngIf="editModelForm.get('dimension.width')?.errors?.maxlength">Width must be less than 6 numbers
+          </div>
         </div>
       </div>
       <div class="col">
         <div class="form-group mb-3">
           <label for="height" class="form-label">Height</label>
-          <input
-            class="form-control"
-            type="number"
-            formControlName="height"
-            id="height"
-            minlength="1"
-            maxlength="6"
-            required
-            [ngClass]="{
+          <input class="form-control" type="number" formControlName="height" id="height" minlength="1"
+            maxlength="6" required [ngClass]="{
               'is-invalid': editModelForm.get('dimension.height')?.status !== 'VALID',
               'is-valid': editModelForm.get('dimension.height')?.status === 'VALID',
             }" />
           <div *ngIf="editModelForm?.get('dimension.height')?.errors" class="invalid-feedback">
-            <div
-              *ngIf="
+            <div *ngIf="
                 editModelForm?.get('dimension.height')?.errors?.required ||
                 editModelForm?.get('dimension.height')?.errors?.minlength
               ">
@@ -101,28 +74,21 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="depth" class="form-label">Depth</label>
-          <input
-            class="form-control"
-            type="number"
-            formControlName="depth"
-            id="depth"
-            minlength="1"
-            maxlength="4"
-            required
-            [ngClass]="{
+          <input class="form-control" type="number" formControlName="depth" id="depth" minlength="1" maxlength="4"
+            required [ngClass]="{
               'is-invalid': editModelForm.get('dimension.depth')?.status !== 'VALID',
               'is-valid': editModelForm.get('dimension.depth')?.status === 'VALID',
             }" />
 
           <div *ngIf="editModelForm.get('dimension.depth')?.errors" class="invalid-feedback">
-            <div
-              *ngIf="
+            <div *ngIf="
                 editModelForm.get('dimension.depth')?.errors?.required ||
                 editModelForm.get('dimension.depth')?.errors?.minlength
               ">
               Depth is required and must be at least 1 number
             </div>
-            <div *ngIf="editModelForm.get('dimension.depth')?.errors?.maxlength">Depth must be less than 4 numbers</div>
+            <div *ngIf="editModelForm.get('dimension.depth')?.errors?.maxlength">Depth must be less than 4 numbers
+            </div>
           </div>
         </div>
       </div>
@@ -131,18 +97,12 @@
       <div class="col">
         <div class="form-group mb-2">
           <label for="front" class="form-label">Front</label>
-          <input
-            class="form-control"
-            type="text"
-            formControlName="front"
-            id="front"
-            [ngClass]="{
+          <input class="form-control" type="text" formControlName="front" id="front" [ngClass]="{
               'is-invalid': editModelForm.get('texture.front')?.status !== 'VALID',
               'is-valid': editModelForm.get('texture.front')?.status === 'VALID',
             }" />
           <div *ngIf="editModelForm.get('texture.front')?.errors" class="invalid-feedback"></div>
-          <div
-            *ngIf="
+          <div *ngIf="
               editModelForm.get('texture.front')?.errors?.required ||
               editModelForm.get('texture.front')?.errors?.minlength
             ">
@@ -153,12 +113,7 @@
       <div class="col">
         <div class="form-group mb-2">
           <label for="back" class="form-label">Back</label>
-          <input
-            class="form-control"
-            type="text"
-            formControlName="back"
-            id="back"
-            [ngClass]="{
+          <input class="form-control" type="text" formControlName="back" id="back" [ngClass]="{
               'is-invalid': editModelForm.get('texture.back')?.status !== 'VALID',
               'is-valid': editModelForm.get('texture.back')?.status === 'VALID',
             }" />
@@ -172,18 +127,12 @@
       <div class="col">
         <div class="form-group mb-2">
           <label for="side" class="form-label">Side</label>
-          <input
-            class="form-control"
-            type="text"
-            formControlName="side"
-            id="side"
-            [ngClass]="{
+          <input class="form-control" type="text" formControlName="side" id="side" [ngClass]="{
               'is-invalid': editModelForm.get('texture.side')?.status !== 'VALID',
               'is-valid': editModelForm.get('texture.side')?.status === 'VALID',
             }" />
           <div *ngIf="editModelForm.get('texture.side')?.errors" class="invalid-feedback">
-            <div
-              *ngIf="
+            <div *ngIf="
                 editModelForm.get('texture.side')?.errors?.required ||
                 editModelForm.get('texture.side')?.errors?.minlength
               ">
@@ -195,18 +144,12 @@
       <div class="col">
         <div class="form-group mb-2">
           <label for="top" class="form-label">Top</label>
-          <input
-            class="form-control"
-            type="text"
-            formControlName="top"
-            id="top"
-            [ngClass]="{
+          <input class="form-control" type="text" formControlName="top" id="top" [ngClass]="{
               'is-invalid': editModelForm.get('texture.top')?.status !== 'VALID',
               'is-valid': editModelForm.get('texture.top')?.status === 'VALID',
             }" />
           <div *ngIf="editModelForm.get('texture.top')?.errors" class="invalid-feedback">
-            <div
-              *ngIf="
+            <div *ngIf="
                 editModelForm.get('texture.top')?.errors?.required ||
                 editModelForm.get('texture.top')?.errors?.minlength
               ">
@@ -218,18 +161,12 @@
       <div class="col">
         <div class="form-group mb-2">
           <label for="bottom" class="form-label">Bottom</label>
-          <input
-            class="form-control"
-            type="text"
-            formControlName="bottom"
-            id="bottom"
-            [ngClass]="{
+          <input class="form-control" type="text" formControlName="bottom" id="bottom" [ngClass]="{
               'is-invalid': editModelForm.get('texture.bottom')?.status !== 'VALID',
               'is-valid': editModelForm.get('texture.bottom')?.status === 'VALID',
             }" />
           <div *ngIf="editModelForm.get('texture.bottom')?.errors" class="invalid-feedback">
-            <div
-              *ngIf="
+            <div *ngIf="
                 editModelForm.get('texture.bottom')?.errors?.required ||
                 editModelForm.get('texture.bottom')?.errors?.minlength
               ">
@@ -242,34 +179,23 @@
     <div class="row">
       <div class="col">
         <div class="d-grid gap-3 d-md-block mx-auto">
-          <button
-            type="button"
-            [disabled]="!(editModelForm.valid && editModelForm.touched)"
-            class="btn btn-primary gap-2 me-3"
-            data-bs-toggle="button"
-            autocomplete="off"
-            aria-pressed="true"
-            (click)="submitForm()"
-            tooltip="Update device.">
+          <button type="button" [disabled]="!(editModelForm.valid && editModelForm.touched)"
+            class="btn btn-primary gap-2 me-3" data-bs-toggle="button" autocomplete="off" aria-pressed="true"
+            (click)="submitForm()" tooltip="Update device.">
             <i class="bi bi-floppy"></i> Update
           </button>
-          <button
-            type="button"
-            class="btn btn-success gap-2"
-            data-bs-toggle="button"
-            autocomplete="off"
-            aria-pressed="true"
-            (click)="deleteForm()"
-            tooltip="Delete device.">
+          <button type="button" class="btn btn-success gap-2" data-bs-toggle="button" autocomplete="off"
+            aria-pressed="true" (click)="deleteForm()" tooltip="Delete device.">
             <i class="bi bi-file-earmark-minus"></i> Delete
           </button>
         </div>
       </div>
-      <div *ngIf="editModelForm !== null && editModelForm?.valid && editModelForm?.touched" class="invalid-feedback">
+      <div *ngIf="editModelForm !== null && editModelForm?.valid && editModelForm?.touched"
+        class="invalid-feedback">
         Form is valid
       </div>
       <p class="valid-feedback">Form Status: {{ editModelForm.status }}.</p>
     </div>
   </form>
 </div>
-<app-log [component]="component"></app-log>
+<app-log [component]="component" [componentName]="componentName" [isComponent]="false"></app-log>

@@ -4,7 +4,7 @@ import { Router } from '@angular/router'
 
 import { FloorService } from '../../../services/floor.service'
 import { LogService } from '../../../services/log.service'
-import { Floor } from '../../../shared/floor'
+import { Floors } from '../../../shared/floors'
 import { LogComponent } from '../../log/log.component'
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
 
@@ -16,9 +16,13 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
   imports: [CommonModule, NgbPaginationModule, LogComponent],
 })
 export class FloorListComponent implements OnInit {
-  floorList: Floor[] = []
-  selectedFloor: Floor
-  component: string = 'Floors'
+  floorList: Floors[] = []
+  selectedFloor: Floors
+  component: string = 'floors'
+  componentName: string = 'Floor'
+  pageSize: number = 5 // Number of items per page
+  totalItems: number = 0 // Total number of items
+  page: number = 1 // Current page number
   floorListPage: number = 1
 
   ngOnInit() {
@@ -40,45 +44,58 @@ export class FloorListComponent implements OnInit {
   ) {}
 
   loadFloors() {
-    return this.floorService.GetFloors().subscribe((data: Floor[]) => {
+    return this.floorService.GetFloors().subscribe((data: Floors[]) => {
       this.floorList = data
     })
   }
 
   deleteFloor(id: string) {
-    const idString = id // Convert ObjectId to string
-    this.logService.CreateLog({
-      message: { id: idString },
-      objectId: idString,
-      operation: 'Delete',
-      component: this.component,
-    })
-    return this.floorService.DeleteFloor(idString).subscribe((data: Floor) => {
-      console.log(data)
-      this.loadFloors()
-      this.router.navigate(['/floor-list/'])
+    const idString = id
+    console.error('[deleteFloor] delete floor:', idString || 'undefined')
+    try {
+      this.logService.CreateLog({
+        message: { id },
+        objectId: id,
+        operation: 'Delete',
+        component: this.component,
+      })
+    } catch (logError) {
+      console.error('[deleteFloor] Error creating log:', logError)
+      return
+    }
+    this.floorService.DeleteFloor(idString).subscribe({
+      next: () => {
+        this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
+      },
+      error: (err) => {
+        console.error('[deleteFloor] Failed to delete floor:', err)
+      },
+      complete: () => {
+        this.loadFloors()
+      },
     })
   }
 
   cloneFloor(id: string) {
-    const id_new: string = this.floorService.CloneFloor(id)
-    this.logService
-      .CreateLog({
-        message: { id: id, id_new: id_new },
-        operation: 'Clone',
-        component: this.component,
-      })
-      .subscribe(() => {
-        this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
-      })
-    this.loadFloors()
+    this.floorService.CloneFloor(id).subscribe((id_new: string) => {
+      this.logService
+        .CreateLog({
+          message: { id: id, id_new: id_new },
+          operation: 'Clone',
+          component: this.component,
+        })
+        .subscribe(() => {
+          this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
+        })
+      this.loadFloors()
+    })
   }
 
   addFloor() {
     this.router.navigateByUrl('add-floor')
   }
 
-  editFloor(floor: Floor) {
+  editFloor(floor: Floors) {
     this.selectedFloor = floor
     this.router.navigate(['edit-floor/', floor._id])
   }

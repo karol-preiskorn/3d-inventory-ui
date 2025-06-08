@@ -11,6 +11,7 @@
       <tr *ngFor="let floor of floorList | slice: (floorListPage - 1) * 5 : floorListPage * 5">
         <td>
           {{ floor.name }}<br />
+          <div class="fs-7 fw-lighter deviceid">{{ floor._id }}</div>
           <div class="text-body-tertiary small p-2">
             {{ floor.address.street }}<br />
             {{ floor.address.city }} {{ floor.address.postcode }} {{ floor.address.country }}
@@ -30,10 +31,12 @@
         </td>
         <td>
           <fieldset class="btn-group float-md-end" aria-label="device-operations">
-            <button type="button" class="btn btn-success btn-sm move-right" id="edit-device" (click)="editFloor(floor)">
+            <button type="button" class="btn btn-success btn-sm move-right" id="edit-device"
+              (click)="editFloor(floor)">
               Edit
             </button>
-            <button type="button" id="delete-device" class="btn btn-danger btn-sm" (click)="deleteFloor(floor._id)">
+            <button type="button" id="delete-device" class="btn btn-danger btn-sm"
+              (click)="deleteFloor(floor._id)">
               Delete
             </button>
             <button type="button" id="clone-device" class="btn btn-info btn-sm" (click)="cloneFloor(floor._id)">
@@ -47,14 +50,9 @@
   <button type="button" class="btn btn-success btn-sm move-right mb-3" (click)="addFloor()">
     <i class="bi bi-plus-lg"></i> Add
   </button>
-  <ngb-pagination
-    [(page)]="floorListPage"
-    [pageSize]="5"
-    [collectionSize]="floorList.length"
-    [maxSize]="5"
-    [boundaryLinks]="true"
-    aria-label="Attribute pagination">
+  <ngb-pagination [(page)]="floorListPage" [pageSize]="5" [collectionSize]="floorList.length" [maxSize]="5"
+    [boundaryLinks]="true" aria-label="Attribute pagination">
   </ngb-pagination>
 </div>
 
-<app-log *ngIf="component" [component]="component"></app-log>
+<app-log *ngIf="component" [component]="component" [componentName]="componentName" [isComponent]="true"></app-log>

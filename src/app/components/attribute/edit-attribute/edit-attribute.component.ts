@@ -201,7 +201,7 @@ export class AttributeEditComponent implements OnInit {
             objectId: '',
             message: { error: `Error fetching models: ${error.message}` },
             operation: 'Fetch',
-            component: 'Model',
+            component: 'models',
           })
           .subscribe()
       },
@@ -221,7 +221,7 @@ export class AttributeEditComponent implements OnInit {
             objectId: '',
             message: { error: `Error fetching connections: ${error.message}` },
             operation: 'Fetch',
-            component: 'Connection',
+            component: 'connections',
           })
           .subscribe()
       },
@@ -241,7 +241,7 @@ export class AttributeEditComponent implements OnInit {
             objectId: '',
             message: { error: `Error fetching attribute dictionaries: ${error.message}` },
             operation: 'Fetch',
-            component: 'AttributesDictionary',
+            component: 'attributesDictionary',
           })
           .subscribe()
       },
@@ -263,7 +263,7 @@ export class AttributeEditComponent implements OnInit {
             objectId: attributeValue._id,
             message: attributeValue,
             operation: 'Update',
-            component: 'Attribute',
+            component: 'attributes',
           })
           .subscribe({
             complete: () => {
@@ -275,12 +275,14 @@ export class AttributeEditComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error updating attribute:', error)
-        this.logService.CreateLog({
-          objectId: attributeValue._id,
-          message: { error: error.message },
-          operation: 'UpdateError',
-          component: 'Attribute',
-        }).subscribe()
+        this.logService
+          .CreateLog({
+            objectId: attributeValue._id,
+            message: { error: error.message },
+            operation: 'Error',
+            component: 'attributes',
+          })
+          .subscribe()
       },
     })
   }

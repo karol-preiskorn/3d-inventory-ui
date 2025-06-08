@@ -22,7 +22,8 @@ export class ModelEditComponent implements OnInit {
   attributeComponentObject: string = ''
   inputId: string
   model: Model
-  component = 'EditModel'
+  component = 'models'
+  componentName = 'Models'
   submitted = false
   editModelForm: FormGroup
 
@@ -107,7 +108,7 @@ export class ModelEditComponent implements OnInit {
     this.logService.CreateLog({
       objectId: this.editModelForm.value.id,
       operation: 'Delete',
-      component: 'Model',
+      component: 'models',
       message: { id: this.editModelForm.value },
     })
     this.modelsService.DeleteModel(this.inputId).subscribe(() => {
@@ -122,7 +123,7 @@ export class ModelEditComponent implements OnInit {
       const log = {
         message: { model: this.editModelForm.value },
         operation: 'Update',
-        component: 'Model',
+        component: 'models',
         objectId: this.editModelForm.value.id,
       }
       this.logService.CreateLog(log).subscribe(() => {

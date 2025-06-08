@@ -6,7 +6,7 @@
    3. [Inventory](#inventory)
    4. [Data Model](#data-model)
       1. [Logical model](#logical-model)
-   5. [Aplication](#aplication)
+   5. [Application](#application)
       1. [List devices](#list-devices)
       2. [Models](#models)
       3. [Attributes](#attributes)
@@ -29,7 +29,7 @@ Project create ✨`3d inventory`✨— solution that allows you to build a spati
 Motivation
 
     I'm programming to incorporate database systems. This project it is sandbox to covers relevant topics
-    and issues related to create simple  and efficient platform for graphics representation IT inventory.
+    and issues related to create simple and efficient platform for graphics representation IT inventory.
 
 <img title="Architecture" src="src/assets/architecture.drawio.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%; margin-bottom: 16px" width="85%">
 
@@ -68,11 +68,11 @@ I have a lot oo fun to learn how convert relational DB structures to correct col
 
 ### Logical model
 
-Relational data model is maped to noSQL model im MondoDb.
+Relational data model is mapped to noSQL model im MondoDb.
 
 <img title="Logical model" src="src/assets/3d-inventory.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="85%"/>
 
-## Aplication
+## Application
 
 ### List devices
 
@@ -103,14 +103,7 @@ npm install
 npm run start
 ```
 
-or run separately `json-server` and `ui`
-
-```bash
-npm run start:json-server
-npm run start:ng
-```
-
-Goto in browser http://localhost:4200
+Goto in browser [http://localhost:4200](http://localhost:4200)
 
 ## Deploy
 
@@ -141,6 +134,5 @@ Pull requests are welcome. For major changes, please open an [issue](https://git
 - [ ] as array of square (x, y, h).
 - [ ] `Docker` -> serve application in `Github Pages` --> `AWS EC2`
 - [ ] Use Dev container in `GitHub` for development.
-- [ ] Recognize `Grunt`/`Glup` to `CI`/`DI` use in this project.
 - [ ] Use <https://formly.dev/>.
 - [ ] Create blog on GitHub Pages or use <https://ultimasolution.pl>.

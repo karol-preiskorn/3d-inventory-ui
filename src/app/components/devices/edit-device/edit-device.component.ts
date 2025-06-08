@@ -128,7 +128,7 @@ export class DeviceEditComponent implements OnInit {
       const log: LogIn = {
         message: this.editDeviceForm.value,
         operation: 'Update',
-        component: 'Device',
+        component: 'devices',
         objectId: _id as string,
       }
 

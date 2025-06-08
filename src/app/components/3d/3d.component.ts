@@ -169,7 +169,9 @@ export class CubeComponent implements OnInit, AfterViewInit {
     pos_y: number,
     pos_z: number,
   ) {
-    console.log('createDevice3d parameters: ', box_x, box_y, box_z, pos_x, pos_y, pos_z)
+    console.log(
+      `createDevice3d parameters: box_x = ${box_x}, box_y = ${box_y}, box_z = ${box_z}, pos_x = ${pos_x}, pos_y = ${pos_y}, pos_z = ${pos_z}`,
+    )
     const geometry = new THREE.BoxGeometry(box_x, box_y, box_z)
     let color = this.getRandomNaturalColor()
     // Compute a contrasting color (black or white) for the given color
@@ -180,16 +182,15 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.material.depthTest = false
     this.material.depthWrite = false
     this.material.needsUpdate = true
-    this.material.opacity = 0.8
+    this.material.opacity = 0.5
     this.material.side = THREE.DoubleSide
     this.material.transparent = true
     this.material.wireframe = true
 
     const object = new THREE.Mesh(geometry, sphereMaterial)
     object.position.x = pos_x
-    object.position.y = Math.round(pos_z + box_z / 2)
+    object.position.y = pos_z + box_z / 2
     object.position.z = pos_y
-    object.castShadow = true
     object.receiveShadow = true
     this.scene.add(object)
 
@@ -200,7 +201,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
         const font = loader.parse(JSON.parse(fontData))
         const textGeo = new TextGeometry(device_name, {
           font: font,
-          size: 0.8,
+          size: 1,
           depth: 0.1,
           curveSegments: 22,
           bevelThickness: 0.1,
@@ -210,9 +211,9 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
         const material = new THREE.MeshBasicMaterial({ color: colorText })
         const textMesh = new THREE.Mesh(textGeo, material)
-        textMesh.position.x = pos_x - (device_name.length * 0.7) / 2
-        textMesh.position.y = Math.round(pos_z + box_z) + 0.2
-        textMesh.position.z = pos_y
+        textMesh.position.x = pos_x - (device_name.length * 0.85) / 2
+        textMesh.position.y = pos_y + box_y + 4
+        textMesh.position.z = pos_z
 
         textMesh.rotation.x = 0
         textMesh.rotation.y = 0
@@ -539,7 +540,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
     this.scene.fog = new THREE.Fog(0x333333, 200, 1500)
 
-    this.addWalls()
+    //this.addWalls()
 
     this.addDirectionalLight1()
     this.addDirectionalLight2()

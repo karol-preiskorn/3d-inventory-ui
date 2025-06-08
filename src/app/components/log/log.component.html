@@ -3,11 +3,11 @@
   <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Operation</th>
-        <th scope="col">Component</th>
-        <th scope="col">Object</th>
-        <th scope="col"></th>
+        <th>Date</th>
+        <th>Operation</th>
+        <th>Component</th>
+        <th>Object</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -16,23 +16,21 @@
         <td>{{ log.operation }}</td>
         <td>
           {{ log.component }}
-          <span class="deviceid">{{ log.objectId }}</span>
+          <span class="deviceid" *ngIf="log.objectId">{{ log.objectId }}</span>
         </td>
         <td>{{ findNameInLogMessage(log) }}</td>
         <td>
-          <button type="button" id="delete-log" class="btn btn-danger btn-sm" (click)="DeleteLog(log._id)">
+          <button type="button" class="btn btn-danger btn-sm" (click)="DeleteLog(log._id)" aria-label="Delete log">
             <i class="bi bi-trash"></i>
           </button>
         </td>
       </tr>
+      <tr *ngIf="(LogList | slice: (logListPage - 1) * pageSize : logListPage * pageSize).length === 0">
+        <td colspan="5" class="text-center">No logs found.</td>
+      </tr>
     </tbody>
   </table>
-  <ngb-pagination
-    [pageSize]="pageSize"
-    [collectionSize]="totalItems"
-    [maxSize]="5"
-    [boundaryLinks]="true"
-    aria-label="Log pagination"
-    [(page)]="logListPage">
+  <ngb-pagination [pageSize]="pageSize" [collectionSize]="totalItems" [maxSize]="5" [boundaryLinks]="true"
+    aria-label="Log pagination" [(page)]="logListPage">
   </ngb-pagination>
 </div>

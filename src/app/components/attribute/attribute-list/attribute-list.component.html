@@ -74,5 +74,6 @@
 <div class="fs-7 fw-lighter deviceid">component: {{ component }}</div>
 
 <app-log *ngIf="attributeComponent === '' || attributeComponent === undefined"
-  [attributeComponentObject]="this.device" [component]="component">
+  [attributeComponentObject]="this.device" [component]="component" [componentName]="componentName"
+  [isComponent]="true">
 </app-log>

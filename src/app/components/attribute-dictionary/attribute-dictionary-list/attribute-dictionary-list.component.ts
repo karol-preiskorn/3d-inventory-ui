@@ -50,7 +50,7 @@ export class AttributeDictionaryListComponent implements OnInit {
       message: { id },
       objectId: id.toString(),
       operation: 'Delete',
-      component: 'AttributeDictionary',
+      component: 'attributesDictionary',
     })
     return this.attributeDictionaryService.DeleteAttributeDictionary(id).subscribe((data: AttributesDictionary) => {
       // Specify the appropriate type for 'data'
@@ -70,7 +70,7 @@ export class AttributeDictionaryListComponent implements OnInit {
             id_new: id_new,
           },
           operation: 'Clone',
-          component: 'AttributeDictionary',
+          component: 'attributesDictionary',
         })
         .subscribe(() => {
           this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))

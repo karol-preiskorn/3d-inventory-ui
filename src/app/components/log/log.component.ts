@@ -35,7 +35,7 @@ import { Attribute } from '../../shared/attribute'
 import { AttributesDictionary } from '../../shared/AttributesDictionary'
 import { Connection } from '../../shared/connection'
 import { Device } from '../../shared/device'
-import { Floor } from '../../shared/floor'
+import { Floors } from '../../shared/floors'
 import { Model } from '../../shared/model'
 
 @Component({
@@ -61,7 +61,7 @@ export class LogComponent implements OnInit {
   connectionList: Connection[]
   attributeDictionaryList: AttributesDictionary[]
   attributeList: Attribute[]
-  floorList: Floor[]
+  floorList: Floors[]
 
   deviceListGet = false
   modelListGet = false
@@ -103,7 +103,7 @@ export class LogComponent implements OnInit {
     if (this.isComponent == true) {
       this.loadComponentLog(this.component)
     } else {
-      this.loadObjectsLog(this.component)
+      this.loadLogsById(this.component)
     }
   }
 
@@ -153,9 +153,9 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the object.
    * @returns A Subscription object representing the subscription to the log data.
    */
-  loadObjectsLog(id: string): Subscription {
-    return this.logService.GetObjectLogs(id).subscribe((data: Log[]) => {
-      console.log('LogComponent.loadObjectsLog(' + id + '): ' /* + JSON.stringify(data, null, ' ') */)
+  loadLogsById(id: string): Subscription {
+    return this.logService.GetLogsById(id).subscribe((data: Log[]) => {
+      console.log('[log.component] LogComponent.loadLogsById(' + id + '): ' /* + JSON.stringify(data, null, ' ') */)
       this.LogList = data
       this.totalItems = this.LogList.length // Update totalItems for pagination
     })
@@ -171,18 +171,23 @@ export class LogComponent implements OnInit {
     let findConnectionNameValue: string
 
     if (!log) {
-      console.error('Log message is undefined')
+      console.error('[log.component] findNameInLogMessage: Log message is undefined')
       return ''
     }
     try {
       jLog = JSON.parse(JSON.stringify(log.message)) as Log
     } catch (error: unknown) {
-      console.log(`findNameInLogMessage: ${String(log.message)} is not a JSON string` + String(error))
+      console.error(
+        `[log.component] findNameInLogMessage: JSON.parse(JSON.stringify(${String(log.message)}) is not a JSON string` +
+          String(error),
+      )
       return JSON.stringify(log.message)
     }
     if (log.component == 'Attribute') {
       const logMessageAttribute: Partial<Attribute> = log.message as Partial<Attribute>
-      console.log('logMessageAttribute: ' + JSON.stringify(logMessageAttribute, null, ' '))
+      console.log(
+        '[log.component] findNameInLogMessage: logMessageAttribute: ' + JSON.stringify(logMessageAttribute, null, ' '),
+      )
       if (!logMessageAttribute) {
         if (
           (logMessageAttribute as Partial<Attribute>).connectionId !== null &&
@@ -193,7 +198,7 @@ export class LogComponent implements OnInit {
             (logMessageAttribute as Partial<Attribute>).connectionId ?? '',
           )),
             console.log(
-              `Find ConnectionName for Attribute (${(logMessageAttribute as Partial<Attribute>)?.connectionId ?? 'Unknown'}): ${findConnectionNameValue}`,
+              `[[log.component] findNameInLogMessage: Find ConnectionName for Attribute (${(logMessageAttribute as Partial<Attribute>)?.connectionId ?? 'Unknown'}): ${findConnectionNameValue}`,
             )
           return 'Connection ' + findConnectionNameValue
         }
@@ -355,7 +360,7 @@ export class LogComponent implements OnInit {
   }
 
   /**
-   * Retrieves the floor list from the attribute service.
+   * Retrieves the Floors list from the attribute service.
    * If the attribute list has already been retrieved, returns null.
    * Otherwise, subscribes to the GetAttributes method of the attribute service
    * and updates the attribute list with the retrieved data.
@@ -377,9 +382,9 @@ export class LogComponent implements OnInit {
   }
 
   /**
-   * Finds a floor in the floorList based on the provided id.
-   * @param id - The id of the floor to find.
-   * @returns The found floor object, or undefined if no floor with the given id is found.
+   * Finds a Floors in the floorList based on the provided id.
+   * @param id - The id of the Floors to find.
+   * @returns The found Floors object, or undefined if no Floors with the given id is found.
    */
   findFloor(id: string) {
     return this.floorList.find((e) => e._id === id)

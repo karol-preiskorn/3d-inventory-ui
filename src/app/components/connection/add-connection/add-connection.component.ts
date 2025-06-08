@@ -94,7 +94,7 @@ export class ConnectionAddComponent implements OnInit {
           objectId: this.addConnectionForm.get('id')?.value,
           message: this.addConnectionForm.value,
           operation: 'Create',
-          component: 'Connection',
+          component: 'connections',
         })
         .subscribe(() => {
           this.ngZone.run(() => this.router.navigateByUrl('connection-list'))
