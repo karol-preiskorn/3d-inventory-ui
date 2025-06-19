@@ -1,5 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
+import { firstValueFrom } from 'rxjs'
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router'
 
 import { DeviceService } from '../../../services/device.service'
 import { LogService } from '../../../services/log.service'
@@ -21,7 +22,8 @@ export class DeviceListComponent implements OnInit {
   deviceList: Device[] = []
   modelList: Model[] = []
   selectedDevice: Device
-  component = 'Devices'
+  component = 'devices'
+  componentName = 'Devices'
   deviceListPage = 1
 
   ngOnInit() {
@@ -55,46 +57,56 @@ export class DeviceListComponent implements OnInit {
     })
   }
 
-  DeleteDevice(id: string) {
-    this.logService
-      .CreateLog({
-        message: { id: id },
-        objectId: id,
-        operation: 'Delete',
-        component: this.component,
-      })
-      .subscribe({
-        next: () => {
-          this.devicesService.DeleteDevice(id).subscribe({
-            next: () => {
-              console.log(id + ' deleted')
-              this.loadDevices()
-              this.loadModels()
-              void this.router.navigate(['/device-list/'], { relativeTo: this.route, skipLocationChange: true })
-            },
-            error: (err) => {
-              console.error('Error deleting device:', err)
-            },
-          })
-        },
-        error: (err) => {
-          console.error('Error creating log:', err)
-        },
-      })
+  async DeleteDevice(id: string) {
+    try {
+      await firstValueFrom(
+        this.logService.CreateLog({
+          message: { id },
+          objectId: id,
+          operation: 'Delete',
+          component: this.component,
+        }),
+      )
+    } catch (logError) {
+      console.error('Error creating log:', logError)
+      // Optionally, return or show a notification to the user
+      return
+    }
+
+    try {
+      await firstValueFrom(this.devicesService.DeleteDevice(id))
+      console.log(`${id} deleted`)
+      this.loadDevices()
+      this.loadModels()
+      await this.router.navigate(['/device-list/'], { relativeTo: this.route, skipLocationChange: true })
+    } catch (deleteError) {
+      console.error('Error deleting device:', deleteError)
+      // Optionally, show a notification to the user
+    }
   }
 
+  /**
+   * Clones an existing device by its ID, logs the operation, and reloads the device list.
+   * Navigates to the device list page after cloning.
+   * @param id - The ID of the device to be cloned.
+   */
   async CloneDevice(id: string) {
-    const idNew: object = this.devicesService.CloneDevice(id)
-    console.info('Cloned device id: ' + id + ' to result CloneDevice id: ' + JSON.stringify(idNew))
-    await this.logService
-      .CreateLog({
-        message: { id: id, id_new: idNew },
-        operation: 'Clone',
-        component: this.component,
+    const idNew = this.devicesService.CloneDevice(id) as Device
+    console.info(`Cloned device id: ${id} to result CloneDevice id: ${JSON.stringify(idNew)}`)
+    this.logService.CreateLog({
+      message: { id: id, idNew: idNew },
+      operation: 'Clone',
+      component: this.component,
+    })
+    await new Promise<void>((resolve) => {
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd && event.url === '/device-list') {
+          this.loadDevices()
+          resolve()
+        }
       })
-      .toPromise()
-    await this.ngZone.run(() => this.router.navigateByUrl('device-list'))
-    this.loadDevices()
+      this.ngZone.run(() => this.router.navigateByUrl('device-list'))
+    })
   }
 
   async AddForm() {

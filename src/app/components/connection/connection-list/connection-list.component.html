@@ -9,8 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        *ngFor="
+      <tr *ngFor="
           let connectionObj of connectionList
             | slice: (connectionListPage - 1) * pageSize : connectionListPage * pageSize
         ">
@@ -32,24 +31,15 @@
         </td>
         <td>
           <fieldset class="btn-group float-md-end" aria-label="connection-operations">
-            <button
-              type="button"
-              class="btn btn-success btn-sm move-right"
-              id="edit-connection"
+            <button type="button" class="btn btn-success btn-sm move-right" id="edit-connection"
               (click)="editConnection(connectionObj)">
               <i class="bi bi-pen"></i>
             </button>
-            <button
-              type="button"
-              id="delete-connection"
-              class="btn btn-danger btn-sm"
+            <button type="button" id="delete-connection" class="btn btn-danger btn-sm"
               (click)="deleteConnection(connectionObj._id)">
               <i class="bi bi-trash"></i>
             </button>
-            <button
-              type="button"
-              id="clone-connection"
-              class="btn btn-info btn-sm"
+            <button type="button" id="clone-connection" class="btn btn-info btn-sm"
               (click)="cloneConnection(connectionObj._id)">
               <i class="bi bi-copy"></i>
             </button>
@@ -61,13 +51,8 @@
   <button type="button" class="btn btn-success btn-sm move-right mb-3" (click)="AddForm()">
     <i class="bi bi-plus-lg"></i> Add
   </button>
-  <ngb-pagination
-    [(page)]="connectionListPage"
-    [pageSize]="pageSize"
-    [collectionSize]="connectionList.length"
-    [maxSize]="5"
-    [boundaryLinks]="true"
-    aria-label="Connection pagination"></ngb-pagination>
+  <ngb-pagination [(page)]="connectionListPage" [pageSize]="pageSize" [collectionSize]="connectionList.length"
+    [maxSize]="5" [boundaryLinks]="true" aria-label="Connection pagination"></ngb-pagination>
 </div>
 
-<app-log [component]="component"></app-log>
+<app-log [component]="component" [componentName]="componentName" [isComponent]="true"></app-log>

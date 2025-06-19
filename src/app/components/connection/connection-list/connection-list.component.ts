@@ -22,7 +22,10 @@ export class ConnectionListComponent implements OnInit {
   selectedConnection: Connection = new Connection()
   connectionListPage = 1
   deviceList: Device[] = []
-  component = 'Connections'
+  component = 'connections'
+  componentName = 'Connections'
+  page: number = 1
+  totalItems: number = 0
   pageSize: number = 5
 
   ngOnInit() {
@@ -66,7 +69,7 @@ export class ConnectionListComponent implements OnInit {
         message: { id: id },
         objectId: id,
         operation: 'Delete',
-        component: 'Connection',
+        component: 'connections',
       })
       .subscribe((data: LogIn) => {
         console.log(data)
@@ -86,7 +89,7 @@ export class ConnectionListComponent implements OnInit {
       .CreateLog({
         message: { id: id, id_new: id_new },
         operation: 'Clone',
-        component: 'Connection',
+        component: 'connections',
       })
       .subscribe(() => {
         this.ngZone.run(() => this.router.navigateByUrl('connection-list'))

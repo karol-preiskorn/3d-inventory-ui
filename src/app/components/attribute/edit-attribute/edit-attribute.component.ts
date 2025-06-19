@@ -1,13 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core'
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  ValidatorFn,
-  Validators,
-  ValidationErrors,
-} from '@angular/forms'
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 
 import { CommonModule } from '@angular/common'
@@ -21,12 +13,12 @@ import { DeviceService } from '../../../services/device.service'
 import { LogService } from '../../../services/log.service'
 import { ModelsService } from '../../../services/models.service'
 import { Attribute } from '../../../shared/attribute'
-import { AttributeDictionary } from '../../../shared/attribute-dictionary'
-import { ComponentDictionary } from '../../../shared/component-dictionary'
+import { AttributesDictionary } from '../../../shared/AttributesDictionary'
+import { ComponentDictionary } from '../../../shared/ComponentDictionary'
 import { Connection } from '../../../shared/connection'
 import { Device } from '../../../shared/device'
 import { DeviceCategoryDict } from '../../../shared/deviceCategories'
-import { DeviceTypeDict } from '../../../shared/deviceTypes'
+import { DeviceTypeDict } from '../../../shared/DeviceTypes'
 import { Model } from '../../../shared/model'
 import Validation from '../../../shared/validation'
 import { LogComponent } from '../../log/log.component'
@@ -48,7 +40,7 @@ export class AttributeEditComponent implements OnInit {
   deviceDictionary: Device[]
   modelDictionary: Model[]
   connectionDictionary: Connection[]
-  attributeDictionary: AttributeDictionary[]
+  attributeDictionary: AttributesDictionary[]
 
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
@@ -130,27 +122,27 @@ export class AttributeEditComponent implements OnInit {
 
   changeModelId(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    const objectId = uuidv4.toString()
-    this.modelId!.setValue(objectId, { onlySelf: true })
     return value
   }
 
   changeDeviceId(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    //const objectId = new mongodb.ObjectId().toString() // This line creates a new ObjectId and converts it to a string
     return value
   }
 
   changeConnectionId(e: Event) {
-    this.connectionId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.connectionId?.setValue((e.target as HTMLSelectElement).value, { onlySelf: true })
   }
 
   changeAttributeDictionaryId(e: Event) {
-    this.attributeDictionaryId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.attributeDictionaryId?.setValue((e.target as HTMLSelectElement).value, { onlySelf: true })
   }
 
-  changeValue(e: Event) {
-    this.value?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  onValueChange(e: Event) {
+    const target = e.target
+    if (target instanceof HTMLInputElement) {
+      this.value?.setValue(target.value, { onlySelf: true })
+    }
   }
 
   get id() {
@@ -196,43 +188,101 @@ export class AttributeEditComponent implements OnInit {
     return this.deviceDictionary?.find((e) => e._id === id)?.name
   }
 
-  getModelList() {
-    this.modelService.GetModels().subscribe((data: Model[]) => {
-      const placeholderModel = { _id: '', name: 'Select a model' } as Model
-      data.unshift(placeholderModel)
-      this.modelDictionary = data
+  getModelList(): void {
+    this.modelService.GetModels().subscribe({
+      next: (models: Model[]) => {
+        this.modelDictionary = [new Model(), ...models]
+      },
+      error: (err) => {
+        console.error('Error fetching models:', err)
+        this.logService
+          .CreateLog({
+            objectId: '',
+            message: { error: `Error fetching models: ${err?.message || err}` },
+            operation: 'Fetch',
+            component: 'models',
+          })
+          .subscribe()
+      },
     })
   }
 
   getConnectionList() {
-    this.connectionService.GetConnections().subscribe((data: Connection[]) => {
-      const tmp = new Connection()
-      this.connectionDictionary = [tmp, ...data]
+    this.connectionService.GetConnections().subscribe({
+      next: (data: Connection[]) => {
+        const placeholderConnection = new Connection()
+        this.connectionDictionary = [placeholderConnection, ...data]
+      },
+      error: (error) => {
+        console.error('Error fetching connections:', error)
+        this.logService
+          .CreateLog({
+            objectId: '',
+            message: { error: `Error fetching connections: ${error.message}` },
+            operation: 'Fetch',
+            component: 'connections',
+          })
+          .subscribe()
+      },
     })
   }
 
   getAttributeDictionaryList() {
-    this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) => {
-      const tmp = new AttributeDictionary()
-      this.attributeDictionary = [tmp, ...data]
+    this.attributeDictionaryService.GetAttributeDictionaries().subscribe({
+      next: (data: AttributesDictionary[]) => {
+        const placeholder = new AttributesDictionary()
+        this.attributeDictionary = [placeholder, ...data]
+      },
+      error: (error) => {
+        console.error('Error fetching attribute dictionaries:', error)
+        this.logService
+          .CreateLog({
+            objectId: '',
+            message: { error: `Error fetching attribute dictionaries: ${error.message}` },
+            operation: 'Fetch',
+            component: 'attributesDictionary',
+          })
+          .subscribe()
+      },
     })
   }
 
   submitForm() {
+    if (this.editAttributeForm.invalid) {
+      this.editAttributeForm.markAllAsTouched()
+      return
+    }
+
     const attributeValue: Attribute = this.editAttributeForm.value as Attribute
-    this.attributeService.UpdateAttribute(this.inputId, attributeValue).subscribe(() => {
-      this.logService
-        .CreateLog({
-          objectId: attributeValue._id,
-          message: attributeValue,
-          operation: 'Update',
-          component: 'Attribute',
-        })
-        .subscribe(() => {
-          this.ngZone.run(async () => {
-            await this.router.navigateByUrl('attribute-list')
+
+    this.attributeService.UpdateAttribute(this.inputId, attributeValue).subscribe({
+      next: () => {
+        this.logService
+          .CreateLog({
+            objectId: attributeValue._id,
+            message: attributeValue,
+            operation: 'Update',
+            component: 'attributes',
           })
-        })
+          .subscribe({
+            complete: () => {
+              this.ngZone.run(() => {
+                this.router.navigateByUrl('attribute-list')
+              })
+            },
+          })
+      },
+      error: (error) => {
+        console.error('Error updating attribute:', error)
+        this.logService
+          .CreateLog({
+            objectId: attributeValue._id,
+            message: { error: error.message },
+            operation: 'Error',
+            component: 'attributes',
+          })
+          .subscribe()
+      },
     })
   }
 }

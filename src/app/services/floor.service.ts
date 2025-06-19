@@ -1,6 +1,5 @@
 import { Observable, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
-import { SyncRequestClient } from 'ts-sync-request'
 import { v4 as uuidv4 } from 'uuid'
 
 import { HttpClient, HttpHeaders } from '@angular/common/http'
@@ -8,7 +7,7 @@ import { Injectable, NgZone } from '@angular/core'
 import { Router } from '@angular/router'
 
 import { environment } from '../../environments/environment'
-import { Floor } from '../shared/floor'
+import { Floors } from '../shared/floors'
 import { Log, LogService } from './log.service'
 
 @Injectable({
@@ -31,86 +30,88 @@ export class FloorService {
 
   /**
    * Retrieves the list of floors.
-   * @returns An Observable that emits an array of Floor objects.
+   * @returns An Observable that emits an array of Floors objects.
    */
-  GetFloors(): Observable<Floor[]> {
-    return this.http.get<Floor[]>(environment.baseurl + '/floors/').pipe(retry(1), catchError(this.errorHandl))
+  GetFloors(): Observable<Floors[]> {
+    return this.http.get<Floors[]>(environment.baseurl + '/floors/').pipe(retry(1), catchError(this.errorHandl))
   }
 
   /**
-   * Retrieves a floor synchronously by its ID.
-   * @param id - The ID of the floor to retrieve.
-   * @returns The floor object.
+   * Retrieves a Floors by its ID as an Observable.
+   * @param id - The ID of the Floors to retrieve.
+   * @returns An Observable that emits the Floors object.
    */
-  getFloorSynchronize(id: string | null): Floor {
-    return new SyncRequestClient().get<Floor>(environment.baseurl + '/floors/' + id)
+  getFloorSynchronize(id: string | null): Observable<Floors> {
+    return this.http.get<Floors>(environment.baseurl + '/floors/' + id)
   }
 
   /**
-   * Retrieves a floor by its ID.
-   * @param id - The ID of the floor to retrieve.
-   * @returns An Observable that emits the retrieved floor.
+   * Retrieves a Floors by its ID.
+   * @param id - The ID of the Floors to retrieve.
+   * @returns An Observable that emits the retrieved Floors.
    */
-  GetFloor(id: string): Observable<Floor> {
+  GetFloor(id: string): Observable<Floors> {
     return this.http
-      .get<Floor>(environment.baseurl + '/floor/' + id, this.httpOptions)
+      .get<Floors>(environment.baseurl + '/floors/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   /**
-   * Deletes a floor by its ID.
-   * @param id - The ID of the floor to delete.
-   * @returns An Observable that emits the deleted floor.
+   * Deletes a Floors by its ID.
+   * @param id - The ID of the Floors to delete.
+   * @returns An Observable that emits the deleted Floors.
    */
-  DeleteFloor(id: string): Observable<Floor> {
+  DeleteFloor(id: string): Observable<Floors> {
     return this.http
-      .delete<Floor>(environment.baseurl + '/floor/' + id, this.httpOptions)
+      .delete<Floors>(environment.baseurl + '/floors/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   /**
-   * Creates a new floor.
-   * @param data The floor data to be created.
-   * @returns An Observable that emits the created floor.
+   * Creates a new Floors.
+   * @param data The Floors data to be created.
+   * @returns An Observable that emits the created Floors.
    */
-  CreateFloor(data: Floor): Observable<Floor> {
+  CreateFloor(data: Floors): Observable<Floors> {
     return this.http
-      .post<Floor>(environment.baseurl + '/floor/', JSON.stringify(data, null, ' '), this.httpOptions)
+      .post<Floors>(environment.baseurl + '/floors/', JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   /**
-   * Clones a floor by its ID.
-   *
-   * @param id - The ID of the floor to clone.
-   * @returns The UUID of the cloned floor.
+   * Clones a Floors by its ID.
+   * @param id - The ID of the Floors to clone.
+   * @returns An Observable that emits the cloned Floors's ID.
    */
-  CloneFloor(id: string): string {
-    const id_uuid: string = uuidv4.toString().substr(6, 36)
-    this.GetFloor(id).subscribe((value: Floor) => {
-      console.log('Get Floor: ' + JSON.stringify(value, null, ' '))
-      value._id = id_uuid
-      this.CreateFloor(value).subscribe({
-        next: (v) => {
-          console.log('Create Floor: ' + JSON.stringify(v, null, ' '))
-          this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
+  CloneFloor(id: string): Observable<string> {
+    const newId = uuidv4()
+    return new Observable<string>((observer) => {
+      this.GetFloor(id).subscribe({
+        next: (Floors: Floors) => {
+          const clonedFloor = { ...Floors, _id: newId }
+          this.CreateFloor(clonedFloor).subscribe({
+            next: () => {
+              this.ngZone.run(() => this.router.navigateByUrl('Floors-list'))
+              observer.next(newId)
+              observer.complete()
+            },
+            error: (err) => observer.error(err),
+          })
         },
-        complete: () => this.ngZone.run(() => this.router.navigateByUrl('floor-list')),
+        error: (err) => observer.error(err),
       })
     })
-    return id_uuid
   }
 
   /**
-   * Updates a floor with the specified ID.
-   *
-   * @param id - The ID of the floor to update.
-   * @param data - The updated floor data.
-   * @returns An Observable that emits the updated floor.
+   * Updates a Floors with the specified ID.
+   * @param id - The ID of the Floors to update.
+   * @param data - The updated Floors data.
+   * @returns An Observable that emits the updated Floors.
    */
-  UpdateFloor(id: string, data: never): Observable<Floor> {
+  UpdateFloor(id: string, data: Floors): Observable<Floors> {
     return this.http
-      .put<Floor>(environment.baseurl + '/floor/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
+      .put<Floors>(`${environment.baseurl}/floors/${id}`, JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -119,16 +120,14 @@ export class FloorService {
    * @param error - The error object containing the error message and status.
    * @returns An Observable that emits the error message.
    */
-  errorHandl(error: { error: { message: string }; status: unknown; message: Log }): Observable<never> {
+  errorHandl(error: any): Observable<never> {
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message
     } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.error?.message || error.message}`
     }
-    console.log(JSON.stringify(errorMessage, null, ' '))
-    return throwError(() => {
-      return errorMessage
-    })
+    console.error(errorMessage)
+    return throwError(() => new Error(errorMessage))
   }
 }

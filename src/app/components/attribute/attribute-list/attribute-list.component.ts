@@ -10,7 +10,7 @@ import { DeviceService } from '../../../services/device.service'
 import { LogService } from '../../../services/log.service'
 import { ModelsService } from '../../../services/models.service'
 import { Attribute } from '../../../shared/attribute'
-import { AttributeDictionary } from '../../../shared/attribute-dictionary'
+import { AttributesDictionary } from '../../../shared/AttributesDictionary'
 import { Connection } from '../../../shared/connection'
 import { Device } from '../../../shared/device'
 import { Model } from '../../../shared/model'
@@ -36,14 +36,15 @@ export class AttributeListComponent implements OnInit {
   attributeList: Attribute[] = []
   selectedAttribute: Attribute
   attributePage = 1 // Current page
-  pageSize = 10 // Number of items per page
+  pageSize = 5 // Number of items per page
   totalItems = 0 // Total number of items
-  component = 'Attributes'
+  component = 'attributes'
+  componentName = 'Attributes'
 
   deviceDictionary: Device[] = []
   modelDictionary: Model[] = []
   connectionDictionary: Connection[] = []
-  attributeDictionary: AttributeDictionary[] = []
+  attributeDictionary: AttributesDictionary[] = []
 
   device: Device = new Device() // for find attributes
   model: Model
@@ -64,28 +65,28 @@ export class AttributeListComponent implements OnInit {
     return JSON.stringify(str, null, 2)
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getDeviceList()
     this.getModelList()
     this.getConnectionList()
     this.getAttributeDictionaryList()
-    this.LoadAttributes()
+    await this.LoadAttributes()
   }
 
-  private LoadAttributes() {
+  private async LoadAttributes() {
     // @TODO: #62 show data depends of context attributeComponent and attributeComponentObject
     console.log('-------------------<  LoadAttributes  >-------------------')
     if (this.attributeComponent === 'Device' && this.attributeComponentObject != null) {
       console.log(
         'LoadAttributes.GetContextAttributes: ' + this.attributeComponent + ' ' + this.attributeComponentObject,
       )
-      this.attributeList = this.attributeService.GetContextAttributes(
+      this.attributeList = await this.attributeService.GetContextAttributes(
         this.attributeComponent,
         this.attributeComponentObject,
       )
     } else {
       console.log('LoadAttributes.attributeService.GetAttributesSync()')
-      this.attributeList = this.attributeService.GetAttributesSync()
+      this.attributeList = await this.attributeService.GetAttributesSync()
       this.totalItems = this.attributeList.length // Set total items
     }
   }
@@ -98,6 +99,7 @@ export class AttributeListComponent implements OnInit {
       console.error('Navigation error:', error)
     }
   }
+
   async DeleteAttribute(id: string) {
     try {
       await this.logService
@@ -120,14 +122,21 @@ export class AttributeListComponent implements OnInit {
   }
 
   async CloneAttribute(id: string) {
-    await this.logService
-      .CreateLog({
-        message: { id: id, id_new: 'todo!' },
-        operation: 'Clone',
-        component: this.component,
-      })
-      .toPromise()
-    await this.ngZone.run(() => this.router.navigateByUrl('attributes-list'))
+    try {
+      // Clone the attribute and get the new attribute's ID
+      const newId = this.attributeService.CloneAttribute(id)
+      await this.logService
+        .CreateLog({
+          message: { id, id_new: newId },
+          operation: 'Clone',
+          component: this.component,
+        })
+        .toPromise()
+      this.LoadAttributes()
+      await this.router.navigateByUrl('attributes-list')
+    } catch (error) {
+      console.error('Error cloning attribute:', error)
+    }
   }
 
   async AddAttribute() {
@@ -197,14 +206,14 @@ export class AttributeListComponent implements OnInit {
   }
 
   getAttributeDictionaryList() {
-    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) => {
-      const tmp = new AttributeDictionary()
+    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributesDictionary[]) => {
+      const tmp = new AttributesDictionary()
       data = [tmp, ...data]
       this.attributeDictionary = data
     })
   }
 
-  findAttributeDictionary(id: string): string {
-    return this.attributeDictionary.find((e) => e._id === id)?.name as string
+  findAttributeDictionaryName(id: string): string {
+    return (this.attributeDictionary.find((e) => e._id === id)?.name as string) || ''
   }
 }

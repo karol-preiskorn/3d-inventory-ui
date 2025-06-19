@@ -34,8 +34,8 @@ export class ModelsService {
    */
   GetModels(): Observable<Model[]> {
     return this.http
-      .get<Model[]>(environment.baseurl + '/models/')
-      .pipe(retry(1), catchError(this.handleErrorTemplate<Model[]>('GetModel')))
+      .get<Model[]>(`${this.baseurl}/models`, this.httpOptions)
+      .pipe(retry(1), catchError(this.handleErrorTemplate<Model[]>('GetModels', [])))
   }
   /**
    * Retrieves a model by its ID.
@@ -44,8 +44,11 @@ export class ModelsService {
    */
   GetModel(id: string): Observable<Model> {
     return this.http
-      .get<Model>(environment.baseurl + '/models/' + String(id), this.httpOptions)
-      .pipe(retry(1), catchError(this.handleErrorTemplate<Model>('GetModel', id as unknown as Model)))
+      .get<Model>(`${this.baseurl}/models/${encodeURIComponent(id)}`, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleErrorTemplate<Model>('GetModel', {} as Model))
+      )
   }
 
   /**
@@ -114,19 +117,25 @@ export class ModelsService {
    * @returns An Observable that emits the updated model.
    */
   UpdateModel(id: string, data: Model): Observable<Model> {
-    console.log(`ModelService.UpdateModel: ${JSON.stringify(data, null, ' ')}`)
     return this.http
-      .put<Model>(environment.baseurl + '/models/' + id, JSON.stringify(data, null, ' '), this.httpOptions)
-      .pipe(retry(1), catchError(this.handleErrorTemplate<Model>('UpdateModel', data)))
+      .put<Model>(`${this.baseurl}/models/${id}`, data, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleErrorTemplate<Model>('UpdateModel', {} as Model))
+      )
   }
 
   /**
    * Handle Http operation that failed. Let the app continue.
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
+   * @template T - The type of the result expected from the operation
    */
   private handleErrorTemplate<T>(operation = 'operation', result?: T) {
-    return (error: Error): Observable<T> => {
+    return (error: any): Observable<T> => {
+      console.error(
+        `ModelsService.handleErrorTemplate: ${operation} failed: ${error.message}, Status: ${(error as any)?.status || 'N/A'}, Stack: ${error.stack || 'N/A'}`,
+      )
       console.error(`ModelsService.handleErrorTemplate: ${operation} failed: ${error.message}`)
       return of(result as T)
     }

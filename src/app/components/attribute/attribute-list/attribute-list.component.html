@@ -16,7 +16,7 @@
       <tr
         *ngFor="let attribute of attributeList | slice: (attributePage - 1) * pageSize : attributePage * pageSize">
         <td>
-          <div title="{{ attribute._id }}">#</div>
+          <div title="{{ attribute._id }}">{{ attribute._id }}</div>
         </td>
         <td>
           <a href="edit-device/{{ attribute.deviceId }}" title="{{ attribute.deviceId }}">{{
@@ -36,7 +36,7 @@
         <td>
           <a href="edit-attribute-dictionary/{{ attribute.attributeDictionaryId }}"
             title="{{ attribute.attributeDictionaryId }}">{{
-            findAttributeDictionary(attribute.attributeDictionaryId) }}</a>
+            findAttributeDictionaryName(attribute.attributeDictionaryId) }}</a>
         </td>
         <td>{{ attribute.value }}</td>
         <td>
@@ -66,13 +66,14 @@
   </ngb-pagination>
 </div>
 
-<div class="fs-7 fw-lighter deviceid">attributeComponent: {{ this.attributeComponent }}</div>
-<div class="fs-7 fw-lighter deviceid">attributeComponentObject: {{ this.attributeComponentObject }}</div>
-<div class="fs-7 fw-lighter deviceid">attributeComponent === '': {{ attributeComponent === '' }}</div>
-<div class="fs-7 fw-lighter deviceid">attributeComponent === undefined: {{ attributeComponent === undefined }}
-</div>
-<div class="fs-7 fw-lighter deviceid">component: {{ component }}</div>
+<!-- <div class="fs-7 fw-lighter deviceid">attributeComponent: {{ this.attributeComponent }}</div> -->
+<!-- <div class="fs-7 fw-lighter deviceid">attributeComponentObject: {{ this.attributeComponentObject }}</div> -->
+<!-- <div class="fs-7 fw-lighter deviceid">attributeComponent === '': {{ attributeComponent === '' }}</div> -->
+<!-- <div class="fs-7 fw-lighter deviceid">attributeComponent === undefined: {{ attributeComponent === undefined }} -->
+<!-- </div> -->
+<!-- <div class="fs-7 fw-lighter deviceid">component: {{ component }}</div> -->
 
 <app-log *ngIf="attributeComponent === '' || attributeComponent === undefined"
-  [attributeComponentObject]="this.device" [component]="component">
+  [attributeComponentObject]="this.device" [component]="component" [componentName]="componentName"
+  [isComponent]="true">
 </app-log>

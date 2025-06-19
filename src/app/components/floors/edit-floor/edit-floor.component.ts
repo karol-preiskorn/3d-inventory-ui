@@ -5,7 +5,7 @@ import { faker } from '@faker-js/faker'
 
 import { FloorService } from '../../../services/floor.service'
 import { LogIn, LogService } from '../../../services/log.service'
-import { Floor, FloorDimension } from '../../../shared/floor'
+import { Floors, FloorDimension } from '../../../shared/floors'
 import Validation from '../../../shared/validation'
 import { LogComponent } from '../../log/log.component'
 import { CommonModule } from '@angular/common'
@@ -17,11 +17,12 @@ import { CommonModule } from '@angular/common'
   imports: [CommonModule, ReactiveFormsModule, LogComponent],
 })
 export class FloorEditComponent implements OnInit {
-  floor: Floor
+  floor: Floors
   isSubmitted = false
   valid: Validation = new Validation()
   inputId = ''
-  component = ''
+  component = 'floors'
+  componentName = 'Floor'
   attributeComponent = 'Device'
   attributeComponentObject: string = ''
 
@@ -59,26 +60,29 @@ export class FloorEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('Floor!')
+    console.log('--------------- Edit-Floor ----------------')
     const id: string = this.activatedRoute.snapshot.paramMap.get('id') || ''
     this.inputId = id
     this.component = this.inputId
     this.attributeComponent = 'Floor'
-    this.floor = this.floorService.getFloorSynchronize(id)
-    this.attributeComponentObject = JSON.stringify(this.floor)
-    console.log('edit-device.attributeComponent = ' + this.attributeComponent)
-    console.log('edit-device.attributeComponentObject = ' + this.attributeComponentObject)
-    // TODO: one line mapping for this.floorForm.setValue(this.floor)
-    console.log(this.floor.dimension.map((d) => this.createDimensionGroup(d)))
-    this.floorForm.controls.id.setValue(id)
-    this.floorForm.controls.name.setValue(this.floor.name)
-    this.floorForm.controls.address.controls.street.setValue(this.floor.address.street)
-    this.floorForm.controls.address.controls.city.setValue(this.floor.address.city)
-    this.floorForm.controls.address.controls.country.setValue(this.floor.address.country)
-    this.floorForm.controls.address.controls.postcode.setValue(this.floor.address.postcode)
-    this.floorForm.controls.dimension = this.formBuilder.array(
-      this.floor.dimension.map((floor) => this.createDimensionGroup(floor)),
-    )
+    this.floorService.getFloorSynchronize(id).subscribe((floor: Floors) => {
+      this.floor = floor
+      this.attributeComponentObject = JSON.stringify(this.floor)
+      console.log('edit-device.attributeComponent = ' + this.attributeComponent)
+      console.log('edit-device.attributeComponentObject = ' + this.attributeComponentObject)
+      // TODO: one line mapping for this.floorForm.setValue(this.floor)
+      console.log(this.floor.dimension.map((d: FloorDimension) => this.createDimensionGroup(d)))
+      this.floorForm.controls.id.setValue(id)
+      this.floorForm.controls.name.setValue(this.floor.name)
+      this.floorForm.controls.address.controls.street.setValue(this.floor.address.street)
+      this.floorForm.controls.address.controls.city.setValue(this.floor.address.city)
+      this.floorForm.controls.address.controls.country.setValue(this.floor.address.country)
+      this.floorForm.controls.address.controls.postcode.setValue(this.floor.address.postcode)
+      this.floorForm.setControl(
+        'dimension',
+        new FormArray(this.floor.dimension.map((floor: FloorDimension) => this.createDimensionGroup(floor))),
+      )
+    })
   }
   createDimensionGroup(dimension: FloorDimension) {
     return new FormGroup({
@@ -237,7 +241,7 @@ export class FloorEditComponent implements OnInit {
     const log: LogIn = {
       message: this.floorForm.value,
       operation: 'Update',
-      component: 'Floor',
+      component: 'floors',
       objectId: this.floorForm.value.id as string,
     }
     this.logService.CreateLog(log).subscribe(() => {

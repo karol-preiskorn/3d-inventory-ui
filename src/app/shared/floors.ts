@@ -15,7 +15,7 @@ export interface FloorDimension {
   hPos: string
 }
 
-export interface Floor {
+export interface Floors {
   _id: string
   name: string
   address: {
@@ -26,3 +26,5 @@ export interface Floor {
   }
   dimension: [FloorDimension]
 }
+
+

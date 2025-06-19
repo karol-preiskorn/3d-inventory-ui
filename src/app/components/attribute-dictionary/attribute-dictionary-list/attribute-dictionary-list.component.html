@@ -5,44 +5,37 @@
       <thead>
         <tr>
           <th scope="col">Name</th>
-          <th scope="col">Category</th>
+          <th scope="col">ComponentName</th>
           <th scope="col">Type</th>
-          <th scope="col">Component</th>
+          <th scope="col">Unit</th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <ng-container *ngIf="attributeDictionaryList.length > 0">
           <tr *ngFor="let attribute of attributeDictionaryList">
-            <td title="{{ attribute._id }}">{{ attribute.name }}</td>
-            <td>{{ attribute.category }}</td>
+            <td title="{{ attribute._id }}">
+              {{ attribute.name }}<br />
+              <span class="fs-7 fw-lighter deviceid" title="Unique Identifier">{{ attribute._id }}</span>
+            </td>
+            <td>{{ attribute.componentName }}</td>
             <td>{{ attribute.type }}</td>
-            <td>{{ attribute.component }}</td>
+            <td>{{ attribute.unit }}</td>
             <td>
               <fieldset class="btn-group float-md-end" aria-label="attributeDictionary-operations">
-                <button
-                  type="button"
-                  class="btn btn-success btn-sm move-right"
-                  id="edit-attributeDictionary"
+                <button type="button" class="btn btn-success btn-sm move-right" id="edit-attributeDictionary"
                   (click)="EditForm(attribute)">
-                  Edit
+                  <i class="bi bi-pencil"></i> Edit
                 </button>
-                <button
-                  type="button"
-                  id="delete-attributeDictionary"
-                  class="btn btn-danger btn-sm"
+                <button type="button" id="delete-attributeDictionary" class="btn btn-danger btn-sm"
                   (click)="deleteAttribute(attribute._id)">
-                  Delete
+                  <i class="bi bi-trash"></i> Delete
                 </button>
-                <button
-                  type="button"
-                  id="clone-attributeDictionary"
-                  class="btn btn-info btn-sm"
+                <button type="button" id="clone-attributeDictionary" class="btn btn-info btn-sm"
                   (click)="CloneAttributeDictionary(attribute._id)">
-                  Clone
+                  <i class="bi bi-files"></i> Clone
                 </button>
               </fieldset>
-                (click)="cloneAttributeDictionary(attribute._id)">
           </tr>
         </ng-container>
       </tbody>
@@ -51,14 +44,10 @@
       <i class="bi bi-plus-lg"></i> Add
     </button>
   </div>
-  <ngb-pagination
-    [(page)]="attributeDictionaryPage"
-    [pageSize]="pageSize"
-    [collectionSize]="attributeDictionaryList.length"
-    [maxSize]="5"
-    [boundaryLinks]="true"
+  <ngb-pagination [(page)]="attributeDictionaryPage" [pageSize]="pageSize"
+    [collectionSize]="attributeDictionaryList.length" [maxSize]="5" [boundaryLinks]="true"
     aria-label="Attribute pagination">
   </ngb-pagination>
 </div>
 <!-- This component is used to display logs related to the attribute dictionary operations -->
-<app-log [component]="component"></app-log>
+<app-log [component]="component" [componentName]="componentName" [isComponent]="true"></app-log>

@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { ConnectionService } from '../../../services/connection.service'
 import { DeviceService } from '../../../services/device.service'
 import { LogService } from '../../../services/log.service'
-import { ComponentDictionary } from '../../../shared/component-dictionary'
+import { ComponentDictionary } from '../../../shared/ComponentDictionary'
 import { Connection } from '../../../shared/connection'
 import { Device } from '../../../shared/device'
 import { CommonModule } from '@angular/common'
@@ -145,7 +145,7 @@ export class ConnectionEditComponent implements OnInit {
     await firstValueFrom(this.connectionService.UpdateConnection(this.inputId, this.form.value as Connection))
     await firstValueFrom(
       this.logService.CreateLog({
-        component: 'Connection',
+        component: 'connections',
         objectId: formValue._id,
         operation: 'Update',
         message: { value: this.form.value as unknown },

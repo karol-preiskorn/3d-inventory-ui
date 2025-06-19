@@ -1,6 +1,5 @@
 import { Observable, of, throwError } from 'rxjs'
 import { catchError, map, retry } from 'rxjs/operators'
-import { SyncRequestClient } from 'ts-sync-request/dist'
 
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable } from '@angular/core'
@@ -34,7 +33,7 @@ export class DeviceService {
   }
 
   getDeviceSynchronize(id: string): Observable<Device> {
-    return of(new SyncRequestClient().get<Device>(environment.baseurl + '/' + this.objectName + '/' + id))
+    return this.http.get<Device>(environment.baseurl + '/' + this.objectName + '/' + id)
   }
 
   GetDeviceSynchro(id: string): Observable<Device> {
@@ -54,11 +53,7 @@ export class DeviceService {
 
   CreateDevice(data: Device): Observable<Device> {
     return this.http
-      .post<Device>(
-        environment.baseurl + '/' + this.objectName + '/',
-        JSON.stringify(data, null, 2),
-        this.httpOptions,
-      )
+      .post<Device>(environment.baseurl + '/' + this.objectName + '/', JSON.stringify(data, null, 2), this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Device>('CreateDevice', data)))
   }
 

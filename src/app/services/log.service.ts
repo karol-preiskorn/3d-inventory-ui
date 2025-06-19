@@ -8,14 +8,14 @@
 import { catchError, Observable, of, retry, throwError } from 'rxjs'
 
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
-import { Injectable, Input } from '@angular/core'
+import { Injectable } from '@angular/core'
 
 import { environment } from '../../environments/environment'
 
 /**
  * Represents the parameters for retrieving logs.
  */
-export interface LogParamteres {
+export interface LogParameters {
   component: string
   id: string // id set then show id object logs
 }
@@ -47,7 +47,7 @@ export interface LogIn {
 })
 export class LogService {
   baseurl = environment.baseurl
-  @Input() attributeComponentId?: string
+  attributeComponentId?: string
 
   constructor(private http: HttpClient) {}
 
@@ -71,8 +71,8 @@ export class LogService {
    * @returns An Observable that emits an array of Log objects.
    */
   GetComponentLogs(component: string): Observable<Log[]> {
-    const url = environment.baseurl + '/logs/component/' + component.toLowerCase()
-    console.log('LogComponent.GetComponentLogs(' + component.toLowerCase() + '): ' + url)
+    const url = environment.baseurl + '/logs/component/' + component
+    console.log('[log.service.GetComponentLogs(' + component + ')]: ' + url)
     return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
   }
 
@@ -82,7 +82,7 @@ export class LogService {
    * @returns An Observable that emits an array of Log objects.
    */
   GetDeviceLogs(id: string): Observable<Log[]> {
-    const url = environment.baseurl + '/logs/device/' + id
+    const url = environment.baseurl + '/logs/devices/' + id
     console.log('LogComponent.GetDeviceLogs(' + id + ') ' + url)
     return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
   }
@@ -93,33 +93,19 @@ export class LogService {
    * @returns An Observable that emits an array of Log objects.
    */
   GetAttributeLogs(id: string): Observable<Log[]> {
-    const url = environment.baseurl + '/logs/attribute/' + id
+    const url = environment.baseurl + '/logs/attributes/' + id
     console.log('LogComponent.GetAttributeLogs(' + id + ') ' + url)
     return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
   }
 
   /**
-   * Retrieves logs for a specific object.
-   * @param objectId - The object ID.
-   * @returns An Observable that emits an array of Log objects.
-   */
-  GetObjectLogs(objectId: string): Observable<Log[]> {
-    if (objectId == null) {
-      return of([])
-    }
-    const url = environment.baseurl + '/logs/object/' + objectId
-    console.log('LogService.GetObjectLogs: ' + url + ', objectId: ' + objectId)
-    return this.http.get<Log[]>(url).pipe(catchError(this.handleErrorTemplate<Log[]>('GetObjectsLogs', [])))
-  }
-
-  /**
    * Retrieves a log by ID.
-   * @param id - The log ID.
+   * @param id - The all logs with ObjectID = id.
    * @returns An Observable that emits a Log object.
    */
-  GetLogId(id: string): Observable<Log> {
+  GetLogsById(id: string): Observable<Log[]> {
     return this.http
-      .get<Log>(environment.baseurl + '/logs/' + id, this.httpOptions)
+      .get<Log[]>(environment.baseurl + '/logs/' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError))
   }
 
@@ -134,22 +120,14 @@ export class LogService {
       .pipe(retry(1), catchError(this.handleError))
   }
 
-  /**
-   * Creates a new log entry.
-   * @param data - The log input data.
-   * @returns An Observable that emits a Log or LogIn object.
-   */
-  CreateLog(data: LogIn): Observable<Log | LogIn> {
-    const log: LogIn = {
-      objectId: data.objectId,
-      operation: data.operation,
-      component: data.component,
-      message: data.message,
-    }
-    console.log('LogService.CreateLog: ' + JSON.stringify(log, null, ' '))
+  private getLogsUrl(): string {
+    return `${environment.baseurl}/logs/`
+  }
+
+  CreateLog(data: LogIn): Observable<Log> {
     return this.http
-      .post<Log | LogIn>(`${environment.baseurl}/logs/`, log, this.httpOptions)
-      .pipe(retry(1), catchError(this.handleErrorTemplate<LogIn>('CreateLog', log)))
+      .post<Log>(this.getLogsUrl(), data, this.httpOptions)
+      .pipe(retry(1), catchError(this.handleErrorTemplate<Log>('CreateLog', data as Log)))
   }
 
   /**
@@ -158,40 +136,50 @@ export class LogService {
    * @param data - The updated log data.
    * @returns An Observable that emits a Log object.
    */
-  UpdateLog(id: string | null, data: JSON): Observable<Log | LogIn> {
-    const sData = JSON.stringify(data, null, ' ')
+  UpdateLog(id: string | null, data: any): Observable<Log | LogIn> {
+    const sData = JSON.stringify(data, null, 2)
     return this.http
       .put<Log | LogIn>(environment.baseurl + '/logs/' + id, sData, this.httpOptions)
-      .pipe(retry(1), catchError(this.handleErrorTemplate<LogIn>('UpdateLog', data as unknown as LogIn)))
+      .pipe(retry(1), catchError(this.handleErrorTemplate<LogIn>('UpdateLog', data as LogIn)))
   }
 
   /**
-   * Handles the error response from an HTTP request.
-   * If the error status is 0, it logs the error message.
-   * Otherwise, it logs the error status and body.
-   * Returns an Observable that throws an Error.
+   * Handles the error response from an HTTP request. If the error status is 0, it logs the error message.
+   * Otherwise, it logs the error status and body. Returns an Observable that throws an Error.
    * @param error - The HttpErrorResponse object.
    * @returns An Observable that throws an Error.
    */
   private handleError(error: HttpErrorResponse) {
+    // If error.status is 0, it indicates a client-side or network error occurred.
     if (error.status === 0) {
       console.error('An error occurred:', error.error)
+      console.error('An unknown error occurred:', error)
+      return throwError(() => new Error('An unknown error occurred. Please check the logs for more details.'))
     } else {
-      console.error(`Backend returned code ${error.status}, body was: `, error.error)
+      // If error.status is not 0, it indicates a server-side error with a specific status code.
+      return throwError(
+        () => new Error(`Error occurred: ${error.status} - ${error.message ?? 'No error message provided'}`),
+      )
     }
-    return throwError(() => new Error('Something bad happened; please try again later.'))
   }
 
   /**
    * Handle Http operation that failed. Let the app continue.
    *
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
+   * @param operationName - Name of the operation that failed.
+   * @param result - Optional fallback value to return as the observable result in case of an error.
+   *                 This value is used to allow the application to continue functioning gracefully
+   *                 even when an error occurs.
    */
   private handleErrorTemplate<T>(operationName = 'operation', result?: T) {
     return (error: HttpErrorResponse): Observable<T> => {
-      console.error(`LogService.handleErrorTemplate: ${operationName} failed. Error message: ${error.message}, Stack: ${error}`)
-      return of(result!)
+      if (environment.production) {
+        console.error(`LogService.handleErrorTemplate: ${operationName} failed. Error message: ${error.message}`)
+      } else {
+        console.error(`LogService.handleErrorTemplate: ${operationName} failed. Error message: ${error.message}`, error)
+      }
+      const fallbackResult = result ?? ({} as T)
+      return of(fallbackResult)
     }
   }
 }

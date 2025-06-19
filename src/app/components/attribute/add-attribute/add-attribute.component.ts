@@ -12,12 +12,12 @@ import { DeviceService } from '../../../services/device.service'
 import { LogService } from '../../../services/log.service'
 import { ModelsService } from '../../../services/models.service'
 import { Attribute } from '../../../shared/attribute'
-import { AttributeDictionary } from '../../../shared/attribute-dictionary'
-import { ComponentDictionary } from '../../../shared/component-dictionary'
+import { AttributesDictionary } from '../../../shared/AttributesDictionary'
+import { ComponentDictionary } from '../../../shared/ComponentDictionary'
 import { Connection } from '../../../shared/connection'
 import { Device } from '../../../shared/device'
 import { DeviceCategoryDict } from '../../../shared/deviceCategories'
-import { DeviceTypeDict } from '../../../shared/deviceTypes'
+import { DeviceTypeDict } from '../../../shared/DeviceTypes'
 import { Model } from '../../../shared/model'
 import Validation from '../../../shared/validation'
 import { CommonModule } from '@angular/common'
@@ -48,7 +48,7 @@ export class AttributeAddComponent implements OnInit {
   deviceDictionary: Device[]
   modelDictionary: Model[]
   connectionDictionary: Connection[]
-  attributeDictionary: AttributeDictionary[]
+  attributeDictionary: AttributesDictionary[]
 
   isSubmitted = false
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
@@ -176,7 +176,7 @@ export class AttributeAddComponent implements OnInit {
   }
 
   getAttributeDictionaryList(): Subscription {
-    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) => {
+    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributesDictionary[]) => {
       this.attributeDictionary = data
     })
   }
@@ -203,7 +203,7 @@ export class AttributeAddComponent implements OnInit {
           objectId: this.addAttributeFrom.get('_id')?.value,
           message: this.addAttributeFrom.value as Attribute,
           operation: 'Create',
-          component: 'Attribute',
+          component: 'attributes',
         })
         .subscribe(() => {
           this.ngZone.run(() => this.router.navigateByUrl('attribute-list'))

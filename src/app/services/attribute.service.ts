@@ -1,8 +1,7 @@
-import { Observable, of, throwError } from 'rxjs'
+import { Observable, of, throwError, firstValueFrom } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
-import { SyncRequestClient } from 'ts-sync-request/dist'
 
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http'
 import { Injectable, NgZone } from '@angular/core'
 import { Router } from '@angular/router'
 
@@ -47,15 +46,23 @@ export class AttributeService {
   }
 
   /**
-   * Retrieves the attributes synchronously.
-   * @returns An array of attributes.
+   * Retrieves the attributes asynchronously.
+   * @returns A promise that resolves to an array of attributes.
    */
-  GetAttributesSync(): Attribute[] {
-    let attributes: Attribute[] = []
-    const url = environment.baseurl + '/attributes/'
-    attributes = new SyncRequestClient().get<Attribute[]>(url)
-    console.log('GetAttributesSync.attributes: ' + JSON.stringify(attributes, null, ' '))
-    return attributes
+  async GetAttributesSync(): Promise<Attribute[]> {
+    const url = `${environment.baseurl}/attributes/`
+    try {
+      const attributes = await firstValueFrom(
+        this.http.get<Attribute[]>(url, this.httpOptions).pipe(
+          retry(1),
+          catchError(() => of([] as Attribute[])),
+        ),
+      )
+      return attributes ?? []
+    } catch (error) {
+      console.error('GetAttributesSync error:', error)
+      return []
+    }
   }
 
   /**
@@ -104,7 +111,7 @@ export class AttributeService {
    * @param item - The item in JSON format.
    * @returns An array of Attribute objects representing the context attributes.
    */
-  GetContextAttributes(component: string, item: string): Attribute[] {
+  async GetContextAttributes(component: string, item: string): Promise<Attribute[]> {
     let attributes: Attribute[] = []
     let device: Device = new Device()
     console.warn('JSON.parse(item): ' + item)
@@ -116,12 +123,24 @@ export class AttributeService {
     const url_model = environment.baseurl + '/attributes/model/' + device.modelId
     const url_device = environment.baseurl + '/attributes/device/' + device._id
     try {
-      attributes = new SyncRequestClient().get<Attribute[]>(url_model)
+      attributes = await firstValueFrom(
+        this.http.get<Attribute[]>(url_model, this.httpOptions).pipe(
+          retry(1),
+          catchError(() => of([] as Attribute[])),
+        ),
+      )
     } catch (error) {
       console.error('SyncRequestClient().get<Attribute[]>: ' + url_model + ' ' + error)
     }
     try {
-      attributes.push(...new SyncRequestClient().get<Attribute[]>(url_device))
+      attributes.push(
+        ...(await firstValueFrom(
+          this.http.get<Attribute[]>(url_device, this.httpOptions).pipe(
+            retry(1),
+            catchError(() => of([] as Attribute[])),
+          ),
+        )),
+      )
     } catch (error) {
       console.error('SyncRequestClient().get<Attribute[]>: ' + url_device + ' ' + error)
     }
@@ -208,7 +227,7 @@ export class AttributeService {
     } else {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
-    console.log(JSON.stringify(errorMessage, null, ' '))
+    console.error(`attribute.service.errorHandl: Error Code: ${error.status}, Message: ${error.message}`)
     return throwError(() => {
       return errorMessage
     })
@@ -220,8 +239,10 @@ export class AttributeService {
    * @param result - optional value to return as the observable result
    */
   private handleErrorTemplate<T>(operation = 'operation', result?: T) {
-    return (error: Error): Observable<T> => {
-      console.error(`attribute.service.handleErrorTemplate: ${operation} failed: ${error.message}`)
+    return (error: HttpErrorResponse): Observable<T> => {
+      if (result === undefined || result === null) {
+        console.warn(`attribute.service.handleErrorTemplate: ${operation} returned a null or undefined result.`)
+      }
       return of(result as T)
     }
   }

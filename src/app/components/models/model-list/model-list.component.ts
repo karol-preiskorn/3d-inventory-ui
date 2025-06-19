@@ -21,7 +21,8 @@ export class ModelsListComponent implements OnInit {
   pageSize = 10 // Number of items per page
   totalItems = 0 // Total number of items
   ModelsList: Array<any> = []
-  component: string = 'Models'
+  component: string = 'models'
+  componentName: string = 'Models'
   selectedModel: Model | null = null // Declare selectedModel property
 
   constructor(
@@ -68,21 +69,28 @@ export class ModelsListComponent implements OnInit {
    * @param id The ID of the model to clone.
    * @returns The ID of the newly cloned model.
    */
-  async CloneModel(id: string): Promise<string> {
-    const idCloned = this.modelsService.CloneModel(id)
-    this.logService
-      .CreateLog({ message: { id: id, new_id: idCloned }, operation: 'Clone', component: 'Model' })
-      .subscribe(() => {
-        this.ngZone.run(() => this.router.navigateByUrl('models-list'))
-      })
-    this.loadModels()
-    this.router.navigate(['/models-list'])
-    return idCloned
+  CloneModel(id: string): void {
+    try {
+      const clonedId = this.modelsService.CloneModel(id)
+      this.logService
+        .CreateLog({ message: { id, new_id: clonedId }, operation: 'Clone', component: this.component })
+        .subscribe({
+          next: () => {
+            console.log(`Model cloned with new ID: ${clonedId}`)
+            this.loadModels().subscribe((data: Model[]) => {
+              this.ModelsList = data
+            })
+            this.ngZone.run(() => this.router.navigateByUrl('models-list'))
+          },
+          error: (err) => {
+            console.error('Error occurred while logging clone operation:', err)
+          },
+        })
+    } catch (error) {
+      console.error('Error occurred while cloning model:', error)
+    }
   }
 
-  /**
-   * Navigates to the 'add-model' route.
-   */
   AddModel(): void {
     this.router.navigate(['/add-model'])
   }

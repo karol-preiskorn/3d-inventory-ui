@@ -1,38 +1,34 @@
 <div class="container-fluid">
-  <h3>Logs {{ component }}</h3>
+  <h3>Logs {{ componentName || component }}</h3>
   <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Operation</th>
-        <th scope="col">Component</th>
-        <th scope="col">Object</th>
-        <th scope="col"></th>
+        <th>Date</th>
+        <th>Operation<br>Component</th>
+        <th>Object</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let log of LogList | slice: (logListPage - 1) * pageSize : logListPage * pageSize">
         <td>{{ log.date }}</td>
-        <td>{{ log.operation }}</td>
-        <td>
+        <td>{{ log.operation }} <br>
           {{ log.component }}
-          <span class="deviceid">{{ log.objectId }}</span>
+          <span class="deviceid" *ngIf="log.objectId">{{ log.objectId }}</span>
         </td>
-        <td>{{ findNameInLogMessage(log) }}</td>
+        <td class="log-message">{{ findNameInLogMessage(log) }}</td>
         <td>
-          <button type="button" id="delete-log" class="btn btn-danger btn-sm" (click)="DeleteLog(log._id)">
+          <button type="button" class="btn btn-danger btn-sm" (click)="DeleteLog(log._id)" aria-label="Delete log">
             <i class="bi bi-trash"></i>
           </button>
         </td>
       </tr>
+      <tr *ngIf="(LogList | slice: (logListPage - 1) * pageSize : logListPage * pageSize).length === 0">
+        <td colspan="5" class="text-center">No logs found.</td>
+      </tr>
     </tbody>
   </table>
-  <ngb-pagination
-    [pageSize]="pageSize"
-    [collectionSize]="totalItems"
-    [maxSize]="5"
-    [boundaryLinks]="true"
-    aria-label="Log pagination"
-    [(page)]="logListPage">
+  <ngb-pagination [pageSize]="pageSize" [collectionSize]="totalItems" [maxSize]="5" [boundaryLinks]="true"
+    aria-label="Log pagination" [(page)]="logListPage">
   </ngb-pagination>
 </div>

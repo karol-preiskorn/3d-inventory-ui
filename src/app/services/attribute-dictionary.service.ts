@@ -1,13 +1,13 @@
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs'
+import { catchError, retry } from 'rxjs/operators'
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, NgZone } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
 
-import { environment } from '../../environments/environment';
-import { AttributeDictionary } from '../shared/attribute-dictionary';
-import { LogService } from './log.service';
+import { environment } from '../../environments/environment'
+import { AttributesDictionary } from '../shared/AttributesDictionary'
+import { LogService } from './log.service'
 
 @Injectable({
   providedIn: 'root',
@@ -32,95 +32,111 @@ export class AttributeDictionaryService {
    * Retrieves the attribute dictionaries.
    * @returns An observable that emits the attribute dictionaries.
    */
-  GetAttributeDictionaries(): Observable<AttributeDictionary[]> {
+  GetAttributeDictionaries(): Observable<AttributesDictionary[]> {
     return this.http
-      .get<AttributeDictionary[]>(environment.baseurl + '/attributesDictionary/')
-      .pipe(retry(1), catchError(this.errorHandl))
+      .get<AttributesDictionary[]>(environment.baseurl + '/attributesDictionary/')
+      .pipe(retry(1), catchError(this.errorHandler))
   }
 
   /**
    * Retrieves an attribute dictionary by its ID.
-   * @param id - The ID of the attribute dictionary to retrieve.
-   * @returns An Observable that emits the retrieved AttributeDictionary.
+   * @param id The ID of the attribute dictionary to retrieve.
+   * @returns An Observable emitting the retrieved AttributesDictionary.
    */
-  GetAttributeDictionary(id: string): Observable<AttributeDictionary> {
-    return this.http
-      .get<AttributeDictionary>(environment.baseurl + '/attribute-dictionary/' + id, this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+  GetAttributeDictionary(id: string): Observable<AttributesDictionary> {
+    if (!id) {
+      return throwError(() => new Error('Attribute dictionary ID is required.'))
+    }
+    const url = `${environment.baseurl}/attributesDictionary/${encodeURIComponent(id)}`
+    return this.http.get<AttributesDictionary>(url, this.httpOptions).pipe(retry(1), catchError(this.errorHandler))
   }
+
   /**
-   * Deletes an attribute dictionary with the specified ID.
-   * @param id The ID of the attribute dictionary to delete.
-   * @returns An Observable that emits the deleted attribute dictionary.
+   * Deletes an attribute dictionary by its ID.
+   * @param id - The ID of the attribute dictionary to delete.
+   * @returns An Observable emitting the deleted AttributesDictionary.
    */
-  DeleteAttributeDictionary(id: string): Observable<AttributeDictionary> {
-    return this.http
-      .delete<AttributeDictionary>(environment.baseurl + '/attributesDictionary/' + id, this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+  DeleteAttributeDictionary(id: string): Observable<AttributesDictionary> {
+    if (!id) {
+      return throwError(() => new Error('Attribute dictionary ID is required for deletion.'))
+    }
+    const url = `${environment.baseurl}/attributesDictionary/${encodeURIComponent(id)}`
+    return this.http.delete<AttributesDictionary>(url, this.httpOptions).pipe(retry(1), catchError(this.errorHandler))
   }
+
   /**
-   * Creates an attribute dictionary.
-   * @param data The attribute dictionary data to be created.
-   * @returns An observable that emits the created attribute dictionary.
+   * Creates a new attribute dictionary.
+   * @param data The attribute dictionary data to create.
+   * @returns An Observable emitting the created AttributesDictionary.
    */
-  CreateAttributeDictionary(data: AttributeDictionary): Observable<AttributeDictionary> {
-    return this.http
-      .post<AttributeDictionary>(
-        environment.baseurl + '/attributesDictionary/',
-        JSON.stringify(data, null, ' '),
-        this.httpOptions,
-      )
-      .pipe(retry(1), catchError(this.errorHandl))
-  }
   /**
-   * Clones an attribute dictionary with the specified ID.
-   *
+   * Creates a new attribute dictionary.
+   * @param data - The attribute dictionary data to create.
+   * @returns An Observable emitting the created AttributesDictionary.
+   */
+  CreateAttributeDictionary(data: Omit<AttributesDictionary, '_id'>): Observable<AttributesDictionary> {
+    if (!data || !data.name || !data.type || !data.componentName) {
+      return throwError(() => new Error('Missing required attribute dictionary fields.'));
+    }
+    return this.http
+      .post<AttributesDictionary>(`${this.baseurl}/attributesDictionary/`, data, this.httpOptions)
+      .pipe(retry(1), catchError(this.errorHandler));
+  }
+
+  /**
+   * Clones an attribute dictionary by its ID and navigates to the list view upon success.
    * @param id - The ID of the attribute dictionary to clone.
-   * @returns The UUID of the cloned attribute dictionary.
+   * @returns An Observable emitting the cloned attribute dictionary.
    */
-  CloneAttributeDictionary(id: string): string {
-    this.GetAttributeDictionary(id).subscribe((value: AttributeDictionary) => {
-      console.log('Get attributes: ' + JSON.stringify(value, null, ' '))
-      this.CreateAttributeDictionary(value).subscribe({
-        next: (v) => {
-          console.log('Create attributes: ' + JSON.stringify(v, null, ' '))
-          this.ngZone.run(() => this.router.navigateByUrl('attributesDictionary-list'))
+  CloneAttributeDictionary(id: string): Observable<AttributesDictionary> {
+    return new Observable<AttributesDictionary>((observer) => {
+      this.GetAttributeDictionary(id).subscribe({
+        next: (original) => {
+          // Remove _id to let backend generate a new one
+          const { _id, ...cloneData } = original
+          this.CreateAttributeDictionary(cloneData as AttributesDictionary).subscribe({
+            next: (created) => {
+              this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))
+              observer.next(created)
+              observer.complete()
+            },
+            error: (err) => observer.error(err),
+          })
         },
-        complete: () => this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list')),
+        error: (err) => observer.error(err),
       })
     })
-    return 'x'
   }
+
   /**
-   * Updates an attribute dictionary with the specified ID.
+   * Updates an attribute dictionary by its ID.
    * @param id - The ID of the attribute dictionary to update.
    * @param data - The updated attribute dictionary data.
-   * @returns An observable that emits the updated attribute dictionary.
+   * @returns An Observable emitting the updated attribute dictionary.
    */
-  UpdateAttributeDictionary(id: string | null, data: AttributeDictionary): Observable<AttributeDictionary> {
+  UpdateAttributeDictionary(id: string, data: AttributesDictionary): Observable<AttributesDictionary> {
+    if (!id) {
+      return throwError(() => new Error('Attribute dictionary ID is required for update.'))
+    }
     return this.http
-      .put<AttributeDictionary>(
-        environment.baseurl + '/attributesDictionary/' + id,
-        JSON.stringify(data, null, ' '),
-        this.httpOptions,
-      )
-      .pipe(retry(1), catchError(this.errorHandl))
+      .put<AttributesDictionary>(`${environment.baseurl}/attributesDictionary/${id}`, data, this.httpOptions)
+      .pipe(retry(1), catchError(this.errorHandler))
   }
+
   /**
    * Handles the error response from an HTTP request.
    * @param error - The error object containing the error message and status.
    * @returns An Observable that emits the error message.
    */
-  errorHandl(error: { error: { message: string }; status: number; message: string }) {
-    let errorMessage = ''
+  private errorHandler(error: any) {
+    let errorMessage: string
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message
     } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
+      const detailedMessage = error.message || error.error?.message || 'Unknown error'
+      errorMessage = `Error Code: ${error.status} | Message: ${detailedMessage}`
     }
-    console.log(JSON.stringify(errorMessage, null, ' '))
-    return throwError(() => {
-      return errorMessage
-    })
+    console.error(errorMessage)
+    return throwError(() => new Error(errorMessage))
   }
 }

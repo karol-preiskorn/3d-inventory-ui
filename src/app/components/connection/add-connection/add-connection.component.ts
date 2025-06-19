@@ -7,7 +7,7 @@ import { Router } from '@angular/router'
 import { ConnectionService } from '../../../services/connection.service'
 import { DeviceService } from '../../../services/device.service'
 import { LogService } from '../../../services/log.service'
-import { ComponentDictionary } from '../../../shared/component-dictionary'
+import { ComponentDictionary } from '../../../shared/ComponentDictionary'
 import { Connection } from '../../../shared/connection'
 import { Device } from '../../../shared/device'
 import { CommonModule } from '@angular/common'
@@ -94,7 +94,7 @@ export class ConnectionAddComponent implements OnInit {
           objectId: this.addConnectionForm.get('id')?.value,
           message: this.addConnectionForm.value,
           operation: 'Create',
-          component: 'Connection',
+          component: 'connections',
         })
         .subscribe(() => {
           this.ngZone.run(() => this.router.navigateByUrl('connection-list'))

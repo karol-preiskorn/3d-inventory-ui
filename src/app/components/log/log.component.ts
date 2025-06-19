@@ -32,31 +32,11 @@ import { FloorService } from '../../services/floor.service'
 import { Log, LogService } from '../../services/log.service'
 import { ModelsService } from '../../services/models.service'
 import { Attribute } from '../../shared/attribute'
-import { AttributeDictionary } from '../../shared/attribute-dictionary'
+import { AttributesDictionary } from '../../shared/AttributesDictionary'
 import { Connection } from '../../shared/connection'
 import { Device } from '../../shared/device'
-import { Floor } from '../../shared/floor'
+import { Floors } from '../../shared/floors'
 import { Model } from '../../shared/model'
-
-const api = [
-  { component: 'Models', api: 'models' },
-  { component: 'Devices', api: 'devices' },
-  { component: 'Logs', api: 'logs' },
-  { component: 'Attributes', api: 'attributes' },
-  { component: 'Attribute Dictionary', api: 'attribute-dictionary' },
-  { component: 'Connection', api: 'connections' },
-  { component: 'Connections', api: 'connections' },
-  { component: 'Floors', api: 'floors' },
-  { component: '3d', api: '3d' },
-]
-
-function isApiName(component: string): boolean {
-  return !!api.find((e) => e.component === component)
-}
-
-function isComponentName(apiName: string): boolean {
-  return api.some((e) => e.api === apiName)
-}
 
 @Component({
   selector: 'app-log',
@@ -68,18 +48,20 @@ function isComponentName(apiName: string): boolean {
 export class LogComponent implements OnInit {
   LogList: Log[] = []
   logListPage = 1 // Current page
-  pageSize = 10 // Number of items per page
+  pageSize = 5 // Number of items per page
   totalItems = 0 // Total number of items
 
   @Input() component: string
+  @Input() isComponent: boolean
+  @Input() componentName: string
   @Input() attributeComponentObject: Device = new Device()
 
   deviceList: Device[]
   modelList: Model[]
   connectionList: Connection[]
-  attributeDictionaryList: AttributeDictionary[]
+  attributeDictionaryList: AttributesDictionary[]
   attributeList: Attribute[]
-  floorList: Floor[]
+  floorList: Floors[]
 
   deviceListGet = false
   modelListGet = false
@@ -105,25 +87,23 @@ export class LogComponent implements OnInit {
 
   /**
    * Loads the log for the specified context.
-   * @param context - The context for which the log is being loaded.
+   * This method determines whether to load component logs or object logs based on the component name.
+   * If the component name is an API name, it loads component logs; otherwise, it loads object logs.
    * @param component - The component for which the log is being loaded.
    */
-  loadLog(context: string, component: string) {
-    if (isApiName(component)) {
-      console.log(
-        'LoadComponent.loadLog (call loadComponentLog) - Context: ' +
-          context +
-          ', loadComponentLog: ' +
-          (component ?? '') +
-          ' attributeComponentObject: ' +
-          JSON.stringify(this.attributeComponentObject),
-      )
-      this.loadComponentLog(component)
+  loadLog(context: string) {
+    console.log(
+      `[log.components.loadLog]
+  Context: ${context}
+  component: ${this.component ?? ''}
+  componentName: ${this.componentName ?? ''}
+  isComponent: ${this.isComponent ?? false}
+  attributeComponentObject: ${JSON.stringify(this.attributeComponentObject)}`,
+    )
+    if (this.isComponent == true) {
+      this.loadComponentLog(this.component)
     } else {
-      console.log(
-        'LoadComponent.loadLog (call loadObjectsLog) - Context: ' + context + ', loadObjectLog: ' + (component ?? ''),
-      )
-      this.loadObjectsLog(component)
+      this.loadLogsById(this.component)
     }
   }
 
@@ -132,14 +112,14 @@ export class LogComponent implements OnInit {
    * This method is called after the component has been created and initialized.
    */
   ngOnInit() {
-    this.loadLog('ngOnInit', this.component)
+    this.loadLog('ngOnInit')
   }
 
   /**
    * Called whenever one or more input properties of the component change.
    */
   OnChanges() {
-    this.loadLog('ngOnChanges', this.component)
+    this.loadLog('ngOnChanges')
   }
 
   /**
@@ -162,7 +142,7 @@ export class LogComponent implements OnInit {
    */
   loadComponentLog(id: string): Subscription {
     return this.logService.GetComponentLogs(id).subscribe((data: Log[]) => {
-      console.log('LogComponent.loadComponentLog(' + id + '): ' /* + JSON.stringify(data, null, ' ') */)
+      console.log('[log.components.loadComponentLog(' + id + ')]: ' /* + JSON.stringify(data, null, ' ') */)
       this.LogList = data
       this.totalItems = this.LogList.length // Update totalItems for pagination
     })
@@ -173,9 +153,9 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the object.
    * @returns A Subscription object representing the subscription to the log data.
    */
-  loadObjectsLog(id: string): Subscription {
-    return this.logService.GetObjectLogs(id).subscribe((data: Log[]) => {
-      console.log('LogComponent.loadObjectsLog(' + id + '): ' /* + JSON.stringify(data, null, ' ') */)
+  loadLogsById(id: string): Subscription {
+    return this.logService.GetLogsById(id).subscribe((data: Log[]) => {
+      console.log('[log.component] LogComponent.loadLogsById(' + id + '): ' /* + JSON.stringify(data, null, ' ') */)
       this.LogList = data
       this.totalItems = this.LogList.length // Update totalItems for pagination
     })
@@ -191,18 +171,23 @@ export class LogComponent implements OnInit {
     let findConnectionNameValue: string
 
     if (!log) {
-      console.error('Log message is undefined')
+      console.error('[log.component] findNameInLogMessage: Log message is undefined')
       return ''
     }
     try {
       jLog = JSON.parse(JSON.stringify(log.message)) as Log
     } catch (error: unknown) {
-      console.log(`findNameInLogMessage: ${String(log.message)} is not a JSON string` + String(error))
+      console.error(
+        `[log.component] findNameInLogMessage: JSON.parse(JSON.stringify(${String(log.message)}) is not a JSON string` +
+          String(error),
+      )
       return JSON.stringify(log.message)
     }
     if (log.component == 'Attribute') {
       const logMessageAttribute: Partial<Attribute> = log.message as Partial<Attribute>
-      console.log('logMessageAttribute: ' + JSON.stringify(logMessageAttribute, null, ' '))
+      console.log(
+        '[log.component] findNameInLogMessage: logMessageAttribute: ' + JSON.stringify(logMessageAttribute, null, ' '),
+      )
       if (!logMessageAttribute) {
         if (
           (logMessageAttribute as Partial<Attribute>).connectionId !== null &&
@@ -213,7 +198,7 @@ export class LogComponent implements OnInit {
             (logMessageAttribute as Partial<Attribute>).connectionId ?? '',
           )),
             console.log(
-              `Find ConnectionName for Attribute (${(logMessageAttribute as Partial<Attribute>)?.connectionId ?? 'Unknown'}): ${findConnectionNameValue}`,
+              `[[log.component] findNameInLogMessage: Find ConnectionName for Attribute (${(logMessageAttribute as Partial<Attribute>)?.connectionId ?? 'Unknown'}): ${findConnectionNameValue}`,
             )
           return 'Connection ' + findConnectionNameValue
         }
@@ -334,7 +319,7 @@ export class LogComponent implements OnInit {
    */
   getAttributeDictionaryList() {
     if (this.attributeDictionaryListGet == true) return null
-    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) => {
+    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributesDictionary[]) => {
       data.forEach((item) => {
         this.attributeDictionaryList.push(item)
       })
@@ -375,7 +360,7 @@ export class LogComponent implements OnInit {
   }
 
   /**
-   * Retrieves the floor list from the attribute service.
+   * Retrieves the Floors list from the attribute service.
    * If the attribute list has already been retrieved, returns null.
    * Otherwise, subscribes to the GetAttributes method of the attribute service
    * and updates the attribute list with the retrieved data.
@@ -397,9 +382,9 @@ export class LogComponent implements OnInit {
   }
 
   /**
-   * Finds a floor in the floorList based on the provided id.
-   * @param id - The id of the floor to find.
-   * @returns The found floor object, or undefined if no floor with the given id is found.
+   * Finds a Floors in the floorList based on the provided id.
+   * @param id - The id of the Floors to find.
+   * @returns The found Floors object, or undefined if no Floors with the given id is found.
    */
   findFloor(id: string) {
     return this.floorList.find((e) => e._id === id)
