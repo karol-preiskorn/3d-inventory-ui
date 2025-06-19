@@ -18,18 +18,18 @@
    9. [APIs repos](#apis-repos)
    10. [Contributing](#contributing)
    11. [Next todo](#next-todo)
+   12. [License](#license)
 
 [![wakatime](https://wakatime.com/badge/user/3bbeedbe-0c6a-4a01-b3cd-a85d319a03bf/project/018c62ce-6164-4200-bca9-be53af7f6d80.svg)](https://wakatime.com/badge/user/3bbeedbe-0c6a-4a01-b3cd-a85d319a03bf/project/018c62ce-6164-4200-bca9-be53af7f6d80) [![GitHub latest commit](https://badgen.net/github/last-commit/karol-preiskorn/3d-inventory-angular-ui)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/commit/) [![GitHub stars](https://img.shields.io/github/stars/karol-preiskorn/3d-inventory-angular-ui.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/stargazers/) [![GitHub issues](https://img.shields.io/github/issues/karol-preiskorn/3d-inventory-angular-ui.svg)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/issues/)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/) [![TypeScript](https://img.shields.io/badge/--3178C6?logo=typescript&logoColor=ffffff)](https://www.typescriptlang.org/) [![Npm](https://badgen.net/badge/icon/npm?icon=npm&label)](https://https://npmjs.com/) [![GitHub license](https://badgen.net/github/license/karol-preiskorn/3d-inventory-angular-ui)](https://github.com/karol-preiskorn/3d-inventory-angular-ui/blob/master/LICENSE)
 
 ## About project
 
-Project create ✨`3d inventory`✨— solution that allows you to build a spatial and database representation of yours warehouses or datacenters.
+Project creates ✨`3d inventory`✨—a solution that allows you to build a spatial and database representation of your warehouses or datacenters.
 
 Motivation
 
-    I'm programming to incorporate database systems. This project it is sandbox to covers relevant topics
-    and issues related to create simple and efficient platform for graphics representation IT inventory.
+    I am developing this project as a sandbox to explore database systems. It covers relevant topics and issues related to creating a simple and efficient platform for graphical representation of IT inventory.
 
 <img title="Architecture" src="src/assets/architecture.drawio.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%; margin-bottom: 16px" width="85%">
 
@@ -44,8 +44,8 @@ Project contain three repos:
 - `Angular` 19+ - as a Corp framework.
 - `Bootstrap` 5.3+ - logic for insert `UI` data
 - `tree.js` 163+ - as best graph framework.
-- `MongoAtlas`|`Oracle` - I want in this project try different solution and different data structure and storage datamodels relational and noSQL.
-- `REST` - prepared `API` in use in `Swagger`.
+- `MongoAtlas`|`Oracle` - I want to try different solutions and data structures, including both relational and NoSQL data models using MongoAtlas and Oracle.
+- `REST` - prepared `API` documented and used in `Swagger`.
 - `Docker` as containers
 
 ## Inventory
@@ -54,7 +54,7 @@ Project contain three repos:
 
 [<img title="3-d inventory the video" src="src/assets/img/3d-inventory-demo.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%;" width="85%"/>](https://youtu.be/rNOxpZ0ti1Q '3-d inventory the video')
 
-This project build from this example: [Tutorial to render 3D 3d in Angular + Three.js](https://srivastavaanurag79.medium.com/hello-3d-your-first-three-js-scene-in-angular-176c44b9c6c0).
+This project is built from this example: [Tutorial to render 3D 3d in Angular + Three.js](https://srivastavaanurag79.medium.com/hello-3d-your-first-three-js-scene-in-angular-176c44b9c6c0).
 
 ## Data Model
 
@@ -64,11 +64,11 @@ Parameters types are defined in `Attribute Dictionary`.
 
 In `Attributes` are stored values defined in `Attributes Dictionary` for `Devices`, `Model` and `Connections`. `Attributes Dictionary` are defined for specyfice parameters this entities.
 
-I have a lot oo fun to learn how convert relational DB structures to correct collection in noSql Mongo DB.
+I had a lot of fun learning how to convert relational DB structures to correct collections in NoSQL MongoDB.
 
 ### Logical model
 
-Relational data model is mapped to noSQL model im MondoDb.
+Relational data model is mapped to a NoSQL model in MongoDB.
 
 <img title="Logical model" src="src/assets/3d-inventory.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="85%"/>
 
@@ -117,7 +117,7 @@ npm run build
 
 ## Containers
 
-To containerize i use Docker as most popular at this moment. I have plan to put this containers to Google Cloud.
+To containerize, I use Docker, which is currently the most popular solution. I plan to deploy these containers to Google Cloud.
 
 ## APIs repos
 
@@ -136,3 +136,7 @@ Pull requests are welcome. For major changes, please open an [issue](https://git
 - [ ] Use Dev container in `GitHub` for development.
 - [ ] Use <https://formly.dev/>.
 - [ ] Create blog on GitHub Pages or use <https://ultimasolution.pl>.
+
+## License
+
+[Creative Commons Legal Code](https://github.com/karol-preiskorn/3d-inventory-angular-ui/LICENSE)

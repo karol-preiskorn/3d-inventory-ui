@@ -66,12 +66,19 @@ export default class Validation {
    * @memberof Validation
    */
   numberValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    const value: number = control?.value as number
-    if (typeof value !== 'number' || isNaN(value)) {
-      return {
-        number: true,
+    try {
+      const value = control?.value;
+      // Accept both numbers and numeric strings
+      if (value === null || value === undefined || value === '') {
+        return { number: true };
       }
+      const num = typeof value === 'number' ? value : Number(value);
+      if (typeof num !== 'number' || isNaN(num)) {
+        return { number: true };
+      }
+      return null;
+    } catch (error) {
+      return { number: true, error: (error as Error).message };
     }
-    return null
   }
 }

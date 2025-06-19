@@ -122,27 +122,27 @@ export class AttributeEditComponent implements OnInit {
 
   changeModelId(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    const objectId = uuidv4.toString()
-    this.modelId!.setValue(objectId, { onlySelf: true })
     return value
   }
 
   changeDeviceId(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    //const objectId = new mongodb.ObjectId().toString() // This line creates a new ObjectId and converts it to a string
     return value
   }
 
   changeConnectionId(e: Event) {
-    this.connectionId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.connectionId?.setValue((e.target as HTMLSelectElement).value, { onlySelf: true })
   }
 
   changeAttributeDictionaryId(e: Event) {
-    this.attributeDictionaryId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.attributeDictionaryId?.setValue((e.target as HTMLSelectElement).value, { onlySelf: true })
   }
 
-  changeValue(e: Event) {
-    this.value?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  onValueChange(e: Event) {
+    const target = e.target
+    if (target instanceof HTMLInputElement) {
+      this.value?.setValue(target.value, { onlySelf: true })
+    }
   }
 
   get id() {
@@ -188,18 +188,17 @@ export class AttributeEditComponent implements OnInit {
     return this.deviceDictionary?.find((e) => e._id === id)?.name
   }
 
-  getModelList() {
+  getModelList(): void {
     this.modelService.GetModels().subscribe({
-      next: (data: Model[]) => {
-        const placeholderModel = new Model()
-        this.modelDictionary = [placeholderModel, ...data]
+      next: (models: Model[]) => {
+        this.modelDictionary = [new Model(), ...models]
       },
-      error: (error) => {
-        console.error('Error fetching models:', error)
+      error: (err) => {
+        console.error('Error fetching models:', err)
         this.logService
           .CreateLog({
             objectId: '',
-            message: { error: `Error fetching models: ${error.message}` },
+            message: { error: `Error fetching models: ${err?.message || err}` },
             operation: 'Fetch',
             component: 'models',
           })

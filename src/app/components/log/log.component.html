@@ -4,8 +4,7 @@
     <thead>
       <tr>
         <th>Date</th>
-        <th>Operation</th>
-        <th>Component</th>
+        <th>Operation<br>Component</th>
         <th>Object</th>
         <th></th>
       </tr>
@@ -13,12 +12,11 @@
     <tbody>
       <tr *ngFor="let log of LogList | slice: (logListPage - 1) * pageSize : logListPage * pageSize">
         <td>{{ log.date }}</td>
-        <td>{{ log.operation }}</td>
-        <td>
+        <td>{{ log.operation }} <br>
           {{ log.component }}
           <span class="deviceid" *ngIf="log.objectId">{{ log.objectId }}</span>
         </td>
-        <td>{{ findNameInLogMessage(log) }}</td>
+        <td class="log-message">{{ findNameInLogMessage(log) }}</td>
         <td>
           <button type="button" class="btn btn-danger btn-sm" (click)="DeleteLog(log._id)" aria-label="Delete log">
             <i class="bi bi-trash"></i>

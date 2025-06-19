@@ -48,7 +48,7 @@ import { Model } from '../../shared/model'
 export class LogComponent implements OnInit {
   LogList: Log[] = []
   logListPage = 1 // Current page
-  pageSize = 10 // Number of items per page
+  pageSize = 5 // Number of items per page
   totalItems = 0 // Total number of items
 
   @Input() component: string

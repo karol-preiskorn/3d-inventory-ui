@@ -5,15 +5,29 @@
       <div class="form-group mb-3">
         <label for="name" class="form-label">Name</label>
         <input type="text" id="name" formControlName="name" minlength="4" maxlength="4000" required [ngClass]="{
-                    'is-invalid': floorForm.get('name')?.invalid && (floorForm.get('name')?.touched || floorForm.get('name')?.dirty),
-                    'is-valid': floorForm.get('name')?.valid && (floorForm.get('name')?.touched || floorForm.get('name')?.dirty),
-                    'form-control': true,
-                  }" />
+        'form-control': true,
+        'is-invalid': floorForm.get('name')?.invalid && (floorForm.get('name')?.touched || floorForm.get('name')?.dirty),
+        'is-valid': floorForm.get('name')?.valid && (floorForm.get('name')?.touched || floorForm.get('name')?.dirty)
+          }" [attr.aria-invalid]="floorForm.get('name')?.invalid ? true : null"
+          [attr.aria-describedby]="'name-error'" />
         <div
           *ngIf="floorForm.get('name')?.errors && (floorForm.get('name')?.touched || floorForm.get('name')?.dirty)"
-          class="invalid-feedback">
-          <div *ngIf="floorForm.get('name')?.errors?.required">Name is required</div>
-          <div *ngIf="floorForm.get('name')?.errors?.minlength">Name must be at least 4 characters</div>
+          class="invalid-feedback" id="name-error">
+          <ng-container *ngIf="floorForm.get('name')?.errors as errors">
+            <div *ngIf="errors.required">Name is required</div>
+            <div *ngIf="errors.minlength">
+              Name must be at least {{ errors.minlength.requiredLength }} characters
+            </div>
+            <div *ngIf="errors.maxlength">
+              Name cannot exceed {{ errors.maxlength.requiredLength }} characters
+            </div>
+            <div *ngIf="errors.pattern">
+              Name contains invalid characters
+            </div>
+            <div *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">
+              Invalid value for Name
+            </div>
+          </ng-container>
         </div>
       </div>
       <div formGroupName="address">
@@ -21,18 +35,32 @@
           <div class="col">
             <div class="form-group mb-3">
               <label for="street" class="form-label">Street</label>
-              <input type="text" formControlName="street" id="street" required [ngClass]="{
-                                'is-invalid': floorForm.get('address.street')?.invalid && (floorForm.get('address.street')?.touched || floorForm.get('address.street')?.dirty),
-                                'is-valid': floorForm.get('address.street')?.valid && (floorForm.get('address.street')?.touched || floorForm.get('address.street')?.dirty),
-                                'form-control': true,
-                              }" />
+              <input type="text" id="street" formControlName="street" required minlength="1" [ngClass]="{
+                  'form-control': true,
+                  'is-invalid': floorForm.get('address.street')?.invalid && (floorForm.get('address.street')?.touched || floorForm.get('address.street')?.dirty),
+                  'is-valid': floorForm.get('address.street')?.valid && (floorForm.get('address.street')?.touched || floorForm.get('address.street')?.dirty)
+                }" [attr.aria-invalid]="floorForm.get('address.street')?.invalid ? true : null"
+                [attr.aria-describedby]="'street-error'" />
               <div
                 *ngIf="floorForm.get('address.street')?.errors && (floorForm.get('address.street')?.touched || floorForm.get('address.street')?.dirty)"
-                class="invalid-feedback">
-                <div *ngIf="floorForm.get('address.street')?.errors?.required">Street is required</div>
-                <div *ngIf="floorForm.get('address.street')?.errors?.minlength">
-                  Street must be at least 1 character
-                </div>
+                class="invalid-feedback" id="street-error">
+                <ng-container *ngIf="floorForm.get('address.street')?.errors as errors">
+                  <div *ngIf="errors.required">Street is required</div>
+                  <div *ngIf="errors.minlength">
+                    Street must be at least {{ errors.minlength.requiredLength }} character<span
+                      *ngIf="errors.minlength.requiredLength > 1">s</span>
+                  </div>
+                  <div *ngIf="errors.maxlength">
+                    Street cannot exceed {{ errors.maxlength.requiredLength }} character<span
+                      *ngIf="errors.maxlength.requiredLength > 1">s</span>
+                  </div>
+                  <div *ngIf="errors.pattern">
+                    Street contains invalid characters
+                  </div>
+                  <div *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">
+                    Invalid value for Street
+                  </div>
+                </ng-container>
               </div>
             </div>
           </div>
@@ -43,13 +71,28 @@
                   'form-control': true,
                   'is-invalid': floorForm.get('address.city')?.invalid && (floorForm.get('address.city')?.touched || floorForm.get('address.city')?.dirty),
                   'is-valid': floorForm.get('address.city')?.valid && (floorForm.get('address.city')?.touched || floorForm.get('address.city')?.dirty)
-                }" />
+                }" [attr.aria-invalid]="floorForm.get('address.city')?.invalid ? true : null"
+                [attr.aria-describedby]="'city-error'" />
               <div
                 *ngIf="floorForm.get('address.city')?.errors && (floorForm.get('address.city')?.touched || floorForm.get('address.city')?.dirty)"
-                class="invalid-feedback">
-                <div *ngIf="floorForm.get('address.city')?.errors?.required">City is required</div>
-                <div *ngIf="floorForm.get('address.city')?.errors?.minlength">City must be at least 1 character
-                </div>
+                class="invalid-feedback" id="city-error">
+                <ng-container *ngIf="floorForm.get('address.city')?.errors as errors">
+                  <div *ngIf="errors.required">City is required</div>
+                  <div *ngIf="errors.minlength">
+                    City must be at least {{ errors.minlength.requiredLength }} character<span
+                      *ngIf="errors.minlength.requiredLength > 1">s</span>
+                  </div>
+                  <div *ngIf="errors.maxlength">
+                    City cannot exceed {{ errors.maxlength.requiredLength }} character<span
+                      *ngIf="errors.maxlength.requiredLength > 1">s</span>
+                  </div>
+                  <div *ngIf="errors.pattern">
+                    City contains invalid characters
+                  </div>
+                  <div *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">
+                    Invalid value for City
+                  </div>
+                </ng-container>
               </div>
             </div>
           </div>
@@ -60,14 +103,28 @@
                   'form-control': true,
                   'is-invalid': floorForm.get('address.country')?.invalid && (floorForm.get('address.country')?.touched || floorForm.get('address.country')?.dirty),
                   'is-valid': floorForm.get('address.country')?.valid && (floorForm.get('address.country')?.touched || floorForm.get('address.country')?.dirty)
-                }" />
+                }" [attr.aria-invalid]="floorForm.get('address.country')?.invalid ? true : null"
+                [attr.aria-describedby]="'country-error'" />
               <div
                 *ngIf="floorForm.get('address.country')?.errors && (floorForm.get('address.country')?.touched || floorForm.get('address.country')?.dirty)"
-                class="invalid-feedback">
-                <div *ngIf="floorForm.get('address.country')?.errors?.required">Country is required</div>
-                <div *ngIf="floorForm.get('address.country')?.errors?.minlength">
-                  Country must be at least 1 character
-                </div>
+                class="invalid-feedback" id="country-error">
+                <ng-container *ngIf="floorForm.get('address.country')?.errors as errors">
+                  <div *ngIf="errors.required">Country is required</div>
+                  <div *ngIf="errors.minlength">
+                    Country must be at least {{ errors.minlength.requiredLength }} character<span
+                      *ngIf="errors.minlength.requiredLength > 1">s</span>
+                  </div>
+                  <div *ngIf="errors.maxlength">
+                    Country cannot exceed {{ errors.maxlength.requiredLength }} character<span
+                      *ngIf="errors.maxlength.requiredLength > 1">s</span>
+                  </div>
+                  <div *ngIf="errors.pattern">
+                    Country contains invalid characters
+                  </div>
+                  <div *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">
+                    Invalid value for Country
+                  </div>
+                </ng-container>
               </div>
             </div>
           </div>
@@ -78,16 +135,28 @@
                   'form-control': true,
                   'is-invalid': floorForm.get('address.postcode')?.invalid && (floorForm.get('address.postcode')?.touched || floorForm.get('address.postcode')?.dirty),
                   'is-valid': floorForm.get('address.postcode')?.valid && (floorForm.get('address.postcode')?.touched || floorForm.get('address.postcode')?.dirty)
-                }" />
+                }" [attr.aria-invalid]="floorForm.get('address.postcode')?.invalid ? true : null"
+                [attr.aria-describedby]="'postcode-error'" />
               <div
                 *ngIf="floorForm.get('address.postcode')?.errors && (floorForm.get('address.postcode')?.touched || floorForm.get('address.postcode')?.dirty)"
-                class="invalid-feedback">
-                <div *ngIf="floorForm.get('address.postcode')?.errors?.required">
-                  Post code is required
-                </div>
-                <div *ngIf="floorForm.get('address.postcode')?.errors?.minlength">
-                  Post code must be at least 1 character
-                </div>
+                class="invalid-feedback" id="postcode-error">
+                <ng-container *ngIf="floorForm.get('address.postcode')?.errors as errors">
+                  <div *ngIf="errors.required">Post code is required</div>
+                  <div *ngIf="errors.minlength">
+                    Post code must be at least {{ errors.minlength.requiredLength }} character<span
+                      *ngIf="errors.minlength.requiredLength > 1">s</span>
+                  </div>
+                  <div *ngIf="errors.maxlength">
+                    Post code cannot exceed {{ errors.maxlength.requiredLength }} character<span
+                      *ngIf="errors.maxlength.requiredLength > 1">s</span>
+                  </div>
+                  <div *ngIf="errors.pattern">
+                    Post code contains invalid characters
+                  </div>
+                  <div *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">
+                    Invalid value for Post code
+                  </div>
+                </ng-container>
               </div>
             </div>
           </div>
@@ -99,7 +168,7 @@
 
     <div class="border">
       <div formArrayName="dimension">
-        <div *ngFor="let dimensionForm of dimension.controls; let i = index">
+        <div *ngFor="let dimensionForm of dimensionForms.controls; let i = index">
           <div [formGroupName]="i">
             <div class="row">
               <div class="col">
@@ -132,26 +201,31 @@
                 <div class="form-group mb-3">
                   <label for="xPos-{{i}}" class="form-label">X position</label>
                   <input type="text" id="xPos-{{i}}" formControlName="xPos" required [ngClass]="{
-                      'form-control': true,
-                      'is-invalid': getDimension(i, 'xPos')?.invalid && (getDimension(i, 'xPos')?.touched || getDimension(i, 'xPos')?.dirty),
-                      'is-valid': getDimension(i, 'xPos')?.valid && (getDimension(i, 'xPos')?.touched || getDimension(i, 'xPos')?.dirty)
-                    }" />
+                  'form-control': true,
+                  'is-invalid': getDimension(i, 'xPos')?.invalid && (getDimension(i, 'xPos')?.touched || getDimension(i, 'xPos')?.dirty),
+                  'is-valid': getDimension(i, 'xPos')?.valid && (getDimension(i, 'xPos')?.touched || getDimension(i, 'xPos')?.dirty)
+                }" [attr.aria-invalid]="getDimension(i, 'xPos')?.invalid ? true : null"
+                    [attr.aria-describedby]="'dimension-xPos-' + i + '-error'" />
                   <div
                     *ngIf="getDimension(i, 'xPos')?.errors && (getDimension(i, 'xPos')?.touched || getDimension(i, 'xPos')?.dirty)"
-                    class="invalid-feedback">
-                    <div *ngIf="getDimension(i, 'xPos')?.errors?.required">
-                      X position is required
-                    </div>
-                    <div *ngIf="getDimension(i, 'xPos')?.errors?.minlength">
-                      X position must be at least 1 character
-                    </div>
-                    <div *ngIf="getDimension(i, 'xPos')?.errors?.maxlength">
-                      X position cannot exceed {{ getDimension(i, 'xPos')?.errors?.maxlength.requiredLength }}
-                      characters
-                    </div>
-                    <div *ngIf="getDimension(i, 'xPos')?.errors?.pattern">
-                      X position must be a valid number
-                    </div>
+                    class="invalid-feedback" [id]="'dimension-xPos-' + i + '-error'">
+                    <ng-container *ngIf="getDimension(i, 'xPos')?.errors as errors">
+                      <div *ngIf="errors.required">X position is required</div>
+                      <div *ngIf="errors.minlength">
+                        X position must be at least {{ errors.minlength.requiredLength }} character<span
+                          *ngIf="errors.minlength.requiredLength > 1">s</span>
+                      </div>
+                      <div *ngIf="errors.maxlength">
+                        X position cannot exceed {{ errors.maxlength.requiredLength }} character<span
+                          *ngIf="errors.maxlength.requiredLength > 1">s</span>
+                      </div>
+                      <div *ngIf="errors.pattern">
+                        X position must be a valid number
+                      </div>
+                      <div *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">
+                        Invalid value for X position
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
               </div>
@@ -162,23 +236,28 @@
                       'form-control': true,
                       'is-invalid': getDimension(i, 'yPos')?.invalid && (getDimension(i, 'yPos')?.touched || getDimension(i, 'yPos')?.dirty),
                       'is-valid': getDimension(i, 'yPos')?.valid && (getDimension(i, 'yPos')?.touched || getDimension(i, 'yPos')?.dirty)
-                    }" />
+                    }" [attr.aria-invalid]="getDimension(i, 'yPos')?.invalid ? true : null"
+                    [attr.aria-describedby]="'dimension-yPos-' + i + '-error'" />
                   <div
                     *ngIf="getDimension(i, 'yPos')?.errors && (getDimension(i, 'yPos')?.touched || getDimension(i, 'yPos')?.dirty)"
-                    class="invalid-feedback">
-                    <div *ngIf="getDimension(i, 'yPos')?.errors?.required">
-                      Y position is required
-                    </div>
-                    <div *ngIf="getDimension(i, 'yPos')?.errors?.minlength">
-                      Y position must be at least 1 character
-                    </div>
-                    <div *ngIf="getDimension(i, 'yPos')?.errors?.maxlength">
-                      Y position cannot exceed {{ getDimension(i, 'yPos')?.errors?.maxlength.requiredLength }}
-                      characters
-                    </div>
-                    <div *ngIf="getDimension(i, 'yPos')?.errors?.pattern">
-                      Y position must be a valid number
-                    </div>
+                    class="invalid-feedback" [id]="'dimension-yPos-' + i + '-error'">
+                    <ng-container *ngIf="getDimension(i, 'yPos')?.errors as errors">
+                      <div *ngIf="errors.required">Y position is required</div>
+                      <div *ngIf="errors.minlength">
+                        Y position must be at least {{ errors.minlength.requiredLength }} character<span
+                          *ngIf="errors.minlength.requiredLength > 1">s</span>
+                      </div>
+                      <div *ngIf="errors.maxlength">
+                        Y position cannot exceed {{ errors.maxlength.requiredLength }} character<span
+                          *ngIf="errors.maxlength.requiredLength > 1">s</span>
+                      </div>
+                      <div *ngIf="errors.pattern">
+                        Y position must be a valid number
+                      </div>
+                      <div *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">
+                        Invalid value for Y position
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
               </div>
@@ -189,24 +268,28 @@
                       'form-control': true,
                       'is-invalid': getDimension(i, 'hPos')?.invalid && (getDimension(i, 'hPos')?.touched || getDimension(i, 'hPos')?.dirty),
                       'is-valid': getDimension(i, 'hPos')?.valid && (getDimension(i, 'hPos')?.touched || getDimension(i, 'hPos')?.dirty)
-                    }" />
+                    }" [attr.aria-invalid]="getDimension(i, 'hPos')?.invalid ? true : null"
+                    [attr.aria-describedby]="'dimension-hPos-' + i + '-error'" />
                   <div
                     *ngIf="getDimension(i, 'hPos')?.errors && (getDimension(i, 'hPos')?.touched || getDimension(i, 'hPos')?.dirty)"
-                    class="invalid-feedback">
-                    <div *ngIf="getDimension(i, 'hPos')?.errors?.required">
-                      H position is required
-                    </div>
-                    <div *ngIf="getDimension(i, 'hPos')?.errors?.minlength">
-                      H position must be at least {{ getDimension(i, 'hPos')?.errors?.minlength.requiredLength }}
-                      characters
-                    </div>
-                    <div *ngIf="getDimension(i, 'hPos')?.errors?.maxlength">
-                      H position cannot exceed {{ getDimension(i, 'hPos')?.errors?.maxlength.requiredLength }}
-                      characters
-                    </div>
-                    <div *ngIf="getDimension(i, 'hPos')?.errors?.pattern">
-                      H position must be a valid number
-                    </div>
+                    class="invalid-feedback" [id]="'dimension-hPos-' + i + '-error'">
+                    <ng-container *ngIf="getDimension(i, 'hPos')?.errors as errors">
+                      <div *ngIf="errors.required">H position is required</div>
+                      <div *ngIf="errors.minlength">
+                        H position must be at least {{ errors.minlength.requiredLength }} character<span
+                          *ngIf="errors.minlength.requiredLength > 1">s</span>
+                      </div>
+                      <div *ngIf="errors.maxlength">
+                        H position cannot exceed {{ errors.maxlength.requiredLength }} character<span
+                          *ngIf="errors.maxlength.requiredLength > 1">s</span>
+                      </div>
+                      <div *ngIf="errors.pattern">
+                        H position must be a valid number
+                      </div>
+                      <div *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">
+                        Invalid value for H position
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
               </div>
@@ -219,20 +302,28 @@
                       'form-control': true,
                       'is-invalid': getDimension(i, 'x')?.invalid && (getDimension(i, 'x')?.touched || getDimension(i, 'x')?.dirty),
                       'is-valid': getDimension(i, 'x')?.valid && (getDimension(i, 'x')?.touched || getDimension(i, 'x')?.dirty)
-                    }" />
+                    }" [attr.aria-invalid]="getDimension(i, 'x')?.invalid ? true : null"
+                    [attr.aria-describedby]="'dimension-x-' + i + '-error'" />
                   <div
                     *ngIf="getDimension(i, 'x')?.errors && (getDimension(i, 'x')?.touched || getDimension(i, 'x')?.dirty)"
-                    class="invalid-feedback">
-                    <div *ngIf="getDimension(i, 'x')?.errors?.required">X is required</div>
-                    <div *ngIf="getDimension(i, 'x')?.errors?.minlength">
-                      X must be at least {{ getDimension(i, 'x')?.errors?.minlength.requiredLength }} character
-                    </div>
-                    <div *ngIf="getDimension(i, 'x')?.errors?.maxlength">
-                      X cannot exceed {{ getDimension(i, 'x')?.errors?.maxlength.requiredLength }} characters
-                    </div>
-                    <div *ngIf="getDimension(i, 'x')?.errors?.pattern">
-                      X must be a valid number
-                    </div>
+                    class="invalid-feedback" [id]="'dimension-x-' + i + '-error'">
+                    <ng-container *ngIf="getDimension(i, 'x')?.errors as errors">
+                      <div *ngIf="errors.required">X is required</div>
+                      <div *ngIf="errors.minlength">
+                        X must be at least {{ errors.minlength.requiredLength }} character<span
+                          *ngIf="errors.minlength.requiredLength > 1">s</span>
+                      </div>
+                      <div *ngIf="errors.maxlength">
+                        X cannot exceed {{ errors.maxlength.requiredLength }} character<span
+                          *ngIf="errors.maxlength.requiredLength > 1">s</span>
+                      </div>
+                      <div *ngIf="errors.pattern">
+                        X must be a valid number
+                      </div>
+                      <div *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">
+                        Invalid value for X
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
               </div>
@@ -243,20 +334,28 @@
                       'form-control': true,
                       'is-invalid': getDimension(i, 'y')?.invalid && (getDimension(i, 'y')?.touched || getDimension(i, 'y')?.dirty),
                       'is-valid': getDimension(i, 'y')?.valid && (getDimension(i, 'y')?.touched || getDimension(i, 'y')?.dirty)
-                    }" />
+                    }" [attr.aria-invalid]="getDimension(i, 'y')?.invalid ? true : null"
+                    [attr.aria-describedby]="'dimension-y-' + i + '-error'" />
                   <div
                     *ngIf="getDimension(i, 'y')?.errors && (getDimension(i, 'y')?.touched || getDimension(i, 'y')?.dirty)"
-                    class="invalid-feedback">
-                    <div *ngIf="getDimension(i, 'y')?.errors?.required">Y is required</div>
-                    <div *ngIf="getDimension(i, 'y')?.errors?.minlength">
-                      Y must be at least {{ getDimension(i, 'y')?.errors?.minlength.requiredLength }} character
-                    </div>
-                    <div *ngIf="getDimension(i, 'y')?.errors?.maxlength">
-                      Y cannot exceed {{ getDimension(i, 'y')?.errors?.maxlength.requiredLength }} characters
-                    </div>
-                    <div *ngIf="getDimension(i, 'y')?.errors?.pattern">
-                      Y must be a valid number
-                    </div>
+                    class="invalid-feedback" [id]="'dimension-y-' + i + '-error'">
+                    <ng-container *ngIf="getDimension(i, 'y')?.errors as errors">
+                      <div *ngIf="errors.required">Y is required</div>
+                      <div *ngIf="errors.minlength">
+                        Y must be at least {{ errors.minlength.requiredLength }} character<span
+                          *ngIf="errors.minlength.requiredLength > 1">s</span>
+                      </div>
+                      <div *ngIf="errors.maxlength">
+                        Y cannot exceed {{ errors.maxlength.requiredLength }} character<span
+                          *ngIf="errors.maxlength.requiredLength > 1">s</span>
+                      </div>
+                      <div *ngIf="errors.pattern">
+                        Y must be a valid number
+                      </div>
+                      <div *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">
+                        Invalid value for Y
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
               </div>
@@ -267,20 +366,28 @@
                       'form-control': true,
                       'is-invalid': getDimension(i, 'h')?.invalid && (getDimension(i, 'h')?.touched || getDimension(i, 'h')?.dirty),
                       'is-valid': getDimension(i, 'h')?.valid && (getDimension(i, 'h')?.touched || getDimension(i, 'h')?.dirty)
-                    }" />
+                    }" [attr.aria-invalid]="getDimension(i, 'h')?.invalid ? true : null"
+                    [attr.aria-describedby]="'dimension-h-' + i + '-error'" />
                   <div
                     *ngIf="getDimension(i, 'h')?.errors && (getDimension(i, 'h')?.touched || getDimension(i, 'h')?.dirty)"
-                    class="invalid-feedback">
-                    <div *ngIf="getDimension(i, 'h')?.errors?.required">H is required</div>
-                    <div *ngIf="getDimension(i, 'h')?.errors?.minlength">
-                      H must be at least {{ getDimension(i, 'h')?.errors?.minlength.requiredLength }} character
-                    </div>
-                    <div *ngIf="getDimension(i, 'h')?.errors?.maxlength">
-                      H cannot exceed {{ getDimension(i, 'h')?.errors?.maxlength.requiredLength }} characters
-                    </div>
-                    <div *ngIf="getDimension(i, 'h')?.errors?.pattern">
-                      H must be a valid number
-                    </div>
+                    class="invalid-feedback" [id]="'dimension-h-' + i + '-error'">
+                    <ng-container *ngIf="getDimension(i, 'h')?.errors as errors">
+                      <div *ngIf="errors.required">H is required</div>
+                      <div *ngIf="errors.minlength">
+                        H must be at least {{ errors.minlength.requiredLength }} character<span
+                          *ngIf="errors.minlength.requiredLength > 1">s</span>
+                      </div>
+                      <div *ngIf="errors.maxlength">
+                        H cannot exceed {{ errors.maxlength.requiredLength }} character<span
+                          *ngIf="errors.maxlength.requiredLength > 1">s</span>
+                      </div>
+                      <div *ngIf="errors.pattern">
+                        H must be a valid number
+                      </div>
+                      <div *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">
+                        Invalid value for H
+                      </div>
+                    </ng-container>
                   </div>
                 </div>
               </div>

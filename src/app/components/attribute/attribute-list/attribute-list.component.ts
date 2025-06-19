@@ -36,7 +36,7 @@ export class AttributeListComponent implements OnInit {
   attributeList: Attribute[] = []
   selectedAttribute: Attribute
   attributePage = 1 // Current page
-  pageSize = 10 // Number of items per page
+  pageSize = 5 // Number of items per page
   totalItems = 0 // Total number of items
   component = 'attributes'
   componentName = 'Attributes'
@@ -213,7 +213,7 @@ export class AttributeListComponent implements OnInit {
     })
   }
 
-  findAttributeDictionary(id: string): string {
-    return this.attributeDictionary.find((e) => e._id === id)?.name as string
+  findAttributeDictionaryName(id: string): string {
+    return (this.attributeDictionary.find((e) => e._id === id)?.name as string) || ''
   }
 }

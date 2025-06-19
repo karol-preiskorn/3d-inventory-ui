@@ -189,9 +189,10 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
     const object = new THREE.Mesh(geometry, sphereMaterial)
     object.position.x = pos_x
-    object.position.y = pos_z + box_z / 2
+    object.position.y = pos_z + box_y / 2
     object.position.z = pos_y
     object.receiveShadow = true
+    object.castShadow = true // Enable shadow casting
     this.scene.add(object)
 
     const loader = new FontLoader()
@@ -212,12 +213,14 @@ export class CubeComponent implements OnInit, AfterViewInit {
         const material = new THREE.MeshBasicMaterial({ color: colorText })
         const textMesh = new THREE.Mesh(textGeo, material)
         textMesh.position.x = pos_x - (device_name.length * 0.85) / 2
-        textMesh.position.y = pos_y + box_y + 4
-        textMesh.position.z = pos_z
+        textMesh.position.y = pos_z + box_y
+        textMesh.position.z = pos_y
 
         textMesh.rotation.x = 0
         textMesh.rotation.y = 0
         textMesh.rotation.z = Math.PI * 2
+        textMesh.castShadow = true // Enable shadow casting for text
+        textMesh.receiveShadow = true // Enable shadow receiving for text
         this.scene.add(textMesh)
       })
   }
@@ -300,23 +303,29 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   addLight() {
+    // Create a directional light with white color and intensity 2
     const light = new THREE.DirectionalLight(0xffffff, 2)
-    light.position.set(30, 10, 50)
-    light.castShadow = true
+    light.position.set(30, 50, 50)
+    light.castShadow = true // Enable shadow casting
 
-    light.position.set(15, 20, 10)
-    light.castShadow = true // default false
-    light.shadow.camera.near = 0.5 // adjusted to a typical value
-    //Set up shadow properties for the light
-    light.shadow.mapSize.width = 3000 // default
-    light.shadow.mapSize.height = 3000 // default
-    light.shadow.camera.near = 1000 // default
-    light.shadow.camera.far = 2000 // default
+    // Configure shadow properties for better shadow quality and coverage
+    light.shadow.mapSize.width = 2048
+    light.shadow.mapSize.height = 2048
+    light.shadow.camera.near = 0.5
+    light.shadow.camera.far = 2000
+    light.shadow.camera.left = -50
+    light.shadow.camera.right = 50
+    light.shadow.camera.top = 50
+    light.shadow.camera.bottom = -50
+    light.shadow.bias = -0.0001 // Reduce shadow artifacts
 
     this.scene.add(light)
 
-    const lightHelper = new THREE.DirectionalLightHelper(light, 1)
+    // Add a helper to visualize the light and its shadow camera
+    const lightHelper = new THREE.DirectionalLightHelper(light, 8)
     this.scene.add(lightHelper)
+    const shadowCameraHelper = new THREE.CameraHelper(light.shadow.camera)
+    this.scene.add(shadowCameraHelper)
   }
 
   addDirectionalLight1() {
@@ -326,24 +335,34 @@ export class CubeComponent implements OnInit, AfterViewInit {
     }
     const lightIntensity = Math.min(2, Math.max(0.5, 1 / fogNear)) // Adjust intensity dynamically
     const light2 = new THREE.DirectionalLight(0xffffff, lightIntensity)
-    light2.position.set(-20, 30, 50)
-    light2.shadow.camera.bottom = -50
-    light2.shadow.camera.top = 50
+    light2.position.set(30, 30, 50)
+
+    // Enable shadows for this light
+    light2.castShadow = true
+
+    // Configure shadow camera for better shadow quality and coverage
+    light2.shadow.camera.near = 0.5
+    light2.shadow.camera.far = 2000
     light2.shadow.camera.left = -50
     light2.shadow.camera.right = 50
-    light2.shadow.camera.near = 0.5 // adjusted to a typical value
-    light2.shadow.camera.far = 2000
-    light2.shadow.camera.left = -10
-    light2.shadow.camera.near = 1000 // default
-    light2.shadow.camera.right = 10
-    light2.shadow.camera.top = 10
-    light2.shadow.mapSize.height = 3000 // default
-    light2.shadow.mapSize.width = 3000 // default
+    light2.shadow.camera.top = 50
+    light2.shadow.camera.bottom = -50
+
+    // Set shadow map size for higher resolution shadows
+    light2.shadow.mapSize.width = 2048
+    light2.shadow.mapSize.height = 2048
+
+    // Optional: tweak shadow bias to reduce artifacts
+    light2.shadow.bias = -0.0001
+
     this.scene.add(light2)
 
     if (!environment.production) {
       const lightHelper2 = new THREE.DirectionalLightHelper(light2, 8, 0xff0000)
       this.scene.add(lightHelper2)
+      // Optionally, add a CameraHelper to visualize the shadow camera frustum
+      const shadowCameraHelper = new THREE.CameraHelper(light2.shadow.camera)
+      this.scene.add(shadowCameraHelper)
     }
   }
 
@@ -353,30 +372,38 @@ export class CubeComponent implements OnInit, AfterViewInit {
     const LIGHT3_SATURATION = 1
     const LIGHT3_LIGHTNESS = 0.95
     light3.color.setHSL(LIGHT3_HUE, LIGHT3_SATURATION, LIGHT3_LIGHTNESS)
-    light3.position.set(20, 40, 25)
+    light3.position.set(-20, 40, 25)
     light3.castShadow = true
-    light3.shadow.camera.bottom = -10
-    light3.shadow.camera.far = 2000 // default
-    light3.shadow.camera.left = -10
-    light3.shadow.camera.near = 1000 // default
-    light3.shadow.camera.right = 10
-    light3.shadow.camera.top = 10
-    light3.shadow.mapSize.height = 3000 // default
-    light3.shadow.mapSize.width = 3000 // default
+
+    // Configure shadow properties for better shadow quality
+    light3.shadow.mapSize.width = 2048
+    light3.shadow.mapSize.height = 2048
+    light3.shadow.camera.near = 0.5
+    light3.shadow.camera.far = 2000
+    light3.shadow.camera.left = -50
+    light3.shadow.camera.right = 50
+    light3.shadow.camera.top = 50
+    light3.shadow.camera.bottom = -50
+    light3.shadow.bias = -0.0001
+
     this.scene.add(light3)
 
+    // Add a helper to visualize the light and its shadow camera
     const lightHelper3 = new THREE.DirectionalLightHelper(light3, 20, 0xdcffee)
-    lightHelper3.position.set(40, 40, 45)
-
-    lightHelper3.castShadow = true
     this.scene.add(lightHelper3)
+
+    // Optionally, add a CameraHelper to visualize the shadow camera frustum
+    if (light3.castShadow && light3.shadow && light3.shadow.camera) {
+      const shadowCameraHelper = new THREE.CameraHelper(light3.shadow.camera)
+      this.scene.add(shadowCameraHelper)
+    }
   }
 
   addAmbientLight() {
     const color = 0xafffff
-    const intensity = 8
+    const intensity = 0.5 // Lower intensity for ambient light to avoid washing out shadows
     const lightAmbient = new THREE.AmbientLight(color, intensity)
-    lightAmbient.castShadow = true
+    // AmbientLight does not cast shadows in three.js
     this.scene.add(lightAmbient)
   }
 
