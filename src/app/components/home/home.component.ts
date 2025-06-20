@@ -1,7 +1,30 @@
-import { CommonModule } from '@angular/common'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
 import { Converter } from 'showdown'
+import { environment } from '../../../environments/environment'
+import { CommonModule } from '@angular/common'
+
+/**
+ * Represents a GitHub issue as returned by the GitHub Issues API.
+ * Only a subset of fields is included here for demonstration.
+ */
+export interface GitHubIssue {
+  id: number
+  number: number
+  title: string
+  state: string
+  body: string
+  user: {
+    login: string
+    id: number
+    avatar_url: string
+    html_url: string
+  }
+  html_url: string
+  created_at: string
+  updated_at: string
+  // Add more fields as needed from the GitHub API response
+}
 
 @Component({
   selector: 'app-home',
@@ -12,13 +35,25 @@ import { Converter } from 'showdown'
 })
 export class HomeComponent implements OnInit {
   md: string = ''
-  githubIssuesUrl = 'https://api.github.com/karol-preiskorn/3d-inventory-angular-ui/issues'
-  githubIssuesUrl2 = 'https://api.github.com/repositories/600698591/issues'
-  authToken = 'your-valid-token-here' // Replace with a valid token or dynamically fetch it
+  githubIssuesUrl = 'https://api.github.com/repos/karol-preiskorn/3d-inventory-angular-ui/issues'
+
+  headers = {
+    Authorization: `token ${environment.githubToken}`,
+  }
+
   baseUrl = 'https://api.github.com'
-  issues = ''
+  issues: any[] = []
   issuesJson: string = ''
   isDebugMode: boolean = false
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      Authorization: `Bearer ${environment.githubToken}`,
+    }),
+  }
 
   toggleDebugMode() {
     this.isDebugMode = !this.isDebugMode
@@ -36,8 +71,6 @@ export class HomeComponent implements OnInit {
         converter.setOption('strikethrough', 'true')
         converter.setOption('ghCompatibleHeaderId', 'true')
         converter.setOption('emoji', 'true')
-        converter.setOption('simplifiedAutoLink', 'true')
-        converter.setOption('openLinksInNewWindow', 'true')
         converter.setOption('headerLevelStart', 2) // Start headers from level 2
         converter.setOption('literalMidWordUnderscores', 'true')
         converter.setOption('literalMidWordAsterisks', 'true')
@@ -57,28 +90,15 @@ export class HomeComponent implements OnInit {
       },
     )
 
-    if (!this.authToken) {
-      console.error('Authorization token is missing. Please set a valid token.')
-      return
-    }
-
-    this.http.get(this.githubIssuesUrl, this.httpOptions).subscribe((data) => {
+    // The GitHub Issues API returns an array of issue objects.
+    this.http.get<GitHubIssue[]>(this.githubIssuesUrl, this.httpOptions).subscribe((data) => {
       console.log('Get Issues ' + JSON.stringify(data, null, ' '))
-      this.issues = data as string
+      this.issues = data
     })
   }
 
-  httpOptions: {
-    headers: HttpHeaders
-  } = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.authToken,
-    }),
-  }
-
   ngOnInit(): void {
-    console.log('Markdown ngOnInit: ' + JSON.stringify(this.md, null, ' '))
+    console.log('Markdown ngOnInit: ' + JSON.stringify(this.md))
     // No need to set renderer here; bind [data]="md" in your template
     // Removed invalid renderer event binding as 'on' does not exist on '_Renderer'
   }

@@ -11,13 +11,17 @@
               'is-valid': editAttributeForm.get('deviceId')?.valid && !editAttributeForm.get('deviceId')?.hasError('atLeastOneValidator') && (editAttributeForm.get('deviceId')?.touched || editAttributeForm.get('deviceId')?.dirty),
                         'form-select': true,
                       }" id="deviceId">
-            <option *ngFor="let deviceObj of deviceDictionary; let i = index" [value]="deviceObj._id">
-              {{ deviceObj.name }}
-            </option>
+            @for (deviceObj of deviceDictionary; track deviceObj; let i = $index) {
+              <option [value]="deviceObj._id">
+                {{ deviceObj.name }}
+              </option>
+            }
           </select>
-          <div *ngIf="editAttributeForm.hasError('atLeastOneValidator')" class="error-message">
-            One of field: deviceId, modelId or connectionId is required
-          </div>
+          @if (editAttributeForm.hasError('atLeastOneValidator')) {
+            <div class="error-message">
+              One of field: deviceId, modelId or connectionId is required
+            </div>
+          }
           <div class="log-message">
             {{ editAttributeForm.controls.deviceId.value | json }}
           </div>
@@ -31,13 +35,17 @@
                         'is-valid': editAttributeForm.get('modelId')?.valid && (editAttributeForm.get('modelId')?.touched || editAttributeForm.get('modelId')?.dirty),
                         'form-select': true,
                       }" id="modelId">
-            <option *ngFor="let modelObj of modelDictionary; let i = index" [value]="modelObj._id">
-              {{ modelObj.name }}
-            </option>
+            @for (modelObj of modelDictionary; track modelObj; let i = $index) {
+              <option [value]="modelObj._id">
+                {{ modelObj.name }}
+              </option>
+            }
           </select>
-          <div *ngIf="editAttributeForm.hasError('atLeastOneValidator')" class="error-message">
-            One of field: deviceId, modelId or connectionId is required
-          </div>
+          @if (editAttributeForm.hasError('atLeastOneValidator')) {
+            <div class="error-message">
+              One of field: deviceId, modelId or connectionId is required
+            </div>
+          }
           <div class="log-message">
             {{ editAttributeForm.controls.modelId.value | json }}
           </div>
@@ -51,14 +59,18 @@
               'is-valid': editAttributeForm.get('connectionId')?.valid && !editAttributeForm.get('connectionId')?.hasError('atLeastOneValidator') && (editAttributeForm.get('connectionId')?.touched || editAttributeForm.get('connectionId')?.dirty),
                         'form-select': true,
                       }" id="connectionId">
-            <option *ngFor="let connectionObj of connectionDictionary; let i = index"
-              value="{{ connectionObj._id }}">
-              {{ connectionObj.name }}
-            </option>
+            @for (connectionObj of connectionDictionary; track connectionObj; let i = $index) {
+              <option
+                value="{{ connectionObj._id }}">
+                {{ connectionObj.name }}
+              </option>
+            }
           </select>
-          <div *ngIf="editAttributeForm.hasError('atLeastOneValidator')" class="error-message">
-            One of field: deviceId, modelId or connectionId is required
-          </div>
+          @if (editAttributeForm.hasError('atLeastOneValidator')) {
+            <div class="error-message">
+              One of field: deviceId, modelId or connectionId is required
+            </div>
+          }
           <div class="log-message">
             {{ toString(editAttributeForm.controls.connectionId.value) }}
           </div>
@@ -72,18 +84,23 @@
               'is-valid': editAttributeForm.get('attributeDictionaryId')?.valid && (editAttributeForm.get('attributeDictionaryId')?.touched || editAttributeForm.get('attributeDictionaryId')?.dirty),
               'form-select': true,
             }" id="attributeDictionaryId">
-            <option *ngFor="let attributeDictionaryObj of attributeDictionary; let i = index"
-              [value]="attributeDictionaryObj._id">
-              {{ attributeDictionaryObj.name }}
-            </option>
+            @for (attributeDictionaryObj of attributeDictionary; track attributeDictionaryObj; let i = $index) {
+              <option
+                [value]="attributeDictionaryObj._id">
+                {{ attributeDictionaryObj.name }}
+              </option>
+            }
           </select>
-          <div
-            *ngIf="editAttributeForm.get('attributeDictionaryId')?.invalid && (editAttributeForm.get('attributeDictionaryId')?.touched || editAttributeForm.get('attributeDictionaryId')?.dirty)"
-            class="invalid-feedback">
-            <div *ngIf="editAttributeForm.get('attributeDictionaryId')?.errors?.required">
-              attributeDictionaryId is required
+          @if (editAttributeForm.get('attributeDictionaryId')?.invalid && (editAttributeForm.get('attributeDictionaryId')?.touched || editAttributeForm.get('attributeDictionaryId')?.dirty)) {
+            <div
+              class="invalid-feedback">
+              @if (editAttributeForm.get('attributeDictionaryId')?.errors?.required) {
+                <div>
+                  attributeDictionaryId is required
+                </div>
+              }
             </div>
-          </div>
+          }
           <div class="log-message">
             {{ editAttributeForm.controls.attributeDictionaryId.value }}
           </div>
@@ -99,13 +116,19 @@
               'is-valid': editAttributeForm.controls.value.status === 'VALID',
               'form-control': true,
             }" />
-          <div *ngIf="editAttributeForm.controls.value.errors" class="invalid-feedback">
-            <div *ngIf="editAttributeForm.controls.value.errors.required">Value is required</div>
-            <div *ngIf="editAttributeForm.controls.value.errors.minlength">
-              Value must be at least {{ editAttributeForm.controls.value.errors.minlength.requiredLength }}
-              characters
+          @if (editAttributeForm.controls.value.errors) {
+            <div class="invalid-feedback">
+              @if (editAttributeForm.controls.value.errors.required) {
+                <div>Value is required</div>
+              }
+              @if (editAttributeForm.controls.value.errors.minlength) {
+                <div>
+                  Value must be at least {{ editAttributeForm.controls.value.errors.minlength.requiredLength }}
+                  characters
+                </div>
+              }
             </div>
-          </div>
+          }
         </div>
       </div>
     </div>
@@ -117,18 +140,18 @@
             Update attribute
           </button>
           <!-- <div *ngIf="!(this.editAttributeForm.valid && this.editAttributeForm.touched)" class="invalid-feedback">
-            Form is invalid
-          </div>
-          <div class="log-message">atLeastOneValidator: {{ editAttributeForm.hasError('atLeastOneValidator') }}</div>
-          <div class="log-message">editAttributeForm.value: {{ toString(editAttributeForm.value) }}</div>
-          <div class="log-message">this.editAttributeForm.valid: {{ toString(this.editAttributeForm.valid) }}</div>
-          <div class="log-message">this.editAttributeForm.touched: {{ toString(this.editAttributeForm.touched) }}</div> -->
+          Form is invalid
         </div>
+        <div class="log-message">atLeastOneValidator: {{ editAttributeForm.hasError('atLeastOneValidator') }}</div>
+        <div class="log-message">editAttributeForm.value: {{ toString(editAttributeForm.value) }}</div>
+        <div class="log-message">this.editAttributeForm.valid: {{ toString(this.editAttributeForm.valid) }}</div>
+        <div class="log-message">this.editAttributeForm.touched: {{ toString(this.editAttributeForm.touched) }}</div> -->
       </div>
     </div>
-  </form>
+  </div>
+</form>
 </div>
 <!-- The <app-log> component is used to display logs or debugging information related to the current component.
-     It shows the state of the component, including form values, validation statuses, and any errors encountered.
-     This helps developers understand the current state of the application and troubleshoot issues effectively. -->
+It shows the state of the component, including form values, validation statuses, and any errors encountered.
+This helps developers understand the current state of the application and troubleshoot issues effectively. -->
 <app-log [component]="component"></app-log>

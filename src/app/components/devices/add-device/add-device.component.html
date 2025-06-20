@@ -8,10 +8,16 @@
           'is-valid': addDeviceForm.controls.name.status === 'VALID',
           'form-control': true,
         }"></textarea>
-      <div *ngIf="addDeviceForm.controls.name.errors" class="invalid-feedback">
-        <div *ngIf="addDeviceForm.controls.name.errors.required">Name is required</div>
-        <div *ngIf="addDeviceForm.controls.name.errors.minlength">Name must be at least 4 characters</div>
-      </div>
+      @if (addDeviceForm.controls.name.errors) {
+        <div class="invalid-feedback">
+          @if (addDeviceForm.controls.name.errors.required) {
+            <div>Name is required</div>
+          }
+          @if (addDeviceForm.controls.name.errors.minlength) {
+            <div>Name must be at least 4 characters</div>
+          }
+        </div>
+      }
     </div>
     <div formGroupName="position">
       <div class="row">
@@ -23,13 +29,19 @@
                   'is-invalid': addDeviceForm.get('position.x') && addDeviceForm.get('position.x')?.status !== 'VALID',
                   'is-valid': addDeviceForm.get('position.x')?.status === 'VALID',
                 }" />
-            <div *ngIf="addDeviceForm.get('position.x')?.errors" class="invalid-feedback">
-              <div *ngIf="addDeviceForm.get('position.x')?.errors?.required">X is required</div>
-              <div
-                *ngIf="addDeviceForm.get('position.x')?.errors?.min || addDeviceForm.get('position.x')?.errors?.max">
-                X must be at bettween -20 and 20
+            @if (addDeviceForm.get('position.x')?.errors) {
+              <div class="invalid-feedback">
+                @if (addDeviceForm.get('position.x')?.errors?.required) {
+                  <div>X is required</div>
+                }
+                @if (addDeviceForm.get('position.x')?.errors?.min || addDeviceForm.get('position.x')?.errors?.max) {
+                  <div
+                    >
+                    X must be at bettween -20 and 20
+                  </div>
+                }
               </div>
-            </div>
+            }
           </div>
         </div>
         <div class="col">
@@ -40,13 +52,19 @@
                   'is-invalid': addDeviceForm.get('position.y') && addDeviceForm.get('position.y')?.status !== 'VALID',
                   'is-valid': addDeviceForm.get('position.y')?.status === 'VALID',
                 }" />
-            <div *ngIf="addDeviceForm.get('position.y')?.errors" class="invalid-feedback">
-              <div *ngIf="addDeviceForm.get('position.y')?.errors?.required">Y is required</div>
-              <div
-                *ngIf="addDeviceForm.get('position.y')?.errors?.min || addDeviceForm.get('position.y')?.errors?.max">
-                X must be at bettween -20 and 20
+            @if (addDeviceForm.get('position.y')?.errors) {
+              <div class="invalid-feedback">
+                @if (addDeviceForm.get('position.y')?.errors?.required) {
+                  <div>Y is required</div>
+                }
+                @if (addDeviceForm.get('position.y')?.errors?.min || addDeviceForm.get('position.y')?.errors?.max) {
+                  <div
+                    >
+                    X must be at bettween -20 and 20
+                  </div>
+                }
               </div>
-            </div>
+            }
           </div>
         </div>
         <div class="col">
@@ -57,14 +75,20 @@
                   'is-invalid': addDeviceForm.get('position.h') && addDeviceForm.get('position.h')?.status !== 'VALID',
                   'is-valid': addDeviceForm.get('position.h')?.status === 'VALID',
                 }" />
-            <div *ngIf="addDeviceForm.get('position.h')?.errors" class="invalid-feedback">
-              <div *ngIf="addDeviceForm.get('position.h')?.errors?.required">H is required
+            @if (addDeviceForm.get('position.h')?.errors) {
+              <div class="invalid-feedback">
+                @if (addDeviceForm.get('position.h')?.errors?.required) {
+                  <div>H is required
+                  </div>
+                }
+                @if (addDeviceForm.get('position.h')?.errors?.min || addDeviceForm.get('position.h')?.errors?.max) {
+                  <div
+                    >
+                    H must be at bettween -20 and 20
+                  </div>
+                }
               </div>
-              <div
-                *ngIf="addDeviceForm.get('position.h')?.errors?.min || addDeviceForm.get('position.h')?.errors?.max">
-                H must be at bettween -20 and 20
-              </div>
-            </div>
+            }
           </div>
         </div>
       </div>
@@ -79,13 +103,19 @@
               'is-valid': addDeviceForm.controls.modelId.status === 'VALID',
               'form-select': true,
             }">
-            <option *ngFor="let modelObj of modelList; let i = index" value="{{ modelObj._id }}">
-              {{ modelObj.name }}
-            </option>
+            @for (modelObj of modelList; track modelObj; let i = $index) {
+              <option value="{{ modelObj._id }}">
+                {{ modelObj.name }}
+              </option>
+            }
           </select>
-          <div *ngIf="addDeviceForm.controls.modelId.errors" class="invalid-feedback">
-            <div *ngIf="addDeviceForm.controls.modelId.errors.required">Name is required</div>
-          </div>
+          @if (addDeviceForm.controls.modelId.errors) {
+            <div class="invalid-feedback">
+              @if (addDeviceForm.controls.modelId.errors.required) {
+                <div>Name is required</div>
+              }
+            </div>
+          }
         </div>
       </div>
     </div>

@@ -32,6 +32,8 @@ Project creates ✨`3d inventory`✨—a solution that allows you to build a spa
 
 I am developing this project as a sandbox to explore database systems. It covers relevant topics and issues related to creating a simple and efficient platform for graphical representation of IT inventory.
 
+<img title="Application 3d-inventory" src="src/assets/img/2025-06-20_12-18_1.png" tyle="filter: drop-shadow(8px 8px 8px black); border-radius: 1%; margin-bottom: 16px" width="85%">
+
 ## Architecture
 
 <img title="Architecture" src="src/assets/architecture.drawio.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%; margin-bottom: 16px" width="85%">

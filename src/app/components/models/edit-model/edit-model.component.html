@@ -10,12 +10,15 @@
               'is-invalid': editModelForm.get('id')?.status !== 'VALID',
               'is-valid': editModelForm.get('id')?.status === 'VALID',
             }" />
-          <div *ngIf="editModelForm.get('id')?.errors" class="invalid-feedback">
-            <div
-              *ngIf="editModelForm.controls.id?.errors?.required || editModelForm.controls.id?.errors?.minlength">
+          @if (editModelForm.get('id')?.errors) {
+          <div class="invalid-feedback">
+            @if (editModelForm.controls.id.errors?.required || editModelForm.controls.id.errors?.minlength) {
+            <div>
               Id is required and must be at least 4 characters
             </div>
+            }
           </div>
+          }
         </div>
       </div>
       <div class="col">
@@ -26,12 +29,15 @@
               'is-invalid': editModelForm.get('name')?.status !== 'VALID',
               'is-valid': editModelForm.get('name')?.status === 'VALID',
             }" />
-          <div *ngIf="editModelForm.get('name')?.errors" class="invalid-feedback">
-            <div
-              *ngIf="editModelForm.controls.name.errors?.required || editModelForm.controls.name.errors?.minlength">
+          @if (editModelForm.get('name')?.errors) {
+          <div class="invalid-feedback">
+            @if (editModelForm.controls.name.errors?.required || editModelForm.controls.name.errors?.minlength) {
+            <div>
               Name is required and must be at least 4 characters
             </div>
+            }
           </div>
+          }
         </div>
       </div>
     </div>
@@ -44,10 +50,14 @@
               'is-invalid': editModelForm.get('dimension.width')?.status !== 'VALID',
               'is-valid': editModelForm.get('dimension.width')?.status === 'VALID',
             }" />
-          <div *ngIf="editModelForm.get('dimension.width')?.errors" class="invalid-feedback"></div>
+          @if (editModelForm.get('dimension.width')?.errors) {
+          <div class="invalid-feedback"></div>
+          }
           <div>Width is required and must be at least 1 number</div>
-          <div *ngIf="editModelForm.get('dimension.width')?.errors?.maxlength">Width must be less than 6 numbers
+          @if (editModelForm.get('dimension.width')?.errors?.maxlength) {
+          <div>Width must be less than 6 numbers
           </div>
+          }
         </div>
       </div>
       <div class="col">
@@ -58,17 +68,23 @@
               'is-invalid': editModelForm.get('dimension.height')?.status !== 'VALID',
               'is-valid': editModelForm.get('dimension.height')?.status === 'VALID',
             }" />
-          <div *ngIf="editModelForm?.get('dimension.height')?.errors" class="invalid-feedback">
-            <div *ngIf="
-                editModelForm?.get('dimension.height')?.errors?.required ||
-                editModelForm?.get('dimension.height')?.errors?.minlength
-              ">
+          @if (editModelForm.get('dimension.height')?.errors) {
+          <div class="invalid-feedback">
+            @if (
+            editModelForm.get('dimension.height')?.errors?.required ||
+            editModelForm.get('dimension.height')?.errors?.minlength
+            ) {
+            <div>
               Height is required and must be at least 1 number
             </div>
-            <div *ngIf="editModelForm?.get('dimension.height')?.errors?.maxlength">
+            }
+            @if (editModelForm.get('dimension.height')?.errors?.maxlength) {
+            <div>
               Height must be less than 6 numbers
             </div>
+            }
           </div>
+          }
         </div>
       </div>
       <div class="col">
@@ -80,16 +96,22 @@
               'is-valid': editModelForm.get('dimension.depth')?.status === 'VALID',
             }" />
 
-          <div *ngIf="editModelForm.get('dimension.depth')?.errors" class="invalid-feedback">
-            <div *ngIf="
-                editModelForm.get('dimension.depth')?.errors?.required ||
-                editModelForm.get('dimension.depth')?.errors?.minlength
-              ">
+          @if (editModelForm.get('dimension.depth')?.errors) {
+          <div class="invalid-feedback">
+            @if (
+            editModelForm.get('dimension.depth')?.errors?.required ||
+            editModelForm.get('dimension.depth')?.errors?.minlength
+            ) {
+            <div>
               Depth is required and must be at least 1 number
             </div>
-            <div *ngIf="editModelForm.get('dimension.depth')?.errors?.maxlength">Depth must be less than 4 numbers
+            }
+            @if (editModelForm.get('dimension.depth')?.errors?.maxlength) {
+            <div>Depth must be less than 4 numbers
             </div>
+            }
           </div>
+          }
         </div>
       </div>
     </div>
@@ -101,13 +123,17 @@
               'is-invalid': editModelForm.get('texture.front')?.status !== 'VALID',
               'is-valid': editModelForm.get('texture.front')?.status === 'VALID',
             }" />
-          <div *ngIf="editModelForm.get('texture.front')?.errors" class="invalid-feedback"></div>
-          <div *ngIf="
-              editModelForm.get('texture.front')?.errors?.required ||
-              editModelForm.get('texture.front')?.errors?.minlength
-            ">
+          @if (editModelForm.get('texture.front')?.errors) {
+          <div class="invalid-feedback"></div>
+          }
+          @if (
+          editModelForm.get('texture.front')?.errors?.required ||
+          editModelForm.get('texture.front')?.errors?.minlength
+          ) {
+          <div>
             Front is required and must be at least 1 number
           </div>
+          }
         </div>
       </div>
       <div class="col">
@@ -117,11 +143,15 @@
               'is-invalid': editModelForm.get('texture.back')?.status !== 'VALID',
               'is-valid': editModelForm.get('texture.back')?.status === 'VALID',
             }" />
-          <div *ngIf="editModelForm.get('texture.back')?.errors" class="invalid-feedback">
-            <div *ngIf="editModelForm.get('texture.back')?.errors?.minlength">
+          @if (editModelForm.get('texture.back')?.errors) {
+          <div class="invalid-feedback">
+            @if (editModelForm.get('texture.back')?.errors?.minlength) {
+            <div>
               Back side is required and must be at least 1 number
             </div>
+            }
           </div>
+          }
         </div>
       </div>
       <div class="col">
@@ -131,14 +161,18 @@
               'is-invalid': editModelForm.get('texture.side')?.status !== 'VALID',
               'is-valid': editModelForm.get('texture.side')?.status === 'VALID',
             }" />
-          <div *ngIf="editModelForm.get('texture.side')?.errors" class="invalid-feedback">
-            <div *ngIf="
-                editModelForm.get('texture.side')?.errors?.required ||
-                editModelForm.get('texture.side')?.errors?.minlength
-              ">
+          @if (editModelForm.get('texture.side')?.errors) {
+          <div class="invalid-feedback">
+            @if (
+            editModelForm.get('texture.side')?.errors?.required ||
+            editModelForm.get('texture.side')?.errors?.minlength
+            ) {
+            <div>
               Side is required and must be at least 1 number
             </div>
+            }
           </div>
+          }
         </div>
       </div>
       <div class="col">
@@ -148,14 +182,18 @@
               'is-invalid': editModelForm.get('texture.top')?.status !== 'VALID',
               'is-valid': editModelForm.get('texture.top')?.status === 'VALID',
             }" />
-          <div *ngIf="editModelForm.get('texture.top')?.errors" class="invalid-feedback">
-            <div *ngIf="
-                editModelForm.get('texture.top')?.errors?.required ||
-                editModelForm.get('texture.top')?.errors?.minlength
-              ">
+          @if (editModelForm.get('texture.top')?.errors) {
+          <div class="invalid-feedback">
+            @if (
+            editModelForm.get('texture.top')?.errors?.required ||
+            editModelForm.get('texture.top')?.errors?.minlength
+            ) {
+            <div>
               Top is required and must be at least 1 number
             </div>
+            }
           </div>
+          }
         </div>
       </div>
       <div class="col">
@@ -165,14 +203,18 @@
               'is-invalid': editModelForm.get('texture.bottom')?.status !== 'VALID',
               'is-valid': editModelForm.get('texture.bottom')?.status === 'VALID',
             }" />
-          <div *ngIf="editModelForm.get('texture.bottom')?.errors" class="invalid-feedback">
-            <div *ngIf="
-                editModelForm.get('texture.bottom')?.errors?.required ||
-                editModelForm.get('texture.bottom')?.errors?.minlength
-              ">
+          @if (editModelForm.get('texture.bottom')?.errors) {
+          <div class="invalid-feedback">
+            @if (
+            editModelForm.get('texture.bottom')?.errors?.required ||
+            editModelForm.get('texture.bottom')?.errors?.minlength
+            ) {
+            <div>
               Bottom is required and must be at least 2 characters
             </div>
+            }
           </div>
+          }
         </div>
       </div>
     </div>
@@ -190,10 +232,11 @@
           </button>
         </div>
       </div>
-      <div *ngIf="editModelForm !== null && editModelForm?.valid && editModelForm?.touched"
-        class="invalid-feedback">
+      @if (editModelForm !== null && editModelForm.valid && editModelForm.touched) {
+      <div class="invalid-feedback">
         Form is valid
       </div>
+      }
       <p class="valid-feedback">Form Status: {{ editModelForm.status }}.</p>
     </div>
   </form>

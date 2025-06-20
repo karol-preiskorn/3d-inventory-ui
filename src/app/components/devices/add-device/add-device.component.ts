@@ -13,7 +13,6 @@ import { DeviceCategoryDict } from '../../../shared/deviceCategories'
 import { DeviceTypeDict } from '../../../shared/DeviceTypes'
 import { Model } from '../../../shared/model'
 import Validation from '../../../shared/validation'
-import { t } from '@faker-js/faker/dist/airline-BUL6NtOJ'
 
 @Component({
   selector: 'app-add-device',

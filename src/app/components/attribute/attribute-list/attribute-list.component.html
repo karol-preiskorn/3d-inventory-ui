@@ -13,49 +13,51 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        *ngFor="let attribute of attributeList | slice: (attributePage - 1) * pageSize : attributePage * pageSize">
-        <td>
-          <div title="{{ attribute._id }}">{{ attribute._id }}</div>
-        </td>
-        <td>
-          <a href="edit-device/{{ attribute.deviceId }}" title="{{ attribute.deviceId }}">{{
-            findDeviceName(attribute.deviceId || '')
+      @for (attribute of attributeList | slice: (attributePage - 1) * pageSize : attributePage * pageSize; track attribute) {
+        <tr
+          >
+          <td>
+            <div title="{{ attribute._id }}">{{ attribute._id }}</div>
+          </td>
+          <td>
+            <a href="edit-device/{{ attribute.deviceId }}" title="{{ attribute.deviceId }}">{{
+              findDeviceName(attribute.deviceId || '')
             }}</a>
-        </td>
-        <td>
-          <a href="edit-model/{{ attribute.modelId }}" title="{{ attribute.modelId }}">{{
-            findModelName(attribute.modelId || '')
+          </td>
+          <td>
+            <a href="edit-model/{{ attribute.modelId }}" title="{{ attribute.modelId }}">{{
+              findModelName(attribute.modelId || '')
             }}</a>
-        </td>
-        <td>
-          <a href="edit-connection/{{ attribute.connectionId }}" title="{{ attribute.connectionId }}">{{
-            findConnectionName(attribute.connectionId || '')
+          </td>
+          <td>
+            <a href="edit-connection/{{ attribute.connectionId }}" title="{{ attribute.connectionId }}">{{
+              findConnectionName(attribute.connectionId || '')
             }}</a>
-        </td>
-        <td>
-          <a href="edit-attribute-dictionary/{{ attribute.attributeDictionaryId }}"
-            title="{{ attribute.attributeDictionaryId }}">{{
+          </td>
+          <td>
+            <a href="edit-attribute-dictionary/{{ attribute.attributeDictionaryId }}"
+              title="{{ attribute.attributeDictionaryId }}">{{
             findAttributeDictionaryName(attribute.attributeDictionaryId) }}</a>
-        </td>
-        <td>{{ attribute.value }}</td>
-        <td>
-          <fieldset class="btn-group float-md-end" aria-label="attribute-operations">
-            <button type="button" class="btn btn-success btn-sm move-right" id="edit-attribute"
-              (click)="EditAttribute(attribute)">
-              Edit
-            </button>
-            <button type="button" id="delete-attribute" class="btn btn-danger btn-sm"
-              (click)="DeleteAttribute(attribute._id)">
-              Delete
-            </button>
-            <button type="button" id="clone-attribute" class="btn btn-info btn-sm"
-              (click)="CloneAttribute(attribute._id)">
-              Clone
-            </button>
-          </fieldset>
-        </td>
-      </tr>
+          </td>
+          <td>{{ attribute.value }}</td>
+          <td>
+            <fieldset class="btn-group float-md-end" aria-label="attribute-operations">
+              <button type="button" class="btn btn-success btn-sm move-right" id="edit-attribute"
+                (click)="EditAttribute(attribute)">
+                Edit
+              </button>
+              <button type="button" id="delete-attribute" class="btn btn-danger btn-sm"
+                (click)="DeleteAttribute(attribute._id)">
+                Delete
+              </button>
+              <button type="button" id="clone-attribute" class="btn btn-info btn-sm"
+                (click)="CloneAttribute(attribute._id)">
+                Clone
+              </button>
+            </fieldset>
+          </td>
+        </tr>
+      }
     </tbody>
   </table>
   <button type="button" class="btn btn-success btn-sm" (click)="AddAttribute()">
@@ -73,7 +75,9 @@
 <!-- </div> -->
 <!-- <div class="fs-7 fw-lighter deviceid">component: {{ component }}</div> -->
 
-<app-log *ngIf="attributeComponent === '' || attributeComponent === undefined"
-  [attributeComponentObject]="this.device" [component]="component" [componentName]="componentName"
-  [isComponent]="true">
-</app-log>
+@if (attributeComponent === '' || attributeComponent === undefined) {
+  <app-log
+    [attributeComponentObject]="this.device" [component]="component" [componentName]="componentName"
+    [isComponent]="true">
+  </app-log>
+}

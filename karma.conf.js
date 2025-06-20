@@ -8,7 +8,7 @@ module.exports = function (config) {
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
       require('karma-typescript'),
-      require('@angular-devkit/build-angular/plugins/karma'),
+      
     ],
     // preprocessors: {
     //   './src/test.ts': ['@angular-devkit/build-angular'],

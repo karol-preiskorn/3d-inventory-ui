@@ -9,9 +9,13 @@
             'is-invalid': editDeviceForm.controls._id.status !== 'VALID',
             'is-valid': editDeviceForm.controls._id.status === 'VALID',
           }" />
-        <div *ngIf="editDeviceForm.get('_id')?.errors" class="invalid-feedback">
-          <div *ngIf="editDeviceForm.controls._id?.errors?.required">Id is required</div>
+        @if (editDeviceForm.get('_id')?.errors) {
+        <div class="invalid-feedback">
+          @if (editDeviceForm.controls._id.errors?.required) {
+          <div>Id is required</div>
+          }
         </div>
+        }
       </div>
       <div class="col">
         <div class="form-group mb-3">
@@ -21,10 +25,16 @@
               'is-invalid': editDeviceForm.controls.name.status !== 'VALID',
               'is-valid': editDeviceForm.controls.name.status === 'VALID',
             }" />
-          <div *ngIf="editDeviceForm.controls.name.errors" class="invalid-feedback">
-            <div *ngIf="editDeviceForm.controls.name.errors.required">Name is required</div>
-            <div *ngIf="editDeviceForm.controls.name.errors.minlength">Name must be at least 4 characters</div>
+          @if (editDeviceForm.controls.name.errors) {
+          <div class="invalid-feedback">
+            @if (editDeviceForm.controls.name.errors.required) {
+            <div>Name is required</div>
+            }
+            @if (editDeviceForm.controls.name.errors.minlength) {
+            <div>Name must be at least 4 characters</div>
+            }
           </div>
+          }
         </div>
       </div>
     </div>
@@ -39,12 +49,19 @@
                   'is-valid': editDeviceForm.get('position.x')?.status === 'VALID',
                 }" />
         </div>
-        <div *ngIf="editDeviceForm.get('position.x') && editDeviceForm.get('position.x')?.errors"
-          class="invalid-feedback">
-          <div *ngIf="editDeviceForm.get('position.x')?.errors?.required">x is required</div>
-          <div *ngIf="editDeviceForm.get('position.x')?.errors?.minlength">x must be at least 4 characters</div>
-          <div *ngIf="editDeviceForm.get('position.x')?.errors?.maxlength">x must be at most 255 characters</div>
+        @if (editDeviceForm.get('position.x') && editDeviceForm.get('position.x')?.errors) {
+        <div class="invalid-feedback">
+          @if (editDeviceForm.get('position.x')?.errors?.required) {
+          <div>x is required</div>
+          }
+          @if (editDeviceForm.get('position.x')?.errors?.minlength) {
+          <div>x must be at least 4 characters</div>
+          }
+          @if (editDeviceForm.get('position.x')?.errors?.maxlength) {
+          <div>x must be at most 255 characters</div>
+          }
         </div>
+        }
       </div>
       <div class="col">
         <div class="form-group mb-3">
@@ -55,9 +72,13 @@
                   'is-valid': editDeviceForm.get('position.y')?.status === 'VALID',
                 }" />
         </div>
-        <div *ngIf="editDeviceForm.get('position.y')?.errors" class="invalid-feedback">
-          <div *ngIf="editDeviceForm.get('position.y')?.errors?.required">y is required</div>
+        @if (editDeviceForm.get('position.y')?.errors) {
+        <div class="invalid-feedback">
+          @if (editDeviceForm.get('position.y')?.errors?.required) {
+          <div>y is required</div>
+          }
         </div>
+        }
       </div>
       <div class="col">
         <div class="form-group mb-3">
@@ -68,9 +89,13 @@
                   'is-valid': editDeviceForm.get('position.h')?.status === 'VALID',
                 }" />
         </div>
-        <div *ngIf="editDeviceForm.get('position.h')?.errors" class="invalid-feedback">
-          <div *ngIf="editDeviceForm.get('position.h')?.errors?.required">h is required</div>
+        @if (editDeviceForm.get('position.h')?.errors) {
+        <div class="invalid-feedback">
+          @if (editDeviceForm.get('position.h')?.errors?.required) {
+          <div>h is required</div>
+          }
         </div>
+        }
       </div>
     </div>
     <div class="row">
@@ -81,13 +106,19 @@
               'is-invalid': editDeviceForm.controls.modelId.status !== 'VALID',
               'is-valid': editDeviceForm.controls.modelId.status === 'VALID',
             }">
-            <option *ngFor="let modelObj of modelList; let i = index" value="{{ modelObj._id }}">
+            @for (modelObj of modelList; track modelObj; let i = $index) {
+            <option value="{{ modelObj._id }}">
               {{ modelObj.name }}
             </option>
+            }
           </select>
-          <div *ngIf="editDeviceForm.controls.modelId.errors" class="invalid-feedback">
-            <div *ngIf="editDeviceForm.controls.modelId.errors.required">Name is required</div>
+          @if (editDeviceForm.controls.modelId.errors) {
+          <div class="invalid-feedback">
+            @if (editDeviceForm.controls.modelId.errors.required) {
+            <div>Name is required</div>
+            }
           </div>
+          }
         </div>
       </div>
     </div>
@@ -100,12 +131,16 @@
         <i class="bi bi-floppy"></i> Update
       </button>
 
-      <div *ngIf="!(editDeviceForm.invalid && editDeviceForm.touched)" class="invalid-feedback">
+      @if (!(editDeviceForm.invalid && editDeviceForm.touched)) {
+      <div class="invalid-feedback">
         editDeviceForm is invalid or untouched
       </div>
-      <div *ngIf="!(editDeviceForm.valid && editDeviceForm.touched)" class="valid-feedback">
+      }
+      @if (!(editDeviceForm.valid && editDeviceForm.touched)) {
+      <div class="valid-feedback">
         editDeviceForm is valid and touched
       </div>
+      }
     </div>
   </form>
 </div>

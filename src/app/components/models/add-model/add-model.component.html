@@ -13,14 +13,22 @@
                 'is-valid': addModelForm.controls.name.valid,
                 'form-control': true,
               }" formControlName="name" minlength="4" id="name" maxlength="255" />
-            <div *ngIf="this.addModelForm.controls.name.errors" class="invalid-feedback">
-              <div *ngIf="this.addModelForm.controls.name.errors.required">Name is required</div>
-              <div *ngIf="this.addModelForm.controls.name.errors.minlength">Name must be at least 4 characters
+            @if (this.addModelForm.controls.name.errors) {
+              <div class="invalid-feedback">
+                @if (this.addModelForm.controls.name.errors.required) {
+                  <div>Name is required</div>
+                }
+                @if (this.addModelForm.controls.name.errors.minlength) {
+                  <div>Name must be at least 4 characters
+                  </div>
+                }
+                @if (this.addModelForm.get('texture.bottom')?.errors?.minlength) {
+                  <div>
+                    Bottom must be at least 2 characters long
+                  </div>
+                }
               </div>
-              <div *ngIf="this.addModelForm.get('texture.bottom')?.errors?.minlength">
-                Bottom must be at least 2 characters long
-              </div>
-            </div>
+            }
           </div>
         </div>
       </div>
@@ -35,16 +43,26 @@
                 'is-valid': this.addModelForm.get('dimension.width')?.status === 'VALID',
                 'form-control': true,
               }" />
-            <div *ngIf="this.addModelForm.get('dimension.width')?.errors" class="invalid-feedback">
-              <div *ngIf="this.addModelForm.get('dimension.width')?.errors?.required">Width is required</div>
-              <div *ngIf="this.addModelForm.get('dimension.width')?.errors?.minlength">
-                Width must be at least 1 number
+            @if (this.addModelForm.get('dimension.width')?.errors) {
+              <div class="invalid-feedback">
+                @if (this.addModelForm.get('dimension.width')?.errors?.required) {
+                  <div>Width is required</div>
+                }
+                @if (this.addModelForm.get('dimension.width')?.errors?.minlength) {
+                  <div>
+                    Width must be at least 1 number
+                  </div>
+                }
+                @if (this.addModelForm.get('dimension.width')?.errors?.pattern) {
+                  <div>
+                    Width must be a number
+                  </div>
+                }
+                @if (addModelForm.get('dimension.width')?.errors?.pattern) {
+                  <p class="text-danger">Number Only</p>
+                }
               </div>
-              <div *ngIf="this.addModelForm.get('dimension.width')?.errors?.pattern">
-                Width must be a number
-              </div>
-              <p *ngIf="addModelForm.get('dimension.width')?.errors?.pattern" class="text-danger">Number Only</p>
-            </div>
+            }
           </div>
         </div>
         <div class="col">
@@ -56,12 +74,18 @@
                 'is-valid': this.addModelForm.get('dimension.height')?.status === 'VALID',
                 'form-control': true,
               }" />
-            <div *ngIf="this.addModelForm.get('dimension.height')?.errors" class="invalid-feedback">
-              <div *ngIf="this.addModelForm.get('dimension.height')?.errors?.required">Height is required</div>
-              <div *ngIf="this.addModelForm.get('dimension.height')?.errors?.minlength">
-                Height must be at least 1 number
+            @if (this.addModelForm.get('dimension.height')?.errors) {
+              <div class="invalid-feedback">
+                @if (this.addModelForm.get('dimension.height')?.errors?.required) {
+                  <div>Height is required</div>
+                }
+                @if (this.addModelForm.get('dimension.height')?.errors?.minlength) {
+                  <div>
+                    Height must be at least 1 number
+                  </div>
+                }
               </div>
-            </div>
+            }
           </div>
         </div>
         <div class="col">
@@ -75,12 +99,18 @@
                 'is-valid': this.addModelForm.get('dimension.depth')?.status === 'VALID',
                 'form-control': true,
               }" />
-            <div *ngIf="this.addModelForm.get('dimension.depth')?.errors" class="invalid-feedback">
-              <div *ngIf="this.addModelForm.get('dimension.depth')?.errors?.required">Depth is required</div>
-              <div *ngIf="this.addModelForm.get('dimension.depth')?.errors?.minlength">
-                Depth must be at least 1 number
+            @if (this.addModelForm.get('dimension.depth')?.errors) {
+              <div class="invalid-feedback">
+                @if (this.addModelForm.get('dimension.depth')?.errors?.required) {
+                  <div>Depth is required</div>
+                }
+                @if (this.addModelForm.get('dimension.depth')?.errors?.minlength) {
+                  <div>
+                    Depth must be at least 1 number
+                  </div>
+                }
               </div>
-            </div>
+            }
           </div>
         </div>
       </div>
@@ -95,13 +125,19 @@
                 'is-valid': this.addModelForm.get('texture.front')?.status === 'VALID',
                 'form-control': true,
               }" />
-            <div *ngIf="this.addModelForm.get('texture')?.get('front')?.errors" class="invalid-feedback">
-              <div *ngIf="this.addModelForm.get('texture')?.get('front')?.errors?.required">Front is required
+            @if (this.addModelForm.get('texture')?.get('front')?.errors) {
+              <div class="invalid-feedback">
+                @if (this.addModelForm.get('texture')?.get('front')?.errors?.required) {
+                  <div>Front is required
+                  </div>
+                }
+                @if (this.addModelForm.get('texture')?.get('front')?.errors?.minlength) {
+                  <div>
+                    Front must be at least 1 number.
+                  </div>
+                }
               </div>
-              <div *ngIf="this.addModelForm.get('texture')?.get('front')?.errors?.minlength">
-                Front must be at least 1 number.
-              </div>
-            </div>
+            }
           </div>
         </div>
         <div class="col">
@@ -114,12 +150,18 @@
                 'is-valid': this.addModelForm.get('texture.back')?.status === 'VALID',
                 'form-control': true,
               }" />
-            <div *ngIf="this.addModelForm.get('texture')?.get('back')?.errors" class="invalid-feedback">
-              <div *ngIf="this.addModelForm.get('texture')?.get('back')?.errors?.required">Back is required</div>
-              <div *ngIf="this.addModelForm.get('texture')?.get('back')?.errors?.minlength">
-                Back must be at least 1 character
+            @if (this.addModelForm.get('texture')?.get('back')?.errors) {
+              <div class="invalid-feedback">
+                @if (this.addModelForm.get('texture')?.get('back')?.errors?.required) {
+                  <div>Back is required</div>
+                }
+                @if (this.addModelForm.get('texture')?.get('back')?.errors?.minlength) {
+                  <div>
+                    Back must be at least 1 character
+                  </div>
+                }
               </div>
-            </div>
+            }
           </div>
         </div>
         <div class="col">
@@ -132,12 +174,18 @@
                 'is-valid': this.addModelForm.get('texture.side')?.valid,
                 'form-control': true,
               }" />
-            <div *ngIf="this.addModelForm.get('texture.side')?.errors" class="invalid-feedback">
-              <div *ngIf="this.addModelForm.get('texture.side')?.errors?.required">Side is required</div>
-              <div *ngIf="this.addModelForm.get('texture.side')?.errors?.minlength">
-                Side must be at least 1 character
+            @if (this.addModelForm.get('texture.side')?.errors) {
+              <div class="invalid-feedback">
+                @if (this.addModelForm.get('texture.side')?.errors?.required) {
+                  <div>Side is required</div>
+                }
+                @if (this.addModelForm.get('texture.side')?.errors?.minlength) {
+                  <div>
+                    Side must be at least 1 character
+                  </div>
+                }
               </div>
-            </div>
+            }
           </div>
         </div>
         <div class="col">
@@ -150,12 +198,18 @@
                 'is-valid': this.addModelForm.get('texture.top')?.valid,
                 'form-control': true,
               }" />
-            <div *ngIf="this.addModelForm.get('texture.top')?.errors" class="invalid-feedback">
-              <div *ngIf="this.addModelForm.get('texture')?.get('top')?.errors?.required">Top is required</div>
-              <div *ngIf="this.addModelForm.get('texture')?.get('top')?.errors?.minlength">
-                Top must be at least 1 character
+            @if (this.addModelForm.get('texture.top')?.errors) {
+              <div class="invalid-feedback">
+                @if (this.addModelForm.get('texture')?.get('top')?.errors?.required) {
+                  <div>Top is required</div>
+                }
+                @if (this.addModelForm.get('texture')?.get('top')?.errors?.minlength) {
+                  <div>
+                    Top must be at least 1 character
+                  </div>
+                }
               </div>
-            </div>
+            }
           </div>
         </div>
         <div class="col">
@@ -168,15 +222,23 @@
                   'is-valid': this.addModelForm.get('texture.bottom')?.valid,
                 'form-control': true,
               }" />
-            <div *ngIf="this.addModelForm.get('texture.bottom')?.errors" class="invalid-feedback">
-              <div *ngIf="this.addModelForm.get('texture.bottom')?.errors?.required">Bottom is required</div>
-              <div *ngIf="this.addModelForm.get('texture.bottom')?.errors?.minlength">
-                Bottom must be at least 2 characters.
+            @if (this.addModelForm.get('texture.bottom')?.errors) {
+              <div class="invalid-feedback">
+                @if (this.addModelForm.get('texture.bottom')?.errors?.required) {
+                  <div>Bottom is required</div>
+                }
+                @if (this.addModelForm.get('texture.bottom')?.errors?.minlength) {
+                  <div>
+                    Bottom must be at least 2 characters.
+                  </div>
+                }
+                @if (addModelForm.get('texture.bottom')?.errors?.minlength) {
+                  <div>Bottom must be at least 2
+                    characters...
+                  </div>
+                }
               </div>
-              <div *ngIf="addModelForm.get('texture.bottom')?.errors?.minlength">Bottom must be at least 2
-                characters...
-              </div>
-            </div>
+            }
           </div>
         </div>
       </div>
@@ -193,12 +255,14 @@
               <i class="bi bi-bookmark-plus"></i> Generate Random Model Data
             </button>
           </div>
-          <ng-container *ngIf="!isProduction">
+          @if (!isProduction) {
             <!-- Debug information is displayed only when not in production mode -->
             <pre class="bg-light p-2 border rounded">{{ getFormValues() }}</pre>
             <p class="text-secondary fw-bold">Current Form Values:</p>
-            <pre *ngIf="!isProduction" class="bg-light p-2 border rounded">{{ addModelForm.value | json }}</pre>
-          </ng-container>
+            @if (!isProduction) {
+              <pre class="bg-light p-2 border rounded">{{ addModelForm.value | json }}</pre>
+            }
+          }
         </div>
       </div>
     </form>

@@ -10,9 +10,13 @@
                         'is-invalid': editAttributeDictionaryForm.controls._id.status !== 'VALID',
                         'is-valid': editAttributeDictionaryForm.controls._id.status === 'VALID',
                       }" />
-          <div *ngIf="editAttributeDictionaryForm.get('_id')?.errors" class="invalid-feedback">
-            <div *ngIf="editAttributeDictionaryForm.controls._id?.errors?.required">Id is required</div>
+          @if (editAttributeDictionaryForm.get('_id')?.errors) {
+          <div class="invalid-feedback">
+            @if (editAttributeDictionaryForm.controls._id.errors) {
+            <div>Id is required</div>
+            }
           </div>
+          }
         </div>
         <div class="col">
           <div class="form-group mb-3">
@@ -22,11 +26,17 @@
                               'is-invalid': editAttributeDictionaryForm.controls.name.status !== 'VALID',
                               'is-valid': editAttributeDictionaryForm.controls.name.status === 'VALID',
                             }" />
-            <div *ngIf="editAttributeDictionaryForm.controls.name.errors" class="invalid-feedback">
-              <div *ngIf="editAttributeDictionaryForm.controls.name.errors.required">Name is required</div>
-              <div *ngIf="editAttributeDictionaryForm.controls.name.errors.minlength">Name must be at least 4
+            @if (editAttributeDictionaryForm.controls.name.errors) {
+            <div class="invalid-feedback">
+              @if (editAttributeDictionaryForm.controls.name.errors.required) {
+              <div>Name is required</div>
+              }
+              @if (editAttributeDictionaryForm.controls.name.errors.minlength) {
+              <div>Name must be at least 4
                 characters</div>
+              }
             </div>
+            }
           </div>
         </div>
       </div>
@@ -40,14 +50,20 @@
                     'form-select': true,
                   }" id="type" ngbPopover="Select the type of attribute" triggers="focus:blur"
               popoverTitle="Attribute Type">
-              <option *ngFor="let typeObj of (deviceTypeDict?.get() || []); let i = index" [value]="typeObj.name">
+              @for (typeObj of (deviceTypeDict.get() || []); track typeObj; let i = $index) {
+              <option [value]="typeObj.name">
                 {{ typeObj.name }}
               </option>
+              }
             </select>
-            <div *ngIf="editAttributeDictionaryForm.controls.type?.errors" class="invalid-feedback">
-              <div *ngIf="editAttributeDictionaryForm.controls.type?.errors?.required">Type is required
+            @if (editAttributeDictionaryForm.controls.type.errors) {
+            <div class="invalid-feedback">
+              @if (editAttributeDictionaryForm.controls.type.errors.required) {
+              <div>Type is required
               </div>
+              }
             </div>
+            }
           </div>
         </div>
         <div class="col">
@@ -58,14 +74,20 @@
               'is-valid': editAttributeDictionaryForm.controls.componentName.status === 'VALID',
               'form-select': true,
             }" id="category">
-              <option *ngFor="let categoryObj of (componentDictionary?.getAll() ?? []); let i = index">
+              @for (categoryObj of (componentDictionary.getAll()); track categoryObj; let i = $index) {
+              <option>
                 {{ categoryObj.name }}
               </option>
+              }
             </select>
-            <div *ngIf="editAttributeDictionaryForm.controls.componentName.errors" class="invalid-feedback">
-              <div *ngIf="editAttributeDictionaryForm.controls.componentName.errors.required">Category is required
+            @if (editAttributeDictionaryForm.controls.componentName.errors) {
+            <div class="invalid-feedback">
+              @if (editAttributeDictionaryForm.controls.componentName.errors.required) {
+              <div>Category is required
               </div>
+              }
             </div>
+            }
           </div>
         </div>
         <div class="col">
@@ -77,35 +99,45 @@
               'form-select': true,
             }" id="component" ngbPopover="Select where you want use this attribute" triggers="focus:blur"
               popoverTitle="Range of use by components">
-              <option *ngFor="let componentObj of (UnitDictionary?.getAllUnits() ?? []); let i = index"
-                [value]="componentObj.name">
+              @for (componentObj of (UnitDictionary.getAllUnits()); track componentObj; let i = $index) {
+              <option [value]="componentObj.name">
                 {{ componentObj.name }}
               </option>
+              }
             </select>
-            <div *ngIf="editAttributeDictionaryForm.controls.unit.errors" class="invalid-feedback">
-              <div *ngIf="editAttributeDictionaryForm.controls.unit.errors.required">Component is required
+            @if (editAttributeDictionaryForm.controls.unit.errors) {
+            <div class="invalid-feedback">
+              @if (editAttributeDictionaryForm.controls.unit.errors.required) {
+              <div>Component is required
               </div>
+              }
             </div>
+            }
           </div>
         </div>
       </div>
       <div class="form-group mb-3">
         <button type="submit" [disabled]="!editAttributeDictionaryForm.valid"
           class="btn btn-primary">Update</button>
-        <div *ngIf="!editAttributeDictionaryForm.valid && (editAttributeDictionaryForm.touched || isSubmitted)"
-          class="invalid-feedback">
+        @if (!editAttributeDictionaryForm.valid && (editAttributeDictionaryForm.touched || isSubmitted)) {
+        <div class="invalid-feedback">
           Please correct the errors in the following fields:
-          <span *ngFor="let control of getInvalidControls(); let last = last">
-            {{ control }}<span *ngIf="!last">, </span>
+          @for (control of getInvalidControls(); track control; let last = $last) {
+          <span>
+            {{ control }}@if (!last) {
+            <span>, </span>
+            }
           </span>
+          }
         </div>
+        }
       </div>
     </div>
   </form>
 </div>
 
 <!-- The <app-log> component is used to display logs related to the current component.
-     The [component] input binds the logComponent object, which contains metadata and context-specific
-     information about the current component. This allows the <app-log> component to filter and display
-     logs that are relevant to the current attribute dictionary being edited. -->
+The [component] input binds the logComponent object, which contains metadata and context-specific
+information about the current component. This allows the <app-log> component to filter and display
+logs that are relevant to the current attribute dictionary being edited. -->
 <app-log [component]="componentValue" [isComponent]="false" [componentName]="'Attribute Dictionary'"></app-log>

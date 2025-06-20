@@ -9,15 +9,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let device of deviceList | slice: (deviceListPage - 1) * 5 : deviceListPage * 5">
-        <td>
-          <a title="{{ device._id }}">{{ device.name }}</a>
-          <p class="fs-7 fw-lighter deviceid">{{ device._id }}</p>
-        </td>
-        <td>({{ device.position.x }}, {{ device.position.y }}, {{ device.position.h }})</td>
-        <td>
-          <a title="{{ device.modelId }}" href="edit-model/{{ device.modelId }}"><i class="bi bi-motherboard"></i>
-            {{ device.modelId === null ? 'is null' : FindModelName(device.modelId) }}</a>
+      @for (device of deviceList | slice: (deviceListPage - 1) * 5 : deviceListPage * 5; track device) {
+        <tr>
+          <td>
+            <a title="{{ device._id }}">{{ device.name }}</a>
+            <p class="fs-7 fw-lighter deviceid">{{ device._id }}</p>
+          </td>
+          <td>({{ device.position.x }}, {{ device.position.y }}, {{ device.position.h }})</td>
+          <td>
+            <a title="{{ device.modelId }}" href="edit-model/{{ device.modelId }}"><i class="bi bi-motherboard"></i>
+          {{ device.modelId === null ? 'is null' : FindModelName(device.modelId) }}</a>
           <p class="fs-7 fw-lighter deviceid">{{ device.modelId }}</p>
         </td>
         <td>
@@ -36,14 +37,15 @@
           </fieldset>
         </td>
       </tr>
-    </tbody>
-  </table>
-  <button type="button" class="btn btn-success btn-sm move-right mb-3" (click)="AddForm()">
-    <i class="bi bi-plus-lg"></i> Add
-  </button>
-  <ngb-pagination [(page)]="deviceListPage" [pageSize]="5" [collectionSize]="deviceList.length"
-    [boundaryLinks]="true" aria-label="Attribute pagination">
-  </ngb-pagination>
+    }
+  </tbody>
+</table>
+<button type="button" class="btn btn-success btn-sm move-right mb-3" (click)="AddForm()">
+  <i class="bi bi-plus-lg"></i> Add
+</button>
+<ngb-pagination [(page)]="deviceListPage" [pageSize]="5" [collectionSize]="deviceList.length"
+  [boundaryLinks]="true" aria-label="Attribute pagination">
+</ngb-pagination>
 </div>
 
 <app-log [component]="component" [componentName]="componentName" [isComponent]="true"></app-log>

@@ -5,7 +5,7 @@ import { AttributeDictionaryService } from '../../../services/attribute-dictiona
 import { LogService } from '../../../services/log.service'
 import { AttributesDictionary } from '../../../shared/AttributesDictionary'
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
-import { CommonModule } from '@angular/common'
+
 import { LogComponent } from '../../log/log.component'
 
 @Component({
@@ -13,7 +13,7 @@ import { LogComponent } from '../../log/log.component'
   templateUrl: './attribute-dictionary-list.component.html',
   styleUrls: ['./attribute-dictionary-list.component.scss'],
   standalone: true,
-  imports: [CommonModule, LogComponent, NgbPaginationModule],
+  imports: [LogComponent, NgbPaginationModule],
 })
 export class AttributeDictionaryListComponent implements OnInit {
   attributeDictionaryList: AttributesDictionary[] = []

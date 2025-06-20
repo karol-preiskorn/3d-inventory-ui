@@ -10,22 +10,28 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let log of LogList | slice: (logListPage - 1) * pageSize : logListPage * pageSize">
-        <td>{{ log.date }}</td>
-        <td>{{ log.operation }} <br>
-          {{ log.component }}
-          <span class="deviceid" *ngIf="log.objectId">{{ log.objectId }}</span>
-        </td>
-        <td class="log-message">{{ findNameInLogMessage(log) }}</td>
-        <td>
-          <button type="button" class="btn btn-danger btn-sm" (click)="DeleteLog(log._id)" aria-label="Delete log">
-            <i class="bi bi-trash"></i>
-          </button>
-        </td>
-      </tr>
-      <tr *ngIf="(LogList | slice: (logListPage - 1) * pageSize : logListPage * pageSize).length === 0">
-        <td colspan="5" class="text-center">No logs found.</td>
-      </tr>
+      @for (log of LogList | slice: (logListPage - 1) * pageSize : logListPage * pageSize; track log) {
+        <tr>
+          <td>{{ log.date }}</td>
+          <td>{{ log.operation }} <br>
+            {{ log.component }}
+            @if (log.objectId) {
+              <span class="deviceid">{{ log.objectId }}</span>
+            }
+          </td>
+          <td class="log-message">{{ findNameInLogMessage(log) }}</td>
+          <td>
+            <button type="button" class="btn btn-danger btn-sm" (click)="DeleteLog(log._id)" aria-label="Delete log">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      }
+      @if ((LogList | slice: (logListPage - 1) * pageSize : logListPage * pageSize).length === 0) {
+        <tr>
+          <td colspan="5" class="text-center">No logs found.</td>
+        </tr>
+      }
     </tbody>
   </table>
   <ngb-pagination [pageSize]="pageSize" [collectionSize]="totalItems" [maxSize]="5" [boundaryLinks]="true"

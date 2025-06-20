@@ -16,19 +16,27 @@
               'form-control': true,
             }"
             value="{{ this.addConnectionForm.value.name }}" />
-          <div *ngIf="addConnectionForm.get('name')?.invalid">
-            <div *ngIf="addConnectionForm.get('name')?.errors?.['required']">Name is required.</div>
-            <div *ngIf="addConnectionForm.get('name')?.errors?.['minlength']">
-              Name must be at least 6 characters long.
+          @if (addConnectionForm.get('name')?.invalid) {
+            <div>
+              @if (addConnectionForm.get('name')?.errors?.['required']) {
+                <div>Name is required.</div>
+              }
+              @if (addConnectionForm.get('name')?.errors?.['minlength']) {
+                <div>
+                  Name must be at least 6 characters long.
+                </div>
+              }
             </div>
-          </div>
-          <div
-            *ngIf="
-              (addConnectionForm.get('name')?.dirty || addConnectionForm.get('name')?.touched) &&
-              addConnectionForm.get('name')?.invalid
-            ">
-            Please provide connection name.
-          </div>
+          }
+          @if (
+            (addConnectionForm.get('name')?.dirty || addConnectionForm.get('name')?.touched) &&
+            addConnectionForm.get('name')?.invalid
+            ) {
+            <div
+              >
+              Please provide connection name.
+            </div>
+          }
         </div>
       </div>
     </div>
@@ -45,11 +53,15 @@
               'form-select': true,
             }"
             id="deviceIdFrom">
-            <option *ngFor="let deviceFromObj of deviceList; let i = index" [value]="deviceFromObj._id">
-              {{ deviceFromObj.name }}
-            </option>
+            @for (deviceFromObj of deviceList; track deviceFromObj; let i = $index) {
+              <option [value]="deviceFromObj._id">
+                {{ deviceFromObj.name }}
+              </option>
+            }
           </select>
-          <div *ngIf="this.addConnectionForm.get('deviceIdFrom')?.invalid">Device Id From is required</div>
+          @if (this.addConnectionForm.get('deviceIdFrom')?.invalid) {
+            <div>Device Id From is required</div>
+          }
         </div>
       </div>
       <div class="col">
@@ -64,13 +76,19 @@
               'form-select': true,
             }"
             id="deviceIdTo">
-            <option *ngFor="let deviceToObj of deviceList; let i = index" [value]="deviceToObj._id">
-              {{ deviceToObj.name }}
-            </option>
+            @for (deviceToObj of deviceList; track deviceToObj; let i = $index) {
+              <option [value]="deviceToObj._id">
+                {{ deviceToObj.name }}
+              </option>
+            }
           </select>
-          <div *ngIf="this.addConnectionForm.controls.deviceIdTo.errors">
-            <div *ngIf="this.addConnectionForm.controls.deviceIdTo.errors.required">Device Id To is required</div>
-          </div>
+          @if (this.addConnectionForm.controls.deviceIdTo.errors) {
+            <div>
+              @if (this.addConnectionForm.controls.deviceIdTo.errors.required) {
+                <div>Device Id To is required</div>
+              }
+            </div>
+          }
           <div>
             {{ this.toString(this.addConnectionForm.controls.deviceIdTo.hasError) }}
           </div>
@@ -84,9 +102,11 @@
         class="btn btn-primary">
         <i class="bi bi-plus-square"></i> Add connection
       </button>
-      <div *ngIf="!(this.addConnectionForm.valid && this.addConnectionForm.touched)" class="invalid-feedback">
-        Form is invalid
-      </div>
+      @if (!(this.addConnectionForm.valid && this.addConnectionForm.touched)) {
+        <div class="invalid-feedback">
+          Form is invalid
+        </div>
+      }
     </div>
   </form>
 </div>
