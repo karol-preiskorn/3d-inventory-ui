@@ -1,0 +1,2301 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>3d-inventory-angular-ui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">3d-inventory-angular-ui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AttributeAddComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/attribute/add-attribute/add-attribute.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-add-attribute</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./add-attribute.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./add-attribute.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addAttributeFrom" >addAttributeFrom</a>
+                            </li>
+                            <li>
+                                <a href="#attribute" >attribute</a>
+                            </li>
+                            <li>
+                                <a href="#attributeDictionary" >attributeDictionary</a>
+                            </li>
+                            <li>
+                                <a href="#component" >component</a>
+                            </li>
+                            <li>
+                                <a href="#componentDictionary" >componentDictionary</a>
+                            </li>
+                            <li>
+                                <a href="#connectionDictionary" >connectionDictionary</a>
+                            </li>
+                            <li>
+                                <a href="#deviceCategoryDict" >deviceCategoryDict</a>
+                            </li>
+                            <li>
+                                <a href="#deviceDictionary" >deviceDictionary</a>
+                            </li>
+                            <li>
+                                <a href="#deviceTypeDict" >deviceTypeDict</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#formBuilder" >formBuilder</a>
+                            </li>
+                            <li>
+                                <a href="#isSubmitted" >isSubmitted</a>
+                            </li>
+                            <li>
+                                <a href="#modelDictionary" >modelDictionary</a>
+                            </li>
+                            <li>
+                                <a href="#valid" >valid</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#changeAttributeDictionaryId" >changeAttributeDictionaryId</a>
+                            </li>
+                            <li>
+                                <a href="#changeConnectionId" >changeConnectionId</a>
+                            </li>
+                            <li>
+                                <a href="#changeDeviceId" >changeDeviceId</a>
+                            </li>
+                            <li>
+                                <a href="#changeId" >changeId</a>
+                            </li>
+                            <li>
+                                <a href="#changeModelId" >changeModelId</a>
+                            </li>
+                            <li>
+                                <a href="#changeValue" >changeValue</a>
+                            </li>
+                            <li>
+                                <a href="#formAttribute" >formAttribute</a>
+                            </li>
+                            <li>
+                                <a href="#generateAttributeDictionary" >generateAttributeDictionary</a>
+                            </li>
+                            <li>
+                                <a href="#getAttributeDictionaryList" >getAttributeDictionaryList</a>
+                            </li>
+                            <li>
+                                <a href="#getConnectionList" >getConnectionList</a>
+                            </li>
+                            <li>
+                                <a href="#getDeviceList" >getDeviceList</a>
+                            </li>
+                            <li>
+                                <a href="#getModelList" >getModelList</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#submitForm" >submitForm</a>
+                            </li>
+                            <li>
+                                <a href="#toString" >toString</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#id" >id</a>
+                                </li>
+                                <li>
+                                    <a href="#deviceId" >deviceId</a>
+                                </li>
+                                <li>
+                                    <a href="#modelId" >modelId</a>
+                                </li>
+                                <li>
+                                    <a href="#connectionId" >connectionId</a>
+                                </li>
+                                <li>
+                                    <a href="#attributeDictionaryId" >attributeDictionaryId</a>
+                                </li>
+                                <li>
+                                    <a href="#value" >value</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(formBuilder: FormBuilder, ngZone: NgZone, router: Router, attributeService: <a href="../injectables/AttributeService.html" target="_self">AttributeService</a>, deviceService: <a href="../injectables/DeviceService.html" target="_self">DeviceService</a>, modelService: <a href="../injectables/ModelsService.html" target="_self">ModelsService</a>, connectionService: <a href="../injectables/ConnectionService.html" target="_self">ConnectionService</a>, attributeDictionaryService: <a href="../injectables/AttributeDictionaryService.html" target="_self">AttributeDictionaryService</a>, logService: <a href="../injectables/LogService.html" target="_self">LogService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:62</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>ngZone</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgZone</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>attributeService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AttributeService.html" target="_self" >AttributeService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>deviceService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DeviceService.html" target="_self" >DeviceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>modelService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ModelsService.html" target="_self" >ModelsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>connectionService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ConnectionService.html" target="_self" >ConnectionService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>attributeDictionaryService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AttributeDictionaryService.html" target="_self" >AttributeDictionaryService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>logService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LogService.html" target="_self" >LogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeAttributeDictionaryId"></a>
+                    <span class="name">
+                        <span ><b>changeAttributeDictionaryId</b></span>
+                        <a href="#changeAttributeDictionaryId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeAttributeDictionaryId(e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:112</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeConnectionId"></a>
+                    <span class="name">
+                        <span ><b>changeConnectionId</b></span>
+                        <a href="#changeConnectionId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeConnectionId(e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="106"
+                                    class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:106</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeDeviceId"></a>
+                    <span class="name">
+                        <span ><b>changeDeviceId</b></span>
+                        <a href="#changeDeviceId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeDeviceId(e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeId"></a>
+                    <span class="name">
+                        <span ><b>changeId</b></span>
+                        <a href="#changeId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeId(e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeModelId"></a>
+                    <span class="name">
+                        <span ><b>changeModelId</b></span>
+                        <a href="#changeModelId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeModelId(e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeValue"></a>
+                    <span class="name">
+                        <span ><b>changeValue</b></span>
+                        <a href="#changeValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeValue(e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="118"
+                                    class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:118</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formAttribute"></a>
+                    <span class="name">
+                        <span ><b>formAttribute</b></span>
+                        <a href="#formAttribute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>formAttribute()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateAttributeDictionary"></a>
+                    <span class="name">
+                        <span ><b>generateAttributeDictionary</b></span>
+                        <a href="#generateAttributeDictionary"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>generateAttributeDictionary()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="192"
+                                    class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:192</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><b>Example :</b><div><pre class="line-numbers"><code class="language-none">         1. Select one of List
+             - deviceId: [&#39;&#39;],
+             - modelId: [&#39;&#39;],
+             - connectionId: [&#39;&#39;],
+         2. get random data from this list
+         3. get random data from attributeDictionaryId: [&#39;&#39;, Validators.required],
+         4. set random value: [&#39;&#39;, Validators.required],</code></pre></div></div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAttributeDictionaryList"></a>
+                    <span class="name">
+                        <span ><b>getAttributeDictionaryList</b></span>
+                        <a href="#getAttributeDictionaryList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAttributeDictionaryList()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:175</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Subscription</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getConnectionList"></a>
+                    <span class="name">
+                        <span ><b>getConnectionList</b></span>
+                        <a href="#getConnectionList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getConnectionList()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="167"
+                                    class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:167</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Subscription</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDeviceList"></a>
+                    <span class="name">
+                        <span ><b>getDeviceList</b></span>
+                        <a href="#getDeviceList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDeviceList()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="151"
+                                    class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:151</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Subscription</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getModelList"></a>
+                    <span class="name">
+                        <span ><b>getModelList</b></span>
+                        <a href="#getModelList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getModelList()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="159"
+                                    class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:159</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Subscription</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitForm"></a>
+                    <span class="name">
+                        <span ><b>submitForm</b></span>
+                        <a href="#submitForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>submitForm()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="196"
+                                    class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:196</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toString"></a>
+                    <span class="name">
+                        <span ><b>toString</b></span>
+                        <a href="#toString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toString(data)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="146"
+                                    class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:146</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addAttributeFrom"></a>
+                    <span class="name">
+                        <span ><b>addAttributeFrom</b></span>
+                        <a href="#addAttributeFrom"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormGroup(
+    {
+      id: new FormControl(&#x27;&#x27;, [Validators.required]),
+      deviceId: new FormControl&lt;string | null&gt;(null),
+      modelId: new FormControl&lt;string | null&gt;(null),
+      connectionId: new FormControl&lt;string | null&gt;(null),
+      attributeDictionaryId: new FormControl(&#x27;&#x27;, Validators.required),
+      value: new FormControl(&#x27;&#x27;, Validators.required),
+    },
+    { validators: this.valid.atLeastOneValidator },
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="attribute"></a>
+                    <span class="name">
+                        <span ><b>attribute</b></span>
+                        <a href="#attribute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Attribute.html" target="_self" >Attribute</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="attributeDictionary"></a>
+                    <span class="name">
+                        <span ><b>attributeDictionary</b></span>
+                        <a href="#attributeDictionary"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>AttributeDictionary[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="component"></a>
+                    <span class="name">
+                        <span ><b>component</b></span>
+                        <a href="#component"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Attributes&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="componentDictionary"></a>
+                    <span class="name">
+                        <span ><b>componentDictionary</b></span>
+                        <a href="#componentDictionary"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/ComponentDictionary.html" target="_self" >ComponentDictionary</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new ComponentDictionary()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="connectionDictionary"></a>
+                    <span class="name">
+                        <span ><b>connectionDictionary</b></span>
+                        <a href="#connectionDictionary"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Connection.html" target="_self" >Connection[]</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceCategoryDict"></a>
+                    <span class="name">
+                        <span ><b>deviceCategoryDict</b></span>
+                        <a href="#deviceCategoryDict"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/DeviceCategoryDict.html" target="_self" >DeviceCategoryDict</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new DeviceCategoryDict()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceDictionary"></a>
+                    <span class="name">
+                        <span ><b>deviceDictionary</b></span>
+                        <a href="#deviceDictionary"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Device.html" target="_self" >Device[]</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceTypeDict"></a>
+                    <span class="name">
+                        <span ><b>deviceTypeDict</b></span>
+                        <a href="#deviceTypeDict"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/DeviceTypeDict.html" target="_self" >DeviceTypeDict</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new DeviceTypeDict()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formBuilder"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>formBuilder</b></span>
+                        <a href="#formBuilder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormBuilder</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSubmitted"></a>
+                    <span class="name">
+                        <span ><b>isSubmitted</b></span>
+                        <a href="#isSubmitted"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modelDictionary"></a>
+                    <span class="name">
+                        <span ><b>modelDictionary</b></span>
+                        <a href="#modelDictionary"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Model.html" target="_self" >Model[]</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="valid"></a>
+                    <span class="name">
+                        <span ><b>valid</b></span>
+                        <a href="#valid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Validation.html" target="_self" >Validation</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Validation()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="id"></a>
+                        <span class="name"><b>id</b><a href="#id"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>id()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:122</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="deviceId"></a>
+                        <span class="name"><b>deviceId</b><a href="#deviceId"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>deviceId()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:126</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="modelId"></a>
+                        <span class="name"><b>modelId</b><a href="#modelId"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>modelId()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:130</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="connectionId"></a>
+                        <span class="name"><b>connectionId</b><a href="#connectionId"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>connectionId()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:134</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="attributeDictionaryId"></a>
+                        <span class="name"><b>attributeDictionaryId</b><a href="#attributeDictionaryId"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>attributeDictionaryId()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:138</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="value"></a>
+                        <span class="name"><b>value</b><a href="#value"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>value()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/app/components/attribute/add-attribute/add-attribute.component.ts:142</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Subscription } from &#x27;rxjs&#x27;
+
+import { Component, NgZone, OnInit } from &#x27;@angular/core&#x27;
+import { FormBuilder, FormControl, FormGroup, Validators } from &#x27;@angular/forms&#x27;
+import { Router } from &#x27;@angular/router&#x27;
+import { faker } from &#x27;@faker-js/faker&#x27;
+
+import { AttributeDictionaryService } from &#x27;../../../services/attribute-dictionary.service&#x27;
+import { AttributeService } from &#x27;../../../services/attribute.service&#x27;
+import { ConnectionService } from &#x27;../../../services/connection.service&#x27;
+import { DeviceService } from &#x27;../../../services/device.service&#x27;
+import { LogService } from &#x27;../../../services/log.service&#x27;
+import { ModelsService } from &#x27;../../../services/models.service&#x27;
+import { Attribute } from &#x27;../../../shared/attribute&#x27;
+import { AttributeDictionary } from &#x27;../../../shared/attribute-dictionary&#x27;
+import { ComponentDictionary } from &#x27;../../../shared/component-dictionary&#x27;
+import { Connection } from &#x27;../../../shared/connection&#x27;
+import { Device } from &#x27;../../../shared/device&#x27;
+import { DeviceCategoryDict } from &#x27;../../../shared/deviceCategories&#x27;
+import { DeviceTypeDict } from &#x27;../../../shared/deviceTypes&#x27;
+import { Model } from &#x27;../../../shared/model&#x27;
+import Validation from &#x27;../../../shared/validation&#x27;
+
+@Component({
+  selector: &#x27;app-add-attribute&#x27;,
+  templateUrl: &#x27;./add-attribute.component.html&#x27;,
+  styleUrls: [&#x27;./add-attribute.component.scss&#x27;],
+})
+export class AttributeAddComponent implements OnInit {
+  valid: Validation &#x3D; new Validation()
+
+  addAttributeFrom &#x3D; new FormGroup(
+    {
+      id: new FormControl(&#x27;&#x27;, [Validators.required]),
+      deviceId: new FormControl&lt;string | null&gt;(null),
+      modelId: new FormControl&lt;string | null&gt;(null),
+      connectionId: new FormControl&lt;string | null&gt;(null),
+      attributeDictionaryId: new FormControl(&#x27;&#x27;, Validators.required),
+      value: new FormControl(&#x27;&#x27;, Validators.required),
+    },
+    { validators: this.valid.atLeastOneValidator },
+  )
+
+  attribute: Attribute
+  deviceDictionary: Device[]
+  modelDictionary: Model[]
+  connectionDictionary: Connection[]
+  attributeDictionary: AttributeDictionary[]
+
+  isSubmitted &#x3D; false
+  deviceTypeDict: DeviceTypeDict &#x3D; new DeviceTypeDict()
+  deviceCategoryDict: DeviceCategoryDict &#x3D; new DeviceCategoryDict()
+  componentDictionary: ComponentDictionary &#x3D; new ComponentDictionary()
+  component &#x3D; &#x27;Attributes&#x27;
+
+  ngOnInit() {
+    this.formAttribute()
+    this.getDeviceList()
+    this.getModelList()
+    this.getConnectionList()
+    this.getAttributeDictionaryList()
+  }
+
+  constructor(
+    public formBuilder: FormBuilder,
+    private ngZone: NgZone,
+    private router: Router,
+    private attributeService: AttributeService,
+    private deviceService: DeviceService,
+    private modelService: ModelsService,
+    private connectionService: ConnectionService,
+    private attributeDictionaryService: AttributeDictionaryService,
+    private logService: LogService,
+  ) {}
+
+  formAttribute() {
+    this.addAttributeFrom &#x3D; this.formBuilder.group(
+      {
+        id: [&#x27;&#x27;, Validators.required],
+        deviceId: [&#x27;&#x27;],
+        modelId: [&#x27;&#x27;],
+        connectionId: [&#x27;&#x27;],
+        attributeDictionaryId: [&#x27;&#x27;, Validators.required],
+        value: [&#x27;&#x27;, Validators.required],
+      },
+      { validators: this.valid.atLeastOneValidator },
+    )
+  }
+
+  changeId(e: Event) {
+    const value &#x3D; (e.target as HTMLInputElement).value
+    const objectId &#x3D; uuidv4.toString().substr(6, 36)
+    this.id?.setValue(objectId, { onlySelf: true })
+  }
+
+  changeModelId(e: Event) {
+    this.modelId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+
+  changeDeviceId(e: Event) {
+    const value &#x3D; (e.target as HTMLInputElement).value
+    const objectId &#x3D; uuidv4.toString().substr(6, 36)
+    this.deviceId?.setValue(objectId, { onlySelf: true })
+  }
+
+  changeConnectionId(e: Event) {
+    const value &#x3D; (e.target as HTMLInputElement).value
+    const objectId &#x3D; uuidv4.toString().substr(6, 36)
+    this.connectionId?.setValue(objectId, { onlySelf: true })
+  }
+
+  changeAttributeDictionaryId(e: Event) {
+    const value &#x3D; (e.target as HTMLInputElement).value
+    const objectId &#x3D; uuidv4.toString().substr(6, 36)
+    this.attributeDictionaryId?.setValue(objectId, { onlySelf: true })
+  }
+
+  changeValue(e: Event) {
+    this.value?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+
+  get id() {
+    return this.addAttributeFrom.get(&#x27;id&#x27;)
+  }
+
+  get deviceId() {
+    return this.addAttributeFrom.get(&#x27;deviceId&#x27;)
+  }
+
+  get modelId() {
+    return this.addAttributeFrom.get(&#x27;modelId&#x27;)
+  }
+
+  get connectionId() {
+    return this.addAttributeFrom.get(&#x27;connectionId&#x27;)
+  }
+
+  get attributeDictionaryId() {
+    return this.addAttributeFrom.get(&#x27;attributeDictionaryId&#x27;)
+  }
+
+  get value() {
+    return this.addAttributeFrom.get(&#x27;value&#x27;)
+  }
+
+  toString(data: unknown): string {
+    // Specify a more specific type for the &#x27;data&#x27; parameter
+    return JSON.stringify(data, null, 2)
+  }
+
+  getDeviceList(): Subscription {
+    return this.deviceService.GetDevices().subscribe((data: Device[]) &#x3D;&gt; {
+      const tmp &#x3D; new Device()
+      data.unshift(tmp)
+      this.deviceDictionary &#x3D; data
+    })
+  }
+
+  getModelList(): Subscription {
+    return this.modelService.GetModels().subscribe((data: Model[]) &#x3D;&gt; {
+      const tmp &#x3D; new Model()
+      data.unshift(tmp)
+      this.modelDictionary &#x3D; data
+    })
+  }
+
+  getConnectionList(): Subscription {
+    return this.connectionService.GetConnections().subscribe((data: Connection[]) &#x3D;&gt; {
+      const tmp &#x3D; new Connection()
+      data.unshift(tmp)
+      this.connectionDictionary &#x3D; data
+    })
+  }
+
+  getAttributeDictionaryList(): Subscription {
+    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) &#x3D;&gt; {
+      this.attributeDictionary &#x3D; data
+    })
+  }
+
+  /**
+   * @description Generate random data for attribute
+   *              1. Select one of List
+   *                  - deviceId: [&#x27;&#x27;],
+   *                  - modelId: [&#x27;&#x27;],
+   *                  - connectionId: [&#x27;&#x27;],
+   *              2. get random data from this list
+   *              3. get random data from attributeDictionaryId: [&#x27;&#x27;, Validators.required],
+   *              4. set random value: [&#x27;&#x27;, Validators.required],
+   * @memberof AttributeAddComponent
+   */
+  generateAttributeDictionary() {
+    this.addAttributeFrom.controls.value.setValue(faker.company.name() + &#x27; - &#x27; + faker.company.bs())
+  }
+
+  submitForm(): void {
+    this.attributeService.CreateAttribute(this.addAttributeFrom.value as Attribute).subscribe(() &#x3D;&gt; {
+      this.logService
+        .CreateLog({
+          objectId: this.addAttributeFrom.get(&#x27;_id&#x27;)?.value,
+          message: this.addAttributeFrom.value as Attribute,
+          operation: &#x27;Create&#x27;,
+          component: &#x27;Attribute&#x27;,
+        })
+        .subscribe(() &#x3D;&gt; {
+          this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;attribute-list&#x27;))
+        })
+    })
+  }
+}
+function uuidv4() {
+  throw new Error(&#x27;Function not implemented.&#x27;)
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+  &lt;h2&gt;&lt;i class&#x3D;&quot;bi bi-bar-chart&quot;&gt;&lt;/i&gt; Add Attribute&lt;/h2&gt;
+  &lt;i class&#x3D;&quot;bi bi-columns&quot;&gt;&lt;/i&gt;
+  &lt;span class&#x3D;&quot;text-primary d-inline-flex focus-ring py-1 px-2 text-decoration-none&quot;&gt;
+    {{ this.toString(this.addAttributeFrom.controls.id.value) }}&lt;/span
+  &gt;
+  &lt;form [formGroup]&#x3D;&quot;addAttributeFrom&quot; (ngSubmit)&#x3D;&quot;submitForm()&quot; class&#x3D;&quot;needs-validation&quot; novalidate&gt;
+    &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+      &lt;h4&gt;Attribute object&lt;/h4&gt;
+      &lt;div class&#x3D;&quot;col border&quot;&gt;
+        &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+          &lt;div class&#x3D;&quot;col&quot;&gt;
+            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+              &lt;label for&#x3D;&quot;deviceId&quot; class&#x3D;&quot;form-label&quot;&gt;Device&lt;/label&gt;
+              &lt;select
+                (change)&#x3D;&quot;changeDeviceId($event)&quot;
+                formControlName&#x3D;&quot;deviceId&quot;
+                [ngClass]&#x3D;&quot;{
+                  &#x27;is-invalid&#x27;: addAttributeFrom.hasError(&#x27;atLeastOneValidator&#x27;),
+                  &#x27;is-valid&#x27;: !addAttributeFrom.hasError(&#x27;atLeastOneValidator&#x27;),
+                  &#x27;form-select&#x27;: true,
+                }&quot;
+                id&#x3D;&quot;deviceId&quot;
+              &gt;
+                &lt;option *ngFor&#x3D;&quot;let deviceObj of deviceDictionary; let i &#x3D; index&quot; value&#x3D;&quot;{{ deviceObj._id }}&quot;&gt;
+                  {{ deviceObj.name }}
+                &lt;/option&gt;
+              &lt;/select&gt;
+              &lt;div *ngIf&#x3D;&quot;addAttributeFrom.hasError(&#x27;atLeastOneValidator&#x27;)&quot; class&#x3D;&quot;error-message&quot;&gt;
+                One of field: device, model or connection is required
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;log-message&quot;&gt;
+                {{ this.toString(this.addAttributeFrom.controls.deviceId.value) }}
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;col&quot;&gt;
+            &lt;div class&#x3D;&quot;form-group mb-2&quot;&gt;
+              &lt;label for&#x3D;&quot;modelId&quot; class&#x3D;&quot;form-label&quot;&gt;Model&lt;/label&gt;
+              &lt;select
+                (change)&#x3D;&quot;changeModelId($event)&quot;
+                formControlName&#x3D;&quot;modelId&quot;
+                [ngClass]&#x3D;&quot;{
+                  &#x27;is-invalid&#x27;: addAttributeFrom.hasError(&#x27;atLeastOneValidator&#x27;),
+                  &#x27;is-valid&#x27;: !addAttributeFrom.hasError(&#x27;atLeastOneValidator&#x27;),
+                  &#x27;form-select&#x27;: true,
+                }&quot;
+                id&#x3D;&quot;modelId&quot;
+              &gt;
+                &lt;option *ngFor&#x3D;&quot;let modelObj of modelDictionary; let i &#x3D; index&quot; value&#x3D;&quot;{{ modelObj._id }}&quot;&gt;
+                  {{ modelObj.name }}
+                &lt;/option&gt;
+              &lt;/select&gt;
+              &lt;div *ngIf&#x3D;&quot;addAttributeFrom.hasError(&#x27;atLeastOneValidator&#x27;)&quot; class&#x3D;&quot;error-message&quot;&gt;
+                One of field: device, model or connection is required
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;log-message&quot;&gt;
+                {{ this.toString(this.addAttributeFrom.controls.modelId.value) }}
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;col&quot;&gt;
+            &lt;div class&#x3D;&quot;form-group mb-2&quot;&gt;
+              &lt;label for&#x3D;&quot;connectionId&quot; class&#x3D;&quot;form-label&quot;&gt;Connection&lt;/label&gt;
+              &lt;select
+                (change)&#x3D;&quot;changeConnectionId($event)&quot;
+                formControlName&#x3D;&quot;connectionId&quot;
+                [ngClass]&#x3D;&quot;{
+                  &#x27;is-invalid&#x27;: addAttributeFrom.hasError(&#x27;atLeastOneValidator&#x27;),
+                  &#x27;is-valid&#x27;: !addAttributeFrom.hasError(&#x27;atLeastOneValidator&#x27;),
+                  &#x27;form-select&#x27;: true,
+                }&quot;
+                id&#x3D;&quot;connectionId&quot;
+              &gt;
+                &lt;option
+                  *ngFor&#x3D;&quot;let connectionObj of connectionDictionary; let i &#x3D; index&quot;
+                  value&#x3D;&quot;{{ connectionObj._id }}&quot;
+                &gt;
+                  {{ connectionObj.name }}
+                &lt;/option&gt;
+              &lt;/select&gt;
+              &lt;div *ngIf&#x3D;&quot;addAttributeFrom.hasError(&#x27;atLeastOneValidator&#x27;)&quot; class&#x3D;&quot;error-message&quot;&gt;
+                One of field: device, model or connection is required
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;log-message&quot;&gt;
+                {{ this.toString(this.addAttributeFrom.controls.connectionId.value) }}
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;col&quot;&gt;
+        &lt;div class&#x3D;&quot;form-group mb-2&quot;&gt;
+          &lt;label for&#x3D;&quot;attributeDictionaryId&quot; class&#x3D;&quot;form-label&quot;&gt;Attribute Dictionary Id&lt;/label&gt;
+          &lt;select
+            (change)&#x3D;&quot;changeAttributeDictionaryId($event)&quot;
+            formControlName&#x3D;&quot;attributeDictionaryId&quot;
+            formControlName&#x3D;&quot;attributeDictionaryId&quot;
+            [ngClass]&#x3D;&quot;{
+              &#x27;is-invalid&#x27;: this.addAttributeFrom.controls.attributeDictionaryId.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+              &#x27;is-valid&#x27;: this.addAttributeFrom.controls.attributeDictionaryId.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+              &#x27;form-select&#x27;: true,
+            }&quot;
+            id&#x3D;&quot;attributeDictionaryId&quot;
+          &gt;
+            &lt;option
+              *ngFor&#x3D;&quot;let attributeDictionaryObj of attributeDictionary; let i &#x3D; index&quot;
+              value&#x3D;&quot;{{ attributeDictionaryObj._id }}&quot;
+            &gt;
+              {{ attributeDictionaryObj.name }}
+            &lt;/option&gt;
+          &lt;/select&gt;
+          &lt;div *ngIf&#x3D;&quot;this.addAttributeFrom.controls.attributeDictionaryId.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+            &lt;div *ngIf&#x3D;&quot;this.addAttributeFrom.controls.attributeDictionaryId.errors.required&quot;&gt;
+              attributeDictionaryId is required
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;log-message&quot;&gt;
+            {{ this.toString(this.addAttributeFrom.controls.attributeDictionaryId) }}
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;row&quot;&gt;
+      &lt;div class&#x3D;&quot;col&quot;&gt;
+        &lt;div class&#x3D;&quot;form-group mb-2&quot;&gt;
+          &lt;label for&#x3D;&quot;value&quot; class&#x3D;&quot;form-label&quot;&gt;Value&lt;/label&gt;
+          &lt;input
+            type&#x3D;&quot;text&quot;
+            formControlName&#x3D;&quot;value&quot;
+            id&#x3D;&quot;id&quot;
+            required
+            [ngClass]&#x3D;&quot;{
+              &#x27;is-invalid&#x27;: this.addAttributeFrom.controls.value.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+              &#x27;is-valid&#x27;: this.addAttributeFrom.controls.value.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+              &#x27;form-control&#x27;: true,
+            }&quot;
+          /&gt;
+          &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Please select a valid state.&lt;/div&gt;
+          &lt;div *ngIf&#x3D;&quot;this.addAttributeFrom.controls.value.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+            &lt;div *ngIf&#x3D;&quot;this.addAttributeFrom.controls.value.errors.required&quot;&gt;Value is required&lt;/div&gt;
+            &lt;div *ngIf&#x3D;&quot;this.addAttributeFrom.controls.value.errors.minlength&quot;&gt;
+              Value must be at less 250 characters
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;row&quot;&gt;
+      &lt;div class&#x3D;&quot;col&quot;&gt;
+        &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+          &lt;button
+            type&#x3D;&quot;submit&quot;
+            [disabled]&#x3D;&quot;!(this.addAttributeFrom.valid &amp;&amp; this.addAttributeFrom.touched)&quot;
+            class&#x3D;&quot;btn btn-primary&quot;
+          &gt;
+            Add attribute
+          &lt;/button&gt;
+
+          &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;generateAttributeDictionary()&quot; class&#x3D;&quot;btn btn-debug&quot;&gt;
+            &lt;i class&#x3D;&quot;bi bi-bookmark-plus&quot;&gt;&lt;/i&gt; Generate random data
+          &lt;/button&gt;
+
+          &lt;div *ngIf&#x3D;&quot;!(this.addAttributeFrom.valid &amp;&amp; this.addAttributeFrom.touched)&quot;&gt;Form is invalid&lt;/div&gt;
+          &lt;span class&#x3D;&quot;text-danger&quot; *ngIf&#x3D;&quot;addAttributeFrom.hasError(&#x27;atLeastOneValidator&#x27;)&quot;&gt;
+            Fill one of Device, Model or Connection first.
+          &lt;/span&gt;
+          &lt;div *ngIf&#x3D;&quot;!(this.addAttributeFrom.valid &amp;&amp; this.addAttributeFrom.touched)&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+            Form is invalid
+          &lt;/div&gt;
+          &lt;!-- &lt;div class&#x3D;&quot;log-message&quot;&gt;atLeastOneValidator: {{ addAttributeFrom.hasError(&#x27;atLeastOneValidator&#x27;) }}&lt;/div&gt;
+          &lt;div class&#x3D;&quot;log-message&quot;&gt;addAttributeFrom.value: {{ toString(addAttributeFrom.value) }}&lt;/div&gt;
+          &lt;div class&#x3D;&quot;log-message&quot;&gt;addAttributeFrom.valid: {{ toString(this.addAttributeFrom.valid) }}&lt;/div&gt;
+          &lt;div class&#x3D;&quot;log-message&quot;&gt;addAttributeFrom.touched: {{ toString(this.addAttributeFrom.touched) }}&lt;/div&gt; --&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./add-attribute.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <h2><i class="bi bi-bar-chart"></i> Add Attribute</h2>  <i class="bi bi-columns"></i>  <span class="text-primary d-inline-flex focus-ring py-1 px-2 text-decoration-none">    {{ this.toString(this.addAttributeFrom.controls.id.value) }}</span  >  <form [formGroup]="addAttributeFrom" (ngSubmit)="submitForm()" class="needs-validation" novalidate>    <div class="row g-3">      <h4>Attribute object</h4>      <div class="col border">        <div class="row g-3">          <div class="col">            <div class="form-group">              <label for="deviceId" class="form-label">Device</label>              <select                (change)="changeDeviceId($event)"                formControlName="deviceId"                [ngClass]="{                  \'is-invalid\': addAttributeFrom.hasError(\'atLeastOneValidator\'),                  \'is-valid\': !addAttributeFrom.hasError(\'atLeastOneValidator\'),                  \'form-select\': true,                }"                id="deviceId"              >                <option *ngFor="let deviceObj of deviceDictionary; let i = index" value="{{ deviceObj._id }}">                  {{ deviceObj.name }}                </option>              </select>              <div *ngIf="addAttributeFrom.hasError(\'atLeastOneValidator\')" class="error-message">                One of field: device, model or connection is required              </div>              <div class="log-message">                {{ this.toString(this.addAttributeFrom.controls.deviceId.value) }}              </div>            </div>          </div>          <div class="col">            <div class="form-group mb-2">              <label for="modelId" class="form-label">Model</label>              <select                (change)="changeModelId($event)"                formControlName="modelId"                [ngClass]="{                  \'is-invalid\': addAttributeFrom.hasError(\'atLeastOneValidator\'),                  \'is-valid\': !addAttributeFrom.hasError(\'atLeastOneValidator\'),                  \'form-select\': true,                }"                id="modelId"              >                <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj._id }}">                  {{ modelObj.name }}                </option>              </select>              <div *ngIf="addAttributeFrom.hasError(\'atLeastOneValidator\')" class="error-message">                One of field: device, model or connection is required              </div>              <div class="log-message">                {{ this.toString(this.addAttributeFrom.controls.modelId.value) }}              </div>            </div>          </div>          <div class="col">            <div class="form-group mb-2">              <label for="connectionId" class="form-label">Connection</label>              <select                (change)="changeConnectionId($event)"                formControlName="connectionId"                [ngClass]="{                  \'is-invalid\': addAttributeFrom.hasError(\'atLeastOneValidator\'),                  \'is-valid\': !addAttributeFrom.hasError(\'atLeastOneValidator\'),                  \'form-select\': true,                }"                id="connectionId"              >                <option                  *ngFor="let connectionObj of connectionDictionary; let i = index"                  value="{{ connectionObj._id }}"                >                  {{ connectionObj.name }}                </option>              </select>              <div *ngIf="addAttributeFrom.hasError(\'atLeastOneValidator\')" class="error-message">                One of field: device, model or connection is required              </div>              <div class="log-message">                {{ this.toString(this.addAttributeFrom.controls.connectionId.value) }}              </div>            </div>          </div>        </div>      </div>      <div class="col">        <div class="form-group mb-2">          <label for="attributeDictionaryId" class="form-label">Attribute Dictionary Id</label>          <select            (change)="changeAttributeDictionaryId($event)"            formControlName="attributeDictionaryId"            formControlName="attributeDictionaryId"            [ngClass]="{              \'is-invalid\': this.addAttributeFrom.controls.attributeDictionaryId.status !== \'VALID\',              \'is-valid\': this.addAttributeFrom.controls.attributeDictionaryId.status === \'VALID\',              \'form-select\': true,            }"            id="attributeDictionaryId"          >            <option              *ngFor="let attributeDictionaryObj of attributeDictionary; let i = index"              value="{{ attributeDictionaryObj._id }}"            >              {{ attributeDictionaryObj.name }}            </option>          </select>          <div *ngIf="this.addAttributeFrom.controls.attributeDictionaryId.errors" class="invalid-feedback">            <div *ngIf="this.addAttributeFrom.controls.attributeDictionaryId.errors.required">              attributeDictionaryId is required            </div>          </div>          <div class="log-message">            {{ this.toString(this.addAttributeFrom.controls.attributeDictionaryId) }}          </div>        </div>      </div>    </div>    <div class="row">      <div class="col">        <div class="form-group mb-2">          <label for="value" class="form-label">Value</label>          <input            type="text"            formControlName="value"            id="id"            required            [ngClass]="{              \'is-invalid\': this.addAttributeFrom.controls.value.status !== \'VALID\',              \'is-valid\': this.addAttributeFrom.controls.value.status === \'VALID\',              \'form-control\': true,            }"          />          <div class="invalid-feedback">Please select a valid state.</div>          <div *ngIf="this.addAttributeFrom.controls.value.errors" class="invalid-feedback">            <div *ngIf="this.addAttributeFrom.controls.value.errors.required">Value is required</div>            <div *ngIf="this.addAttributeFrom.controls.value.errors.minlength">              Value must be at less 250 characters            </div>          </div>        </div>      </div>    </div>    <div class="row">      <div class="col">        <div class="form-group mb-3">          <button            type="submit"            [disabled]="!(this.addAttributeFrom.valid && this.addAttributeFrom.touched)"            class="btn btn-primary"          >            Add attribute          </button>          <button type="button" (click)="generateAttributeDictionary()" class="btn btn-debug">            <i class="bi bi-bookmark-plus"></i> Generate random data          </button>          <div *ngIf="!(this.addAttributeFrom.valid && this.addAttributeFrom.touched)">Form is invalid</div>          <span class="text-danger" *ngIf="addAttributeFrom.hasError(\'atLeastOneValidator\')">            Fill one of Device, Model or Connection first.          </span>          <div *ngIf="!(this.addAttributeFrom.valid && this.addAttributeFrom.touched)" class="invalid-feedback">            Form is invalid          </div>          <!-- <div class="log-message">atLeastOneValidator: {{ addAttributeFrom.hasError(\'atLeastOneValidator\') }}</div>          <div class="log-message">addAttributeFrom.value: {{ toString(addAttributeFrom.value) }}</div>          <div class="log-message">addAttributeFrom.valid: {{ toString(this.addAttributeFrom.valid) }}</div>          <div class="log-message">addAttributeFrom.touched: {{ toString(this.addAttributeFrom.touched) }}</div> -->        </div>      </div>    </div>  </form></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsyncObservablePipeComponent', 'selector': 'async-observable-pipe'},{'name': 'AttributeAddComponent', 'selector': 'app-add-attribute'},{'name': 'AttributeDictionaryAddComponent', 'selector': 'app-add-attribute-dictionary'},{'name': 'AttributeDictionaryEditComponent', 'selector': 'app-edit-attribute-dictionary'},{'name': 'AttributeDictionaryListComponent', 'selector': 'app-attribute-dictionary-list'},{'name': 'AttributeEditComponent', 'selector': 'app-edit-attribute'},{'name': 'AttributeListComponent', 'selector': 'app-attribute-list'},{'name': 'ConnectionAddComponent', 'selector': 'app-add-connection'},{'name': 'ConnectionEditComponent', 'selector': 'app-edit-connection'},{'name': 'ConnectionListComponent', 'selector': 'app-connection-list'},{'name': 'CubeComponent', 'selector': 'app-cube'},{'name': 'DeviceAddComponent', 'selector': 'app-add-device'},{'name': 'DeviceEditComponent', 'selector': 'app-edit-device'},{'name': 'DeviceListComponent', 'selector': 'app-device-list'},{'name': 'FloorAddComponent', 'selector': 'app-add-floor'},{'name': 'FloorEditComponent', 'selector': 'app-edit-floor'},{'name': 'FloorListComponent', 'selector': 'app-floor-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LogComponent', 'selector': 'app-log'},{'name': 'ModelAddComponent', 'selector': 'app-add-model'},{'name': 'ModelEditComponent', 'selector': 'app-edit-model'},{'name': 'ModelsListComponent', 'selector': 'app-models-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AttributeAddComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AttributeAddComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

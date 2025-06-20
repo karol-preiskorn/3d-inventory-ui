@@ -1,0 +1,294 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>3d-inventory-angular-ui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">3d-inventory-angular-ui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1>3d inventory</h1>
+<ol>
+<li><a href="#3d-inventory">3d inventory</a><ol>
+<li><a href="#about-project">About project</a></li>
+<li><a href="#technology-stack">Technology stack</a></li>
+<li><a href="#demo">Demo</a></li>
+<li><a href="#data-model">Data Model</a><ol>
+<li><a href="#logical-model">Logical model</a></li>
+</ol>
+</li>
+<li><a href="#aplication">Aplication</a><ol>
+<li><a href="#list-devices">List devices</a></li>
+<li><a href="#models">Models</a></li>
+<li><a href="#attributes">Attributes</a></li>
+<li><a href="#attribute-dictionary">Attribute Dictionary</a></li>
+<li><a href="#connections">Connections</a></li>
+</ol>
+</li>
+<li><a href="#run">Run</a></li>
+<li><a href="#deploy">Deploy</a></li>
+<li><a href="#google-cloud">Google Cloud</a></li>
+<li><a href="#apis-repos">APIs repos</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#next-todo">Next todo</a></li>
+</ol>
+</li>
+</ol>
+<p><a href="https://wakatime.com/badge/user/3bbeedbe-0c6a-4a01-b3cd-a85d319a03bf/project/018c62ce-6164-4200-bca9-be53af7f6d80"><img src="https://wakatime.com/badge/user/3bbeedbe-0c6a-4a01-b3cd-a85d319a03bf/project/018c62ce-6164-4200-bca9-be53af7f6d80.svg" alt="wakatime" class="img-responsive"></a> <a href="https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/commit/"><img src="https://badgen.net/github/last-commit/karol-preiskorn/3d-inventory-angular-ui" alt="GitHub latest commit" class="img-responsive"></a> <a href="https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/stargazers/"><img src="https://img.shields.io/github/stars/karol-preiskorn/3d-inventory-angular-ui.svg?style=social&label=Star&maxAge=2592000" alt="GitHub stars" class="img-responsive"></a> <a href="https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/issues/"><img src="https://img.shields.io/github/issues/karol-preiskorn/3d-inventory-angular-ui.svg" alt="GitHub issues" class="img-responsive"></a>
+<a href="https://lbesson.mit-license.org/"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT license" class="img-responsive"></a> <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/--3178C6?logo=typescript&logoColor=ffffff" alt="TypeScript" class="img-responsive"></a> <a href="https://https://npmjs.com/"><img src="https://badgen.net/badge/icon/npm?icon=npm&label" alt="Npm" class="img-responsive"></a> <a href="https://github.com/karol-preiskorn/3d-inventory-angular-ui/blob/master/LICENSE"><img src="https://badgen.net/github/license/karol-preiskorn/3d-inventory-angular-ui" alt="GitHub license" class="img-responsive"></a></p>
+<h2>About project</h2>
+<p>Project create ✨<code>3d inventory</code>✨— solution that allows you to build a spatial and database representation of yours datacenters.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">Motivation
+
+I&#39;m programming to incorporate database systems. This project it is sandbox to covers relevant topics and issues related to create simple and efficient platform for IT inventory.</code></pre></div><img title="Architecture" src="src/assets/architecture.drawio.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%; margin-bottom: 16px" width="85%">
+
+<p>Project contain three repos:</p>
+<ul>
+<li>⚓ <a href="https://github.com/karol-preiskorn/3d-inventory-angular-ui">https://github.com/karol-preiskorn/3d-inventory-angular-ui</a></li>
+<li>⚓ <a href="https://github.com/karol-preiskorn/3d-inventory-mongo-api">https://github.com/karol-preiskorn/3d-inventory-mongo-api</a></li>
+<li>⚓ <a href="https://github.com/karol-preiskorn/3d-inventory-oracle-api">https://github.com/karol-preiskorn/3d-inventory-oracle-api</a></li>
+</ul>
+<h2>Technology stack</h2>
+<ul>
+<li><code>Angular</code> 17+ - as a Corp framework.</li>
+<li><code>Bootstrap</code> 5.3+ - logic for insert <code>UI</code> data</li>
+<li><code>tree.js</code> 163+ - as best graph framework.</li>
+<li><code>MongoAtlas</code>|<code>Oracle</code> - I want in this project try different solution and different data structure and storage datamodels relational and noSQL.</li>
+<li><code>REST</code> - prepared <code>API</code> in use in <code>Swagger</code>.</li>
+<li><code>Podman</code> --&gt; <code>Google Cloud</code> as containers</li>
+</ul>
+<h2>Demo</h2>
+<p>Demo <code>3d inventory</code> use <code>Angular</code> and <code>three.js</code> framework for graphics representation.</p>
+<p><a href="https://youtu.be/rNOxpZ0ti1Q" title="3-d inventory the video"><img title="3-d inventory the video" src="src/assets/img/3d-inventory-demo.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%;" width="85%"/></a></p>
+<p>This project build from this example contain <code>three.js</code> in <code>Angular</code> <a href="https://srivastavaanurag79.medium.com/hello-3d-your-first-three-js-scene-in-angular-176c44b9c6c0">Tutorial to render 3D 3d in Angular + Three.js</a>.</p>
+<h2>Data Model</h2>
+<p>This is implementation parametric generic attribute class. All attributes for <code>Devices</code>, <code>Models</code> and <code>Connections</code> are stored in this model.</p>
+<p>Parameters types are defined in <code>Attribute Dictionary</code>.</p>
+<p>In <code>Attributes</code> are stored values defined in <code>Attributes Dictionary</code> for <code>Devices</code>, <code>Model</code> and <code>Connections</code>. <code>Attributes Dictionary</code> are defined for specyfice parameters this entities.</p>
+<h3>Logical model</h3>
+<p>Relational data model is maped to noSQL model im MondoDb.</p>
+<img title="Logical model" src="src/assets/3d-inventory.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="85%"/>
+
+<h2>Aplication</h2>
+<h3>List devices</h3>
+<img title="List devices" src="src/assets/img/Screenshot%202023-07-14%20at%2008-48-50%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
+
+<h3>Models</h3>
+<img title="Models" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-31%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
+
+<h3>Attributes</h3>
+<img title="Attributes" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-42%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
+
+<h3>Attribute Dictionary</h3>
+<img title="Attribute Dictionary" src="src/assets/img/Screenshot%202023-07-14%20at%2008-49-51%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
+
+<h3>Connections</h3>
+<img title="Connections" src="src/assets/img/Screenshot%202023-07-14%20at%2008-50-00%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
+
+<h2>Run</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">git clone https://github.com/karol-preiskorn/3d-inventory-angular-ui.git
+cd 3d-inventory-angular-ui
+npm install
+npm run start</code></pre></div><p>or run separately <code>json-server</code> and <code>ui</code></p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run start:json-server
+npm run start:ng</code></pre></div><p>Goto in browser <a href="http://localhost:4200">http://localhost:4200</a></p>
+<h2>Deploy</h2>
+<p><a href="https://angular.io/guide/deployment">https://angular.io/guide/deployment</a></p>
+<p>Build in first terminal: <code>ng build --watch</code> in npm alias:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm run build</code></pre></div><h2>Google Cloud</h2>
+<p>tbc</p>
+<h2>APIs repos</h2>
+<ul>
+<li>Oracle <a href="https://github.com/karol-preiskorn/3d-inventory-oracle-api">3d-inventory-oracle-api</a></li>
+<li>Mongo Atlas ✨ <a href="https://github.com/karol-preiskorn/3d-inventory-mongo-api">3d-inventory-mongo-api</a></li>
+</ul>
+<h2>Contributing</h2>
+<p>Pull requests are welcome. For major changes, please open an <a href="https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues/new">issue</a> first to discuss what you would like to change.
+Please make sure to update tests as appropriate.
+Not forget about <a href="https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines">code guide-lines</a>.</p>
+<h2>Next todo</h2>
+<ul>
+<li><input disabled="" type="checkbox"> connection between showing 3d and defined devices.</li>
+<li><input checked="" disabled="" type="checkbox"> build interfance to Mongo Atlas</li>
+<li><input checked="" disabled="" type="checkbox"> Set position and model in data ans show this data in <code>3d</code>.</li>
+<li><input disabled="" type="checkbox"> Show attributes of <code>DEVICES</code>, <code>MODELS</code> and <code>CONNECTIONS</code>. Waiting for MongoDB|Oracle API.</li>
+<li><input checked="" disabled="" type="checkbox"> Generate <code>FLOOR</code></li>
+<li><input disabled="" type="checkbox"> as array of square (x, y, h)</li>
+<li><input checked="" disabled="" type="checkbox"> Use <code>Mongo</code> to strore <code>JSON</code> data. (starting)</li>
+<li><input checked="" disabled="" type="checkbox"> <code>Docker</code> -&gt; serve application in <code>Github Pages</code> --&gt; <code>AWS EC2</code></li>
+<li><input disabled="" type="checkbox"> Use Dev container in <code>GitHub</code> for development.</li>
+<li><input disabled="" type="checkbox"> Recognize <code>Grunt</code>/<code>Glup</code> to <code>CI</code>/<code>DI</code> use in this project.</li>
+<li><input checked="" disabled="" type="checkbox"> Add actual tasks form <code>GitHub</code> during build in README.md.</li>
+<li><input checked="" disabled="" type="checkbox"> Add light/dark theme switch in <code>UI</code></li>
+<li><input disabled="" type="checkbox"> Use <a href="https://formly.dev/">https://formly.dev/</a> ?</li>
+<li><input disabled="" type="checkbox"> Create blog on GitHub Pages or use <a href="https://ultimasolution.pl">https://ultimasolution.pl</a></li>
+<li><input disabled="" type="checkbox"> Try use NgDoc to document how to use code <a href="https://medium.com/@askoropad/ngdoc-documentation-for-angular-projects-3f6ea8fc22b0">https://medium.com/@askoropad/ngdoc-documentation-for-angular-projects-3f6ea8fc22b0</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

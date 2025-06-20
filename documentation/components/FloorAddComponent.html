@@ -1,0 +1,2515 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>3d-inventory-angular-ui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">3d-inventory-angular-ui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  FloorAddComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/floors/add-floor/add-floor.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-add-floor</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./add-floor.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./add-floor.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#dimensionFormGroup" >dimensionFormGroup</a>
+                            </li>
+                            <li>
+                                <a href="#floor" >floor</a>
+                            </li>
+                            <li>
+                                <a href="#floorForm" >floorForm</a>
+                            </li>
+                            <li>
+                                <a href="#isSubmitted" >isSubmitted</a>
+                            </li>
+                            <li>
+                                <a href="#valid" >valid</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addDimension" >addDimension</a>
+                            </li>
+                            <li>
+                                <a href="#changeDescription" >changeDescription</a>
+                            </li>
+                            <li>
+                                <a href="#changeHpos" >changeHpos</a>
+                            </li>
+                            <li>
+                                <a href="#changeId" >changeId</a>
+                            </li>
+                            <li>
+                                <a href="#changeName" >changeName</a>
+                            </li>
+                            <li>
+                                <a href="#changeX" >changeX</a>
+                            </li>
+                            <li>
+                                <a href="#changeXpos" >changeXpos</a>
+                            </li>
+                            <li>
+                                <a href="#changeY" >changeY</a>
+                            </li>
+                            <li>
+                                <a href="#changeYpos" >changeYpos</a>
+                            </li>
+                            <li>
+                                <a href="#deleteDimension" >deleteDimension</a>
+                            </li>
+                            <li>
+                                <a href="#generateDimension" >generateDimension</a>
+                            </li>
+                            <li>
+                                <a href="#generateFloor" >generateFloor</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#submitForm" >submitForm</a>
+                            </li>
+                            <li>
+                                <a href="#toText" >toText</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#_id" >_id</a>
+                                </li>
+                                <li>
+                                    <a href="#name" >name</a>
+                                </li>
+                                <li>
+                                    <a href="#street" >street</a>
+                                </li>
+                                <li>
+                                    <a href="#country" >country</a>
+                                </li>
+                                <li>
+                                    <a href="#postcode" >postcode</a>
+                                </li>
+                                <li>
+                                    <a href="#description" >description</a>
+                                </li>
+                                <li>
+                                    <a href="#x" >x</a>
+                                </li>
+                                <li>
+                                    <a href="#y" >y</a>
+                                </li>
+                                <li>
+                                    <a href="#h" >h</a>
+                                </li>
+                                <li>
+                                    <a href="#xPos" >xPos</a>
+                                </li>
+                                <li>
+                                    <a href="#yPos" >yPos</a>
+                                </li>
+                                <li>
+                                    <a href="#hPos" >hPos</a>
+                                </li>
+                                <li>
+                                    <a href="#dimension" >dimension</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(ngZone: NgZone, router: Router, floorService: <a href="../injectables/FloorService.html" target="_self">FloorService</a>, logService: <a href="../injectables/LogService.html" target="_self">LogService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:42</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>ngZone</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgZone</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>floorService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/FloorService.html" target="_self" >FloorService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>logService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LogService.html" target="_self" >LogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addDimension"></a>
+                    <span class="name">
+                        <span ><b>addDimension</b></span>
+                        <a href="#addDimension"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addDimension()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:157</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeDescription"></a>
+                    <span class="name">
+                        <span ><b>changeDescription</b></span>
+                        <a href="#changeDescription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeDescription(i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>i</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeHpos"></a>
+                    <span class="name">
+                        <span ><b>changeHpos</b></span>
+                        <a href="#changeHpos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeHpos(i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>i</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeId"></a>
+                    <span class="name">
+                        <span ><b>changeId</b></span>
+                        <a href="#changeId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeId(e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="55"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeName"></a>
+                    <span class="name">
+                        <span ><b>changeName</b></span>
+                        <a href="#changeName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeName(e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeX"></a>
+                    <span class="name">
+                        <span ><b>changeX</b></span>
+                        <a href="#changeX"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeX(i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>i</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeXpos"></a>
+                    <span class="name">
+                        <span ><b>changeXpos</b></span>
+                        <a href="#changeXpos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeXpos(i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>i</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeY"></a>
+                    <span class="name">
+                        <span ><b>changeY</b></span>
+                        <a href="#changeY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeY(i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>i</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeYpos"></a>
+                    <span class="name">
+                        <span ><b>changeYpos</b></span>
+                        <a href="#changeYpos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeYpos(i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>i</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteDimension"></a>
+                    <span class="name">
+                        <span ><b>deleteDimension</b></span>
+                        <a href="#deleteDimension"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteDimension(i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="170"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:170</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>i</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateDimension"></a>
+                    <span class="name">
+                        <span ><b>generateDimension</b></span>
+                        <a href="#generateDimension"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>generateDimension(i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="184"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:184</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>i</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateFloor"></a>
+                    <span class="name">
+                        <span ><b>generateFloor</b></span>
+                        <a href="#generateFloor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>generateFloor()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="174"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:174</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitForm"></a>
+                    <span class="name">
+                        <span ><b>submitForm</b></span>
+                        <a href="#submitForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>submitForm()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="199"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:199</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toText"></a>
+                    <span class="name">
+                        <span ><b>toText</b></span>
+                        <a href="#toText"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toText(data)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="149"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:149</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dimensionFormGroup"></a>
+                    <span class="name">
+                        <span ><b>dimensionFormGroup</b></span>
+                        <a href="#dimensionFormGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormGroup({
+    description: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
+    x: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+    y: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+    h: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+    xPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+    yPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+    hPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="floor"></a>
+                    <span class="name">
+                        <span ><b>floor</b></span>
+                        <a href="#floor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Floor.html" target="_self" >Floor</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="floorForm"></a>
+                    <span class="name">
+                        <span ><b>floorForm</b></span>
+                        <a href="#floorForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormGroup({
+    _id: new FormControl(&#x27;&#x27;, [Validators.required]),
+    name: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
+    address: new FormGroup({
+      street: new FormControl(&#x27;&#x27;, Validators.required),
+      city: new FormControl(&#x27;&#x27;, Validators.required),
+      country: new FormControl(&#x27;Poland&#x27;, Validators.required),
+      postcode: new FormControl(&#x27;&#x27;, Validators.required),
+    }),
+    dimension: new FormArray([this.dimensionFormGroup]),
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSubmitted"></a>
+                    <span class="name">
+                        <span ><b>isSubmitted</b></span>
+                        <a href="#isSubmitted"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="valid"></a>
+                    <span class="name">
+                        <span ><b>valid</b></span>
+                        <a href="#valid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Validation.html" target="_self" >Validation</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Validation()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_id"></a>
+                        <span class="name"><b>_id</b><a href="#_id"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>_id()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:101</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="name"></a>
+                        <span class="name"><b>name</b><a href="#name"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>name()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:105</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="street"></a>
+                        <span class="name"><b>street</b><a href="#street"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>street()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:109</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="country"></a>
+                        <span class="name"><b>country</b><a href="#country"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>country()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:113</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="postcode"></a>
+                        <span class="name"><b>postcode</b><a href="#postcode"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>postcode()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:117</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="description"></a>
+                        <span class="name"><b>description</b><a href="#description"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>description()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:121</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="x"></a>
+                        <span class="name"><b>x</b><a href="#x"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>x()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:125</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="y"></a>
+                        <span class="name"><b>y</b><a href="#y"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>y()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:129</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="h"></a>
+                        <span class="name"><b>h</b><a href="#h"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>h()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:133</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="xPos"></a>
+                        <span class="name"><b>xPos</b><a href="#xPos"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>xPos()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:137</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="yPos"></a>
+                        <span class="name"><b>yPos</b><a href="#yPos"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>yPos()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:141</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hPos"></a>
+                        <span class="name"><b>hPos</b><a href="#hPos"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>hPos()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:145</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dimension"></a>
+                        <span class="name"><b>dimension</b><a href="#dimension"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>dimension()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:153</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;
+import { Component, NgZone, OnInit } from &#x27;@angular/core&#x27;
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from &#x27;@angular/forms&#x27;
+import { Router } from &#x27;@angular/router&#x27;
+import { faker } from &#x27;@faker-js/faker&#x27;
+
+import { FloorService } from &#x27;../../../services/floor.service&#x27;
+import { LogService } from &#x27;../../../services/log.service&#x27;
+import { Floor } from &#x27;../../../shared/floor&#x27;
+import Validation from &#x27;../../../shared/validation&#x27;
+
+@Component({
+  selector: &#x27;app-add-floor&#x27;,
+  templateUrl: &#x27;./add-floor.component.html&#x27;,
+  styleUrls: [&#x27;./add-floor.component.scss&#x27;],
+})
+export class FloorAddComponent implements OnInit {
+  floor: Floor
+  isSubmitted &#x3D; false
+  valid: Validation &#x3D; new Validation()
+
+  dimensionFormGroup &#x3D; new FormGroup({
+    description: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
+    x: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+    y: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+    h: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+    xPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+    yPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+    hPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+  })
+
+  floorForm &#x3D; new FormGroup({
+    _id: new FormControl(&#x27;&#x27;, [Validators.required]),
+    name: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
+    address: new FormGroup({
+      street: new FormControl(&#x27;&#x27;, Validators.required),
+      city: new FormControl(&#x27;&#x27;, Validators.required),
+      country: new FormControl(&#x27;Poland&#x27;, Validators.required),
+      postcode: new FormControl(&#x27;&#x27;, Validators.required),
+    }),
+    dimension: new FormArray([this.dimensionFormGroup]),
+  })
+
+  constructor(
+    private ngZone: NgZone,
+    private router: Router,
+    private floorService: FloorService,
+    private logService: LogService,
+  ) {}
+
+  ngOnInit(): void {
+    throw new Error(&#x27;Method not implemented.&#x27;)
+  }
+
+  changeId(e: Event) {
+    const value &#x3D; (e.target as HTMLInputElement).value
+    const objectId &#x3D; value
+    this._id?.setValue(objectId, { onlySelf: true })
+  }
+
+  changeName(e: Event) {
+    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+
+  changeDescription(i: number, e: Event) {
+    this.floorForm.controls.dimension
+      .at(i)
+      .controls.description.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+
+  changeX(i: number, e: Event) {
+    this.floorForm.controls.dimension
+      .at(i)
+      .controls.x.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+
+  changeY(i: number, e: Event) {
+    this.floorForm.controls.dimension
+      .at(i)
+      .controls.y.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+
+  changeXpos(i: number, e: Event) {
+    this.floorForm.controls.dimension
+      .at(i)
+      .controls.xPos.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+
+  changeYpos(i: number, e: Event) {
+    this.floorForm.controls.dimension
+      .at(i)
+      .controls.yPos.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+
+  changeHpos(i: number, e: Event) {
+    this.floorForm.controls.dimension
+      .at(i)
+      .controls.hPos.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+
+  get _id() {
+    return this.floorForm.get(&#x27;_id&#x27;)
+  }
+
+  get name() {
+    return this.floorForm.get(&#x27;name&#x27;)
+  }
+
+  get street() {
+    return this.floorForm.get(&#x27;address&#x27;)?.get(&#x27;street&#x27;)
+  }
+
+  get country() {
+    return this.floorForm.get(&#x27;address&#x27;)?.get(&#x27;street&#x27;)
+  }
+
+  get postcode() {
+    return this.floorForm.get(&#x27;address&#x27;)?.get(&#x27;postcode&#x27;)
+  }
+
+  get description() {
+    return this.floorForm.get(&#x27;description&#x27;)
+  }
+
+  get x() {
+    return this.floorForm.get(&#x27;dimension&#x27;)?.get(&#x27;x&#x27;)
+  }
+
+  get y() {
+    return this.floorForm.get(&#x27;dimension&#x27;)?.get(&#x27;y&#x27;)
+  }
+
+  get h() {
+    return this.floorForm.get(&#x27;dimension&#x27;)?.get(&#x27;h&#x27;)
+  }
+
+  get xPos() {
+    return this.floorForm.get(&#x27;dimension&#x27;)?.get(&#x27;xPos&#x27;)
+  }
+
+  get yPos() {
+    return this.floorForm.get(&#x27;dimension&#x27;)?.get(&#x27;yPos&#x27;)
+  }
+
+  get hPos() {
+    return this.floorForm.get(&#x27;dimension&#x27;)?.get(&#x27;hPos&#x27;)
+  }
+
+  toText(data: unknown): string {
+    return JSON.stringify(data, null, &#x27; &#x27;)
+  }
+
+  get dimension() {
+    return this.floorForm.get(&#x27;dimension&#x27;) as FormArray
+  }
+
+  addDimension() {
+    const fg &#x3D; new FormGroup({
+      description: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
+      x: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+      y: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+      h: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+      xPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+      yPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+      hPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+    })
+    this.dimension.push(fg)
+  }
+
+  deleteDimension(i: number) {
+    this.dimension.removeAt(i)
+  }
+
+  generateFloor() {
+    this.floorForm.controls.name.setValue(faker.company.name() + &#x27; - &#x27; + faker.company.bs())
+    this.floorForm.controls.address.controls.street.setValue(
+      faker.location.street() + &#x27; &#x27; + faker.location.buildingNumber(),
+    )
+    this.floorForm.controls.address.controls.city.setValue(faker.location.city())
+    this.floorForm.controls.address.controls.country.setValue(faker.location.country())
+    this.floorForm.controls.address.controls.postcode.setValue(faker.location.zipCode())
+  }
+
+  generateDimension(i: number) {
+    this.floorForm.controls.dimension
+      .at(i)
+      .controls.description.patchValue(faker.company.name() + &#x27; - &#x27; + faker.company.buzzPhrase(), {
+        emitEvent: false,
+        onlySelf: true,
+      })
+    this.floorForm.controls.dimension.at(i).controls.x.setValue(String(faker.number.int({ min: 2, max: 100 })))
+    this.floorForm.controls.dimension.at(i).controls.y.setValue(String(faker.number.int({ min: 2, max: 100 })))
+    this.floorForm.controls.dimension.at(i).controls.h.setValue(String(faker.number.int({ min: 2, max: 10 })))
+    this.floorForm.controls.dimension.at(i).controls.xPos.setValue(String(faker.number.int({ min: 2, max: 100 })))
+    this.floorForm.controls.dimension.at(i).controls.yPos.setValue(String(faker.number.int({ min: 2, max: 100 })))
+    this.floorForm.controls.dimension.at(i).controls.hPos.setValue(String(faker.number.int({ min: 2, max: 100 })))
+  }
+
+  submitForm() {
+    this.floorService.CreateFloor(this.floorForm.getRawValue() as Floor).subscribe(() &#x3D;&gt; {
+      console.log(&#x27;Floor added!&#x27;)
+      this.logService.CreateLog({
+        operation: &#x27;Create&#x27;,
+        component: &#x27;Floor&#x27;,
+        message: this.floorForm.getRawValue(),
+      })
+      this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;floor-list&#x27;))
+    })
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+  &lt;h3&gt;&lt;i class&#x3D;&quot;bi bi-building&quot;&gt;&lt;/i&gt; Add Floor&lt;/h3&gt;
+  &lt;form [formGroup]&#x3D;&quot;floorForm&quot; (ngSubmit)&#x3D;&quot;submitForm()&quot; class&#x3D;&quot;g-3 needs-validation&quot; novalidate&gt;
+    &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+      &lt;label for&#x3D;&quot;id&quot; class&#x3D;&quot;form-label&quot;&gt;Id: {{ this.floorForm.controls._id.value }} &lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;col border&quot;&gt;
+      &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+        &lt;label for&#x3D;&quot;name&quot; class&#x3D;&quot;form-label&quot;&gt;Name&lt;/label&gt;
+        &lt;textarea
+          formControlName&#x3D;&quot;name&quot;
+          rows&#x3D;&quot;2&quot;
+          minlength&#x3D;&quot;4&quot;
+          maxlength&#x3D;&quot;4000&quot;
+          required
+          [ngClass]&#x3D;&quot;{
+            &#x27;is-invalid&#x27;: this.floorForm.controls.name.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+            &#x27;is-valid&#x27;: this.floorForm.controls.name.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+            &#x27;form-control&#x27;: true,
+          }&quot;
+        &gt;&lt;/textarea&gt;
+        &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.name.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+          &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.name.errors.required&quot;&gt;Name is required&lt;/div&gt;
+          &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.name.errors.minlength&quot;&gt;Name must be at least 4 characters&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div formGroupName&#x3D;&quot;address&quot;&gt;
+        &lt;div class&#x3D;&quot;row&quot;&gt;
+          &lt;div class&#x3D;&quot;col&quot;&gt;
+            &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+              &lt;label for&#x3D;&quot;street&quot; class&#x3D;&quot;form-label&quot;&gt;Street&lt;/label&gt;
+              &lt;input
+                type&#x3D;&quot;text&quot;
+                formControlName&#x3D;&quot;street&quot;
+                id&#x3D;&quot;street&quot;
+                required
+                [ngClass]&#x3D;&quot;{
+                  &#x27;is-invalid&#x27;: this.floorForm.controls.address.controls.street.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                  &#x27;is-valid&#x27;: this.floorForm.controls.address.controls.street.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                  &#x27;form-control&#x27;: true,
+                }&quot;
+              /&gt;
+              &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.street.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.street.errors.required&quot;&gt;Street is required&lt;/div&gt;
+                &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.street.errors.minlength&quot;&gt;
+                  Street must be at least 1 characters
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;col&quot;&gt;
+            &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+              &lt;label for&#x3D;&quot;city&quot; class&#x3D;&quot;form-label&quot;&gt;City&lt;/label&gt;
+              &lt;input
+                type&#x3D;&quot;text&quot;
+                formControlName&#x3D;&quot;city&quot;
+                id&#x3D;&quot;city&quot;
+                required
+                [ngClass]&#x3D;&quot;{
+                  &#x27;is-invalid&#x27;: this.floorForm.controls.address.controls.city.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                  &#x27;is-valid&#x27;: this.floorForm.controls.address.controls.city.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                  &#x27;form-control&#x27;: true,
+                }&quot;
+              /&gt;
+              &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.city.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.city.errors.required&quot;&gt;City is required&lt;/div&gt;
+                &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.city.errors.minlength&quot;&gt;
+                  City must be at least 1 characters
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;col&quot;&gt;
+            &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+              &lt;label for&#x3D;&quot;country&quot; class&#x3D;&quot;form-label&quot;&gt;Country&lt;/label&gt;
+              &lt;input
+                type&#x3D;&quot;text&quot;
+                formControlName&#x3D;&quot;country&quot;
+                id&#x3D;&quot;country&quot;
+                required
+                [ngClass]&#x3D;&quot;{
+                  &#x27;is-invalid&#x27;: this.floorForm.controls.address.controls.country.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                  &#x27;is-valid&#x27;: this.floorForm.controls.address.controls.country.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                  &#x27;form-control&#x27;: true,
+                }&quot;
+              /&gt;
+              &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.country.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.country.errors.required&quot;&gt;country is required&lt;/div&gt;
+                &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.country.errors.minlength&quot;&gt;
+                  country must be at least 1 characters
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;col&quot;&gt;
+            &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+              &lt;label for&#x3D;&quot;postcode&quot; class&#x3D;&quot;form-label&quot;&gt;postcode&lt;/label&gt;
+              &lt;input
+                type&#x3D;&quot;text&quot;
+                formControlName&#x3D;&quot;postcode&quot;
+                id&#x3D;&quot;postcode&quot;
+                required
+                [ngClass]&#x3D;&quot;{
+                  &#x27;is-invalid&#x27;: this.floorForm.controls.address.controls.postcode.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                  &#x27;is-valid&#x27;: this.floorForm.controls.address.controls.postcode.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                  &#x27;form-control&#x27;: true,
+                }&quot;
+              /&gt;
+              &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.postcode.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.postcode.errors.required&quot;&gt;
+                  postcode is required
+                &lt;/div&gt;
+                &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.postcode.errors.minlength&quot;&gt;
+                  postcode must be at least 1 characters
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;h4&gt;Add Dimensions&lt;/h4&gt;
+
+    &lt;div class&#x3D;&quot;border&quot;&gt;
+      &lt;div formArrayName&#x3D;&quot;dimension&quot;&gt;
+        &lt;div *ngFor&#x3D;&quot;let dimensionForm of dimension.controls; let i &#x3D; index&quot;&gt;
+          &lt;div formGroupName&#x3D;&quot;{{ i }}&quot;&gt;
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+              &lt;div class&#x3D;&quot;col&quot;&gt;
+                &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+                  &lt;label for&#x3D;&quot;description&quot; class&#x3D;&quot;form-label&quot;&gt;Description&lt;/label&gt;
+                  &lt;textarea
+                    formControlName&#x3D;&quot;description&quot;
+                    rows&#x3D;&quot;2&quot;
+                    minlength&#x3D;&quot;4&quot;
+                    maxlength&#x3D;&quot;4000&quot;
+                    required
+                    [ngClass]&#x3D;&quot;{
+                      &#x27;is-invalid&#x27;: this.floorForm.controls.dimension.at(i).controls.description.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                      &#x27;is-valid&#x27;: this.floorForm.controls.dimension.at(i).controls.description.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                      &#x27;form-control&#x27;: true,
+                    }&quot;
+                  &gt;&lt;/textarea&gt;
+                  &lt;div
+                    *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.description.errors&quot;
+                    class&#x3D;&quot;invalid-feedback&quot;
+                  &gt;
+                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.description.errors?.required&quot;&gt;
+                      description is required
+                    &lt;/div&gt;
+                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.description.errors?.minlength&quot;&gt;
+                      description must be at least 4 characters
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+              &lt;div class&#x3D;&quot;col&quot;&gt;
+                &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+                  &lt;label for&#x3D;&quot;xPos&quot; class&#x3D;&quot;form-label&quot;&gt;X position&lt;/label&gt;
+                  &lt;input
+                    type&#x3D;&quot;text&quot;
+                    formControlName&#x3D;&quot;xPos&quot;
+                    id&#x3D;&quot;xPos&quot;
+                    required
+                    [ngClass]&#x3D;&quot;{
+                      &#x27;is-invalid&#x27;: this.floorForm.controls.dimension.at(i).controls.xPos.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                      &#x27;is-valid&#x27;: this.floorForm.controls.dimension.at(i).controls.xPos.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                      &#x27;form-control&#x27;: true,
+                    }&quot;
+                  /&gt;
+                  &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.xPos.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.xPos.errors?.required&quot;&gt;
+                      X position is required
+                    &lt;/div&gt;
+                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.xPos.errors?.minlength&quot;&gt;
+                      X position must be at least 1 characters
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;col&quot;&gt;
+                &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+                  &lt;label for&#x3D;&quot;yPos&quot; class&#x3D;&quot;form-label&quot;&gt;Y position&lt;/label&gt;
+                  &lt;input
+                    type&#x3D;&quot;text&quot;
+                    formControlName&#x3D;&quot;yPos&quot;
+                    id&#x3D;&quot;yPos&quot;
+                    required
+                    [ngClass]&#x3D;&quot;{
+                      &#x27;is-invalid&#x27;: this.floorForm.controls.dimension.at(i).controls.yPos.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                      &#x27;is-valid&#x27;: this.floorForm.controls.dimension.at(i).controls.yPos.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                      &#x27;form-control&#x27;: true,
+                    }&quot;
+                  /&gt;
+                  &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.yPos.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.yPos.errors?.required&quot;&gt;
+                      Y is required
+                    &lt;/div&gt;
+                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.yPos.errors?.minlength&quot;&gt;
+                      Y must be at least 1 characters
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;col&quot;&gt;
+                &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+                  &lt;label for&#x3D;&quot;hPos&quot; class&#x3D;&quot;form-label&quot;&gt;H position&lt;/label&gt;
+                  &lt;input
+                    type&#x3D;&quot;text&quot;
+                    formControlName&#x3D;&quot;hPos&quot;
+                    id&#x3D;&quot;hPos&quot;
+                    required
+                    [ngClass]&#x3D;&quot;{
+                      &#x27;is-invalid&#x27;: this.floorForm.controls.dimension.at(i).controls.hPos.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                      &#x27;is-valid&#x27;: this.floorForm.controls.dimension.at(i).controls.hPos.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                      &#x27;form-control&#x27;: true,
+                    }&quot;
+                  /&gt;
+                  &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.hPos.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.hPos.errors?.required&quot;&gt;
+                      H is required
+                    &lt;/div&gt;
+                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.hPos.errors?.minlength&quot;&gt;
+                      H must be at least 1 characters
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+              &lt;div class&#x3D;&quot;col&quot;&gt;
+                &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+                  &lt;label for&#x3D;&quot;x&quot; class&#x3D;&quot;form-label&quot;&gt;X&lt;/label&gt;
+                  &lt;input
+                    type&#x3D;&quot;text&quot;
+                    formControlName&#x3D;&quot;x&quot;
+                    id&#x3D;&quot;x&quot;
+                    required
+                    [ngClass]&#x3D;&quot;{
+                      &#x27;is-invalid&#x27;: this.floorForm.controls.dimension.at(i).controls.x.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                      &#x27;is-valid&#x27;: this.floorForm.controls.dimension.at(i).controls.x.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                      &#x27;form-control&#x27;: true,
+                    }&quot;
+                  /&gt;
+                  &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.x.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.x.errors?.required&quot;&gt;X is required&lt;/div&gt;
+                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.x.errors?.minlength&quot;&gt;
+                      X must be at least 1 characters
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;col&quot;&gt;
+                &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+                  &lt;label for&#x3D;&quot;y&quot; class&#x3D;&quot;form-label&quot;&gt;Y&lt;/label&gt;
+                  &lt;input
+                    type&#x3D;&quot;text&quot;
+                    formControlName&#x3D;&quot;y&quot;
+                    id&#x3D;&quot;y&quot;
+                    required
+                    [ngClass]&#x3D;&quot;{
+                      &#x27;is-invalid&#x27;: this.floorForm.controls.dimension.at(i).controls.y.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                      &#x27;is-valid&#x27;: this.floorForm.controls.dimension.at(i).controls.y.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                      &#x27;form-control&#x27;: true,
+                    }&quot;
+                  /&gt;
+                  &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.y.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.y.errors?.required&quot;&gt;Y is required&lt;/div&gt;
+                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.y.errors?.minlength&quot;&gt;
+                      Y must be at least 1 characters
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;col&quot;&gt;
+                &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+                  &lt;label for&#x3D;&quot;h&quot; class&#x3D;&quot;form-label&quot;&gt;H&lt;/label&gt;
+                  &lt;input
+                    type&#x3D;&quot;text&quot;
+                    formControlName&#x3D;&quot;h&quot;
+                    id&#x3D;&quot;h&quot;
+                    required
+                    [ngClass]&#x3D;&quot;{
+                      &#x27;is-invalid&#x27;: this.floorForm.controls.dimension.at(i).controls.h.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                      &#x27;is-valid&#x27;: this.floorForm.controls.dimension.at(i).controls.h.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                      &#x27;form-control&#x27;: true,
+                    }&quot;
+                  /&gt;
+                  &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.h.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.h.errors?.required&quot;&gt;h is required&lt;/div&gt;
+                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.h.errors?.minlength&quot;&gt;
+                      h must be at least 1 characters
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;d-flex p-2&quot;&gt;
+              &lt;div class&#x3D;&quot;p-1 g-col-1&quot;&gt;
+                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;addDimension()&quot; class&#x3D;&quot;btn btn-secondary&quot;&gt;
+                  &lt;i class&#x3D;&quot;bi bi-file-earmark-plus&quot;&gt;&lt;/i&gt; Add Dimension
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;p-1 g-col-1 column-gap-3&quot;&gt;
+                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;deleteDimension(i)&quot; class&#x3D;&quot;btn btn-warning&quot;&gt;
+                  &lt;i class&#x3D;&quot;bi bi-file-earmark-minus&quot;&gt;&lt;/i&gt; Delete Dimension
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;p-1 g-col-1 column-gap-3&quot;&gt;
+                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;this.generateDimension(i)&quot; class&#x3D;&quot;btn btn-debug&quot;&gt;
+                  &lt;i class&#x3D;&quot;bi bi-bookmark-plus&quot;&gt;&lt;/i&gt; Generate random Dimension {{ i }}
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;p&gt;
+          Form Status: &lt;code&gt;{{ floorForm.status }}&lt;/code&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+          Form Values: &lt;code&gt;{{ toText(floorForm.value) }}&lt;/code&gt;
+        &lt;/p&gt;
+        &lt;div class&#x3D;&quot;d-flex p-2&quot;&gt;
+          &lt;div class&#x3D;&quot;p-1 g-col-1&quot;&gt;
+            &lt;button type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;!(floorForm.valid &amp;&amp; floorForm.touched)&quot; class&#x3D;&quot;btn btn-primary mb-3&quot;&gt;
+              &lt;i class&#x3D;&quot;bi bi-save&quot;&gt;&lt;/i&gt; Save
+            &lt;/button&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;p-1 g-col-1&quot;&gt;
+            &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;generateFloor()&quot; class&#x3D;&quot;btn btn-debug&quot;&gt;
+              &lt;i class&#x3D;&quot;bi bi-bookmark-plus&quot;&gt;&lt;/i&gt; Generate random data
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./add-floor.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <h3><i class="bi bi-building"></i> Add Floor</h3>  <form [formGroup]="floorForm" (ngSubmit)="submitForm()" class="g-3 needs-validation" novalidate>    <div class="form-group mb-3">      <label for="id" class="form-label">Id: {{ this.floorForm.controls._id.value }} </label>    </div>    <div class="col border">      <div class="form-group mb-3">        <label for="name" class="form-label">Name</label>        <textarea          formControlName="name"          rows="2"          minlength="4"          maxlength="4000"          required          [ngClass]="{            \'is-invalid\': this.floorForm.controls.name.status !== \'VALID\',            \'is-valid\': this.floorForm.controls.name.status === \'VALID\',            \'form-control\': true,          }"        ></textarea>        <div *ngIf="this.floorForm.controls.name.errors" class="invalid-feedback">          <div *ngIf="this.floorForm.controls.name.errors.required">Name is required</div>          <div *ngIf="this.floorForm.controls.name.errors.minlength">Name must be at least 4 characters</div>        </div>      </div>      <div formGroupName="address">        <div class="row">          <div class="col">            <div class="form-group mb-3">              <label for="street" class="form-label">Street</label>              <input                type="text"                formControlName="street"                id="street"                required                [ngClass]="{                  \'is-invalid\': this.floorForm.controls.address.controls.street.status !== \'VALID\',                  \'is-valid\': this.floorForm.controls.address.controls.street.status === \'VALID\',                  \'form-control\': true,                }"              />              <div *ngIf="this.floorForm.controls.address.controls.street.errors" class="invalid-feedback">                <div *ngIf="this.floorForm.controls.address.controls.street.errors.required">Street is required</div>                <div *ngIf="this.floorForm.controls.address.controls.street.errors.minlength">                  Street must be at least 1 characters                </div>              </div>            </div>          </div>          <div class="col">            <div class="form-group mb-3">              <label for="city" class="form-label">City</label>              <input                type="text"                formControlName="city"                id="city"                required                [ngClass]="{                  \'is-invalid\': this.floorForm.controls.address.controls.city.status !== \'VALID\',                  \'is-valid\': this.floorForm.controls.address.controls.city.status === \'VALID\',                  \'form-control\': true,                }"              />              <div *ngIf="this.floorForm.controls.address.controls.city.errors" class="invalid-feedback">                <div *ngIf="this.floorForm.controls.address.controls.city.errors.required">City is required</div>                <div *ngIf="this.floorForm.controls.address.controls.city.errors.minlength">                  City must be at least 1 characters                </div>              </div>            </div>          </div>          <div class="col">            <div class="form-group mb-3">              <label for="country" class="form-label">Country</label>              <input                type="text"                formControlName="country"                id="country"                required                [ngClass]="{                  \'is-invalid\': this.floorForm.controls.address.controls.country.status !== \'VALID\',                  \'is-valid\': this.floorForm.controls.address.controls.country.status === \'VALID\',                  \'form-control\': true,                }"              />              <div *ngIf="this.floorForm.controls.address.controls.country.errors" class="invalid-feedback">                <div *ngIf="this.floorForm.controls.address.controls.country.errors.required">country is required</div>                <div *ngIf="this.floorForm.controls.address.controls.country.errors.minlength">                  country must be at least 1 characters                </div>              </div>            </div>          </div>          <div class="col">            <div class="form-group mb-3">              <label for="postcode" class="form-label">postcode</label>              <input                type="text"                formControlName="postcode"                id="postcode"                required                [ngClass]="{                  \'is-invalid\': this.floorForm.controls.address.controls.postcode.status !== \'VALID\',                  \'is-valid\': this.floorForm.controls.address.controls.postcode.status === \'VALID\',                  \'form-control\': true,                }"              />              <div *ngIf="this.floorForm.controls.address.controls.postcode.errors" class="invalid-feedback">                <div *ngIf="this.floorForm.controls.address.controls.postcode.errors.required">                  postcode is required                </div>                <div *ngIf="this.floorForm.controls.address.controls.postcode.errors.minlength">                  postcode must be at least 1 characters                </div>              </div>            </div>          </div>        </div>      </div>    </div>    <h4>Add Dimensions</h4>    <div class="border">      <div formArrayName="dimension">        <div *ngFor="let dimensionForm of dimension.controls; let i = index">          <div formGroupName="{{ i }}">            <div class="row">              <div class="col">                <div class="form-group mb-3">                  <label for="description" class="form-label">Description</label>                  <textarea                    formControlName="description"                    rows="2"                    minlength="4"                    maxlength="4000"                    required                    [ngClass]="{                      \'is-invalid\': this.floorForm.controls.dimension.at(i).controls.description.status !== \'VALID\',                      \'is-valid\': this.floorForm.controls.dimension.at(i).controls.description.status === \'VALID\',                      \'form-control\': true,                    }"                  ></textarea>                  <div                    *ngIf="this.floorForm.controls.dimension.at(i).controls.description.errors"                    class="invalid-feedback"                  >                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.description.errors?.required">                      description is required                    </div>                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.description.errors?.minlength">                      description must be at least 4 characters                    </div>                  </div>                </div>              </div>            </div>            <div class="row">              <div class="col">                <div class="form-group mb-3">                  <label for="xPos" class="form-label">X position</label>                  <input                    type="text"                    formControlName="xPos"                    id="xPos"                    required                    [ngClass]="{                      \'is-invalid\': this.floorForm.controls.dimension.at(i).controls.xPos.status !== \'VALID\',                      \'is-valid\': this.floorForm.controls.dimension.at(i).controls.xPos.status === \'VALID\',                      \'form-control\': true,                    }"                  />                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.xPos.errors" class="invalid-feedback">                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.xPos.errors?.required">                      X position is required                    </div>                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.xPos.errors?.minlength">                      X position must be at least 1 characters                    </div>                  </div>                </div>              </div>              <div class="col">                <div class="form-group mb-3">                  <label for="yPos" class="form-label">Y position</label>                  <input                    type="text"                    formControlName="yPos"                    id="yPos"                    required                    [ngClass]="{                      \'is-invalid\': this.floorForm.controls.dimension.at(i).controls.yPos.status !== \'VALID\',                      \'is-valid\': this.floorForm.controls.dimension.at(i).controls.yPos.status === \'VALID\',                      \'form-control\': true,                    }"                  />                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.yPos.errors" class="invalid-feedback">                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.yPos.errors?.required">                      Y is required                    </div>                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.yPos.errors?.minlength">                      Y must be at least 1 characters                    </div>                  </div>                </div>              </div>              <div class="col">                <div class="form-group mb-3">                  <label for="hPos" class="form-label">H position</label>                  <input                    type="text"                    formControlName="hPos"                    id="hPos"                    required                    [ngClass]="{                      \'is-invalid\': this.floorForm.controls.dimension.at(i).controls.hPos.status !== \'VALID\',                      \'is-valid\': this.floorForm.controls.dimension.at(i).controls.hPos.status === \'VALID\',                      \'form-control\': true,                    }"                  />                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.hPos.errors" class="invalid-feedback">                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.hPos.errors?.required">                      H is required                    </div>                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.hPos.errors?.minlength">                      H must be at least 1 characters                    </div>                  </div>                </div>              </div>            </div>            <div class="row">              <div class="col">                <div class="form-group mb-3">                  <label for="x" class="form-label">X</label>                  <input                    type="text"                    formControlName="x"                    id="x"                    required                    [ngClass]="{                      \'is-invalid\': this.floorForm.controls.dimension.at(i).controls.x.status !== \'VALID\',                      \'is-valid\': this.floorForm.controls.dimension.at(i).controls.x.status === \'VALID\',                      \'form-control\': true,                    }"                  />                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.x.errors" class="invalid-feedback">                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.x.errors?.required">X is required</div>                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.x.errors?.minlength">                      X must be at least 1 characters                    </div>                  </div>                </div>              </div>              <div class="col">                <div class="form-group mb-3">                  <label for="y" class="form-label">Y</label>                  <input                    type="text"                    formControlName="y"                    id="y"                    required                    [ngClass]="{                      \'is-invalid\': this.floorForm.controls.dimension.at(i).controls.y.status !== \'VALID\',                      \'is-valid\': this.floorForm.controls.dimension.at(i).controls.y.status === \'VALID\',                      \'form-control\': true,                    }"                  />                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.y.errors" class="invalid-feedback">                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.y.errors?.required">Y is required</div>                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.y.errors?.minlength">                      Y must be at least 1 characters                    </div>                  </div>                </div>              </div>              <div class="col">                <div class="form-group mb-3">                  <label for="h" class="form-label">H</label>                  <input                    type="text"                    formControlName="h"                    id="h"                    required                    [ngClass]="{                      \'is-invalid\': this.floorForm.controls.dimension.at(i).controls.h.status !== \'VALID\',                      \'is-valid\': this.floorForm.controls.dimension.at(i).controls.h.status === \'VALID\',                      \'form-control\': true,                    }"                  />                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.h.errors" class="invalid-feedback">                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.h.errors?.required">h is required</div>                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.h.errors?.minlength">                      h must be at least 1 characters                    </div>                  </div>                </div>              </div>            </div>            <div class="d-flex p-2">              <div class="p-1 g-col-1">                <button type="button" (click)="addDimension()" class="btn btn-secondary">                  <i class="bi bi-file-earmark-plus"></i> Add Dimension                </button>              </div>              <div class="p-1 g-col-1 column-gap-3">                <button type="button" (click)="deleteDimension(i)" class="btn btn-warning">                  <i class="bi bi-file-earmark-minus"></i> Delete Dimension                </button>              </div>              <div class="p-1 g-col-1 column-gap-3">                <button type="button" (click)="this.generateDimension(i)" class="btn btn-debug">                  <i class="bi bi-bookmark-plus"></i> Generate random Dimension {{ i }}                </button>              </div>            </div>          </div>        </div>        <p>          Form Status: <code>{{ floorForm.status }}</code>        </p>        <p>          Form Values: <code>{{ toText(floorForm.value) }}</code>        </p>        <div class="d-flex p-2">          <div class="p-1 g-col-1">            <button type="submit" [disabled]="!(floorForm.valid && floorForm.touched)" class="btn btn-primary mb-3">              <i class="bi bi-save"></i> Save            </button>          </div>          <div class="p-1 g-col-1">            <button type="button" (click)="generateFloor()" class="btn btn-debug">              <i class="bi bi-bookmark-plus"></i> Generate random data            </button>          </div>        </div>      </div>    </div>  </form></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsyncObservablePipeComponent', 'selector': 'async-observable-pipe'},{'name': 'AttributeAddComponent', 'selector': 'app-add-attribute'},{'name': 'AttributeDictionaryAddComponent', 'selector': 'app-add-attribute-dictionary'},{'name': 'AttributeDictionaryEditComponent', 'selector': 'app-edit-attribute-dictionary'},{'name': 'AttributeDictionaryListComponent', 'selector': 'app-attribute-dictionary-list'},{'name': 'AttributeEditComponent', 'selector': 'app-edit-attribute'},{'name': 'AttributeListComponent', 'selector': 'app-attribute-list'},{'name': 'ConnectionAddComponent', 'selector': 'app-add-connection'},{'name': 'ConnectionEditComponent', 'selector': 'app-edit-connection'},{'name': 'ConnectionListComponent', 'selector': 'app-connection-list'},{'name': 'CubeComponent', 'selector': 'app-cube'},{'name': 'DeviceAddComponent', 'selector': 'app-add-device'},{'name': 'DeviceEditComponent', 'selector': 'app-edit-device'},{'name': 'DeviceListComponent', 'selector': 'app-device-list'},{'name': 'FloorAddComponent', 'selector': 'app-add-floor'},{'name': 'FloorEditComponent', 'selector': 'app-edit-floor'},{'name': 'FloorListComponent', 'selector': 'app-floor-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LogComponent', 'selector': 'app-log'},{'name': 'ModelAddComponent', 'selector': 'app-add-model'},{'name': 'ModelEditComponent', 'selector': 'app-edit-model'},{'name': 'ModelsListComponent', 'selector': 'app-models-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'FloorAddComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FloorAddComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

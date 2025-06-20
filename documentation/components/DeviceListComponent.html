@@ -1,0 +1,1381 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>3d-inventory-angular-ui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">3d-inventory-angular-ui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  DeviceListComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/devices/devices-list/devices-list.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-device-list</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./devices-list.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./devices-list.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#component" >component</a>
+                            </li>
+                            <li>
+                                <a href="#deviceList" >deviceList</a>
+                            </li>
+                            <li>
+                                <a href="#deviceListPage" >deviceListPage</a>
+                            </li>
+                            <li>
+                                <a href="#modelList" >modelList</a>
+                            </li>
+                            <li>
+                                <a href="#selectedDevice" >selectedDevice</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#AddForm" >AddForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#CloneDevice" >CloneDevice</a>
+                            </li>
+                            <li>
+                                <a href="#DeleteDevice" >DeleteDevice</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#EditForm" >EditForm</a>
+                            </li>
+                            <li>
+                                <a href="#FindModelName" >FindModelName</a>
+                            </li>
+                            <li>
+                                <a href="#getDeviceList" >getDeviceList</a>
+                            </li>
+                            <li>
+                                <a href="#loadDevices" >loadDevices</a>
+                            </li>
+                            <li>
+                                <a href="#loadModels" >loadModels</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#stringify" >stringify</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(devicesService: <a href="../injectables/DeviceService.html" target="_self">DeviceService</a>, modelsService: <a href="../injectables/ModelsService.html" target="_self">ModelsService</a>, logService: <a href="../injectables/LogService.html" target="_self">LogService</a>, router: Router, ngZone: NgZone, route: ActivatedRoute)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/devices/devices-list/devices-list.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>devicesService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DeviceService.html" target="_self" >DeviceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>modelsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ModelsService.html" target="_self" >ModelsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>logService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LogService.html" target="_self" >LogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>ngZone</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgZone</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AddForm"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>AddForm</b></span>
+                        <a href="#AddForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>AddForm()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/components/devices/devices-list/devices-list.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CloneDevice"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>CloneDevice</b></span>
+                        <a href="#CloneDevice"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>CloneDevice(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app/components/devices/devices-list/devices-list.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DeleteDevice"></a>
+                    <span class="name">
+                        <span ><b>DeleteDevice</b></span>
+                        <a href="#DeleteDevice"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>DeleteDevice(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/components/devices/devices-list/devices-list.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EditForm"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>EditForm</b></span>
+                        <a href="#EditForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>EditForm(device: <a href="../classes/Device.html" target="_self">Device</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="94"
+                                    class="link-to-prism">src/app/components/devices/devices-list/devices-list.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>device</td>
+                                            <td>
+                                                            <code><a href="../classes/Device.html" target="_self" >Device</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FindModelName"></a>
+                    <span class="name">
+                        <span ><b>FindModelName</b></span>
+                        <a href="#FindModelName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>FindModelName(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/components/devices/devices-list/devices-list.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDeviceList"></a>
+                    <span class="name">
+                        <span ><b>getDeviceList</b></span>
+                        <a href="#getDeviceList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDeviceList()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/app/components/devices/devices-list/devices-list.component.ts:116</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Device.html" target="_self" >Device[]</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadDevices"></a>
+                    <span class="name">
+                        <span ><b>loadDevices</b></span>
+                        <a href="#loadDevices"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadDevices()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/app/components/devices/devices-list/devices-list.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadModels"></a>
+                    <span class="name">
+                        <span ><b>loadModels</b></span>
+                        <a href="#loadModels"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadModels()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="42"
+                                    class="link-to-prism">src/app/components/devices/devices-list/devices-list.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="22"
+                                    class="link-to-prism">src/app/components/devices/devices-list/devices-list.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stringify"></a>
+                    <span class="name">
+                        <span ><b>stringify</b></span>
+                        <a href="#stringify"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>stringify(obj: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank">object</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/app/components/devices/devices-list/devices-list.component.ts:112</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>obj</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="component"></a>
+                    <span class="name">
+                        <span ><b>component</b></span>
+                        <a href="#component"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Devices&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/devices/devices-list/devices-list.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceList"></a>
+                    <span class="name">
+                        <span ><b>deviceList</b></span>
+                        <a href="#deviceList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Device.html" target="_self" >Device[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/devices/devices-list/devices-list.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceListPage"></a>
+                    <span class="name">
+                        <span ><b>deviceListPage</b></span>
+                        <a href="#deviceListPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/devices/devices-list/devices-list.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modelList"></a>
+                    <span class="name">
+                        <span ><b>modelList</b></span>
+                        <a href="#modelList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Model.html" target="_self" >Model[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/components/devices/devices-list/devices-list.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedDevice"></a>
+                    <span class="name">
+                        <span ><b>selectedDevice</b></span>
+                        <a href="#selectedDevice"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Device.html" target="_self" >Device</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/devices/devices-list/devices-list.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, NgZone, OnInit } from &#x27;@angular/core&#x27;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;
+
+import { DeviceService } from &#x27;../../../services/device.service&#x27;
+import { LogService } from &#x27;../../../services/log.service&#x27;
+import { ModelsService } from &#x27;../../../services/models.service&#x27;
+import { Device } from &#x27;../../../shared/device&#x27;
+import { Model } from &#x27;../../../shared/model&#x27;
+
+@Component({
+  selector: &#x27;app-device-list&#x27;,
+  templateUrl: &#x27;./devices-list.component.html&#x27;,
+  styleUrls: [&#x27;./devices-list.component.scss&#x27;],
+})
+export class DeviceListComponent implements OnInit {
+  deviceList: Device[] &#x3D; []
+  modelList: Model[] &#x3D; []
+  selectedDevice: Device
+  component &#x3D; &#x27;Devices&#x27;
+  deviceListPage &#x3D; 1
+
+  ngOnInit() {
+    this.loadDevices()
+    this.loadModels()
+  }
+
+  constructor(
+    private devicesService: DeviceService,
+    private modelsService: ModelsService,
+    private logService: LogService,
+    private router: Router,
+    private ngZone: NgZone,
+    private route: ActivatedRoute,
+  ) {}
+
+  loadDevices() {
+    return this.devicesService.GetDevices().subscribe((data: Device[]) &#x3D;&gt; {
+      this.deviceList &#x3D; data
+    })
+  }
+
+  loadModels() {
+    return this.modelsService.GetModels().subscribe((data: Model[]): void &#x3D;&gt; {
+      this.modelList &#x3D; data
+    })
+  }
+
+  DeleteDevice(id: string) {
+    this.logService
+      .CreateLog({
+        message: { id: id },
+        objectId: id,
+        operation: &#x27;Delete&#x27;,
+        component: this.component,
+      })
+      .subscribe({
+        next: () &#x3D;&gt; {
+          this.devicesService.DeleteDevice(id).subscribe({
+            next: () &#x3D;&gt; {
+              console.log(id + &#x27; deleted&#x27;)
+              this.loadDevices()
+              this.loadModels()
+              void this.router.navigate([&#x27;/device-list/&#x27;], { relativeTo: this.route, skipLocationChange: true })
+            },
+            error: (err) &#x3D;&gt; {
+              console.error(&#x27;Error deleting device:&#x27;, err)
+            },
+          })
+        },
+        error: (err) &#x3D;&gt; {
+          console.error(&#x27;Error creating log:&#x27;, err)
+        },
+      })
+  }
+
+  async CloneDevice(id: string) {
+    const idNew: object &#x3D; this.devicesService.CloneDevice(id)
+    console.info(&#x27;Cloned device id: &#x27; + id + &#x27; to result CloneDevice id: &#x27; + JSON.stringify(idNew))
+    await this.logService
+      .CreateLog({
+        message: { id: id, id_new: idNew },
+        operation: &#x27;Clone&#x27;,
+        component: this.component,
+      })
+      .toPromise()
+    await this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;device-list&#x27;))
+    this.loadDevices()
+  }
+
+  async AddForm() {
+    await this.router.navigateByUrl(&#x27;/add-device&#x27;)
+  }
+
+  async EditForm(device: Device) {
+    this.selectedDevice &#x3D; device
+    if (device._id !&#x3D;&#x3D; undefined) {
+      await this.router.navigate([&#x27;edit-device&#x27;, device._id], { relativeTo: this.route.parent })
+    } else {
+      console.warn(&#x27;[DeviceListComponent] Device route.id is undefined&#x27;)
+    }
+  }
+
+  FindModelName(id: string): string {
+    // console.info(&#x27;[FindModelName] try find model name by id: &#x27; + id)
+    let model &#x3D; this.modelList.find((e: Model) &#x3D;&gt; e._id &#x3D;&#x3D;&#x3D; id)?.name as string
+    if (model &#x3D;&#x3D;&#x3D; undefined) {
+      model &#x3D; &#x27;Unknown&#x27;
+    }
+    return model
+  }
+
+  stringify(obj: object): string {
+    return JSON.stringify(obj, null, 2)
+  }
+
+  getDeviceList(): Device[] {
+    return this.deviceList
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+  &lt;h3&gt;&lt;i class&#x3D;&quot;bi bi-hdd&quot;&gt;&lt;/i&gt; Devices&lt;/h3&gt;
+  &lt;table class&#x3D;&quot;table table-striped table-hover&quot;&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th scope&#x3D;&quot;col&quot;&gt;Name&lt;/th&gt;
+        &lt;th scope&#x3D;&quot;col&quot;&gt;Position&lt;/th&gt;
+        &lt;th scope&#x3D;&quot;col&quot;&gt;Model&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr
+        *ngFor&#x3D;&quot;
+          let device of deviceList
+            | paginate
+              : {
+                  id: &#x27;devicePagination&#x27;,
+                  itemsPerPage: 5,
+                  currentPage: deviceListPage,
+                }
+        &quot;&gt;
+        &lt;td&gt;
+          &lt;a title&#x3D;&quot;{{ device._id }}&quot;&gt;{{ device.name }}&lt;/a&gt;
+          &lt;p class&#x3D;&quot;fs-7 fw-lighter deviceid&quot;&gt;{{ device._id }}&lt;/p&gt;
+        &lt;/td&gt;
+        &lt;td&gt;({{ device.position.x }}, {{ device.position.y }}, {{ device.position.h }})&lt;/td&gt;
+        &lt;td&gt;
+          &lt;a title&#x3D;&quot;{{ device.modelId }}&quot; href&#x3D;&quot;edit-model/{{ device.modelId }}&quot;
+            &gt;&lt;i class&#x3D;&quot;bi bi-motherboard&quot;&gt;&lt;/i&gt;
+            {{ device.modelId &#x3D;&#x3D;&#x3D; null ? &#x27;is null&#x27; : FindModelName(device.modelId) }}&lt;/a
+          &gt;
+          &lt;p class&#x3D;&quot;fs-7 fw-lighter deviceid&quot;&gt;{{ device.modelId }}&lt;/p&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+          &lt;div class&#x3D;&quot;btn-group float-md-end&quot; role&#x3D;&quot;group&quot; aria-label&#x3D;&quot;device-operations&quot;&gt;
+            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success btn-sm move-right&quot; id&#x3D;&quot;edit-device&quot; (click)&#x3D;&quot;EditForm(device)&quot;&gt;
+              &lt;i class&#x3D;&quot;bi bi-pen&quot;&gt;&lt;/i&gt;
+            &lt;/button&gt;
+            &lt;button type&#x3D;&quot;button&quot; id&#x3D;&quot;delete-device&quot; class&#x3D;&quot;btn btn-danger btn-sm&quot; (click)&#x3D;&quot;DeleteDevice(device._id)&quot;&gt;
+              &lt;i class&#x3D;&quot;bi bi-trash&quot;&gt;&lt;/i&gt;
+            &lt;/button&gt;
+            &lt;button type&#x3D;&quot;button&quot; id&#x3D;&quot;clone-device&quot; class&#x3D;&quot;btn btn-light btn-sm&quot; (click)&#x3D;&quot;CloneDevice(device._id)&quot;&gt;
+              &lt;i class&#x3D;&quot;bi bi-copy&quot;&gt;&lt;/i&gt;
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+  &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success btn-sm move-right mb-3&quot; (click)&#x3D;&quot;AddForm()&quot;&gt;
+    &lt;i class&#x3D;&quot;bi bi-plus-lg&quot;&gt;&lt;/i&gt; Add
+  &lt;/button&gt;
+  &lt;pagination-controls (pageChange)&#x3D;&quot;deviceListPage &#x3D; $event&quot; id&#x3D;&quot;devicePagination&quot;&gt;&lt;/pagination-controls&gt;
+&lt;/div&gt;
+
+&lt;app-log [component]&#x3D;&quot;component&quot;&gt;&lt;/app-log&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./devices-list.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <h3><i class="bi bi-hdd"></i> Devices</h3>  <table class="table table-striped table-hover">    <thead>      <tr>        <th scope="col">Name</th>        <th scope="col">Position</th>        <th scope="col">Model</th>      </tr>    </thead>    <tbody>      <tr        *ngFor="          let device of deviceList            | paginate              : {                  id: \'devicePagination\',                  itemsPerPage: 5,                  currentPage: deviceListPage,                }        ">        <td>          <a title="{{ device._id }}">{{ device.name }}</a>          <p class="fs-7 fw-lighter deviceid">{{ device._id }}</p>        </td>        <td>({{ device.position.x }}, {{ device.position.y }}, {{ device.position.h }})</td>        <td>          <a title="{{ device.modelId }}" href="edit-model/{{ device.modelId }}"            ><i class="bi bi-motherboard"></i>            {{ device.modelId === null ? \'is null\' : FindModelName(device.modelId) }}</a          >          <p class="fs-7 fw-lighter deviceid">{{ device.modelId }}</p>        </td>        <td>          <div class="btn-group float-md-end" role="group" aria-label="device-operations">            <button type="button" class="btn btn-success btn-sm move-right" id="edit-device" (click)="EditForm(device)">              <i class="bi bi-pen"></i>            </button>            <button type="button" id="delete-device" class="btn btn-danger btn-sm" (click)="DeleteDevice(device._id)">              <i class="bi bi-trash"></i>            </button>            <button type="button" id="clone-device" class="btn btn-light btn-sm" (click)="CloneDevice(device._id)">              <i class="bi bi-copy"></i>            </button>          </div>        </td>      </tr>    </tbody>  </table>  <button type="button" class="btn btn-success btn-sm move-right mb-3" (click)="AddForm()">    <i class="bi bi-plus-lg"></i> Add  </button>  <pagination-controls (pageChange)="deviceListPage = $event" id="devicePagination"></pagination-controls></div><app-log [component]="component"></app-log></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsyncObservablePipeComponent', 'selector': 'async-observable-pipe'},{'name': 'AttributeAddComponent', 'selector': 'app-add-attribute'},{'name': 'AttributeDictionaryAddComponent', 'selector': 'app-add-attribute-dictionary'},{'name': 'AttributeDictionaryEditComponent', 'selector': 'app-edit-attribute-dictionary'},{'name': 'AttributeDictionaryListComponent', 'selector': 'app-attribute-dictionary-list'},{'name': 'AttributeEditComponent', 'selector': 'app-edit-attribute'},{'name': 'AttributeListComponent', 'selector': 'app-attribute-list'},{'name': 'ConnectionAddComponent', 'selector': 'app-add-connection'},{'name': 'ConnectionEditComponent', 'selector': 'app-edit-connection'},{'name': 'ConnectionListComponent', 'selector': 'app-connection-list'},{'name': 'CubeComponent', 'selector': 'app-cube'},{'name': 'DeviceAddComponent', 'selector': 'app-add-device'},{'name': 'DeviceEditComponent', 'selector': 'app-edit-device'},{'name': 'DeviceListComponent', 'selector': 'app-device-list'},{'name': 'FloorAddComponent', 'selector': 'app-add-floor'},{'name': 'FloorEditComponent', 'selector': 'app-edit-floor'},{'name': 'FloorListComponent', 'selector': 'app-floor-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LogComponent', 'selector': 'app-log'},{'name': 'ModelAddComponent', 'selector': 'app-add-model'},{'name': 'ModelEditComponent', 'selector': 'app-edit-model'},{'name': 'ModelsListComponent', 'selector': 'app-models-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'DeviceListComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DeviceListComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

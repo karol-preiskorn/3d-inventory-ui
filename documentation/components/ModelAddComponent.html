@@ -1,0 +1,1327 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>3d-inventory-angular-ui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">3d-inventory-angular-ui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ModelAddComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/models/add-model/add-model.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-add-model</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./add-model.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./add-model.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addModelForm" >addModelForm</a>
+                            </li>
+                            <li>
+                                <a href="#deviceCategoryDict" >deviceCategoryDict</a>
+                            </li>
+                            <li>
+                                <a href="#deviceTypeDict" >deviceTypeDict</a>
+                            </li>
+                            <li>
+                                <a href="#isSubmitted" >isSubmitted</a>
+                            </li>
+                            <li>
+                                <a href="#model" >model</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#modelsService" >modelsService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#changeValue" >changeValue</a>
+                            </li>
+                            <li>
+                                <a href="#generateModel" >generateModel</a>
+                            </li>
+                            <li>
+                                <a href="#getControl" >getControl</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#submitForm" >submitForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(ngZone: NgZone, router: Router, modelsService: <a href="../injectables/ModelsService.html" target="_self">ModelsService</a>, logService: <a href="../injectables/LogService.html" target="_self">LogService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/models/add-model/add-model.component.ts:54</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>ngZone</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgZone</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>modelsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ModelsService.html" target="_self" >ModelsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>logService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LogService.html" target="_self" >LogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeValue"></a>
+                    <span class="name">
+                        <span ><b>changeValue</b></span>
+                        <a href="#changeValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeValue(controlName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/app/components/models/add-model/add-model.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>controlName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateModel"></a>
+                    <span class="name">
+                        <span ><b>generateModel</b></span>
+                        <a href="#generateModel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>generateModel()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/components/models/add-model/add-model.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getControl"></a>
+                    <span class="name">
+                        <span ><b>getControl</b></span>
+                        <a href="#getControl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getControl(controlName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">src/app/components/models/add-model/add-model.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>controlName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/components/models/add-model/add-model.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitForm"></a>
+                    <span class="name">
+                        <span ><b>submitForm</b></span>
+                        <a href="#submitForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>submitForm()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/components/models/add-model/add-model.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addModelForm"></a>
+                    <span class="name">
+                        <span ><b>addModelForm</b></span>
+                        <a href="#addModelForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormGroup({
+    id: new FormControl(&#x27;&#x27;, null),
+    name: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
+    dimension: new FormGroup({
+      width: new FormControl(&#x27;&#x27;, [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(6),
+        Validators.pattern(&#x27;^[0-9]*$&#x27;),
+      ]),
+      height: new FormControl(&#x27;&#x27;, [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(6),
+        Validators.pattern(&#x27;^[0-9]*$&#x27;),
+      ]),
+      depth: new FormControl(&#x27;&#x27;, [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(6),
+        Validators.pattern(&#x27;^[0-9]*$&#x27;),
+      ]),
+    }),
+    texture: new FormGroup({
+      front: new FormControl(&#x27;&#x27;, null),
+      back: new FormControl(&#x27;&#x27;, null),
+      side: new FormControl(&#x27;&#x27;, null),
+      top: new FormControl(&#x27;&#x27;, null),
+      bottom: new FormControl(&#x27;&#x27;, null),
+    }),
+    type: new FormControl(&#x27;&#x27;, Validators.required),
+    category: new FormControl(&#x27;&#x27;, Validators.required),
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/models/add-model/add-model.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceCategoryDict"></a>
+                    <span class="name">
+                        <span ><b>deviceCategoryDict</b></span>
+                        <a href="#deviceCategoryDict"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new DeviceCategoryDict()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/models/add-model/add-model.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deviceTypeDict"></a>
+                    <span class="name">
+                        <span ><b>deviceTypeDict</b></span>
+                        <a href="#deviceTypeDict"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new DeviceTypeDict()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/models/add-model/add-model.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSubmitted"></a>
+                    <span class="name">
+                        <span ><b>isSubmitted</b></span>
+                        <a href="#isSubmitted"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/models/add-model/add-model.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="model"></a>
+                    <span class="name">
+                        <span ><b>model</b></span>
+                        <a href="#model"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Model.html" target="_self" >Model</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/models/add-model/add-model.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modelsService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>modelsService</b></span>
+                        <a href="#modelsService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/ModelsService.html" target="_self" >ModelsService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/components/models/add-model/add-model.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, NgZone, OnInit } from &#x27;@angular/core&#x27;
+import { FormControl, FormGroup, Validators } from &#x27;@angular/forms&#x27;
+import { Router } from &#x27;@angular/router&#x27;
+import { faker } from &#x27;@faker-js/faker&#x27;
+
+import { LogService } from &#x27;../../../services/log.service&#x27;
+import { ModelsService } from &#x27;../../../services/models.service&#x27;
+import { DeviceCategoryDict } from &#x27;../../../shared/deviceCategories&#x27;
+import { DeviceTypeDict } from &#x27;../../../shared/deviceTypes&#x27;
+import { Model } from &#x27;../../../shared/model&#x27;
+
+@Component({
+  selector: &#x27;app-add-model&#x27;,
+  templateUrl: &#x27;./add-model.component.html&#x27;,
+  styleUrls: [&#x27;./add-model.component.scss&#x27;],
+})
+export class ModelAddComponent implements OnInit {
+  addModelForm &#x3D; new FormGroup({
+    id: new FormControl(&#x27;&#x27;, null),
+    name: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
+    dimension: new FormGroup({
+      width: new FormControl(&#x27;&#x27;, [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(6),
+        Validators.pattern(&#x27;^[0-9]*$&#x27;),
+      ]),
+      height: new FormControl(&#x27;&#x27;, [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(6),
+        Validators.pattern(&#x27;^[0-9]*$&#x27;),
+      ]),
+      depth: new FormControl(&#x27;&#x27;, [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(6),
+        Validators.pattern(&#x27;^[0-9]*$&#x27;),
+      ]),
+    }),
+    texture: new FormGroup({
+      front: new FormControl(&#x27;&#x27;, null),
+      back: new FormControl(&#x27;&#x27;, null),
+      side: new FormControl(&#x27;&#x27;, null),
+      top: new FormControl(&#x27;&#x27;, null),
+      bottom: new FormControl(&#x27;&#x27;, null),
+    }),
+    type: new FormControl(&#x27;&#x27;, Validators.required),
+    category: new FormControl(&#x27;&#x27;, Validators.required),
+  })
+  model: Model
+  isSubmitted &#x3D; false
+  deviceTypeDict &#x3D; new DeviceTypeDict()
+  deviceCategoryDict &#x3D; new DeviceCategoryDict()
+
+  constructor(
+    private ngZone: NgZone,
+    private router: Router,
+    public modelsService: ModelsService,
+    private logService: LogService,
+  ) {}
+
+  ngOnInit(): void {
+    this.model &#x3D; new Model()
+  }
+
+  changeValue(controlName: string, value: string) {
+    const control &#x3D; this.getControl(controlName)
+    if (control) {
+      control.setValue(value, { onlySelf: true })
+    }
+  }
+
+  getControl(controlName: string) {
+    return this.addModelForm.get(controlName)
+  }
+
+  generateModel() {
+    if (this.addModelForm.controls.name !&#x3D;&#x3D; null &amp;&amp; this.addModelForm.controls.name !&#x3D;&#x3D; undefined) {
+      this.addModelForm.controls.name.setValue(faker.company.name() + &#x27; &#x27; + faker.company.buzzPhrase())
+    }
+    if (this.addModelForm.controls.dimension.controls.depth) {
+      this.addModelForm.controls.dimension.controls.depth.setValue(faker.number.int(10).toString())
+    }
+    if (this.addModelForm.controls.dimension.controls.height) {
+      this.addModelForm.controls.dimension.controls.height.setValue(faker.number.int(10).toString())
+    }
+    if (this.addModelForm.controls.dimension.controls.width) {
+      this.addModelForm.controls.dimension.controls.width.setValue(faker.number.int(10).toString())
+    }
+    if (this.addModelForm.controls.type) {
+      this.addModelForm.controls.type.setValue(this.deviceTypeDict.getRandomName())
+    }
+    if (this.addModelForm.controls.category) {
+      this.addModelForm.controls.category.setValue(this.deviceCategoryDict.getRandomName())
+    }
+  }
+
+  submitForm() {
+    console.log(&#x27;Submit Model: &#x27; + JSON.stringify(this.addModelForm.value))
+    this.modelsService.CreateModel(this.model).subscribe((res) &#x3D;&gt; {
+      this.logService
+        .CreateLog({
+          message: this.addModelForm.value,
+          objectId: res._id,
+          operation: &#x27;Create&#x27;,
+          component: &#x27;Model&#x27;,
+        })
+        .subscribe(() &#x3D;&gt; {
+          this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;models-list&#x27;))
+        })
+    })
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+  &lt;div class&#x3D;&quot;row&quot;&gt;
+    &lt;h3&gt;&lt;i class&#x3D;&quot;bi bi-motherboard&quot;&gt;&lt;/i&gt; Add Model&lt;/h3&gt;
+    &lt;form [formGroup]&#x3D;&quot;addModelForm&quot; (ngSubmit)&#x3D;&quot;submitForm()&quot; class&#x3D;&quot;needs-validation&quot; novalidate&gt;
+      &lt;div class&#x3D;&quot;row&quot;&gt;
+        &lt;div class&#x3D;&quot;col&quot;&gt;
+          &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+            &lt;label for&#x3D;&quot;name&quot; class&#x3D;&quot;form-label&quot;&gt;Name&lt;/label&gt;
+            &lt;input
+              [ngClass]&#x3D;&quot;{
+                &#x27;is-invalid&#x27;: this.addModelForm.controls.name.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;is-valid&#x27;: this.addModelForm.controls.name.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;form-control&#x27;: true,
+              }&quot;
+              formControlName&#x3D;&quot;name&quot;
+              minlength&#x3D;&quot;4&quot;
+              id&#x3D;&quot;name&quot;
+              maxlength&#x3D;&quot;255&quot;
+            /&gt;
+            &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.name.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.name.errors.required&quot;&gt;Name is required&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.name.errors.minlength&quot;&gt;Name must be at least 4 characters&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;row&quot; formGroupName&#x3D;&quot;dimension&quot;&gt;
+        &lt;div class&#x3D;&quot;col&quot;&gt;
+          &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+            &lt;label for&#x3D;&quot;width&quot; class&#x3D;&quot;form-label&quot;&gt;Width&lt;/label&gt;
+            &lt;input
+              type&#x3D;&quot;text&quot;
+              formControlName&#x3D;&quot;width&quot;
+              id&#x3D;&quot;width&quot;
+              maxlength&#x3D;&quot;6&quot;
+              minlength&#x3D;&quot;1&quot;
+              required
+              [ngClass]&#x3D;&quot;{
+                &#x27;is-invalid&#x27;: this.addModelForm.controls.dimension.controls.width.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;is-valid&#x27;: this.addModelForm.controls.dimension.controls.width.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;form-control&#x27;: true,
+              }&quot;
+            /&gt;
+            &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.dimension.controls.width.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.dimension.controls.width.errors.required&quot;&gt;Width is required&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.dimension.controls.width.errors.minlength&quot;&gt;
+                Width must be at least 1 number.
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class&#x3D;&quot;form-control-feedback&quot;
+              *ngIf&#x3D;&quot;addModelForm.errors &amp;&amp; (addModelForm.dirty || addModelForm.touched)&quot;
+            &gt;
+              &lt;p *ngIf&#x3D;&quot;addModelForm.errors.pattern&quot; class&#x3D;&quot;text-danger&quot;&gt;Number Only&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;col&quot;&gt;
+          &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+            &lt;label for&#x3D;&quot;heigth&quot; class&#x3D;&quot;form-label&quot;&gt;Height&lt;/label&gt;
+            &lt;input
+              type&#x3D;&quot;text&quot;
+              formControlName&#x3D;&quot;height&quot;
+              id&#x3D;&quot;heigth&quot;
+              maxlength&#x3D;&quot;6&quot;
+              minlength&#x3D;&quot;1&quot;
+              required
+              [ngClass]&#x3D;&quot;{
+                &#x27;is-invalid&#x27;: this.addModelForm.controls.dimension.controls.height.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;is-valid&#x27;: this.addModelForm.controls.dimension.controls.height.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;form-control&#x27;: true,
+              }&quot;
+            /&gt;
+            &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.dimension.controls.height.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.dimension.controls.height.errors.required&quot;&gt;Height is required&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.dimension.controls.height.errors.minlength&quot;&gt;
+                Height must be at least 1 number
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;col&quot;&gt;
+          &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+            &lt;label for&#x3D;&quot;depth&quot; class&#x3D;&quot;form-label&quot;&gt;Depth&lt;/label&gt;
+            &lt;input
+              type&#x3D;&quot;text&quot;
+              formControlName&#x3D;&quot;depth&quot;
+              id&#x3D;&quot;depth&quot;
+              maxlength&#x3D;&quot;4&quot;
+              minlength&#x3D;&quot;1&quot;
+              required
+              [ngClass]&#x3D;&quot;{
+                &#x27;is-invalid&#x27;: this.addModelForm.controls.dimension.controls.depth.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;is-valid&#x27;: this.addModelForm.controls.dimension.controls.depth.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;form-control&#x27;: true,
+              }&quot;
+            /&gt;
+            &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.dimension.controls.depth.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.dimension.controls.depth.errors.required&quot;&gt;Depth is required&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.dimension.controls.depth.errors.minlength&quot;&gt;
+                Depth must be at least 1 number
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;row&quot; formGroupName&#x3D;&quot;texture&quot;&gt;
+        &lt;div class&#x3D;&quot;col&quot;&gt;
+          &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+            &lt;label for&#x3D;&quot;front&quot; class&#x3D;&quot;form-label&quot;&gt;Front&lt;/label&gt;
+            &lt;input
+              type&#x3D;&quot;text&quot;
+              formControlName&#x3D;&quot;front&quot;
+              id&#x3D;&quot;front&quot;
+              [ngClass]&#x3D;&quot;{
+                &#x27;is-invalid&#x27;: this.addModelForm.controls.texture.controls.front.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;is-valid&#x27;: this.addModelForm.controls.texture.controls.front.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;form-control&#x27;: true,
+              }&quot;
+            /&gt;
+            &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.texture.controls.front.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.texture.controls.front.errors.required&quot;&gt;Width is required&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.texture.controls.front.errors.minlength&quot;&gt;
+                Width must be at least 1 number.
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;col&quot;&gt;
+          &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+            &lt;label for&#x3D;&quot;back&quot; class&#x3D;&quot;form-label&quot;&gt;Back&lt;/label&gt;
+            &lt;input
+              type&#x3D;&quot;text&quot;
+              formControlName&#x3D;&quot;back&quot;
+              id&#x3D;&quot;back&quot;
+              [ngClass]&#x3D;&quot;{
+                &#x27;is-invalid&#x27;: this.addModelForm.controls.texture.controls.back.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;is-valid&#x27;: this.addModelForm.controls.texture.controls.back.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;form-control&#x27;: true,
+              }&quot;
+            /&gt;
+            &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.texture.controls.back.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.texture.controls.back.errors.required&quot;&gt;back side is required&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.texture.controls.back.errors.minlength&quot;&gt;
+                back must be at least 1 number
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;col&quot;&gt;
+          &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+            &lt;label for&#x3D;&quot;side&quot; class&#x3D;&quot;form-label&quot;&gt;Side&lt;/label&gt;
+            &lt;input
+              type&#x3D;&quot;text&quot;
+              formControlName&#x3D;&quot;side&quot;
+              id&#x3D;&quot;side&quot;
+              [ngClass]&#x3D;&quot;{
+                &#x27;is-invalid&#x27;: this.addModelForm.controls.texture.controls.side.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;is-valid&#x27;: this.addModelForm.controls.texture.controls.side.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;form-control&#x27;: true,
+              }&quot;
+            /&gt;
+            &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.texture.controls.side.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.texture.controls.side.errors.required&quot;&gt;side is required&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.texture.controls.side.errors.minlength&quot;&gt;
+                side must be at least 1 number
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;col&quot;&gt;
+          &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+            &lt;label for&#x3D;&quot;top&quot; class&#x3D;&quot;form-label&quot;&gt;Top&lt;/label&gt;
+            &lt;input
+              type&#x3D;&quot;text&quot;
+              formControlName&#x3D;&quot;top&quot;
+              id&#x3D;&quot;top&quot;
+              [ngClass]&#x3D;&quot;{
+                &#x27;is-invalid&#x27;: this.addModelForm.controls.texture.controls.top.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;is-valid&#x27;: this.addModelForm.controls.texture.controls.top.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;form-control&#x27;: true,
+              }&quot;
+            /&gt;
+            &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.texture.controls.top.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.texture.controls.top.errors&quot;&gt;Top is required&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.texture.controls.top.errors&quot;&gt;Top must be at least 1 number&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;col&quot;&gt;
+          &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+            &lt;label for&#x3D;&quot;bottom&quot; class&#x3D;&quot;form-label&quot;&gt;bottom&lt;/label&gt;
+            &lt;input
+              type&#x3D;&quot;text&quot;
+              formControlName&#x3D;&quot;bottom&quot;
+              id&#x3D;&quot;bottom&quot;
+              [ngClass]&#x3D;&quot;{
+                &#x27;is-invalid&#x27;: this.addModelForm.controls.texture.controls.bottom.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;is-valid&#x27;: this.addModelForm.controls.texture.controls.bottom.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &#x27;form-control&#x27;: true,
+              }&quot;
+            /&gt;
+            &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.texture.controls.bottom.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.texture.controls.bottom.errors.required&quot;&gt;bottom is required&lt;/div&gt;
+              &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.texture.controls.bottom.errors.minlength&quot;&gt;
+                bottom must be at least 2 characters
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- &lt;div class&#x3D;&quot;row&quot;&gt; --&gt;
+      &lt;!-- &lt;div class&#x3D;&quot;col&quot;&gt; --&gt;
+      &lt;!-- &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt; --&gt;
+      &lt;!-- &lt;label for&#x3D;&quot;type&quot; class&#x3D;&quot;form-label&quot;&gt;Type&lt;/label&gt; --&gt;
+      &lt;!-- &lt;select --&gt;
+      &lt;!-- (change)&#x3D;&quot;changeType($event)&quot; --&gt;
+      &lt;!-- formControlName&#x3D;&quot;type&quot; --&gt;
+      &lt;!-- [ngClass]&#x3D;&quot;{ --&gt;
+      // &#x27;is-invalid&#x27;: this.addModelForm.controls.type.status !&#x3D;&#x3D; &#x27;VALID&#x27;, // &#x27;is-valid&#x27;:
+      this.addModelForm.controls.type.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;, // &#x27;form-select&#x27;: true,
+      &lt;!-- }&quot; --&gt;
+      &lt;!-- id&#x3D;&quot;type&quot;&gt; --&gt;
+      &lt;!-- &lt;option *ngFor&#x3D;&quot;let typeObj of deviceTypeDict.list; let i &#x3D; index&quot;&gt; --&gt;
+      &lt;!-- {{ typeObj.name }} --&gt;
+      &lt;!-- &lt;/option&gt; --&gt;
+      &lt;!-- &lt;/select&gt; --&gt;
+      &lt;!-- &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.type.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt; --&gt;
+      &lt;!-- &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.type.errors.required&quot;&gt;type have to selected&lt;/div&gt; --&gt;
+      &lt;!-- &lt;/div&gt; --&gt;
+      &lt;!-- &lt;/div&gt; --&gt;
+      &lt;!-- &lt;/div&gt; --&gt;
+      &lt;!-- &lt;div class&#x3D;&quot;col&quot;&gt; --&gt;
+      &lt;!-- &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt; --&gt;
+      &lt;!-- &lt;label for&#x3D;&quot;category&quot; class&#x3D;&quot;form-label&quot;&gt;Category&lt;/label&gt; --&gt;
+      &lt;!-- &lt;select --&gt;
+      &lt;!-- (change)&#x3D;&quot;changeCategory($event)&quot; --&gt;
+      &lt;!-- formControlName&#x3D;&quot;category&quot; --&gt;
+      &lt;!-- [ngClass]&#x3D;&quot;{ --&gt;
+      &lt;!-- &#x27;is-invalid&#x27;: this.addModelForm.controls.category.status !&#x3D;&#x3D; &#x27;VALID&#x27;, --&gt;
+      &lt;!-- &#x27;is-valid&#x27;: this.addModelForm.controls.category.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;, --&gt;
+      &lt;!-- &#x27;form-select&#x27;: true, --&gt;
+      &lt;!-- }&quot; --&gt;
+      &lt;!-- id&#x3D;&quot;category&quot;&gt; --&gt;
+      &lt;!-- &lt;option *ngFor&#x3D;&quot;let categoryObj of deviceCategoryDict.list; let i &#x3D; index&quot;&gt; --&gt;
+      &lt;!-- {{ categoryObj.name }} --&gt;
+      &lt;!-- &lt;/option&gt; --&gt;
+      &lt;!-- &lt;/select&gt; --&gt;
+      &lt;!-- &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.category.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt; --&gt;
+      &lt;!-- &lt;div *ngIf&#x3D;&quot;this.addModelForm.controls.category.errors.required&quot;&gt;category have to selected&lt;/div&gt; --&gt;
+      &lt;!-- &lt;/div&gt; --&gt;
+      &lt;!-- &lt;/div&gt; --&gt;
+      &lt;!-- &lt;/div&gt; --&gt;
+      &lt;!--  &lt;/div&gt; --&gt;
+      &lt;div class&#x3D;&quot;row&quot;&gt;
+        &lt;div class&#x3D;&quot;col&quot;&gt;
+          &lt;button
+            type&#x3D;&quot;button&quot;
+            [disabled]&#x3D;&quot;!(addModelForm.valid &amp;&amp; addModelForm.touched)&quot;
+            class&#x3D;&quot;btn btn-primary&quot;
+            (click)&#x3D;&quot;submitForm()&quot;
+            tooltip&#x3D;&quot;Create new device model.&quot;
+          &gt;
+            &lt;i class&#x3D;&quot;bi bi-file-earmark-plus&quot;&gt;&lt;/i&gt; Add Model
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;col&quot;&gt;
+          &lt;div class&#x3D;&quot;p-1 g-col-1&quot;&gt;
+            &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;generateModel()&quot; class&#x3D;&quot;btn btn-debug&quot;&gt;
+              &lt;i class&#x3D;&quot;bi bi-bookmark-plus&quot;&gt;&lt;/i&gt; Generate random data
+            &lt;/button&gt;
+          &lt;/div&gt;
+          &lt;p class&#x3D;&quot;&quot;&gt;Form Status: {{ addModelForm.status }}.&lt;/p&gt;
+          &lt;p class&#x3D;&quot;&quot;&gt;Form Value: {{ addModelForm.value | json }}.&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./add-model.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <div class="row">    <h3><i class="bi bi-motherboard"></i> Add Model</h3>    <form [formGroup]="addModelForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>      <div class="row">        <div class="col">          <div class="form-group mb-3">            <label for="name" class="form-label">Name</label>            <input              [ngClass]="{                \'is-invalid\': this.addModelForm.controls.name.status !== \'VALID\',                \'is-valid\': this.addModelForm.controls.name.status === \'VALID\',                \'form-control\': true,              }"              formControlName="name"              minlength="4"              id="name"              maxlength="255"            />            <div *ngIf="this.addModelForm.controls.name.errors" class="invalid-feedback">              <div *ngIf="this.addModelForm.controls.name.errors.required">Name is required</div>              <div *ngIf="this.addModelForm.controls.name.errors.minlength">Name must be at least 4 characters</div>            </div>          </div>        </div>      </div>      <div class="row" formGroupName="dimension">        <div class="col">          <div class="form-group mb-3">            <label for="width" class="form-label">Width</label>            <input              type="text"              formControlName="width"              id="width"              maxlength="6"              minlength="1"              required              [ngClass]="{                \'is-invalid\': this.addModelForm.controls.dimension.controls.width.status !== \'VALID\',                \'is-valid\': this.addModelForm.controls.dimension.controls.width.status === \'VALID\',                \'form-control\': true,              }"            />            <div *ngIf="this.addModelForm.controls.dimension.controls.width.errors" class="invalid-feedback">              <div *ngIf="this.addModelForm.controls.dimension.controls.width.errors.required">Width is required</div>              <div *ngIf="this.addModelForm.controls.dimension.controls.width.errors.minlength">                Width must be at least 1 number.              </div>            </div>            <div              class="form-control-feedback"              *ngIf="addModelForm.errors && (addModelForm.dirty || addModelForm.touched)"            >              <p *ngIf="addModelForm.errors.pattern" class="text-danger">Number Only</p>            </div>          </div>        </div>        <div class="col">          <div class="form-group mb-3">            <label for="heigth" class="form-label">Height</label>            <input              type="text"              formControlName="height"              id="heigth"              maxlength="6"              minlength="1"              required              [ngClass]="{                \'is-invalid\': this.addModelForm.controls.dimension.controls.height.status !== \'VALID\',                \'is-valid\': this.addModelForm.controls.dimension.controls.height.status === \'VALID\',                \'form-control\': true,              }"            />            <div *ngIf="this.addModelForm.controls.dimension.controls.height.errors" class="invalid-feedback">              <div *ngIf="this.addModelForm.controls.dimension.controls.height.errors.required">Height is required</div>              <div *ngIf="this.addModelForm.controls.dimension.controls.height.errors.minlength">                Height must be at least 1 number              </div>            </div>          </div>        </div>        <div class="col">          <div class="form-group mb-3">            <label for="depth" class="form-label">Depth</label>            <input              type="text"              formControlName="depth"              id="depth"              maxlength="4"              minlength="1"              required              [ngClass]="{                \'is-invalid\': this.addModelForm.controls.dimension.controls.depth.status !== \'VALID\',                \'is-valid\': this.addModelForm.controls.dimension.controls.depth.status === \'VALID\',                \'form-control\': true,              }"            />            <div *ngIf="this.addModelForm.controls.dimension.controls.depth.errors" class="invalid-feedback">              <div *ngIf="this.addModelForm.controls.dimension.controls.depth.errors.required">Depth is required</div>              <div *ngIf="this.addModelForm.controls.dimension.controls.depth.errors.minlength">                Depth must be at least 1 number              </div>            </div>          </div>        </div>      </div>      <div class="row" formGroupName="texture">        <div class="col">          <div class="form-group mb-3">            <label for="front" class="form-label">Front</label>            <input              type="text"              formControlName="front"              id="front"              [ngClass]="{                \'is-invalid\': this.addModelForm.controls.texture.controls.front.status !== \'VALID\',                \'is-valid\': this.addModelForm.controls.texture.controls.front.status === \'VALID\',                \'form-control\': true,              }"            />            <div *ngIf="this.addModelForm.controls.texture.controls.front.errors" class="invalid-feedback">              <div *ngIf="this.addModelForm.controls.texture.controls.front.errors.required">Width is required</div>              <div *ngIf="this.addModelForm.controls.texture.controls.front.errors.minlength">                Width must be at least 1 number.              </div>            </div>          </div>        </div>        <div class="col">          <div class="form-group mb-3">            <label for="back" class="form-label">Back</label>            <input              type="text"              formControlName="back"              id="back"              [ngClass]="{                \'is-invalid\': this.addModelForm.controls.texture.controls.back.status !== \'VALID\',                \'is-valid\': this.addModelForm.controls.texture.controls.back.status === \'VALID\',                \'form-control\': true,              }"            />            <div *ngIf="this.addModelForm.controls.texture.controls.back.errors" class="invalid-feedback">              <div *ngIf="this.addModelForm.controls.texture.controls.back.errors.required">back side is required</div>              <div *ngIf="this.addModelForm.controls.texture.controls.back.errors.minlength">                back must be at least 1 number              </div>            </div>          </div>        </div>        <div class="col">          <div class="form-group mb-3">            <label for="side" class="form-label">Side</label>            <input              type="text"              formControlName="side"              id="side"              [ngClass]="{                \'is-invalid\': this.addModelForm.controls.texture.controls.side.status !== \'VALID\',                \'is-valid\': this.addModelForm.controls.texture.controls.side.status === \'VALID\',                \'form-control\': true,              }"            />            <div *ngIf="this.addModelForm.controls.texture.controls.side.errors" class="invalid-feedback">              <div *ngIf="this.addModelForm.controls.texture.controls.side.errors.required">side is required</div>              <div *ngIf="this.addModelForm.controls.texture.controls.side.errors.minlength">                side must be at least 1 number              </div>            </div>          </div>        </div>        <div class="col">          <div class="form-group mb-3">            <label for="top" class="form-label">Top</label>            <input              type="text"              formControlName="top"              id="top"              [ngClass]="{                \'is-invalid\': this.addModelForm.controls.texture.controls.top.status !== \'VALID\',                \'is-valid\': this.addModelForm.controls.texture.controls.top.status === \'VALID\',                \'form-control\': true,              }"            />            <div *ngIf="this.addModelForm.controls.texture.controls.top.errors" class="invalid-feedback">              <div *ngIf="this.addModelForm.controls.texture.controls.top.errors">Top is required</div>              <div *ngIf="this.addModelForm.controls.texture.controls.top.errors">Top must be at least 1 number</div>            </div>          </div>        </div>        <div class="col">          <div class="form-group mb-3">            <label for="bottom" class="form-label">bottom</label>            <input              type="text"              formControlName="bottom"              id="bottom"              [ngClass]="{                \'is-invalid\': this.addModelForm.controls.texture.controls.bottom.status !== \'VALID\',                \'is-valid\': this.addModelForm.controls.texture.controls.bottom.status === \'VALID\',                \'form-control\': true,              }"            />            <div *ngIf="this.addModelForm.controls.texture.controls.bottom.errors" class="invalid-feedback">              <div *ngIf="this.addModelForm.controls.texture.controls.bottom.errors.required">bottom is required</div>              <div *ngIf="this.addModelForm.controls.texture.controls.bottom.errors.minlength">                bottom must be at least 2 characters              </div>            </div>          </div>        </div>      </div>      <!-- <div class="row"> -->      <!-- <div class="col"> -->      <!-- <div class="form-group mb-3"> -->      <!-- <label for="type" class="form-label">Type</label> -->      <!-- <select -->      <!-- (change)="changeType($event)" -->      <!-- formControlName="type" -->      <!-- [ngClass]="{ -->      // \'is-invalid\': this.addModelForm.controls.type.status !== \'VALID\', // \'is-valid\':      this.addModelForm.controls.type.status === \'VALID\', // \'form-select\': true,      <!-- }" -->      <!-- id="type"> -->      <!-- <option *ngFor="let typeObj of deviceTypeDict.list; let i = index"> -->      <!-- {{ typeObj.name }} -->      <!-- </option> -->      <!-- </select> -->      <!-- <div *ngIf="this.addModelForm.controls.type.errors" class="invalid-feedback"> -->      <!-- <div *ngIf="this.addModelForm.controls.type.errors.required">type have to selected</div> -->      <!-- </div> -->      <!-- </div> -->      <!-- </div> -->      <!-- <div class="col"> -->      <!-- <div class="form-group mb-3"> -->      <!-- <label for="category" class="form-label">Category</label> -->      <!-- <select -->      <!-- (change)="changeCategory($event)" -->      <!-- formControlName="category" -->      <!-- [ngClass]="{ -->      <!-- \'is-invalid\': this.addModelForm.controls.category.status !== \'VALID\', -->      <!-- \'is-valid\': this.addModelForm.controls.category.status === \'VALID\', -->      <!-- \'form-select\': true, -->      <!-- }" -->      <!-- id="category"> -->      <!-- <option *ngFor="let categoryObj of deviceCategoryDict.list; let i = index"> -->      <!-- {{ categoryObj.name }} -->      <!-- </option> -->      <!-- </select> -->      <!-- <div *ngIf="this.addModelForm.controls.category.errors" class="invalid-feedback"> -->      <!-- <div *ngIf="this.addModelForm.controls.category.errors.required">category have to selected</div> -->      <!-- </div> -->      <!-- </div> -->      <!-- </div> -->      <!--  </div> -->      <div class="row">        <div class="col">          <button            type="button"            [disabled]="!(addModelForm.valid && addModelForm.touched)"            class="btn btn-primary"            (click)="submitForm()"            tooltip="Create new device model."          >            <i class="bi bi-file-earmark-plus"></i> Add Model          </button>        </div>        <div class="col">          <div class="p-1 g-col-1">            <button type="button" (click)="generateModel()" class="btn btn-debug">              <i class="bi bi-bookmark-plus"></i> Generate random data            </button>          </div>          <p class="">Form Status: {{ addModelForm.status }}.</p>          <p class="">Form Value: {{ addModelForm.value | json }}.</p>        </div>      </div>    </form>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsyncObservablePipeComponent', 'selector': 'async-observable-pipe'},{'name': 'AttributeAddComponent', 'selector': 'app-add-attribute'},{'name': 'AttributeDictionaryAddComponent', 'selector': 'app-add-attribute-dictionary'},{'name': 'AttributeDictionaryEditComponent', 'selector': 'app-edit-attribute-dictionary'},{'name': 'AttributeDictionaryListComponent', 'selector': 'app-attribute-dictionary-list'},{'name': 'AttributeEditComponent', 'selector': 'app-edit-attribute'},{'name': 'AttributeListComponent', 'selector': 'app-attribute-list'},{'name': 'ConnectionAddComponent', 'selector': 'app-add-connection'},{'name': 'ConnectionEditComponent', 'selector': 'app-edit-connection'},{'name': 'ConnectionListComponent', 'selector': 'app-connection-list'},{'name': 'CubeComponent', 'selector': 'app-cube'},{'name': 'DeviceAddComponent', 'selector': 'app-add-device'},{'name': 'DeviceEditComponent', 'selector': 'app-edit-device'},{'name': 'DeviceListComponent', 'selector': 'app-device-list'},{'name': 'FloorAddComponent', 'selector': 'app-add-floor'},{'name': 'FloorEditComponent', 'selector': 'app-edit-floor'},{'name': 'FloorListComponent', 'selector': 'app-floor-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LogComponent', 'selector': 'app-log'},{'name': 'ModelAddComponent', 'selector': 'app-add-model'},{'name': 'ModelEditComponent', 'selector': 'app-edit-model'},{'name': 'ModelsListComponent', 'selector': 'app-models-list'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ModelAddComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ModelAddComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
