@@ -8,23 +8,6 @@ import { CommonModule } from '@angular/common'
  * Represents a GitHub issue as returned by the GitHub Issues API.
  * Only a subset of fields is included here for demonstration.
  */
-export interface GitHubIssue {
-  id: number
-  number: number
-  title: string
-  state: string
-  body: string
-  user: {
-    login: string
-    id: number
-    avatar_url: string
-    html_url: string
-  }
-  html_url: string
-  created_at: string
-  updated_at: string
-  // Add more fields as needed from the GitHub API response
-}
 
 @Component({
   selector: 'app-home',
@@ -35,11 +18,6 @@ export interface GitHubIssue {
 })
 export class HomeComponent implements OnInit {
   md: string = ''
-  githubIssuesUrl = 'https://api.github.com/repos/karol-preiskorn/3d-inventory-angular-ui/issues'
-
-  headers = {
-    Authorization: `token ${environment.githubToken}`,
-  }
 
   baseUrl = 'https://api.github.com'
   issues: any[] = []
@@ -49,9 +27,6 @@ export class HomeComponent implements OnInit {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      Accept: 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-      Authorization: `Bearer ${environment.githubToken}`,
     }),
   }
 
@@ -90,10 +65,14 @@ export class HomeComponent implements OnInit {
       },
     )
 
-    // The GitHub Issues API returns an array of issue objects.
-    this.http.get<GitHubIssue[]>(this.githubIssuesUrl, this.httpOptions).subscribe((data) => {
-      console.log('Get Issues ' + JSON.stringify(data, null, ' '))
-      this.issues = data
+    this.http.get<[]>(environment.baseurl + '/github/issues', this.httpOptions).subscribe({
+      next: (data: any[]) => {
+        this.issues = data
+        this.issuesJson = JSON.stringify(data, null, 2)
+      },
+      error: (error) => {
+        console.error('Error fetching issues:', error)
+      }
     })
   }
 

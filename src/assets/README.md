@@ -34,8 +34,6 @@ I am developing this project as a sandbox to explore database systems. It covers
 
 ## Architecture
 
-<img title="Architecture" src="src/assets/architecture.drawio.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%; margin-bottom: 16px" width="85%">
-
 Project contain three repos:
 
 - ⚓ https://github.com/karol-preiskorn/3d-inventory-angular-ui
@@ -55,7 +53,7 @@ Project contain three repos:
 
 The `3d inventory` project leverages `Angular` for building the user interface and utilizes the `three.js` library to render interactive 3D graphics.
 
-[<img title="3-d inventory the video" src="src/assets/img/3d-inventory-demo.png" style="filter: drop-shadow(8px 8px 8px black); border-radius: 1%;" width="85%"/>](https://youtu.be/rNOxpZ0ti1Q '3-d inventory the video')
+[<img title="3-d inventory the demo video" src="src/assets/img/2025-06-20_12-18_1.png" style="fborder-radius: 1%;filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="85%"/>](https://youtu.be/rNOxpZ0ti1Q '3-d inventory the video')
 
 ## Data Model
 
@@ -77,7 +75,7 @@ Relational data model is mapped to a NoSQL model in MongoDB.
 
 ### List devices
 
-<img title="List devices" src="src/assets/img/Screenshot%202023-07-14%20at%2008-48-50%203d%20inventory-watermark.png" style="filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
+<img title="List devices" src="src/assets/img/Screenshot%202023-07-14%20at%2008-48-50%203d%20inventory-watermark.png" style="border-radius: 1%;filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
 
 ### Models
 
@@ -105,6 +103,7 @@ npm run start
 ```
 
 Goto in browser [http://localhost:4200](http://localhost:4200)
+http://localhost:4200/
 
 ## Deploy
 

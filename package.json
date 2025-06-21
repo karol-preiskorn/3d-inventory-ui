@@ -1,6 +1,6 @@
 {
   "name": "3d-inventory-angular-ui",
-  "version": "0.41.0",
+  "version": "0.41.1",
   "private": true,
   "type": "module",
   "browser": {
@@ -11,9 +11,10 @@
     "process": false
   },
   "scripts": {
+    "prebuild": "npm version patch --no-git-tag-version",
     "build": "ng build 3d-inventory-angular-ui --verbose",
     "clear": "rm -rf dist documentation ./nyc_output ./node_modules ./package-lock.json ./target",
-    "compodoc": "npx compodoc -p tsconfig.doc.json",
+    "compodoc": "npx compodoc -p tsconfig.ddoc.json",
     "compodoc:build-and-serve": "compodoc -p tsconfig.doc.json -s",
     "compodoc:serve": "compodoc -s",
     "cp": "cpx README.md src/assets",
@@ -22,7 +23,7 @@
     "lint": "ng lint",
     "lint:eslint": "eslint --fix src",
     "lint:prettier": "prettier --write src/**/*.ts",
-    "prestart": "npx kill-port 4200",
+    "prestart": "npx kill-port 4200 && npm version patch --no-git-tag-version",
     "start": "npm run cp && ng serve",
     "test": "jest",
     "upgrade-full": "npm-check-updates -u && npm upgrade",
