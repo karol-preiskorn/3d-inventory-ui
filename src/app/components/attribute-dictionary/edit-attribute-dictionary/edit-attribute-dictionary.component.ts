@@ -54,7 +54,7 @@ export class AttributeDictionaryEditComponent implements OnInit {
   formAttributeDictionary() {
     this.editAttributeDictionaryForm = this.formBuilder.group({
       _id: new FormControl('', [Validators.required, Validators.minLength(24)]),
-      name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
+      name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(255)]],
       type: ['', [Validators.required]],
       componentName: ['', [Validators.required]],
       unit: ['', [Validators.required]],
