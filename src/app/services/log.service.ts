@@ -128,7 +128,7 @@ export class LogService {
   }
 
   private getLogsUrl(): string {
-    return `${environment.baseurl}/logs/`
+    return `${environment.baseurl}/logs`
   }
 
   /**
@@ -137,9 +137,8 @@ export class LogService {
    * @returns An Observable that emits the created Log object.
    */
   CreateLog(data: LogIn): Observable<Log> {
-    return this.http
-      .post<Log>(this.getLogsUrl(), data, this.httpOptions)
-      .pipe(retry(1), catchError(this.handleErrorTemplate<Log>('CreateLog')))
+    console.log('LogService.CreateLog: ' + JSON.stringify(data, null, 2))
+    return this.http.post<Log>(this.getLogsUrl(), data, this.httpOptions).pipe(retry(1), catchError(this.handleError))
   }
 
   /**
@@ -148,11 +147,11 @@ export class LogService {
    * @param data - The updated log data.
    * @returns An Observable that emits a Log object.
    */
-  UpdateLog(id: string | null, data: any): Observable<Log | LogIn> {
+  UpdateLog(id: string | null, data: any): Observable<Log | LogIn | null> {
     const sData = JSON.stringify(data, null, 2)
     return this.http
       .put<Log | LogIn>(environment.baseurl + '/logs/' + id, sData, this.httpOptions)
-      .pipe(retry(1), catchError(this.handleErrorTemplate<LogIn>('UpdateLog', data as LogIn)))
+      .pipe(retry(1), catchError(this.handleErrorTemplate<LogIn | null>('UpdateLog', null)))
   }
 
   /**
@@ -161,17 +160,15 @@ export class LogService {
    * @param error - The HttpErrorResponse object.
    * @returns An Observable that throws an Error.
    */
-  private handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse): Observable<never> {
     // If error.status is 0, it indicates a client-side or network error occurred.
     if (error.status === 0) {
-      console.error('An error occurred:', error.error)
       console.error('An unknown error occurred:', error)
       return throwError(() => new Error('An unknown error occurred. Please check the logs for more details.'))
     } else {
       // If error.status is not 0, it indicates a server-side error with a specific status code.
-      return throwError(
-        () => new Error(`Error occurred: ${error.status} - ${error.message ?? 'No error message provided'}`),
-      )
+      const errorMsg = `HTTP error occurred (status: ${error.status}): ${error.message || 'No error message provided'}${error.error ? ' | Details: ' + JSON.stringify(error.error) : ''}`
+      return throwError(() => new Error(errorMsg))
     }
   }
 
@@ -190,8 +187,9 @@ export class LogService {
       } else {
         console.error(`LogService.handleErrorTemplate: ${operationName} failed. Error message: ${error.message}`, error)
       }
-      const fallbackResult = result ?? ({} as T)
-      return of(fallbackResult)
+      // Return the provided fallback result, or null if not specified
+      const fallbackResult = result !== undefined ? result : null
+      return of(fallbackResult as T)
     }
   }
 }

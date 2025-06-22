@@ -290,6 +290,7 @@ export class FloorAddComponent implements OnInit {
         .subscribe(() => {
           this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
         })
+
       console.info('Log created successfully')
       this.router.navigateByUrl('floor-list')
       return

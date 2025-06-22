@@ -27,7 +27,7 @@ export class FloorEditComponent implements OnInit {
   attributeComponentObject: string = ''
 
   dimensionFormGroup = new FormGroup({
-    description: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    description: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(250)]),
     x: new FormControl('', [Validators.required, this.valid.numberValidator]),
     y: new FormControl('', [Validators.required, this.valid.numberValidator]),
     h: new FormControl('', [Validators.required, this.valid.numberValidator]),
@@ -37,8 +37,8 @@ export class FloorEditComponent implements OnInit {
   })
 
   floorForm = new FormGroup({
-    id: new FormControl('', [Validators.required, Validators.minLength(36)]),
-    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    id: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(250)]),
     address: new FormGroup({
       street: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
@@ -51,7 +51,6 @@ export class FloorEditComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     public activatedRoute: ActivatedRoute,
-
     public ReactiveFormsModule: ReactiveFormsModule,
     private readonly ngZone: NgZone,
     private readonly router: Router,
@@ -98,6 +97,28 @@ export class FloorEditComponent implements OnInit {
 
   changeId(e: Event) {
     this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+
+  changeName(e: Event) {
+    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+
+  changeStreet(e: Event) {
+    this.street?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+
+  changeCity(e: Event) {
+    this.floorForm.controls.address.controls.city.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  }
+
+  changeCountry(e: Event) {
+    this.floorForm.controls.address.controls.country.setValue((e.target as HTMLInputElement).value, {
+      onlySelf: true,
+    })
+  }
+
+  changePostcode(e: Event) {
+    this.floorForm.controls.address.controls.postcode.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeX(e: Event) {
@@ -237,17 +258,23 @@ export class FloorEditComponent implements OnInit {
     this.floorForm.controls.dimension.at(i).controls.hPos.setValue(String(faker.number.int({ min: 2, max: 100 })))
   }
 
+  /**
+   * Handles form submission for editing a floor.
+   * Logs the update operation, sends the updated floor data to the service,
+   * and navigates back to the floor list upon success.
+   */
   submitForm() {
+    this.isSubmitted = true
+    if (this.floorForm.invalid) {
+      return
+    }
     const log: LogIn = {
       message: this.floorForm.value,
       operation: 'Update',
       component: 'floors',
       objectId: this.floorForm.value.id as string,
     }
-    this.logService.CreateLog(log).subscribe(() => {
-      //this.floor = JSON.stringify(log)
-      //  this.reloadComponent(false, 'edit-floor/' + this.floor.id)
-    })
+    this.logService.CreateLog(log).subscribe(() => {})
     const id = this.floorForm.value.id || ''
     this.floorService.UpdateFloor(id, this.floorForm.getRawValue() as never).subscribe(() => {
       console.log('Floor updated!')
