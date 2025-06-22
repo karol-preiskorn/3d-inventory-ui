@@ -46,7 +46,7 @@ export class AttributeListComponent implements OnInit {
   connectionDictionary: Connection[] = []
   attributeDictionary: AttributesDictionary[] = []
 
-  device: Device = new Device() // for find attributes
+  device: Device | null = new Device() // for find attributes
   model: Model
   connection: Connection
 
@@ -80,10 +80,16 @@ export class AttributeListComponent implements OnInit {
       console.log(
         'LoadAttributes.GetContextAttributes: ' + this.attributeComponent + ' ' + this.attributeComponentObject,
       )
-      this.attributeList = await this.attributeService.GetContextAttributes(
-        this.attributeComponent,
-        this.attributeComponentObject,
-      )
+      let parsedObject: any = this.attributeComponentObject
+      if (typeof this.attributeComponentObject === 'string') {
+        try {
+          parsedObject = JSON.parse(this.attributeComponentObject)
+        } catch (e) {
+          console.error('Failed to parse attributeComponentObject as JSON:', e)
+          parsedObject = this.attributeComponentObject // fallback to original string
+        }
+      }
+      this.attributeList = await this.attributeService.GetContextAttributes(this.attributeComponent, parsedObject)
     } else {
       console.log('LoadAttributes.attributeService.GetAttributesSync()')
       this.attributeList = await this.attributeService.GetAttributesSync()
@@ -91,31 +97,32 @@ export class AttributeListComponent implements OnInit {
     }
   }
 
-  async navigateMethod() {
+  async navigateToAttributeList() {
     try {
       // Perform some operations here
-      await this.router.navigate(['/attribute-dictionary-list'])
+      const navigationResult = await this.router.navigate(['/attribute-list'])
+      if (!navigationResult) {
+        console.error('Navigation to /attribute-list failed')
+      }
     } catch (error) {
       console.error('Navigation error:', error)
     }
   }
 
-  async DeleteAttribute(id: string) {
+  async deleteAttribute(id: string) {
     try {
-      await this.logService
-        .CreateLog({
-          message: { id: id },
+      await lastValueFrom(
+        this.logService.CreateLog({
+          message: { _id: id },
           objectId: id,
           operation: 'Delete',
           component: this.component,
-        })
-        .toPromise() // Convert observable to promise and await it
-
-      const data: Attribute = await lastValueFrom(this.attributeService.DeleteAttribute(id)) // Await the deletion
-
+        }),
+      )
+      const data: Attribute = await lastValueFrom(this.attributeService.DeleteAttribute(id))
       console.log(data)
-      this.LoadAttributes()
-      await this.navigateMethod()
+      await this.LoadAttributes()
+      await this.navigateToAttributeList()
     } catch (error) {
       console.error('Error deleting attribute:', error)
     }
@@ -148,8 +155,9 @@ export class AttributeListComponent implements OnInit {
     await this.router.navigate(['edit-attribute', this.selectedAttribute._id])
   }
 
-  getDevice(id: string) {
-    return this.deviceService.GetDevices().subscribe((data: Device[]) => {
+  async fetchDevice(id: string) {
+    try {
+      const data: Device[] = await lastValueFrom(this.deviceService.GetDevices().pipe())
       const foundDevice = data.find((device: Device): boolean => device._id === id)
       if (foundDevice) {
         this.device = foundDevice
@@ -158,7 +166,10 @@ export class AttributeListComponent implements OnInit {
         // Handle the case where the device is not found, e.g., set this.device to null or show an error message
         this.device = new Device() // or null
       }
-    })
+    } catch (error) {
+      console.error('Error fetching devices:', error)
+      this.device = new Device()
+    }
   }
 
   getDeviceList() {
@@ -169,15 +180,15 @@ export class AttributeListComponent implements OnInit {
     })
   }
 
-  findDeviceName(id: string): string {
+  findDeviceName(id: string | null): string {
     if (id === null) {
       return ''
     }
-    return this.deviceDictionary.find((e) => e._id === id)?.name as string
+    return (this.deviceDictionary.find((e) => e._id === id)?.name as string) ?? ''
   }
 
   findModelName(id: string): string {
-    return this.modelDictionary.find((e) => e._id === id)?.name as string
+    return (this.modelDictionary.find((e) => e._id === id)?.name as string) ?? ''
   }
 
   getModelList() {
@@ -202,7 +213,7 @@ export class AttributeListComponent implements OnInit {
   }
 
   findConnectionName(id: string): string {
-    return this.connectionDictionary.find((e) => e._id === id)?.name as string
+    return (this.connectionDictionary.find((e) => e._id === id)?.name as string) ?? ''
   }
 
   getAttributeDictionaryList() {
@@ -214,6 +225,7 @@ export class AttributeListComponent implements OnInit {
   }
 
   findAttributeDictionaryName(id: string): string {
-    return (this.attributeDictionary.find((e) => e._id === id)?.name as string) || ''
+    const name = this.attributeDictionary.find((e) => e._id === id)?.name
+    return typeof name === 'string' ? name : ''
   }
 }

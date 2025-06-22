@@ -11,66 +11,56 @@
     </thead>
     <tbody>
       @for (model of ModelsList | slice: (modelListPage - 1) * pageSize : modelListPage * pageSize; track model) {
-        <tr>
-          <td>
-            {{ model.name }}
-            <p class="fs-7 fw-lighter deviceid">{{ model._id }}</p>
-          </td>
-          <td>({{ model.dimension.width + ', ' + model.dimension.height + ', ' + model.dimension.depth }})</td>
-          <td style="font-size: small">
-            @if (model.texture) {
-              <a href="{{ model.texture.front }}">front</a>
-              },
-              @if (model.texture) {
-                <a href="{{ model.texture.back }}">back</a>
-                },
-                @if (model.texture) {
-                  <a href="{{ model.texture.side }}">side</a>
-                  },
-                  @if (model.texture) {
-                    <a href="{{ model.texture.top }}">top</a>
-                    },
-                    @if (model.texture) {
-                      <a href="{{ model.texture.bottom }}">bottom</a>
-                    }
-                  </td>
-                  <td>
-                    <fieldset class="btn-group" aria-label="model-operations">
-                      <button type="button" class="btn btn-success btn-sm move-right" id="edit-device" (click)="EditModel(model)">
-                        <i class="bi bi-pen"></i>
-                      </button>
-                      <button type="button" id="delete-device" class="btn btn-danger btn-sm" (click)="DeleteModel(model._id)">
-                        <i class="bi bi-trash"></i>
-                      </button>
-                      <button type="button" id="clone-device" class="btn btn-info btn-sm" (click)="CloneModel(model._id)">
-                        <i class="bi bi-copy"></i>
-                      </button>
-                    </fieldset>
-                  </td>
-                </tr>
-              }
-            </tbody>
-          </table>
-          <fieldset class="btn-group me-3 mb-3" aria-label="model-operations">
-            <button
-              type="button"
-              class="btn btn-success btn-sm move-right mb-3"
-              data-bs-toggle="button"
-              autocomplete="off"
-              aria-pressed="true"
-              (click)="AddModel()">
-              <i class="bi bi-plus-lg"></i> Add
+      <tr>
+        <td>
+          {{ model.name }}
+          <p class="fs-7 fw-lighter deviceid">{{ model._id }}</p>
+        </td>
+        <td>({{ model.dimension.width + ', ' + model.dimension.height + ', ' + model.dimension.depth }})</td>
+        <td style="font-size: small">
+          @if (model.texture) {
+          <a href="{{ model.texture.front }}">front</a>
+          },
+          @if (model.texture) {
+          <a href="{{ model.texture.back }}">back</a>
+          },
+          @if (model.texture) {
+          <a href="{{ model.texture.side }}">side</a>
+          },
+          @if (model.texture) {
+          <a href="{{ model.texture.top }}">top</a>
+          },
+          @if (model.texture) {
+          <a href="{{ model.texture.bottom }}">bottom</a>
+          }
+        </td>
+        <td>
+          <fieldset class="btn-group" aria-label="model-operations">
+            <button type="button" class="btn btn-success btn-sm move-right" id="edit-device"
+              (click)="EditModel(model)">
+              <i class="bi bi-pen"></i>
+            </button>
+            <button type="button" id="delete-device" class="btn btn-danger btn-sm"
+              (click)="DeleteModel(model._id)">
+              <i class="bi bi-trash"></i>
+            </button>
+            <button type="button" id="clone-device" class="btn btn-info btn-sm" (click)="CloneModel(model._id)">
+              <i class="bi bi-copy"></i>
             </button>
           </fieldset>
-          <div class="me-3 gap-3 mb-3">
-            <ngb-pagination
-              [(page)]="modelListPage"
-              [pageSize]="pageSize"
-              [collectionSize]="totalItems"
-              [maxSize]="5"
-              [boundaryLinks]="true"
-              aria-label="Model pagination">
-            </ngb-pagination>
-          </div>
-        </div>
-        <app-log [component]="component" [componentName]="componentName" [isComponent]="true"></app-log>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  <fieldset class="btn-group me-3 mb-3" aria-label="model-operations">
+    <button type="button" class="btn btn-success btn-sm move-right mb-3" data-bs-toggle="button" autocomplete="off"
+      aria-pressed="true" (click)="AddModel()">
+      <i class="bi bi-plus-lg"></i> Add
+    </button>
+  </fieldset>
+  <ngb-pagination class="float-end me-2" [(page)]="modelListPage" [pageSize]="pageSize"
+    [collectionSize]="totalItems" [maxSize]="5" [boundaryLinks]="true" aria-label="Model pagination">
+  </ngb-pagination>
+</div>
+<app-log [component]="component" [componentName]="componentName" [isComponent]="true"></app-log>

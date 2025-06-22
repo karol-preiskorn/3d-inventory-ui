@@ -1,4 +1,4 @@
-import { Subscription } from 'rxjs'
+import { Subscription, take } from 'rxjs'
 
 import { Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
@@ -32,29 +32,21 @@ import { CommonModule } from '@angular/common'
 export class AttributeAddComponent implements OnInit {
   valid: Validation = new Validation()
 
-  addAttributeFrom = new FormGroup(
-    {
-      id: new FormControl('', [Validators.required]),
-      deviceId: new FormControl<string | null>(null),
-      modelId: new FormControl<string | null>(null),
-      connectionId: new FormControl<string | null>(null),
-      attributeDictionaryId: new FormControl('', Validators.required),
-      value: new FormControl('', Validators.required),
-    },
-    { validators: this.valid.atLeastOneValidator },
-  )
+  addAttributeForm!: FormGroup
 
-  attribute: Attribute
   deviceDictionary: Device[]
-  modelDictionary: Model[]
-  connectionDictionary: Connection[]
-  attributeDictionary: AttributesDictionary[]
+  modelDictionary: Model[] = []
+  connectionDictionary: Connection[] = []
+  attributeDictionary: AttributesDictionary[] = []
 
   isSubmitted = false
   deviceTypeDict: DeviceTypeDict = new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict = new DeviceCategoryDict()
   componentDictionary: ComponentDictionary = new ComponentDictionary()
-  component = 'Attributes'
+  component = 'attributes'
+
+  // Add this property to enable debug mode (set to false by default)
+  debugMode: boolean = false
 
   ngOnInit() {
     this.formAttribute()
@@ -77,9 +69,9 @@ export class AttributeAddComponent implements OnInit {
   ) {}
 
   formAttribute() {
-    this.addAttributeFrom = this.formBuilder.group(
+    this.addAttributeForm = this.formBuilder.group(
       {
-        id: ['', Validators.required],
+        _id: [''],
         deviceId: [''],
         modelId: [''],
         connectionId: [''],
@@ -92,8 +84,7 @@ export class AttributeAddComponent implements OnInit {
 
   changeId(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    const objectId = uuidv4.toString().substr(6, 36)
-    this.id?.setValue(objectId, { onlySelf: true })
+    this._id?.setValue(value, { onlySelf: true })
   }
 
   changeModelId(e: Event) {
@@ -102,48 +93,45 @@ export class AttributeAddComponent implements OnInit {
 
   changeDeviceId(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    const objectId = uuidv4.toString().substr(6, 36)
-    this.deviceId?.setValue(objectId, { onlySelf: true })
+    this.deviceId?.setValue(value, { onlySelf: true })
   }
 
   changeConnectionId(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    const objectId = uuidv4.toString().substr(6, 36)
-    this.connectionId?.setValue(objectId, { onlySelf: true })
+    this.connectionId?.setValue(value, { onlySelf: true })
   }
 
   changeAttributeDictionaryId(e: Event) {
     const value = (e.target as HTMLInputElement).value
-    const objectId = uuidv4.toString().substr(6, 36)
-    this.attributeDictionaryId?.setValue(objectId, { onlySelf: true })
+    this.attributeDictionaryId?.setValue(value, { onlySelf: true })
   }
 
   changeValue(e: Event) {
     this.value?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  get id() {
-    return this.addAttributeFrom.get('id')
+  get _id() {
+    return this.addAttributeForm.get('_id')
   }
 
   get deviceId() {
-    return this.addAttributeFrom.get('deviceId')
+    return this.addAttributeForm.get('deviceId')
   }
 
   get modelId() {
-    return this.addAttributeFrom.get('modelId')
+    return this.addAttributeForm.get('modelId')
   }
 
   get connectionId() {
-    return this.addAttributeFrom.get('connectionId')
+    return this.addAttributeForm.get('connectionId')
   }
 
   get attributeDictionaryId() {
-    return this.addAttributeFrom.get('attributeDictionaryId')
+    return this.addAttributeForm.get('attributeDictionaryId')
   }
 
   get value() {
-    return this.addAttributeFrom.get('value')
+    return this.addAttributeForm.get('value')
   }
 
   toString(data: unknown): string {
@@ -181,36 +169,71 @@ export class AttributeAddComponent implements OnInit {
     })
   }
 
-  /**
-   * @description Generate random data for attribute
-   *              1. Select one of List
-   *                  - deviceId: [''],
-   *                  - modelId: [''],
-   *                  - connectionId: [''],
-   *              2. get random data from this list
-   *              3. get random data from attributeDictionaryId: ['', Validators.required],
-   *              4. set random value: ['', Validators.required],
-   * @memberof AttributeAddComponent
-   */
   generateAttributeDictionary() {
-    this.addAttributeFrom.controls.value.setValue(faker.company.name() + ' - ' + faker.company.buzzPhrase())
+    // Randomly select deviceId, modelId, connectionId, and attributeDictionaryId if available
+    const getRandomId = (arr: any[]) =>
+      arr && arr.length > 1 ? arr[Math.floor(Math.random() * (arr.length - 1)) + 1]._id : ''
+    const getRandomAttrDictId = (arr: any[]) =>
+      arr && arr.length > 0 ? arr[Math.floor(Math.random() * arr.length)]._id : ''
+
+    const randomDeviceId = getRandomId(this.deviceDictionary)
+    const randomModelId = getRandomId(this.modelDictionary)
+    const randomConnectionId = getRandomId(this.connectionDictionary)
+    const randomAttributeDictionaryId = getRandomAttrDictId(this.attributeDictionary)
+
+    this.addAttributeForm.controls.deviceId.setValue(randomDeviceId)
+    this.addAttributeForm.controls.modelId.setValue(randomModelId)
+    this.addAttributeForm.controls.connectionId.setValue(randomConnectionId)
+    this.addAttributeForm.controls.attributeDictionaryId.setValue(randomAttributeDictionaryId)
+    this.addAttributeForm.controls.value.setValue(faker.company.name() + ' - ' + faker.company.buzzPhrase())
+  }
+
+  // Add this method to support trackBy in *ngFor for models
+  trackModelObj(_index: number, item: any): any {
+    return item._id
+  }
+
+  trackDeviceObj(index: number, deviceObj: any): any {
+    return deviceObj?._id ?? index
+  }
+
+  trackConnectionObj(index: number, item: any): any {
+    return item?._id
+  }
+
+  trackAttributeDictionaryObj(index: number, item: any): any {
+    return item._id
   }
 
   submitForm(): void {
-    this.attributeService.CreateAttribute(this.addAttributeFrom.value as Attribute).subscribe(() => {
-      this.logService
-        .CreateLog({
-          objectId: this.addAttributeFrom.get('_id')?.value,
-          message: this.addAttributeFrom.value as Attribute,
-          operation: 'Create',
-          component: 'attributes',
-        })
-        .subscribe(() => {
-          this.ngZone.run(() => this.router.navigateByUrl('attribute-list'))
-        })
-    })
+    this.isSubmitted = true
+    if (this.addAttributeForm.invalid) {
+      console.log(
+        `submitForm: invalid: ${this.addAttributeForm.invalid}, value: ${this.addAttributeForm.value}, valid: ${this.addAttributeForm.valid}`,
+      )
+      return
+    }
+    this.attributeService
+      .CreateAttribute(this.addAttributeForm.value as Attribute)
+      .pipe(take(1))
+      .subscribe((res) => {
+        const insertedId = (res as any)._id
+        console.log('Attribute response: ' + JSON.stringify(res, null, 2))
+        this.isSubmitted = true
+        console.log('Inserted ID: ' + insertedId)
+        const formData = this.addAttributeForm.value
+        formData._id = insertedId // Ensure the formData has the _id field set
+        this.logService
+          .CreateLog({
+            objectId: insertedId,
+            message: formData,
+            operation: 'Create',
+            component: this.component,
+          })
+          .pipe(take(1))
+          .subscribe(() => {
+            this.ngZone.run(() => this.router.navigateByUrl('attribute-list'))
+          })
+      })
   }
-}
-function uuidv4() {
-  throw new Error('Function not implemented.')
 }

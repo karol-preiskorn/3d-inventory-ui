@@ -381,12 +381,12 @@ export class LogComponent implements OnInit {
     })
   }
 
-  /**
-   * Finds a Floors in the floorList based on the provided id.
-   * @param id - The id of the Floors to find.
-   * @returns The found Floors object, or undefined if no Floors with the given id is found.
-   */
   findFloor(id: string) {
     return this.floorList.find((e) => e._id === id)
+  }
+
+  // Add this method to your LogComponent class
+  trackLog(index: number, log: any): any {
+    return log && log._id ? log._id : index
   }
 }

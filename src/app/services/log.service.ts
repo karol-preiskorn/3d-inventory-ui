@@ -29,11 +29,18 @@ export interface Log {
   objectId?: string
   operation: string // [create, update, delete, clone]
   component: string // [device, model, category, floor]
-  message: object // object json
+  message: Record<string, any> // object json
 }
 
 /**
  * Represents the input for creating a log entry.
+ */
+/**
+ * Represents the input structure for creating a new log entry.
+ * @property objectId - (Optional) The ID of the related object.
+ * @property operation - The operation performed (e.g., create, update, delete, clone).
+ * @property component - The component associated with the log (e.g., device, model, category, floor).
+ * @property message - The log message as a JSON object.
  */
 export interface LogIn {
   objectId?: string
@@ -124,10 +131,15 @@ export class LogService {
     return `${environment.baseurl}/logs/`
   }
 
+  /**
+   * Creates a new log entry.
+   * @param data - The log data to create.
+   * @returns An Observable that emits the created Log object.
+   */
   CreateLog(data: LogIn): Observable<Log> {
     return this.http
       .post<Log>(this.getLogsUrl(), data, this.httpOptions)
-      .pipe(retry(1), catchError(this.handleErrorTemplate<Log>('CreateLog', data as Log)))
+      .pipe(retry(1), catchError(this.handleErrorTemplate<Log>('CreateLog')))
   }
 
   /**

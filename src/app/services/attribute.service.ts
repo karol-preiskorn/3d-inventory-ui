@@ -179,7 +179,7 @@ export class AttributeService {
    */
   CreateAttribute(data: Attribute): Observable<Attribute> {
     return this.http
-      .post<Attribute>(environment.baseurl + '/attributes/', JSON.stringify(data, null, ' '), this.httpOptions)
+      .post<Attribute>(environment.baseurl + '/attributes/', JSON.stringify(data), this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Attribute>('CreateAttribute', data)))
   }
 

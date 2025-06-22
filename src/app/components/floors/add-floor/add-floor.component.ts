@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
+import { firstValueFrom } from 'rxjs'
 
 import { FloorService } from '../../../services/floor.service'
 import { LogService } from '../../../services/log.service'
@@ -38,7 +39,7 @@ export class FloorAddComponent implements OnInit {
   }
 
   floorForm = new FormGroup({
-    _id: new FormControl('', [Validators.required]),
+    _id: new FormControl(''),
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     address: new FormGroup({
       street: new FormControl('', Validators.required),
@@ -50,10 +51,10 @@ export class FloorAddComponent implements OnInit {
   })
 
   constructor(
-    private ngZone: NgZone,
     private router: Router,
     private floorService: FloorService,
     private logService: LogService,
+    private ngZone: NgZone,
   ) {}
 
   ngOnInit(): void {
@@ -157,7 +158,6 @@ export class FloorAddComponent implements OnInit {
     return this.floorForm.get('dimension') as FormArray
   }
 
-  // Add this method to your component class
   getDimension(index: number, controlName: string) {
     try {
       const dimensionArray = this.floorForm.get('dimension')
@@ -178,7 +178,7 @@ export class FloorAddComponent implements OnInit {
       return null
     }
   }
-  // Add this method to your component class
+
   isControlValid(arrayName: string, index: number, controlName: string): boolean {
     try {
       const array = this.floorForm.get(arrayName)
@@ -259,39 +259,43 @@ export class FloorAddComponent implements OnInit {
     console.log('Overall form valid:', this.floorForm.valid)
   }
 
+  trackByFn(index: number, item: any): number {
+    return index
+  }
+
   async onSubmit() {
     this.isSubmitted = true
-    this.isSubmitDisabled = true // Disable the submit button
-
     if (this.floorForm.invalid) {
       console.error('Form is invalid:', this.floorForm.errors)
       return
     }
-
+    this.isSubmitDisabled = true
     try {
       const floorData: Floors = this.floorForm.value as Floors
       console.info('Floor Data to Submit:', JSON.stringify(floorData, null, ' '))
+      const returnValue = await firstValueFrom(this.floorService.CreateFloor(floorData))
+      console.info(`Floor created successfully:  ${returnValue._id}`)
+      this.floorForm.get('_id')?.setValue(returnValue._id) // Ensure the form control is updated with the new ID
+      this.floorForm.markAsPristine() // Mark the form as pristine after submission
+      this.isSubmitDisabled = false // Re-enable the submit button
+      console.info('Form submitted successfully:', this.floorForm.value)
 
-      // Create new floor
-      await this.floorService.CreateFloor(floorData).toPromise()
-      console.info('Floor created successfully')
-
-      // Log the operation
-      const logMessage = this.selectedFloor ? 'Updated Floor' : 'Created Floor'
-      await this.logService
+      this.logService
         .CreateLog({
-          message: floorData,
-          operation: logMessage,
+          objectId: returnValue._id,
+          message: this.floorForm.value as Floors,
+          operation: 'Create',
           component: 'floors',
         })
-        .toPromise()
-
-      // Navigate back to the list or another page
-      await this.router.navigateByUrl('floors-list')
+        .subscribe(() => {
+          this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
+        })
+      console.info('Log created successfully')
+      this.router.navigateByUrl('floor-list')
+      return
     } catch (error) {
       console.error('Error submitting form:', error)
-    } finally {
-      this.isSubmitDisabled = false // Re-enable the submit button
+      this.isSubmitDisabled = false
     }
   }
 }

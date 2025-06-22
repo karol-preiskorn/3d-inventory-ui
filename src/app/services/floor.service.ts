@@ -74,7 +74,7 @@ export class FloorService {
    */
   CreateFloor(data: Floors): Observable<Floors> {
     return this.http
-      .post<Floors>(environment.baseurl + '/floors/', JSON.stringify(data, null, ' '), this.httpOptions)
+      .post<Floors>(environment.baseurl + '/floors/', JSON.stringify(data, null, 2), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -91,7 +91,7 @@ export class FloorService {
           const clonedFloor = { ...Floors, _id: newId }
           this.CreateFloor(clonedFloor).subscribe({
             next: () => {
-              this.ngZone.run(() => this.router.navigateByUrl('Floors-list'))
+              this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
               observer.next(newId)
               observer.complete()
             },
@@ -121,13 +121,15 @@ export class FloorService {
    * @returns An Observable that emits the error message.
    */
   errorHandl(error: any): Observable<never> {
-    let errorMessage = ''
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = error.error.message
-    } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.error?.message || error.message}`
-    }
+    const errorMessage = this.formatErrorMessage(error)
     console.error(errorMessage)
     return throwError(() => new Error(errorMessage))
+  }
+
+  private formatErrorMessage(error: any): string {
+    if (error.error instanceof ErrorEvent) {
+      return error.error.message
+    }
+    return `Error Code: ${error.status}\nMessage: ${error.error?.message || error.message}`
   }
 }
