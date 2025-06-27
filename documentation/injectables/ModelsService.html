@@ -299,8 +299,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="79"
-                                    class="link-to-prism">src/app/services/models.service.ts:79</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/services/models.service.ts:87</a></div>
                         </td>
                     </tr>
 
@@ -376,8 +376,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="67"
-                                    class="link-to-prism">src/app/services/models.service.ts:67</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/app/services/models.service.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -420,7 +420,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/Model.html" target="_self" >Observable&lt;Model&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../classes/Model.html" target="_self" >Observable&lt;literal type | Model&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -451,8 +451,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="56"
-                                    class="link-to-prism">src/app/services/models.service.ts:56</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/services/models.service.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -646,8 +646,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="119"
-                                    class="link-to-prism">src/app/services/models.service.ts:119</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/app/services/models.service.ts:134</a></div>
                         </td>
                     </tr>
 
@@ -724,7 +724,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>(error: Error) &#x3D;&gt; Observable&lt;T&gt;</code>
+                            <b>Returns : </b>    <code>(error: any) &#x3D;&gt; Observable&lt;T&gt;</code>
 
                         </div>
                             <div class="io-description">
@@ -754,8 +754,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">src/app/services/models.service.ts:107</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="119"
+                                    class="link-to-prism">src/app/services/models.service.ts:119</a></div>
                         </td>
                     </tr>
 
@@ -968,8 +968,8 @@ export class ModelsService {
    */
   GetModels(): Observable&lt;Model[]&gt; {
     return this.http
-      .get&lt;Model[]&gt;(environment.baseurl + &#x27;/models/&#x27;)
-      .pipe(retry(1), catchError(this.handleErrorTemplate&lt;Model[]&gt;(&#x27;GetModel&#x27;)))
+      .get&lt;Model[]&gt;(&#x60;${this.baseurl}/models&#x60;, this.httpOptions)
+      .pipe(retry(1), catchError(this.handleErrorTemplate&lt;Model[]&gt;(&#x27;GetModels&#x27;, [])))
   }
   /**
    * Retrieves a model by its ID.
@@ -978,8 +978,11 @@ export class ModelsService {
    */
   GetModel(id: string): Observable&lt;Model&gt; {
     return this.http
-      .get&lt;Model&gt;(environment.baseurl + &#x27;/models/&#x27; + String(id), this.httpOptions)
-      .pipe(retry(1), catchError(this.handleErrorTemplate&lt;Model&gt;(&#x27;GetModel&#x27;, id as unknown as Model)))
+      .get&lt;Model&gt;(&#x60;${this.baseurl}/models/${encodeURIComponent(id)}&#x60;, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleErrorTemplate&lt;Model&gt;(&#x27;GetModel&#x27;, {} as Model))
+      )
   }
 
   /**
@@ -998,11 +1001,16 @@ export class ModelsService {
    * @param data The data of the model to be created.
    * @returns An Observable that emits the created model.
    */
-  CreateModel(data: Model): Observable&lt;Model&gt; {
+  CreateModel(data: Model): Observable&lt;{ acknowledged: boolean; insertedId: string } | Model&gt; {
     console.log(&#x27;Service.CreateModel: &#x27; + JSON.stringify(data, null, &#x27; &#x27;))
     return this.http
       .post&lt;Model&gt;(environment.baseurl + &#x27;/models/&#x27;, JSON.stringify(data, null, &#x27; &#x27;), this.httpOptions)
-      .pipe(retry(1), catchError(this.handleErrorTemplate&lt;Model&gt;(&#x27;CreateModel&#x27;, data)))
+      .pipe(
+        retry(1),
+        catchError(
+          this.handleErrorTemplate&lt;{ acknowledged: boolean; insertedId: string } | Model&gt;(&#x27;CreateModel&#x27;, data),
+        ),
+      )
   }
 
   /**
@@ -1015,18 +1023,22 @@ export class ModelsService {
     let idConed &#x3D; &#x27;&#x27;
     this.GetModel(id).subscribe((value: Model) &#x3D;&gt; {
       console.log(&#x27;Get Model: &#x27; + JSON.stringify(value, null, &#x27; &#x27;))
-      this.CreateModel(value).subscribe({
-        next: (v) &#x3D;&gt; {
+      this.CreateModel(value).subscribe(
+        (v: Model | { acknowledged: boolean; insertedId: string }) &#x3D;&gt; {
           console.log(&#x27;Create Model: &#x27; + JSON.stringify(v, null, &#x27; &#x27;))
+          if (&#x27;_id&#x27; in v) {
+            idConed &#x3D; String(v._id) // Convert &#x27;ObjectId&#x27; to string
+          } else if (&#x27;insertedId&#x27; in v) {
+            idConed &#x3D; String(v.insertedId)
+          }
           this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;models-list&#x27;))
-          idConed &#x3D; String(v._id) // Convert &#x27;ObjectId&#x27; to string
         },
-        complete: () &#x3D;&gt; this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;models-list&#x27;)),
-        error: (err) &#x3D;&gt; {
-          console.error(err) // Fix: Replace &#x27;error&#x27; with &#x27;err&#x27;
+        (err: any) &#x3D;&gt; {
+          console.error(err)
           catchError(this.handleErrorTemplate&lt;Model&gt;(&#x27;CloneModel&#x27;, value))
         },
-      })
+        () &#x3D;&gt; this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;models-list&#x27;)),
+      )
     })
     console.log(&#x27;Get after Model: &#x27; + JSON.stringify(this.model, null, &#x27; &#x27;))
     return idConed
@@ -1039,19 +1051,25 @@ export class ModelsService {
    * @returns An Observable that emits the updated model.
    */
   UpdateModel(id: string, data: Model): Observable&lt;Model&gt; {
-    console.log(&#x60;ModelService.UpdateModel: ${JSON.stringify(data, null, &#x27; &#x27;)}&#x60;)
     return this.http
-      .put&lt;Model&gt;(environment.baseurl + &#x27;/models/&#x27; + id, JSON.stringify(data, null, &#x27; &#x27;), this.httpOptions)
-      .pipe(retry(1), catchError(this.handleErrorTemplate&lt;Model&gt;(&#x27;UpdateModel&#x27;, data)))
+      .put&lt;Model&gt;(&#x60;${this.baseurl}/models/${id}&#x60;, data, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleErrorTemplate&lt;Model&gt;(&#x27;UpdateModel&#x27;, {} as Model))
+      )
   }
 
   /**
    * Handle Http operation that failed. Let the app continue.
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
+   * @template T - The type of the result expected from the operation
    */
   private handleErrorTemplate&lt;T&gt;(operation &#x3D; &#x27;operation&#x27;, result?: T) {
-    return (error: Error): Observable&lt;T&gt; &#x3D;&gt; {
+    return (error: any): Observable&lt;T&gt; &#x3D;&gt; {
+      console.error(
+        &#x60;ModelsService.handleErrorTemplate: ${operation} failed: ${error.message}, Status: ${(error as any)?.status || &#x27;N/A&#x27;}, Stack: ${error.stack || &#x27;N/A&#x27;}&#x60;,
+      )
       console.error(&#x60;ModelsService.handleErrorTemplate: ${operation} failed: ${error.message}&#x60;)
       return of(result as T)
     }
@@ -1128,7 +1146,6 @@ export class ModelsService {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

@@ -130,8 +130,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>This class is used to store information about a device, including its ID, name, model ID, and position.
-class operating on device. Structure data accessed via Oracle DB/Mongo</p>
+                <p>Represents a position in a 3D space.</p>
 
             </p>
 
@@ -287,6 +286,13 @@ class operating on device. Structure data accessed via Oracle DB/Mongo</p>
   h: number
 }
 
+/**
+ * Interface for a device object.
+ * @property _id - The unique identifier of the device.
+ * @property name - The name of the device.
+ * @property modelId - The model identifier associated with the device.
+ * @property position - The position of the device in 3D space.
+ */
 export interface DeviceInterface {
   _id: string
   name: string
@@ -294,36 +300,54 @@ export interface DeviceInterface {
   position: Position
 }
 
+/**
+ * Represents a device with a unique ID, name, model ID, and position.
+ */
 export class Device {
-  _id!: string
+  /**
+   * The unique identifier of the device.
+   */
+  _id: string &#x3D; &#x27;&#x27;
+
+  /**
+   * The name of the device.
+   */
   name: string &#x3D; &#x27;&#x27;
+
+  /**
+   * The model identifier associated with the device.
+   */
   modelId: string &#x3D; &#x27;&#x27;
+
+  /**
+   * The position of the device in 3D space.
+   */
   position: Position &#x3D; { x: 0, y: 0, h: 0 }
 
-  constructor(name?: string, modelId?: string, position?: Position) {
-    if (name &amp;&amp; modelId &amp;&amp; position) {
-      this.name &#x3D; name
-      this.modelId &#x3D; modelId
-      this.position &#x3D; position
-    }
+  /**
+   * Indicates whether debug mode is enabled.
+   */
+  isDebugMode: boolean &#x3D; false
+
+  /**
+   * Creates an instance of the Device class.
+   * @param name - The name of the device. Defaults to an empty string.
+   * @param modelId - The model identifier of the device. Defaults to an empty string.
+   * @param position - The position of the device in 3D space. Defaults to { x: 0, y: 0, h: 0 }.
+   */
+  constructor(name: string &#x3D; &#x27;&#x27;, modelId: string &#x3D; &#x27;&#x27;, position: Position &#x3D; { x: 0, y: 0, h: 0 }) {
+    this.name &#x3D; name
+    this.modelId &#x3D; modelId
+    this.position &#x3D; position
   }
 
+  /**
+   * Returns a string representation of the device.
+   * @returns A string containing the device ID and name.
+   */
   toString(): string {
-    return &#x60;Device ID: ${this._id}, Name: ${this.name}&#x60;
+    return &#x60;Device ID: ${this._id || &#x27;N/A&#x27;}, Name: ${this.name || &#x27;N/A&#x27;}&#x60;
   }
-}
-
-// @TODO: #2:30min Continue implementing the tests for the Device class. Add tests for the constructor and the toString method. Make sure to test the case where the constructor is called with no arguments. Add object data to the constructor and test the toString method.
-const debug &#x3D; true
-if (debug &#x3D;&#x3D;&#x3D; true) {
-  const d1 &#x3D; new Device()
-  console.log(d1.toString())
-
-  const d2Data &#x3D; { name: &#x27;Device 1&#x27;, modelId: &#x27;1&#x27;, position: { x: 1, y: 2, h: 3 } }
-  const d2 &#x3D; new Device(d2Data.name, d2Data.modelId, d2Data.position)
-
-  d1.toString()
-  d2.toString()
 }
 </code></pre>
     </div>
@@ -390,7 +414,6 @@ if (debug &#x3D;&#x3D;&#x3D; true) {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

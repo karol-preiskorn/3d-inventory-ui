@@ -437,13 +437,20 @@ export default class Validation {
    * @memberof Validation
    */
   numberValidator: ValidatorFn &#x3D; (control: AbstractControl): ValidationErrors | null &#x3D;&gt; {
-    const value: number &#x3D; control?.value as number
-    if (typeof value !&#x3D;&#x3D; &#x27;number&#x27; || isNaN(value)) {
-      return {
-        number: true,
+    try {
+      const value &#x3D; control?.value;
+      // Accept both numbers and numeric strings
+      if (value &#x3D;&#x3D;&#x3D; null || value &#x3D;&#x3D;&#x3D; undefined || value &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+        return { number: true };
       }
+      const num &#x3D; typeof value &#x3D;&#x3D;&#x3D; &#x27;number&#x27; ? value : Number(value);
+      if (typeof num !&#x3D;&#x3D; &#x27;number&#x27; || isNaN(num)) {
+        return { number: true };
+      }
+      return null;
+    } catch (error) {
+      return { number: true, error: (error as Error).message };
     }
-    return null
   }
 }
 </code></pre>
@@ -512,7 +519,6 @@ export default class Validation {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

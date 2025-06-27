@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../3d-inventory-mongo-api"
+		}
+	],
+	"settings": {}
+}

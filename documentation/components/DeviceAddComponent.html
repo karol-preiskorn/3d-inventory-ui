@@ -155,7 +155,18 @@
                 <td class="col-md-9"><code>app-add-device</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>ReactiveFormsModule</code>
+                            <code>CommonModule</code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -236,10 +247,10 @@
                                 <a href="#changeH" >changeH</a>
                             </li>
                             <li>
-                                <a href="#changeId" >changeId</a>
+                                <a href="#changeModelId" >changeModelId</a>
                             </li>
                             <li>
-                                <a href="#changeModelId" >changeModelId</a>
+                                <a href="#changeName" >changeName</a>
                             </li>
                             <li>
                                 <a href="#changeX" >changeX</a>
@@ -249,6 +260,10 @@
                             </li>
                             <li>
                                 <a href="#generateDevice" >generateDevice</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#initializeForm" >initializeForm</a>
                             </li>
                             <li>
                                 <a href="#loadModels" >loadModels</a>
@@ -279,9 +294,6 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                    <a href="#id" >id</a>
-                                </li>
-                                <li>
                                     <a href="#name" >name</a>
                                 </li>
                                 <li>
@@ -295,6 +307,18 @@
                                 </li>
                                 <li>
                                     <a href="#h" >h</a>
+                                </li>
+                                <li>
+                                    <a href="#position" >position</a>
+                                </li>
+                                <li>
+                                    <a href="#positionX" >positionX</a>
+                                </li>
+                                <li>
+                                    <a href="#positionY" >positionY</a>
+                                </li>
+                                <li>
+                                    <a href="#positionH" >positionH</a>
                                 </li>
                             </ul>
                         </td>
@@ -314,7 +338,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -441,75 +465,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="66"
-                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:66</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>e</td>
-                                            <td>
-                                                        <code>Event</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="changeId"></a>
-                    <span class="name">
-                        <span ><b>changeId</b></span>
-                        <a href="#changeId"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>changeId(e: Event)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="57"
-                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:57</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -575,8 +532,75 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="69"
-                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:69</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeName"></a>
+                    <span class="name">
+                        <span ><b>changeName</b></span>
+                        <a href="#changeName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeName(e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -642,8 +666,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="60"
-                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:60</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:87</a></div>
                         </td>
                     </tr>
 
@@ -709,8 +733,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:63</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:91</a></div>
                         </td>
                     </tr>
 
@@ -776,8 +800,47 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="96"
-                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:96</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="143"
+                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:143</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initializeForm"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>initializeForm</b></span>
+                        <a href="#initializeForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>initializeForm()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -813,8 +876,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="52"
-                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:52</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -850,8 +913,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="49"
-                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:49</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="73"
+                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -887,8 +950,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="106"
-                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:106</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="158"
+                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:158</a></div>
                         </td>
                     </tr>
 
@@ -924,8 +987,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="92"
-                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:92</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="139"
+                                    class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:139</a></div>
                         </td>
                     </tr>
 
@@ -990,21 +1053,13 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new FormGroup({
-    id: new FormControl(&#x27;&#x27;, null),
-    name: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
-    modelId: new FormControl(&#x27;&#x27;, Validators.required),
-    position: new FormGroup({
-      x: new FormControl&lt;number&gt;(0, [Validators.required, this.valid.numberValidator]),
-      y: new FormControl&lt;number&gt;(0, [Validators.required, this.valid.numberValidator]),
-      h: new FormControl&lt;number&gt;(0, [Validators.required, this.valid.numberValidator]),
-    }),
-  })</code>
+                        <i>Type : </i>    <code>FormGroup</code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -1030,7 +1085,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -1061,7 +1116,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -1088,7 +1143,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -1119,7 +1174,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -1144,7 +1199,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -1175,7 +1230,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -1201,7 +1256,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -1232,7 +1287,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -1249,28 +1304,6 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="id"></a>
-                        <span class="name"><b>id</b><a href="#id"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>id()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:73</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
                         <a name="name"></a>
                         <span class="name"><b>name</b><a href="#name"><span class="icon ion-ios-link"></span></a></span>
                     </td>
@@ -1283,7 +1316,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:103</a></div>
                                 </td>
                             </tr>
 
@@ -1305,7 +1338,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:107</a></div>
                                 </td>
                             </tr>
 
@@ -1327,7 +1360,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:111</a></div>
                                 </td>
                             </tr>
 
@@ -1349,7 +1382,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:115</a></div>
                                 </td>
                             </tr>
 
@@ -1371,7 +1404,95 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:88</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:119</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="position"></a>
+                        <span class="name"><b>position</b><a href="#position"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>position()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:123</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="positionX"></a>
+                        <span class="name"><b>positionX</b><a href="#positionX"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>positionX()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:127</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="positionY"></a>
+                        <span class="name"><b>positionY</b><a href="#positionY"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>positionY()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:131</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="positionH"></a>
+                        <span class="name"><b>positionH</b><a href="#positionH"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>positionH()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/app/components/devices/add-device/add-device.component.ts:135</a></div>
                                 </td>
                             </tr>
 
@@ -1383,16 +1504,18 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, NgZone, OnInit } from &#x27;@angular/core&#x27;
-import { FormBuilder, FormControl, FormGroup, Validators } from &#x27;@angular/forms&#x27;
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;
 import { Router } from &#x27;@angular/router&#x27;
 import { faker } from &#x27;@faker-js/faker&#x27;
+import { switchMap } from &#x27;rxjs&#x27;
 
+import { CommonModule } from &#x27;@angular/common&#x27;
 import { DeviceService } from &#x27;../../../services/device.service&#x27;
 import { LogService } from &#x27;../../../services/log.service&#x27;
 import { ModelsService } from &#x27;../../../services/models.service&#x27;
 import { Device } from &#x27;../../../shared/device&#x27;
 import { DeviceCategoryDict } from &#x27;../../../shared/deviceCategories&#x27;
-import { DeviceTypeDict } from &#x27;../../../shared/deviceTypes&#x27;
+import { DeviceTypeDict } from &#x27;../../../shared/DeviceTypes&#x27;
 import { Model } from &#x27;../../../shared/model&#x27;
 import Validation from &#x27;../../../shared/validation&#x27;
 
@@ -1400,6 +1523,8 @@ import Validation from &#x27;../../../shared/validation&#x27;
   selector: &#x27;app-add-device&#x27;,
   templateUrl: &#x27;./add-device.component.html&#x27;,
   styleUrls: [&#x27;./add-device.component.scss&#x27;],
+  standalone: true,
+  imports: [ReactiveFormsModule, CommonModule],
 })
 export class DeviceAddComponent implements OnInit {
   device: Device
@@ -1410,16 +1535,34 @@ export class DeviceAddComponent implements OnInit {
   modelList: Model[]
   valid: Validation &#x3D; new Validation()
 
-  addDeviceForm &#x3D; new FormGroup({
-    id: new FormControl(&#x27;&#x27;, null),
-    name: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
-    modelId: new FormControl(&#x27;&#x27;, Validators.required),
-    position: new FormGroup({
-      x: new FormControl&lt;number&gt;(0, [Validators.required, this.valid.numberValidator]),
-      y: new FormControl&lt;number&gt;(0, [Validators.required, this.valid.numberValidator]),
-      h: new FormControl&lt;number&gt;(0, [Validators.required, this.valid.numberValidator]),
-    }),
-  })
+  addDeviceForm: FormGroup
+
+  private initializeForm() {
+    this.addDeviceForm &#x3D; new FormGroup({
+      name: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
+      modelId: new FormControl(&#x27;&#x27;, Validators.required),
+      position: new FormGroup({
+        x: new FormControl&lt;number&gt;(0, [
+          Validators.required,
+          this.valid.numberValidator,
+          Validators.min(-20),
+          Validators.max(20),
+        ]),
+        y: new FormControl&lt;number&gt;(0, [
+          Validators.required,
+          this.valid.numberValidator,
+          Validators.min(-20),
+          Validators.max(20),
+        ]),
+        h: new FormControl&lt;number&gt;(0, [
+          Validators.required,
+          this.valid.numberValidator,
+          Validators.min(-20),
+          Validators.max(20),
+        ]),
+      }),
+    })
+  }
 
   constructor(
     private formBuilder: FormBuilder,
@@ -1428,48 +1571,73 @@ export class DeviceAddComponent implements OnInit {
     public devicesService: DeviceService,
     private modelService: ModelsService,
     private logService: LogService,
-  ) {}
+  ) {
+    this.initializeForm()
+  }
 
   ngOnInit() {
     this.loadModels()
   }
+
   loadModels() {
     return this.modelService.GetModels().subscribe((data: Model[]): void &#x3D;&gt; {
       this.modelList &#x3D; data
     })
   }
-  changeId(e: Event) {
-    this.id?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+
+  changeName(e: Event) {
+    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
+
   changeX(e: Event) {
     this.x?.setValue(Number((e.target as HTMLInputElement).value), { onlySelf: true })
   }
+
   changeY(e: Event) {
     this.y?.setValue(Number((e.target as HTMLInputElement).value), { onlySelf: true })
   }
+
   changeH(e: Event) {
     this.h?.setValue(Number((e.target as HTMLInputElement).value), { onlySelf: true })
   }
+
   changeModelId(e: Event) {
     this.modelId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  get id() {
-    return this.addDeviceForm.get(&#x27;id&#x27;)
-  }
   get name() {
     return this.addDeviceForm.get(&#x27;name&#x27;)
   }
+
   get modelId() {
     return this.addDeviceForm.get(&#x27;modelId&#x27;)
   }
+
   get x() {
     return this.addDeviceForm.get(&#x27;position&#x27;)?.get(&#x27;x&#x27;)
   }
+
   get y() {
     return this.addDeviceForm.get(&#x27;position&#x27;)?.get(&#x27;y&#x27;)
   }
+
   get h() {
+    return this.addDeviceForm.get(&#x27;position&#x27;)?.get(&#x27;h&#x27;)
+  }
+
+  get position() {
+    return this.addDeviceForm.get(&#x27;position&#x27;)
+  }
+
+  get positionX() {
+    return this.addDeviceForm.get(&#x27;position&#x27;)?.get(&#x27;x&#x27;)
+  }
+
+  get positionY() {
+    return this.addDeviceForm.get(&#x27;position&#x27;)?.get(&#x27;y&#x27;)
+  }
+
+  get positionH() {
     return this.addDeviceForm.get(&#x27;position&#x27;)?.get(&#x27;h&#x27;)
   }
 
@@ -1479,25 +1647,42 @@ export class DeviceAddComponent implements OnInit {
 
   generateDevice() {
     this.addDeviceForm.controls.name.setValue(faker.company.name() + &#x27; - &#x27; + faker.company.buzzPhrase())
-    this.addDeviceForm.controls.position.controls.x.setValue(faker.number.int(10))
-    this.addDeviceForm.controls.position.controls.y.setValue(faker.number.int(10))
-    this.addDeviceForm.controls.position.controls.h.setValue(faker.number.int(10))
-    this.addDeviceForm.controls.modelId.setValue(
-      this.modelList[Math.floor(Math.random() * this.modelList.length)]._id.toString(),
-    )
+    const positionGroup &#x3D; this.addDeviceForm.get(&#x27;position&#x27;) as FormGroup
+    positionGroup.get(&#x27;x&#x27;)?.setValue(faker.number.int({ max: 10 }))
+    positionGroup.get(&#x27;y&#x27;)?.setValue(faker.number.int({ max: 10 }))
+    positionGroup.get(&#x27;h&#x27;)?.setValue(faker.number.int({ max: 10 }))
+    if (this.modelList &amp;&amp; this.modelList.length &gt; 0) {
+      this.addDeviceForm.controls.modelId.setValue(
+        this.modelList[Math.floor(Math.random() * this.modelList.length)]._id.toString(),
+      )
+    } else {
+      console.warn(&#x27;Model list is empty or undefined. Cannot generate device modelId.&#x27;)
+    }
   }
 
   submitForm() {
-    console.log(&#x27;Device added!&#x27;)
-    this.logService.CreateLog({
-      operation: &#x27;Create&#x27;,
-      component: &#x27;Device&#x27;,
-      // objectId: res._id,
-      message: this.addDeviceForm.value,
-    })
-    this.devicesService.CreateDevice(this.device).subscribe(() &#x3D;&gt; {
-      // Removed &#x27;res&#x27; parameter
-      this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;device-list&#x27;))
+    if (this.addDeviceForm.invalid) {
+      return
+    }
+    console.log(&#x27;Submit Form Add Device: &#x27; + JSON.stringify(this.addDeviceForm.value))
+    this.devicesService.CreateDevice(this.addDeviceForm.value).subscribe((res) &#x3D;&gt; {
+      console.log(&#x27;Device response: &#x27; + JSON.stringify(res, null, 2))
+      this.isSubmitted &#x3D; true
+      const insertedId &#x3D; (res as any).insertedId ? (res as any).insertedId : (res as any).id
+      let device &#x3D; this.addDeviceForm.value as Device
+      device &#x3D; { ...device, _id: insertedId || &#x27;&#x27; } // Ensure _id is set
+      this.device &#x3D; device
+      console.log(&#x27;Device with _id &#x27; + insertedId + &#x27; created: &#x27; + JSON.stringify(device, null, 2))
+      this.logService
+        .CreateLog({
+          message: device,
+          objectId: insertedId,
+          operation: &#x27;Create&#x27;,
+          component: &#x27;Device&#x27;,
+        })
+        .subscribe(() &#x3D;&gt; {
+          this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;device-list&#x27;))
+        })
     })
   }
 }
@@ -1508,92 +1693,94 @@ export class DeviceAddComponent implements OnInit {
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
   &lt;h3&gt;&lt;i class&#x3D;&quot;bi bi-hdd&quot;&gt;&lt;/i&gt; Add Device&lt;/h3&gt;
   &lt;form [formGroup]&#x3D;&quot;addDeviceForm&quot; (ngSubmit)&#x3D;&quot;submitForm()&quot; class&#x3D;&quot;g-3 needs-validation&quot; novalidate&gt;
-    &lt;label for&#x3D;&quot;id&quot;&gt;Id&lt;/label&gt;
-    &lt;input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;id&quot; id&#x3D;&quot;id&quot; /&gt;
     &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
       &lt;label for&#x3D;&quot;name&quot; class&#x3D;&quot;form-label&quot;&gt;Name&lt;/label&gt;
-      &lt;textarea
-        formControlName&#x3D;&quot;name&quot;
-        rows&#x3D;&quot;2&quot;
-        minlength&#x3D;&quot;4&quot;
-        maxlength&#x3D;&quot;50&quot;
-        required
-        [ngClass]&#x3D;&quot;{
+      &lt;textarea formControlName&#x3D;&quot;name&quot; rows&#x3D;&quot;2&quot; required [ngClass]&#x3D;&quot;{
           &#x27;is-invalid&#x27;: addDeviceForm.controls.name.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
           &#x27;is-valid&#x27;: addDeviceForm.controls.name.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
           &#x27;form-control&#x27;: true,
-        }&quot;
-      &gt;&lt;/textarea&gt;
-      &lt;div *ngIf&#x3D;&quot;addDeviceForm.controls.name.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-        &lt;div *ngIf&#x3D;&quot;addDeviceForm.controls.name.errors.required&quot;&gt;Name is required&lt;/div&gt;
-        &lt;div *ngIf&#x3D;&quot;addDeviceForm.controls.name.errors.minlength&quot;&gt;Name must be at least 4 characters&lt;/div&gt;
-      &lt;/div&gt;
+        }&quot;&gt;&lt;/textarea&gt;
+      @if (addDeviceForm.controls.name.errors) {
+        &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+          @if (addDeviceForm.controls.name.errors.required) {
+            &lt;div&gt;Name is required&lt;/div&gt;
+          }
+          @if (addDeviceForm.controls.name.errors.minlength) {
+            &lt;div&gt;Name must be at least 4 characters&lt;/div&gt;
+          }
+        &lt;/div&gt;
+      }
     &lt;/div&gt;
     &lt;div formGroupName&#x3D;&quot;position&quot;&gt;
       &lt;div class&#x3D;&quot;row&quot;&gt;
         &lt;div class&#x3D;&quot;col&quot;&gt;
           &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
             &lt;label for&#x3D;&quot;x&quot; class&#x3D;&quot;form-label&quot;&gt;x&lt;/label&gt;
-            &lt;input
-              type&#x3D;&quot;text&quot;
-              formControlName&#x3D;&quot;x&quot;
-              id&#x3D;&quot;x&quot;
-              required
-              [ngClass]&#x3D;&quot;{
-                &#x27;is-invalid&#x27;: addDeviceForm.controls.position.controls.x.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-                &#x27;is-valid&#x27;: addDeviceForm.controls.position.controls.x.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
-                &#x27;form-control&#x27;: true,
-              }&quot;
-            /&gt;
-            &lt;div *ngIf&#x3D;&quot;addDeviceForm.controls.position.controls.x.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-              &lt;div *ngIf&#x3D;&quot;addDeviceForm.controls.position.controls.x.errors.required&quot;&gt;X is required&lt;/div&gt;
-              &lt;div *ngIf&#x3D;&quot;addDeviceForm.controls.position.controls.x.errors.minlength&quot;&gt;
-                X must be at least 1 character
+            &lt;input type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;x&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;x&quot; aria-label&#x3D;&quot;x&quot; placeholder&#x3D;&quot;x&quot;
+              required [ngClass]&#x3D;&quot;{
+                  &#x27;is-invalid&#x27;: addDeviceForm.get(&#x27;position.x&#x27;) &amp;&amp; addDeviceForm.get(&#x27;position.x&#x27;)?.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                  &#x27;is-valid&#x27;: addDeviceForm.get(&#x27;position.x&#x27;)?.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                }&quot; /&gt;
+            @if (addDeviceForm.get(&#x27;position.x&#x27;)?.errors) {
+              &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+                @if (addDeviceForm.get(&#x27;position.x&#x27;)?.errors?.required) {
+                  &lt;div&gt;X is required&lt;/div&gt;
+                }
+                @if (addDeviceForm.get(&#x27;position.x&#x27;)?.errors?.min || addDeviceForm.get(&#x27;position.x&#x27;)?.errors?.max) {
+                  &lt;div
+                    &gt;
+                    X must be at bettween -20 and 20
+                  &lt;/div&gt;
+                }
               &lt;/div&gt;
-            &lt;/div&gt;
+            }
           &lt;/div&gt;
         &lt;/div&gt;
         &lt;div class&#x3D;&quot;col&quot;&gt;
           &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
             &lt;label for&#x3D;&quot;y&quot; class&#x3D;&quot;form-label&quot;&gt;y&lt;/label&gt;
-            &lt;input
-              type&#x3D;&quot;text&quot;
-              formControlName&#x3D;&quot;y&quot;
-              id&#x3D;&quot;y&quot;
-              required
-              [ngClass]&#x3D;&quot;{
-                &#x27;is-invalid&#x27;: addDeviceForm.controls.position.controls.y.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-                &#x27;is-valid&#x27;: addDeviceForm.controls.position.controls.y.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
-                &#x27;form-control&#x27;: true,
-              }&quot;
-            /&gt;
-            &lt;div *ngIf&#x3D;&quot;addDeviceForm.controls.position.controls.y.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-              &lt;div *ngIf&#x3D;&quot;addDeviceForm.controls.position.controls.y.errors.required&quot;&gt;Y is required&lt;/div&gt;
-              &lt;div *ngIf&#x3D;&quot;addDeviceForm.controls.position.controls.y.errors.minlength&quot;&gt;
-                Y must be at least 1 character
+            &lt;input type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;y&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;y&quot; aria-label&#x3D;&quot;y&quot; placeholder&#x3D;&quot;y&quot;
+              required [ngClass]&#x3D;&quot;{
+                  &#x27;is-invalid&#x27;: addDeviceForm.get(&#x27;position.y&#x27;) &amp;&amp; addDeviceForm.get(&#x27;position.y&#x27;)?.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                  &#x27;is-valid&#x27;: addDeviceForm.get(&#x27;position.y&#x27;)?.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                }&quot; /&gt;
+            @if (addDeviceForm.get(&#x27;position.y&#x27;)?.errors) {
+              &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+                @if (addDeviceForm.get(&#x27;position.y&#x27;)?.errors?.required) {
+                  &lt;div&gt;Y is required&lt;/div&gt;
+                }
+                @if (addDeviceForm.get(&#x27;position.y&#x27;)?.errors?.min || addDeviceForm.get(&#x27;position.y&#x27;)?.errors?.max) {
+                  &lt;div
+                    &gt;
+                    X must be at bettween -20 and 20
+                  &lt;/div&gt;
+                }
               &lt;/div&gt;
-            &lt;/div&gt;
+            }
           &lt;/div&gt;
         &lt;/div&gt;
         &lt;div class&#x3D;&quot;col&quot;&gt;
           &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
             &lt;label for&#x3D;&quot;h&quot; class&#x3D;&quot;form-label&quot;&gt;h&lt;/label&gt;
-            &lt;input
-              type&#x3D;&quot;text&quot;
-              formControlName&#x3D;&quot;h&quot;
-              id&#x3D;&quot;h&quot;
-              required
-              [ngClass]&#x3D;&quot;{
-                &#x27;is-invalid&#x27;: addDeviceForm.controls.position.controls.h.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-                &#x27;is-valid&#x27;: addDeviceForm.controls.position.controls.h.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
-                &#x27;form-control&#x27;: true,
-              }&quot;
-            /&gt;
-            &lt;div *ngIf&#x3D;&quot;addDeviceForm.controls.position.controls.h.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;&lt;/div&gt;
-            &lt;div *ngIf&#x3D;&quot;addDeviceForm.controls.position.controls.h.errors?.required&quot;&gt;H is required&lt;/div&gt;
-            &lt;div *ngIf&#x3D;&quot;addDeviceForm.controls.position.controls.h.errors?.minlength&quot;&gt;
-              H must be at least 1 character
-            &lt;/div&gt;
+            &lt;input type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;h&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;h&quot; aria-label&#x3D;&quot;h&quot; placeholder&#x3D;&quot;h&quot;
+              required [ngClass]&#x3D;&quot;{
+                  &#x27;is-invalid&#x27;: addDeviceForm.get(&#x27;position.h&#x27;) &amp;&amp; addDeviceForm.get(&#x27;position.h&#x27;)?.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+                  &#x27;is-valid&#x27;: addDeviceForm.get(&#x27;position.h&#x27;)?.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                }&quot; /&gt;
+            @if (addDeviceForm.get(&#x27;position.h&#x27;)?.errors) {
+              &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+                @if (addDeviceForm.get(&#x27;position.h&#x27;)?.errors?.required) {
+                  &lt;div&gt;H is required
+                  &lt;/div&gt;
+                }
+                @if (addDeviceForm.get(&#x27;position.h&#x27;)?.errors?.min || addDeviceForm.get(&#x27;position.h&#x27;)?.errors?.max) {
+                  &lt;div
+                    &gt;
+                    H must be at bettween -20 and 20
+                  &lt;/div&gt;
+                }
+              &lt;/div&gt;
+            }
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
@@ -1602,32 +1789,33 @@ export class DeviceAddComponent implements OnInit {
       &lt;div class&#x3D;&quot;col&quot;&gt;
         &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
           &lt;label for&#x3D;&quot;modelId&quot; class&#x3D;&quot;form-label&quot;&gt;Model&lt;/label&gt;
-          &lt;select
-            (change)&#x3D;&quot;changeModelId($event)&quot;
-            formControlName&#x3D;&quot;modelId&quot;
-            class&#x3D;&quot;form-select&quot;
-            id&#x3D;&quot;modelId&quot;
-            required
-            [ngClass]&#x3D;&quot;{
+          &lt;select (change)&#x3D;&quot;changeModelId($event)&quot; formControlName&#x3D;&quot;modelId&quot; class&#x3D;&quot;form-select&quot; id&#x3D;&quot;modelId&quot;
+            required [ngClass]&#x3D;&quot;{
               &#x27;is-invalid&#x27;: addDeviceForm.controls.modelId.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
               &#x27;is-valid&#x27;: addDeviceForm.controls.modelId.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
               &#x27;form-select&#x27;: true,
-            }&quot;
-          &gt;
-            &lt;option *ngFor&#x3D;&quot;let modelObj of modelList; let i &#x3D; index&quot; value&#x3D;&quot;{{ modelObj._id }}&quot;&gt;
-              {{ modelObj.name }}
-            &lt;/option&gt;
+            }&quot;&gt;
+            @for (modelObj of modelList; track modelObj; let i &#x3D; $index) {
+              &lt;option value&#x3D;&quot;{{ modelObj._id }}&quot;&gt;
+                {{ modelObj.name }}
+              &lt;/option&gt;
+            }
           &lt;/select&gt;
-          &lt;div *ngIf&#x3D;&quot;addDeviceForm.controls.modelId.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-            &lt;div *ngIf&#x3D;&quot;addDeviceForm.controls.modelId.errors.required&quot;&gt;Name is required&lt;/div&gt;
-          &lt;/div&gt;
+          @if (addDeviceForm.controls.modelId.errors) {
+            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+              @if (addDeviceForm.controls.modelId.errors.required) {
+                &lt;div&gt;Name is required&lt;/div&gt;
+              }
+            &lt;/div&gt;
+          }
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
     &lt;p&gt;Form Status: {{ addDeviceForm.status }}&lt;/p&gt;
     &lt;div class&#x3D;&quot;d-flex p-2&quot;&gt;
       &lt;div class&#x3D;&quot;p-1 g-col-1&quot;&gt;
-        &lt;button type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;!(addDeviceForm.valid &amp;&amp; addDeviceForm.touched)&quot; class&#x3D;&quot;btn btn-primary mb-3&quot;&gt;
+        &lt;button type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;!(addDeviceForm.valid &amp;&amp; addDeviceForm.touched)&quot;
+          class&#x3D;&quot;btn btn-primary mb-3&quot;&gt;
           &lt;i class&#x3D;&quot;bi bi-file-earmark-plus&quot;&gt;&lt;/i&gt; Add
         &lt;/button&gt;
       &lt;/div&gt;
@@ -1674,8 +1862,8 @@ export class DeviceAddComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <h3><i class="bi bi-hdd"></i> Add Device</h3>  <form [formGroup]="addDeviceForm" (ngSubmit)="submitForm()" class="g-3 needs-validation" novalidate>    <label for="id">Id</label>    <input type="text" formControlName="id" id="id" />    <div class="form-group mb-3">      <label for="name" class="form-label">Name</label>      <textarea        formControlName="name"        rows="2"        minlength="4"        maxlength="50"        required        [ngClass]="{          \'is-invalid\': addDeviceForm.controls.name.status !== \'VALID\',          \'is-valid\': addDeviceForm.controls.name.status === \'VALID\',          \'form-control\': true,        }"      ></textarea>      <div *ngIf="addDeviceForm.controls.name.errors" class="invalid-feedback">        <div *ngIf="addDeviceForm.controls.name.errors.required">Name is required</div>        <div *ngIf="addDeviceForm.controls.name.errors.minlength">Name must be at least 4 characters</div>      </div>    </div>    <div formGroupName="position">      <div class="row">        <div class="col">          <div class="form-group mb-3">            <label for="x" class="form-label">x</label>            <input              type="text"              formControlName="x"              id="x"              required              [ngClass]="{                \'is-invalid\': addDeviceForm.controls.position.controls.x.status !== \'VALID\',                \'is-valid\': addDeviceForm.controls.position.controls.x.status === \'VALID\',                \'form-control\': true,              }"            />            <div *ngIf="addDeviceForm.controls.position.controls.x.errors" class="invalid-feedback">              <div *ngIf="addDeviceForm.controls.position.controls.x.errors.required">X is required</div>              <div *ngIf="addDeviceForm.controls.position.controls.x.errors.minlength">                X must be at least 1 character              </div>            </div>          </div>        </div>        <div class="col">          <div class="form-group mb-3">            <label for="y" class="form-label">y</label>            <input              type="text"              formControlName="y"              id="y"              required              [ngClass]="{                \'is-invalid\': addDeviceForm.controls.position.controls.y.status !== \'VALID\',                \'is-valid\': addDeviceForm.controls.position.controls.y.status === \'VALID\',                \'form-control\': true,              }"            />            <div *ngIf="addDeviceForm.controls.position.controls.y.errors" class="invalid-feedback">              <div *ngIf="addDeviceForm.controls.position.controls.y.errors.required">Y is required</div>              <div *ngIf="addDeviceForm.controls.position.controls.y.errors.minlength">                Y must be at least 1 character              </div>            </div>          </div>        </div>        <div class="col">          <div class="form-group mb-3">            <label for="h" class="form-label">h</label>            <input              type="text"              formControlName="h"              id="h"              required              [ngClass]="{                \'is-invalid\': addDeviceForm.controls.position.controls.h.status !== \'VALID\',                \'is-valid\': addDeviceForm.controls.position.controls.h.status === \'VALID\',                \'form-control\': true,              }"            />            <div *ngIf="addDeviceForm.controls.position.controls.h.errors" class="invalid-feedback"></div>            <div *ngIf="addDeviceForm.controls.position.controls.h.errors?.required">H is required</div>            <div *ngIf="addDeviceForm.controls.position.controls.h.errors?.minlength">              H must be at least 1 character            </div>          </div>        </div>      </div>    </div>    <div class="row">      <div class="col">        <div class="form-group mb-3">          <label for="modelId" class="form-label">Model</label>          <select            (change)="changeModelId($event)"            formControlName="modelId"            class="form-select"            id="modelId"            required            [ngClass]="{              \'is-invalid\': addDeviceForm.controls.modelId.status !== \'VALID\',              \'is-valid\': addDeviceForm.controls.modelId.status === \'VALID\',              \'form-select\': true,            }"          >            <option *ngFor="let modelObj of modelList; let i = index" value="{{ modelObj._id }}">              {{ modelObj.name }}            </option>          </select>          <div *ngIf="addDeviceForm.controls.modelId.errors" class="invalid-feedback">            <div *ngIf="addDeviceForm.controls.modelId.errors.required">Name is required</div>          </div>        </div>      </div>    </div>    <p>Form Status: {{ addDeviceForm.status }}</p>    <div class="d-flex p-2">      <div class="p-1 g-col-1">        <button type="submit" [disabled]="!(addDeviceForm.valid && addDeviceForm.touched)" class="btn btn-primary mb-3">          <i class="bi bi-file-earmark-plus"></i> Add        </button>      </div>      <div class="p-1 g-col-1">        <button type="button" (click)="generateDevice()" class="btn btn-debug">          <i class="bi bi-bookmark-plus"></i> Generate random data        </button>      </div>    </div>  </form></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsyncObservablePipeComponent', 'selector': 'async-observable-pipe'},{'name': 'AttributeAddComponent', 'selector': 'app-add-attribute'},{'name': 'AttributeDictionaryAddComponent', 'selector': 'app-add-attribute-dictionary'},{'name': 'AttributeDictionaryEditComponent', 'selector': 'app-edit-attribute-dictionary'},{'name': 'AttributeDictionaryListComponent', 'selector': 'app-attribute-dictionary-list'},{'name': 'AttributeEditComponent', 'selector': 'app-edit-attribute'},{'name': 'AttributeListComponent', 'selector': 'app-attribute-list'},{'name': 'ConnectionAddComponent', 'selector': 'app-add-connection'},{'name': 'ConnectionEditComponent', 'selector': 'app-edit-connection'},{'name': 'ConnectionListComponent', 'selector': 'app-connection-list'},{'name': 'CubeComponent', 'selector': 'app-cube'},{'name': 'DeviceAddComponent', 'selector': 'app-add-device'},{'name': 'DeviceEditComponent', 'selector': 'app-edit-device'},{'name': 'DeviceListComponent', 'selector': 'app-device-list'},{'name': 'FloorAddComponent', 'selector': 'app-add-floor'},{'name': 'FloorEditComponent', 'selector': 'app-edit-floor'},{'name': 'FloorListComponent', 'selector': 'app-floor-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LogComponent', 'selector': 'app-log'},{'name': 'ModelAddComponent', 'selector': 'app-add-model'},{'name': 'ModelEditComponent', 'selector': 'app-edit-model'},{'name': 'ModelsListComponent', 'selector': 'app-models-list'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <h3><i class="bi bi-hdd"></i> Add Device</h3>  <form [formGroup]="addDeviceForm" (ngSubmit)="submitForm()" class="g-3 needs-validation" novalidate>    <div class="form-group mb-3">      <label for="name" class="form-label">Name</label>      <textarea formControlName="name" rows="2" required [ngClass]="{          \'is-invalid\': addDeviceForm.controls.name.status !== \'VALID\',          \'is-valid\': addDeviceForm.controls.name.status === \'VALID\',          \'form-control\': true,        }"></textarea>      @if (addDeviceForm.controls.name.errors) {        <div class="invalid-feedback">          @if (addDeviceForm.controls.name.errors.required) {            <div>Name is required</div>          }          @if (addDeviceForm.controls.name.errors.minlength) {            <div>Name must be at least 4 characters</div>          }        </div>      }    </div>    <div formGroupName="position">      <div class="row">        <div class="col">          <div class="form-group mb-3">            <label for="x" class="form-label">x</label>            <input type="number" formControlName="x" class="form-control" id="x" aria-label="x" placeholder="x"              required [ngClass]="{                  \'is-invalid\': addDeviceForm.get(\'position.x\') && addDeviceForm.get(\'position.x\')?.status !== \'VALID\',                  \'is-valid\': addDeviceForm.get(\'position.x\')?.status === \'VALID\',                }" />            @if (addDeviceForm.get(\'position.x\')?.errors) {              <div class="invalid-feedback">                @if (addDeviceForm.get(\'position.x\')?.errors?.required) {                  <div>X is required</div>                }                @if (addDeviceForm.get(\'position.x\')?.errors?.min || addDeviceForm.get(\'position.x\')?.errors?.max) {                  <div                    >                    X must be at bettween -20 and 20                  </div>                }              </div>            }          </div>        </div>        <div class="col">          <div class="form-group mb-3">            <label for="y" class="form-label">y</label>            <input type="number" formControlName="y" class="form-control" id="y" aria-label="y" placeholder="y"              required [ngClass]="{                  \'is-invalid\': addDeviceForm.get(\'position.y\') && addDeviceForm.get(\'position.y\')?.status !== \'VALID\',                  \'is-valid\': addDeviceForm.get(\'position.y\')?.status === \'VALID\',                }" />            @if (addDeviceForm.get(\'position.y\')?.errors) {              <div class="invalid-feedback">                @if (addDeviceForm.get(\'position.y\')?.errors?.required) {                  <div>Y is required</div>                }                @if (addDeviceForm.get(\'position.y\')?.errors?.min || addDeviceForm.get(\'position.y\')?.errors?.max) {                  <div                    >                    X must be at bettween -20 and 20                  </div>                }              </div>            }          </div>        </div>        <div class="col">          <div class="form-group mb-3">            <label for="h" class="form-label">h</label>            <input type="number" formControlName="h" class="form-control" id="h" aria-label="h" placeholder="h"              required [ngClass]="{                  \'is-invalid\': addDeviceForm.get(\'position.h\') && addDeviceForm.get(\'position.h\')?.status !== \'VALID\',                  \'is-valid\': addDeviceForm.get(\'position.h\')?.status === \'VALID\',                }" />            @if (addDeviceForm.get(\'position.h\')?.errors) {              <div class="invalid-feedback">                @if (addDeviceForm.get(\'position.h\')?.errors?.required) {                  <div>H is required                  </div>                }                @if (addDeviceForm.get(\'position.h\')?.errors?.min || addDeviceForm.get(\'position.h\')?.errors?.max) {                  <div                    >                    H must be at bettween -20 and 20                  </div>                }              </div>            }          </div>        </div>      </div>    </div>    <div class="row">      <div class="col">        <div class="form-group mb-3">          <label for="modelId" class="form-label">Model</label>          <select (change)="changeModelId($event)" formControlName="modelId" class="form-select" id="modelId"            required [ngClass]="{              \'is-invalid\': addDeviceForm.controls.modelId.status !== \'VALID\',              \'is-valid\': addDeviceForm.controls.modelId.status === \'VALID\',              \'form-select\': true,            }">            @for (modelObj of modelList; track modelObj; let i = $index) {              <option value="{{ modelObj._id }}">                {{ modelObj.name }}              </option>            }          </select>          @if (addDeviceForm.controls.modelId.errors) {            <div class="invalid-feedback">              @if (addDeviceForm.controls.modelId.errors.required) {                <div>Name is required</div>              }            </div>          }        </div>      </div>    </div>    <p>Form Status: {{ addDeviceForm.status }}</p>    <div class="d-flex p-2">      <div class="p-1 g-col-1">        <button type="submit" [disabled]="!(addDeviceForm.valid && addDeviceForm.touched)"          class="btn btn-primary mb-3">          <i class="bi bi-file-earmark-plus"></i> Add        </button>      </div>      <div class="p-1 g-col-1">        <button type="button" (click)="generateDevice()" class="btn btn-debug">          <i class="bi bi-bookmark-plus"></i> Generate random data        </button>      </div>    </div>  </form></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AttributeAddComponent', 'selector': 'app-add-attribute'},{'name': 'AttributeDictionaryAddComponent', 'selector': 'app-add-attribute-dictionary'},{'name': 'AttributeDictionaryEditComponent', 'selector': 'app-edit-attribute-dictionary'},{'name': 'AttributeDictionaryListComponent', 'selector': 'app-attribute-dictionary-list'},{'name': 'AttributeEditComponent', 'selector': 'app-edit-attribute'},{'name': 'AttributeListComponent', 'selector': 'app-attribute-list'},{'name': 'ConnectionAddComponent', 'selector': 'app-add-connection'},{'name': 'ConnectionEditComponent', 'selector': 'app-edit-connection'},{'name': 'ConnectionListComponent', 'selector': 'app-connection-list'},{'name': 'CubeComponent', 'selector': 'app-cube'},{'name': 'DeviceAddComponent', 'selector': 'app-add-device'},{'name': 'DeviceEditComponent', 'selector': 'app-edit-device'},{'name': 'DeviceListComponent', 'selector': 'app-device-list'},{'name': 'FloorAddComponent', 'selector': 'app-add-floor'},{'name': 'FloorEditComponent', 'selector': 'app-edit-floor'},{'name': 'FloorListComponent', 'selector': 'app-floor-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LogComponent', 'selector': 'app-log'},{'name': 'ModelAddComponent', 'selector': 'app-add-model'},{'name': 'ModelEditComponent', 'selector': 'app-edit-model'},{'name': 'ModelsListComponent', 'selector': 'app-models-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DeviceAddComponent'};
 </script>
@@ -1751,7 +1939,6 @@ export class DeviceAddComponent implements OnInit {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

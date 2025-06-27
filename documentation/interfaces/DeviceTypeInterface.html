@@ -122,7 +122,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/shared/deviceTypes.ts</code>
+            <code>src/app/shared/DeviceTypes.ts</code>
         </p>
 
 
@@ -239,50 +239,45 @@
   description: string
 }
 
-export type DeviceTypeListType &#x3D; DeviceTypeInterface
-
-export class DeviceType {
-  name: string
-  description: string
-
-  constructor(deviceType: DeviceTypeListType) {
-    this.name &#x3D; deviceType.name
-    this.description &#x3D; deviceType.description
-  }
+export class DeviceType implements DeviceTypeInterface {
+  constructor(
+    public name: string,
+    public description: string &#x3D; &#x27;&#x27;,
+  ) {}
 }
 
 export class DeviceTypeDict {
   private list: DeviceType[] &#x3D; [
-    { name: &#x27;&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Bridge&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;CoolAir&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Copier&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Desktop&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Firewall&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Gateway&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Hubs&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Load Balancer&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Modem&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Multiplexer&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;PDU System&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Power&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Printer&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Probe&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Repeaters&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Router&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Security Device&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Server&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Switch&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Telephone&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Terminal&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Traffic shaper&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Transceiver&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;UPS System&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Workstations&#x27;, description: &#x27;&#x27; },
+    new DeviceType(&#x27;&#x27;),
+    new DeviceType(&#x27;Bridge&#x27;),
+    new DeviceType(&#x27;CoolAir&#x27;),
+    new DeviceType(&#x27;Copier&#x27;),
+    new DeviceType(&#x27;Desktop&#x27;),
+    new DeviceType(&#x27;Firewall&#x27;),
+    new DeviceType(&#x27;Gateway&#x27;),
+    new DeviceType(&#x27;Hubs&#x27;),
+    new DeviceType(&#x27;Load Balancer&#x27;),
+    new DeviceType(&#x27;Modem&#x27;),
+    new DeviceType(&#x27;Multiplexer&#x27;),
+    new DeviceType(&#x27;PDU System&#x27;),
+    new DeviceType(&#x27;Power&#x27;),
+    new DeviceType(&#x27;Printer&#x27;),
+    new DeviceType(&#x27;Probe&#x27;),
+    new DeviceType(&#x27;Repeaters&#x27;),
+    new DeviceType(&#x27;Router&#x27;),
+    new DeviceType(&#x27;Security Device&#x27;),
+    new DeviceType(&#x27;Server&#x27;),
+    new DeviceType(&#x27;Switch&#x27;),
+    new DeviceType(&#x27;Telephone&#x27;),
+    new DeviceType(&#x27;Terminal&#x27;),
+    new DeviceType(&#x27;Traffic shaper&#x27;),
+    new DeviceType(&#x27;Transceiver&#x27;),
+    new DeviceType(&#x27;UPS System&#x27;),
+    new DeviceType(&#x27;Workstations&#x27;),
   ]
 
-  get(): DeviceType[] {
-    return this.list
+  public get(): DeviceType[] {
+    return [...this.list]
   }
 
   public getRandom(): DeviceType {
@@ -290,19 +285,21 @@ export class DeviceTypeDict {
   }
 
   public getRandomName(): string {
-    return this.list[Math.floor(Math.random() * this.list.length)].name
+    return this.getRandom().name
   }
 
-  findType(search: string): DeviceType | string {
-    const element &#x3D; this.list.find((e) &#x3D;&gt; e.name &#x3D;&#x3D;&#x3D; search)
-    return element || search
+  public findType(name: string): DeviceType | string {
+    return this.list.find((e) &#x3D;&gt; e.name &#x3D;&#x3D;&#x3D; name) ?? name
   }
 
-  findTypeByName(obj: string): void {
-    for (let i &#x3D; 0; i &lt; this.list.length; i++) {
-      if (this.list[i].name &#x3D;&#x3D;&#x3D; obj) {
-        console.log(&#x27;--&gt;&#x27;, obj)
-      }
+  /**
+   * Logs the device type if found by name.
+   * @param name - The name to search for.
+   */
+  public logTypeByName(name: string): void {
+    const found &#x3D; this.list.find((e) &#x3D;&gt; e.name &#x3D;&#x3D;&#x3D; name)
+    if (found) {
+      console.log(&#x27;--&gt;&#x27;, name)
     }
   }
 }
@@ -371,7 +368,6 @@ export class DeviceTypeDict {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

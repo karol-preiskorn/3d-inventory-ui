@@ -164,7 +164,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/resolverModel.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/resolverModel.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -227,8 +227,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="13"
-                                    class="link-to-prism">src/app/resolverModel.ts:13</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="15"
+                                    class="link-to-prism">src/app/resolverModel.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -299,7 +299,9 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from &#x27;@angu
 import { ModelsService } from &#x27;./services/models.service&#x27;;
 import { Model } from &#x27;./shared/model&#x27;;
 
-@Injectable()
+@Injectable({
+  providedIn: &#x27;root&#x27;, // This ensures it is available application-wide
+})
 export class ResolverModel implements Resolve&lt;Observable&lt;Model[]&gt;&gt; {
   constructor(private modelsService: ModelsService) {}
 
@@ -376,7 +378,6 @@ export class ResolverModel implements Resolve&lt;Observable&lt;Model[]&gt;&gt; {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

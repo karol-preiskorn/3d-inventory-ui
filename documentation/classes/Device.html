@@ -123,6 +123,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Represents a device with a unique ID, name, model ID, and position.</p>
+
+            </p>
 
 
 
@@ -141,6 +148,9 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#_id" >_id</a>
+                            </li>
+                            <li>
+                                <a href="#isDebugMode" >isDebugMode</a>
                             </li>
                             <li>
                                 <a href="#modelId" >modelId</a>
@@ -184,17 +194,19 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(name?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, modelId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, position?: <a href="../interfaces/Position.html" target="_self">Position</a>)</code>
+<code>constructor(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, modelId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, position: <a href="../interfaces/Position.html" target="_self">Position</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/shared/device.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/shared/device.ts:54</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of the Device class.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -203,6 +215,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -214,9 +227,15 @@
                                                         </td>
                                                   
                                                     <td>
-                                                            Yes
+                                                            No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <ul>
+<li>The name of the device. Defaults to an empty string.</li>
+</ul>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>modelId</td>
@@ -226,9 +245,15 @@
                                                         </td>
                                                   
                                                     <td>
-                                                            Yes
+                                                            No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <ul>
+<li>The model identifier of the device. Defaults to an empty string.</li>
+</ul>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>position</td>
@@ -238,9 +263,15 @@
                                                         </td>
                                                   
                                                     <td>
-                                                            Yes
+                                                            No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <ul>
+<li>The position of the device in 3D space. Defaults to { x: 0, y: 0, h: 0 }.</li>
+</ul>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -273,12 +304,60 @@
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/shared/device.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/shared/device.ts:34</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The unique identifier of the device.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDebugMode"></a>
+                    <span class="name">
+                        <span ><b>isDebugMode</b></span>
+                        <a href="#isDebugMode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/shared/device.ts:54</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indicates whether debug mode is enabled.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -306,10 +385,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/shared/device.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/shared/device.ts:44</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The model identifier associated with the device.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -337,10 +422,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/shared/device.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/shared/device.ts:39</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The name of the device.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -368,10 +459,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/shared/device.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/shared/device.ts:49</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The position of the device in 3D space.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -402,19 +499,25 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">src/app/shared/device.ts:41</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/app/shared/device.ts:72</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Returns a string representation of the device.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <p>A string containing the device ID and name.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -435,6 +538,13 @@
   h: number
 }
 
+/**
+ * Interface for a device object.
+ * @property _id - The unique identifier of the device.
+ * @property name - The name of the device.
+ * @property modelId - The model identifier associated with the device.
+ * @property position - The position of the device in 3D space.
+ */
 export interface DeviceInterface {
   _id: string
   name: string
@@ -442,36 +552,54 @@ export interface DeviceInterface {
   position: Position
 }
 
+/**
+ * Represents a device with a unique ID, name, model ID, and position.
+ */
 export class Device {
-  _id!: string
+  /**
+   * The unique identifier of the device.
+   */
+  _id: string &#x3D; &#x27;&#x27;
+
+  /**
+   * The name of the device.
+   */
   name: string &#x3D; &#x27;&#x27;
+
+  /**
+   * The model identifier associated with the device.
+   */
   modelId: string &#x3D; &#x27;&#x27;
+
+  /**
+   * The position of the device in 3D space.
+   */
   position: Position &#x3D; { x: 0, y: 0, h: 0 }
 
-  constructor(name?: string, modelId?: string, position?: Position) {
-    if (name &amp;&amp; modelId &amp;&amp; position) {
-      this.name &#x3D; name
-      this.modelId &#x3D; modelId
-      this.position &#x3D; position
-    }
+  /**
+   * Indicates whether debug mode is enabled.
+   */
+  isDebugMode: boolean &#x3D; false
+
+  /**
+   * Creates an instance of the Device class.
+   * @param name - The name of the device. Defaults to an empty string.
+   * @param modelId - The model identifier of the device. Defaults to an empty string.
+   * @param position - The position of the device in 3D space. Defaults to { x: 0, y: 0, h: 0 }.
+   */
+  constructor(name: string &#x3D; &#x27;&#x27;, modelId: string &#x3D; &#x27;&#x27;, position: Position &#x3D; { x: 0, y: 0, h: 0 }) {
+    this.name &#x3D; name
+    this.modelId &#x3D; modelId
+    this.position &#x3D; position
   }
 
+  /**
+   * Returns a string representation of the device.
+   * @returns A string containing the device ID and name.
+   */
   toString(): string {
-    return &#x60;Device ID: ${this._id}, Name: ${this.name}&#x60;
+    return &#x60;Device ID: ${this._id || &#x27;N/A&#x27;}, Name: ${this.name || &#x27;N/A&#x27;}&#x60;
   }
-}
-
-// @TODO: #2:30min Continue implementing the tests for the Device class. Add tests for the constructor and the toString method. Make sure to test the case where the constructor is called with no arguments. Add object data to the constructor and test the toString method.
-const debug &#x3D; true
-if (debug &#x3D;&#x3D;&#x3D; true) {
-  const d1 &#x3D; new Device()
-  console.log(d1.toString())
-
-  const d2Data &#x3D; { name: &#x27;Device 1&#x27;, modelId: &#x27;1&#x27;, position: { x: 1, y: 2, h: 3 } }
-  const d2 &#x3D; new Device(d2Data.name, d2Data.modelId, d2Data.position)
-
-  d1.toString()
-  d2.toString()
 }
 </code></pre>
     </div>
@@ -539,7 +667,6 @@ if (debug &#x3D;&#x3D;&#x3D; true) {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

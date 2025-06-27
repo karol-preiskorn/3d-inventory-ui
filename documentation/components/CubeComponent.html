@@ -263,10 +263,16 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#addAbientLight" >addAbientLight</a>
+                                <a href="#addAmbientLight" >addAmbientLight</a>
                             </li>
                             <li>
                                 <a href="#addAxis" >addAxis</a>
+                            </li>
+                            <li>
+                                <a href="#addDirectionalLight1" >addDirectionalLight1</a>
+                            </li>
+                            <li>
+                                <a href="#addDirectionalLight2" >addDirectionalLight2</a>
                             </li>
                             <li>
                                 <a href="#addLight" >addLight</a>
@@ -288,24 +294,30 @@
                                 <a href="#createDevice3d" >createDevice3d</a>
                             </li>
                             <li>
-                                <a href="#createDeviceList3d" >createDeviceList3d</a>
-                            </li>
-                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#createScene" >createScene</a>
-                            </li>
-                            <li>
-                                <a href="#directionalLight" >directionalLight</a>
-                            </li>
-                            <li>
-                                <a href="#directionalLight2" >directionalLight2</a>
                             </li>
                             <li>
                                 <a href="#FindModelName" >FindModelName</a>
                             </li>
                             <li>
+                                <a href="#generate3DDeviceList" >generate3DDeviceList</a>
+                            </li>
+                            <li>
+                                <a href="#generateHarmonicPaletteColors" >generateHarmonicPaletteColors</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#getAspectRatio" >getAspectRatio</a>
+                            </li>
+                            <li>
+                                <a href="#getContrastColor" >getContrastColor</a>
+                            </li>
+                            <li>
+                                <a href="#getRandomNaturalColor" >getRandomNaturalColor</a>
+                            </li>
+                            <li>
+                                <a href="#getRandomPastelColor" >getRandomPastelColor</a>
                             </li>
                             <li>
                                 <a href="#loadDevices" >loadDevices</a>
@@ -318,6 +330,10 @@
                             </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#render" >render</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -394,12 +410,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(devicesService: <a href="../injectables/DeviceService.html" target="_self">DeviceService</a>, modelsService: <a href="../injectables/ModelsService.html" target="_self">ModelsService</a>, HttpClient: HttpClient, route: ActivatedRoute)</code>
+<code>constructor(devicesService: <a href="../injectables/DeviceService.html" target="_self">DeviceService</a>, modelsService: <a href="../injectables/ModelsService.html" target="_self">ModelsService</a>, route: ActivatedRoute, http: HttpClient)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/components/3d/3d.component.ts:78</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/components/3d/3d.component.ts:69</a></div>
                             </td>
                         </tr>
 
@@ -441,10 +457,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>HttpClient</td>
+                                                        <td>route</td>
                                                   
                                                         <td>
-                                                                    <code>HttpClient</code>
+                                                                    <code>ActivatedRoute</code>
                                                         </td>
                                                   
                                                     <td>
@@ -453,10 +469,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>route</td>
+                                                        <td>http</td>
                                                   
                                                         <td>
-                                                                    <code>ActivatedRoute</code>
+                                                                    <code>HttpClient</code>
                                                         </td>
                                                   
                                                     <td>
@@ -496,7 +512,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/3d/3d.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/3d/3d.component.ts:34</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -522,7 +538,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/components/3d/3d.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/3d/3d.component.ts:37</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -548,7 +564,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/3d/3d.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/3d/3d.component.ts:35</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -574,7 +590,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/3d/3d.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/components/3d/3d.component.ts:36</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -600,7 +616,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/3d/3d.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/3d/3d.component.ts:30</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -626,7 +642,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/3d/3d.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/components/3d/3d.component.ts:31</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -652,7 +668,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/3d/3d.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/components/3d/3d.component.ts:32</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -678,7 +694,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/3d/3d.component.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/3d/3d.component.ts:33</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -696,24 +712,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="addAbientLight"></a>
+                    <a name="addAmbientLight"></a>
                     <span class="name">
-                        <span ><b>addAbientLight</b></span>
-                        <a href="#addAbientLight"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>addAmbientLight</b></span>
+                        <a href="#addAmbientLight"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addAbientLight()</code>
+<code>addAmbientLight()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="225"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:225</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="402"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:402</a></div>
                         </td>
                     </tr>
 
@@ -749,8 +765,84 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="296"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:296</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="488"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:488</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Adds an axis helper to the scene for debugging or visualization purposes.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addDirectionalLight1"></a>
+                    <span class="name">
+                        <span ><b>addDirectionalLight1</b></span>
+                        <a href="#addDirectionalLight1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addDirectionalLight1()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="331"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:331</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addDirectionalLight2"></a>
+                    <span class="name">
+                        <span ><b>addDirectionalLight2</b></span>
+                        <a href="#addDirectionalLight2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addDirectionalLight2()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="369"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:369</a></div>
                         </td>
                     </tr>
 
@@ -786,8 +878,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="185"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:185</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="305"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:305</a></div>
                         </td>
                     </tr>
 
@@ -823,8 +915,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="243"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:243</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="420"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:420</a></div>
                         </td>
                     </tr>
 
@@ -890,8 +982,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="270"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:270</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="447"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:447</a></div>
                         </td>
                     </tr>
 
@@ -927,8 +1019,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="157"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:157</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="277"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:277</a></div>
                         </td>
                     </tr>
 
@@ -966,8 +1058,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="233"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:233</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="410"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:410</a></div>
                         </td>
                     </tr>
 
@@ -996,21 +1088,23 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>createDevice3d(box_x: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, box_y: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, box_z: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pos_x: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pos_y: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pos_z: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>createDevice3d(device_name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, box_x: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, box_y: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, box_z: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pos_x: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pos_y: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pos_z: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="100"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:100</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="163"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:163</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Creates a 3D device object and adds it to the scene.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -1021,9 +1115,24 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <tr>
+                                                <td>device_name</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                            </td>
+                                        </tr>
                                         <tr>
                                                 <td>box_x</td>
                                             <td>
@@ -1035,6 +1144,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The width of the 3D box geometry.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>box_y</td>
@@ -1047,6 +1162,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The height of the 3D box geometry.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>box_z</td>
@@ -1059,6 +1180,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The depth of the 3D box geometry.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>pos_x</td>
@@ -1071,6 +1198,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The x-coordinate position of the 3D object in the scene.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>pos_y</td>
@@ -1083,6 +1216,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The y-coordinate position of the 3D object in the scene.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>pos_z</td>
@@ -1095,6 +1234,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The z-coordinate position of the 3D object in the scene.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -1106,43 +1251,6 @@
                             <div class="io-description">
                                 
                             </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="createDeviceList3d"></a>
-                    <span class="name">
-                        <span ><b>createDeviceList3d</b></span>
-                        <a href="#createDeviceList3d"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>createDeviceList3d()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="139"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:139</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
                 </td>
             </tr>
         </tbody>
@@ -1169,82 +1277,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="301"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:301</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="directionalLight"></a>
-                    <span class="name">
-                        <span ><b>directionalLight</b></span>
-                        <a href="#directionalLight"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>directionalLight()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="205"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:205</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="directionalLight2"></a>
-                    <span class="name">
-                        <span ><b>directionalLight2</b></span>
-                        <a href="#directionalLight2"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>directionalLight2()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="215"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:215</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="558"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:558</a></div>
                         </td>
                     </tr>
 
@@ -1280,8 +1314,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="130"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:130</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="242"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:242</a></div>
                         </td>
                     </tr>
 
@@ -1331,6 +1365,122 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="generate3DDeviceList"></a>
+                    <span class="name">
+                        <span ><b>generate3DDeviceList</b></span>
+                        <a href="#generate3DDeviceList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>generate3DDeviceList()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="251"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:251</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateHarmonicPaletteColors"></a>
+                    <span class="name">
+                        <span ><b>generateHarmonicPaletteColors</b></span>
+                        <a href="#generateHarmonicPaletteColors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>generateHarmonicPaletteColors(count: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="137"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:137</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Generates a harmonic color palette as an array of THREE.Color.
+The palette is based on a base hue and evenly spaced around the color wheel.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>count</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>5</code>
+                                            </td>
+
+                                            <td>
+                                                    <p>Number of colors in the palette (default: 5)</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>THREE.Color[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getAspectRatio"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -1349,8 +1499,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="347"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:347</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="601"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:601</a></div>
                         </td>
                     </tr>
 
@@ -1362,6 +1512,160 @@
                             <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getContrastColor"></a>
+                    <span class="name">
+                        <span ><b>getContrastColor</b></span>
+                        <a href="#getContrastColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getContrastColor(hexColor: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="92"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>hexColor</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRandomNaturalColor"></a>
+                    <span class="name">
+                        <span ><b>getRandomNaturalColor</b></span>
+                        <a href="#getRandomNaturalColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRandomNaturalColor()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="122"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:122</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Generates a random natural-looking color as a THREE.Color instance.
+Natural colors are less saturated and have moderate lightness.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>THREE.Color</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A random natural color.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRandomPastelColor"></a>
+                    <span class="name">
+                        <span ><b>getRandomPastelColor</b></span>
+                        <a href="#getRandomPastelColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRandomPastelColor()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:107</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Generates a random pastel color as a THREE.Color instance.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>THREE.Color</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A random pastel color.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1386,8 +1690,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="116"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:116</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="228"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:228</a></div>
                         </td>
                     </tr>
 
@@ -1423,8 +1727,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="123"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:123</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="235"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:235</a></div>
                         </td>
                     </tr>
 
@@ -1460,8 +1764,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="91"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:91</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -1497,8 +1801,47 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="72"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:72</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="render"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>render</b></span>
+                        <a href="#render"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>render()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="627"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:627</a></div>
                         </td>
                     </tr>
 
@@ -1536,8 +1879,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="238"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:238</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="415"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:415</a></div>
                         </td>
                     </tr>
 
@@ -1575,8 +1918,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="351"
-                                    class="link-to-prism">src/app/components/3d/3d.component.ts:351</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="605"
+                                    class="link-to-prism">src/app/components/3d/3d.component.ts:605</a></div>
                         </td>
                     </tr>
 
@@ -1618,7 +1961,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/3d/3d.component.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/3d/3d.component.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -1655,7 +1998,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/3d/3d.component.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/3d/3d.component.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -1686,7 +2029,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/components/3d/3d.component.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/3d/3d.component.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -1718,7 +2061,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/components/3d/3d.component.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/components/3d/3d.component.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -1749,7 +2092,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/components/3d/3d.component.ts:64</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/3d/3d.component.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -1775,7 +2118,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/components/3d/3d.component.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/3d/3d.component.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -1801,7 +2144,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/3d/3d.component.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/3d/3d.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -1826,7 +2169,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/app/components/3d/3d.component.ts:268</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="445" class="link-to-prism">src/app/components/3d/3d.component.ts:445</a></div>
                         </td>
                     </tr>
 
@@ -1852,7 +2195,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/3d/3d.component.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/3d/3d.component.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -1873,14 +2216,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new THREE.MeshBasicMaterial({
-    map: this.loader.load(this.texture),
-  })</code>
+                        <i>Default value : </i><code>new THREE.MeshBasicMaterial({ map: this.loader.load(this.texture) })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/3d/3d.component.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/3d/3d.component.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -1907,14 +2248,14 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>[
-    new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true }), // front
-    new THREE.MeshPhongMaterial({ color: 0xffffff }), // side
+    new THREE.MeshStandardMaterial({ color: 0xffffff, flatShading: true }), // front
+    new THREE.MeshStandardMaterial({ color: 0xffffff }), // side
   ]</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="262" class="link-to-prism">src/app/components/3d/3d.component.ts:262</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="439" class="link-to-prism">src/app/components/3d/3d.component.ts:439</a></div>
                         </td>
                     </tr>
 
@@ -1945,7 +2286,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/components/3d/3d.component.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/components/3d/3d.component.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -1972,7 +2313,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/3d/3d.component.ts:61</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/3d/3d.component.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -2003,7 +2344,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/components/3d/3d.component.ts:70</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/3d/3d.component.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -2030,7 +2371,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/components/3d/3d.component.ts:62</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/3d/3d.component.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -2056,7 +2397,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="267" class="link-to-prism">src/app/components/3d/3d.component.ts:267</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="444" class="link-to-prism">src/app/components/3d/3d.component.ts:444</a></div>
                         </td>
                     </tr>
 
@@ -2085,7 +2426,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/3d/3d.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/3d/3d.component.ts:41</a></div>
                                 </td>
                             </tr>
 
@@ -2105,18 +2446,15 @@ import { Font, FontLoader } from &#x27;three/examples/jsm/loaders/FontLoader.js&
 import { HttpClient } from &#x27;@angular/common/http&#x27;
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from &#x27;@angular/core&#x27;
 import { ActivatedRoute } from &#x27;@angular/router&#x27;
-import { tr } from &#x27;@faker-js/faker&#x27;
+// Removed unused import
 
 import { DeviceService } from &#x27;../../services/device.service&#x27;
 import { ModelsService } from &#x27;../../services/models.service&#x27;
 import { Device } from &#x27;../../shared/device&#x27;
 import { Model } from &#x27;../../shared/model&#x27;
+import { environment } from &#x27;../../../environments/environment&#x27;
 
-@Component({
-  selector: &#x27;app-cube&#x27;,
-  templateUrl: &#x27;./3d.component.html&#x27;,
-  styleUrls: [&#x27;./3d.component.scss&#x27;],
-})
+@Component({ selector: &#x27;app-cube&#x27;, templateUrl: &#x27;./3d.component.html&#x27;, styleUrls: [&#x27;./3d.component.scss&#x27;] })
 export class CubeComponent implements OnInit, AfterViewInit {
   @ViewChild(&#x27;canvas&#x27;)
   private canvasRef!: ElementRef
@@ -2139,9 +2477,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
   private loader &#x3D; new THREE.TextureLoader()
   private geometry &#x3D; new THREE.BoxGeometry(4, 2, 1)
 
-  private material &#x3D; new THREE.MeshBasicMaterial({
-    map: this.loader.load(this.texture),
-  })
+  private material &#x3D; new THREE.MeshBasicMaterial({ map: this.loader.load(this.texture) })
 
   private cube: THREE.Mesh &#x3D; new THREE.Mesh(this.geometry, this.material)
 
@@ -2158,7 +2494,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     console.log(&#x27;ngOnInit&#x27;)
-    this.deviceList &#x3D; this.route.snapshot.data.resolveDeviceList
+    this.deviceList &#x3D; this.route.snapshot.data.resolveDeviceList || []
     this.modelList &#x3D; this.route.snapshot.data.resolveModelList
     // this.loadDevices()
     // this.loadModels()
@@ -2167,8 +2503,9 @@ export class CubeComponent implements OnInit, AfterViewInit {
   constructor(
     private devicesService: DeviceService,
     private modelsService: ModelsService,
-    private HttpClient: HttpClient,
+    // Removed unused property
     private route: ActivatedRoute,
+    private http: HttpClient,
   ) {
     console.log(&#x27;constructor&#x27;)
     this.material.opacity &#x3D; 0.8
@@ -2184,20 +2521,140 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.startRenderingLoop()
   }
 
-  createDevice3d(box_x: number, box_y: number, box_z: number, pos_x: number, pos_y: number, pos_z: number) {
-    console.log(&#x27;createDevice3d parameters: &#x27;, box_x, box_y, box_z, pos_x, pos_y, pos_z)
+  getContrastColor(hexColor: number): number {
+    // Convert hex to RGB
+    const r &#x3D; (hexColor &gt;&gt; 16) &amp; 0xff
+    const g &#x3D; (hexColor &gt;&gt; 8) &amp; 0xff
+    const b &#x3D; hexColor &amp; 0xff
+    // Calculate luminance
+    const luminance &#x3D; (0.299 * r + 0.587 * g + 0.114 * b) / 255
+    // Return black for light colors, white for dark colors
+    return luminance &gt; 0.5 ? 0x000000 : 0xffffff
+  }
+
+  /**
+   * Generates a random pastel color as a THREE.Color instance.
+   * @returns {THREE.Color} A random pastel color.
+   */
+  getRandomPastelColor(): THREE.Color {
+    // Pastel colors have high lightness and low-medium saturation
+    const hue &#x3D; Math.random()
+    const saturation &#x3D; 0.4 + Math.random() * 0.2 // 0.4 - 0.6
+    const lightness &#x3D; 0.7 + Math.random() * 0.2 // 0.7 - 0.9
+    const color &#x3D; new THREE.Color()
+    color.setHSL(hue, saturation, lightness)
+    return color
+  }
+
+  /**
+   * Generates a random natural-looking color as a THREE.Color instance.
+   * Natural colors are less saturated and have moderate lightness.
+   * @returns {THREE.Color} A random natural color.
+   */
+  getRandomNaturalColor(): THREE.Color {
+    // Use HSL: moderate saturation, moderate lightness
+    const hue &#x3D; Math.random() // 0-1
+    const saturation &#x3D; 0.25 + Math.random() * 0.25 // 0.25-0.5
+    const lightness &#x3D; 0.35 + Math.random() * 0.3 // 0.35-0.65
+    const color &#x3D; new THREE.Color()
+    color.setHSL(hue, saturation, lightness)
+    return color
+  }
+
+  /**
+   * Generates a harmonic color palette as an array of THREE.Color.
+   * The palette is based on a base hue and evenly spaced around the color wheel.
+   * @param count Number of colors in the palette (default: 5)
+   */
+  generateHarmonicPaletteColors(count: number &#x3D; 5): THREE.Color[] {
+    const colors: THREE.Color[] &#x3D; []
+    const baseHue &#x3D; Math.random()
+    const saturation &#x3D; 0.5
+    const lightness &#x3D; 0.7
+    for (let i &#x3D; 0; i &lt; count; i++) {
+      // Evenly distribute hues around the color wheel
+      const hue &#x3D; (baseHue + i / count) % 1
+      const color &#x3D; new THREE.Color()
+      color.setHSL(hue, saturation, lightness)
+      colors.push(color)
+    }
+    return colors
+  }
+
+  /**
+   * Creates a 3D device object and adds it to the scene.
+   *
+   * @param box_x - The width of the 3D box geometry.
+   * @param box_y - The height of the 3D box geometry.
+   * @param box_z - The depth of the 3D box geometry.
+   * @param pos_x - The x-coordinate position of the 3D object in the scene.
+   * @param pos_y - The y-coordinate position of the 3D object in the scene.
+   * @param pos_z - The z-coordinate position of the 3D object in the scene.
+   */
+
+  createDevice3d(
+    device_name: string,
+    box_x: number,
+    box_y: number,
+    box_z: number,
+    pos_x: number,
+    pos_y: number,
+    pos_z: number,
+  ) {
+    console.log(
+      &#x60;createDevice3d parameters: box_x &#x3D; ${box_x}, box_y &#x3D; ${box_y}, box_z &#x3D; ${box_z}, pos_x &#x3D; ${pos_x}, pos_y &#x3D; ${pos_y}, pos_z &#x3D; ${pos_z}&#x60;,
+    )
     const geometry &#x3D; new THREE.BoxGeometry(box_x, box_y, box_z)
-    this.material.color &#x3D; new THREE.Color(Math.random() * 0xffffff)
-    const sphereMaterial &#x3D; new THREE.MeshStandardMaterial({ color: Math.random() * 0xffffff })
-    this.material.opacity &#x3D; 0.75
+    let color &#x3D; this.getRandomNaturalColor()
+    // Compute a contrasting color (black or white) for the given color
+
+    const colorText &#x3D; this.getContrastColor(color.getHex())
+    this.material.color &#x3D; new THREE.Color(color)
+    const sphereMaterial &#x3D; new THREE.MeshStandardMaterial({ color: color })
+    this.material.depthTest &#x3D; false
+    this.material.depthWrite &#x3D; false
+    this.material.needsUpdate &#x3D; true
+    this.material.opacity &#x3D; 0.5
+    this.material.side &#x3D; THREE.DoubleSide
+    this.material.transparent &#x3D; true
+    this.material.wireframe &#x3D; true
 
     const object &#x3D; new THREE.Mesh(geometry, sphereMaterial)
     object.position.x &#x3D; pos_x
-    object.position.y &#x3D; pos_y
-    object.position.z &#x3D; pos_z
-    object.castShadow &#x3D; true
+    object.position.y &#x3D; pos_z + box_y / 2
+    object.position.z &#x3D; pos_y
     object.receiveShadow &#x3D; true
+    object.castShadow &#x3D; true // Enable shadow casting
     this.scene.add(object)
+
+    const loader &#x3D; new FontLoader()
+    this.http
+      .get(&#x27;/assets/fonts/FiraCode_Retina_Regular.json&#x27;, { responseType: &#x27;text&#x27; })
+      .subscribe((fontData: string) &#x3D;&gt; {
+        const font &#x3D; loader.parse(JSON.parse(fontData))
+        const textGeo &#x3D; new TextGeometry(device_name, {
+          font: font,
+          size: 1,
+          depth: 0.1,
+          curveSegments: 22,
+          bevelThickness: 0.1,
+          bevelSize: 0.1,
+          bevelEnabled: true,
+        })
+
+        const material &#x3D; new THREE.MeshBasicMaterial({ color: colorText })
+        const textMesh &#x3D; new THREE.Mesh(textGeo, material)
+        textMesh.position.x &#x3D; pos_x - (device_name.length * 0.85) / 2
+        textMesh.position.y &#x3D; pos_z + box_y
+        textMesh.position.z &#x3D; pos_y
+
+        textMesh.rotation.x &#x3D; 0
+        textMesh.rotation.y &#x3D; 0
+        textMesh.rotation.z &#x3D; Math.PI * 2
+        textMesh.castShadow &#x3D; true // Enable shadow casting for text
+        textMesh.receiveShadow &#x3D; true // Enable shadow receiving for text
+        this.scene.add(textMesh)
+      })
   }
 
   loadDevices() {
@@ -2216,20 +2673,26 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
   FindModelName(id: string): string {
     // console.info(&#x27;[FindModelName] try find model name by id: &#x27; + id)
-    let model &#x3D; this.modelList.find((e: Model) &#x3D;&gt; e._id &#x3D;&#x3D;&#x3D; id)?.name as string
+    let model &#x3D; this.modelList.find((e: Model) &#x3D;&gt; e._id &#x3D;&#x3D;&#x3D; id)?.name ?? &#x27;Unknown&#x27;
     if (model &#x3D;&#x3D;&#x3D; undefined) {
       model &#x3D; &#x27;Unknown&#x27;
     }
     return model
   }
 
-  createDeviceList3d(): void {
+  generate3DDeviceList(): void {
     console.log(&#x27;Create device list 3d&#x27;)
     console.log(&#x27;Device list: &#x27; + this.deviceList.length)
     console.log(&#x27;Model list: &#x27; + this.modelList.length)
+    const createdDevices: string[] &#x3D; []
     this.deviceList.forEach((device: Device) &#x3D;&gt; {
-      const model: Model &#x3D; this.modelList.find((e: Model) &#x3D;&gt; e._id &#x3D;&#x3D;&#x3D; device.modelId) as Model
+      const model: Model | undefined &#x3D; this.modelList.find((e: Model) &#x3D;&gt; e._id &#x3D;&#x3D;&#x3D; device.modelId)
+      if (!model) {
+        console.warn(&#x60;Model with id ${device.modelId} not found. Skipping device ${device.name}.&#x60;)
+        return
+      }
       this.createDevice3d(
+        device.name,
         model.dimension.width,
         model.dimension.height,
         model.dimension.depth,
@@ -2237,18 +2700,20 @@ export class CubeComponent implements OnInit, AfterViewInit {
         device.position.y,
         device.position.h,
       )
-      console.log(&#x27;Create device: &#x27; + device.name + &#x27; &#x27; + device.position.x + &#x27; &#x27; + device.position.y)
+
+      createdDevices.push(&#x60;Device: ${device.name}, Position: (${device.position.x}, ${device.position.y})&#x60;)
     })
+    console.log(&#x27;Created devices:&#x27;, createdDevices.join(&#x27;; &#x27;))
   }
 
   addWalls() {
     const geometry &#x3D; new THREE.BoxGeometry(51, 10, 1)
     const geometry2 &#x3D; new THREE.BoxGeometry(1, 10, 51)
-
-    const object1 &#x3D; new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
-    const object2 &#x3D; new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
-    const object3 &#x3D; new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
-    const object4 &#x3D; new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff }))
+    let color &#x3D; this.getRandomNaturalColor()
+    const object1 &#x3D; new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: color }))
+    const object2 &#x3D; new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: color }))
+    const object3 &#x3D; new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: color }))
+    const object4 &#x3D; new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: color }))
 
     object1.receiveShadow &#x3D; true
     object1.castShadow &#x3D; true
@@ -2270,51 +2735,108 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   addLight() {
+    // Create a directional light with white color and intensity 2
     const light &#x3D; new THREE.DirectionalLight(0xffffff, 2)
-    light.position.set(30, 10, 50)
-    light.castShadow &#x3D; true
+    light.position.set(30, 50, 50)
+    light.castShadow &#x3D; true // Enable shadow casting
 
-    light.position.set(15, 20, 10)
-    light.castShadow &#x3D; true // default false
-
-    //Set up shadow properties for the light
-    light.shadow.mapSize.width &#x3D; 3000 // default
-    light.shadow.mapSize.height &#x3D; 3000 // default
-    light.shadow.camera.near &#x3D; 1000 // default
-    light.shadow.camera.far &#x3D; 2000 // default
+    // Configure shadow properties for better shadow quality and coverage
+    light.shadow.mapSize.width &#x3D; 2048
+    light.shadow.mapSize.height &#x3D; 2048
+    light.shadow.camera.near &#x3D; 0.5
+    light.shadow.camera.far &#x3D; 2000
+    light.shadow.camera.left &#x3D; -50
+    light.shadow.camera.right &#x3D; 50
+    light.shadow.camera.top &#x3D; 50
+    light.shadow.camera.bottom &#x3D; -50
+    light.shadow.bias &#x3D; -0.0001 // Reduce shadow artifacts
 
     this.scene.add(light)
 
-    const lightHelper &#x3D; new THREE.DirectionalLightHelper(light, 1)
+    // Add a helper to visualize the light and its shadow camera
+    const lightHelper &#x3D; new THREE.DirectionalLightHelper(light, 8)
     this.scene.add(lightHelper)
+    const shadowCameraHelper &#x3D; new THREE.CameraHelper(light.shadow.camera)
+    this.scene.add(shadowCameraHelper)
   }
 
-  directionalLight() {
-    const light2 &#x3D; new THREE.DirectionalLight(0xffffff, 1.3)
-    light2.position.set(-20, 30, 20)
+  addDirectionalLight1() {
+    let fogNear &#x3D; 1
+    if (this.scene.fog instanceof THREE.Fog) {
+      fogNear &#x3D; this.scene.fog.near
+    }
+    const lightIntensity &#x3D; Math.min(2, Math.max(0.5, 1 / fogNear)) // Adjust intensity dynamically
+    const light2 &#x3D; new THREE.DirectionalLight(0xffffff, lightIntensity)
+    light2.position.set(30, 30, 50)
+
+    // Enable shadows for this light
     light2.castShadow &#x3D; true
+
+    // Configure shadow camera for better shadow quality and coverage
+    light2.shadow.camera.near &#x3D; 0.5
+    light2.shadow.camera.far &#x3D; 2000
+    light2.shadow.camera.left &#x3D; -50
+    light2.shadow.camera.right &#x3D; 50
+    light2.shadow.camera.top &#x3D; 50
+    light2.shadow.camera.bottom &#x3D; -50
+
+    // Set shadow map size for higher resolution shadows
+    light2.shadow.mapSize.width &#x3D; 2048
+    light2.shadow.mapSize.height &#x3D; 2048
+
+    // Optional: tweak shadow bias to reduce artifacts
+    light2.shadow.bias &#x3D; -0.0001
+
     this.scene.add(light2)
 
-    const lightHelper2 &#x3D; new THREE.DirectionalLightHelper(light2, 1)
-    this.scene.add(lightHelper2)
+    if (!environment.production) {
+      const lightHelper2 &#x3D; new THREE.DirectionalLightHelper(light2, 8, 0xff0000)
+      this.scene.add(lightHelper2)
+      // Optionally, add a CameraHelper to visualize the shadow camera frustum
+      const shadowCameraHelper &#x3D; new THREE.CameraHelper(light2.shadow.camera)
+      this.scene.add(shadowCameraHelper)
+    }
   }
 
-  directionalLight2() {
-    const light3 &#x3D; new THREE.DirectionalLight(0xffffff, 0.8)
-    light3.position.set(20, 20, 25)
+  addDirectionalLight2() {
+    const light3 &#x3D; new THREE.DirectionalLight(0xffffff, 1.5)
+    const LIGHT3_HUE &#x3D; 0.1
+    const LIGHT3_SATURATION &#x3D; 1
+    const LIGHT3_LIGHTNESS &#x3D; 0.95
+    light3.color.setHSL(LIGHT3_HUE, LIGHT3_SATURATION, LIGHT3_LIGHTNESS)
+    light3.position.set(-20, 40, 25)
     light3.castShadow &#x3D; true
+
+    // Configure shadow properties for better shadow quality
+    light3.shadow.mapSize.width &#x3D; 2048
+    light3.shadow.mapSize.height &#x3D; 2048
+    light3.shadow.camera.near &#x3D; 0.5
+    light3.shadow.camera.far &#x3D; 2000
+    light3.shadow.camera.left &#x3D; -50
+    light3.shadow.camera.right &#x3D; 50
+    light3.shadow.camera.top &#x3D; 50
+    light3.shadow.camera.bottom &#x3D; -50
+    light3.shadow.bias &#x3D; -0.0001
+
     this.scene.add(light3)
 
-    const lightHelper3 &#x3D; new THREE.DirectionalLightHelper(light3, 1)
+    // Add a helper to visualize the light and its shadow camera
+    const lightHelper3 &#x3D; new THREE.DirectionalLightHelper(light3, 20, 0xdcffee)
     this.scene.add(lightHelper3)
+
+    // Optionally, add a CameraHelper to visualize the shadow camera frustum
+    if (light3.castShadow &amp;&amp; light3.shadow &amp;&amp; light3.shadow.camera) {
+      const shadowCameraHelper &#x3D; new THREE.CameraHelper(light3.shadow.camera)
+      this.scene.add(shadowCameraHelper)
+    }
   }
 
-  addAbientLight() {
-    const color &#x3D; 0xffffff
-    const intensity &#x3D; 0.9
-    const lightAbient &#x3D; new THREE.AmbientLight(color, intensity)
-    lightAbient.castShadow &#x3D; true
-    this.scene.add(lightAbient)
+  addAmbientLight() {
+    const color &#x3D; 0xafffff
+    const intensity &#x3D; 0.5 // Lower intensity for ambient light to avoid washing out shadows
+    const lightAmbient &#x3D; new THREE.AmbientLight(color, intensity)
+    // AmbientLight does not cast shadows in three.js
+    this.scene.add(lightAmbient)
   }
 
   private animateCube() {
@@ -2347,42 +2869,122 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   materials &#x3D; [
-    new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true }), // front
-    new THREE.MeshPhongMaterial({ color: 0xffffff }), // side
+    new THREE.MeshStandardMaterial({ color: 0xffffff, flatShading: true }), // front
+    new THREE.MeshStandardMaterial({ color: 0xffffff }), // side
   ]
 
   textMesh1: THREE.Mesh
   group &#x3D; new THREE.Group()
 
   addText() {
-    const text &#x3D; &#x27;3d Inventory&#x27;
+    // Removed unused variable
     const loader &#x3D; new FontLoader()
-    loader.load(&#x27;./../../../assets/fonts/Fira Code Retina_Regular.json&#x27;, (font: Font) &#x3D;&gt; {
-      const textGeo &#x3D; new TextGeometry(&#x27;3d invetory&#x27;, {
-        font: font,
-        size: 4,
-        height: 1,
-        curveSegments: 8,
-        bevelThickness: 0.1,
-        bevelSize: 0.1,
-        bevelEnabled: true,
+    this.http
+      .get(&#x27;/assets/fonts/FiraCode_Retina_Regular.json&#x27;, { responseType: &#x27;text&#x27; })
+      .subscribe((fontData: string) &#x3D;&gt; {
+        const font &#x3D; loader.parse(JSON.parse(fontData))
+        const textGeo &#x3D; new TextGeometry(&#x27;3d inventory&#x27;, {
+          font: font,
+          size: 4,
+          depth: 1,
+          curveSegments: 20,
+          bevelThickness: 0.1,
+          bevelSize: 0.1,
+          bevelEnabled: true,
+        })
+
+        const material &#x3D; new THREE.MeshBasicMaterial({ color: this.getRandomPastelColor() })
+        const textMesh &#x3D; new THREE.Mesh(textGeo, material)
+        textMesh.position.x &#x3D; -21
+        textMesh.position.y &#x3D; 3
+        textMesh.position.z &#x3D; 25
+
+        textMesh.castShadow &#x3D; true
+        textMesh.receiveShadow &#x3D; true
+        textMesh.material.depthTest &#x3D; false
+        textMesh.material.depthWrite &#x3D; false
+        textMesh.material.needsUpdate &#x3D; true
+        textMesh.material.opacity &#x3D; 0.8
+        textMesh.material.side &#x3D; THREE.DoubleSide
+        textMesh.material.transparent &#x3D; true
+
+        textMesh.rotation.x &#x3D; 0
+        textMesh.rotation.y &#x3D; Math.PI * 2
+        this.scene.add(textMesh)
       })
-
-      const material &#x3D; new THREE.MeshBasicMaterial({ color: 0x995050 })
-      const textMesh &#x3D; new THREE.Mesh(textGeo, material)
-      textMesh.position.x &#x3D; -18
-      textMesh.position.y &#x3D; 2
-      textMesh.position.z &#x3D; 25
-
-      textMesh.rotation.x &#x3D; 0
-      textMesh.rotation.y &#x3D; Math.PI * 2
-      this.scene.add(textMesh)
-    })
   }
 
+  /**
+   * Adds an axis helper to the scene for debugging or visualization purposes.
+   */
   addAxis() {
     const axesHelper &#x3D; new THREE.AxesHelper(35)
     this.scene.add(axesHelper)
+
+    // Add arrows for each axis
+    const arrowLength &#x3D; 40
+    const arrowHeadLength &#x3D; 5
+    const arrowHeadWidth &#x3D; 3
+
+    // X axis arrow (red)
+    const xDir &#x3D; new THREE.Vector3(1, 0, 0)
+    const xOrigin &#x3D; new THREE.Vector3(0, 0, 0)
+    const xColor &#x3D; 0xff0000
+    const xArrow &#x3D; new THREE.ArrowHelper(xDir, xOrigin, arrowLength, xColor, arrowHeadLength, arrowHeadWidth)
+    this.scene.add(xArrow)
+
+    // Y axis arrow (green)
+    const yDir &#x3D; new THREE.Vector3(0, 1, 0)
+    const yColor &#x3D; 0x00ff00
+    const yArrow &#x3D; new THREE.ArrowHelper(yDir, xOrigin, arrowLength, yColor, arrowHeadLength, arrowHeadWidth)
+    this.scene.add(yArrow)
+
+    // Z axis arrow (blue)
+    const zDir &#x3D; new THREE.Vector3(0, 0, 1)
+    const zColor &#x3D; 0x0000ff
+    const zArrow &#x3D; new THREE.ArrowHelper(zDir, xOrigin, arrowLength, zColor, arrowHeadLength, arrowHeadWidth)
+    this.scene.add(zArrow)
+
+    // Add labels for each axis
+    const loader &#x3D; new FontLoader()
+    this.http
+      .get(&#x27;/assets/fonts/FiraCode_Retina_Regular.json&#x27;, { responseType: &#x27;text&#x27; })
+      .subscribe((fontData: string) &#x3D;&gt; {
+        const font &#x3D; loader.parse(JSON.parse(fontData))
+
+        // X axis label
+        const xGeo &#x3D; new TextGeometry(&#x27;X&#x27;, {
+          font: font,
+          size: 2,
+          depth: 0.2,
+        })
+        const xMat &#x3D; new THREE.MeshBasicMaterial({ color: 0xff0000 })
+        const xMesh &#x3D; new THREE.Mesh(xGeo, xMat)
+        xMesh.position.set(arrowLength + 1, 0, 0)
+        this.scene.add(xMesh)
+
+        // Y axis label
+        const yGeo &#x3D; new TextGeometry(&#x27;Y&#x27;, {
+          font: font,
+          size: 2,
+          depth: 0.2,
+        })
+        const yMat &#x3D; new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+        const yMesh &#x3D; new THREE.Mesh(yGeo, yMat)
+        yMesh.position.set(0, arrowLength + 1, 0)
+        this.scene.add(yMesh)
+
+        // Z axis label
+        const zGeo &#x3D; new TextGeometry(&#x27;Z&#x27;, {
+          font: font,
+          size: 2,
+          depth: 0.2,
+        })
+        const zMat &#x3D; new THREE.MeshBasicMaterial({ color: 0x0000ff })
+        const zMesh &#x3D; new THREE.Mesh(zGeo, zMat)
+        zMesh.position.set(0, 0, arrowLength + 1)
+        this.scene.add(zMesh)
+      })
   }
 
   private createScene() {
@@ -2393,15 +2995,14 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.addPlane(planeSize)
 
     this.scene.background &#x3D; new THREE.Color(0x555555)
-    this.scene.castShadow &#x3D; true
-    this.scene.receiveShadow &#x3D; true
+    // Removed invalid properties castShadow and receiveShadow from THREE.Scene
 
     this.scene.fog &#x3D; new THREE.Fog(0x333333, 200, 1500)
 
-    this.addWalls()
+    //this.addWalls()
 
-    this.directionalLight()
-    this.directionalLight2()
+    this.addDirectionalLight1()
+    this.addDirectionalLight2()
 
     this.addText()
     this.addAxis()
@@ -2409,12 +3010,10 @@ export class CubeComponent implements OnInit, AfterViewInit {
     // this.loadDevices()
     // this.loadModels()
 
-    this.createDeviceList3d()
-
-    const aspectRatio &#x3D; this.getAspectRatio()
+    this.generate3DDeviceList()
     this.camera &#x3D; new THREE.PerspectiveCamera(
       this.fieldOfView,
-      aspectRatio,
+      this.getAspectRatio(),
       this.nearClippingPlane,
       this.farClippingPlane,
     )
@@ -2442,10 +3041,10 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.renderer.setPixelRatio(devicePixelRatio)
     this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight)
 
-    const fov &#x3D; 1000
-    const aspect &#x3D; 1 // the canvas default
+    const fov &#x3D; 75
     const near &#x3D; 0.01
     const far &#x3D; 3000
+    const aspect &#x3D; this.canvas.clientWidth / this.canvas.clientHeight
     const camera &#x3D; new THREE.PerspectiveCamera(fov, aspect, near, far)
     camera.position.set(10, 20, 20)
 
@@ -2453,25 +3052,22 @@ export class CubeComponent implements OnInit, AfterViewInit {
     controls.target.set(10, 40, 30)
     controls.update()
 
-    // Remove the aliasing of &#x27;this&#x27;
-    // https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
-    //
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
-    const component: CubeComponent &#x3D; this
-    ;(function render() {
-      requestAnimationFrame(render)
-      component.animateCube()
-      component.shadowCube()
-      component.renderer.render(component.scene, component.camera)
-    })()
+    this.render &#x3D; this.render.bind(this)
+    requestAnimationFrame(this.render)
+  }
+
+  private render() {
+    requestAnimationFrame(this.render)
+    this.animateCube()
+    this.shadowCube()
+    this.renderer.render(this.scene, this.camera)
   }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;canvas #canvas id&#x3D;&quot;canvas&quot; style&#x3D;&quot;height: 80%; width: 100%&quot;&gt;&lt;/canvas&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;canvas #canvas id&#x3D;&quot;canvas&quot; style&#x3D;&quot;height: 88vh; width: 98vw; display: block;&quot;&gt;&lt;/canvas&gt;
 &lt;!-- &lt;app-log [component]&#x3D;&quot;component&quot;&gt;&lt;/app-log&gt; --&gt;
 </code></pre>
     </div>
@@ -2508,8 +3104,8 @@ export class CubeComponent implements OnInit, AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><canvas #canvas id="canvas" style="height: 80%; width: 100%"></canvas><!-- <app-log [component]="component"></app-log> --></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsyncObservablePipeComponent', 'selector': 'async-observable-pipe'},{'name': 'AttributeAddComponent', 'selector': 'app-add-attribute'},{'name': 'AttributeDictionaryAddComponent', 'selector': 'app-add-attribute-dictionary'},{'name': 'AttributeDictionaryEditComponent', 'selector': 'app-edit-attribute-dictionary'},{'name': 'AttributeDictionaryListComponent', 'selector': 'app-attribute-dictionary-list'},{'name': 'AttributeEditComponent', 'selector': 'app-edit-attribute'},{'name': 'AttributeListComponent', 'selector': 'app-attribute-list'},{'name': 'ConnectionAddComponent', 'selector': 'app-add-connection'},{'name': 'ConnectionEditComponent', 'selector': 'app-edit-connection'},{'name': 'ConnectionListComponent', 'selector': 'app-connection-list'},{'name': 'CubeComponent', 'selector': 'app-cube'},{'name': 'DeviceAddComponent', 'selector': 'app-add-device'},{'name': 'DeviceEditComponent', 'selector': 'app-edit-device'},{'name': 'DeviceListComponent', 'selector': 'app-device-list'},{'name': 'FloorAddComponent', 'selector': 'app-add-floor'},{'name': 'FloorEditComponent', 'selector': 'app-edit-floor'},{'name': 'FloorListComponent', 'selector': 'app-floor-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LogComponent', 'selector': 'app-log'},{'name': 'ModelAddComponent', 'selector': 'app-add-model'},{'name': 'ModelEditComponent', 'selector': 'app-edit-model'},{'name': 'ModelsListComponent', 'selector': 'app-models-list'}];
+        var COMPONENT_TEMPLATE = '<div><canvas #canvas id="canvas" style="height: 88vh; width: 98vw; display: block;"></canvas><!-- <app-log [component]="component"></app-log> --></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AttributeAddComponent', 'selector': 'app-add-attribute'},{'name': 'AttributeDictionaryAddComponent', 'selector': 'app-add-attribute-dictionary'},{'name': 'AttributeDictionaryEditComponent', 'selector': 'app-edit-attribute-dictionary'},{'name': 'AttributeDictionaryListComponent', 'selector': 'app-attribute-dictionary-list'},{'name': 'AttributeEditComponent', 'selector': 'app-edit-attribute'},{'name': 'AttributeListComponent', 'selector': 'app-attribute-list'},{'name': 'ConnectionAddComponent', 'selector': 'app-add-connection'},{'name': 'ConnectionEditComponent', 'selector': 'app-edit-connection'},{'name': 'ConnectionListComponent', 'selector': 'app-connection-list'},{'name': 'CubeComponent', 'selector': 'app-cube'},{'name': 'DeviceAddComponent', 'selector': 'app-add-device'},{'name': 'DeviceEditComponent', 'selector': 'app-edit-device'},{'name': 'DeviceListComponent', 'selector': 'app-device-list'},{'name': 'FloorAddComponent', 'selector': 'app-add-floor'},{'name': 'FloorEditComponent', 'selector': 'app-edit-floor'},{'name': 'FloorListComponent', 'selector': 'app-floor-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LogComponent', 'selector': 'app-log'},{'name': 'ModelAddComponent', 'selector': 'app-add-model'},{'name': 'ModelEditComponent', 'selector': 'app-edit-model'},{'name': 'ModelsListComponent', 'selector': 'app-models-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'CubeComponent'};
 </script>
@@ -2585,7 +3181,6 @@ export class CubeComponent implements OnInit, AfterViewInit {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

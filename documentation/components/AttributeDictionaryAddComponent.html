@@ -155,7 +155,18 @@
                 <td class="col-md-9"><code>app-add-attribute-dictionary</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>ReactiveFormsModule</code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -217,6 +228,9 @@
                             <li>
                                 <a href="#logComponent" >logComponent</a>
                             </li>
+                            <li>
+                                <a href="#unitDictionary" >unitDictionary</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -230,19 +244,19 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#changeCategory" >changeCategory</a>
+                                <a href="#changeComponentName" >changeComponentName</a>
                             </li>
                             <li>
-                                <a href="#changeComponent" >changeComponent</a>
+                                <a href="#changeDescription" >changeDescription</a>
                             </li>
                             <li>
                                 <a href="#changeName" >changeName</a>
                             </li>
                             <li>
-                                <a href="#changeObjectId" >changeObjectId</a>
+                                <a href="#changeType" >changeType</a>
                             </li>
                             <li>
-                                <a href="#changeType" >changeType</a>
+                                <a href="#changeUnit" >changeUnit</a>
                             </li>
                             <li>
                                 <a href="#formAttributeDictionary" >formAttributeDictionary</a>
@@ -273,19 +287,25 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                    <a href="#objectId" >objectId</a>
-                                </li>
-                                <li>
                                     <a href="#name" >name</a>
                                 </li>
                                 <li>
                                     <a href="#type" >type</a>
                                 </li>
                                 <li>
-                                    <a href="#category" >category</a>
+                                    <a href="#componentName" >componentName</a>
                                 </li>
                                 <li>
-                                    <a href="#component" >component</a>
+                                    <a href="#unit" >unit</a>
+                                </li>
+                                <li>
+                                    <a href="#id" >id</a>
+                                </li>
+                                <li>
+                                    <a href="#description" >description</a>
+                                </li>
+                                <li>
+                                    <a href="#isFormInvalid" >isFormInvalid</a>
                                 </li>
                             </ul>
                         </td>
@@ -305,7 +325,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:39</a></div>
                             </td>
                         </tr>
 
@@ -404,24 +424,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="changeCategory"></a>
+                    <a name="changeComponentName"></a>
                     <span class="name">
-                        <span ><b>changeCategory</b></span>
-                        <a href="#changeCategory"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>changeComponentName</b></span>
+                        <a href="#changeComponentName"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>changeCategory(e: Event)</code>
+<code>changeComponentName(e: Event)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="68"
-                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:68</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -471,24 +491,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="changeComponent"></a>
+                    <a name="changeDescription"></a>
                     <span class="name">
-                        <span ><b>changeComponent</b></span>
-                        <a href="#changeComponent"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>changeDescription</b></span>
+                        <a href="#changeDescription"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>changeComponent(e: Event)</code>
+<code>changeDescription(e: Event)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="72"
-                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:72</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -554,75 +574,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="60"
-                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:60</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>e</td>
-                                            <td>
-                                                        <code>Event</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="changeObjectId"></a>
-                    <span class="name">
-                        <span ><b>changeObjectId</b></span>
-                        <a href="#changeObjectId"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>changeObjectId(e: Event)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="56"
-                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:56</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -688,8 +641,75 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="64"
-                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:64</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeUnit"></a>
+                    <span class="name">
+                        <span ><b>changeUnit</b></span>
+                        <a href="#changeUnit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeUnit(e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -755,8 +775,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="45"
-                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:45</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -792,8 +812,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="33"
-                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:33</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -829,8 +849,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="100"
-                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:100</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="110"
+                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:110</a></div>
                         </td>
                     </tr>
 
@@ -866,8 +886,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="96"
-                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:96</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="106"
+                                    class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:106</a></div>
                         </td>
                     </tr>
 
@@ -934,7 +954,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -954,13 +974,13 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/AttributeDictionary.html" target="_self" >AttributeDictionary</a></code>
+                        <i>Type : </i>        <code><a href="../classes/AttributesDictionary.html" target="_self" >AttributesDictionary</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -987,7 +1007,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -1018,7 +1038,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -1049,7 +1069,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -1080,7 +1100,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -1105,7 +1125,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -1136,7 +1156,38 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unitDictionary"></a>
+                    <span class="name">
+                        <span ><b>unitDictionary</b></span>
+                        <a href="#unitDictionary"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/UnitDictionary.html" target="_self" >UnitDictionary</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new UnitDictionary()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -1153,28 +1204,6 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="objectId"></a>
-                        <span class="name"><b>objectId</b><a href="#objectId"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>objectId()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:76</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
                         <a name="name"></a>
                         <span class="name"><b>name</b><a href="#name"><span class="icon ion-ios-link"></span></a></span>
                     </td>
@@ -1187,7 +1216,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:79</a></div>
                                 </td>
                             </tr>
 
@@ -1209,7 +1238,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:83</a></div>
                                 </td>
                             </tr>
 
@@ -1219,19 +1248,19 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="category"></a>
-                        <span class="name"><b>category</b><a href="#category"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="componentName"></a>
+                        <span class="name"><b>componentName</b><a href="#componentName"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>category()</code></span>
+                        <span class="accessor"><b>get</b><code>componentName()</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:88</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:87</a></div>
                                 </td>
                             </tr>
 
@@ -1241,19 +1270,85 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="component"></a>
-                        <span class="name"><b>component</b><a href="#component"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="unit"></a>
+                        <span class="name"><b>unit</b><a href="#unit"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>component()</code></span>
+                        <span class="accessor"><b>get</b><code>unit()</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:90</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="id"></a>
+                        <span class="name"><b>id</b><a href="#id"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>id()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:94</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="description"></a>
+                        <span class="name"><b>description</b><a href="#description"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>description()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:98</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isFormInvalid"></a>
+                        <span class="name"><b>isFormInvalid</b><a href="#isFormInvalid"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>isFormInvalid()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component.ts:102</a></div>
                                 </td>
                             </tr>
 
@@ -1265,35 +1360,39 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Inject, NgZone, OnInit } from &#x27;@angular/core&#x27;
-import { FormBuilder, FormControl, FormGroup, Validators } from &#x27;@angular/forms&#x27;
-import { Router } from &#x27;@angular/router&#x27;
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;
+import { Router, Resolve } from &#x27;@angular/router&#x27;
 
+import { CommonModule } from &#x27;@angular/common&#x27;
 import { AttributeDictionaryService } from &#x27;../../../services/attribute-dictionary.service&#x27;
 import { LogService } from &#x27;../../../services/log.service&#x27;
-import { AttributeDictionary } from &#x27;../../../shared/attribute-dictionary&#x27;
-import { ComponentDictionary } from &#x27;../../../shared/component-dictionary&#x27;
+import { AttributesDictionary } from &#x27;../../../shared/AttributesDictionary&#x27;
+import { ComponentDictionary } from &#x27;../../../shared/ComponentDictionary&#x27;
 import { DeviceCategoryDict } from &#x27;../../../shared/deviceCategories&#x27;
-import { DeviceTypeDict } from &#x27;../../../shared/deviceTypes&#x27;
+import { DeviceTypeDict } from &#x27;../../../shared/DeviceTypes&#x27;
+import { UnitDictionary } from &#x27;src/app/shared/UnitDictionary&#x27;
 
 @Component({
   selector: &#x27;app-add-attribute-dictionary&#x27;,
   templateUrl: &#x27;./add-attribute-dictionary.component.html&#x27;,
   styleUrls: [&#x27;./add-attribute-dictionary.component.scss&#x27;],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class AttributeDictionaryAddComponent implements OnInit {
   addAttributeDictionaryForm: FormGroup&lt;{
-    _id: FormControl&lt;string | null&gt;
-    objectId: FormControl&lt;string | null&gt;
     name: FormControl&lt;string | null&gt;
+    componentName: FormControl&lt;string | null&gt;
+    unit: FormControl&lt;string | null&gt;
     type: FormControl&lt;string | null&gt;
-    category: FormControl&lt;string | null&gt;
-    component: FormControl&lt;string | null&gt;
+    description: FormControl&lt;string | null&gt;
   }&gt;
-  attributeDictionary: AttributeDictionary
+  attributeDictionary: AttributesDictionary
   isSubmitted &#x3D; false
   deviceTypeDict: DeviceTypeDict &#x3D; new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict &#x3D; new DeviceCategoryDict()
   componentDictionary: ComponentDictionary &#x3D; new ComponentDictionary()
+  unitDictionary: UnitDictionary &#x3D; new UnitDictionary()
   logComponent &#x3D; &#x27;AttributeDictionary&#x27;
 
   ngOnInit() {
@@ -1310,17 +1409,12 @@ export class AttributeDictionaryAddComponent implements OnInit {
 
   formAttributeDictionary() {
     this.addAttributeDictionaryForm &#x3D; this.formBuilder.group({
-      _id: [&#x27;&#x27;, [Validators.required]],
-      objectId: [&#x27;&#x27;, [Validators.required, Validators.minLength(24)]],
       name: [&#x27;&#x27;, [Validators.required, Validators.minLength(6), Validators.maxLength(255)]],
+      componentName: [&#x27;&#x27;, [Validators.required]],
+      unit: [&#x27;&#x27;, [Validators.required]],
       type: [&#x27;&#x27;, [Validators.required]],
-      category: [&#x27;&#x27;, [Validators.required]],
-      component: [&#x27;&#x27;, [Validators.required]],
+      description: [&#x27;&#x27;, [Validators.required]],
     })
-  }
-
-  changeObjectId(e: Event) {
-    this.objectId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeName(e: Event) {
@@ -1331,16 +1425,16 @@ export class AttributeDictionaryAddComponent implements OnInit {
     this.type?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeCategory(e: Event) {
-    this.category?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  changeComponentName(e: Event) {
+    this.componentName?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeComponent(e: Event) {
-    this.component?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  changeUnit(e: Event) {
+    this.unit?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  get objectId() {
-    return this.addAttributeDictionaryForm.get(&#x27;objectId&#x27;)
+  changeDescription(e: Event) {
+    this.description?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   get name() {
@@ -1351,12 +1445,23 @@ export class AttributeDictionaryAddComponent implements OnInit {
     return this.addAttributeDictionaryForm.get(&#x27;type&#x27;)
   }
 
-  get category() {
-    return this.addAttributeDictionaryForm.get(&#x27;category&#x27;)
+  get componentName() {
+    return this.addAttributeDictionaryForm.get(&#x27;componentName&#x27;)
+  }
+  get unit() {
+    return this.addAttributeDictionaryForm.get(&#x27;unit&#x27;)
   }
 
-  get component() {
-    return this.addAttributeDictionaryForm.get(&#x27;component&#x27;)
+  get id() {
+    return this.addAttributeDictionaryForm.get(&#x27;_id&#x27;)
+  }
+
+  get description() {
+    return this.addAttributeDictionaryForm.get(&#x27;description&#x27;)
+  }
+
+  get isFormInvalid(): boolean {
+    return this.addAttributeDictionaryForm?.invalid
   }
 
   toString(data: unknown): string {
@@ -1365,14 +1470,15 @@ export class AttributeDictionaryAddComponent implements OnInit {
 
   submitForm() {
     this.attributeDictionaryService
-      .CreateAttributeDictionary(this.addAttributeDictionaryForm.value as unknown as AttributeDictionary)
-      .subscribe(() &#x3D;&gt; {
+      .CreateAttributeDictionary(this.addAttributeDictionaryForm.value as unknown as AttributesDictionary)
+      .subscribe((createdAttribute) &#x3D;&gt; {
+        const _id &#x3D; createdAttribute._id
         this.logService
           .CreateLog({
-            objectId: this.addAttributeDictionaryForm.get(&#x27;id&#x27;)?.value,
+            objectId: _id,
             message: this.addAttributeDictionaryForm.getRawValue(),
             operation: &#x27;Create&#x27;,
-            component: &#x27;Attribute Dictionary&#x27;,
+            component: &#x27;attributesDictionary&#x27;,
           })
           .subscribe(() &#x3D;&gt; {
             this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;attribute-dictionary-list&#x27;))
@@ -1389,67 +1495,47 @@ export class AttributeDictionaryAddComponent implements OnInit {
   &lt;h2&gt;&lt;i class&#x3D;&quot;bi bi-grid-3x3-gap&quot;&gt;&lt;/i&gt; Add Attribute Dictionary&lt;/h2&gt;
   &lt;form [formGroup]&#x3D;&quot;addAttributeDictionaryForm&quot; (ngSubmit)&#x3D;&quot;submitForm()&quot; class&#x3D;&quot;needs-validation&quot; novalidate&gt;
     &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
-      &lt;label for&#x3D;&quot;id&quot; class&#x3D;&quot;form-label&quot;&gt;Id&lt;/label&gt;
-      &lt;input
-        type&#x3D;&quot;text&quot;
-        formControlName&#x3D;&quot;id&quot;
-        id&#x3D;&quot;id&quot;
-        required
-        readonly
-        [ngClass]&#x3D;&quot;{
-          &#x27;is-invalid&#x27;: this.addAttributeDictionaryForm.controls._id.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-          &#x27;is-valid&#x27;: this.addAttributeDictionaryForm.controls._id.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
-          &#x27;form-control&#x27;: true,
-        }&quot;
-      /&gt;
-      &lt;div *ngIf&#x3D;&quot;this.addAttributeDictionaryForm.controls._id.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-        &lt;div *ngIf&#x3D;&quot;this.addAttributeDictionaryForm.controls._id.errors.required&quot;&gt;Id is required&lt;/div&gt;
-        &lt;div *ngIf&#x3D;&quot;this.addAttributeDictionaryForm.controls._id.errors.minlength&quot;&gt;
-          Id must be at least 4 characters
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
       &lt;label for&#x3D;&quot;name&quot; class&#x3D;&quot;form-label&quot;&gt;Name&lt;/label&gt;
-      &lt;textarea
-        [ngClass]&#x3D;&quot;{
+      &lt;textarea [ngClass]&#x3D;&quot;{
           &#x27;is-invalid&#x27;: this.addAttributeDictionaryForm.controls.name.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
           &#x27;is-valid&#x27;: this.addAttributeDictionaryForm.controls.name.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
           &#x27;form-control&#x27;: true,
-        }&quot;
-        formControlName&#x3D;&quot;name&quot;
-        id&#x3D;&quot;name&quot;
-        required
-        &gt;{{ this.addAttributeDictionaryForm.value.name }}&lt;/textarea
-      &gt;
-      &lt;div *ngIf&#x3D;&quot;this.addAttributeDictionaryForm.controls.name.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-        &lt;div *ngIf&#x3D;&quot;this.addAttributeDictionaryForm.controls.name.errors.required&quot;&gt;Attribute name is required&lt;/div&gt;
-        &lt;div *ngIf&#x3D;&quot;this.addAttributeDictionaryForm.controls.name.errors.minlength&quot;&gt;
-          Attribute name must be at least 6 characters
+        }&quot; formControlName&#x3D;&quot;name&quot; id&#x3D;&quot;name&quot; required&gt;&lt;/textarea&gt;
+      @if (this.addAttributeDictionaryForm.controls.name.errors) {
+        &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+          @if (this.addAttributeDictionaryForm.controls.name.errors.required) {
+            &lt;div&gt;Attribute name is required&lt;/div&gt;
+          }
+          @if (this.addAttributeDictionaryForm.controls.name.errors.minlength) {
+            &lt;div&gt;
+              Attribute name must be at least 6 characters
+            &lt;/div&gt;
+          }
         &lt;/div&gt;
-      &lt;/div&gt;
+      }
     &lt;/div&gt;
     &lt;div class&#x3D;&quot;row&quot;&gt;
       &lt;div class&#x3D;&quot;col&quot;&gt;
         &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
           &lt;label for&#x3D;&quot;type&quot; class&#x3D;&quot;form-label&quot;&gt;Type&lt;/label&gt;
-          &lt;select
-            (change)&#x3D;&quot;changeType($event)&quot;
-            formControlName&#x3D;&quot;type&quot;
-            [ngClass]&#x3D;&quot;{
+          &lt;select (change)&#x3D;&quot;changeType($event)&quot; formControlName&#x3D;&quot;type&quot; [ngClass]&#x3D;&quot;{
               &#x27;is-invalid&#x27;: this.addAttributeDictionaryForm.controls.type.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
               &#x27;is-valid&#x27;: this.addAttributeDictionaryForm.controls.type.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
               &#x27;form-select&#x27;: true,
-            }&quot;
-            id&#x3D;&quot;type&quot;
-          &gt;
-            &lt;option *ngFor&#x3D;&quot;let typeObj of deviceTypeDict[&#x27;list&#x27;]; let i &#x3D; index&quot;&gt;
-              {{ typeObj.name }}
-            &lt;/option&gt;
+            }&quot; id&#x3D;&quot;type&quot;&gt;
+            @for (typeObj of deviceTypeDict[&#x27;list&#x27;]; track typeObj; let i &#x3D; $index) {
+              &lt;option&gt;
+                {{ typeObj.name }}
+              &lt;/option&gt;
+            }
           &lt;/select&gt;
-          &lt;div *ngIf&#x3D;&quot;this.addAttributeDictionaryForm.controls.type.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-            &lt;div *ngIf&#x3D;&quot;this.addAttributeDictionaryForm.controls.type.errors.required&quot;&gt;Category is required&lt;/div&gt;
-          &lt;/div&gt;
+          @if (this.addAttributeDictionaryForm.controls.type.errors) {
+            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+              @if (this.addAttributeDictionaryForm.controls.type.errors.required) {
+                &lt;div&gt;Category is required&lt;/div&gt;
+              }
+            &lt;/div&gt;
+          }
           &lt;div&gt;
             {{ this.toString(this.addAttributeDictionaryForm.controls.type.dirty) }}
           &lt;/div&gt;
@@ -1457,62 +1543,83 @@ export class AttributeDictionaryAddComponent implements OnInit {
       &lt;/div&gt;
       &lt;div class&#x3D;&quot;col&quot;&gt;
         &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
-          &lt;label for&#x3D;&quot;category&quot; class&#x3D;&quot;form-label&quot;&gt;Category&lt;/label&gt;
-          &lt;select
-            (change)&#x3D;&quot;changeCategory($event)&quot;
-            formControlName&#x3D;&quot;category&quot;
-            id&#x3D;&quot;category&quot;
+          &lt;label for&#x3D;&quot;componentName&quot; class&#x3D;&quot;form-label&quot;&gt;Component Name&lt;/label&gt;
+          &lt;select (change)&#x3D;&quot;changeComponentName($event)&quot; formControlName&#x3D;&quot;componentName&quot; id&#x3D;&quot;componentName&quot;
             [ngClass]&#x3D;&quot;{
-              &#x27;is-invalid&#x27;: this.addAttributeDictionaryForm.controls.category.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-              &#x27;is-valid&#x27;: this.addAttributeDictionaryForm.controls.category.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+              &#x27;is-invalid&#x27;: this.addAttributeDictionaryForm.controls.componentName.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+              &#x27;is-valid&#x27;: this.addAttributeDictionaryForm.controls.componentName.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
               &#x27;form-select&#x27;: true,
-            }&quot;
-          &gt;
-            &lt;option *ngFor&#x3D;&quot;let categoryObj of deviceCategoryDict.list; let i &#x3D; index&quot;&gt;
-              {{ categoryObj.name }}
-            &lt;/option&gt;
+            }&quot;&gt;
+            @for (componentObj of componentDictionary.getAll(); track componentObj; let i &#x3D; $index) {
+              &lt;option&gt;
+                {{ componentObj.name }}
+              &lt;/option&gt;
+            }
           &lt;/select&gt;
-          &lt;div *ngIf&#x3D;&quot;this.addAttributeDictionaryForm.controls.category.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-            &lt;div *ngIf&#x3D;&quot;this.addAttributeDictionaryForm.controls.category.errors.required&quot;&gt;Category is required&lt;/div&gt;
-          &lt;/div&gt;
+          @if (this.addAttributeDictionaryForm.controls.componentName.errors) {
+            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+              @if (this.addAttributeDictionaryForm.controls.componentName.errors.required) {
+                &lt;div&gt;Component Name is
+                  required
+                &lt;/div&gt;
+              }
+            &lt;/div&gt;
+          }
         &lt;/div&gt;
       &lt;/div&gt;
       &lt;div class&#x3D;&quot;col&quot;&gt;
         &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
-          &lt;label for&#x3D;&quot;component&quot; class&#x3D;&quot;form-label&quot;&gt;Component&lt;/label&gt;
-          &lt;select
-            (change)&#x3D;&quot;changeComponent($event)&quot;
-            formControlName&#x3D;&quot;component&quot;
-            [ngClass]&#x3D;&quot;{
-              &#x27;is-invalid&#x27;: this.addAttributeDictionaryForm.controls.component.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-              &#x27;is-valid&#x27;: this.addAttributeDictionaryForm.controls.component.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+          &lt;label for&#x3D;&quot;unit&quot; class&#x3D;&quot;form-label&quot;&gt;Unit&lt;/label&gt;
+          &lt;select (change)&#x3D;&quot;changeUnit($event)&quot; formControlName&#x3D;&quot;unit&quot; [ngClass]&#x3D;&quot;{
+              &#x27;is-invalid&#x27;: this.addAttributeDictionaryForm.controls.unit.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+              &#x27;is-valid&#x27;: this.addAttributeDictionaryForm.controls.unit.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
               &#x27;form-select&#x27;: true,
-            }&quot;
-            id&#x3D;&quot;component&quot;
-          &gt;
-            &lt;option *ngFor&#x3D;&quot;let componentObj of componentDictionary.list; let i &#x3D; index&quot;&gt;
-              {{ componentObj.name }}
-            &lt;/option&gt;
+            }&quot; id&#x3D;&quot;unit&quot;&gt;
+            @for (componentObj of unitDictionary.getAllUnits(); track componentObj; let i &#x3D; $index) {
+              &lt;option&gt;
+                {{ componentObj.name }}
+              &lt;/option&gt;
+            }
           &lt;/select&gt;
-          &lt;div *ngIf&#x3D;&quot;this.addAttributeDictionaryForm.controls.component.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-            &lt;div *ngIf&#x3D;&quot;this.addAttributeDictionaryForm.controls.component.errors.required&quot;&gt;Component is required&lt;/div&gt;
-          &lt;/div&gt;
+          @if (this.addAttributeDictionaryForm.controls.unit.errors) {
+            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+              @if (this.addAttributeDictionaryForm.controls.unit.errors.required) {
+                &lt;div&gt;Unit is required
+                &lt;/div&gt;
+              }
+            &lt;/div&gt;
+          }
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
-      &lt;button
-        type&#x3D;&quot;submit&quot;
-        [disabled]&#x3D;&quot;!(this.addAttributeDictionaryForm.valid &amp;&amp; this.addAttributeDictionaryForm.touched)&quot;
-        class&#x3D;&quot;btn btn-primary&quot;
-      &gt;
-        Add model
-      &lt;/button&gt;
-      &lt;div
-        *ngIf&#x3D;&quot;!(this.addAttributeDictionaryForm.valid &amp;&amp; this.addAttributeDictionaryForm.touched)&quot;
-        class&#x3D;&quot;invalid-feedback&quot;
-      &gt;
-        Form is invalid
+    &lt;div class&#x3D;&quot;row&quot;&gt;
+      &lt;div class&#x3D;&quot;col&quot;&gt;
+        &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+          &lt;label for&#x3D;&quot;description&quot; class&#x3D;&quot;form-label&quot;&gt;Description&lt;/label&gt;
+          &lt;textarea formControlName&#x3D;&quot;description&quot; id&#x3D;&quot;description&quot; [ngClass]&#x3D;&quot;{
+              &#x27;is-invalid&#x27;: this.addAttributeDictionaryForm.controls.description.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+              &#x27;is-valid&#x27;: this.addAttributeDictionaryForm.controls.description.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+              &#x27;form-control&#x27;: true,
+            }&quot;&gt;{{ this.addAttributeDictionaryForm.value.description }}&lt;/textarea&gt;
+          @if (this.addAttributeDictionaryForm.controls.description.errors) {
+            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+              @if (this.addAttributeDictionaryForm.controls.description.errors.required) {
+                &lt;div&gt;Description is
+                required&lt;/div&gt;
+              }
+            &lt;/div&gt;
+          }
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+        &lt;button type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;isFormInvalid&quot; class&#x3D;&quot;btn btn-primary&quot;&gt;
+          Add model
+        &lt;/button&gt;
+        @if (isFormInvalid) {
+          &lt;div class&#x3D;&quot;form-error-message&quot;&gt;
+            Form is invalid
+          &lt;/div&gt;
+        }
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/form&gt;
@@ -1552,8 +1659,8 @@ export class AttributeDictionaryAddComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <h2><i class="bi bi-grid-3x3-gap"></i> Add Attribute Dictionary</h2>  <form [formGroup]="addAttributeDictionaryForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>    <div class="form-group mb-3">      <label for="id" class="form-label">Id</label>      <input        type="text"        formControlName="id"        id="id"        required        readonly        [ngClass]="{          \'is-invalid\': this.addAttributeDictionaryForm.controls._id.status !== \'VALID\',          \'is-valid\': this.addAttributeDictionaryForm.controls._id.status === \'VALID\',          \'form-control\': true,        }"      />      <div *ngIf="this.addAttributeDictionaryForm.controls._id.errors" class="invalid-feedback">        <div *ngIf="this.addAttributeDictionaryForm.controls._id.errors.required">Id is required</div>        <div *ngIf="this.addAttributeDictionaryForm.controls._id.errors.minlength">          Id must be at least 4 characters        </div>      </div>    </div>    <div class="form-group mb-3">      <label for="name" class="form-label">Name</label>      <textarea        [ngClass]="{          \'is-invalid\': this.addAttributeDictionaryForm.controls.name.status !== \'VALID\',          \'is-valid\': this.addAttributeDictionaryForm.controls.name.status === \'VALID\',          \'form-control\': true,        }"        formControlName="name"        id="name"        required        >{{ this.addAttributeDictionaryForm.value.name }}</textarea      >      <div *ngIf="this.addAttributeDictionaryForm.controls.name.errors" class="invalid-feedback">        <div *ngIf="this.addAttributeDictionaryForm.controls.name.errors.required">Attribute name is required</div>        <div *ngIf="this.addAttributeDictionaryForm.controls.name.errors.minlength">          Attribute name must be at least 6 characters        </div>      </div>    </div>    <div class="row">      <div class="col">        <div class="form-group mb-3">          <label for="type" class="form-label">Type</label>          <select            (change)="changeType($event)"            formControlName="type"            [ngClass]="{              \'is-invalid\': this.addAttributeDictionaryForm.controls.type.status !== \'VALID\',              \'is-valid\': this.addAttributeDictionaryForm.controls.type.status === \'VALID\',              \'form-select\': true,            }"            id="type"          >            <option *ngFor="let typeObj of deviceTypeDict[\'list\']; let i = index">              {{ typeObj.name }}            </option>          </select>          <div *ngIf="this.addAttributeDictionaryForm.controls.type.errors" class="invalid-feedback">            <div *ngIf="this.addAttributeDictionaryForm.controls.type.errors.required">Category is required</div>          </div>          <div>            {{ this.toString(this.addAttributeDictionaryForm.controls.type.dirty) }}          </div>        </div>      </div>      <div class="col">        <div class="form-group mb-3">          <label for="category" class="form-label">Category</label>          <select            (change)="changeCategory($event)"            formControlName="category"            id="category"            [ngClass]="{              \'is-invalid\': this.addAttributeDictionaryForm.controls.category.status !== \'VALID\',              \'is-valid\': this.addAttributeDictionaryForm.controls.category.status === \'VALID\',              \'form-select\': true,            }"          >            <option *ngFor="let categoryObj of deviceCategoryDict.list; let i = index">              {{ categoryObj.name }}            </option>          </select>          <div *ngIf="this.addAttributeDictionaryForm.controls.category.errors" class="invalid-feedback">            <div *ngIf="this.addAttributeDictionaryForm.controls.category.errors.required">Category is required</div>          </div>        </div>      </div>      <div class="col">        <div class="form-group mb-3">          <label for="component" class="form-label">Component</label>          <select            (change)="changeComponent($event)"            formControlName="component"            [ngClass]="{              \'is-invalid\': this.addAttributeDictionaryForm.controls.component.status !== \'VALID\',              \'is-valid\': this.addAttributeDictionaryForm.controls.component.status === \'VALID\',              \'form-select\': true,            }"            id="component"          >            <option *ngFor="let componentObj of componentDictionary.list; let i = index">              {{ componentObj.name }}            </option>          </select>          <div *ngIf="this.addAttributeDictionaryForm.controls.component.errors" class="invalid-feedback">            <div *ngIf="this.addAttributeDictionaryForm.controls.component.errors.required">Component is required</div>          </div>        </div>      </div>    </div>    <div class="form-group mb-3">      <button        type="submit"        [disabled]="!(this.addAttributeDictionaryForm.valid && this.addAttributeDictionaryForm.touched)"        class="btn btn-primary"      >        Add model      </button>      <div        *ngIf="!(this.addAttributeDictionaryForm.valid && this.addAttributeDictionaryForm.touched)"        class="invalid-feedback"      >        Form is invalid      </div>    </div>  </form></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsyncObservablePipeComponent', 'selector': 'async-observable-pipe'},{'name': 'AttributeAddComponent', 'selector': 'app-add-attribute'},{'name': 'AttributeDictionaryAddComponent', 'selector': 'app-add-attribute-dictionary'},{'name': 'AttributeDictionaryEditComponent', 'selector': 'app-edit-attribute-dictionary'},{'name': 'AttributeDictionaryListComponent', 'selector': 'app-attribute-dictionary-list'},{'name': 'AttributeEditComponent', 'selector': 'app-edit-attribute'},{'name': 'AttributeListComponent', 'selector': 'app-attribute-list'},{'name': 'ConnectionAddComponent', 'selector': 'app-add-connection'},{'name': 'ConnectionEditComponent', 'selector': 'app-edit-connection'},{'name': 'ConnectionListComponent', 'selector': 'app-connection-list'},{'name': 'CubeComponent', 'selector': 'app-cube'},{'name': 'DeviceAddComponent', 'selector': 'app-add-device'},{'name': 'DeviceEditComponent', 'selector': 'app-edit-device'},{'name': 'DeviceListComponent', 'selector': 'app-device-list'},{'name': 'FloorAddComponent', 'selector': 'app-add-floor'},{'name': 'FloorEditComponent', 'selector': 'app-edit-floor'},{'name': 'FloorListComponent', 'selector': 'app-floor-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LogComponent', 'selector': 'app-log'},{'name': 'ModelAddComponent', 'selector': 'app-add-model'},{'name': 'ModelEditComponent', 'selector': 'app-edit-model'},{'name': 'ModelsListComponent', 'selector': 'app-models-list'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <h2><i class="bi bi-grid-3x3-gap"></i> Add Attribute Dictionary</h2>  <form [formGroup]="addAttributeDictionaryForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>    <div class="form-group mb-3">      <label for="name" class="form-label">Name</label>      <textarea [ngClass]="{          \'is-invalid\': this.addAttributeDictionaryForm.controls.name.status !== \'VALID\',          \'is-valid\': this.addAttributeDictionaryForm.controls.name.status === \'VALID\',          \'form-control\': true,        }" formControlName="name" id="name" required></textarea>      @if (this.addAttributeDictionaryForm.controls.name.errors) {        <div class="invalid-feedback">          @if (this.addAttributeDictionaryForm.controls.name.errors.required) {            <div>Attribute name is required</div>          }          @if (this.addAttributeDictionaryForm.controls.name.errors.minlength) {            <div>              Attribute name must be at least 6 characters            </div>          }        </div>      }    </div>    <div class="row">      <div class="col">        <div class="form-group mb-3">          <label for="type" class="form-label">Type</label>          <select (change)="changeType($event)" formControlName="type" [ngClass]="{              \'is-invalid\': this.addAttributeDictionaryForm.controls.type.status !== \'VALID\',              \'is-valid\': this.addAttributeDictionaryForm.controls.type.status === \'VALID\',              \'form-select\': true,            }" id="type">            @for (typeObj of deviceTypeDict[\'list\']; track typeObj; let i = $index) {              <option>                {{ typeObj.name }}              </option>            }          </select>          @if (this.addAttributeDictionaryForm.controls.type.errors) {            <div class="invalid-feedback">              @if (this.addAttributeDictionaryForm.controls.type.errors.required) {                <div>Category is required</div>              }            </div>          }          <div>            {{ this.toString(this.addAttributeDictionaryForm.controls.type.dirty) }}          </div>        </div>      </div>      <div class="col">        <div class="form-group mb-3">          <label for="componentName" class="form-label">Component Name</label>          <select (change)="changeComponentName($event)" formControlName="componentName" id="componentName"            [ngClass]="{              \'is-invalid\': this.addAttributeDictionaryForm.controls.componentName.status !== \'VALID\',              \'is-valid\': this.addAttributeDictionaryForm.controls.componentName.status === \'VALID\',              \'form-select\': true,            }">            @for (componentObj of componentDictionary.getAll(); track componentObj; let i = $index) {              <option>                {{ componentObj.name }}              </option>            }          </select>          @if (this.addAttributeDictionaryForm.controls.componentName.errors) {            <div class="invalid-feedback">              @if (this.addAttributeDictionaryForm.controls.componentName.errors.required) {                <div>Component Name is                  required                </div>              }            </div>          }        </div>      </div>      <div class="col">        <div class="form-group mb-3">          <label for="unit" class="form-label">Unit</label>          <select (change)="changeUnit($event)" formControlName="unit" [ngClass]="{              \'is-invalid\': this.addAttributeDictionaryForm.controls.unit.status !== \'VALID\',              \'is-valid\': this.addAttributeDictionaryForm.controls.unit.status === \'VALID\',              \'form-select\': true,            }" id="unit">            @for (componentObj of unitDictionary.getAllUnits(); track componentObj; let i = $index) {              <option>                {{ componentObj.name }}              </option>            }          </select>          @if (this.addAttributeDictionaryForm.controls.unit.errors) {            <div class="invalid-feedback">              @if (this.addAttributeDictionaryForm.controls.unit.errors.required) {                <div>Unit is required                </div>              }            </div>          }        </div>      </div>    </div>    <div class="row">      <div class="col">        <div class="form-group mb-3">          <label for="description" class="form-label">Description</label>          <textarea formControlName="description" id="description" [ngClass]="{              \'is-invalid\': this.addAttributeDictionaryForm.controls.description.status !== \'VALID\',              \'is-valid\': this.addAttributeDictionaryForm.controls.description.status === \'VALID\',              \'form-control\': true,            }">{{ this.addAttributeDictionaryForm.value.description }}</textarea>          @if (this.addAttributeDictionaryForm.controls.description.errors) {            <div class="invalid-feedback">              @if (this.addAttributeDictionaryForm.controls.description.errors.required) {                <div>Description is                required</div>              }            </div>          }        </div>      </div>      <div class="form-group mb-3">        <button type="submit" [disabled]="isFormInvalid" class="btn btn-primary">          Add model        </button>        @if (isFormInvalid) {          <div class="form-error-message">            Form is invalid          </div>        }      </div>    </div>  </form></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AttributeAddComponent', 'selector': 'app-add-attribute'},{'name': 'AttributeDictionaryAddComponent', 'selector': 'app-add-attribute-dictionary'},{'name': 'AttributeDictionaryEditComponent', 'selector': 'app-edit-attribute-dictionary'},{'name': 'AttributeDictionaryListComponent', 'selector': 'app-attribute-dictionary-list'},{'name': 'AttributeEditComponent', 'selector': 'app-edit-attribute'},{'name': 'AttributeListComponent', 'selector': 'app-attribute-list'},{'name': 'ConnectionAddComponent', 'selector': 'app-add-connection'},{'name': 'ConnectionEditComponent', 'selector': 'app-edit-connection'},{'name': 'ConnectionListComponent', 'selector': 'app-connection-list'},{'name': 'CubeComponent', 'selector': 'app-cube'},{'name': 'DeviceAddComponent', 'selector': 'app-add-device'},{'name': 'DeviceEditComponent', 'selector': 'app-edit-device'},{'name': 'DeviceListComponent', 'selector': 'app-device-list'},{'name': 'FloorAddComponent', 'selector': 'app-add-floor'},{'name': 'FloorEditComponent', 'selector': 'app-edit-floor'},{'name': 'FloorListComponent', 'selector': 'app-floor-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LogComponent', 'selector': 'app-log'},{'name': 'ModelAddComponent', 'selector': 'app-add-model'},{'name': 'ModelEditComponent', 'selector': 'app-edit-model'},{'name': 'ModelsListComponent', 'selector': 'app-models-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AttributeDictionaryAddComponent'};
 </script>
@@ -1629,7 +1736,6 @@ export class AttributeDictionaryAddComponent implements OnInit {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

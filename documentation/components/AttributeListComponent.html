@@ -155,7 +155,19 @@
                 <td class="col-md-9"><code>app-attribute-list</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                                <code><a href="../components/LogComponent.html" target="_self" >LogComponent</a></code>
+                            <code>NgbPaginationModule</code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -209,6 +221,9 @@
                                 <a href="#component" >component</a>
                             </li>
                             <li>
+                                <a href="#componentName" >componentName</a>
+                            </li>
+                            <li>
                                 <a href="#connection" >connection</a>
                             </li>
                             <li>
@@ -227,7 +242,13 @@
                                 <a href="#modelDictionary" >modelDictionary</a>
                             </li>
                             <li>
+                                <a href="#pageSize" >pageSize</a>
+                            </li>
+                            <li>
                                 <a href="#selectedAttribute" >selectedAttribute</a>
+                            </li>
+                            <li>
+                                <a href="#totalItems" >totalItems</a>
                             </li>
                         </ul>
                     </td>
@@ -251,17 +272,18 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#DeleteAttribute" >DeleteAttribute</a>
+                                <a href="#deleteAttribute" >deleteAttribute</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#EditAttribute" >EditAttribute</a>
                             </li>
                             <li>
-                                <a href="#etDevice" >etDevice</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#fetchDevice" >fetchDevice</a>
                             </li>
                             <li>
-                                <a href="#findAttributeDictionary" >findAttributeDictionary</a>
+                                <a href="#findAttributeDictionaryName" >findAttributeDictionaryName</a>
                             </li>
                             <li>
                                 <a href="#findConnectionName" >findConnectionName</a>
@@ -286,13 +308,15 @@
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
                                 <a href="#LoadAttributes" >LoadAttributes</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#navigateMethod" >navigateMethod</a>
+                                <a href="#navigateToAttributeList" >navigateToAttributeList</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
@@ -339,7 +363,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:51</a></div>
                             </td>
                         </tr>
 
@@ -479,7 +503,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:33</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -506,7 +530,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:34</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -542,8 +566,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="125"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:125</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="149"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:149</a></div>
                         </td>
                     </tr>
 
@@ -581,8 +605,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="114"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:114</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="131"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:131</a></div>
                         </td>
                     </tr>
 
@@ -632,26 +656,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="DeleteAttribute"></a>
+                    <a name="deleteAttribute"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
-                        <span ><b>DeleteAttribute</b></span>
-                        <a href="#DeleteAttribute"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>deleteAttribute</b></span>
+                        <a href="#deleteAttribute"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>DeleteAttribute(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>deleteAttribute(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="93"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:93</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:112</a></div>
                         </td>
                     </tr>
 
@@ -719,8 +743,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="129"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:129</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="153"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:153</a></div>
                         </td>
                     </tr>
 
@@ -770,24 +794,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="etDevice"></a>
+                    <a name="fetchDevice"></a>
                     <span class="name">
-                        <span ><b>etDevice</b></span>
-                        <a href="#etDevice"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Async</span>
+                        <span ><b>fetchDevice</b></span>
+                        <a href="#fetchDevice"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>etDevice(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>fetchDevice(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="134"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:134</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="158"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:158</a></div>
                         </td>
                     </tr>
 
@@ -837,24 +863,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findAttributeDictionary"></a>
+                    <a name="findAttributeDictionaryName"></a>
                     <span class="name">
-                        <span ><b>findAttributeDictionary</b></span>
-                        <a href="#findAttributeDictionary"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>findAttributeDictionaryName</b></span>
+                        <a href="#findAttributeDictionaryName"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findAttributeDictionary(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>findAttributeDictionaryName(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="195"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:195</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="227"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:227</a></div>
                         </td>
                     </tr>
 
@@ -920,8 +946,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="183"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:183</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="215"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:215</a></div>
                         </td>
                     </tr>
 
@@ -980,15 +1006,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findDeviceName(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>findDeviceName(id: string | null)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="155"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:155</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="183"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:183</a></div>
                         </td>
                     </tr>
 
@@ -1011,7 +1037,7 @@
                                         <tr>
                                                 <td>id</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        <code>string | null</code>
                                             </td>
 
                                             <td>
@@ -1054,8 +1080,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="162"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:162</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="190"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:190</a></div>
                         </td>
                     </tr>
 
@@ -1121,8 +1147,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="187"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:187</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="219"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:219</a></div>
                         </td>
                     </tr>
 
@@ -1158,8 +1184,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="174"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:174</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="202"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:202</a></div>
                         </td>
                     </tr>
 
@@ -1195,8 +1221,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="147"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:147</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:175</a></div>
                         </td>
                     </tr>
 
@@ -1232,8 +1258,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="166"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:166</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="194"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:194</a></div>
                         </td>
                     </tr>
 
@@ -1256,6 +1282,7 @@
                     <a name="LoadAttributes"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
                         <span ><b>LoadAttributes</b></span>
                         <a href="#LoadAttributes"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1271,8 +1298,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="68"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:68</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -1281,7 +1308,7 @@
                 <td class="col-md-4">
 
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
                 </td>
@@ -1292,26 +1319,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="navigateMethod"></a>
+                    <a name="navigateToAttributeList"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
-                        <span ><b>navigateMethod</b></span>
-                        <a href="#navigateMethod"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>navigateToAttributeList</b></span>
+                        <a href="#navigateToAttributeList"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>navigateMethod()</code>
+                    <code>navigateToAttributeList()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="85"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:85</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:100</a></div>
                         </td>
                     </tr>
 
@@ -1333,6 +1360,7 @@
                 <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
+                            <span class="modifier">Async</span>
                         <span ><b>ngOnInit</b></span>
                         <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1340,15 +1368,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnInit()</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="60"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:60</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:68</a></div>
                         </td>
                     </tr>
 
@@ -1357,7 +1386,7 @@
                 <td class="col-md-4">
 
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
                 </td>
@@ -1386,8 +1415,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="56"
-                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:56</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -1452,7 +1481,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>AttributeDictionary[]</code>
+                        <i>Type : </i>    <code>AttributesDictionary[]</code>
 
                     </td>
                 </tr>
@@ -1463,7 +1492,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -1494,7 +1523,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -1525,7 +1554,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -1552,7 +1581,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -1578,12 +1607,43 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;attributes&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="componentName"></a>
+                    <span class="name">
+                        <span ><b>componentName</b></span>
+                        <a href="#componentName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>&#x27;Attributes&#x27;</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -1609,7 +1669,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -1640,7 +1700,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -1660,7 +1720,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Device.html" target="_self" >Device</a></code>
+                        <i>Type : </i>        <code><a href="../classes/Device.html" target="_self" >Device | null</a></code>
 
                     </td>
                 </tr>
@@ -1671,7 +1731,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -1702,7 +1762,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -1728,7 +1788,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -1759,7 +1819,38 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageSize"></a>
+                    <span class="name">
+                        <span ><b>pageSize</b></span>
+                        <a href="#pageSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>5</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -1785,7 +1876,38 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="totalItems"></a>
+                    <span class="name">
+                        <span ><b>totalItems</b></span>
+                        <a href="#totalItems"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/attribute/attribute-list/attribute-list.component.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -1798,27 +1920,32 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { lastValueFrom } from &#x27;rxjs&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { lastValueFrom } from &#x27;rxjs&#x27;
 
-import { Component, Input, NgZone, OnInit } from &#x27;@angular/core&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
+import { Component, Input, NgZone, OnInit } from &#x27;@angular/core&#x27;
+import { Router } from &#x27;@angular/router&#x27;
 
-import { AttributeDictionaryService } from &#x27;../../../services/attribute-dictionary.service&#x27;;
-import { AttributeService } from &#x27;../../../services/attribute.service&#x27;;
-import { ConnectionService } from &#x27;../../../services/connection.service&#x27;;
-import { DeviceService } from &#x27;../../../services/device.service&#x27;;
-import { LogService } from &#x27;../../../services/log.service&#x27;;
-import { ModelsService } from &#x27;../../../services/models.service&#x27;;
-import { Attribute } from &#x27;../../../shared/attribute&#x27;;
-import { AttributeDictionary } from &#x27;../../../shared/attribute-dictionary&#x27;;
-import { Connection } from &#x27;../../../shared/connection&#x27;;
-import { Device } from &#x27;../../../shared/device&#x27;;
-import { Model } from &#x27;../../../shared/model&#x27;;
+import { AttributeDictionaryService } from &#x27;../../../services/attribute-dictionary.service&#x27;
+import { AttributeService } from &#x27;../../../services/attribute.service&#x27;
+import { ConnectionService } from &#x27;../../../services/connection.service&#x27;
+import { DeviceService } from &#x27;../../../services/device.service&#x27;
+import { LogService } from &#x27;../../../services/log.service&#x27;
+import { ModelsService } from &#x27;../../../services/models.service&#x27;
+import { Attribute } from &#x27;../../../shared/attribute&#x27;
+import { AttributesDictionary } from &#x27;../../../shared/AttributesDictionary&#x27;
+import { Connection } from &#x27;../../../shared/connection&#x27;
+import { Device } from &#x27;../../../shared/device&#x27;
+import { Model } from &#x27;../../../shared/model&#x27;
+import { CommonModule } from &#x27;@angular/common&#x27;
+import { LogComponent } from &#x27;../../log/log.component&#x27;
+import { NgbPaginationModule } from &#x27;@ng-bootstrap/ng-bootstrap&#x27;
 
 @Component({
   selector: &#x27;app-attribute-list&#x27;,
   templateUrl: &#x27;./attribute-list.component.html&#x27;,
   styleUrls: [&#x27;./attribute-list.component.scss&#x27;],
+  standalone: true,
+  imports: [CommonModule, LogComponent, NgbPaginationModule],
 })
 export class AttributeListComponent implements OnInit {
   /**
@@ -1830,15 +1957,18 @@ export class AttributeListComponent implements OnInit {
 
   attributeList: Attribute[] &#x3D; []
   selectedAttribute: Attribute
-  attributePage &#x3D; 1
-  component &#x3D; &#x27;Attributes&#x27;
+  attributePage &#x3D; 1 // Current page
+  pageSize &#x3D; 5 // Number of items per page
+  totalItems &#x3D; 0 // Total number of items
+  component &#x3D; &#x27;attributes&#x27;
+  componentName &#x3D; &#x27;Attributes&#x27;
 
   deviceDictionary: Device[] &#x3D; []
   modelDictionary: Model[] &#x3D; []
   connectionDictionary: Connection[] &#x3D; []
-  attributeDictionary: AttributeDictionary[] &#x3D; []
+  attributeDictionary: AttributesDictionary[] &#x3D; []
 
-  device: Device &#x3D; new Device() // for find attributes
+  device: Device | null &#x3D; new Device() // for find attributes
   model: Model
   connection: Connection
 
@@ -1857,69 +1987,85 @@ export class AttributeListComponent implements OnInit {
     return JSON.stringify(str, null, 2)
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getDeviceList()
     this.getModelList()
     this.getConnectionList()
     this.getAttributeDictionaryList()
-    this.LoadAttributes()
+    await this.LoadAttributes()
   }
 
-  private LoadAttributes() {
+  private async LoadAttributes() {
     // @TODO: #62 show data depends of context attributeComponent and attributeComponentObject
     console.log(&#x27;-------------------&lt;  LoadAttributes  &gt;-------------------&#x27;)
     if (this.attributeComponent &#x3D;&#x3D;&#x3D; &#x27;Device&#x27; &amp;&amp; this.attributeComponentObject !&#x3D; null) {
       console.log(
         &#x27;LoadAttributes.GetContextAttributes: &#x27; + this.attributeComponent + &#x27; &#x27; + this.attributeComponentObject,
       )
-      this.attributeList &#x3D; this.attributeService.GetContextAttributes(
-        this.attributeComponent,
-        this.attributeComponentObject,
-      )
+      let parsedObject: any &#x3D; this.attributeComponentObject
+      if (typeof this.attributeComponentObject &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+        try {
+          parsedObject &#x3D; JSON.parse(this.attributeComponentObject)
+        } catch (e) {
+          console.error(&#x27;Failed to parse attributeComponentObject as JSON:&#x27;, e)
+          parsedObject &#x3D; this.attributeComponentObject // fallback to original string
+        }
+      }
+      this.attributeList &#x3D; await this.attributeService.GetContextAttributes(this.attributeComponent, parsedObject)
     } else {
       console.log(&#x27;LoadAttributes.attributeService.GetAttributesSync()&#x27;)
-      this.attributeList &#x3D; this.attributeService.GetAttributesSync()
+      this.attributeList &#x3D; await this.attributeService.GetAttributesSync()
+      this.totalItems &#x3D; this.attributeList.length // Set total items
     }
   }
 
-  async navigateMethod() {
+  async navigateToAttributeList() {
     try {
       // Perform some operations here
-      await this.router.navigate([&#x27;/attribute-dictionary-list&#x27;])
+      const navigationResult &#x3D; await this.router.navigate([&#x27;/attribute-list&#x27;])
+      if (!navigationResult) {
+        console.error(&#x27;Navigation to /attribute-list failed&#x27;)
+      }
     } catch (error) {
       console.error(&#x27;Navigation error:&#x27;, error)
     }
   }
-  async DeleteAttribute(id: string) {
+
+  async deleteAttribute(id: string) {
     try {
-      await this.logService
-        .CreateLog({
-          message: { id: id },
+      await lastValueFrom(
+        this.logService.CreateLog({
+          message: { _id: id },
           objectId: id,
           operation: &#x27;Delete&#x27;,
           component: this.component,
-        })
-        .toPromise() // Convert observable to promise and await it
-
-      const data: Attribute &#x3D; await lastValueFrom(this.attributeService.DeleteAttribute(id)) // Await the deletion
-
+        }),
+      )
+      const data: Attribute &#x3D; await lastValueFrom(this.attributeService.DeleteAttribute(id))
       console.log(data)
-      this.LoadAttributes()
-      await this.navigateMethod()
+      await this.LoadAttributes()
+      await this.navigateToAttributeList()
     } catch (error) {
       console.error(&#x27;Error deleting attribute:&#x27;, error)
     }
   }
 
   async CloneAttribute(id: string) {
-    await this.logService
-      .CreateLog({
-        message: { id: id, id_new: &#x27;todo!&#x27; },
-        operation: &#x27;Clone&#x27;,
-        component: this.component,
-      })
-      .toPromise()
-    await this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;attributes-list&#x27;))
+    try {
+      // Clone the attribute and get the new attribute&#x27;s ID
+      const newId &#x3D; this.attributeService.CloneAttribute(id)
+      await this.logService
+        .CreateLog({
+          message: { id, id_new: newId },
+          operation: &#x27;Clone&#x27;,
+          component: this.component,
+        })
+        .toPromise()
+      this.LoadAttributes()
+      await this.router.navigateByUrl(&#x27;attributes-list&#x27;)
+    } catch (error) {
+      console.error(&#x27;Error cloning attribute:&#x27;, error)
+    }
   }
 
   async AddAttribute() {
@@ -1931,8 +2077,9 @@ export class AttributeListComponent implements OnInit {
     await this.router.navigate([&#x27;edit-attribute&#x27;, this.selectedAttribute._id])
   }
 
-  etDevice(id: string) {
-    return this.deviceService.GetDevices().subscribe((data: Device[]) &#x3D;&gt; {
+  async fetchDevice(id: string) {
+    try {
+      const data: Device[] &#x3D; await lastValueFrom(this.deviceService.GetDevices().pipe())
       const foundDevice &#x3D; data.find((device: Device): boolean &#x3D;&gt; device._id &#x3D;&#x3D;&#x3D; id)
       if (foundDevice) {
         this.device &#x3D; foundDevice
@@ -1941,7 +2088,10 @@ export class AttributeListComponent implements OnInit {
         // Handle the case where the device is not found, e.g., set this.device to null or show an error message
         this.device &#x3D; new Device() // or null
       }
-    })
+    } catch (error) {
+      console.error(&#x27;Error fetching devices:&#x27;, error)
+      this.device &#x3D; new Device()
+    }
   }
 
   getDeviceList() {
@@ -1952,15 +2102,15 @@ export class AttributeListComponent implements OnInit {
     })
   }
 
-  findDeviceName(id: string): string {
+  findDeviceName(id: string | null): string {
     if (id &#x3D;&#x3D;&#x3D; null) {
       return &#x27;&#x27;
     }
-    return this.deviceDictionary.find((e) &#x3D;&gt; e._id &#x3D;&#x3D;&#x3D; id)?.name as string
+    return (this.deviceDictionary.find((e) &#x3D;&gt; e._id &#x3D;&#x3D;&#x3D; id)?.name as string) ?? &#x27;&#x27;
   }
 
   findModelName(id: string): string {
-    return this.modelDictionary.find((e) &#x3D;&gt; e._id &#x3D;&#x3D;&#x3D; id)?.name as string
+    return (this.modelDictionary.find((e) &#x3D;&gt; e._id &#x3D;&#x3D;&#x3D; id)?.name as string) ?? &#x27;&#x27;
   }
 
   getModelList() {
@@ -1972,28 +2122,33 @@ export class AttributeListComponent implements OnInit {
   }
 
   getConnectionList() {
-    return this.connectionService.GetConnections().subscribe((data: Connection[]) &#x3D;&gt; {
-      const tmp &#x3D; new Connection()
-      // data &#x3D; [tmp, ...data]
-      data.unshift(tmp)
-      this.connectionDictionary &#x3D; data
-    })
+    return this.connectionService.GetConnections().subscribe(
+      (data: Connection[]) &#x3D;&gt; {
+        const tmp &#x3D; new Connection()
+        data.unshift(tmp)
+        this.connectionDictionary &#x3D; data
+      },
+      (error) &#x3D;&gt; {
+        console.error(&#x27;Error fetching connections:&#x27;, error)
+      },
+    )
   }
 
   findConnectionName(id: string): string {
-    return this.connectionDictionary.find((e) &#x3D;&gt; e._id &#x3D;&#x3D;&#x3D; id)?.name as string
+    return (this.connectionDictionary.find((e) &#x3D;&gt; e._id &#x3D;&#x3D;&#x3D; id)?.name as string) ?? &#x27;&#x27;
   }
 
   getAttributeDictionaryList() {
-    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) &#x3D;&gt; {
-      const tmp &#x3D; new AttributeDictionary()
+    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributesDictionary[]) &#x3D;&gt; {
+      const tmp &#x3D; new AttributesDictionary()
       data &#x3D; [tmp, ...data]
       this.attributeDictionary &#x3D; data
     })
   }
 
-  findAttributeDictionary(id: string): string {
-    return this.attributeDictionary.find((e) &#x3D;&gt; e._id &#x3D;&#x3D;&#x3D; id)?.name as string
+  findAttributeDictionaryName(id: string): string {
+    const name &#x3D; this.attributeDictionary.find((e) &#x3D;&gt; e._id &#x3D;&#x3D;&#x3D; id)?.name
+    return typeof name &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? name : &#x27;&#x27;
   }
 }
 </code></pre>
@@ -2015,86 +2170,67 @@ export class AttributeListComponent implements OnInit {
       &lt;/tr&gt;
     &lt;/thead&gt;
     &lt;tbody&gt;
-      &lt;tr
-        *ngFor&#x3D;&quot;
-          let attribute of attributeList
-            | paginate
-              : {
-                  id: &#x27;attributeListPagination&#x27;,
-                  itemsPerPage: 5,
-                  currentPage: attributePage,
-                }
-        &quot;&gt;
+      @for (attribute of attributeList | slice: (attributePage - 1) * pageSize : attributePage * pageSize; track
+      attribute) {
+      &lt;tr&gt;
         &lt;td&gt;
-          &lt;div title&#x3D;&quot;{{ attribute._id }}&quot;&gt;#&lt;/div&gt;
+          &lt;div title&#x3D;&quot;{{ attribute._id }}&quot;&gt;{{ attribute._id }}&lt;/div&gt;
         &lt;/td&gt;
         &lt;td&gt;
           &lt;a href&#x3D;&quot;edit-device/{{ attribute.deviceId }}&quot; title&#x3D;&quot;{{ attribute.deviceId }}&quot;&gt;{{
             findDeviceName(attribute.deviceId || &#x27;&#x27;)
-          }}&lt;/a&gt;
+            }}&lt;/a&gt;
         &lt;/td&gt;
         &lt;td&gt;
           &lt;a href&#x3D;&quot;edit-model/{{ attribute.modelId }}&quot; title&#x3D;&quot;{{ attribute.modelId }}&quot;&gt;{{
             findModelName(attribute.modelId || &#x27;&#x27;)
-          }}&lt;/a&gt;
+            }}&lt;/a&gt;
         &lt;/td&gt;
         &lt;td&gt;
           &lt;a href&#x3D;&quot;edit-connection/{{ attribute.connectionId }}&quot; title&#x3D;&quot;{{ attribute.connectionId }}&quot;&gt;{{
             findConnectionName(attribute.connectionId || &#x27;&#x27;)
-          }}&lt;/a&gt;
+            }}&lt;/a&gt;
         &lt;/td&gt;
         &lt;td&gt;
-          &lt;a
-            href&#x3D;&quot;edit-attribute-dictionary/{{ attribute.attributeDictionaryId }}&quot;
-            title&#x3D;&quot;{{ attribute.attributeDictionaryId }}&quot;
-            &gt;{{ findAttributeDictionary(attribute.attributeDictionaryId) }}&lt;/a
-          &gt;
+          &lt;a href&#x3D;&quot;edit-attribute-dictionary/{{ attribute.attributeDictionaryId }}&quot;
+            title&#x3D;&quot;{{ attribute.attributeDictionaryId }}&quot;&gt;{{
+            findAttributeDictionaryName(attribute.attributeDictionaryId) }}&lt;/a&gt;
         &lt;/td&gt;
         &lt;td&gt;{{ attribute.value }}&lt;/td&gt;
         &lt;td&gt;
-          &lt;div class&#x3D;&quot;btn-group float-md-end&quot; role&#x3D;&quot;group&quot; aria-label&#x3D;&quot;attribute-operations&quot;&gt;
-            &lt;button
-              type&#x3D;&quot;button&quot;
-              class&#x3D;&quot;btn btn-success btn-sm move-right&quot;
-              id&#x3D;&quot;edit-attribute&quot;
+          &lt;fieldset class&#x3D;&quot;btn-group float-md-end&quot; aria-label&#x3D;&quot;attribute-operations&quot;&gt;
+            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success btn-sm move-right&quot; id&#x3D;&quot;edit-attribute&quot;
               (click)&#x3D;&quot;EditAttribute(attribute)&quot;&gt;
               Edit
             &lt;/button&gt;
-            &lt;button
-              type&#x3D;&quot;button&quot;
-              id&#x3D;&quot;delete-attribute&quot;
-              class&#x3D;&quot;btn btn-danger btn-sm&quot;
-              (click)&#x3D;&quot;DeleteAttribute(attribute._id)&quot;&gt;
+            &lt;button type&#x3D;&quot;button&quot; id&#x3D;&quot;delete-attribute&quot; class&#x3D;&quot;btn btn-danger btn-sm&quot;
+              (click)&#x3D;&quot;deleteAttribute(attribute._id)&quot;&gt;
               Delete
             &lt;/button&gt;
-            &lt;button
-              type&#x3D;&quot;button&quot;
-              id&#x3D;&quot;clone-attribute&quot;
-              class&#x3D;&quot;btn btn-info btn-sm&quot;
+            &lt;button type&#x3D;&quot;button&quot; id&#x3D;&quot;clone-attribute&quot; class&#x3D;&quot;btn btn-info btn-sm&quot;
               (click)&#x3D;&quot;CloneAttribute(attribute._id)&quot;&gt;
               Clone
             &lt;/button&gt;
-          &lt;/div&gt;
+          &lt;/fieldset&gt;
         &lt;/td&gt;
       &lt;/tr&gt;
+      }
     &lt;/tbody&gt;
   &lt;/table&gt;
-  &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success btn-sm&quot; (click)&#x3D;&quot;AddAttribute()&quot;&gt;
+  &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success btn-sm mb-3  me-2 p-2 &quot; (click)&#x3D;&quot;AddAttribute()&quot;&gt;
     &lt;i class&#x3D;&quot;bi bi-plus-lg&quot;&gt;&lt;/i&gt; Add
   &lt;/button&gt;
-  &lt;pagination-controls (pageChange)&#x3D;&quot;attributePage &#x3D; $event&quot; id&#x3D;&quot;attributeListPagination&quot;&gt;&lt;/pagination-controls&gt;
+
+  &lt;ngb-pagination class&#x3D;&quot;float-end me-2&quot; [(page)]&#x3D;&quot;attributePage&quot; [pageSize]&#x3D;&quot;pageSize&quot;
+    [collectionSize]&#x3D;&quot;totalItems&quot; [maxSize]&#x3D;&quot;5&quot; [boundaryLinks]&#x3D;&quot;true&quot; aria-label&#x3D;&quot;Attribute pagination&quot;&gt;
+  &lt;/ngb-pagination&gt;
 &lt;/div&gt;
 
-&lt;div class&#x3D;&quot;fs-7 fw-lighter deviceid&quot;&gt;attributeComponent: {{ this.attributeComponent }}&lt;/div&gt;
-&lt;div class&#x3D;&quot;fs-7 fw-lighter deviceid&quot;&gt;attributeComponentObject: {{ this.attributeComponentObject }}&lt;/div&gt;
-&lt;div class&#x3D;&quot;fs-7 fw-lighter deviceid&quot;&gt;attributeComponent &#x3D;&#x3D;&#x3D; &#x27;&#x27;: {{ attributeComponent &#x3D;&#x3D;&#x3D; &#x27;&#x27; }}&lt;/div&gt;
-&lt;div class&#x3D;&quot;fs-7 fw-lighter deviceid&quot;&gt;attributeComponent &#x3D;&#x3D;&#x3D; undefined: {{ attributeComponent &#x3D;&#x3D;&#x3D; undefined }}&lt;/div&gt;
-&lt;div class&#x3D;&quot;fs-7 fw-lighter deviceid&quot;&gt;component: {{ component }}&lt;/div&gt;
-
-&lt;app-log
-  *ngIf&#x3D;&quot;attributeComponent &#x3D;&#x3D;&#x3D; &#x27;&#x27; || attributeComponent &#x3D;&#x3D;&#x3D; undefined&quot;
-  [attributeComponentObject]&#x3D;&quot;this.device&quot;
-  [component]&#x3D;&quot;component&quot;&gt;&lt;/app-log&gt;
+@if (attributeComponent &#x3D;&#x3D;&#x3D; &#x27;&#x27; || attributeComponent &#x3D;&#x3D;&#x3D; undefined) {
+&lt;app-log [attributeComponentObject]&#x3D;&quot;this.device!&quot; [component]&#x3D;&quot;component&quot; [componentName]&#x3D;&quot;componentName&quot;
+  [isComponent]&#x3D;&quot;true&quot;&gt;
+&lt;/app-log&gt;
+}
 </code></pre>
     </div>
 
@@ -2130,8 +2266,8 @@ export class AttributeListComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <h2><i class="bi bi-bar-chart"></i> Attributes</h2>  <table class="table table-striped table-hover">    <thead>      <tr>        <th scope="col">Id</th>        <th scope="col">Device</th>        <th scope="col">Model</th>        <th scope="col">Connection</th>        <th scope="col">Attribute Dictionary</th>        <th scope="col">Value</th>        <th scope="col"></th>      </tr>    </thead>    <tbody>      <tr        *ngFor="          let attribute of attributeList            | paginate              : {                  id: \'attributeListPagination\',                  itemsPerPage: 5,                  currentPage: attributePage,                }        ">        <td>          <div title="{{ attribute._id }}">#</div>        </td>        <td>          <a href="edit-device/{{ attribute.deviceId }}" title="{{ attribute.deviceId }}">{{            findDeviceName(attribute.deviceId || \'\')          }}</a>        </td>        <td>          <a href="edit-model/{{ attribute.modelId }}" title="{{ attribute.modelId }}">{{            findModelName(attribute.modelId || \'\')          }}</a>        </td>        <td>          <a href="edit-connection/{{ attribute.connectionId }}" title="{{ attribute.connectionId }}">{{            findConnectionName(attribute.connectionId || \'\')          }}</a>        </td>        <td>          <a            href="edit-attribute-dictionary/{{ attribute.attributeDictionaryId }}"            title="{{ attribute.attributeDictionaryId }}"            >{{ findAttributeDictionary(attribute.attributeDictionaryId) }}</a          >        </td>        <td>{{ attribute.value }}</td>        <td>          <div class="btn-group float-md-end" role="group" aria-label="attribute-operations">            <button              type="button"              class="btn btn-success btn-sm move-right"              id="edit-attribute"              (click)="EditAttribute(attribute)">              Edit            </button>            <button              type="button"              id="delete-attribute"              class="btn btn-danger btn-sm"              (click)="DeleteAttribute(attribute._id)">              Delete            </button>            <button              type="button"              id="clone-attribute"              class="btn btn-info btn-sm"              (click)="CloneAttribute(attribute._id)">              Clone            </button>          </div>        </td>      </tr>    </tbody>  </table>  <button type="button" class="btn btn-success btn-sm" (click)="AddAttribute()">    <i class="bi bi-plus-lg"></i> Add  </button>  <pagination-controls (pageChange)="attributePage = $event" id="attributeListPagination"></pagination-controls></div><div class="fs-7 fw-lighter deviceid">attributeComponent: {{ this.attributeComponent }}</div><div class="fs-7 fw-lighter deviceid">attributeComponentObject: {{ this.attributeComponentObject }}</div><div class="fs-7 fw-lighter deviceid">attributeComponent === \'\': {{ attributeComponent === \'\' }}</div><div class="fs-7 fw-lighter deviceid">attributeComponent === undefined: {{ attributeComponent === undefined }}</div><div class="fs-7 fw-lighter deviceid">component: {{ component }}</div><app-log  *ngIf="attributeComponent === \'\' || attributeComponent === undefined"  [attributeComponentObject]="this.device"  [component]="component"></app-log></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsyncObservablePipeComponent', 'selector': 'async-observable-pipe'},{'name': 'AttributeAddComponent', 'selector': 'app-add-attribute'},{'name': 'AttributeDictionaryAddComponent', 'selector': 'app-add-attribute-dictionary'},{'name': 'AttributeDictionaryEditComponent', 'selector': 'app-edit-attribute-dictionary'},{'name': 'AttributeDictionaryListComponent', 'selector': 'app-attribute-dictionary-list'},{'name': 'AttributeEditComponent', 'selector': 'app-edit-attribute'},{'name': 'AttributeListComponent', 'selector': 'app-attribute-list'},{'name': 'ConnectionAddComponent', 'selector': 'app-add-connection'},{'name': 'ConnectionEditComponent', 'selector': 'app-edit-connection'},{'name': 'ConnectionListComponent', 'selector': 'app-connection-list'},{'name': 'CubeComponent', 'selector': 'app-cube'},{'name': 'DeviceAddComponent', 'selector': 'app-add-device'},{'name': 'DeviceEditComponent', 'selector': 'app-edit-device'},{'name': 'DeviceListComponent', 'selector': 'app-device-list'},{'name': 'FloorAddComponent', 'selector': 'app-add-floor'},{'name': 'FloorEditComponent', 'selector': 'app-edit-floor'},{'name': 'FloorListComponent', 'selector': 'app-floor-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LogComponent', 'selector': 'app-log'},{'name': 'ModelAddComponent', 'selector': 'app-add-model'},{'name': 'ModelEditComponent', 'selector': 'app-edit-model'},{'name': 'ModelsListComponent', 'selector': 'app-models-list'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <h2><i class="bi bi-bar-chart"></i> Attributes</h2>  <table class="table table-striped table-hover">    <thead>      <tr>        <th scope="col">Id</th>        <th scope="col">Device</th>        <th scope="col">Model</th>        <th scope="col">Connection</th>        <th scope="col">Attribute Dictionary</th>        <th scope="col">Value</th>        <th scope="col"></th>      </tr>    </thead>    <tbody>      @for (attribute of attributeList | slice: (attributePage - 1) * pageSize : attributePage * pageSize; track      attribute) {      <tr>        <td>          <div title="{{ attribute._id }}">{{ attribute._id }}</div>        </td>        <td>          <a href="edit-device/{{ attribute.deviceId }}" title="{{ attribute.deviceId }}">{{            findDeviceName(attribute.deviceId || \'\')            }}</a>        </td>        <td>          <a href="edit-model/{{ attribute.modelId }}" title="{{ attribute.modelId }}">{{            findModelName(attribute.modelId || \'\')            }}</a>        </td>        <td>          <a href="edit-connection/{{ attribute.connectionId }}" title="{{ attribute.connectionId }}">{{            findConnectionName(attribute.connectionId || \'\')            }}</a>        </td>        <td>          <a href="edit-attribute-dictionary/{{ attribute.attributeDictionaryId }}"            title="{{ attribute.attributeDictionaryId }}">{{            findAttributeDictionaryName(attribute.attributeDictionaryId) }}</a>        </td>        <td>{{ attribute.value }}</td>        <td>          <fieldset class="btn-group float-md-end" aria-label="attribute-operations">            <button type="button" class="btn btn-success btn-sm move-right" id="edit-attribute"              (click)="EditAttribute(attribute)">              Edit            </button>            <button type="button" id="delete-attribute" class="btn btn-danger btn-sm"              (click)="deleteAttribute(attribute._id)">              Delete            </button>            <button type="button" id="clone-attribute" class="btn btn-info btn-sm"              (click)="CloneAttribute(attribute._id)">              Clone            </button>          </fieldset>        </td>      </tr>      }    </tbody>  </table>  <button type="button" class="btn btn-success btn-sm mb-3  me-2 p-2 " (click)="AddAttribute()">    <i class="bi bi-plus-lg"></i> Add  </button>  <ngb-pagination class="float-end me-2" [(page)]="attributePage" [pageSize]="pageSize"    [collectionSize]="totalItems" [maxSize]="5" [boundaryLinks]="true" aria-label="Attribute pagination">  </ngb-pagination></div>@if (attributeComponent === \'\' || attributeComponent === undefined) {<app-log [attributeComponentObject]="this.device!" [component]="component" [componentName]="componentName"  [isComponent]="true"></app-log>}</div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AttributeAddComponent', 'selector': 'app-add-attribute'},{'name': 'AttributeDictionaryAddComponent', 'selector': 'app-add-attribute-dictionary'},{'name': 'AttributeDictionaryEditComponent', 'selector': 'app-edit-attribute-dictionary'},{'name': 'AttributeDictionaryListComponent', 'selector': 'app-attribute-dictionary-list'},{'name': 'AttributeEditComponent', 'selector': 'app-edit-attribute'},{'name': 'AttributeListComponent', 'selector': 'app-attribute-list'},{'name': 'ConnectionAddComponent', 'selector': 'app-add-connection'},{'name': 'ConnectionEditComponent', 'selector': 'app-edit-connection'},{'name': 'ConnectionListComponent', 'selector': 'app-connection-list'},{'name': 'CubeComponent', 'selector': 'app-cube'},{'name': 'DeviceAddComponent', 'selector': 'app-add-device'},{'name': 'DeviceEditComponent', 'selector': 'app-edit-device'},{'name': 'DeviceListComponent', 'selector': 'app-device-list'},{'name': 'FloorAddComponent', 'selector': 'app-add-floor'},{'name': 'FloorEditComponent', 'selector': 'app-edit-floor'},{'name': 'FloorListComponent', 'selector': 'app-floor-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LogComponent', 'selector': 'app-log'},{'name': 'ModelAddComponent', 'selector': 'app-add-model'},{'name': 'ModelEditComponent', 'selector': 'app-edit-model'},{'name': 'ModelsListComponent', 'selector': 'app-models-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AttributeListComponent'};
 </script>
@@ -2207,7 +2343,6 @@ export class AttributeListComponent implements OnInit {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

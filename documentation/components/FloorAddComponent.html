@@ -156,6 +156,13 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>ReactiveFormsModule</code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -193,16 +200,22 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#dimensionFormGroup" >dimensionFormGroup</a>
-                            </li>
-                            <li>
                                 <a href="#floor" >floor</a>
                             </li>
                             <li>
                                 <a href="#floorForm" >floorForm</a>
                             </li>
                             <li>
+                                <a href="#isSubmitDisabled" >isSubmitDisabled</a>
+                            </li>
+                            <li>
                                 <a href="#isSubmitted" >isSubmitted</a>
+                            </li>
+                            <li>
+                                <a href="#selectedFloor" >selectedFloor</a>
+                            </li>
+                            <li>
+                                <a href="#showForm" >showForm</a>
                             </li>
                             <li>
                                 <a href="#valid" >valid</a>
@@ -226,7 +239,7 @@
                                 <a href="#changeDescription" >changeDescription</a>
                             </li>
                             <li>
-                                <a href="#changeHpos" >changeHpos</a>
+                                <a href="#changeHPos" >changeHPos</a>
                             </li>
                             <li>
                                 <a href="#changeId" >changeId</a>
@@ -247,6 +260,9 @@
                                 <a href="#changeYpos" >changeYpos</a>
                             </li>
                             <li>
+                                <a href="#createDimensionGroup" >createDimensionGroup</a>
+                            </li>
+                            <li>
                                 <a href="#deleteDimension" >deleteDimension</a>
                             </li>
                             <li>
@@ -256,13 +272,23 @@
                                 <a href="#generateFloor" >generateFloor</a>
                             </li>
                             <li>
+                                <a href="#getDimension" >getDimension</a>
+                            </li>
+                            <li>
+                                <a href="#isControlValid" >isControlValid</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#submitForm" >submitForm</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#onSubmit" >onSubmit</a>
                             </li>
                             <li>
                                 <a href="#toText" >toText</a>
+                            </li>
+                            <li>
+                                <a href="#trackByFn" >trackByFn</a>
                             </li>
                         </ul>
                     </td>
@@ -281,10 +307,13 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                    <a href="#dimensionForms" >dimensionForms</a>
+                                </li>
+                                <li>
                                     <a href="#_id" >_id</a>
                                 </li>
                                 <li>
-                                    <a href="#name" >name</a>
+                                    <a href="#nameControl" >nameControl</a>
                                 </li>
                                 <li>
                                     <a href="#street" >street</a>
@@ -297,9 +326,6 @@
                                 </li>
                                 <li>
                                     <a href="#description" >description</a>
-                                </li>
-                                <li>
-                                    <a href="#x" >x</a>
                                 </li>
                                 <li>
                                     <a href="#y" >y</a>
@@ -332,12 +358,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(ngZone: NgZone, router: Router, floorService: <a href="../injectables/FloorService.html" target="_self">FloorService</a>, logService: <a href="../injectables/LogService.html" target="_self">LogService</a>)</code>
+<code>constructor(router: Router, floorService: <a href="../injectables/FloorService.html" target="_self">FloorService</a>, logService: <a href="../injectables/LogService.html" target="_self">LogService</a>, ngZone: NgZone)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:51</a></div>
                             </td>
                         </tr>
 
@@ -354,18 +380,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                <tr>
-                                                        <td>ngZone</td>
-                                                  
-                                                        <td>
-                                                                    <code>NgZone</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
                                                 <tr>
                                                         <td>router</td>
                                                   
@@ -395,6 +409,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/LogService.html" target="_self" >LogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>ngZone</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgZone</code>
                                                         </td>
                                                   
                                                     <td>
@@ -440,8 +466,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="157"
-                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:157</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="203"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:203</a></div>
                         </td>
                     </tr>
 
@@ -477,8 +503,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="65"
-                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:65</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -540,24 +566,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="changeHpos"></a>
+                    <a name="changeHPos"></a>
                     <span class="name">
-                        <span ><b>changeHpos</b></span>
-                        <a href="#changeHpos"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>changeHPos</b></span>
+                        <a href="#changeHPos"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>changeHpos(i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, e: Event)</code>
+<code>changeHPos(i: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, e: Event)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="95"
-                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:95</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:100</a></div>
                         </td>
                     </tr>
 
@@ -635,8 +661,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="55"
-                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:55</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:68</a></div>
                         </td>
                     </tr>
 
@@ -702,8 +728,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="61"
-                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:61</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -769,8 +795,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="71"
-                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:71</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -848,8 +874,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="83"
-                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:83</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="92"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:92</a></div>
                         </td>
                     </tr>
 
@@ -927,8 +953,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="77"
-                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:77</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="88"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:88</a></div>
                         </td>
                     </tr>
 
@@ -1006,8 +1032,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="89"
-                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:89</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:96</a></div>
                         </td>
                     </tr>
 
@@ -1069,6 +1095,43 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="createDimensionGroup"></a>
+                    <span class="name">
+                        <span ><b>createDimensionGroup</b></span>
+                        <a href="#createDimensionGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createDimensionGroup()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>FormGroup</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="deleteDimension"></a>
                     <span class="name">
                         <span ><b>deleteDimension</b></span>
@@ -1085,8 +1148,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="170"
-                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:170</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="222"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:222</a></div>
                         </td>
                     </tr>
 
@@ -1152,8 +1215,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="184"
-                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:184</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="242"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:242</a></div>
                         </td>
                     </tr>
 
@@ -1219,8 +1282,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="174"
-                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:174</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="226"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:226</a></div>
                         </td>
                     </tr>
 
@@ -1232,6 +1295,176 @@
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDimension"></a>
+                    <span class="name">
+                        <span ><b>getDimension</b></span>
+                        <a href="#getDimension"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDimension(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, controlName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="161"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:161</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>controlName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isControlValid"></a>
+                    <span class="name">
+                        <span ><b>isControlValid</b></span>
+                        <a href="#isControlValid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isControlValid(arrayName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, controlName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="182"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:182</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>arrayName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>controlName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1256,8 +1489,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="51"
-                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:51</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -1277,24 +1510,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="submitForm"></a>
+                    <a name="onSubmit"></a>
                     <span class="name">
-                        <span ><b>submitForm</b></span>
-                        <a href="#submitForm"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Async</span>
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>submitForm()</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onSubmit()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="199"
-                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:199</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="266"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:266</a></div>
                         </td>
                     </tr>
 
@@ -1303,7 +1538,7 @@
                 <td class="col-md-4">
 
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
                 </td>
@@ -1330,8 +1565,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="149"
-                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:149</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="148"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:148</a></div>
                         </td>
                     </tr>
 
@@ -1373,45 +1608,91 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trackByFn"></a>
+                    <span class="name">
+                        <span ><b>trackByFn</b></span>
+                        <a href="#trackByFn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>trackByFn(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, item: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="262"
+                                    class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:262</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
     <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="dimensionFormGroup"></a>
-                    <span class="name">
-                        <span ><b>dimensionFormGroup</b></span>
-                        <a href="#dimensionFormGroup"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new FormGroup({
-    description: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
-    x: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-    y: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-    h: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-    xPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-    yPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-    hPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-  })</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:22</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -1425,13 +1706,13 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/Floor.html" target="_self" >Floor</a></code>
+                        <i>Type : </i>        <code><a href="../interfaces/Floors.html" target="_self" >Floors</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -1452,7 +1733,7 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>new FormGroup({
-    _id: new FormControl(&#x27;&#x27;, [Validators.required]),
+    _id: new FormControl(&#x27;&#x27;),
     name: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
     address: new FormGroup({
       street: new FormControl(&#x27;&#x27;, Validators.required),
@@ -1460,13 +1741,44 @@
       country: new FormControl(&#x27;Poland&#x27;, Validators.required),
       postcode: new FormControl(&#x27;&#x27;, Validators.required),
     }),
-    dimension: new FormArray([this.dimensionFormGroup]),
+    dimension: new FormArray([this.createDimensionGroup()]),
   })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSubmitDisabled"></a>
+                    <span class="name">
+                        <span ><b>isSubmitDisabled</b></span>
+                        <a href="#isSubmitDisabled"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -1491,7 +1803,69 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedFloor"></a>
+                    <span class="name">
+                        <span ><b>selectedFloor</b></span>
+                        <a href="#selectedFloor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Floors.html" target="_self" >Floors | null</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showForm"></a>
+                    <span class="name">
+                        <span ><b>showForm</b></span>
+                        <a href="#showForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -1522,7 +1896,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -1539,6 +1913,28 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="dimensionForms"></a>
+                        <span class="name"><b>dimensionForms</b><a href="#dimensionForms"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>dimensionForms()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:64</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="_id"></a>
                         <span class="name"><b>_id</b><a href="#_id"><span class="icon ion-ios-link"></span></a></span>
                     </td>
@@ -1551,7 +1947,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:101</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:104</a></div>
                                 </td>
                             </tr>
 
@@ -1561,19 +1957,19 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="name"></a>
-                        <span class="name"><b>name</b><a href="#name"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="nameControl"></a>
+                        <span class="name"><b>nameControl</b><a href="#nameControl"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>name()</code></span>
+                        <span class="accessor"><b>get</b><code>nameControl()</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:108</a></div>
                                 </td>
                             </tr>
 
@@ -1595,7 +1991,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:112</a></div>
                                 </td>
                             </tr>
 
@@ -1617,7 +2013,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:113</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:116</a></div>
                                 </td>
                             </tr>
 
@@ -1639,7 +2035,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:117</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:120</a></div>
                                 </td>
                             </tr>
 
@@ -1661,29 +2057,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:121</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="x"></a>
-                        <span class="name"><b>x</b><a href="#x"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>x()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:124</a></div>
                                 </td>
                             </tr>
 
@@ -1705,7 +2079,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:129</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:128</a></div>
                                 </td>
                             </tr>
 
@@ -1727,7 +2101,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:132</a></div>
                                 </td>
                             </tr>
 
@@ -1749,7 +2123,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:137</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:136</a></div>
                                 </td>
                             </tr>
 
@@ -1771,7 +2145,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:141</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:140</a></div>
                                 </td>
                             </tr>
 
@@ -1793,7 +2167,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:145</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:144</a></div>
                                 </td>
                             </tr>
 
@@ -1815,7 +2189,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:153</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/app/components/floors/add-floor/add-floor.component.ts:157</a></div>
                                 </td>
                             </tr>
 
@@ -1828,37 +2202,46 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;
 import { Component, NgZone, OnInit } from &#x27;@angular/core&#x27;
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from &#x27;@angular/forms&#x27;
+import { ReactiveFormsModule } from &#x27;@angular/forms&#x27;
+import { FormArray, FormControl, FormGroup, Validators } from &#x27;@angular/forms&#x27;
 import { Router } from &#x27;@angular/router&#x27;
 import { faker } from &#x27;@faker-js/faker&#x27;
+import { firstValueFrom } from &#x27;rxjs&#x27;
 
 import { FloorService } from &#x27;../../../services/floor.service&#x27;
 import { LogService } from &#x27;../../../services/log.service&#x27;
-import { Floor } from &#x27;../../../shared/floor&#x27;
+import { Floors } from &#x27;../../../shared/floors&#x27;
 import Validation from &#x27;../../../shared/validation&#x27;
 
 @Component({
   selector: &#x27;app-add-floor&#x27;,
   templateUrl: &#x27;./add-floor.component.html&#x27;,
   styleUrls: [&#x27;./add-floor.component.scss&#x27;],
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class FloorAddComponent implements OnInit {
-  floor: Floor
+  floor: Floors
   isSubmitted &#x3D; false
   valid: Validation &#x3D; new Validation()
+  selectedFloor: Floors | null &#x3D; null
+  showForm: boolean &#x3D; true
+  isSubmitDisabled: boolean &#x3D; false // Add this property and initialize it as needed
 
-  dimensionFormGroup &#x3D; new FormGroup({
-    description: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
-    x: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-    y: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-    h: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-    xPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-    yPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-    hPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-  })
+  // Helper method to create a dimension FormGroup
+  createDimensionGroup(): FormGroup {
+    return new FormGroup({
+      description: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
+      x: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+      y: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+      h: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+      xPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+      yPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+      hPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+    })
+  }
 
   floorForm &#x3D; new FormGroup({
-    _id: new FormControl(&#x27;&#x27;, [Validators.required]),
+    _id: new FormControl(&#x27;&#x27;),
     name: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
     address: new FormGroup({
       street: new FormControl(&#x27;&#x27;, Validators.required),
@@ -1866,18 +2249,22 @@ export class FloorAddComponent implements OnInit {
       country: new FormControl(&#x27;Poland&#x27;, Validators.required),
       postcode: new FormControl(&#x27;&#x27;, Validators.required),
     }),
-    dimension: new FormArray([this.dimensionFormGroup]),
+    dimension: new FormArray([this.createDimensionGroup()]),
   })
 
   constructor(
-    private ngZone: NgZone,
     private router: Router,
     private floorService: FloorService,
     private logService: LogService,
+    private ngZone: NgZone,
   ) {}
 
   ngOnInit(): void {
-    throw new Error(&#x27;Method not implemented.&#x27;)
+    // Initialization logic can go here if needed
+  }
+
+  get dimensionForms() {
+    return this.floorForm.get(&#x27;dimension&#x27;) as import(&#x27;@angular/forms&#x27;).FormArray
   }
 
   changeId(e: Event) {
@@ -1887,50 +2274,40 @@ export class FloorAddComponent implements OnInit {
   }
 
   changeName(e: Event) {
-    this.name?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.floorForm.get(&#x27;name&#x27;)?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeDescription(i: number, e: Event) {
-    this.floorForm.controls.dimension
-      .at(i)
-      .controls.description.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    ;(this.dimension.at(i) as FormGroup)
+      .get(&#x27;description&#x27;)
+      ?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeX(i: number, e: Event) {
-    this.floorForm.controls.dimension
-      .at(i)
-      .controls.x.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    ;(this.dimension.at(i) as FormGroup).get(&#x27;x&#x27;)?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeY(i: number, e: Event) {
-    this.floorForm.controls.dimension
-      .at(i)
-      .controls.y.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    ;(this.dimension.at(i) as FormGroup).get(&#x27;y&#x27;)?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeXpos(i: number, e: Event) {
-    this.floorForm.controls.dimension
-      .at(i)
-      .controls.xPos.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    ;(this.dimension.at(i) as FormGroup).get(&#x27;xPos&#x27;)?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeYpos(i: number, e: Event) {
-    this.floorForm.controls.dimension
-      .at(i)
-      .controls.yPos.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    ;(this.dimension.at(i) as FormGroup).get(&#x27;yPos&#x27;)?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
-  changeHpos(i: number, e: Event) {
-    this.floorForm.controls.dimension
-      .at(i)
-      .controls.hPos.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  changeHPos(i: number, e: Event) {
+    ;(this.dimension.at(i) as FormGroup).get(&#x27;hPos&#x27;)?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   get _id() {
     return this.floorForm.get(&#x27;_id&#x27;)
   }
 
-  get name() {
+  get nameControl() {
     return this.floorForm.get(&#x27;name&#x27;)
   }
 
@@ -1948,10 +2325,6 @@ export class FloorAddComponent implements OnInit {
 
   get description() {
     return this.floorForm.get(&#x27;description&#x27;)
-  }
-
-  get x() {
-    return this.floorForm.get(&#x27;dimension&#x27;)?.get(&#x27;x&#x27;)
   }
 
   get y() {
@@ -1975,24 +2348,77 @@ export class FloorAddComponent implements OnInit {
   }
 
   toText(data: unknown): string {
-    return JSON.stringify(data, null, &#x27; &#x27;)
+    try {
+      return JSON.stringify(data, null, &#x27; &#x27;)
+    } catch (error) {
+      console.error(&#x27;Error stringify data:&#x27;, error)
+      return &#x27;[Unable to display data]&#x27;
+    }
   }
 
   get dimension() {
     return this.floorForm.get(&#x27;dimension&#x27;) as FormArray
   }
 
+  getDimension(index: number, controlName: string) {
+    try {
+      const dimensionArray &#x3D; this.floorForm.get(&#x27;dimension&#x27;)
+      if (!(dimensionArray instanceof FormArray)) {
+        throw new Error(&quot;&#x27;dimension&#x27; is not a FormArray&quot;)
+      }
+      const group &#x3D; dimensionArray.at(index)
+      if (!(group instanceof FormGroup)) {
+        throw new Error(&#x60;No FormGroup at index ${index} in &#x27;dimension&#x27;&#x60;)
+      }
+      const control &#x3D; group.get(controlName)
+      if (!control) {
+        throw new Error(&#x60;Control &#x27;${controlName}&#x27; not found in group at index ${index}&#x60;)
+      }
+      return control
+    } catch (error) {
+      console.error(&#x27;getDimension error:&#x27;, error)
+      return null
+    }
+  }
+
+  isControlValid(arrayName: string, index: number, controlName: string): boolean {
+    try {
+      const array &#x3D; this.floorForm.get(arrayName)
+      if (!(array instanceof FormArray)) {
+        throw new Error(&#x60;Form control &#x27;${arrayName}&#x27; is not a FormArray.&#x60;)
+      }
+      const group &#x3D; array.at(index)
+      if (!(group instanceof FormGroup)) {
+        throw new Error(&#x60;No FormGroup at index ${index} in &#x27;${arrayName}&#x27;.&#x60;)
+      }
+      const control &#x3D; group.get(controlName)
+      if (!control) {
+        throw new Error(&#x60;Control &#x27;${controlName}&#x27; not found in group at index ${index}.&#x60;)
+      }
+      return control.valid
+    } catch (error) {
+      console.error(&#x27;isControlValid error:&#x27;, error)
+      return false
+    }
+  }
+
   addDimension() {
-    const fg &#x3D; new FormGroup({
-      description: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
-      x: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-      y: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-      h: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-      xPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-      yPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-      hPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
-    })
-    this.dimension.push(fg)
+    try {
+      const fg &#x3D; new FormGroup({
+        description: new FormControl(&#x27;&#x27;, [Validators.required, Validators.minLength(4)]),
+        x: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+        y: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+        h: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+        xPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+        yPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+        hPos: new FormControl(&#x27;&#x27;, [Validators.required, this.valid.numberValidator]),
+      })
+      this.dimension.push(fg)
+    } catch (error) {
+      console.error(&#x27;Error adding dimension:&#x27;, error)
+      // Optionally, show a user-friendly message or handle UI state
+      // e.g., this.isSubmitDisabled &#x3D; true;
+    }
   }
 
   deleteDimension(i: number) {
@@ -2000,40 +2426,80 @@ export class FloorAddComponent implements OnInit {
   }
 
   generateFloor() {
-    this.floorForm.controls.name.setValue(faker.company.name() + &#x27; - &#x27; + faker.company.bs())
-    this.floorForm.controls.address.controls.street.setValue(
-      faker.location.street() + &#x27; &#x27; + faker.location.buildingNumber(),
-    )
-    this.floorForm.controls.address.controls.city.setValue(faker.location.city())
-    this.floorForm.controls.address.controls.country.setValue(faker.location.country())
-    this.floorForm.controls.address.controls.postcode.setValue(faker.location.zipCode())
+    this.floorForm.get(&#x27;name&#x27;)?.setValue(&#x60;${faker.company.name()} - ${faker.company.buzzPhrase()}&#x60;)
+    this.floorForm.get(&#x27;address.street&#x27;)?.setValue(faker.location.street() + &#x27; &#x27; + faker.location.buildingNumber())
+    this.floorForm.get(&#x27;address.city&#x27;)?.setValue(faker.location.city())
+    this.floorForm.get(&#x27;address.country&#x27;)?.setValue(faker.location.country())
+    this.floorForm.get(&#x27;address.postcode&#x27;)?.setValue(faker.location.zipCode())
+
+    // Check validity after generating values
+    this.floorForm.updateValueAndValidity()
+    if (this.floorForm.valid) {
+      console.log(&#x27;The entire floor form is valid.&#x27;)
+    } else {
+      console.log(&#x27;The floor form is invalid:&#x27;, this.floorForm.errors)
+    }
   }
 
   generateDimension(i: number) {
-    this.floorForm.controls.dimension
-      .at(i)
-      .controls.description.patchValue(faker.company.name() + &#x27; - &#x27; + faker.company.buzzPhrase(), {
-        emitEvent: false,
-        onlySelf: true,
-      })
-    this.floorForm.controls.dimension.at(i).controls.x.setValue(String(faker.number.int({ min: 2, max: 100 })))
-    this.floorForm.controls.dimension.at(i).controls.y.setValue(String(faker.number.int({ min: 2, max: 100 })))
-    this.floorForm.controls.dimension.at(i).controls.h.setValue(String(faker.number.int({ min: 2, max: 10 })))
-    this.floorForm.controls.dimension.at(i).controls.xPos.setValue(String(faker.number.int({ min: 2, max: 100 })))
-    this.floorForm.controls.dimension.at(i).controls.yPos.setValue(String(faker.number.int({ min: 2, max: 100 })))
-    this.floorForm.controls.dimension.at(i).controls.hPos.setValue(String(faker.number.int({ min: 2, max: 100 })))
+    const group &#x3D; this.dimension.at(i) as FormGroup
+    group.get(&#x27;description&#x27;)?.patchValue(faker.company.name() + &#x27; - &#x27; + faker.company.buzzPhrase(), {
+      emitEvent: false,
+      onlySelf: true,
+    })
+    group.get(&#x27;x&#x27;)?.setValue(String(faker.number.int({ min: 2, max: 100 })))
+    group.get(&#x27;y&#x27;)?.setValue(String(faker.number.int({ min: 2, max: 100 })))
+    group.get(&#x27;h&#x27;)?.setValue(String(faker.number.int({ min: 2, max: 10 })))
+    group.get(&#x27;xPos&#x27;)?.setValue(String(faker.number.int({ min: 2, max: 100 })))
+    group.get(&#x27;yPos&#x27;)?.setValue(String(faker.number.int({ min: 2, max: 100 })))
+    group.get(&#x27;hPos&#x27;)?.setValue(String(faker.number.int({ min: 2, max: 100 })))
+
+    // Example usage: check if the &#x27;description&#x27; control in the dimension array at index i is valid
+    const isDescriptionValid &#x3D; group.get(&#x27;description&#x27;)?.valid
+    console.log(&#x60;Dimension[${i}] description valid:&#x60;, isDescriptionValid)
+    console.log(&#x60;Dimension[${i}] group valid:&#x60;, group.valid)
+    console.log(&#x27;Overall form valid:&#x27;, this.floorForm.valid)
   }
 
-  submitForm() {
-    this.floorService.CreateFloor(this.floorForm.getRawValue() as Floor).subscribe(() &#x3D;&gt; {
-      console.log(&#x27;Floor added!&#x27;)
-      this.logService.CreateLog({
-        operation: &#x27;Create&#x27;,
-        component: &#x27;Floor&#x27;,
-        message: this.floorForm.getRawValue(),
-      })
-      this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;floor-list&#x27;))
-    })
+  trackByFn(index: number, item: any): number {
+    return index
+  }
+
+  async onSubmit() {
+    this.isSubmitted &#x3D; true
+    if (this.floorForm.invalid) {
+      console.error(&#x27;Form is invalid:&#x27;, this.floorForm.errors)
+      return
+    }
+    this.isSubmitDisabled &#x3D; true
+    try {
+      const floorData: Floors &#x3D; this.floorForm.value as Floors
+      console.info(&#x27;Floor Data to Submit:&#x27;, JSON.stringify(floorData, null, &#x27; &#x27;))
+      const returnValue &#x3D; await firstValueFrom(this.floorService.CreateFloor(floorData))
+      console.info(&#x60;Floor created successfully:  ${returnValue._id}&#x60;)
+      this.floorForm.get(&#x27;_id&#x27;)?.setValue(returnValue._id) // Ensure the form control is updated with the new ID
+      this.floorForm.markAsPristine() // Mark the form as pristine after submission
+      this.isSubmitDisabled &#x3D; false // Re-enable the submit button
+      console.info(&#x27;Form submitted successfully:&#x27;, this.floorForm.value)
+
+      this.logService
+        .CreateLog({
+          objectId: returnValue._id,
+          message: this.floorForm.value as Floors,
+          operation: &#x27;Create&#x27;,
+          component: &#x27;floors&#x27;,
+        })
+        .subscribe(() &#x3D;&gt; {
+          this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;floor-list&#x27;))
+        })
+
+      console.info(&#x27;Log created successfully&#x27;)
+      this.router.navigateByUrl(&#x27;floor-list&#x27;)
+      return
+    } catch (error) {
+      console.error(&#x27;Error submitting form:&#x27;, error)
+      this.isSubmitDisabled &#x3D; false
+    }
   }
 }
 </code></pre>
@@ -2042,52 +2508,68 @@ export class FloorAddComponent implements OnInit {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
   &lt;h3&gt;&lt;i class&#x3D;&quot;bi bi-building&quot;&gt;&lt;/i&gt; Add Floor&lt;/h3&gt;
-  &lt;form [formGroup]&#x3D;&quot;floorForm&quot; (ngSubmit)&#x3D;&quot;submitForm()&quot; class&#x3D;&quot;g-3 needs-validation&quot; novalidate&gt;
-    &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
-      &lt;label for&#x3D;&quot;id&quot; class&#x3D;&quot;form-label&quot;&gt;Id: {{ this.floorForm.controls._id.value }} &lt;/label&gt;
-    &lt;/div&gt;
-
+  &lt;form [formGroup]&#x3D;&quot;floorForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot; class&#x3D;&quot;g-3 needs-validation&quot; novalidate&gt;
     &lt;div class&#x3D;&quot;col border&quot;&gt;
       &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
         &lt;label for&#x3D;&quot;name&quot; class&#x3D;&quot;form-label&quot;&gt;Name&lt;/label&gt;
-        &lt;textarea
-          formControlName&#x3D;&quot;name&quot;
-          rows&#x3D;&quot;2&quot;
-          minlength&#x3D;&quot;4&quot;
-          maxlength&#x3D;&quot;4000&quot;
-          required
-          [ngClass]&#x3D;&quot;{
-            &#x27;is-invalid&#x27;: this.floorForm.controls.name.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-            &#x27;is-valid&#x27;: this.floorForm.controls.name.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
-            &#x27;form-control&#x27;: true,
-          }&quot;
-        &gt;&lt;/textarea&gt;
-        &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.name.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-          &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.name.errors.required&quot;&gt;Name is required&lt;/div&gt;
-          &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.name.errors.minlength&quot;&gt;Name must be at least 4 characters&lt;/div&gt;
+        &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;name&quot; formControlName&#x3D;&quot;name&quot; minlength&#x3D;&quot;4&quot; maxlength&#x3D;&quot;4000&quot; required [ngClass]&#x3D;&quot;{
+        &#x27;form-control&#x27;: true,
+        &#x27;is-invalid&#x27;: floorForm.get(&#x27;name&#x27;)?.invalid &amp;&amp; (floorForm.get(&#x27;name&#x27;)?.touched || floorForm.get(&#x27;name&#x27;)?.dirty),
+        &#x27;is-valid&#x27;: floorForm.get(&#x27;name&#x27;)?.valid &amp;&amp; (floorForm.get(&#x27;name&#x27;)?.touched || floorForm.get(&#x27;name&#x27;)?.dirty)
+          }&quot; [attr.aria-invalid]&#x3D;&quot;floorForm.get(&#x27;name&#x27;)?.invalid ? true : null&quot;
+          [attr.aria-describedby]&#x3D;&quot;&#x27;name-error&#x27;&quot; /&gt;
+        &lt;div class&#x3D;&quot;invalid-feedback&quot; id&#x3D;&quot;name-error&quot;
+          *ngIf&#x3D;&quot;floorForm.get(&#x27;name&#x27;)?.errors &amp;&amp; (floorForm.get(&#x27;name&#x27;)?.touched || floorForm.get(&#x27;name&#x27;)?.dirty)&quot;&gt;
+          &lt;div *ngIf&#x3D;&quot;floorForm.get(&#x27;name&#x27;)?.errors?.required&quot;&gt;
+            Name is required
+          &lt;/div&gt;
+          &lt;div *ngIf&#x3D;&quot;floorForm.get(&#x27;name&#x27;)?.errors?.minlength&quot;&gt;
+            Name must be at least {{ floorForm.get(&#x27;name&#x27;)?.errors?.minlength.requiredLength }} characters
+          &lt;/div&gt;
+          &lt;div *ngIf&#x3D;&quot;floorForm.get(&#x27;name&#x27;)?.errors?.maxlength&quot;&gt;
+            Name cannot exceed {{ floorForm.get(&#x27;name&#x27;)?.errors?.maxlength.requiredLength }} characters
+          &lt;/div&gt;
+          &lt;div *ngIf&#x3D;&quot;floorForm.get(&#x27;name&#x27;)?.errors?.pattern&quot;&gt;
+            Name contains invalid characters
+          &lt;/div&gt;
+          &lt;div
+            *ngIf&#x3D;&quot;floorForm.get(&#x27;name&#x27;)?.errors &amp;&amp; !floorForm.get(&#x27;name&#x27;)?.errors?.required &amp;&amp; !floorForm.get(&#x27;name&#x27;)?.errors?.minlength &amp;&amp; !floorForm.get(&#x27;name&#x27;)?.errors?.maxlength &amp;&amp; !floorForm.get(&#x27;name&#x27;)?.errors?.pattern&quot;&gt;
+            Invalid value for Name
+          &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
-
       &lt;div formGroupName&#x3D;&quot;address&quot;&gt;
         &lt;div class&#x3D;&quot;row&quot;&gt;
           &lt;div class&#x3D;&quot;col&quot;&gt;
             &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
               &lt;label for&#x3D;&quot;street&quot; class&#x3D;&quot;form-label&quot;&gt;Street&lt;/label&gt;
-              &lt;input
-                type&#x3D;&quot;text&quot;
-                formControlName&#x3D;&quot;street&quot;
-                id&#x3D;&quot;street&quot;
-                required
-                [ngClass]&#x3D;&quot;{
-                  &#x27;is-invalid&#x27;: this.floorForm.controls.address.controls.street.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-                  &#x27;is-valid&#x27;: this.floorForm.controls.address.controls.street.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+              &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;street&quot; formControlName&#x3D;&quot;street&quot; required minlength&#x3D;&quot;1&quot; [ngClass]&#x3D;&quot;{
                   &#x27;form-control&#x27;: true,
-                }&quot;
-              /&gt;
-              &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.street.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-                &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.street.errors.required&quot;&gt;Street is required&lt;/div&gt;
-                &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.street.errors.minlength&quot;&gt;
-                  Street must be at least 1 characters
+                  &#x27;is-invalid&#x27;: floorForm.get(&#x27;address.street&#x27;)?.invalid &amp;&amp; (floorForm.get(&#x27;address.street&#x27;)?.touched || floorForm.get(&#x27;address.street&#x27;)?.dirty),
+                  &#x27;is-valid&#x27;: floorForm.get(&#x27;address.street&#x27;)?.valid &amp;&amp; (floorForm.get(&#x27;address.street&#x27;)?.touched || floorForm.get(&#x27;address.street&#x27;)?.dirty)
+                }&quot; [attr.aria-invalid]&#x3D;&quot;floorForm.get(&#x27;address.street&#x27;)?.invalid ? true : null&quot;
+                [attr.aria-describedby]&#x3D;&quot;&#x27;street-error&#x27;&quot; /&gt;
+              &lt;div class&#x3D;&quot;invalid-feedback&quot; id&#x3D;&quot;street-error&quot;
+                *ngIf&#x3D;&quot;floorForm.get(&#x27;address.street&#x27;)?.errors &amp;&amp; (floorForm.get(&#x27;address.street&#x27;)?.touched || floorForm.get(&#x27;address.street&#x27;)?.dirty)&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;floorForm.get(&#x27;address.street&#x27;)?.errors?.required&quot;&gt;
+                  Street is required
+                &lt;/div&gt;
+                &lt;div *ngIf&#x3D;&quot;floorForm.get(&#x27;address.street&#x27;)?.errors?.minlength&quot;&gt;
+                  Street must be at least {{ floorForm.get(&#x27;address.street&#x27;)?.errors?.minlength.requiredLength }}
+                  character&lt;span
+                    *ngIf&#x3D;&quot;floorForm.get(&#x27;address.street&#x27;)?.errors?.minlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div *ngIf&#x3D;&quot;floorForm.get(&#x27;address.street&#x27;)?.errors?.maxlength&quot;&gt;
+                  Street cannot exceed {{ floorForm.get(&#x27;address.street&#x27;)?.errors?.maxlength.requiredLength }}
+                  character&lt;span
+                    *ngIf&#x3D;&quot;floorForm.get(&#x27;address.street&#x27;)?.errors?.maxlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div *ngIf&#x3D;&quot;floorForm.get(&#x27;address.street&#x27;)?.errors?.pattern&quot;&gt;
+                  Street contains invalid characters
+                &lt;/div&gt;
+                &lt;div
+                  *ngIf&#x3D;&quot;floorForm.get(&#x27;address.street&#x27;)?.errors &amp;&amp; !floorForm.get(&#x27;address.street&#x27;)?.errors?.required &amp;&amp; !floorForm.get(&#x27;address.street&#x27;)?.errors?.minlength &amp;&amp; !floorForm.get(&#x27;address.street&#x27;)?.errors?.maxlength &amp;&amp; !floorForm.get(&#x27;address.street&#x27;)?.errors?.pattern&quot;&gt;
+                  Invalid value for Street
                 &lt;/div&gt;
               &lt;/div&gt;
             &lt;/div&gt;
@@ -2095,21 +2577,33 @@ export class FloorAddComponent implements OnInit {
           &lt;div class&#x3D;&quot;col&quot;&gt;
             &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
               &lt;label for&#x3D;&quot;city&quot; class&#x3D;&quot;form-label&quot;&gt;City&lt;/label&gt;
-              &lt;input
-                type&#x3D;&quot;text&quot;
-                formControlName&#x3D;&quot;city&quot;
-                id&#x3D;&quot;city&quot;
-                required
-                [ngClass]&#x3D;&quot;{
-                  &#x27;is-invalid&#x27;: this.floorForm.controls.address.controls.city.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-                  &#x27;is-valid&#x27;: this.floorForm.controls.address.controls.city.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+              &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;city&quot; formControlName&#x3D;&quot;city&quot; required minlength&#x3D;&quot;1&quot; [ngClass]&#x3D;&quot;{
                   &#x27;form-control&#x27;: true,
-                }&quot;
-              /&gt;
-              &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.city.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-                &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.city.errors.required&quot;&gt;City is required&lt;/div&gt;
-                &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.city.errors.minlength&quot;&gt;
-                  City must be at least 1 characters
+                  &#x27;is-invalid&#x27;: floorForm.get(&#x27;address.city&#x27;)?.invalid &amp;&amp; (floorForm.get(&#x27;address.city&#x27;)?.touched || floorForm.get(&#x27;address.city&#x27;)?.dirty),
+                  &#x27;is-valid&#x27;: floorForm.get(&#x27;address.city&#x27;)?.valid &amp;&amp; (floorForm.get(&#x27;address.city&#x27;)?.touched || floorForm.get(&#x27;address.city&#x27;)?.dirty)
+                }&quot; [attr.aria-invalid]&#x3D;&quot;floorForm.get(&#x27;address.city&#x27;)?.invalid ? true : null&quot;
+                [attr.aria-describedby]&#x3D;&quot;&#x27;city-error&#x27;&quot; /&gt;
+              &lt;div class&#x3D;&quot;invalid-feedback&quot; id&#x3D;&quot;city-error&quot;
+                *ngIf&#x3D;&quot;floorForm.get(&#x27;address.city&#x27;)?.errors &amp;&amp; (floorForm.get(&#x27;address.city&#x27;)?.touched || floorForm.get(&#x27;address.city&#x27;)?.dirty)&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;floorForm.get(&#x27;address.city&#x27;)?.errors?.required&quot;&gt;
+                  City is required
+                &lt;/div&gt;
+                &lt;div *ngIf&#x3D;&quot;floorForm.get(&#x27;address.city&#x27;)?.errors?.minlength&quot;&gt;
+                  City must be at least {{ floorForm.get(&#x27;address.city&#x27;)?.errors?.minlength.requiredLength }}
+                  character&lt;span
+                    *ngIf&#x3D;&quot;floorForm.get(&#x27;address.city&#x27;)?.errors?.minlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div *ngIf&#x3D;&quot;floorForm.get(&#x27;address.city&#x27;)?.errors?.maxlength&quot;&gt;
+                  City cannot exceed {{ floorForm.get(&#x27;address.city&#x27;)?.errors?.maxlength.requiredLength }}
+                  character&lt;span
+                    *ngIf&#x3D;&quot;floorForm.get(&#x27;address.city&#x27;)?.errors?.maxlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div *ngIf&#x3D;&quot;floorForm.get(&#x27;address.city&#x27;)?.errors?.pattern&quot;&gt;
+                  City contains invalid characters
+                &lt;/div&gt;
+                &lt;div
+                  *ngIf&#x3D;&quot;floorForm.get(&#x27;address.city&#x27;)?.errors &amp;&amp; !floorForm.get(&#x27;address.city&#x27;)?.errors?.required &amp;&amp; !floorForm.get(&#x27;address.city&#x27;)?.errors?.minlength &amp;&amp; !floorForm.get(&#x27;address.city&#x27;)?.errors?.maxlength &amp;&amp; !floorForm.get(&#x27;address.city&#x27;)?.errors?.pattern&quot;&gt;
+                  Invalid value for City
                 &lt;/div&gt;
               &lt;/div&gt;
             &lt;/div&gt;
@@ -2117,46 +2611,66 @@ export class FloorAddComponent implements OnInit {
           &lt;div class&#x3D;&quot;col&quot;&gt;
             &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
               &lt;label for&#x3D;&quot;country&quot; class&#x3D;&quot;form-label&quot;&gt;Country&lt;/label&gt;
-              &lt;input
-                type&#x3D;&quot;text&quot;
-                formControlName&#x3D;&quot;country&quot;
-                id&#x3D;&quot;country&quot;
-                required
-                [ngClass]&#x3D;&quot;{
-                  &#x27;is-invalid&#x27;: this.floorForm.controls.address.controls.country.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-                  &#x27;is-valid&#x27;: this.floorForm.controls.address.controls.country.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+              &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;country&quot; formControlName&#x3D;&quot;country&quot; required minlength&#x3D;&quot;1&quot; [ngClass]&#x3D;&quot;{
                   &#x27;form-control&#x27;: true,
-                }&quot;
-              /&gt;
-              &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.country.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-                &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.country.errors.required&quot;&gt;country is required&lt;/div&gt;
-                &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.country.errors.minlength&quot;&gt;
-                  country must be at least 1 characters
-                &lt;/div&gt;
+                  &#x27;is-invalid&#x27;: floorForm.get(&#x27;address.country&#x27;)?.invalid &amp;&amp; (floorForm.get(&#x27;address.country&#x27;)?.touched || floorForm.get(&#x27;address.country&#x27;)?.dirty),
+                  &#x27;is-valid&#x27;: floorForm.get(&#x27;address.country&#x27;)?.valid &amp;&amp; (floorForm.get(&#x27;address.country&#x27;)?.touched || floorForm.get(&#x27;address.country&#x27;)?.dirty)
+                }&quot; [attr.aria-invalid]&#x3D;&quot;floorForm.get(&#x27;address.country&#x27;)?.invalid ? true : null&quot;
+                [attr.aria-describedby]&#x3D;&quot;&#x27;country-error&#x27;&quot; /&gt;
+              &lt;div class&#x3D;&quot;invalid-feedback&quot; id&#x3D;&quot;country-error&quot;
+                *ngIf&#x3D;&quot;floorForm.get(&#x27;address.country&#x27;)?.errors &amp;&amp; (floorForm.get(&#x27;address.country&#x27;)?.touched || floorForm.get(&#x27;address.country&#x27;)?.dirty)&quot;&gt;
+                &lt;ng-container *ngIf&#x3D;&quot;floorForm.get(&#x27;address.country&#x27;)?.errors as errors&quot;&gt;
+                  &lt;div *ngIf&#x3D;&quot;errors.required&quot;&gt;
+                    Country is required
+                  &lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;errors.minlength&quot;&gt;
+                    Country must be at least {{ errors.minlength.requiredLength }} character&lt;span
+                      *ngIf&#x3D;&quot;errors.minlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;errors.maxlength&quot;&gt;
+                    Country cannot exceed {{ errors.maxlength.requiredLength }} character&lt;span
+                      *ngIf&#x3D;&quot;errors.maxlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;errors.pattern&quot;&gt;
+                    Country contains invalid characters
+                  &lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;!errors.required &amp;&amp; !errors.minlength &amp;&amp; !errors.maxlength &amp;&amp; !errors.pattern&quot;&gt;
+                    Invalid value for Country
+                  &lt;/div&gt;
+                &lt;/ng-container&gt;
               &lt;/div&gt;
             &lt;/div&gt;
           &lt;/div&gt;
           &lt;div class&#x3D;&quot;col&quot;&gt;
             &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
-              &lt;label for&#x3D;&quot;postcode&quot; class&#x3D;&quot;form-label&quot;&gt;postcode&lt;/label&gt;
-              &lt;input
-                type&#x3D;&quot;text&quot;
-                formControlName&#x3D;&quot;postcode&quot;
-                id&#x3D;&quot;postcode&quot;
-                required
-                [ngClass]&#x3D;&quot;{
-                  &#x27;is-invalid&#x27;: this.floorForm.controls.address.controls.postcode.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-                  &#x27;is-valid&#x27;: this.floorForm.controls.address.controls.postcode.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+              &lt;label for&#x3D;&quot;postcode&quot; class&#x3D;&quot;form-label&quot;&gt;Post code&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;postcode&quot; formControlName&#x3D;&quot;postcode&quot; required minlength&#x3D;&quot;1&quot; [ngClass]&#x3D;&quot;{
                   &#x27;form-control&#x27;: true,
-                }&quot;
-              /&gt;
-              &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.postcode.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-                &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.postcode.errors.required&quot;&gt;
-                  postcode is required
-                &lt;/div&gt;
-                &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.address.controls.postcode.errors.minlength&quot;&gt;
-                  postcode must be at least 1 characters
-                &lt;/div&gt;
+                  &#x27;is-invalid&#x27;: floorForm.get(&#x27;address.postcode&#x27;)?.invalid &amp;&amp; (floorForm.get(&#x27;address.postcode&#x27;)?.touched || floorForm.get(&#x27;address.postcode&#x27;)?.dirty),
+                  &#x27;is-valid&#x27;: floorForm.get(&#x27;address.postcode&#x27;)?.valid &amp;&amp; (floorForm.get(&#x27;address.postcode&#x27;)?.touched || floorForm.get(&#x27;address.postcode&#x27;)?.dirty)
+                }&quot; [attr.aria-invalid]&#x3D;&quot;floorForm.get(&#x27;address.postcode&#x27;)?.invalid ? true : null&quot;
+                [attr.aria-describedby]&#x3D;&quot;&#x27;postcode-error&#x27;&quot; /&gt;
+              &lt;div class&#x3D;&quot;invalid-feedback&quot; id&#x3D;&quot;postcode-error&quot;
+                *ngIf&#x3D;&quot;floorForm.get(&#x27;address.postcode&#x27;)?.errors &amp;&amp; (floorForm.get(&#x27;address.postcode&#x27;)?.touched || floorForm.get(&#x27;address.postcode&#x27;)?.dirty)&quot;&gt;
+                &lt;ng-container *ngIf&#x3D;&quot;floorForm.get(&#x27;address.postcode&#x27;)?.errors as errors&quot;&gt;
+                  &lt;div *ngIf&#x3D;&quot;errors.required&quot;&gt;
+                    Post code is required
+                  &lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;errors.minlength&quot;&gt;
+                    Post code must be at least {{ errors.minlength.requiredLength }} character&lt;span
+                      *ngIf&#x3D;&quot;errors.minlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;errors.maxlength&quot;&gt;
+                    Post code cannot exceed {{ errors.maxlength.requiredLength }} character&lt;span
+                      *ngIf&#x3D;&quot;errors.maxlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;errors.pattern&quot;&gt;
+                    Post code contains invalid characters
+                  &lt;/div&gt;
+                  &lt;div *ngIf&#x3D;&quot;!errors.required &amp;&amp; !errors.minlength &amp;&amp; !errors.maxlength &amp;&amp; !errors.pattern&quot;&gt;
+                    Invalid value for Post code
+                  &lt;/div&gt;
+                &lt;/ng-container&gt;
               &lt;/div&gt;
             &lt;/div&gt;
           &lt;/div&gt;
@@ -2168,217 +2682,281 @@ export class FloorAddComponent implements OnInit {
 
     &lt;div class&#x3D;&quot;border&quot;&gt;
       &lt;div formArrayName&#x3D;&quot;dimension&quot;&gt;
-        &lt;div *ngFor&#x3D;&quot;let dimensionForm of dimension.controls; let i &#x3D; index&quot;&gt;
-          &lt;div formGroupName&#x3D;&quot;{{ i }}&quot;&gt;
+        &lt;div *ngFor&#x3D;&quot;let dimensionForm of dimensionForms.controls; let i &#x3D; index; trackBy: trackByFn&quot;&gt;
+          &lt;div [formGroupName]&#x3D;&quot;i&quot;&gt;
             &lt;div class&#x3D;&quot;row&quot;&gt;
               &lt;div class&#x3D;&quot;col&quot;&gt;
                 &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
-                  &lt;label for&#x3D;&quot;description&quot; class&#x3D;&quot;form-label&quot;&gt;Description&lt;/label&gt;
-                  &lt;textarea
-                    formControlName&#x3D;&quot;description&quot;
-                    rows&#x3D;&quot;2&quot;
-                    minlength&#x3D;&quot;4&quot;
-                    maxlength&#x3D;&quot;4000&quot;
-                    required
-                    [ngClass]&#x3D;&quot;{
-                      &#x27;is-invalid&#x27;: this.floorForm.controls.dimension.at(i).controls.description.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-                      &#x27;is-valid&#x27;: this.floorForm.controls.dimension.at(i).controls.description.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                  &lt;label for&#x3D;&quot;description-{{i}}&quot; class&#x3D;&quot;form-label&quot;&gt;Description&lt;/label&gt;
+                  &lt;input id&#x3D;&quot;description-{{i}}&quot; formControlName&#x3D;&quot;description&quot; minlength&#x3D;&quot;4&quot; maxlength&#x3D;&quot;512&quot;
+                    required [ngClass]&#x3D;&quot;{
                       &#x27;form-control&#x27;: true,
-                    }&quot;
-                  &gt;&lt;/textarea&gt;
-                  &lt;div
-                    *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.description.errors&quot;
-                    class&#x3D;&quot;invalid-feedback&quot;
-                  &gt;
-                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.description.errors?.required&quot;&gt;
-                      description is required
+                      &#x27;is-invalid&#x27;: getDimension(i, &#x27;description&#x27;)?.invalid &amp;&amp; (getDimension(i, &#x27;description&#x27;)?.touched || getDimension(i, &#x27;description&#x27;)?.dirty),
+                      &#x27;is-valid&#x27;: getDimension(i, &#x27;description&#x27;)?.valid &amp;&amp; (getDimension(i, &#x27;description&#x27;)?.touched || getDimension(i, &#x27;description&#x27;)?.dirty)
+                    }&quot; /&gt;
+                  &lt;div class&#x3D;&quot;invalid-feedback&quot;
+                    *ngIf&#x3D;&quot;getDimension(i, &#x27;description&#x27;)?.errors &amp;&amp; (getDimension(i, &#x27;description&#x27;)?.touched || getDimension(i, &#x27;description&#x27;)?.dirty)&quot;&gt;
+                    &lt;div *ngIf&#x3D;&quot;getDimension(i, &#x27;description&#x27;)?.errors?.required&quot;&gt;
+                      Description is required
                     &lt;/div&gt;
-                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.description.errors?.minlength&quot;&gt;
-                      description must be at least 4 characters
+                    &lt;div *ngIf&#x3D;&quot;getDimension(i, &#x27;description&#x27;)?.errors?.minlength&quot;&gt;
+                      Description must be at least 4 characters
+                    &lt;/div&gt;
+                    &lt;div *ngIf&#x3D;&quot;getDimension(i, &#x27;description&#x27;)?.errors?.maxlength&quot;&gt;
+                      Description cannot exceed 4000 characters
                     &lt;/div&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div class&#x3D;&quot;row&quot;&gt;
-              &lt;div class&#x3D;&quot;col&quot;&gt;
-                &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
-                  &lt;label for&#x3D;&quot;xPos&quot; class&#x3D;&quot;form-label&quot;&gt;X position&lt;/label&gt;
-                  &lt;input
-                    type&#x3D;&quot;text&quot;
-                    formControlName&#x3D;&quot;xPos&quot;
-                    id&#x3D;&quot;xPos&quot;
-                    required
-                    [ngClass]&#x3D;&quot;{
-                      &#x27;is-invalid&#x27;: this.floorForm.controls.dimension.at(i).controls.xPos.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-                      &#x27;is-valid&#x27;: this.floorForm.controls.dimension.at(i).controls.xPos.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
-                      &#x27;form-control&#x27;: true,
-                    }&quot;
-                  /&gt;
-                  &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.xPos.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.xPos.errors?.required&quot;&gt;
-                      X position is required
-                    &lt;/div&gt;
-                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.xPos.errors?.minlength&quot;&gt;
-                      X position must be at least 1 characters
-                    &lt;/div&gt;
-                  &lt;/div&gt;
-                &lt;/div&gt;
-              &lt;/div&gt;
-              &lt;div class&#x3D;&quot;col&quot;&gt;
-                &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
-                  &lt;label for&#x3D;&quot;yPos&quot; class&#x3D;&quot;form-label&quot;&gt;Y position&lt;/label&gt;
-                  &lt;input
-                    type&#x3D;&quot;text&quot;
-                    formControlName&#x3D;&quot;yPos&quot;
-                    id&#x3D;&quot;yPos&quot;
-                    required
-                    [ngClass]&#x3D;&quot;{
-                      &#x27;is-invalid&#x27;: this.floorForm.controls.dimension.at(i).controls.yPos.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-                      &#x27;is-valid&#x27;: this.floorForm.controls.dimension.at(i).controls.yPos.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
-                      &#x27;form-control&#x27;: true,
-                    }&quot;
-                  /&gt;
-                  &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.yPos.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.yPos.errors?.required&quot;&gt;
-                      Y is required
-                    &lt;/div&gt;
-                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.yPos.errors?.minlength&quot;&gt;
-                      Y must be at least 1 characters
+              &lt;div class&#x3D;&quot;row&quot;&gt;
+                &lt;div class&#x3D;&quot;col&quot;&gt;
+                  &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+                    &lt;label for&#x3D;&quot;xPos-{{i}}&quot; class&#x3D;&quot;form-label&quot;&gt;X position&lt;/label&gt;
+                    &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;xPos-{{i}}&quot; formControlName&#x3D;&quot;xPos&quot; required [ngClass]&#x3D;&quot;{
+                  &#x27;form-control&#x27;: true,
+                  &#x27;is-invalid&#x27;: getDimension(i, &#x27;xPos&#x27;)?.invalid &amp;&amp; (getDimension(i, &#x27;xPos&#x27;)?.touched || getDimension(i, &#x27;xPos&#x27;)?.dirty),
+                  &#x27;is-valid&#x27;: getDimension(i, &#x27;xPos&#x27;)?.valid &amp;&amp; (getDimension(i, &#x27;xPos&#x27;)?.touched || getDimension(i, &#x27;xPos&#x27;)?.dirty)
+                }&quot; [attr.aria-invalid]&#x3D;&quot;getDimension(i, &#x27;xPos&#x27;)?.invalid ? true : null&quot;
+                      [attr.aria-describedby]&#x3D;&quot;&#x27;dimension-xPos-&#x27; + i + &#x27;-error&#x27;&quot; /&gt;
+                    &lt;div class&#x3D;&quot;invalid-feedback&quot; [id]&#x3D;&quot;&#x27;dimension-xPos-&#x27; + i + &#x27;-error&#x27;&quot;
+                      *ngIf&#x3D;&quot;getDimension(i, &#x27;xPos&#x27;)?.errors &amp;&amp; (getDimension(i, &#x27;xPos&#x27;)?.touched || getDimension(i, &#x27;xPos&#x27;)?.dirty)&quot;&gt;
+                      &lt;ng-container *ngIf&#x3D;&quot;getDimension(i, &#x27;xPos&#x27;)?.errors as errors&quot;&gt;
+                        &lt;div *ngIf&#x3D;&quot;errors.required&quot;&gt;
+                          X position is required
+                        &lt;/div&gt;
+                        &lt;div *ngIf&#x3D;&quot;errors.minlength&quot;&gt;
+                          X position must be at least {{ errors.minlength.requiredLength }} character&lt;span
+                            *ngIf&#x3D;&quot;errors.minlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div *ngIf&#x3D;&quot;errors.maxlength&quot;&gt;
+                          X position cannot exceed {{ errors.maxlength.requiredLength }} character&lt;span
+                            *ngIf&#x3D;&quot;errors.maxlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div *ngIf&#x3D;&quot;errors.pattern&quot;&gt;
+                          X position must be a valid number
+                        &lt;/div&gt;
+                        &lt;div *ngIf&#x3D;&quot;!errors.required &amp;&amp; !errors.minlength &amp;&amp; !errors.maxlength &amp;&amp; !errors.pattern&quot;&gt;
+                          Invalid value for X position
+                        &lt;/div&gt;
+                      &lt;/ng-container&gt;
                     &lt;/div&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
-              &lt;/div&gt;
-              &lt;div class&#x3D;&quot;col&quot;&gt;
-                &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
-                  &lt;label for&#x3D;&quot;hPos&quot; class&#x3D;&quot;form-label&quot;&gt;H position&lt;/label&gt;
-                  &lt;input
-                    type&#x3D;&quot;text&quot;
-                    formControlName&#x3D;&quot;hPos&quot;
-                    id&#x3D;&quot;hPos&quot;
-                    required
-                    [ngClass]&#x3D;&quot;{
-                      &#x27;is-invalid&#x27;: this.floorForm.controls.dimension.at(i).controls.hPos.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-                      &#x27;is-valid&#x27;: this.floorForm.controls.dimension.at(i).controls.hPos.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+                &lt;div class&#x3D;&quot;col&quot;&gt;
+                  &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+                    &lt;label for&#x3D;&quot;yPos-{{i}}&quot; class&#x3D;&quot;form-label&quot;&gt;Y position&lt;/label&gt;
+                    &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;yPos-{{i}}&quot; formControlName&#x3D;&quot;yPos&quot; required [ngClass]&#x3D;&quot;{
                       &#x27;form-control&#x27;: true,
-                    }&quot;
-                  /&gt;
-                  &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.hPos.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.hPos.errors?.required&quot;&gt;
-                      H is required
-                    &lt;/div&gt;
-                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.hPos.errors?.minlength&quot;&gt;
-                      H must be at least 1 characters
-                    &lt;/div&gt;
+                      &#x27;is-invalid&#x27;: getDimension(i, &#x27;yPos&#x27;)?.invalid &amp;&amp; (getDimension(i, &#x27;yPos&#x27;)?.touched || getDimension(i, &#x27;yPos&#x27;)?.dirty),
+                      &#x27;is-valid&#x27;: getDimension(i, &#x27;yPos&#x27;)?.valid &amp;&amp; (getDimension(i, &#x27;yPos&#x27;)?.touched || getDimension(i, &#x27;yPos&#x27;)?.dirty)
+                    }&quot; [attr.aria-invalid]&#x3D;&quot;getDimension(i, &#x27;yPos&#x27;)?.invalid ? true : null&quot;
+                      [attr.aria-describedby]&#x3D;&quot;&#x27;dimension-yPos-&#x27; + i + &#x27;-error&#x27;&quot; /&gt;
+                    &lt;ng-container
+                      *ngIf&#x3D;&quot;getDimension(i, &#x27;yPos&#x27;)?.errors &amp;&amp; (getDimension(i, &#x27;yPos&#x27;)?.touched || getDimension(i, &#x27;yPos&#x27;)?.dirty)&quot;&gt;
+                      &lt;div class&#x3D;&quot;invalid-feedback&quot; [id]&#x3D;&quot;&#x27;dimension-yPos-&#x27; + i + &#x27;-error&#x27;&quot;&gt;
+                        &lt;ng-container *ngIf&#x3D;&quot;getDimension(i, &#x27;yPos&#x27;)?.errors as errors&quot;&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.required&quot;&gt;
+                            Y position is required
+                          &lt;/div&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.minlength&quot;&gt;
+                            Y position must be at least {{ errors.minlength.requiredLength }} character&lt;span
+                              *ngIf&#x3D;&quot;errors.minlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                          &lt;/div&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.maxlength&quot;&gt;
+                            Y position cannot exceed {{ errors.maxlength.requiredLength }} character&lt;span
+                              *ngIf&#x3D;&quot;errors.maxlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                          &lt;/div&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.pattern&quot;&gt;
+                            Y position must be a valid number
+                          &lt;/div&gt;
+                          &lt;div
+                            *ngIf&#x3D;&quot;!errors.required &amp;&amp; !errors.minlength &amp;&amp; !errors.maxlength &amp;&amp; !errors.pattern&quot;&gt;
+                            Invalid value for Y position
+                          &lt;/div&gt;
+                        &lt;/ng-container&gt;
+                      &lt;/div&gt;
+                    &lt;/ng-container&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col&quot;&gt;
+                  &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+                    &lt;label for&#x3D;&quot;hPos-{{i}}&quot; class&#x3D;&quot;form-label&quot;&gt;H position&lt;/label&gt;
+                    &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;hPos-{{i}}&quot; formControlName&#x3D;&quot;hPos&quot; required [ngClass]&#x3D;&quot;{
+                      &#x27;form-control&#x27;: true,
+                      &#x27;is-invalid&#x27;: getDimension(i, &#x27;hPos&#x27;)?.invalid &amp;&amp; (getDimension(i, &#x27;hPos&#x27;)?.touched || getDimension(i, &#x27;hPos&#x27;)?.dirty),
+                      &#x27;is-valid&#x27;: getDimension(i, &#x27;hPos&#x27;)?.valid &amp;&amp; (getDimension(i, &#x27;hPos&#x27;)?.touched || getDimension(i, &#x27;hPos&#x27;)?.dirty)
+                    }&quot; [attr.aria-invalid]&#x3D;&quot;getDimension(i, &#x27;hPos&#x27;)?.invalid ? true : null&quot;
+                      [attr.aria-describedby]&#x3D;&quot;&#x27;dimension-hPos-&#x27; + i + &#x27;-error&#x27;&quot; /&gt;
+                    &lt;ng-container
+                      *ngIf&#x3D;&quot;getDimension(i, &#x27;hPos&#x27;)?.errors &amp;&amp; (getDimension(i, &#x27;hPos&#x27;)?.touched || getDimension(i, &#x27;hPos&#x27;)?.dirty)&quot;&gt;
+                      &lt;div class&#x3D;&quot;invalid-feedback&quot; [id]&#x3D;&quot;&#x27;dimension-hPos-&#x27; + i + &#x27;-error&#x27;&quot;&gt;
+                        &lt;ng-container *ngIf&#x3D;&quot;getDimension(i, &#x27;hPos&#x27;)?.errors as errors&quot;&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.required&quot;&gt;
+                            H position is required
+                          &lt;/div&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.minlength&quot;&gt;
+                            H position must be at least {{ errors.minlength.requiredLength }} character&lt;span
+                              *ngIf&#x3D;&quot;errors.minlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                          &lt;/div&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.maxlength&quot;&gt;
+                            H position cannot exceed {{ errors.maxlength.requiredLength }} character&lt;span
+                              *ngIf&#x3D;&quot;errors.maxlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                          &lt;/div&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.pattern&quot;&gt;
+                            H position must be a valid number
+                          &lt;/div&gt;
+                          &lt;div
+                            *ngIf&#x3D;&quot;!errors.required &amp;&amp; !errors.minlength &amp;&amp; !errors.maxlength &amp;&amp; !errors.pattern&quot;&gt;
+                            Invalid value for H position
+                          &lt;/div&gt;
+                        &lt;/ng-container&gt;
+                      &lt;/div&gt;
+                    &lt;/ng-container&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div class&#x3D;&quot;row&quot;&gt;
-              &lt;div class&#x3D;&quot;col&quot;&gt;
-                &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
-                  &lt;label for&#x3D;&quot;x&quot; class&#x3D;&quot;form-label&quot;&gt;X&lt;/label&gt;
-                  &lt;input
-                    type&#x3D;&quot;text&quot;
-                    formControlName&#x3D;&quot;x&quot;
-                    id&#x3D;&quot;x&quot;
-                    required
-                    [ngClass]&#x3D;&quot;{
-                      &#x27;is-invalid&#x27;: this.floorForm.controls.dimension.at(i).controls.x.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-                      &#x27;is-valid&#x27;: this.floorForm.controls.dimension.at(i).controls.x.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+              &lt;div class&#x3D;&quot;row&quot;&gt;
+                &lt;div class&#x3D;&quot;col&quot;&gt;
+                  &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+                    &lt;label for&#x3D;&quot;dimension-x-{{i}}&quot; class&#x3D;&quot;form-label&quot;&gt;X&lt;/label&gt;
+                    &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;dimension-x-{{i}}&quot; formControlName&#x3D;&quot;x&quot; required [ngClass]&#x3D;&quot;{
                       &#x27;form-control&#x27;: true,
-                    }&quot;
-                  /&gt;
-                  &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.x.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.x.errors?.required&quot;&gt;X is required&lt;/div&gt;
-                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.x.errors?.minlength&quot;&gt;
-                      X must be at least 1 characters
-                    &lt;/div&gt;
+                      &#x27;is-invalid&#x27;: getDimension(i, &#x27;x&#x27;)?.invalid &amp;&amp; (getDimension(i, &#x27;x&#x27;)?.touched || getDimension(i, &#x27;x&#x27;)?.dirty),
+                      &#x27;is-valid&#x27;: getDimension(i, &#x27;x&#x27;)?.valid &amp;&amp; (getDimension(i, &#x27;x&#x27;)?.touched || getDimension(i, &#x27;x&#x27;)?.dirty)
+                    }&quot; [attr.aria-invalid]&#x3D;&quot;getDimension(i, &#x27;x&#x27;)?.invalid ? true : null&quot;
+                      [attr.aria-describedby]&#x3D;&quot;&#x27;dimension-x-&#x27; + i + &#x27;-error&#x27;&quot; /&gt;
+                    &lt;ng-container
+                      *ngIf&#x3D;&quot;getDimension(i, &#x27;x&#x27;)?.errors &amp;&amp; (getDimension(i, &#x27;x&#x27;)?.touched || getDimension(i, &#x27;x&#x27;)?.dirty)&quot;&gt;
+                      &lt;div class&#x3D;&quot;invalid-feedback&quot; [id]&#x3D;&quot;&#x27;dimension-x-&#x27; + i + &#x27;-error&#x27;&quot;&gt;
+                        &lt;ng-container *ngIf&#x3D;&quot;getDimension(i, &#x27;x&#x27;)?.errors as errors&quot;&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.required&quot;&gt;
+                            X is required
+                          &lt;/div&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.minlength&quot;&gt;
+                            X must be at least {{ errors.minlength.requiredLength }} character&lt;span
+                              *ngIf&#x3D;&quot;errors.minlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                          &lt;/div&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.maxlength&quot;&gt;
+                            X cannot exceed {{ errors.maxlength.requiredLength }} character&lt;span
+                              *ngIf&#x3D;&quot;errors.maxlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                          &lt;/div&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.pattern&quot;&gt;
+                            X must be a valid number
+                          &lt;/div&gt;
+                          &lt;div
+                            *ngIf&#x3D;&quot;!errors.required &amp;&amp; !errors.minlength &amp;&amp; !errors.maxlength &amp;&amp; !errors.pattern&quot;&gt;
+                            Invalid value for X
+                          &lt;/div&gt;
+                        &lt;/ng-container&gt;
+                      &lt;/div&gt;
+                    &lt;/ng-container&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col&quot;&gt;
+                  &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+                    &lt;label for&#x3D;&quot;dimension-y-{{i}}&quot; class&#x3D;&quot;form-label&quot;&gt;Y&lt;/label&gt;
+                    &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;dimension-y-{{i}}&quot; formControlName&#x3D;&quot;y&quot; required [ngClass]&#x3D;&quot;{
+                      &#x27;form-control&#x27;: true,
+                      &#x27;is-invalid&#x27;: getDimension(i, &#x27;y&#x27;)?.invalid &amp;&amp; (getDimension(i, &#x27;y&#x27;)?.touched || getDimension(i, &#x27;y&#x27;)?.dirty),
+                      &#x27;is-valid&#x27;: getDimension(i, &#x27;y&#x27;)?.valid &amp;&amp; (getDimension(i, &#x27;y&#x27;)?.touched || getDimension(i, &#x27;y&#x27;)?.dirty)
+                    }&quot; [attr.aria-invalid]&#x3D;&quot;getDimension(i, &#x27;y&#x27;)?.invalid ? true : null&quot;
+                      [attr.aria-describedby]&#x3D;&quot;&#x27;dimension-y-&#x27; + i + &#x27;-error&#x27;&quot; /&gt;
+                    &lt;ng-container
+                      *ngIf&#x3D;&quot;getDimension(i, &#x27;y&#x27;)?.errors &amp;&amp; (getDimension(i, &#x27;y&#x27;)?.touched || getDimension(i, &#x27;y&#x27;)?.dirty)&quot;&gt;
+                      &lt;div class&#x3D;&quot;invalid-feedback&quot; [id]&#x3D;&quot;&#x27;dimension-y-&#x27; + i + &#x27;-error&#x27;&quot;&gt;
+                        &lt;ng-container *ngIf&#x3D;&quot;getDimension(i, &#x27;y&#x27;)?.errors as errors&quot;&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.required&quot;&gt;
+                            Y is required
+                          &lt;/div&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.minlength&quot;&gt;
+                            Y must be at least {{ errors.minlength.requiredLength }} character&lt;span
+                              *ngIf&#x3D;&quot;errors.minlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                          &lt;/div&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.maxlength&quot;&gt;
+                            Y cannot exceed {{ errors.maxlength.requiredLength }} character&lt;span
+                              *ngIf&#x3D;&quot;errors.maxlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                          &lt;/div&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.pattern&quot;&gt;
+                            Y must be a valid number
+                          &lt;/div&gt;
+                          &lt;div
+                            *ngIf&#x3D;&quot;!errors.required &amp;&amp; !errors.minlength &amp;&amp; !errors.maxlength &amp;&amp; !errors.pattern&quot;&gt;
+                            Invalid value for Y
+                          &lt;/div&gt;
+                        &lt;/ng-container&gt;
+                      &lt;/div&gt;
+                    &lt;/ng-container&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col&quot;&gt;
+                  &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
+                    &lt;label for&#x3D;&quot;dimension-h-{{i}}&quot; class&#x3D;&quot;form-label&quot;&gt;H&lt;/label&gt;
+                    &lt;input type&#x3D;&quot;number&quot; step&#x3D;&quot;any&quot; id&#x3D;&quot;dimension-h-{{i}}&quot; formControlName&#x3D;&quot;h&quot; required [ngClass]&#x3D;&quot;{
+                      &#x27;form-control&#x27;: true,
+                      &#x27;is-invalid&#x27;: getDimension(i, &#x27;h&#x27;)?.invalid &amp;&amp; (getDimension(i, &#x27;h&#x27;)?.touched || getDimension(i, &#x27;h&#x27;)?.dirty),
+                      &#x27;is-valid&#x27;: getDimension(i, &#x27;h&#x27;)?.valid &amp;&amp; (getDimension(i, &#x27;h&#x27;)?.touched || getDimension(i, &#x27;h&#x27;)?.dirty)
+                    }&quot; [attr.aria-invalid]&#x3D;&quot;getDimension(i, &#x27;h&#x27;)?.invalid ? true : null&quot;
+                      [attr.aria-describedby]&#x3D;&quot;&#x27;dimension-h-&#x27; + i + &#x27;-error&#x27;&quot; /&gt;
+                    &lt;ng-container
+                      *ngIf&#x3D;&quot;getDimension(i, &#x27;h&#x27;)?.errors &amp;&amp; (getDimension(i, &#x27;h&#x27;)?.touched || getDimension(i, &#x27;h&#x27;)?.dirty)&quot;&gt;
+                      &lt;div class&#x3D;&quot;invalid-feedback&quot; [id]&#x3D;&quot;&#x27;dimension-h-&#x27; + i + &#x27;-error&#x27;&quot;&gt;
+                        &lt;ng-container *ngIf&#x3D;&quot;getDimension(i, &#x27;h&#x27;)?.errors as errors&quot;&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.required&quot;&gt;
+                            H is required
+                          &lt;/div&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.minlength&quot;&gt;
+                            H must be at least {{ errors.minlength.requiredLength }} character&lt;span
+                              *ngIf&#x3D;&quot;errors.minlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                          &lt;/div&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.maxlength&quot;&gt;
+                            H cannot exceed {{ errors.maxlength.requiredLength }} character&lt;span
+                              *ngIf&#x3D;&quot;errors.maxlength.requiredLength &gt; 1&quot;&gt;s&lt;/span&gt;
+                          &lt;/div&gt;
+                          &lt;div *ngIf&#x3D;&quot;errors.pattern&quot;&gt;
+                            H must be a valid number
+                          &lt;/div&gt;
+                          &lt;div
+                            *ngIf&#x3D;&quot;!errors.required &amp;&amp; !errors.minlength &amp;&amp; !errors.maxlength &amp;&amp; !errors.pattern&quot;&gt;
+                            Invalid value for H
+                          &lt;/div&gt;
+                        &lt;/ng-container&gt;
+                      &lt;/div&gt;
+                    &lt;/ng-container&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
-              &lt;div class&#x3D;&quot;col&quot;&gt;
-                &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
-                  &lt;label for&#x3D;&quot;y&quot; class&#x3D;&quot;form-label&quot;&gt;Y&lt;/label&gt;
-                  &lt;input
-                    type&#x3D;&quot;text&quot;
-                    formControlName&#x3D;&quot;y&quot;
-                    id&#x3D;&quot;y&quot;
-                    required
-                    [ngClass]&#x3D;&quot;{
-                      &#x27;is-invalid&#x27;: this.floorForm.controls.dimension.at(i).controls.y.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-                      &#x27;is-valid&#x27;: this.floorForm.controls.dimension.at(i).controls.y.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
-                      &#x27;form-control&#x27;: true,
-                    }&quot;
-                  /&gt;
-                  &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.y.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.y.errors?.required&quot;&gt;Y is required&lt;/div&gt;
-                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.y.errors?.minlength&quot;&gt;
-                      Y must be at least 1 characters
-                    &lt;/div&gt;
-                  &lt;/div&gt;
-                &lt;/div&gt;
-              &lt;/div&gt;
-              &lt;div class&#x3D;&quot;col&quot;&gt;
-                &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
-                  &lt;label for&#x3D;&quot;h&quot; class&#x3D;&quot;form-label&quot;&gt;H&lt;/label&gt;
-                  &lt;input
-                    type&#x3D;&quot;text&quot;
-                    formControlName&#x3D;&quot;h&quot;
-                    id&#x3D;&quot;h&quot;
-                    required
-                    [ngClass]&#x3D;&quot;{
-                      &#x27;is-invalid&#x27;: this.floorForm.controls.dimension.at(i).controls.h.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-                      &#x27;is-valid&#x27;: this.floorForm.controls.dimension.at(i).controls.h.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
-                      &#x27;form-control&#x27;: true,
-                    }&quot;
-                  /&gt;
-                  &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.h.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.h.errors?.required&quot;&gt;h is required&lt;/div&gt;
-                    &lt;div *ngIf&#x3D;&quot;this.floorForm.controls.dimension.at(i).controls.h.errors?.minlength&quot;&gt;
-                      h must be at least 1 characters
-                    &lt;/div&gt;
-                  &lt;/div&gt;
-                &lt;/div&gt;
-              &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div class&#x3D;&quot;d-flex p-2&quot;&gt;
-              &lt;div class&#x3D;&quot;p-1 g-col-1&quot;&gt;
-                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;addDimension()&quot; class&#x3D;&quot;btn btn-secondary&quot;&gt;
+              &lt;div class&#x3D;&quot;d-flex p-2 float-end me-2&quot;&gt;
+                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;addDimension()&quot; class&#x3D;&quot;btn btn-success me-2&quot;&gt;
                   &lt;i class&#x3D;&quot;bi bi-file-earmark-plus&quot;&gt;&lt;/i&gt; Add Dimension
                 &lt;/button&gt;
-              &lt;/div&gt;
-              &lt;div class&#x3D;&quot;p-1 g-col-1 column-gap-3&quot;&gt;
-                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;deleteDimension(i)&quot; class&#x3D;&quot;btn btn-warning&quot;&gt;
+                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;deleteDimension(i)&quot; class&#x3D;&quot;btn btn-danger me-2&quot;&gt;
                   &lt;i class&#x3D;&quot;bi bi-file-earmark-minus&quot;&gt;&lt;/i&gt; Delete Dimension
                 &lt;/button&gt;
-              &lt;/div&gt;
-              &lt;div class&#x3D;&quot;p-1 g-col-1 column-gap-3&quot;&gt;
-                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;this.generateDimension(i)&quot; class&#x3D;&quot;btn btn-debug&quot;&gt;
-                  &lt;i class&#x3D;&quot;bi bi-bookmark-plus&quot;&gt;&lt;/i&gt; Generate random Dimension {{ i }}
+                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;generateDimension(i)&quot; class&#x3D;&quot;btn brightness-20 btn-warning me-2&quot;&gt;
+                  &lt;i class&#x3D;&quot;bi bi-bookmark-plus&quot;&gt;&lt;/i&gt; Generate random Dimension no. {{ i }}
                 &lt;/button&gt;
               &lt;/div&gt;
             &lt;/div&gt;
           &lt;/div&gt;
         &lt;/div&gt;
-        &lt;p&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;d-flex p-3 small bg-blend-color text-body-tertiary&quot;&gt;
+        &lt;div class&#x3D;&quot;p-1 g-col-2&quot;&gt;
           Form Status: &lt;code&gt;{{ floorForm.status }}&lt;/code&gt;
-        &lt;/p&gt;
-        &lt;p&gt;
-          Form Values: &lt;code&gt;{{ toText(floorForm.value) }}&lt;/code&gt;
-        &lt;/p&gt;
-        &lt;div class&#x3D;&quot;d-flex p-2&quot;&gt;
-          &lt;div class&#x3D;&quot;p-1 g-col-1&quot;&gt;
-            &lt;button type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;!(floorForm.valid &amp;&amp; floorForm.touched)&quot; class&#x3D;&quot;btn btn-primary mb-3&quot;&gt;
-              &lt;i class&#x3D;&quot;bi bi-save&quot;&gt;&lt;/i&gt; Save
-            &lt;/button&gt;
-          &lt;/div&gt;
-          &lt;div class&#x3D;&quot;p-1 g-col-1&quot;&gt;
-            &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;generateFloor()&quot; class&#x3D;&quot;btn btn-debug&quot;&gt;
-              &lt;i class&#x3D;&quot;bi bi-bookmark-plus&quot;&gt;&lt;/i&gt; Generate random data
-            &lt;/button&gt;
-          &lt;/div&gt;
         &lt;/div&gt;
+        &lt;div class&#x3D;&quot;p-1 g-col-2&quot;&gt;
+          Form Values: &lt;code&gt;{{ toText(floorForm.value) }}&lt;/code&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;d-flex&quot;&gt;
+        &lt;button type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;isSubmitDisabled&quot; class&#x3D;&quot;btn btn-primary mb-2 me-2&quot;&gt;
+          &lt;i class&#x3D;&quot;bi bi-save&quot;&gt;&lt;/i&gt; Save
+        &lt;/button&gt;
+        &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;generateFloor()&quot; class&#x3D;&quot;btn btn-warning mb-2 me-2&quot;&gt;
+          &lt;i class&#x3D;&quot;bi bi-file-earmark-plus&quot;&gt;&lt;/i&gt; Generate random floor
+        &lt;/button&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/form&gt;
@@ -2418,8 +2996,8 @@ export class FloorAddComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <h3><i class="bi bi-building"></i> Add Floor</h3>  <form [formGroup]="floorForm" (ngSubmit)="submitForm()" class="g-3 needs-validation" novalidate>    <div class="form-group mb-3">      <label for="id" class="form-label">Id: {{ this.floorForm.controls._id.value }} </label>    </div>    <div class="col border">      <div class="form-group mb-3">        <label for="name" class="form-label">Name</label>        <textarea          formControlName="name"          rows="2"          minlength="4"          maxlength="4000"          required          [ngClass]="{            \'is-invalid\': this.floorForm.controls.name.status !== \'VALID\',            \'is-valid\': this.floorForm.controls.name.status === \'VALID\',            \'form-control\': true,          }"        ></textarea>        <div *ngIf="this.floorForm.controls.name.errors" class="invalid-feedback">          <div *ngIf="this.floorForm.controls.name.errors.required">Name is required</div>          <div *ngIf="this.floorForm.controls.name.errors.minlength">Name must be at least 4 characters</div>        </div>      </div>      <div formGroupName="address">        <div class="row">          <div class="col">            <div class="form-group mb-3">              <label for="street" class="form-label">Street</label>              <input                type="text"                formControlName="street"                id="street"                required                [ngClass]="{                  \'is-invalid\': this.floorForm.controls.address.controls.street.status !== \'VALID\',                  \'is-valid\': this.floorForm.controls.address.controls.street.status === \'VALID\',                  \'form-control\': true,                }"              />              <div *ngIf="this.floorForm.controls.address.controls.street.errors" class="invalid-feedback">                <div *ngIf="this.floorForm.controls.address.controls.street.errors.required">Street is required</div>                <div *ngIf="this.floorForm.controls.address.controls.street.errors.minlength">                  Street must be at least 1 characters                </div>              </div>            </div>          </div>          <div class="col">            <div class="form-group mb-3">              <label for="city" class="form-label">City</label>              <input                type="text"                formControlName="city"                id="city"                required                [ngClass]="{                  \'is-invalid\': this.floorForm.controls.address.controls.city.status !== \'VALID\',                  \'is-valid\': this.floorForm.controls.address.controls.city.status === \'VALID\',                  \'form-control\': true,                }"              />              <div *ngIf="this.floorForm.controls.address.controls.city.errors" class="invalid-feedback">                <div *ngIf="this.floorForm.controls.address.controls.city.errors.required">City is required</div>                <div *ngIf="this.floorForm.controls.address.controls.city.errors.minlength">                  City must be at least 1 characters                </div>              </div>            </div>          </div>          <div class="col">            <div class="form-group mb-3">              <label for="country" class="form-label">Country</label>              <input                type="text"                formControlName="country"                id="country"                required                [ngClass]="{                  \'is-invalid\': this.floorForm.controls.address.controls.country.status !== \'VALID\',                  \'is-valid\': this.floorForm.controls.address.controls.country.status === \'VALID\',                  \'form-control\': true,                }"              />              <div *ngIf="this.floorForm.controls.address.controls.country.errors" class="invalid-feedback">                <div *ngIf="this.floorForm.controls.address.controls.country.errors.required">country is required</div>                <div *ngIf="this.floorForm.controls.address.controls.country.errors.minlength">                  country must be at least 1 characters                </div>              </div>            </div>          </div>          <div class="col">            <div class="form-group mb-3">              <label for="postcode" class="form-label">postcode</label>              <input                type="text"                formControlName="postcode"                id="postcode"                required                [ngClass]="{                  \'is-invalid\': this.floorForm.controls.address.controls.postcode.status !== \'VALID\',                  \'is-valid\': this.floorForm.controls.address.controls.postcode.status === \'VALID\',                  \'form-control\': true,                }"              />              <div *ngIf="this.floorForm.controls.address.controls.postcode.errors" class="invalid-feedback">                <div *ngIf="this.floorForm.controls.address.controls.postcode.errors.required">                  postcode is required                </div>                <div *ngIf="this.floorForm.controls.address.controls.postcode.errors.minlength">                  postcode must be at least 1 characters                </div>              </div>            </div>          </div>        </div>      </div>    </div>    <h4>Add Dimensions</h4>    <div class="border">      <div formArrayName="dimension">        <div *ngFor="let dimensionForm of dimension.controls; let i = index">          <div formGroupName="{{ i }}">            <div class="row">              <div class="col">                <div class="form-group mb-3">                  <label for="description" class="form-label">Description</label>                  <textarea                    formControlName="description"                    rows="2"                    minlength="4"                    maxlength="4000"                    required                    [ngClass]="{                      \'is-invalid\': this.floorForm.controls.dimension.at(i).controls.description.status !== \'VALID\',                      \'is-valid\': this.floorForm.controls.dimension.at(i).controls.description.status === \'VALID\',                      \'form-control\': true,                    }"                  ></textarea>                  <div                    *ngIf="this.floorForm.controls.dimension.at(i).controls.description.errors"                    class="invalid-feedback"                  >                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.description.errors?.required">                      description is required                    </div>                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.description.errors?.minlength">                      description must be at least 4 characters                    </div>                  </div>                </div>              </div>            </div>            <div class="row">              <div class="col">                <div class="form-group mb-3">                  <label for="xPos" class="form-label">X position</label>                  <input                    type="text"                    formControlName="xPos"                    id="xPos"                    required                    [ngClass]="{                      \'is-invalid\': this.floorForm.controls.dimension.at(i).controls.xPos.status !== \'VALID\',                      \'is-valid\': this.floorForm.controls.dimension.at(i).controls.xPos.status === \'VALID\',                      \'form-control\': true,                    }"                  />                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.xPos.errors" class="invalid-feedback">                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.xPos.errors?.required">                      X position is required                    </div>                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.xPos.errors?.minlength">                      X position must be at least 1 characters                    </div>                  </div>                </div>              </div>              <div class="col">                <div class="form-group mb-3">                  <label for="yPos" class="form-label">Y position</label>                  <input                    type="text"                    formControlName="yPos"                    id="yPos"                    required                    [ngClass]="{                      \'is-invalid\': this.floorForm.controls.dimension.at(i).controls.yPos.status !== \'VALID\',                      \'is-valid\': this.floorForm.controls.dimension.at(i).controls.yPos.status === \'VALID\',                      \'form-control\': true,                    }"                  />                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.yPos.errors" class="invalid-feedback">                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.yPos.errors?.required">                      Y is required                    </div>                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.yPos.errors?.minlength">                      Y must be at least 1 characters                    </div>                  </div>                </div>              </div>              <div class="col">                <div class="form-group mb-3">                  <label for="hPos" class="form-label">H position</label>                  <input                    type="text"                    formControlName="hPos"                    id="hPos"                    required                    [ngClass]="{                      \'is-invalid\': this.floorForm.controls.dimension.at(i).controls.hPos.status !== \'VALID\',                      \'is-valid\': this.floorForm.controls.dimension.at(i).controls.hPos.status === \'VALID\',                      \'form-control\': true,                    }"                  />                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.hPos.errors" class="invalid-feedback">                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.hPos.errors?.required">                      H is required                    </div>                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.hPos.errors?.minlength">                      H must be at least 1 characters                    </div>                  </div>                </div>              </div>            </div>            <div class="row">              <div class="col">                <div class="form-group mb-3">                  <label for="x" class="form-label">X</label>                  <input                    type="text"                    formControlName="x"                    id="x"                    required                    [ngClass]="{                      \'is-invalid\': this.floorForm.controls.dimension.at(i).controls.x.status !== \'VALID\',                      \'is-valid\': this.floorForm.controls.dimension.at(i).controls.x.status === \'VALID\',                      \'form-control\': true,                    }"                  />                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.x.errors" class="invalid-feedback">                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.x.errors?.required">X is required</div>                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.x.errors?.minlength">                      X must be at least 1 characters                    </div>                  </div>                </div>              </div>              <div class="col">                <div class="form-group mb-3">                  <label for="y" class="form-label">Y</label>                  <input                    type="text"                    formControlName="y"                    id="y"                    required                    [ngClass]="{                      \'is-invalid\': this.floorForm.controls.dimension.at(i).controls.y.status !== \'VALID\',                      \'is-valid\': this.floorForm.controls.dimension.at(i).controls.y.status === \'VALID\',                      \'form-control\': true,                    }"                  />                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.y.errors" class="invalid-feedback">                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.y.errors?.required">Y is required</div>                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.y.errors?.minlength">                      Y must be at least 1 characters                    </div>                  </div>                </div>              </div>              <div class="col">                <div class="form-group mb-3">                  <label for="h" class="form-label">H</label>                  <input                    type="text"                    formControlName="h"                    id="h"                    required                    [ngClass]="{                      \'is-invalid\': this.floorForm.controls.dimension.at(i).controls.h.status !== \'VALID\',                      \'is-valid\': this.floorForm.controls.dimension.at(i).controls.h.status === \'VALID\',                      \'form-control\': true,                    }"                  />                  <div *ngIf="this.floorForm.controls.dimension.at(i).controls.h.errors" class="invalid-feedback">                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.h.errors?.required">h is required</div>                    <div *ngIf="this.floorForm.controls.dimension.at(i).controls.h.errors?.minlength">                      h must be at least 1 characters                    </div>                  </div>                </div>              </div>            </div>            <div class="d-flex p-2">              <div class="p-1 g-col-1">                <button type="button" (click)="addDimension()" class="btn btn-secondary">                  <i class="bi bi-file-earmark-plus"></i> Add Dimension                </button>              </div>              <div class="p-1 g-col-1 column-gap-3">                <button type="button" (click)="deleteDimension(i)" class="btn btn-warning">                  <i class="bi bi-file-earmark-minus"></i> Delete Dimension                </button>              </div>              <div class="p-1 g-col-1 column-gap-3">                <button type="button" (click)="this.generateDimension(i)" class="btn btn-debug">                  <i class="bi bi-bookmark-plus"></i> Generate random Dimension {{ i }}                </button>              </div>            </div>          </div>        </div>        <p>          Form Status: <code>{{ floorForm.status }}</code>        </p>        <p>          Form Values: <code>{{ toText(floorForm.value) }}</code>        </p>        <div class="d-flex p-2">          <div class="p-1 g-col-1">            <button type="submit" [disabled]="!(floorForm.valid && floorForm.touched)" class="btn btn-primary mb-3">              <i class="bi bi-save"></i> Save            </button>          </div>          <div class="p-1 g-col-1">            <button type="button" (click)="generateFloor()" class="btn btn-debug">              <i class="bi bi-bookmark-plus"></i> Generate random data            </button>          </div>        </div>      </div>    </div>  </form></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsyncObservablePipeComponent', 'selector': 'async-observable-pipe'},{'name': 'AttributeAddComponent', 'selector': 'app-add-attribute'},{'name': 'AttributeDictionaryAddComponent', 'selector': 'app-add-attribute-dictionary'},{'name': 'AttributeDictionaryEditComponent', 'selector': 'app-edit-attribute-dictionary'},{'name': 'AttributeDictionaryListComponent', 'selector': 'app-attribute-dictionary-list'},{'name': 'AttributeEditComponent', 'selector': 'app-edit-attribute'},{'name': 'AttributeListComponent', 'selector': 'app-attribute-list'},{'name': 'ConnectionAddComponent', 'selector': 'app-add-connection'},{'name': 'ConnectionEditComponent', 'selector': 'app-edit-connection'},{'name': 'ConnectionListComponent', 'selector': 'app-connection-list'},{'name': 'CubeComponent', 'selector': 'app-cube'},{'name': 'DeviceAddComponent', 'selector': 'app-add-device'},{'name': 'DeviceEditComponent', 'selector': 'app-edit-device'},{'name': 'DeviceListComponent', 'selector': 'app-device-list'},{'name': 'FloorAddComponent', 'selector': 'app-add-floor'},{'name': 'FloorEditComponent', 'selector': 'app-edit-floor'},{'name': 'FloorListComponent', 'selector': 'app-floor-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LogComponent', 'selector': 'app-log'},{'name': 'ModelAddComponent', 'selector': 'app-add-model'},{'name': 'ModelEditComponent', 'selector': 'app-edit-model'},{'name': 'ModelsListComponent', 'selector': 'app-models-list'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <h3><i class="bi bi-building"></i> Add Floor</h3>  <form [formGroup]="floorForm" (ngSubmit)="onSubmit()" class="g-3 needs-validation" novalidate>    <div class="col border">      <div class="form-group mb-3">        <label for="name" class="form-label">Name</label>        <input type="text" id="name" formControlName="name" minlength="4" maxlength="4000" required [ngClass]="{        \'form-control\': true,        \'is-invalid\': floorForm.get(\'name\')?.invalid && (floorForm.get(\'name\')?.touched || floorForm.get(\'name\')?.dirty),        \'is-valid\': floorForm.get(\'name\')?.valid && (floorForm.get(\'name\')?.touched || floorForm.get(\'name\')?.dirty)          }" [attr.aria-invalid]="floorForm.get(\'name\')?.invalid ? true : null"          [attr.aria-describedby]="\'name-error\'" />        <div class="invalid-feedback" id="name-error"          *ngIf="floorForm.get(\'name\')?.errors && (floorForm.get(\'name\')?.touched || floorForm.get(\'name\')?.dirty)">          <div *ngIf="floorForm.get(\'name\')?.errors?.required">            Name is required          </div>          <div *ngIf="floorForm.get(\'name\')?.errors?.minlength">            Name must be at least {{ floorForm.get(\'name\')?.errors?.minlength.requiredLength }} characters          </div>          <div *ngIf="floorForm.get(\'name\')?.errors?.maxlength">            Name cannot exceed {{ floorForm.get(\'name\')?.errors?.maxlength.requiredLength }} characters          </div>          <div *ngIf="floorForm.get(\'name\')?.errors?.pattern">            Name contains invalid characters          </div>          <div            *ngIf="floorForm.get(\'name\')?.errors && !floorForm.get(\'name\')?.errors?.required && !floorForm.get(\'name\')?.errors?.minlength && !floorForm.get(\'name\')?.errors?.maxlength && !floorForm.get(\'name\')?.errors?.pattern">            Invalid value for Name          </div>        </div>      </div>      <div formGroupName="address">        <div class="row">          <div class="col">            <div class="form-group mb-3">              <label for="street" class="form-label">Street</label>              <input type="text" id="street" formControlName="street" required minlength="1" [ngClass]="{                  \'form-control\': true,                  \'is-invalid\': floorForm.get(\'address.street\')?.invalid && (floorForm.get(\'address.street\')?.touched || floorForm.get(\'address.street\')?.dirty),                  \'is-valid\': floorForm.get(\'address.street\')?.valid && (floorForm.get(\'address.street\')?.touched || floorForm.get(\'address.street\')?.dirty)                }" [attr.aria-invalid]="floorForm.get(\'address.street\')?.invalid ? true : null"                [attr.aria-describedby]="\'street-error\'" />              <div class="invalid-feedback" id="street-error"                *ngIf="floorForm.get(\'address.street\')?.errors && (floorForm.get(\'address.street\')?.touched || floorForm.get(\'address.street\')?.dirty)">                <div *ngIf="floorForm.get(\'address.street\')?.errors?.required">                  Street is required                </div>                <div *ngIf="floorForm.get(\'address.street\')?.errors?.minlength">                  Street must be at least {{ floorForm.get(\'address.street\')?.errors?.minlength.requiredLength }}                  character<span                    *ngIf="floorForm.get(\'address.street\')?.errors?.minlength.requiredLength > 1">s</span>                </div>                <div *ngIf="floorForm.get(\'address.street\')?.errors?.maxlength">                  Street cannot exceed {{ floorForm.get(\'address.street\')?.errors?.maxlength.requiredLength }}                  character<span                    *ngIf="floorForm.get(\'address.street\')?.errors?.maxlength.requiredLength > 1">s</span>                </div>                <div *ngIf="floorForm.get(\'address.street\')?.errors?.pattern">                  Street contains invalid characters                </div>                <div                  *ngIf="floorForm.get(\'address.street\')?.errors && !floorForm.get(\'address.street\')?.errors?.required && !floorForm.get(\'address.street\')?.errors?.minlength && !floorForm.get(\'address.street\')?.errors?.maxlength && !floorForm.get(\'address.street\')?.errors?.pattern">                  Invalid value for Street                </div>              </div>            </div>          </div>          <div class="col">            <div class="form-group mb-3">              <label for="city" class="form-label">City</label>              <input type="text" id="city" formControlName="city" required minlength="1" [ngClass]="{                  \'form-control\': true,                  \'is-invalid\': floorForm.get(\'address.city\')?.invalid && (floorForm.get(\'address.city\')?.touched || floorForm.get(\'address.city\')?.dirty),                  \'is-valid\': floorForm.get(\'address.city\')?.valid && (floorForm.get(\'address.city\')?.touched || floorForm.get(\'address.city\')?.dirty)                }" [attr.aria-invalid]="floorForm.get(\'address.city\')?.invalid ? true : null"                [attr.aria-describedby]="\'city-error\'" />              <div class="invalid-feedback" id="city-error"                *ngIf="floorForm.get(\'address.city\')?.errors && (floorForm.get(\'address.city\')?.touched || floorForm.get(\'address.city\')?.dirty)">                <div *ngIf="floorForm.get(\'address.city\')?.errors?.required">                  City is required                </div>                <div *ngIf="floorForm.get(\'address.city\')?.errors?.minlength">                  City must be at least {{ floorForm.get(\'address.city\')?.errors?.minlength.requiredLength }}                  character<span                    *ngIf="floorForm.get(\'address.city\')?.errors?.minlength.requiredLength > 1">s</span>                </div>                <div *ngIf="floorForm.get(\'address.city\')?.errors?.maxlength">                  City cannot exceed {{ floorForm.get(\'address.city\')?.errors?.maxlength.requiredLength }}                  character<span                    *ngIf="floorForm.get(\'address.city\')?.errors?.maxlength.requiredLength > 1">s</span>                </div>                <div *ngIf="floorForm.get(\'address.city\')?.errors?.pattern">                  City contains invalid characters                </div>                <div                  *ngIf="floorForm.get(\'address.city\')?.errors && !floorForm.get(\'address.city\')?.errors?.required && !floorForm.get(\'address.city\')?.errors?.minlength && !floorForm.get(\'address.city\')?.errors?.maxlength && !floorForm.get(\'address.city\')?.errors?.pattern">                  Invalid value for City                </div>              </div>            </div>          </div>          <div class="col">            <div class="form-group mb-3">              <label for="country" class="form-label">Country</label>              <input type="text" id="country" formControlName="country" required minlength="1" [ngClass]="{                  \'form-control\': true,                  \'is-invalid\': floorForm.get(\'address.country\')?.invalid && (floorForm.get(\'address.country\')?.touched || floorForm.get(\'address.country\')?.dirty),                  \'is-valid\': floorForm.get(\'address.country\')?.valid && (floorForm.get(\'address.country\')?.touched || floorForm.get(\'address.country\')?.dirty)                }" [attr.aria-invalid]="floorForm.get(\'address.country\')?.invalid ? true : null"                [attr.aria-describedby]="\'country-error\'" />              <div class="invalid-feedback" id="country-error"                *ngIf="floorForm.get(\'address.country\')?.errors && (floorForm.get(\'address.country\')?.touched || floorForm.get(\'address.country\')?.dirty)">                <ng-container *ngIf="floorForm.get(\'address.country\')?.errors as errors">                  <div *ngIf="errors.required">                    Country is required                  </div>                  <div *ngIf="errors.minlength">                    Country must be at least {{ errors.minlength.requiredLength }} character<span                      *ngIf="errors.minlength.requiredLength > 1">s</span>                  </div>                  <div *ngIf="errors.maxlength">                    Country cannot exceed {{ errors.maxlength.requiredLength }} character<span                      *ngIf="errors.maxlength.requiredLength > 1">s</span>                  </div>                  <div *ngIf="errors.pattern">                    Country contains invalid characters                  </div>                  <div *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">                    Invalid value for Country                  </div>                </ng-container>              </div>            </div>          </div>          <div class="col">            <div class="form-group mb-3">              <label for="postcode" class="form-label">Post code</label>              <input type="text" id="postcode" formControlName="postcode" required minlength="1" [ngClass]="{                  \'form-control\': true,                  \'is-invalid\': floorForm.get(\'address.postcode\')?.invalid && (floorForm.get(\'address.postcode\')?.touched || floorForm.get(\'address.postcode\')?.dirty),                  \'is-valid\': floorForm.get(\'address.postcode\')?.valid && (floorForm.get(\'address.postcode\')?.touched || floorForm.get(\'address.postcode\')?.dirty)                }" [attr.aria-invalid]="floorForm.get(\'address.postcode\')?.invalid ? true : null"                [attr.aria-describedby]="\'postcode-error\'" />              <div class="invalid-feedback" id="postcode-error"                *ngIf="floorForm.get(\'address.postcode\')?.errors && (floorForm.get(\'address.postcode\')?.touched || floorForm.get(\'address.postcode\')?.dirty)">                <ng-container *ngIf="floorForm.get(\'address.postcode\')?.errors as errors">                  <div *ngIf="errors.required">                    Post code is required                  </div>                  <div *ngIf="errors.minlength">                    Post code must be at least {{ errors.minlength.requiredLength }} character<span                      *ngIf="errors.minlength.requiredLength > 1">s</span>                  </div>                  <div *ngIf="errors.maxlength">                    Post code cannot exceed {{ errors.maxlength.requiredLength }} character<span                      *ngIf="errors.maxlength.requiredLength > 1">s</span>                  </div>                  <div *ngIf="errors.pattern">                    Post code contains invalid characters                  </div>                  <div *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">                    Invalid value for Post code                  </div>                </ng-container>              </div>            </div>          </div>        </div>      </div>    </div>    <h4>Add Dimensions</h4>    <div class="border">      <div formArrayName="dimension">        <div *ngFor="let dimensionForm of dimensionForms.controls; let i = index; trackBy: trackByFn">          <div [formGroupName]="i">            <div class="row">              <div class="col">                <div class="form-group mb-3">                  <label for="description-{{i}}" class="form-label">Description</label>                  <input id="description-{{i}}" formControlName="description" minlength="4" maxlength="512"                    required [ngClass]="{                      \'form-control\': true,                      \'is-invalid\': getDimension(i, \'description\')?.invalid && (getDimension(i, \'description\')?.touched || getDimension(i, \'description\')?.dirty),                      \'is-valid\': getDimension(i, \'description\')?.valid && (getDimension(i, \'description\')?.touched || getDimension(i, \'description\')?.dirty)                    }" />                  <div class="invalid-feedback"                    *ngIf="getDimension(i, \'description\')?.errors && (getDimension(i, \'description\')?.touched || getDimension(i, \'description\')?.dirty)">                    <div *ngIf="getDimension(i, \'description\')?.errors?.required">                      Description is required                    </div>                    <div *ngIf="getDimension(i, \'description\')?.errors?.minlength">                      Description must be at least 4 characters                    </div>                    <div *ngIf="getDimension(i, \'description\')?.errors?.maxlength">                      Description cannot exceed 4000 characters                    </div>                  </div>                </div>              </div>              <div class="row">                <div class="col">                  <div class="form-group mb-3">                    <label for="xPos-{{i}}" class="form-label">X position</label>                    <input type="text" id="xPos-{{i}}" formControlName="xPos" required [ngClass]="{                  \'form-control\': true,                  \'is-invalid\': getDimension(i, \'xPos\')?.invalid && (getDimension(i, \'xPos\')?.touched || getDimension(i, \'xPos\')?.dirty),                  \'is-valid\': getDimension(i, \'xPos\')?.valid && (getDimension(i, \'xPos\')?.touched || getDimension(i, \'xPos\')?.dirty)                }" [attr.aria-invalid]="getDimension(i, \'xPos\')?.invalid ? true : null"                      [attr.aria-describedby]="\'dimension-xPos-\' + i + \'-error\'" />                    <div class="invalid-feedback" [id]="\'dimension-xPos-\' + i + \'-error\'"                      *ngIf="getDimension(i, \'xPos\')?.errors && (getDimension(i, \'xPos\')?.touched || getDimension(i, \'xPos\')?.dirty)">                      <ng-container *ngIf="getDimension(i, \'xPos\')?.errors as errors">                        <div *ngIf="errors.required">                          X position is required                        </div>                        <div *ngIf="errors.minlength">                          X position must be at least {{ errors.minlength.requiredLength }} character<span                            *ngIf="errors.minlength.requiredLength > 1">s</span>                        </div>                        <div *ngIf="errors.maxlength">                          X position cannot exceed {{ errors.maxlength.requiredLength }} character<span                            *ngIf="errors.maxlength.requiredLength > 1">s</span>                        </div>                        <div *ngIf="errors.pattern">                          X position must be a valid number                        </div>                        <div *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">                          Invalid value for X position                        </div>                      </ng-container>                    </div>                  </div>                </div>                <div class="col">                  <div class="form-group mb-3">                    <label for="yPos-{{i}}" class="form-label">Y position</label>                    <input type="text" id="yPos-{{i}}" formControlName="yPos" required [ngClass]="{                      \'form-control\': true,                      \'is-invalid\': getDimension(i, \'yPos\')?.invalid && (getDimension(i, \'yPos\')?.touched || getDimension(i, \'yPos\')?.dirty),                      \'is-valid\': getDimension(i, \'yPos\')?.valid && (getDimension(i, \'yPos\')?.touched || getDimension(i, \'yPos\')?.dirty)                    }" [attr.aria-invalid]="getDimension(i, \'yPos\')?.invalid ? true : null"                      [attr.aria-describedby]="\'dimension-yPos-\' + i + \'-error\'" />                    <ng-container                      *ngIf="getDimension(i, \'yPos\')?.errors && (getDimension(i, \'yPos\')?.touched || getDimension(i, \'yPos\')?.dirty)">                      <div class="invalid-feedback" [id]="\'dimension-yPos-\' + i + \'-error\'">                        <ng-container *ngIf="getDimension(i, \'yPos\')?.errors as errors">                          <div *ngIf="errors.required">                            Y position is required                          </div>                          <div *ngIf="errors.minlength">                            Y position must be at least {{ errors.minlength.requiredLength }} character<span                              *ngIf="errors.minlength.requiredLength > 1">s</span>                          </div>                          <div *ngIf="errors.maxlength">                            Y position cannot exceed {{ errors.maxlength.requiredLength }} character<span                              *ngIf="errors.maxlength.requiredLength > 1">s</span>                          </div>                          <div *ngIf="errors.pattern">                            Y position must be a valid number                          </div>                          <div                            *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">                            Invalid value for Y position                          </div>                        </ng-container>                      </div>                    </ng-container>                  </div>                </div>                <div class="col">                  <div class="form-group mb-3">                    <label for="hPos-{{i}}" class="form-label">H position</label>                    <input type="text" id="hPos-{{i}}" formControlName="hPos" required [ngClass]="{                      \'form-control\': true,                      \'is-invalid\': getDimension(i, \'hPos\')?.invalid && (getDimension(i, \'hPos\')?.touched || getDimension(i, \'hPos\')?.dirty),                      \'is-valid\': getDimension(i, \'hPos\')?.valid && (getDimension(i, \'hPos\')?.touched || getDimension(i, \'hPos\')?.dirty)                    }" [attr.aria-invalid]="getDimension(i, \'hPos\')?.invalid ? true : null"                      [attr.aria-describedby]="\'dimension-hPos-\' + i + \'-error\'" />                    <ng-container                      *ngIf="getDimension(i, \'hPos\')?.errors && (getDimension(i, \'hPos\')?.touched || getDimension(i, \'hPos\')?.dirty)">                      <div class="invalid-feedback" [id]="\'dimension-hPos-\' + i + \'-error\'">                        <ng-container *ngIf="getDimension(i, \'hPos\')?.errors as errors">                          <div *ngIf="errors.required">                            H position is required                          </div>                          <div *ngIf="errors.minlength">                            H position must be at least {{ errors.minlength.requiredLength }} character<span                              *ngIf="errors.minlength.requiredLength > 1">s</span>                          </div>                          <div *ngIf="errors.maxlength">                            H position cannot exceed {{ errors.maxlength.requiredLength }} character<span                              *ngIf="errors.maxlength.requiredLength > 1">s</span>                          </div>                          <div *ngIf="errors.pattern">                            H position must be a valid number                          </div>                          <div                            *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">                            Invalid value for H position                          </div>                        </ng-container>                      </div>                    </ng-container>                  </div>                </div>              </div>              <div class="row">                <div class="col">                  <div class="form-group mb-3">                    <label for="dimension-x-{{i}}" class="form-label">X</label>                    <input type="text" id="dimension-x-{{i}}" formControlName="x" required [ngClass]="{                      \'form-control\': true,                      \'is-invalid\': getDimension(i, \'x\')?.invalid && (getDimension(i, \'x\')?.touched || getDimension(i, \'x\')?.dirty),                      \'is-valid\': getDimension(i, \'x\')?.valid && (getDimension(i, \'x\')?.touched || getDimension(i, \'x\')?.dirty)                    }" [attr.aria-invalid]="getDimension(i, \'x\')?.invalid ? true : null"                      [attr.aria-describedby]="\'dimension-x-\' + i + \'-error\'" />                    <ng-container                      *ngIf="getDimension(i, \'x\')?.errors && (getDimension(i, \'x\')?.touched || getDimension(i, \'x\')?.dirty)">                      <div class="invalid-feedback" [id]="\'dimension-x-\' + i + \'-error\'">                        <ng-container *ngIf="getDimension(i, \'x\')?.errors as errors">                          <div *ngIf="errors.required">                            X is required                          </div>                          <div *ngIf="errors.minlength">                            X must be at least {{ errors.minlength.requiredLength }} character<span                              *ngIf="errors.minlength.requiredLength > 1">s</span>                          </div>                          <div *ngIf="errors.maxlength">                            X cannot exceed {{ errors.maxlength.requiredLength }} character<span                              *ngIf="errors.maxlength.requiredLength > 1">s</span>                          </div>                          <div *ngIf="errors.pattern">                            X must be a valid number                          </div>                          <div                            *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">                            Invalid value for X                          </div>                        </ng-container>                      </div>                    </ng-container>                  </div>                </div>                <div class="col">                  <div class="form-group mb-3">                    <label for="dimension-y-{{i}}" class="form-label">Y</label>                    <input type="text" id="dimension-y-{{i}}" formControlName="y" required [ngClass]="{                      \'form-control\': true,                      \'is-invalid\': getDimension(i, \'y\')?.invalid && (getDimension(i, \'y\')?.touched || getDimension(i, \'y\')?.dirty),                      \'is-valid\': getDimension(i, \'y\')?.valid && (getDimension(i, \'y\')?.touched || getDimension(i, \'y\')?.dirty)                    }" [attr.aria-invalid]="getDimension(i, \'y\')?.invalid ? true : null"                      [attr.aria-describedby]="\'dimension-y-\' + i + \'-error\'" />                    <ng-container                      *ngIf="getDimension(i, \'y\')?.errors && (getDimension(i, \'y\')?.touched || getDimension(i, \'y\')?.dirty)">                      <div class="invalid-feedback" [id]="\'dimension-y-\' + i + \'-error\'">                        <ng-container *ngIf="getDimension(i, \'y\')?.errors as errors">                          <div *ngIf="errors.required">                            Y is required                          </div>                          <div *ngIf="errors.minlength">                            Y must be at least {{ errors.minlength.requiredLength }} character<span                              *ngIf="errors.minlength.requiredLength > 1">s</span>                          </div>                          <div *ngIf="errors.maxlength">                            Y cannot exceed {{ errors.maxlength.requiredLength }} character<span                              *ngIf="errors.maxlength.requiredLength > 1">s</span>                          </div>                          <div *ngIf="errors.pattern">                            Y must be a valid number                          </div>                          <div                            *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">                            Invalid value for Y                          </div>                        </ng-container>                      </div>                    </ng-container>                  </div>                </div>                <div class="col">                  <div class="form-group mb-3">                    <label for="dimension-h-{{i}}" class="form-label">H</label>                    <input type="number" step="any" id="dimension-h-{{i}}" formControlName="h" required [ngClass]="{                      \'form-control\': true,                      \'is-invalid\': getDimension(i, \'h\')?.invalid && (getDimension(i, \'h\')?.touched || getDimension(i, \'h\')?.dirty),                      \'is-valid\': getDimension(i, \'h\')?.valid && (getDimension(i, \'h\')?.touched || getDimension(i, \'h\')?.dirty)                    }" [attr.aria-invalid]="getDimension(i, \'h\')?.invalid ? true : null"                      [attr.aria-describedby]="\'dimension-h-\' + i + \'-error\'" />                    <ng-container                      *ngIf="getDimension(i, \'h\')?.errors && (getDimension(i, \'h\')?.touched || getDimension(i, \'h\')?.dirty)">                      <div class="invalid-feedback" [id]="\'dimension-h-\' + i + \'-error\'">                        <ng-container *ngIf="getDimension(i, \'h\')?.errors as errors">                          <div *ngIf="errors.required">                            H is required                          </div>                          <div *ngIf="errors.minlength">                            H must be at least {{ errors.minlength.requiredLength }} character<span                              *ngIf="errors.minlength.requiredLength > 1">s</span>                          </div>                          <div *ngIf="errors.maxlength">                            H cannot exceed {{ errors.maxlength.requiredLength }} character<span                              *ngIf="errors.maxlength.requiredLength > 1">s</span>                          </div>                          <div *ngIf="errors.pattern">                            H must be a valid number                          </div>                          <div                            *ngIf="!errors.required && !errors.minlength && !errors.maxlength && !errors.pattern">                            Invalid value for H                          </div>                        </ng-container>                      </div>                    </ng-container>                  </div>                </div>              </div>              <div class="d-flex p-2 float-end me-2">                <button type="button" (click)="addDimension()" class="btn btn-success me-2">                  <i class="bi bi-file-earmark-plus"></i> Add Dimension                </button>                <button type="button" (click)="deleteDimension(i)" class="btn btn-danger me-2">                  <i class="bi bi-file-earmark-minus"></i> Delete Dimension                </button>                <button type="button" (click)="generateDimension(i)" class="btn brightness-20 btn-warning me-2">                  <i class="bi bi-bookmark-plus"></i> Generate random Dimension no. {{ i }}                </button>              </div>            </div>          </div>        </div>      </div>      <div class="d-flex p-3 small bg-blend-color text-body-tertiary">        <div class="p-1 g-col-2">          Form Status: <code>{{ floorForm.status }}</code>        </div>        <div class="p-1 g-col-2">          Form Values: <code>{{ toText(floorForm.value) }}</code>        </div>      </div>      <div class="d-flex">        <button type="submit" [disabled]="isSubmitDisabled" class="btn btn-primary mb-2 me-2">          <i class="bi bi-save"></i> Save        </button>        <button type="button" (click)="generateFloor()" class="btn btn-warning mb-2 me-2">          <i class="bi bi-file-earmark-plus"></i> Generate random floor        </button>      </div>    </div>  </form></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AttributeAddComponent', 'selector': 'app-add-attribute'},{'name': 'AttributeDictionaryAddComponent', 'selector': 'app-add-attribute-dictionary'},{'name': 'AttributeDictionaryEditComponent', 'selector': 'app-edit-attribute-dictionary'},{'name': 'AttributeDictionaryListComponent', 'selector': 'app-attribute-dictionary-list'},{'name': 'AttributeEditComponent', 'selector': 'app-edit-attribute'},{'name': 'AttributeListComponent', 'selector': 'app-attribute-list'},{'name': 'ConnectionAddComponent', 'selector': 'app-add-connection'},{'name': 'ConnectionEditComponent', 'selector': 'app-edit-connection'},{'name': 'ConnectionListComponent', 'selector': 'app-connection-list'},{'name': 'CubeComponent', 'selector': 'app-cube'},{'name': 'DeviceAddComponent', 'selector': 'app-add-device'},{'name': 'DeviceEditComponent', 'selector': 'app-edit-device'},{'name': 'DeviceListComponent', 'selector': 'app-device-list'},{'name': 'FloorAddComponent', 'selector': 'app-add-floor'},{'name': 'FloorEditComponent', 'selector': 'app-edit-floor'},{'name': 'FloorListComponent', 'selector': 'app-floor-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LogComponent', 'selector': 'app-log'},{'name': 'ModelAddComponent', 'selector': 'app-add-model'},{'name': 'ModelEditComponent', 'selector': 'app-edit-model'},{'name': 'ModelsListComponent', 'selector': 'app-models-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FloorAddComponent'};
 </script>
@@ -2495,7 +3073,6 @@ export class FloorAddComponent implements OnInit {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

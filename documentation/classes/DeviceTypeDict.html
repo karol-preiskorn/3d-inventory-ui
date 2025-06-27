@@ -119,7 +119,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/shared/deviceTypes.ts</code>
+            <code>src/app/shared/DeviceTypes.ts</code>
         </p>
 
 
@@ -156,12 +156,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#findType" >findType</a>
                             </li>
                             <li>
-                                <a href="#findTypeByName" >findTypeByName</a>
-                            </li>
-                            <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#get" >get</a>
                             </li>
                             <li>
@@ -171,6 +170,10 @@
                             <li>
                                     <span class="modifier">Public</span>
                                 <a href="#getRandomName" >getRandomName</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#logTypeByName" >logTypeByName</a>
                             </li>
                         </ul>
                     </td>
@@ -211,38 +214,38 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>[
-    { name: &#x27;&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Bridge&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;CoolAir&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Copier&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Desktop&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Firewall&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Gateway&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Hubs&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Load Balancer&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Modem&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Multiplexer&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;PDU System&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Power&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Printer&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Probe&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Repeaters&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Router&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Security Device&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Server&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Switch&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Telephone&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Terminal&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Traffic shaper&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Transceiver&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;UPS System&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Workstations&#x27;, description: &#x27;&#x27; },
+    new DeviceType(&#x27;&#x27;),
+    new DeviceType(&#x27;Bridge&#x27;),
+    new DeviceType(&#x27;CoolAir&#x27;),
+    new DeviceType(&#x27;Copier&#x27;),
+    new DeviceType(&#x27;Desktop&#x27;),
+    new DeviceType(&#x27;Firewall&#x27;),
+    new DeviceType(&#x27;Gateway&#x27;),
+    new DeviceType(&#x27;Hubs&#x27;),
+    new DeviceType(&#x27;Load Balancer&#x27;),
+    new DeviceType(&#x27;Modem&#x27;),
+    new DeviceType(&#x27;Multiplexer&#x27;),
+    new DeviceType(&#x27;PDU System&#x27;),
+    new DeviceType(&#x27;Power&#x27;),
+    new DeviceType(&#x27;Printer&#x27;),
+    new DeviceType(&#x27;Probe&#x27;),
+    new DeviceType(&#x27;Repeaters&#x27;),
+    new DeviceType(&#x27;Router&#x27;),
+    new DeviceType(&#x27;Security Device&#x27;),
+    new DeviceType(&#x27;Server&#x27;),
+    new DeviceType(&#x27;Switch&#x27;),
+    new DeviceType(&#x27;Telephone&#x27;),
+    new DeviceType(&#x27;Terminal&#x27;),
+    new DeviceType(&#x27;Traffic shaper&#x27;),
+    new DeviceType(&#x27;Transceiver&#x27;),
+    new DeviceType(&#x27;UPS System&#x27;),
+    new DeviceType(&#x27;Workstations&#x27;),
   ]</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/shared/deviceTypes.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/DeviceTypes.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -262,6 +265,7 @@
                 <td class="col-md-4">
                     <a name="findType"></a>
                     <span class="name">
+                            <span class="modifier">Public</span>
                         <span ><b>findType</b></span>
                         <a href="#findType"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -269,15 +273,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findType(search: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findType(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="70"
-                                    class="link-to-prism">src/app/shared/deviceTypes.ts:70</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/shared/DeviceTypes.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -298,7 +303,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>search</td>
+                                                <td>name</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
@@ -327,75 +332,9 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findTypeByName"></a>
-                    <span class="name">
-                        <span ><b>findTypeByName</b></span>
-                        <a href="#findTypeByName"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>findTypeByName(obj: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="75"
-                                    class="link-to-prism">src/app/shared/deviceTypes.ts:75</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>obj</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="get"></a>
                     <span class="name">
+                            <span class="modifier">Public</span>
                         <span ><b>get</b></span>
                         <a href="#get"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -403,15 +342,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>get()</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>get()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/app/shared/deviceTypes.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/shared/DeviceTypes.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -449,8 +389,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="62"
-                                    class="link-to-prism">src/app/shared/deviceTypes.ts:62</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/app/shared/DeviceTypes.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -488,8 +428,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="66"
-                                    class="link-to-prism">src/app/shared/deviceTypes.ts:66</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/shared/DeviceTypes.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -501,6 +441,84 @@
                             <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logTypeByName"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>logTypeByName</b></span>
+                        <a href="#logTypeByName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>logTypeByName(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">src/app/shared/DeviceTypes.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Logs the device type if found by name.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>name</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The name to search for.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -520,50 +538,45 @@
   description: string
 }
 
-export type DeviceTypeListType &#x3D; DeviceTypeInterface
-
-export class DeviceType {
-  name: string
-  description: string
-
-  constructor(deviceType: DeviceTypeListType) {
-    this.name &#x3D; deviceType.name
-    this.description &#x3D; deviceType.description
-  }
+export class DeviceType implements DeviceTypeInterface {
+  constructor(
+    public name: string,
+    public description: string &#x3D; &#x27;&#x27;,
+  ) {}
 }
 
 export class DeviceTypeDict {
   private list: DeviceType[] &#x3D; [
-    { name: &#x27;&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Bridge&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;CoolAir&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Copier&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Desktop&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Firewall&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Gateway&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Hubs&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Load Balancer&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Modem&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Multiplexer&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;PDU System&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Power&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Printer&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Probe&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Repeaters&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Router&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Security Device&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Server&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Switch&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Telephone&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Terminal&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Traffic shaper&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Transceiver&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;UPS System&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;Workstations&#x27;, description: &#x27;&#x27; },
+    new DeviceType(&#x27;&#x27;),
+    new DeviceType(&#x27;Bridge&#x27;),
+    new DeviceType(&#x27;CoolAir&#x27;),
+    new DeviceType(&#x27;Copier&#x27;),
+    new DeviceType(&#x27;Desktop&#x27;),
+    new DeviceType(&#x27;Firewall&#x27;),
+    new DeviceType(&#x27;Gateway&#x27;),
+    new DeviceType(&#x27;Hubs&#x27;),
+    new DeviceType(&#x27;Load Balancer&#x27;),
+    new DeviceType(&#x27;Modem&#x27;),
+    new DeviceType(&#x27;Multiplexer&#x27;),
+    new DeviceType(&#x27;PDU System&#x27;),
+    new DeviceType(&#x27;Power&#x27;),
+    new DeviceType(&#x27;Printer&#x27;),
+    new DeviceType(&#x27;Probe&#x27;),
+    new DeviceType(&#x27;Repeaters&#x27;),
+    new DeviceType(&#x27;Router&#x27;),
+    new DeviceType(&#x27;Security Device&#x27;),
+    new DeviceType(&#x27;Server&#x27;),
+    new DeviceType(&#x27;Switch&#x27;),
+    new DeviceType(&#x27;Telephone&#x27;),
+    new DeviceType(&#x27;Terminal&#x27;),
+    new DeviceType(&#x27;Traffic shaper&#x27;),
+    new DeviceType(&#x27;Transceiver&#x27;),
+    new DeviceType(&#x27;UPS System&#x27;),
+    new DeviceType(&#x27;Workstations&#x27;),
   ]
 
-  get(): DeviceType[] {
-    return this.list
+  public get(): DeviceType[] {
+    return [...this.list]
   }
 
   public getRandom(): DeviceType {
@@ -571,19 +584,21 @@ export class DeviceTypeDict {
   }
 
   public getRandomName(): string {
-    return this.list[Math.floor(Math.random() * this.list.length)].name
+    return this.getRandom().name
   }
 
-  findType(search: string): DeviceType | string {
-    const element &#x3D; this.list.find((e) &#x3D;&gt; e.name &#x3D;&#x3D;&#x3D; search)
-    return element || search
+  public findType(name: string): DeviceType | string {
+    return this.list.find((e) &#x3D;&gt; e.name &#x3D;&#x3D;&#x3D; name) ?? name
   }
 
-  findTypeByName(obj: string): void {
-    for (let i &#x3D; 0; i &lt; this.list.length; i++) {
-      if (this.list[i].name &#x3D;&#x3D;&#x3D; obj) {
-        console.log(&#x27;--&gt;&#x27;, obj)
-      }
+  /**
+   * Logs the device type if found by name.
+   * @param name - The name to search for.
+   */
+  public logTypeByName(name: string): void {
+    const found &#x3D; this.list.find((e) &#x3D;&gt; e.name &#x3D;&#x3D;&#x3D; name)
+    if (found) {
+      console.log(&#x27;--&gt;&#x27;, name)
     }
   }
 }
@@ -653,7 +668,6 @@ export class DeviceTypeDict {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

@@ -122,7 +122,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/shared/floor.ts</code>
+            <code>src/app/shared/floors.ts</code>
         </p>
 
 
@@ -439,7 +439,7 @@
   hPos: string
 }
 
-export interface Floor {
+export interface Floors {
   _id: string
   name: string
   address: {
@@ -450,6 +450,8 @@ export interface Floor {
   }
   dimension: [FloorDimension]
 }
+
+
 </code></pre>
     </div>
 </div>
@@ -515,7 +517,6 @@ export interface Floor {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

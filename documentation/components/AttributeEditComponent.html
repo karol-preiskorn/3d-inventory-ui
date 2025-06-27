@@ -155,7 +155,19 @@
                 <td class="col-md-9"><code>app-edit-attribute</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>ReactiveFormsModule</code>
+                                <code><a href="../components/LogComponent.html" target="_self" >LogComponent</a></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -260,9 +272,6 @@
                                 <a href="#changeModelId" >changeModelId</a>
                             </li>
                             <li>
-                                <a href="#changeValue" >changeValue</a>
-                            </li>
-                            <li>
                                 <a href="#findDeviceName" >findDeviceName</a>
                             </li>
                             <li>
@@ -283,6 +292,9 @@
                             </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onValueChange" >onValueChange</a>
                             </li>
                             <li>
                                 <a href="#submitForm" >submitForm</a>
@@ -345,7 +357,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:76</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:88</a></div>
                             </td>
                         </tr>
 
@@ -510,8 +522,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="102"
-                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:102</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="114"
+                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:114</a></div>
                         </td>
                     </tr>
 
@@ -547,8 +559,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="128"
-                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:128</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="137"
+                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:137</a></div>
                         </td>
                     </tr>
 
@@ -614,8 +626,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="124"
-                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:124</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="133"
+                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:133</a></div>
                         </td>
                     </tr>
 
@@ -681,8 +693,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="118"
-                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:118</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:128</a></div>
                         </td>
                     </tr>
 
@@ -748,8 +760,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="111"
-                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:111</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:123</a></div>
                         </td>
                     </tr>
 
@@ -799,73 +811,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="changeValue"></a>
-                    <span class="name">
-                        <span ><b>changeValue</b></span>
-                        <a href="#changeValue"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>changeValue(e: Event)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="132"
-                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:132</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>e</td>
-                                            <td>
-                                                        <code>Event</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="findDeviceName"></a>
                     <span class="name">
                         <span ><b>findDeviceName</b></span>
@@ -882,8 +827,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="176"
-                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:176</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="187"
+                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:187</a></div>
                         </td>
                     </tr>
 
@@ -951,8 +896,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="68"
-                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:68</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="73"
+                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -1018,8 +963,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="195"
-                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:195</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="230"
+                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:230</a></div>
                         </td>
                     </tr>
 
@@ -1055,8 +1000,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="188"
-                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:188</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="210"
+                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:210</a></div>
                         </td>
                     </tr>
 
@@ -1092,8 +1037,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="168"
-                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:168</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="180"
+                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:180</a></div>
                         </td>
                     </tr>
 
@@ -1129,8 +1074,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="180"
-                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:180</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="191"
+                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:191</a></div>
                         </td>
                     </tr>
 
@@ -1166,8 +1111,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -1179,6 +1124,73 @@
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onValueChange"></a>
+                    <span class="name">
+                        <span ><b>onValueChange</b></span>
+                        <a href="#onValueChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onValueChange(e: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:141</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>e</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1203,8 +1215,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="202"
-                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:202</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="250"
+                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:250</a></div>
                         </td>
                     </tr>
 
@@ -1240,8 +1252,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="164"
-                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:164</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="176"
+                                    class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:176</a></div>
                         </td>
                     </tr>
 
@@ -1308,7 +1320,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -1328,13 +1340,13 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>AttributeDictionary[]</code>
+                        <i>Type : </i>    <code>AttributesDictionary[]</code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -1360,7 +1372,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -1391,7 +1403,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -1417,7 +1429,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -1448,7 +1460,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -1474,7 +1486,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -1505,7 +1517,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -1531,7 +1543,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -1557,7 +1569,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -1582,7 +1594,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -1608,7 +1620,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -1639,7 +1651,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -1668,7 +1680,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:136</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:148</a></div>
                                 </td>
                             </tr>
 
@@ -1690,7 +1702,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:152</a></div>
                                 </td>
                             </tr>
 
@@ -1712,7 +1724,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:144</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:156</a></div>
                                 </td>
                             </tr>
 
@@ -1734,7 +1746,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:148</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:160</a></div>
                                 </td>
                             </tr>
 
@@ -1756,7 +1768,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:152</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:164</a></div>
                                 </td>
                             </tr>
 
@@ -1778,7 +1790,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:156</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:168</a></div>
                                 </td>
                             </tr>
 
@@ -1800,7 +1812,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:160</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/app/components/attribute/edit-attribute/edit-attribute.component.ts:172</a></div>
                                 </td>
                             </tr>
 
@@ -1811,33 +1823,37 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from &#x27;@angular/forms&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, NgZone, OnInit } from &#x27;@angular/core&#x27;
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from &#x27;@angular/forms&#x27;
 import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;
-import { Component, NgZone, OnInit } from &#x27;@angular/core&#x27;
 
-import { Attribute } from &#x27;../../../shared/attribute&#x27;
-import { AttributeDictionary } from &#x27;../../../shared/attribute-dictionary&#x27;
-import { AttributeDictionaryService } from &#x27;../../../services/attribute-dictionary.service&#x27;
-import { AttributeService } from &#x27;../../../services/attribute.service&#x27;
-import { ComponentDictionary } from &#x27;../../../shared/component-dictionary&#x27;
-import { Connection } from &#x27;../../../shared/connection&#x27;
-import { ConnectionService } from &#x27;../../../services/connection.service&#x27;
-import { Device } from &#x27;../../../shared/device&#x27;
-import { DeviceCategoryDict } from &#x27;../../../shared/deviceCategories&#x27;
-import { DeviceService } from &#x27;../../../services/device.service&#x27;
-import { DeviceTypeDict } from &#x27;../../../shared/deviceTypes&#x27;
-import { LogService } from &#x27;../../../services/log.service&#x27;
-import { Model } from &#x27;../../../shared/model&#x27;
-import { ModelsService } from &#x27;../../../services/models.service&#x27;
+import { CommonModule } from &#x27;@angular/common&#x27;
 import { Observable } from &#x27;rxjs&#x27;
-import Validation from &#x27;../../../shared/validation&#x27;
 import { tap } from &#x27;rxjs/operators&#x27;
 import { v4 as uuidv4 } from &#x27;uuid&#x27;
+import { AttributeDictionaryService } from &#x27;../../../services/attribute-dictionary.service&#x27;
+import { AttributeService } from &#x27;../../../services/attribute.service&#x27;
+import { ConnectionService } from &#x27;../../../services/connection.service&#x27;
+import { DeviceService } from &#x27;../../../services/device.service&#x27;
+import { LogService } from &#x27;../../../services/log.service&#x27;
+import { ModelsService } from &#x27;../../../services/models.service&#x27;
+import { Attribute } from &#x27;../../../shared/attribute&#x27;
+import { AttributesDictionary } from &#x27;../../../shared/AttributesDictionary&#x27;
+import { ComponentDictionary } from &#x27;../../../shared/ComponentDictionary&#x27;
+import { Connection } from &#x27;../../../shared/connection&#x27;
+import { Device } from &#x27;../../../shared/device&#x27;
+import { DeviceCategoryDict } from &#x27;../../../shared/deviceCategories&#x27;
+import { DeviceTypeDict } from &#x27;../../../shared/DeviceTypes&#x27;
+import { Model } from &#x27;../../../shared/model&#x27;
+import Validation from &#x27;../../../shared/validation&#x27;
+import { LogComponent } from &#x27;../../log/log.component&#x27;
 
 @Component({
   selector: &#x27;app-edit-attribute&#x27;,
   templateUrl: &#x27;./edit-attribute.component.html&#x27;,
   styleUrls: [&#x27;./edit-attribute.component.scss&#x27;],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, LogComponent],
 })
 export class AttributeEditComponent implements OnInit {
   inputId: string
@@ -1849,7 +1865,7 @@ export class AttributeEditComponent implements OnInit {
   deviceDictionary: Device[]
   modelDictionary: Model[]
   connectionDictionary: Connection[]
-  attributeDictionary: AttributeDictionary[]
+  attributeDictionary: AttributesDictionary[]
 
   deviceTypeDict: DeviceTypeDict &#x3D; new DeviceTypeDict()
   deviceCategoryDict: DeviceCategoryDict &#x3D; new DeviceCategoryDict()
@@ -1863,12 +1879,12 @@ export class AttributeEditComponent implements OnInit {
     this.getAttribute(this.inputId).subscribe((data: Attribute) &#x3D;&gt; {
       this.attribute &#x3D; data
       this.editAttributeForm.setValue({
-        _id: data._id,
-        attributeDictionaryId: data.attributeDictionaryId,
-        connectionId: data.connectionId,
-        deviceId: data.deviceId,
-        modelId: data.modelId,
-        value: data.value,
+        _id: data._id || &#x27;&#x27;,
+        attributeDictionaryId: data.attributeDictionaryId || &#x27;&#x27;, // Default to an empty string
+        connectionId: data.connectionId || &#x27;&#x27;,
+        deviceId: data.deviceId || &#x27;&#x27;,
+        modelId: data.modelId || &#x27;&#x27;,
+        value: data.value || &#x27;&#x27;,
       })
     })
     this.getDeviceList()
@@ -1876,14 +1892,22 @@ export class AttributeEditComponent implements OnInit {
     this.getConnectionList()
     this.getAttributeDictionaryList()
     this.component &#x3D; this.inputId
+    this.getAttributeDictionaryList()
   }
 
   private getAttribute(id: string): Observable&lt;Attribute&gt; {
     return this.attributeService.GetAttribute(id).pipe(
       tap((data: Attribute) &#x3D;&gt; {
-        console.log(&#x27;AttributeEditComponent.GetAttribute(&#x27; + id + &#x27;) &#x3D;&gt; &#x27; + JSON.stringify(data, null, 2))
+        console.log(&#x27;AttributeEditComponent.getAttribute(&#x27; + id + &#x27;) &#x3D;&gt; &#x27; + JSON.stringify(data, null, 2))
         this.attribute &#x3D; data
-        this.editAttributeForm.setValue(data)
+        this.editAttributeForm.patchValue({
+          _id: data._id,
+          attributeDictionaryId: data.attributeDictionaryId,
+          connectionId: data.connectionId,
+          deviceId: data.deviceId,
+          modelId: data.modelId,
+          value: data.value,
+        })
       }),
     )
   }
@@ -1908,7 +1932,7 @@ export class AttributeEditComponent implements OnInit {
         modelId: new FormControl(&#x27;&#x27;),
         value: new FormControl(&#x27;&#x27;, [Validators.required]),
       },
-      { validators: [this.atLeastOneValidator.bind(this)] },
+      { validators: this.atLeastOneValidator() },
     )
   }
 
@@ -1916,34 +1940,34 @@ export class AttributeEditComponent implements OnInit {
     return (control: AbstractControl): { [key: string]: boolean } | null &#x3D;&gt; {
       const formGroup &#x3D; control as FormGroup
       const values &#x3D; Object.values(formGroup.controls)
-      const hasValue &#x3D; values.some((control) &#x3D;&gt; control.value !&#x3D;&#x3D; null &amp;&amp; control.value !&#x3D;&#x3D; &#x27;&#x27;)
+      const hasValue &#x3D; values.some((control) &#x3D;&gt; control.enabled &amp;&amp; control.value !&#x3D;&#x3D; null &amp;&amp; control.value !&#x3D;&#x3D; &#x27;&#x27;)
       return hasValue ? null : { atLeastOne: true }
     }
   }
 
   changeModelId(e: Event) {
     const value &#x3D; (e.target as HTMLInputElement).value
-    const objectId &#x3D; uuidv4.toString()
-    this.modelId!.setValue(objectId, { onlySelf: true })
     return value
   }
 
   changeDeviceId(e: Event) {
     const value &#x3D; (e.target as HTMLInputElement).value
-    //const objectId &#x3D; new mongodb.ObjectId().toString() // This line creates a new ObjectId and converts it to a string
     return value
   }
 
   changeConnectionId(e: Event) {
-    this.connectionId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.connectionId?.setValue((e.target as HTMLSelectElement).value, { onlySelf: true })
   }
 
   changeAttributeDictionaryId(e: Event) {
-    this.attributeDictionaryId?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    this.attributeDictionaryId?.setValue((e.target as HTMLSelectElement).value, { onlySelf: true })
   }
 
-  changeValue(e: Event) {
-    this.value?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+  onValueChange(e: Event) {
+    const target &#x3D; e.target
+    if (target instanceof HTMLInputElement) {
+      this.value?.setValue(target.value, { onlySelf: true })
+    }
   }
 
   get id() {
@@ -1981,52 +2005,109 @@ export class AttributeEditComponent implements OnInit {
   getDeviceList() {
     this.deviceService.GetDevices().subscribe((data: Device[]) &#x3D;&gt; {
       const tmp &#x3D; new Device()
-      data.unshift(tmp)
-      this.deviceDictionary &#x3D; data
+      this.deviceDictionary &#x3D; [tmp, ...data]
     })
   }
 
   findDeviceName(id: string) {
-    return this.deviceDictionary.find((e) &#x3D;&gt; e._id &#x3D;&#x3D;&#x3D; id)?.name
+    return this.deviceDictionary?.find((e) &#x3D;&gt; e._id &#x3D;&#x3D;&#x3D; id)?.name
   }
 
-  getModelList() {
-    this.modelService.GetModels().subscribe((data: Model[]) &#x3D;&gt; {
-      const tmp &#x3D; new Model()
-      data.unshift(tmp)
-      this.modelDictionary &#x3D; data
+  getModelList(): void {
+    this.modelService.GetModels().subscribe({
+      next: (models: Model[]) &#x3D;&gt; {
+        this.modelDictionary &#x3D; [new Model(), ...models]
+      },
+      error: (err) &#x3D;&gt; {
+        console.error(&#x27;Error fetching models:&#x27;, err)
+        this.logService
+          .CreateLog({
+            objectId: &#x27;&#x27;,
+            message: { error: &#x60;Error fetching models: ${err?.message || err}&#x60; },
+            operation: &#x27;Fetch&#x27;,
+            component: &#x27;models&#x27;,
+          })
+          .subscribe()
+      },
     })
   }
 
   getConnectionList() {
-    this.connectionService.GetConnections().subscribe((data: Connection[]) &#x3D;&gt; {
-      const tmp &#x3D; new Connection()
-      this.connectionDictionary &#x3D; [tmp, ...data]
+    this.connectionService.GetConnections().subscribe({
+      next: (data: Connection[]) &#x3D;&gt; {
+        const placeholderConnection &#x3D; new Connection()
+        this.connectionDictionary &#x3D; [placeholderConnection, ...data]
+      },
+      error: (error) &#x3D;&gt; {
+        console.error(&#x27;Error fetching connections:&#x27;, error)
+        this.logService
+          .CreateLog({
+            objectId: &#x27;&#x27;,
+            message: { error: &#x60;Error fetching connections: ${error.message}&#x60; },
+            operation: &#x27;Fetch&#x27;,
+            component: &#x27;connections&#x27;,
+          })
+          .subscribe()
+      },
     })
   }
 
   getAttributeDictionaryList() {
-    this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributeDictionary[]) &#x3D;&gt; {
-      const tmp &#x3D; new AttributeDictionary()
-      this.attributeDictionary &#x3D; [tmp, ...data]
+    this.attributeDictionaryService.GetAttributeDictionaries().subscribe({
+      next: (data: AttributesDictionary[]) &#x3D;&gt; {
+        const placeholder &#x3D; new AttributesDictionary()
+        this.attributeDictionary &#x3D; [placeholder, ...data]
+      },
+      error: (error) &#x3D;&gt; {
+        console.error(&#x27;Error fetching attribute dictionaries:&#x27;, error)
+        this.logService
+          .CreateLog({
+            objectId: &#x27;&#x27;,
+            message: { error: &#x60;Error fetching attribute dictionaries: ${error.message}&#x60; },
+            operation: &#x27;Fetch&#x27;,
+            component: &#x27;attributesDictionary&#x27;,
+          })
+          .subscribe()
+      },
     })
   }
 
   submitForm() {
+    if (this.editAttributeForm.invalid) {
+      this.editAttributeForm.markAllAsTouched()
+      return
+    }
+
     const attributeValue: Attribute &#x3D; this.editAttributeForm.value as Attribute
-    this.attributeService.UpdateAttribute(this.inputId, attributeValue).subscribe(() &#x3D;&gt; {
-      this.logService
-        .CreateLog({
-          objectId: attributeValue._id,
-          message: attributeValue,
-          operation: &#x27;Update&#x27;,
-          component: &#x27;Attribute&#x27;,
-        })
-        .subscribe(() &#x3D;&gt; {
-          this.ngZone.run(async () &#x3D;&gt; {
-            await this.router.navigateByUrl(&#x27;attribute-list&#x27;)
+
+    this.attributeService.UpdateAttribute(this.inputId, attributeValue).subscribe({
+      next: () &#x3D;&gt; {
+        this.logService
+          .CreateLog({
+            objectId: attributeValue._id,
+            message: attributeValue,
+            operation: &#x27;Update&#x27;,
+            component: &#x27;attributes&#x27;,
           })
-        })
+          .subscribe({
+            complete: () &#x3D;&gt; {
+              this.ngZone.run(() &#x3D;&gt; {
+                this.router.navigateByUrl(&#x27;attribute-list&#x27;)
+              })
+            },
+          })
+      },
+      error: (error) &#x3D;&gt; {
+        console.error(&#x27;Error updating attribute:&#x27;, error)
+        this.logService
+          .CreateLog({
+            objectId: attributeValue._id,
+            message: { error: error.message },
+            operation: &#x27;Error&#x27;,
+            component: &#x27;attributes&#x27;,
+          })
+          .subscribe()
+      },
     })
   }
 }
@@ -2036,111 +2117,109 @@ export class AttributeEditComponent implements OnInit {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
   &lt;h2&gt;&lt;i class&#x3D;&quot;bi bi-bar-chart&quot;&gt;&lt;/i&gt; Edit Attribute&lt;/h2&gt;
-  &lt;div&gt;{{ this.toString(this.editAttributeForm.controls._id.value) }}&lt;/div&gt;
+  &lt;div&gt;{{ editAttributeForm.controls._id.value | json }}&lt;/div&gt;
   &lt;form [formGroup]&#x3D;&quot;editAttributeForm&quot; (ngSubmit)&#x3D;&quot;submitForm()&quot; class&#x3D;&quot;needs-validation&quot; novalidate&gt;
     &lt;div class&#x3D;&quot;row&quot;&gt;
       &lt;div class&#x3D;&quot;col&quot;&gt;
         &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
           &lt;label for&#x3D;&quot;deviceId&quot; class&#x3D;&quot;form-label&quot;&gt;Device Id&lt;/label&gt;
-          &lt;select
-            (change)&#x3D;&quot;changeDeviceId($event)&quot;
-            formControlName&#x3D;&quot;deviceId&quot;
-            [ngClass]&#x3D;&quot;{
-              &#x27;is-invalid&#x27;: editAttributeForm.hasError(&#x27;atLeastOneValidator&#x27;),
-              &#x27;is-valid&#x27;: !editAttributeForm.hasError(&#x27;atLeastOneValidator&#x27;),
-              &#x27;form-select&#x27;: true,
-            }&quot;
-            id&#x3D;&quot;deviceId&quot;
-          &gt;
-            &lt;option *ngFor&#x3D;&quot;let deviceObj of deviceDictionary; let i &#x3D; index&quot; [value]&#x3D;&quot;deviceObj._id&quot;&gt;
-              {{ deviceObj.name }}
-            &lt;/option&gt;
+          &lt;select (change)&#x3D;&quot;changeDeviceId($event)&quot; formControlName&#x3D;&quot;deviceId&quot; [ngClass]&#x3D;&quot;{
+                        &#x27;is-invalid&#x27;: editAttributeForm.get(&#x27;deviceId&#x27;)?.invalid &amp;&amp; (editAttributeForm.get(&#x27;deviceId&#x27;)?.touched || editAttributeForm.get(&#x27;deviceId&#x27;)?.dirty),
+              &#x27;is-valid&#x27;: editAttributeForm.get(&#x27;deviceId&#x27;)?.valid &amp;&amp; !editAttributeForm.get(&#x27;deviceId&#x27;)?.hasError(&#x27;atLeastOneValidator&#x27;) &amp;&amp; (editAttributeForm.get(&#x27;deviceId&#x27;)?.touched || editAttributeForm.get(&#x27;deviceId&#x27;)?.dirty),
+                        &#x27;form-select&#x27;: true,
+                      }&quot; id&#x3D;&quot;deviceId&quot;&gt;
+            @for (deviceObj of deviceDictionary; track deviceObj; let i &#x3D; $index) {
+              &lt;option [value]&#x3D;&quot;deviceObj._id&quot;&gt;
+                {{ deviceObj.name }}
+              &lt;/option&gt;
+            }
           &lt;/select&gt;
-          &lt;div *ngIf&#x3D;&quot;editAttributeForm.hasError(&#x27;atLeastOneValidator&#x27;)&quot; class&#x3D;&quot;error-message&quot;&gt;
-            One of field: deviceId, modelId or connectionId is required
-          &lt;/div&gt;
+          @if (editAttributeForm.hasError(&#x27;atLeastOneValidator&#x27;)) {
+            &lt;div class&#x3D;&quot;error-message&quot;&gt;
+              One of field: deviceId, modelId or connectionId is required
+            &lt;/div&gt;
+          }
           &lt;div class&#x3D;&quot;log-message&quot;&gt;
-            {{ this.toString(this.editAttributeForm.controls.deviceId.value) }}
+            {{ editAttributeForm.controls.deviceId.value | json }}
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
       &lt;div class&#x3D;&quot;col&quot;&gt;
         &lt;div class&#x3D;&quot;form-group mb-2&quot;&gt;
           &lt;label for&#x3D;&quot;modelId&quot; class&#x3D;&quot;form-label&quot;&gt;Model Id&lt;/label&gt;
-          &lt;select
-            (change)&#x3D;&quot;changeModelId($event)&quot;
-            formControlName&#x3D;&quot;modelId&quot;
-            [ngClass]&#x3D;&quot;{
-              &#x27;is-invalid&#x27;: editAttributeForm.hasError(&#x27;atLeastOneValidator&#x27;),
-              &#x27;is-valid&#x27;: !editAttributeForm.hasError(&#x27;atLeastOneValidator&#x27;),
-              &#x27;form-select&#x27;: true,
-            }&quot;
-            id&#x3D;&quot;modelId&quot;
-          &gt;
-            &lt;option *ngFor&#x3D;&quot;let modelObj of modelDictionary; let i &#x3D; index&quot; value&#x3D;&quot;{{ modelObj._id }}&quot;&gt;
-              {{ modelObj.name }}
-            &lt;/option&gt;
+          &lt;select (change)&#x3D;&quot;changeModelId($event)&quot; formControlName&#x3D;&quot;modelId&quot; [ngClass]&#x3D;&quot;{
+                        &#x27;is-invalid&#x27;: editAttributeForm.get(&#x27;modelId&#x27;)?.invalid &amp;&amp; (editAttributeForm.get(&#x27;modelId&#x27;)?.touched || editAttributeForm.get(&#x27;modelId&#x27;)?.dirty),
+                        &#x27;is-valid&#x27;: editAttributeForm.get(&#x27;modelId&#x27;)?.valid &amp;&amp; (editAttributeForm.get(&#x27;modelId&#x27;)?.touched || editAttributeForm.get(&#x27;modelId&#x27;)?.dirty),
+                        &#x27;form-select&#x27;: true,
+                      }&quot; id&#x3D;&quot;modelId&quot;&gt;
+            @for (modelObj of modelDictionary; track modelObj; let i &#x3D; $index) {
+              &lt;option [value]&#x3D;&quot;modelObj._id&quot;&gt;
+                {{ modelObj.name }}
+              &lt;/option&gt;
+            }
           &lt;/select&gt;
-          &lt;div *ngIf&#x3D;&quot;editAttributeForm.hasError(&#x27;atLeastOneValidator&#x27;)&quot; class&#x3D;&quot;error-message&quot;&gt;
-            One of field: deviceId, modelId or connectionId is required
-          &lt;/div&gt;
+          @if (editAttributeForm.hasError(&#x27;atLeastOneValidator&#x27;)) {
+            &lt;div class&#x3D;&quot;error-message&quot;&gt;
+              One of field: deviceId, modelId or connectionId is required
+            &lt;/div&gt;
+          }
           &lt;div class&#x3D;&quot;log-message&quot;&gt;
-            {{ this.toString(this.editAttributeForm.controls.modelId.value) }}
+            {{ editAttributeForm.controls.modelId.value | json }}
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
       &lt;div class&#x3D;&quot;col&quot;&gt;
         &lt;div class&#x3D;&quot;form-group mb-2&quot;&gt;
           &lt;label for&#x3D;&quot;connectionId&quot; class&#x3D;&quot;form-label&quot;&gt;Connection Id&lt;/label&gt;
-          &lt;select
-            (change)&#x3D;&quot;changeConnectionId($event)&quot;
-            formControlName&#x3D;&quot;connectionId&quot;
-            [ngClass]&#x3D;&quot;{
-              &#x27;is-invalid&#x27;: editAttributeForm.hasError(&#x27;atLeastOneValidator&#x27;),
-              &#x27;is-valid&#x27;: !editAttributeForm.hasError(&#x27;atLeastOneValidator&#x27;),
-              &#x27;form-select&#x27;: true,
-            }&quot;
-            id&#x3D;&quot;connectionId&quot;
-          &gt;
-            &lt;option *ngFor&#x3D;&quot;let connectionObj of connectionDictionary; let i &#x3D; index&quot; value&#x3D;&quot;{{ connectionObj._id }}&quot;&gt;
-              {{ connectionObj.name }}
-            &lt;/option&gt;
+          &lt;select (change)&#x3D;&quot;changeConnectionId($event)&quot; formControlName&#x3D;&quot;connectionId&quot; [ngClass]&#x3D;&quot;{
+                        &#x27;is-invalid&#x27;: editAttributeForm.get(&#x27;connectionId&#x27;)?.invalid &amp;&amp; (editAttributeForm.get(&#x27;connectionId&#x27;)?.touched || editAttributeForm.get(&#x27;connectionId&#x27;)?.dirty),
+              &#x27;is-valid&#x27;: editAttributeForm.get(&#x27;connectionId&#x27;)?.valid &amp;&amp; !editAttributeForm.get(&#x27;connectionId&#x27;)?.hasError(&#x27;atLeastOneValidator&#x27;) &amp;&amp; (editAttributeForm.get(&#x27;connectionId&#x27;)?.touched || editAttributeForm.get(&#x27;connectionId&#x27;)?.dirty),
+                        &#x27;form-select&#x27;: true,
+                      }&quot; id&#x3D;&quot;connectionId&quot;&gt;
+            @for (connectionObj of connectionDictionary; track connectionObj; let i &#x3D; $index) {
+              &lt;option
+                value&#x3D;&quot;{{ connectionObj._id }}&quot;&gt;
+                {{ connectionObj.name }}
+              &lt;/option&gt;
+            }
           &lt;/select&gt;
-          &lt;div *ngIf&#x3D;&quot;editAttributeForm.hasError(&#x27;atLeastOneValidator&#x27;)&quot; class&#x3D;&quot;error-message&quot;&gt;
-            One of field: deviceId, modelId or connectionId is required
-          &lt;/div&gt;
+          @if (editAttributeForm.hasError(&#x27;atLeastOneValidator&#x27;)) {
+            &lt;div class&#x3D;&quot;error-message&quot;&gt;
+              One of field: deviceId, modelId or connectionId is required
+            &lt;/div&gt;
+          }
           &lt;div class&#x3D;&quot;log-message&quot;&gt;
-            {{ this.toString(this.editAttributeForm.controls.connectionId.value) }}
+            {{ toString(editAttributeForm.controls.connectionId.value) }}
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
       &lt;div class&#x3D;&quot;col&quot;&gt;
         &lt;div class&#x3D;&quot;form-group mb-2&quot;&gt;
           &lt;label for&#x3D;&quot;attributeDictionaryId&quot; class&#x3D;&quot;form-label&quot;&gt;Attribute Dictionary Id&lt;/label&gt;
-          &lt;select
-            (change)&#x3D;&quot;changeAttributeDictionaryId($event)&quot;
-            formControlName&#x3D;&quot;attributeDictionaryId&quot;
-            [ngClass]&#x3D;&quot;{
-              &#x27;is-invalid&#x27;: this.editAttributeForm.controls.attributeDictionaryId.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-              &#x27;is-valid&#x27;: this.editAttributeForm.controls.attributeDictionaryId.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+          &lt;select formControlName&#x3D;&quot;attributeDictionaryId&quot; [ngClass]&#x3D;&quot;{
+              &#x27;is-invalid&#x27;: editAttributeForm.get(&#x27;attributeDictionaryId&#x27;)?.invalid &amp;&amp; (editAttributeForm.get(&#x27;attributeDictionaryId&#x27;)?.touched || editAttributeForm.get(&#x27;attributeDictionaryId&#x27;)?.dirty),
+              &#x27;is-valid&#x27;: editAttributeForm.get(&#x27;attributeDictionaryId&#x27;)?.valid &amp;&amp; (editAttributeForm.get(&#x27;attributeDictionaryId&#x27;)?.touched || editAttributeForm.get(&#x27;attributeDictionaryId&#x27;)?.dirty),
               &#x27;form-select&#x27;: true,
-            }&quot;
-            id&#x3D;&quot;attributeDictionaryId&quot;
-          &gt;
-            &lt;option
-              *ngFor&#x3D;&quot;let attributeDictionaryObj of attributeDictionary; let i &#x3D; index&quot;
-              [value]&#x3D;&quot;attributeDictionaryObj._id.toString()&quot;
-            &gt;
-              {{ attributeDictionaryObj.name }}
-            &lt;/option&gt;
+            }&quot; id&#x3D;&quot;attributeDictionaryId&quot;&gt;
+            @for (attributeDictionaryObj of attributeDictionary; track attributeDictionaryObj; let i &#x3D; $index) {
+              &lt;option
+                [value]&#x3D;&quot;attributeDictionaryObj._id&quot;&gt;
+                {{ attributeDictionaryObj.name }}
+              &lt;/option&gt;
+            }
           &lt;/select&gt;
-          &lt;div *ngIf&#x3D;&quot;this.editAttributeForm.controls.attributeDictionaryId.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-            &lt;div *ngIf&#x3D;&quot;this.editAttributeForm.controls.attributeDictionaryId.errors.required&quot;&gt;
-              attributeDictionaryId is required
+          @if (editAttributeForm.get(&#x27;attributeDictionaryId&#x27;)?.invalid &amp;&amp; (editAttributeForm.get(&#x27;attributeDictionaryId&#x27;)?.touched || editAttributeForm.get(&#x27;attributeDictionaryId&#x27;)?.dirty)) {
+            &lt;div
+              class&#x3D;&quot;invalid-feedback&quot;&gt;
+              @if (editAttributeForm.get(&#x27;attributeDictionaryId&#x27;)?.errors?.required) {
+                &lt;div&gt;
+                  attributeDictionaryId is required
+                &lt;/div&gt;
+              }
             &lt;/div&gt;
-          &lt;/div&gt;
+          }
           &lt;div class&#x3D;&quot;log-message&quot;&gt;
-            {{ this.toString(this.editAttributeForm.controls.attributeDictionaryId.value) }}
+            {{ editAttributeForm.controls.attributeDictionaryId.value }}
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
@@ -2149,48 +2228,49 @@ export class AttributeEditComponent implements OnInit {
       &lt;div class&#x3D;&quot;col&quot;&gt;
         &lt;div class&#x3D;&quot;form-group mb-2&quot;&gt;
           &lt;label for&#x3D;&quot;value&quot; class&#x3D;&quot;form-label&quot;&gt;Value&lt;/label&gt;
-          &lt;input
-            type&#x3D;&quot;text&quot;
-            formControlName&#x3D;&quot;value&quot;
-            id&#x3D;&quot;id&quot;
-            required
-            [ngClass]&#x3D;&quot;{
-              &#x27;is-invalid&#x27;: this.editAttributeForm.controls.value.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
-              &#x27;is-valid&#x27;: this.editAttributeForm.controls.value.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
+          &lt;input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;value&quot; id&#x3D;&quot;value&quot; required [ngClass]&#x3D;&quot;{
+              &#x27;is-invalid&#x27;: editAttributeForm.get(&#x27;value&#x27;)?.status !&#x3D;&#x3D; &#x27;VALID&#x27;,
+              &#x27;is-valid&#x27;: editAttributeForm.controls.value.status &#x3D;&#x3D;&#x3D; &#x27;VALID&#x27;,
               &#x27;form-control&#x27;: true,
-            }&quot;
-          /&gt;
-          &lt;div *ngIf&#x3D;&quot;this.editAttributeForm.controls.value.errors&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-            &lt;div *ngIf&#x3D;&quot;this.editAttributeForm.controls.value.errors.required&quot;&gt;Value is required&lt;/div&gt;
-            &lt;div *ngIf&#x3D;&quot;this.editAttributeForm.controls.value.errors.minlength&quot;&gt;
-              Value must be at less 250 characters
+            }&quot; /&gt;
+          @if (editAttributeForm.controls.value.errors) {
+            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;
+              @if (editAttributeForm.controls.value.errors.required) {
+                &lt;div&gt;Value is required&lt;/div&gt;
+              }
+              @if (editAttributeForm.controls.value.errors.minlength) {
+                &lt;div&gt;
+                  Value must be at least {{ editAttributeForm.controls.value.errors.minlength.requiredLength }}
+                  characters
+                &lt;/div&gt;
+              }
             &lt;/div&gt;
-          &lt;/div&gt;
+          }
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
     &lt;div class&#x3D;&quot;row&quot;&gt;
       &lt;div class&#x3D;&quot;col&quot;&gt;
         &lt;div class&#x3D;&quot;form-group mb-3&quot;&gt;
-          &lt;button
-            type&#x3D;&quot;submit&quot;
-            [disabled]&#x3D;&quot;!(this.editAttributeForm.valid &amp;&amp; this.editAttributeForm.touched)&quot;
-            class&#x3D;&quot;btn btn-primary&quot;
-          &gt;
+          &lt;button type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;!(editAttributeForm.valid &amp;&amp; editAttributeForm.touched)&quot;
+            class&#x3D;&quot;btn btn-primary&quot;&gt;
             Update attribute
           &lt;/button&gt;
           &lt;!-- &lt;div *ngIf&#x3D;&quot;!(this.editAttributeForm.valid &amp;&amp; this.editAttributeForm.touched)&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
-            Form is invalid
-          &lt;/div&gt;
-          &lt;div class&#x3D;&quot;log-message&quot;&gt;atLeastOneValidator: {{ editAttributeForm.hasError(&#x27;atLeastOneValidator&#x27;) }}&lt;/div&gt;
-          &lt;div class&#x3D;&quot;log-message&quot;&gt;editAttributeForm.value: {{ toString(editAttributeForm.value) }}&lt;/div&gt;
-          &lt;div class&#x3D;&quot;log-message&quot;&gt;this.editAttributeForm.valid: {{ toString(this.editAttributeForm.valid) }}&lt;/div&gt;
-          &lt;div class&#x3D;&quot;log-message&quot;&gt;this.editAttributeForm.touched: {{ toString(this.editAttributeForm.touched) }}&lt;/div&gt; --&gt;
+          Form is invalid
         &lt;/div&gt;
+        &lt;div class&#x3D;&quot;log-message&quot;&gt;atLeastOneValidator: {{ editAttributeForm.hasError(&#x27;atLeastOneValidator&#x27;) }}&lt;/div&gt;
+        &lt;div class&#x3D;&quot;log-message&quot;&gt;editAttributeForm.value: {{ toString(editAttributeForm.value) }}&lt;/div&gt;
+        &lt;div class&#x3D;&quot;log-message&quot;&gt;this.editAttributeForm.valid: {{ toString(this.editAttributeForm.valid) }}&lt;/div&gt;
+        &lt;div class&#x3D;&quot;log-message&quot;&gt;this.editAttributeForm.touched: {{ toString(this.editAttributeForm.touched) }}&lt;/div&gt; --&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
 &lt;/div&gt;
+&lt;!-- The &lt;app-log&gt; component is used to display logs or debugging information related to the current component.
+It shows the state of the component, including form values, validation statuses, and any errors encountered.
+This helps developers understand the current state of the application and troubleshoot issues effectively. --&gt;
 &lt;app-log [component]&#x3D;&quot;component&quot;&gt;&lt;/app-log&gt;
 </code></pre>
     </div>
@@ -2227,8 +2307,8 @@ export class AttributeEditComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <h2><i class="bi bi-bar-chart"></i> Edit Attribute</h2>  <div>{{ this.toString(this.editAttributeForm.controls._id.value) }}</div>  <form [formGroup]="editAttributeForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>    <div class="row">      <div class="col">        <div class="form-group mb-3">          <label for="deviceId" class="form-label">Device Id</label>          <select            (change)="changeDeviceId($event)"            formControlName="deviceId"            [ngClass]="{              \'is-invalid\': editAttributeForm.hasError(\'atLeastOneValidator\'),              \'is-valid\': !editAttributeForm.hasError(\'atLeastOneValidator\'),              \'form-select\': true,            }"            id="deviceId"          >            <option *ngFor="let deviceObj of deviceDictionary; let i = index" [value]="deviceObj._id">              {{ deviceObj.name }}            </option>          </select>          <div *ngIf="editAttributeForm.hasError(\'atLeastOneValidator\')" class="error-message">            One of field: deviceId, modelId or connectionId is required          </div>          <div class="log-message">            {{ this.toString(this.editAttributeForm.controls.deviceId.value) }}          </div>        </div>      </div>      <div class="col">        <div class="form-group mb-2">          <label for="modelId" class="form-label">Model Id</label>          <select            (change)="changeModelId($event)"            formControlName="modelId"            [ngClass]="{              \'is-invalid\': editAttributeForm.hasError(\'atLeastOneValidator\'),              \'is-valid\': !editAttributeForm.hasError(\'atLeastOneValidator\'),              \'form-select\': true,            }"            id="modelId"          >            <option *ngFor="let modelObj of modelDictionary; let i = index" value="{{ modelObj._id }}">              {{ modelObj.name }}            </option>          </select>          <div *ngIf="editAttributeForm.hasError(\'atLeastOneValidator\')" class="error-message">            One of field: deviceId, modelId or connectionId is required          </div>          <div class="log-message">            {{ this.toString(this.editAttributeForm.controls.modelId.value) }}          </div>        </div>      </div>      <div class="col">        <div class="form-group mb-2">          <label for="connectionId" class="form-label">Connection Id</label>          <select            (change)="changeConnectionId($event)"            formControlName="connectionId"            [ngClass]="{              \'is-invalid\': editAttributeForm.hasError(\'atLeastOneValidator\'),              \'is-valid\': !editAttributeForm.hasError(\'atLeastOneValidator\'),              \'form-select\': true,            }"            id="connectionId"          >            <option *ngFor="let connectionObj of connectionDictionary; let i = index" value="{{ connectionObj._id }}">              {{ connectionObj.name }}            </option>          </select>          <div *ngIf="editAttributeForm.hasError(\'atLeastOneValidator\')" class="error-message">            One of field: deviceId, modelId or connectionId is required          </div>          <div class="log-message">            {{ this.toString(this.editAttributeForm.controls.connectionId.value) }}          </div>        </div>      </div>      <div class="col">        <div class="form-group mb-2">          <label for="attributeDictionaryId" class="form-label">Attribute Dictionary Id</label>          <select            (change)="changeAttributeDictionaryId($event)"            formControlName="attributeDictionaryId"            [ngClass]="{              \'is-invalid\': this.editAttributeForm.controls.attributeDictionaryId.status !== \'VALID\',              \'is-valid\': this.editAttributeForm.controls.attributeDictionaryId.status === \'VALID\',              \'form-select\': true,            }"            id="attributeDictionaryId"          >            <option              *ngFor="let attributeDictionaryObj of attributeDictionary; let i = index"              [value]="attributeDictionaryObj._id.toString()"            >              {{ attributeDictionaryObj.name }}            </option>          </select>          <div *ngIf="this.editAttributeForm.controls.attributeDictionaryId.errors" class="invalid-feedback">            <div *ngIf="this.editAttributeForm.controls.attributeDictionaryId.errors.required">              attributeDictionaryId is required            </div>          </div>          <div class="log-message">            {{ this.toString(this.editAttributeForm.controls.attributeDictionaryId.value) }}          </div>        </div>      </div>    </div>    <div class="row">      <div class="col">        <div class="form-group mb-2">          <label for="value" class="form-label">Value</label>          <input            type="text"            formControlName="value"            id="id"            required            [ngClass]="{              \'is-invalid\': this.editAttributeForm.controls.value.status !== \'VALID\',              \'is-valid\': this.editAttributeForm.controls.value.status === \'VALID\',              \'form-control\': true,            }"          />          <div *ngIf="this.editAttributeForm.controls.value.errors" class="invalid-feedback">            <div *ngIf="this.editAttributeForm.controls.value.errors.required">Value is required</div>            <div *ngIf="this.editAttributeForm.controls.value.errors.minlength">              Value must be at less 250 characters            </div>          </div>        </div>      </div>    </div>    <div class="row">      <div class="col">        <div class="form-group mb-3">          <button            type="submit"            [disabled]="!(this.editAttributeForm.valid && this.editAttributeForm.touched)"            class="btn btn-primary"          >            Update attribute          </button>          <!-- <div *ngIf="!(this.editAttributeForm.valid && this.editAttributeForm.touched)" class="invalid-feedback">            Form is invalid          </div>          <div class="log-message">atLeastOneValidator: {{ editAttributeForm.hasError(\'atLeastOneValidator\') }}</div>          <div class="log-message">editAttributeForm.value: {{ toString(editAttributeForm.value) }}</div>          <div class="log-message">this.editAttributeForm.valid: {{ toString(this.editAttributeForm.valid) }}</div>          <div class="log-message">this.editAttributeForm.touched: {{ toString(this.editAttributeForm.touched) }}</div> -->        </div>      </div>    </div>  </form></div><app-log [component]="component"></app-log></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsyncObservablePipeComponent', 'selector': 'async-observable-pipe'},{'name': 'AttributeAddComponent', 'selector': 'app-add-attribute'},{'name': 'AttributeDictionaryAddComponent', 'selector': 'app-add-attribute-dictionary'},{'name': 'AttributeDictionaryEditComponent', 'selector': 'app-edit-attribute-dictionary'},{'name': 'AttributeDictionaryListComponent', 'selector': 'app-attribute-dictionary-list'},{'name': 'AttributeEditComponent', 'selector': 'app-edit-attribute'},{'name': 'AttributeListComponent', 'selector': 'app-attribute-list'},{'name': 'ConnectionAddComponent', 'selector': 'app-add-connection'},{'name': 'ConnectionEditComponent', 'selector': 'app-edit-connection'},{'name': 'ConnectionListComponent', 'selector': 'app-connection-list'},{'name': 'CubeComponent', 'selector': 'app-cube'},{'name': 'DeviceAddComponent', 'selector': 'app-add-device'},{'name': 'DeviceEditComponent', 'selector': 'app-edit-device'},{'name': 'DeviceListComponent', 'selector': 'app-device-list'},{'name': 'FloorAddComponent', 'selector': 'app-add-floor'},{'name': 'FloorEditComponent', 'selector': 'app-edit-floor'},{'name': 'FloorListComponent', 'selector': 'app-floor-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LogComponent', 'selector': 'app-log'},{'name': 'ModelAddComponent', 'selector': 'app-add-model'},{'name': 'ModelEditComponent', 'selector': 'app-edit-model'},{'name': 'ModelsListComponent', 'selector': 'app-models-list'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <h2><i class="bi bi-bar-chart"></i> Edit Attribute</h2>  <div>{{ editAttributeForm.controls._id.value | json }}</div>  <form [formGroup]="editAttributeForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>    <div class="row">      <div class="col">        <div class="form-group mb-3">          <label for="deviceId" class="form-label">Device Id</label>          <select (change)="changeDeviceId($event)" formControlName="deviceId" [ngClass]="{                        \'is-invalid\': editAttributeForm.get(\'deviceId\')?.invalid && (editAttributeForm.get(\'deviceId\')?.touched || editAttributeForm.get(\'deviceId\')?.dirty),              \'is-valid\': editAttributeForm.get(\'deviceId\')?.valid && !editAttributeForm.get(\'deviceId\')?.hasError(\'atLeastOneValidator\') && (editAttributeForm.get(\'deviceId\')?.touched || editAttributeForm.get(\'deviceId\')?.dirty),                        \'form-select\': true,                      }" id="deviceId">            @for (deviceObj of deviceDictionary; track deviceObj; let i = $index) {              <option [value]="deviceObj._id">                {{ deviceObj.name }}              </option>            }          </select>          @if (editAttributeForm.hasError(\'atLeastOneValidator\')) {            <div class="error-message">              One of field: deviceId, modelId or connectionId is required            </div>          }          <div class="log-message">            {{ editAttributeForm.controls.deviceId.value | json }}          </div>        </div>      </div>      <div class="col">        <div class="form-group mb-2">          <label for="modelId" class="form-label">Model Id</label>          <select (change)="changeModelId($event)" formControlName="modelId" [ngClass]="{                        \'is-invalid\': editAttributeForm.get(\'modelId\')?.invalid && (editAttributeForm.get(\'modelId\')?.touched || editAttributeForm.get(\'modelId\')?.dirty),                        \'is-valid\': editAttributeForm.get(\'modelId\')?.valid && (editAttributeForm.get(\'modelId\')?.touched || editAttributeForm.get(\'modelId\')?.dirty),                        \'form-select\': true,                      }" id="modelId">            @for (modelObj of modelDictionary; track modelObj; let i = $index) {              <option [value]="modelObj._id">                {{ modelObj.name }}              </option>            }          </select>          @if (editAttributeForm.hasError(\'atLeastOneValidator\')) {            <div class="error-message">              One of field: deviceId, modelId or connectionId is required            </div>          }          <div class="log-message">            {{ editAttributeForm.controls.modelId.value | json }}          </div>        </div>      </div>      <div class="col">        <div class="form-group mb-2">          <label for="connectionId" class="form-label">Connection Id</label>          <select (change)="changeConnectionId($event)" formControlName="connectionId" [ngClass]="{                        \'is-invalid\': editAttributeForm.get(\'connectionId\')?.invalid && (editAttributeForm.get(\'connectionId\')?.touched || editAttributeForm.get(\'connectionId\')?.dirty),              \'is-valid\': editAttributeForm.get(\'connectionId\')?.valid && !editAttributeForm.get(\'connectionId\')?.hasError(\'atLeastOneValidator\') && (editAttributeForm.get(\'connectionId\')?.touched || editAttributeForm.get(\'connectionId\')?.dirty),                        \'form-select\': true,                      }" id="connectionId">            @for (connectionObj of connectionDictionary; track connectionObj; let i = $index) {              <option                value="{{ connectionObj._id }}">                {{ connectionObj.name }}              </option>            }          </select>          @if (editAttributeForm.hasError(\'atLeastOneValidator\')) {            <div class="error-message">              One of field: deviceId, modelId or connectionId is required            </div>          }          <div class="log-message">            {{ toString(editAttributeForm.controls.connectionId.value) }}          </div>        </div>      </div>      <div class="col">        <div class="form-group mb-2">          <label for="attributeDictionaryId" class="form-label">Attribute Dictionary Id</label>          <select formControlName="attributeDictionaryId" [ngClass]="{              \'is-invalid\': editAttributeForm.get(\'attributeDictionaryId\')?.invalid && (editAttributeForm.get(\'attributeDictionaryId\')?.touched || editAttributeForm.get(\'attributeDictionaryId\')?.dirty),              \'is-valid\': editAttributeForm.get(\'attributeDictionaryId\')?.valid && (editAttributeForm.get(\'attributeDictionaryId\')?.touched || editAttributeForm.get(\'attributeDictionaryId\')?.dirty),              \'form-select\': true,            }" id="attributeDictionaryId">            @for (attributeDictionaryObj of attributeDictionary; track attributeDictionaryObj; let i = $index) {              <option                [value]="attributeDictionaryObj._id">                {{ attributeDictionaryObj.name }}              </option>            }          </select>          @if (editAttributeForm.get(\'attributeDictionaryId\')?.invalid && (editAttributeForm.get(\'attributeDictionaryId\')?.touched || editAttributeForm.get(\'attributeDictionaryId\')?.dirty)) {            <div              class="invalid-feedback">              @if (editAttributeForm.get(\'attributeDictionaryId\')?.errors?.required) {                <div>                  attributeDictionaryId is required                </div>              }            </div>          }          <div class="log-message">            {{ editAttributeForm.controls.attributeDictionaryId.value }}          </div>        </div>      </div>    </div>    <div class="row">      <div class="col">        <div class="form-group mb-2">          <label for="value" class="form-label">Value</label>          <input type="text" formControlName="value" id="value" required [ngClass]="{              \'is-invalid\': editAttributeForm.get(\'value\')?.status !== \'VALID\',              \'is-valid\': editAttributeForm.controls.value.status === \'VALID\',              \'form-control\': true,            }" />          @if (editAttributeForm.controls.value.errors) {            <div class="invalid-feedback">              @if (editAttributeForm.controls.value.errors.required) {                <div>Value is required</div>              }              @if (editAttributeForm.controls.value.errors.minlength) {                <div>                  Value must be at least {{ editAttributeForm.controls.value.errors.minlength.requiredLength }}                  characters                </div>              }            </div>          }        </div>      </div>    </div>    <div class="row">      <div class="col">        <div class="form-group mb-3">          <button type="submit" [disabled]="!(editAttributeForm.valid && editAttributeForm.touched)"            class="btn btn-primary">            Update attribute          </button>          <!-- <div *ngIf="!(this.editAttributeForm.valid && this.editAttributeForm.touched)" class="invalid-feedback">          Form is invalid        </div>        <div class="log-message">atLeastOneValidator: {{ editAttributeForm.hasError(\'atLeastOneValidator\') }}</div>        <div class="log-message">editAttributeForm.value: {{ toString(editAttributeForm.value) }}</div>        <div class="log-message">this.editAttributeForm.valid: {{ toString(this.editAttributeForm.valid) }}</div>        <div class="log-message">this.editAttributeForm.touched: {{ toString(this.editAttributeForm.touched) }}</div> -->      </div>    </div>  </div></form></div><!-- The <app-log> component is used to display logs or debugging information related to the current component.It shows the state of the component, including form values, validation statuses, and any errors encountered.This helps developers understand the current state of the application and troubleshoot issues effectively. --><app-log [component]="component"></app-log></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AttributeAddComponent', 'selector': 'app-add-attribute'},{'name': 'AttributeDictionaryAddComponent', 'selector': 'app-add-attribute-dictionary'},{'name': 'AttributeDictionaryEditComponent', 'selector': 'app-edit-attribute-dictionary'},{'name': 'AttributeDictionaryListComponent', 'selector': 'app-attribute-dictionary-list'},{'name': 'AttributeEditComponent', 'selector': 'app-edit-attribute'},{'name': 'AttributeListComponent', 'selector': 'app-attribute-list'},{'name': 'ConnectionAddComponent', 'selector': 'app-add-connection'},{'name': 'ConnectionEditComponent', 'selector': 'app-edit-connection'},{'name': 'ConnectionListComponent', 'selector': 'app-connection-list'},{'name': 'CubeComponent', 'selector': 'app-cube'},{'name': 'DeviceAddComponent', 'selector': 'app-add-device'},{'name': 'DeviceEditComponent', 'selector': 'app-edit-device'},{'name': 'DeviceListComponent', 'selector': 'app-device-list'},{'name': 'FloorAddComponent', 'selector': 'app-add-floor'},{'name': 'FloorEditComponent', 'selector': 'app-edit-floor'},{'name': 'FloorListComponent', 'selector': 'app-floor-list'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LogComponent', 'selector': 'app-log'},{'name': 'ModelAddComponent', 'selector': 'app-add-model'},{'name': 'ModelEditComponent', 'selector': 'app-edit-model'},{'name': 'ModelsListComponent', 'selector': 'app-models-list'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AttributeEditComponent'};
 </script>
@@ -2304,7 +2384,6 @@ export class AttributeEditComponent implements OnInit {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

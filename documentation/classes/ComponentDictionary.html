@@ -119,7 +119,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/shared/component-dictionary.ts</code>
+            <code>src/app/shared/ComponentDictionary.ts</code>
         </p>
 
 
@@ -140,6 +140,8 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#list" >list</a>
                             </li>
                         </ul>
@@ -155,21 +157,19 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#findType" >findType</a>
+                                <a href="#findByName" >findByName</a>
                             </li>
                             <li>
-                                <a href="#findTypeByName" >findTypeByName</a>
+                                <a href="#getAll" >getAll</a>
                             </li>
                             <li>
-                                <a href="#get" >get</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
                                 <a href="#getRandom" >getRandom</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
                                 <a href="#getRandomName" >getRandomName</a>
+                            </li>
+                            <li>
+                                <a href="#logIfExists" >logIfExists</a>
                             </li>
                         </ul>
                     </td>
@@ -195,6 +195,8 @@
                 <td class="col-md-4">
                     <a name="list"></a>
                     <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>list</b></span>
                         <a href="#list"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -209,17 +211,18 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>[
-    { name: &#x27;&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;device&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;model&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;connection&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;attribute&#x27;, description: &#x27;&#x27; },
+    { name: &#x27;&#x27;, description: &#x27;Empty component&#x27; },
+    { name: &#x27;device&#x27;, description: &#x27;A physical or virtual device in the inventory&#x27; },
+    { name: &#x27;model&#x27;, description: &#x27;A specific model or type of device&#x27; },
+    { name: &#x27;connection&#x27;, description: &#x27;A link or relationship between devices or components&#x27; },
+    { name: &#x27;attribute&#x27;, description: &#x27;A property or characteristic of a device or component&#x27; },
+    { name: &#x27;floor&#x27;, description: &#x27;A property or characteristic of a floor&#x27; },
   ]</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/shared/component-dictionary.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/shared/ComponentDictionary.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -237,24 +240,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findType"></a>
+                    <a name="findByName"></a>
                     <span class="name">
-                        <span ><b>findType</b></span>
-                        <a href="#findType"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>findByName</b></span>
+                        <a href="#findByName"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findType(search: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>findByName(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/app/shared/component-dictionary.ts:32</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/app/shared/ComponentDictionary.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -275,7 +278,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>search</td>
+                                                <td>name</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
@@ -290,7 +293,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/ComponentDictionaryItem.html" target="_self" >string | ComponentDictionaryItem</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/ComponentDictionaryItem.html" target="_self" >ComponentDictionaryItem | undefined</a></code>
 
                         </div>
                             <div class="io-description">
@@ -304,24 +307,135 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findTypeByName"></a>
+                    <a name="getAll"></a>
                     <span class="name">
-                        <span ><b>findTypeByName</b></span>
-                        <a href="#findTypeByName"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getAll</b></span>
+                        <a href="#getAll"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findTypeByName(obj: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getAll()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="37"
-                                    class="link-to-prism">src/app/shared/component-dictionary.ts:37</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="21"
+                                    class="link-to-prism">src/app/shared/ComponentDictionary.ts:21</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ComponentDictionaryItem.html" target="_self" >ComponentDictionaryItem[]</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRandom"></a>
+                    <span class="name">
+                        <span ><b>getRandom</b></span>
+                        <a href="#getRandom"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRandom()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="25"
+                                    class="link-to-prism">src/app/shared/ComponentDictionary.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ComponentDictionaryItem.html" target="_self" >ComponentDictionaryItem</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRandomName"></a>
+                    <span class="name">
+                        <span ><b>getRandomName</b></span>
+                        <a href="#getRandomName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRandomName()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="30"
+                                    class="link-to-prism">src/app/shared/ComponentDictionary.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logIfExists"></a>
+                    <span class="name">
+                        <span ><b>logIfExists</b></span>
+                        <a href="#logIfExists"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logIfExists(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/app/shared/ComponentDictionary.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -342,7 +456,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>obj</td>
+                                                <td>name</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
@@ -367,121 +481,6 @@
             </tr>
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="get"></a>
-                    <span class="name">
-                        <span ><b>get</b></span>
-                        <a href="#get"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>get()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="20"
-                                    class="link-to-prism">src/app/shared/component-dictionary.ts:20</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/ComponentDictionaryItem.html" target="_self" >ComponentDictionaryItem[]</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getRandom"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>getRandom</b></span>
-                        <a href="#getRandom"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getRandom()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="24"
-                                    class="link-to-prism">src/app/shared/component-dictionary.ts:24</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/ComponentDictionaryItem.html" target="_self" >ComponentDictionaryItem</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getRandomName"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>getRandomName</b></span>
-                        <a href="#getRandomName"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getRandomName()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/app/shared/component-dictionary.ts:28</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </section>
 
 
@@ -498,36 +497,36 @@
 }
 
 export class ComponentDictionary {
-  list: ComponentDictionaryItem[] &#x3D; [
-    { name: &#x27;&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;device&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;model&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;connection&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;attribute&#x27;, description: &#x27;&#x27; },
+  private readonly list: ComponentDictionaryItem[] &#x3D; [
+    { name: &#x27;&#x27;, description: &#x27;Empty component&#x27; },
+    { name: &#x27;device&#x27;, description: &#x27;A physical or virtual device in the inventory&#x27; },
+    { name: &#x27;model&#x27;, description: &#x27;A specific model or type of device&#x27; },
+    { name: &#x27;connection&#x27;, description: &#x27;A link or relationship between devices or components&#x27; },
+    { name: &#x27;attribute&#x27;, description: &#x27;A property or characteristic of a device or component&#x27; },
+    { name: &#x27;floor&#x27;, description: &#x27;A property or characteristic of a floor&#x27; },
   ]
 
-  get(): ComponentDictionaryItem[] {
-    return this.list
+  getAll(): ComponentDictionaryItem[] {
+    return [...this.list]
   }
 
-  public getRandom(): ComponentDictionaryItem {
-    return this.list[Math.floor(Math.random() * this.list.length)]
+  getRandom(): ComponentDictionaryItem {
+    const idx &#x3D; Math.floor(Math.random() * this.list.length)
+    return this.list[idx]
   }
 
-  public getRandomName(): string {
-    return this.list[Math.floor(Math.random() * this.list.length)].name
+  getRandomName(): string {
+    return this.getRandom().name
   }
 
-  findType(search: string): string | ComponentDictionaryItem {
-    const element &#x3D; this.list.find((e) &#x3D;&gt; e.name &#x3D;&#x3D;&#x3D; search)
-    return element || search // element?.DeviceType || search
+  findByName(name: string): ComponentDictionaryItem | undefined {
+    return this.list.find((item) &#x3D;&gt; item.name &#x3D;&#x3D;&#x3D; name)
   }
 
-  findTypeByName(obj: string) {
-    for (let i &#x3D; 0; i &lt; this.list.length; i++) {
-      if (this.list[i].name &#x3D;&#x3D;&#x3D; obj) {
-        console.log(&#x27;--&gt;&#x27;, obj)
-      }
+  logIfExists(name: string): void {
+    const item &#x3D; this.findByName(name)
+    if (item) {
+      console.log(&#x27;--&gt;&#x27;, name)
     }
   }
 }
@@ -597,7 +596,6 @@ export class ComponentDictionary {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

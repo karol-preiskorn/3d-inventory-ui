@@ -162,7 +162,8 @@
                                 <a href="#DeleteAttributeDictionary" >DeleteAttributeDictionary</a>
                             </li>
                             <li>
-                                <a href="#errorHandl" >errorHandl</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#errorHandler" >errorHandler</a>
                             </li>
                             <li>
                                 <a href="#GetAttributeDictionaries" >GetAttributeDictionaries</a>
@@ -295,15 +296,15 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="81"
-                                    class="link-to-prism">src/app/services/attribute-dictionary.service.ts:81</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">src/app/services/attribute-dictionary.service.ts:91</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Clones an attribute dictionary with the specified ID.</p>
+                        <div class="io-description"><p>Clones an attribute dictionary by its ID and navigates to the list view upon success.</p>
 </div>
 
                             <div class="io-description">
@@ -341,11 +342,11 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <b>Returns : </b>    <code>Observable&lt;AttributesDictionary&gt;</code>
 
                         </div>
                             <div class="io-description">
-                                <p>The UUID of the cloned attribute dictionary.</p>
+                                <p>An Observable emitting the cloned attribute dictionary.</p>
 
                             </div>
                 </td>
@@ -365,22 +366,22 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>CreateAttributeDictionary(data: <a href="../classes/AttributeDictionary.html" target="_self">AttributeDictionary</a>)</code>
+<code>CreateAttributeDictionary(data: Omit<AttributesDictionary | _id>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="66"
-                                    class="link-to-prism">src/app/services/attribute-dictionary.service.ts:66</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/services/attribute-dictionary.service.ts:77</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Creates an attribute dictionary.</p>
+                        <div class="io-description"><p>Creates a new attribute dictionary.</p>
 </div>
 
                             <div class="io-description">
@@ -399,7 +400,7 @@
                                         <tr>
                                                 <td>data</td>
                                             <td>
-                                                            <code><a href="../classes/AttributeDictionary.html" target="_self" >AttributeDictionary</a></code>
+                                                        <code>Omit&lt;AttributesDictionary | _id&gt;</code>
                                             </td>
 
                                             <td>
@@ -408,7 +409,7 @@
 
 
                                             <td>
-                                                    <p>The attribute dictionary data to be created.</p>
+                                                    <p>The attribute dictionary data to create.</p>
 
                                             </td>
                                         </tr>
@@ -416,11 +417,11 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Observable&lt;AttributeDictionary&gt;</code>
+                            <b>Returns : </b>    <code>Observable&lt;AttributesDictionary&gt;</code>
 
                         </div>
                             <div class="io-description">
-                                <p>An observable that emits the created attribute dictionary.</p>
+                                <p>An Observable emitting the created AttributesDictionary.</p>
 
                             </div>
                 </td>
@@ -447,15 +448,15 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="56"
-                                    class="link-to-prism">src/app/services/attribute-dictionary.service.ts:56</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/services/attribute-dictionary.service.ts:59</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Deletes an attribute dictionary with the specified ID.</p>
+                        <div class="io-description"><p>Deletes an attribute dictionary by its ID.</p>
 </div>
 
                             <div class="io-description">
@@ -483,7 +484,9 @@
 
 
                                             <td>
-                                                    <p>The ID of the attribute dictionary to delete.</p>
+                                                    <ul>
+<li>The ID of the attribute dictionary to delete.</li>
+</ul>
 
                                             </td>
                                         </tr>
@@ -491,11 +494,11 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Observable&lt;AttributeDictionary&gt;</code>
+                            <b>Returns : </b>    <code>Observable&lt;AttributesDictionary&gt;</code>
 
                         </div>
                             <div class="io-description">
-                                <p>An Observable that emits the deleted attribute dictionary.</p>
+                                <p>An Observable emitting the deleted AttributesDictionary.</p>
 
                             </div>
                 </td>
@@ -506,24 +509,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="errorHandl"></a>
+                    <a name="errorHandler"></a>
                     <span class="name">
-                        <span ><b>errorHandl</b></span>
-                        <a href="#errorHandl"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Private</span>
+                        <span ><b>errorHandler</b></span>
+                        <a href="#errorHandler"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>errorHandl(error: literal type)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>errorHandler(error: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="114"
-                                    class="link-to-prism">src/app/services/attribute-dictionary.service.ts:114</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="131"
+                                    class="link-to-prism">src/app/services/attribute-dictionary.service.ts:131</a></div>
                         </td>
                     </tr>
 
@@ -549,7 +554,7 @@
                                         <tr>
                                                 <td>error</td>
                                             <td>
-                                                        <code>literal type</code>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                             </td>
 
                                             <td>
@@ -611,7 +616,7 @@
 </div>
 
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Observable&lt;AttributeDictionary[]&gt;</code>
+                            <b>Returns : </b>    <code>Observable&lt;AttributesDictionary[]&gt;</code>
 
                         </div>
                             <div class="io-description">
@@ -678,9 +683,7 @@
 
 
                                             <td>
-                                                    <ul>
-<li>The ID of the attribute dictionary to retrieve.</li>
-</ul>
+                                                    <p>The ID of the attribute dictionary to retrieve.</p>
 
                                             </td>
                                         </tr>
@@ -688,11 +691,11 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Observable&lt;AttributeDictionary&gt;</code>
+                            <b>Returns : </b>    <code>Observable&lt;AttributesDictionary&gt;</code>
 
                         </div>
                             <div class="io-description">
-                                <p>An Observable that emits the retrieved AttributeDictionary.</p>
+                                <p>An Observable emitting the retrieved AttributesDictionary.</p>
 
                             </div>
                 </td>
@@ -712,22 +715,22 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>UpdateAttributeDictionary(id: string | null, data: <a href="../classes/AttributeDictionary.html" target="_self">AttributeDictionary</a>)</code>
+<code>UpdateAttributeDictionary(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, data: <a href="../classes/AttributesDictionary.html" target="_self">AttributesDictionary</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="100"
-                                    class="link-to-prism">src/app/services/attribute-dictionary.service.ts:100</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="117"
+                                    class="link-to-prism">src/app/services/attribute-dictionary.service.ts:117</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Updates an attribute dictionary with the specified ID.</p>
+                        <div class="io-description"><p>Updates an attribute dictionary by its ID.</p>
 </div>
 
                             <div class="io-description">
@@ -746,7 +749,7 @@
                                         <tr>
                                                 <td>id</td>
                                             <td>
-                                                        <code>string | null</code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
@@ -764,7 +767,7 @@
                                         <tr>
                                                 <td>data</td>
                                             <td>
-                                                            <code><a href="../classes/AttributeDictionary.html" target="_self" >AttributeDictionary</a></code>
+                                                            <code><a href="../classes/AttributesDictionary.html" target="_self" >AttributesDictionary</a></code>
                                             </td>
 
                                             <td>
@@ -783,11 +786,11 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Observable&lt;AttributeDictionary&gt;</code>
+                            <b>Returns : </b>    <code>Observable&lt;AttributesDictionary&gt;</code>
 
                         </div>
                             <div class="io-description">
-                                <p>An observable that emits the updated attribute dictionary.</p>
+                                <p>An Observable emitting the updated attribute dictionary.</p>
 
                             </div>
                 </td>
@@ -869,16 +872,16 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Observable, throwError } from &#x27;rxjs&#x27;;
-import { catchError, retry } from &#x27;rxjs/operators&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Observable, throwError } from &#x27;rxjs&#x27;
+import { catchError, retry } from &#x27;rxjs/operators&#x27;
 
-import { HttpClient, HttpHeaders } from &#x27;@angular/common/http&#x27;;
-import { Injectable, NgZone } from &#x27;@angular/core&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
+import { HttpClient, HttpHeaders } from &#x27;@angular/common/http&#x27;
+import { Injectable, NgZone } from &#x27;@angular/core&#x27;
+import { Router } from &#x27;@angular/router&#x27;
 
-import { environment } from &#x27;../../environments/environment&#x27;;
-import { AttributeDictionary } from &#x27;../shared/attribute-dictionary&#x27;;
-import { LogService } from &#x27;./log.service&#x27;;
+import { environment } from &#x27;../../environments/environment&#x27;
+import { AttributesDictionary } from &#x27;../shared/AttributesDictionary&#x27;
+import { LogService } from &#x27;./log.service&#x27;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
@@ -903,96 +906,112 @@ export class AttributeDictionaryService {
    * Retrieves the attribute dictionaries.
    * @returns An observable that emits the attribute dictionaries.
    */
-  GetAttributeDictionaries(): Observable&lt;AttributeDictionary[]&gt; {
+  GetAttributeDictionaries(): Observable&lt;AttributesDictionary[]&gt; {
     return this.http
-      .get&lt;AttributeDictionary[]&gt;(environment.baseurl + &#x27;/attributesDictionary/&#x27;)
-      .pipe(retry(1), catchError(this.errorHandl))
+      .get&lt;AttributesDictionary[]&gt;(environment.baseurl + &#x27;/attributesDictionary/&#x27;)
+      .pipe(retry(1), catchError(this.errorHandler))
   }
 
   /**
    * Retrieves an attribute dictionary by its ID.
-   * @param id - The ID of the attribute dictionary to retrieve.
-   * @returns An Observable that emits the retrieved AttributeDictionary.
+   * @param id The ID of the attribute dictionary to retrieve.
+   * @returns An Observable emitting the retrieved AttributesDictionary.
    */
-  GetAttributeDictionary(id: string): Observable&lt;AttributeDictionary&gt; {
-    return this.http
-      .get&lt;AttributeDictionary&gt;(environment.baseurl + &#x27;/attribute-dictionary/&#x27; + id, this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+  GetAttributeDictionary(id: string): Observable&lt;AttributesDictionary&gt; {
+    if (!id) {
+      return throwError(() &#x3D;&gt; new Error(&#x27;Attribute dictionary ID is required.&#x27;))
+    }
+    const url &#x3D; &#x60;${environment.baseurl}/attributesDictionary/${encodeURIComponent(id)}&#x60;
+    return this.http.get&lt;AttributesDictionary&gt;(url, this.httpOptions).pipe(retry(1), catchError(this.errorHandler))
   }
+
   /**
-   * Deletes an attribute dictionary with the specified ID.
-   * @param id The ID of the attribute dictionary to delete.
-   * @returns An Observable that emits the deleted attribute dictionary.
+   * Deletes an attribute dictionary by its ID.
+   * @param id - The ID of the attribute dictionary to delete.
+   * @returns An Observable emitting the deleted AttributesDictionary.
    */
-  DeleteAttributeDictionary(id: string): Observable&lt;AttributeDictionary&gt; {
-    return this.http
-      .delete&lt;AttributeDictionary&gt;(environment.baseurl + &#x27;/attributesDictionary/&#x27; + id, this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+  DeleteAttributeDictionary(id: string): Observable&lt;AttributesDictionary&gt; {
+    if (!id) {
+      return throwError(() &#x3D;&gt; new Error(&#x27;Attribute dictionary ID is required for deletion.&#x27;))
+    }
+    const url &#x3D; &#x60;${environment.baseurl}/attributesDictionary/${encodeURIComponent(id)}&#x60;
+    return this.http.delete&lt;AttributesDictionary&gt;(url, this.httpOptions).pipe(retry(1), catchError(this.errorHandler))
   }
+
   /**
-   * Creates an attribute dictionary.
-   * @param data The attribute dictionary data to be created.
-   * @returns An observable that emits the created attribute dictionary.
+   * Creates a new attribute dictionary.
+   * @param data The attribute dictionary data to create.
+   * @returns An Observable emitting the created AttributesDictionary.
    */
-  CreateAttributeDictionary(data: AttributeDictionary): Observable&lt;AttributeDictionary&gt; {
-    return this.http
-      .post&lt;AttributeDictionary&gt;(
-        environment.baseurl + &#x27;/attributesDictionary/&#x27;,
-        JSON.stringify(data, null, &#x27; &#x27;),
-        this.httpOptions,
-      )
-      .pipe(retry(1), catchError(this.errorHandl))
-  }
   /**
-   * Clones an attribute dictionary with the specified ID.
-   *
+   * Creates a new attribute dictionary.
+   * @param data - The attribute dictionary data to create.
+   * @returns An Observable emitting the created AttributesDictionary.
+   */
+  CreateAttributeDictionary(data: Omit&lt;AttributesDictionary, &#x27;_id&#x27;&gt;): Observable&lt;AttributesDictionary&gt; {
+    if (!data || !data.name || !data.type || !data.componentName) {
+      return throwError(() &#x3D;&gt; new Error(&#x27;Missing required attribute dictionary fields.&#x27;));
+    }
+    return this.http
+      .post&lt;AttributesDictionary&gt;(&#x60;${this.baseurl}/attributesDictionary/&#x60;, data, this.httpOptions)
+      .pipe(retry(1), catchError(this.errorHandler));
+  }
+
+  /**
+   * Clones an attribute dictionary by its ID and navigates to the list view upon success.
    * @param id - The ID of the attribute dictionary to clone.
-   * @returns The UUID of the cloned attribute dictionary.
+   * @returns An Observable emitting the cloned attribute dictionary.
    */
-  CloneAttributeDictionary(id: string): string {
-    this.GetAttributeDictionary(id).subscribe((value: AttributeDictionary) &#x3D;&gt; {
-      console.log(&#x27;Get attributes: &#x27; + JSON.stringify(value, null, &#x27; &#x27;))
-      this.CreateAttributeDictionary(value).subscribe({
-        next: (v) &#x3D;&gt; {
-          console.log(&#x27;Create attributes: &#x27; + JSON.stringify(v, null, &#x27; &#x27;))
-          this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;attributesDictionary-list&#x27;))
+  CloneAttributeDictionary(id: string): Observable&lt;AttributesDictionary&gt; {
+    return new Observable&lt;AttributesDictionary&gt;((observer) &#x3D;&gt; {
+      this.GetAttributeDictionary(id).subscribe({
+        next: (original) &#x3D;&gt; {
+          // Remove _id to let backend generate a new one
+          const { _id, ...cloneData } &#x3D; original
+          this.CreateAttributeDictionary(cloneData as AttributesDictionary).subscribe({
+            next: (created) &#x3D;&gt; {
+              this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;attribute-dictionary-list&#x27;))
+              observer.next(created)
+              observer.complete()
+            },
+            error: (err) &#x3D;&gt; observer.error(err),
+          })
         },
-        complete: () &#x3D;&gt; this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;attribute-dictionary-list&#x27;)),
+        error: (err) &#x3D;&gt; observer.error(err),
       })
     })
-    return &#x27;x&#x27;
   }
+
   /**
-   * Updates an attribute dictionary with the specified ID.
+   * Updates an attribute dictionary by its ID.
    * @param id - The ID of the attribute dictionary to update.
    * @param data - The updated attribute dictionary data.
-   * @returns An observable that emits the updated attribute dictionary.
+   * @returns An Observable emitting the updated attribute dictionary.
    */
-  UpdateAttributeDictionary(id: string | null, data: AttributeDictionary): Observable&lt;AttributeDictionary&gt; {
+  UpdateAttributeDictionary(id: string, data: AttributesDictionary): Observable&lt;AttributesDictionary&gt; {
+    if (!id) {
+      return throwError(() &#x3D;&gt; new Error(&#x27;Attribute dictionary ID is required for update.&#x27;))
+    }
     return this.http
-      .put&lt;AttributeDictionary&gt;(
-        environment.baseurl + &#x27;/attributesDictionary/&#x27; + id,
-        JSON.stringify(data, null, &#x27; &#x27;),
-        this.httpOptions,
-      )
-      .pipe(retry(1), catchError(this.errorHandl))
+      .put&lt;AttributesDictionary&gt;(&#x60;${environment.baseurl}/attributesDictionary/${id}&#x60;, data, this.httpOptions)
+      .pipe(retry(1), catchError(this.errorHandler))
   }
+
   /**
    * Handles the error response from an HTTP request.
    * @param error - The error object containing the error message and status.
    * @returns An Observable that emits the error message.
    */
-  errorHandl(error: { error: { message: string }; status: number; message: string }) {
-    let errorMessage &#x3D; &#x27;&#x27;
+  private errorHandler(error: any) {
+    let errorMessage: string
     if (error.error instanceof ErrorEvent) {
       errorMessage &#x3D; error.error.message
     } else {
-      errorMessage &#x3D; &#x60;Error Code: ${error.status}\nMessage: ${error.message}&#x60;
+      const detailedMessage &#x3D; error.message || error.error?.message || &#x27;Unknown error&#x27;
+      errorMessage &#x3D; &#x60;Error Code: ${error.status} | Message: ${detailedMessage}&#x60;
     }
-    console.log(JSON.stringify(errorMessage, null, &#x27; &#x27;))
-    return throwError(() &#x3D;&gt; {
-      return errorMessage
-    })
+    console.error(errorMessage)
+    return throwError(() &#x3D;&gt; new Error(errorMessage))
   }
 }
 </code></pre>
@@ -1066,7 +1085,6 @@ export class AttributeDictionaryService {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

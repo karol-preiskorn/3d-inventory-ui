@@ -165,6 +165,10 @@
                                 <a href="#errorHandl" >errorHandl</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#formatErrorMessage" >formatErrorMessage</a>
+                            </li>
+                            <li>
                                 <a href="#GetFloor" >GetFloor</a>
                             </li>
                             <li>
@@ -199,7 +203,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/services/floor.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/services/floor.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -298,15 +302,15 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="88"
-                                    class="link-to-prism">src/app/services/floor.service.ts:88</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="86"
+                                    class="link-to-prism">src/app/services/floor.service.ts:86</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Clones a floor by its ID.</p>
+                        <div class="io-description"><p>Clones a Floors by its ID.</p>
 </div>
 
                             <div class="io-description">
@@ -335,7 +339,7 @@
 
                                             <td>
                                                     <ul>
-<li>The ID of the floor to clone.</li>
+<li>The ID of the Floors to clone.</li>
 </ul>
 
                                             </td>
@@ -344,11 +348,11 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <b>Returns : </b>    <code>Observable&lt;string&gt;</code>
 
                         </div>
                             <div class="io-description">
-                                <p>The UUID of the cloned floor.</p>
+                                <p>An Observable that emits the cloned Floors&#39;s ID.</p>
 
                             </div>
                 </td>
@@ -368,22 +372,22 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>CreateFloor(data: <a href="../interfaces/Floor.html" target="_self">Floor</a>)</code>
+<code>CreateFloor(data: <a href="../interfaces/Floors.html" target="_self">Floors</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="76"
-                                    class="link-to-prism">src/app/services/floor.service.ts:76</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/app/services/floor.service.ts:75</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Creates a new floor.</p>
+                        <div class="io-description"><p>Creates a new Floors.</p>
 </div>
 
                             <div class="io-description">
@@ -402,7 +406,7 @@
                                         <tr>
                                                 <td>data</td>
                                             <td>
-                                                            <code><a href="../interfaces/Floor.html" target="_self" >Floor</a></code>
+                                                            <code><a href="../interfaces/Floors.html" target="_self" >Floors</a></code>
                                             </td>
 
                                             <td>
@@ -411,7 +415,7 @@
 
 
                                             <td>
-                                                    <p>The floor data to be created.</p>
+                                                    <p>The Floors data to be created.</p>
 
                                             </td>
                                         </tr>
@@ -419,11 +423,11 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/Floor.html" target="_self" >Observable&lt;Floor&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/Floors.html" target="_self" >Observable&lt;Floors&gt;</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>An Observable that emits the created floor.</p>
+                                <p>An Observable that emits the created Floors.</p>
 
                             </div>
                 </td>
@@ -450,15 +454,15 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="65"
-                                    class="link-to-prism">src/app/services/floor.service.ts:65</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/services/floor.service.ts:64</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Deletes a floor by its ID.</p>
+                        <div class="io-description"><p>Deletes a Floors by its ID.</p>
 </div>
 
                             <div class="io-description">
@@ -487,7 +491,7 @@
 
                                             <td>
                                                     <ul>
-<li>The ID of the floor to delete.</li>
+<li>The ID of the Floors to delete.</li>
 </ul>
 
                                             </td>
@@ -496,11 +500,11 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/Floor.html" target="_self" >Observable&lt;Floor&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/Floors.html" target="_self" >Observable&lt;Floors&gt;</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>An Observable that emits the deleted floor.</p>
+                                <p>An Observable that emits the deleted Floors.</p>
 
                             </div>
                 </td>
@@ -520,15 +524,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>errorHandl(error: literal type)</code>
+<code>errorHandl(error: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="122"
-                                    class="link-to-prism">src/app/services/floor.service.ts:122</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/app/services/floor.service.ts:123</a></div>
                         </td>
                     </tr>
 
@@ -554,7 +558,7 @@
                                         <tr>
                                                 <td>error</td>
                                             <td>
-                                                        <code>literal type</code>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                             </td>
 
                                             <td>
@@ -588,6 +592,75 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="formatErrorMessage"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>formatErrorMessage</b></span>
+                        <a href="#formatErrorMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatErrorMessage(error: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/app/services/floor.service.ts:129</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>error</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="GetFloor"></a>
                     <span class="name">
                         <span ><b>GetFloor</b></span>
@@ -604,15 +677,15 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="54"
-                                    class="link-to-prism">src/app/services/floor.service.ts:54</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/app/services/floor.service.ts:53</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Retrieves a floor by its ID.</p>
+                        <div class="io-description"><p>Retrieves a Floors by its ID.</p>
 </div>
 
                             <div class="io-description">
@@ -641,7 +714,7 @@
 
                                             <td>
                                                     <ul>
-<li>The ID of the floor to retrieve.</li>
+<li>The ID of the Floors to retrieve.</li>
 </ul>
 
                                             </td>
@@ -650,11 +723,11 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/Floor.html" target="_self" >Observable&lt;Floor&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/Floors.html" target="_self" >Observable&lt;Floors&gt;</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>An Observable that emits the retrieved floor.</p>
+                                <p>An Observable that emits the retrieved Floors.</p>
 
                             </div>
                 </td>
@@ -681,8 +754,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="36"
-                                    class="link-to-prism">src/app/services/floor.service.ts:36</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/app/services/floor.service.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -693,11 +766,11 @@
 </div>
 
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/Floor.html" target="_self" >Observable&lt;Floor[]&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/Floors.html" target="_self" >Observable&lt;Floors[]&gt;</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>An Observable that emits an array of Floor objects.</p>
+                                <p>An Observable that emits an array of Floors objects.</p>
 
                             </div>
                 </td>
@@ -724,15 +797,15 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="45"
-                                    class="link-to-prism">src/app/services/floor.service.ts:45</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="44"
+                                    class="link-to-prism">src/app/services/floor.service.ts:44</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Retrieves a floor synchronously by its ID.</p>
+                        <div class="io-description"><p>Retrieves a Floors by its ID as an Observable.</p>
 </div>
 
                             <div class="io-description">
@@ -761,7 +834,7 @@
 
                                             <td>
                                                     <ul>
-<li>The ID of the floor to retrieve.</li>
+<li>The ID of the Floors to retrieve.</li>
 </ul>
 
                                             </td>
@@ -770,11 +843,11 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/Floor.html" target="_self" >Floor</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/Floors.html" target="_self" >Observable&lt;Floors&gt;</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>The floor object.</p>
+                                <p>An Observable that emits the Floors object.</p>
 
                             </div>
                 </td>
@@ -794,22 +867,22 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>UpdateFloor(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, data: never)</code>
+<code>UpdateFloor(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, data: <a href="../interfaces/Floors.html" target="_self">Floors</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="111"
-                                    class="link-to-prism">src/app/services/floor.service.ts:111</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/app/services/floor.service.ts:112</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Updates a floor with the specified ID.</p>
+                        <div class="io-description"><p>Updates a Floors with the specified ID.</p>
 </div>
 
                             <div class="io-description">
@@ -838,7 +911,7 @@
 
                                             <td>
                                                     <ul>
-<li>The ID of the floor to update.</li>
+<li>The ID of the Floors to update.</li>
 </ul>
 
                                             </td>
@@ -846,7 +919,7 @@
                                         <tr>
                                                 <td>data</td>
                                             <td>
-                                                        <code>never</code>
+                                                            <code><a href="../interfaces/Floors.html" target="_self" >Floors</a></code>
                                             </td>
 
                                             <td>
@@ -856,7 +929,7 @@
 
                                             <td>
                                                     <ul>
-<li>The updated floor data.</li>
+<li>The updated Floors data.</li>
 </ul>
 
                                             </td>
@@ -865,11 +938,11 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/Floor.html" target="_self" >Observable&lt;Floor&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/Floors.html" target="_self" >Observable&lt;Floors&gt;</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>An Observable that emits the updated floor.</p>
+                                <p>An Observable that emits the updated Floors.</p>
 
                             </div>
                 </td>
@@ -900,7 +973,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/services/floor.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/services/floor.service.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -935,7 +1008,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/services/floor.service.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/services/floor.service.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -950,7 +1023,6 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Observable, throwError } from &#x27;rxjs&#x27;
 import { catchError, retry } from &#x27;rxjs/operators&#x27;
-import { SyncRequestClient } from &#x27;ts-sync-request&#x27;
 import { v4 as uuidv4 } from &#x27;uuid&#x27;
 
 import { HttpClient, HttpHeaders } from &#x27;@angular/common/http&#x27;
@@ -958,7 +1030,7 @@ import { Injectable, NgZone } from &#x27;@angular/core&#x27;
 import { Router } from &#x27;@angular/router&#x27;
 
 import { environment } from &#x27;../../environments/environment&#x27;
-import { Floor } from &#x27;../shared/floor&#x27;
+import { Floors } from &#x27;../shared/floors&#x27;
 import { Log, LogService } from &#x27;./log.service&#x27;
 
 @Injectable({
@@ -981,86 +1053,88 @@ export class FloorService {
 
   /**
    * Retrieves the list of floors.
-   * @returns An Observable that emits an array of Floor objects.
+   * @returns An Observable that emits an array of Floors objects.
    */
-  GetFloors(): Observable&lt;Floor[]&gt; {
-    return this.http.get&lt;Floor[]&gt;(environment.baseurl + &#x27;/floors/&#x27;).pipe(retry(1), catchError(this.errorHandl))
+  GetFloors(): Observable&lt;Floors[]&gt; {
+    return this.http.get&lt;Floors[]&gt;(environment.baseurl + &#x27;/floors/&#x27;).pipe(retry(1), catchError(this.errorHandl))
   }
 
   /**
-   * Retrieves a floor synchronously by its ID.
-   * @param id - The ID of the floor to retrieve.
-   * @returns The floor object.
+   * Retrieves a Floors by its ID as an Observable.
+   * @param id - The ID of the Floors to retrieve.
+   * @returns An Observable that emits the Floors object.
    */
-  getFloorSynchronize(id: string | null): Floor {
-    return new SyncRequestClient().get&lt;Floor&gt;(environment.baseurl + &#x27;/floors/&#x27; + id)
+  getFloorSynchronize(id: string | null): Observable&lt;Floors&gt; {
+    return this.http.get&lt;Floors&gt;(environment.baseurl + &#x27;/floors/&#x27; + id)
   }
 
   /**
-   * Retrieves a floor by its ID.
-   * @param id - The ID of the floor to retrieve.
-   * @returns An Observable that emits the retrieved floor.
+   * Retrieves a Floors by its ID.
+   * @param id - The ID of the Floors to retrieve.
+   * @returns An Observable that emits the retrieved Floors.
    */
-  GetFloor(id: string): Observable&lt;Floor&gt; {
+  GetFloor(id: string): Observable&lt;Floors&gt; {
     return this.http
-      .get&lt;Floor&gt;(environment.baseurl + &#x27;/floor/&#x27; + id, this.httpOptions)
+      .get&lt;Floors&gt;(environment.baseurl + &#x27;/floors/&#x27; + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   /**
-   * Deletes a floor by its ID.
-   * @param id - The ID of the floor to delete.
-   * @returns An Observable that emits the deleted floor.
+   * Deletes a Floors by its ID.
+   * @param id - The ID of the Floors to delete.
+   * @returns An Observable that emits the deleted Floors.
    */
-  DeleteFloor(id: string): Observable&lt;Floor&gt; {
+  DeleteFloor(id: string): Observable&lt;Floors&gt; {
     return this.http
-      .delete&lt;Floor&gt;(environment.baseurl + &#x27;/floor/&#x27; + id, this.httpOptions)
+      .delete&lt;Floors&gt;(environment.baseurl + &#x27;/floors/&#x27; + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   /**
-   * Creates a new floor.
-   * @param data The floor data to be created.
-   * @returns An Observable that emits the created floor.
+   * Creates a new Floors.
+   * @param data The Floors data to be created.
+   * @returns An Observable that emits the created Floors.
    */
-  CreateFloor(data: Floor): Observable&lt;Floor&gt; {
+  CreateFloor(data: Floors): Observable&lt;Floors&gt; {
     return this.http
-      .post&lt;Floor&gt;(environment.baseurl + &#x27;/floor/&#x27;, JSON.stringify(data, null, &#x27; &#x27;), this.httpOptions)
+      .post&lt;Floors&gt;(environment.baseurl + &#x27;/floors/&#x27;, JSON.stringify(data, null, 2), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
   /**
-   * Clones a floor by its ID.
-   *
-   * @param id - The ID of the floor to clone.
-   * @returns The UUID of the cloned floor.
+   * Clones a Floors by its ID.
+   * @param id - The ID of the Floors to clone.
+   * @returns An Observable that emits the cloned Floors&#x27;s ID.
    */
-  CloneFloor(id: string): string {
-    const id_uuid: string &#x3D; uuidv4.toString().substr(6, 36)
-    this.GetFloor(id).subscribe((value: Floor) &#x3D;&gt; {
-      console.log(&#x27;Get Floor: &#x27; + JSON.stringify(value, null, &#x27; &#x27;))
-      value._id &#x3D; id_uuid
-      this.CreateFloor(value).subscribe({
-        next: (v) &#x3D;&gt; {
-          console.log(&#x27;Create Floor: &#x27; + JSON.stringify(v, null, &#x27; &#x27;))
-          this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;floor-list&#x27;))
+  CloneFloor(id: string): Observable&lt;string&gt; {
+    const newId &#x3D; uuidv4()
+    return new Observable&lt;string&gt;((observer) &#x3D;&gt; {
+      this.GetFloor(id).subscribe({
+        next: (Floors: Floors) &#x3D;&gt; {
+          const clonedFloor &#x3D; { ...Floors, _id: newId }
+          this.CreateFloor(clonedFloor).subscribe({
+            next: () &#x3D;&gt; {
+              this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;floor-list&#x27;))
+              observer.next(newId)
+              observer.complete()
+            },
+            error: (err) &#x3D;&gt; observer.error(err),
+          })
         },
-        complete: () &#x3D;&gt; this.ngZone.run(() &#x3D;&gt; this.router.navigateByUrl(&#x27;floor-list&#x27;)),
+        error: (err) &#x3D;&gt; observer.error(err),
       })
     })
-    return id_uuid
   }
 
   /**
-   * Updates a floor with the specified ID.
-   *
-   * @param id - The ID of the floor to update.
-   * @param data - The updated floor data.
-   * @returns An Observable that emits the updated floor.
+   * Updates a Floors with the specified ID.
+   * @param id - The ID of the Floors to update.
+   * @param data - The updated Floors data.
+   * @returns An Observable that emits the updated Floors.
    */
-  UpdateFloor(id: string, data: never): Observable&lt;Floor&gt; {
+  UpdateFloor(id: string, data: Floors): Observable&lt;Floors&gt; {
     return this.http
-      .put&lt;Floor&gt;(environment.baseurl + &#x27;/floor/&#x27; + id, JSON.stringify(data, null, &#x27; &#x27;), this.httpOptions)
+      .put&lt;Floors&gt;(&#x60;${environment.baseurl}/floors/${id}&#x60;, JSON.stringify(data, null, &#x27; &#x27;), this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl))
   }
 
@@ -1069,17 +1143,17 @@ export class FloorService {
    * @param error - The error object containing the error message and status.
    * @returns An Observable that emits the error message.
    */
-  errorHandl(error: { error: { message: string }; status: unknown; message: Log }): Observable&lt;never&gt; {
-    let errorMessage &#x3D; &#x27;&#x27;
+  errorHandl(error: any): Observable&lt;never&gt; {
+    const errorMessage &#x3D; this.formatErrorMessage(error)
+    console.error(errorMessage)
+    return throwError(() &#x3D;&gt; new Error(errorMessage))
+  }
+
+  private formatErrorMessage(error: any): string {
     if (error.error instanceof ErrorEvent) {
-      errorMessage &#x3D; error.error.message
-    } else {
-      errorMessage &#x3D; &#x60;Error Code: ${error.status}\nMessage: ${error.message}&#x60;
+      return error.error.message
     }
-    console.log(JSON.stringify(errorMessage, null, &#x27; &#x27;))
-    return throwError(() &#x3D;&gt; {
-      return errorMessage
-    })
+    return &#x60;Error Code: ${error.status}\nMessage: ${error.error?.message || error.message}&#x60;
   }
 }
 </code></pre>
@@ -1153,7 +1227,6 @@ export class FloorService {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

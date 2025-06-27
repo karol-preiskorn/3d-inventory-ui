@@ -129,54 +129,32 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
-import { Injectable, NgModule } from &#x27;@angular/core&#x27;;
-import { FormsModule, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
-import { Title } from &#x27;@angular/platform-browser&#x27;;
-import {
-    provideRouter, RouterModule, RouterStateSnapshot, Routes, TitleStrategy
-} from &#x27;@angular/router&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NgModule } from &#x27;@angular/core&#x27;
+import { Title } from &#x27;@angular/platform-browser&#x27;
+import { RouterModule, RouterStateSnapshot, Routes, TitleStrategy } from &#x27;@angular/router&#x27;
 
-import { CubeComponent } from &#x27;./components/3d/3d.component&#x27;;
-import {
-    AttributeDictionaryAddComponent
-} from &#x27;./components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component&#x27;;
-import {
-    AttributeDictionaryListComponent
-} from &#x27;./components/attribute-dictionary/attribute-dictionary-list/attribute-dictionary-list.component&#x27;;
-import {
-    AttributeDictionaryEditComponent
-} from &#x27;./components/attribute-dictionary/edit-attribute-dictionary/edit-attribute-dictionary.component&#x27;;
-import {
-    AttributeAddComponent
-} from &#x27;./components/attribute/add-attribute/add-attribute.component&#x27;;
-import {
-    AttributeListComponent
-} from &#x27;./components/attribute/attribute-list/attribute-list.component&#x27;;
-import {
-    AttributeEditComponent
-} from &#x27;./components/attribute/edit-attribute/edit-attribute.component&#x27;;
-import {
-    ConnectionAddComponent
-} from &#x27;./components/connection/add-connection/add-connection.component&#x27;;
-import {
-    ConnectionListComponent
-} from &#x27;./components/connection/connection-list/connection-list.component&#x27;;
-import {
-    ConnectionEditComponent
-} from &#x27;./components/connection/edit-connection/edit-connection.component&#x27;;
-import { DeviceAddComponent } from &#x27;./components/devices/add-device/add-device.component&#x27;;
-import { DeviceListComponent } from &#x27;./components/devices/devices-list/devices-list.component&#x27;;
-import { DeviceEditComponent } from &#x27;./components/devices/edit-device/edit-device.component&#x27;;
-import { FloorAddComponent } from &#x27;./components/floors/add-floor/add-floor.component&#x27;;
-import { FloorEditComponent } from &#x27;./components/floors/edit-floor/edit-floor.component&#x27;;
-import { FloorListComponent } from &#x27;./components/floors/floor-list/floor-list.component&#x27;;
-import { HomeComponent } from &#x27;./components/home/home.component&#x27;;
-import { ModelAddComponent } from &#x27;./components/models/add-model/add-model.component&#x27;;
-import { ModelEditComponent } from &#x27;./components/models/edit-model/edit-model.component&#x27;;
-import { ModelsListComponent } from &#x27;./components/models/model-list/model-list.component&#x27;;
-import { ResolverDevice } from &#x27;./resolverDevice&#x27;;
-import { ResolverModel } from &#x27;./resolverModel&#x27;;
+import { CubeComponent } from &#x27;./components/3d/3d.component&#x27;
+import { AttributeDictionaryAddComponent } from &#x27;./components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component&#x27;
+import { AttributeDictionaryListComponent } from &#x27;./components/attribute-dictionary/attribute-dictionary-list/attribute-dictionary-list.component&#x27;
+import { AttributeDictionaryEditComponent } from &#x27;./components/attribute-dictionary/edit-attribute-dictionary/edit-attribute-dictionary.component&#x27;
+import { AttributeAddComponent } from &#x27;./components/attribute/add-attribute/add-attribute.component&#x27;
+import { AttributeListComponent } from &#x27;./components/attribute/attribute-list/attribute-list.component&#x27;
+import { AttributeEditComponent } from &#x27;./components/attribute/edit-attribute/edit-attribute.component&#x27;
+import { ConnectionAddComponent } from &#x27;./components/connection/add-connection/add-connection.component&#x27;
+import { ConnectionListComponent } from &#x27;./components/connection/connection-list/connection-list.component&#x27;
+import { ConnectionEditComponent } from &#x27;./components/connection/edit-connection/edit-connection.component&#x27;
+import { DeviceAddComponent } from &#x27;./components/devices/add-device/add-device.component&#x27;
+import { DeviceListComponent } from &#x27;./components/devices/devices-list/devices-list.component&#x27;
+import { DeviceEditComponent } from &#x27;./components/devices/edit-device/edit-device.component&#x27;
+import { FloorAddComponent } from &#x27;./components/floors/add-floor/add-floor.component&#x27;
+import { FloorEditComponent } from &#x27;./components/floors/edit-floor/edit-floor.component&#x27;
+import { FloorListComponent } from &#x27;./components/floors/floor-list/floor-list.component&#x27;
+import { HomeComponent } from &#x27;./components/home/home.component&#x27;
+import { ModelAddComponent } from &#x27;./components/models/add-model/add-model.component&#x27;
+import { ModelEditComponent } from &#x27;./components/models/edit-model/edit-model.component&#x27;
+import { ModelsListComponent } from &#x27;./components/models/model-list/model-list.component&#x27;
+import { ResolverDevice } from &#x27;./resolverDevice&#x27;
+import { ResolverModel } from &#x27;./resolverModel&#x27;
 
 @Injectable()
 export class TemplatePageTitleStrategy extends TitleStrategy {
@@ -192,135 +170,46 @@ export class TemplatePageTitleStrategy extends TitleStrategy {
   }
 }
 
-const routes: Routes &#x3D; [
-  {
-    path: &#x27;&#x27;,
-    component: HomeComponent,
-    title: &#x27;Home&#x27;,
-  },
-  {
-    path: &#x27;home&#x27;,
-    component: HomeComponent,
-    title: &#x27;Home&#x27;,
-  },
+export const routes: Routes &#x3D; [
+  { path: &#x27;&#x27;, component: HomeComponent, title: &#x27;Home&#x27; },
+  { path: &#x27;home&#x27;, component: HomeComponent, title: &#x27;Home&#x27; },
   {
     path: &#x27;3d&#x27;,
     component: CubeComponent,
     title: &#x27;3d&#x27;,
-    resolve: {
-      resolveDeviceList: ResolverDevice,
-      resolveModelList: ResolverModel,
-    },
+    resolve: { resolveDeviceList: ResolverDevice, resolveModelList: ResolverModel },
   },
-  {
-    path: &#x27;device-list&#x27;,
-    component: DeviceListComponent,
-    title: &#x27;Device List&#x27;,
-  },
-  {
-    path: &#x27;edit-device/:id&#x27;,
-    component: DeviceEditComponent,
-    title: &#x27;Edit Device&#x27;,
-  },
-  {
-    path: &#x27;add-device&#x27;,
-    component: DeviceAddComponent,
-    title: &#x27;Add Device&#x27;,
-  },
-  {
-    path: &#x27;models-list&#x27;,
-    component: ModelsListComponent,
-    title: &#x27;Models List&#x27;,
-  },
-  {
-    path: &#x27;edit-model/:id&#x27;,
-    component: ModelEditComponent,
-    title: &#x27;Edit Model&#x27;,
-  },
-  {
-    path: &#x27;add-model&#x27;,
-    component: ModelAddComponent,
-    title: &#x27;Add Model&#x27;,
-  },
+  { path: &#x27;device-list&#x27;, component: DeviceListComponent, title: &#x27;Device List&#x27; },
+  { path: &#x27;edit-device/:id&#x27;, component: DeviceEditComponent, title: &#x27;Edit Device&#x27; },
+  { path: &#x27;add-device&#x27;, component: DeviceAddComponent, title: &#x27;Add Device&#x27; },
+  { path: &#x27;models-list&#x27;, component: ModelsListComponent, title: &#x27;Models List&#x27; },
+  { path: &#x27;edit-model/:id&#x27;, component: ModelEditComponent, title: &#x27;Edit Model&#x27; },
+  { path: &#x27;add-model&#x27;, component: ModelAddComponent, title: &#x27;Add Model&#x27; },
   {
     path: &#x27;attribute-dictionary-list&#x27;,
     component: AttributeDictionaryListComponent,
     title: &#x27;Attribute Dictionary List&#x27;,
   },
-  {
-    path: &#x27;add-attribute-dictionary&#x27;,
-    component: AttributeDictionaryAddComponent,
-  },
+  { path: &#x27;add-attribute-dictionary&#x27;, component: AttributeDictionaryAddComponent, title: &#x27;Add Attribute Dictionary&#x27; },
   {
     path: &#x27;edit-attribute-dictionary/:id&#x27;,
     component: AttributeDictionaryEditComponent,
     title: &#x27;Edit Attribute Dictionary&#x27;,
   },
-  {
-    path: &#x27;attribute-list&#x27;,
-    component: AttributeListComponent,
-    title: &#x27;Attribute List&#x27;,
-  },
-  {
-    path: &#x27;add-attribute&#x27;,
-    component: AttributeAddComponent,
-    title: &#x27;Add Attribute&#x27;,
-  },
-  {
-    path: &#x27;edit-attribute/:id&#x27;,
-    component: AttributeEditComponent,
-    title: &#x27;Edit Attribute&#x27;,
-  },
-  {
-    path: &#x27;connection-list&#x27;,
-    component: ConnectionListComponent,
-    title: &#x27;Connections List&#x27;,
-  },
-  {
-    path: &#x27;add-connection&#x27;,
-    component: ConnectionAddComponent,
-    title: &#x27;Add Connections&#x27;,
-  },
-  {
-    path: &#x27;edit-connection/:id&#x27;,
-    component: ConnectionEditComponent,
-    title: &#x27;Edit Connections&#x27;,
-  },
-  {
-    path: &#x27;floor-list&#x27;,
-    component: FloorListComponent,
-    title: &#x27;Floor List&#x27;,
-  },
-  {
-    path: &#x27;add-floor&#x27;,
-    component: FloorAddComponent,
-    title: &#x27;Add Floor&#x27;,
-  },
-  {
-    path: &#x27;edit-floor/:id&#x27;,
-    component: FloorEditComponent,
-    title: &#x27;Edit Floor&#x27;,
-  },
+  { path: &#x27;attribute-list&#x27;, component: AttributeListComponent, title: &#x27;Attribute List&#x27; },
+  { path: &#x27;add-attribute&#x27;, component: AttributeAddComponent, title: &#x27;Add Attribute&#x27; },
+  { path: &#x27;edit-attribute/:id&#x27;, component: AttributeEditComponent, title: &#x27;Edit Attribute&#x27; },
+  { path: &#x27;connection-list&#x27;, component: ConnectionListComponent, title: &#x27;Connections List&#x27; },
+  { path: &#x27;add-connection&#x27;, component: ConnectionAddComponent, title: &#x27;Add Connections&#x27; },
+  { path: &#x27;edit-connection/:id&#x27;, component: ConnectionEditComponent, title: &#x27;Edit Connections&#x27; },
+  { path: &#x27;floor-list&#x27;, component: FloorListComponent, title: &#x27;Floor List&#x27; },
+  { path: &#x27;add-floor&#x27;, component: FloorAddComponent, title: &#x27;Add Floor&#x27; },
+  { path: &#x27;edit-floor/:id&#x27;, component: FloorEditComponent, title: &#x27;Edit Floor&#x27; },
 ]
 
 @NgModule({
-  imports: [
-    ReactiveFormsModule,
-    FormsModule,
-    RouterModule.forRoot(
-      routes,
-      { enableTracing: false }, // &lt;-- debugging purposes only
-    ),
-    CommonModule,
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [
-    provideRouter(routes),
-    {
-      provide: TitleStrategy,
-      useClass: TemplatePageTitleStrategy,
-    },
-  ],
 })
 export class AppRoutingModule {}
 </code></pre>
@@ -397,7 +286,6 @@ export class AppRoutingModule {}
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

@@ -122,7 +122,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/shared/component-dictionary.ts</code>
+            <code>src/app/shared/ComponentDictionary.ts</code>
         </p>
 
 
@@ -240,36 +240,36 @@
 }
 
 export class ComponentDictionary {
-  list: ComponentDictionaryItem[] &#x3D; [
-    { name: &#x27;&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;device&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;model&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;connection&#x27;, description: &#x27;&#x27; },
-    { name: &#x27;attribute&#x27;, description: &#x27;&#x27; },
+  private readonly list: ComponentDictionaryItem[] &#x3D; [
+    { name: &#x27;&#x27;, description: &#x27;Empty component&#x27; },
+    { name: &#x27;device&#x27;, description: &#x27;A physical or virtual device in the inventory&#x27; },
+    { name: &#x27;model&#x27;, description: &#x27;A specific model or type of device&#x27; },
+    { name: &#x27;connection&#x27;, description: &#x27;A link or relationship between devices or components&#x27; },
+    { name: &#x27;attribute&#x27;, description: &#x27;A property or characteristic of a device or component&#x27; },
+    { name: &#x27;floor&#x27;, description: &#x27;A property or characteristic of a floor&#x27; },
   ]
 
-  get(): ComponentDictionaryItem[] {
-    return this.list
+  getAll(): ComponentDictionaryItem[] {
+    return [...this.list]
   }
 
-  public getRandom(): ComponentDictionaryItem {
-    return this.list[Math.floor(Math.random() * this.list.length)]
+  getRandom(): ComponentDictionaryItem {
+    const idx &#x3D; Math.floor(Math.random() * this.list.length)
+    return this.list[idx]
   }
 
-  public getRandomName(): string {
-    return this.list[Math.floor(Math.random() * this.list.length)].name
+  getRandomName(): string {
+    return this.getRandom().name
   }
 
-  findType(search: string): string | ComponentDictionaryItem {
-    const element &#x3D; this.list.find((e) &#x3D;&gt; e.name &#x3D;&#x3D;&#x3D; search)
-    return element || search // element?.DeviceType || search
+  findByName(name: string): ComponentDictionaryItem | undefined {
+    return this.list.find((item) &#x3D;&gt; item.name &#x3D;&#x3D;&#x3D; name)
   }
 
-  findTypeByName(obj: string) {
-    for (let i &#x3D; 0; i &lt; this.list.length; i++) {
-      if (this.list[i].name &#x3D;&#x3D;&#x3D; obj) {
-        console.log(&#x27;--&gt;&#x27;, obj)
-      }
+  logIfExists(name: string): void {
+    const item &#x3D; this.findByName(name)
+    if (item) {
+      console.log(&#x27;--&gt;&#x27;, name)
     }
   }
 }
@@ -338,7 +338,6 @@ export class ComponentDictionary {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 
