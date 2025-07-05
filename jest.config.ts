@@ -45,7 +45,6 @@ const config: import('jest').Config = {
       globals: {
         __DEV__: true,
       },
-      preset: 'jest-runner-prettier',
       runner: 'prettier',
       testPathIgnorePatterns: [
         '<rootDir>/dist/',
