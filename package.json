@@ -1,6 +1,6 @@
 {
   "name": "3d-inventory-angular-ui",
-  "version": "0.42.0",
+  "version": "0.42.7",
   "private": true,
   "type": "module",
   "browser": {
@@ -12,13 +12,13 @@
   },
   "scripts": {
     "prebuild": "npm version patch --no-git-tag-version",
-    "build": "ng build 3d-inventory-angular-ui --verbose  --configuration production",
+    "build": "ng build 3d-inventory-angular-ui --verbose",
     "clear": "rm -rf dist documentation ./nyc_output ./node_modules ./package-lock.json ./target",
     "compodoc": "compodoc -p tsconfig.doc.json",
     "compodoc:build-and-serve": "npx compodoc -p tsconfig.doc.json -s",
     "compodoc:serve": "npx compodoc -s",
     "cp": "cpx README.md src/assets",
-    "docker:build": "npm run minor && npm run security:check && docker build -t 3d-inventory-ui . && docker tag 3d-inventory-ui ghcr.io/karol-preiskorn/3d-inventory-ui:latest",
+    "docker:build": "npm run security:check && docker build -t 3d-inventory-ui . && docker tag 3d-inventory-ui ghcr.io/karol-preiskorn/3d-inventory-ui:latest",
     "docker:push": "echo $CR_PAT | docker login ghcr.io -u karol-preiskorn --password-stdin && docker push ghcr.io/karol-preiskorn/3d-inventory-ui:latest",
     "docker:run": "docker run -p 4200:433 3d-inventory-ui",
     "eslint": "eslint --fix src",
@@ -150,7 +150,7 @@
     "eslint-plugin-node": "11.1.0",
     "globals": "^16.3.0",
     "jasmine-core": "~5.8.0",
-    "jest": "^29.5.0",
+    "jest": "^30.0.4",
     "karma": "~6.4.4",
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",

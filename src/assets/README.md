@@ -18,8 +18,7 @@
    9. [Deploy](#deploy)
    10. [Containers](#containers)
    11. [Contributing](#contributing)
-   12. [Next todo](#next-todo)
-   13. [License](#license)
+   12. [License](#license)
 
 [![wakatime](https://wakatime.com/badge/user/3bbeedbe-0c6a-4a01-b3cd-a85d319a03bf/project/018c62ce-6164-4200-bca9-be53af7f6d80.svg)](https://wakatime.com/badge/user/3bbeedbe-0c6a-4a01-b3cd-a85d319a03bf/project/018c62ce-6164-4200-bca9-be53af7f6d80) [![GitHub latest commit](https://badgen.net/github/last-commit/karol-preiskorn/3d-inventory-angular-ui)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/commit/) [![GitHub stars](https://img.shields.io/github/stars/karol-preiskorn/3d-inventory-angular-ui.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/stargazers/) [![GitHub issues](https://img.shields.io/github/issues/karol-preiskorn/3d-inventory-angular-ui.svg)](https://GitHub.com/karol-preiskorn/3d-inventory-angular-ui/issues/)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/) [![TypeScript](https://img.shields.io/badge/--3178C6?logo=typescript&logoColor=ffffff)](https://www.typescriptlang.org/) [![Npm](https://badgen.net/badge/icon/npm?icon=npm&label)](https://https://npmjs.com/) [![GitHub license](https://badgen.net/github/license/karol-preiskorn/3d-inventory-angular-ui)](https://github.com/karol-preiskorn/3d-inventory-angular-ui/blob/master/LICENSE)
@@ -122,14 +121,6 @@ Docker is used for containerization, and deployment to Google Cloud is planned.
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an [issue](https://github.com/karol-preiskorn/3d-inventory-angular-ui/issues/new) first to discuss what you would like to change. Please make sure to update tests as appropriate. Do not forget about [code guidelines](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines).
-
-## Next todo
-
-- [ ] Show attributes of `DEVICES`, `MODELS` and `CONNECTIONS`. Pending implementation in `MongoDB` or `Oracle API`.
-- [ ] Represent device layout as an array of squares with coordinates (x, y, h).
-- [ ] Deploy application using `Docker`, serve via GitHub Pages, and consider `AWS EC2` for hosting.
-- [ ] Integrate [Formly](https://formly.dev/) for dynamic forms.
-- [ ] Create a project blog using GitHub Pages or host it on [ultimasolution.pl](https://ultimasolution.pl).
 
 ## License
 
