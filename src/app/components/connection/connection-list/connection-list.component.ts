@@ -64,6 +64,10 @@ export class ConnectionListComponent implements OnInit {
   }
 
   deleteConnection(id: string) {
+    if (!id) {
+      console.error('Connection ID is required for deletion.')
+      return
+    }
     this.logService
       .CreateLog({
         message: { id: id },
@@ -84,7 +88,13 @@ export class ConnectionListComponent implements OnInit {
   }
 
   async cloneConnection(id: string) {
-    const id_new: string = this.ConnectionService.CloneConnection(id)
+    if (!id) {
+      console.error('Connection ID is required for cloning.')
+      return
+    }
+    console.log('Cloning connection with ID:', id)
+    // Call the service to clone the connection
+    const id_new = this.ConnectionService.CloneConnection(id);
     this.logService
       .CreateLog({
         message: { id: id, id_new: id_new },

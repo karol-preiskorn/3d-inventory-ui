@@ -148,7 +148,7 @@ export class ConnectionEditComponent implements OnInit {
         component: 'connections',
         objectId: formValue._id,
         operation: 'Update',
-        message: { value: this.form.value as unknown },
+        message: this.form.value as Connection,
       }),
     )
     await this.ngZone.run(() => this.router.navigateByUrl('connection-list')).catch(() => {})

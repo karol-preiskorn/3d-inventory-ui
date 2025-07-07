@@ -36,7 +36,7 @@ export class ConnectionService {
   GetConnections(): Observable<Connection[]> {
     return this.http
       .get<Connection[]>(environment.baseurl + '/connections/')
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(retry(1), catchError(this.handleErrorTemplate<Connection[]>('GetConnections')))
   }
 
   /**
@@ -47,7 +47,7 @@ export class ConnectionService {
   GetConnection(id: string): Observable<Connection> {
     return this.http
       .get<Connection>(environment.baseurl + '/connections/' + id, this.httpOptions)
-      .pipe(retry(1), catchError(this.errorHandl))
+      .pipe(retry(1), catchError(this.handleErrorTemplate<Connection>('GetConnection')))
   }
 
   /**
@@ -68,7 +68,7 @@ export class ConnectionService {
    */
   CreateConnection(data: Connection): Observable<Connection> {
     return this.http
-      .post<Connection>(environment.baseurl + '/connections/', JSON.stringify(data, null, ' '), this.httpOptions)
+      .post<Connection>(environment.baseurl + '/connections/', JSON.stringify(data), this.httpOptions)
       .pipe(retry(1), catchError(this.handleErrorTemplate<Connection>('CreateConnection', data)))
   }
 

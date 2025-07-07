@@ -17,7 +17,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /usr/src/app/loc
 
 
 # Production stage
-FROM nginx:latest as production
+FROM nginx:latest AS production
 # FROM node:24-alpine AS production
 # RUN apk update && apk upgrade
 # RUN apk add --no-cache nginx

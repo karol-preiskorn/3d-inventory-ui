@@ -9,18 +9,20 @@ import { Observable } from 'rxjs'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
-import { Font, FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 
 import { HttpClient } from '@angular/common/http'
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 // Removed unused import
 
+import { Connection } from 'src/app/shared/connection'
+import { environment } from '../../../environments/environment'
 import { DeviceService } from '../../services/device.service'
 import { ModelsService } from '../../services/models.service'
 import { Device } from '../../shared/device'
 import { Model } from '../../shared/model'
-import { environment } from '../../../environments/environment'
+import { ConnectionService } from '../../services/connection.service'
 
 @Component({ selector: 'app-cube', templateUrl: './3d.component.html', styleUrls: ['./3d.component.scss'] })
 export class CubeComponent implements OnInit, AfterViewInit {
@@ -54,6 +56,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
   deviceList: Device[] = []
   modelList: Model[] = []
+  connectionList: Connection[] = []
 
   component = 'Cube'
 
@@ -71,16 +74,16 @@ export class CubeComponent implements OnInit, AfterViewInit {
   constructor(
     private devicesService: DeviceService,
     private modelsService: ModelsService,
-    // Removed unused property
-    private route: ActivatedRoute,
     private http: HttpClient,
+    private connectionsService: ConnectionService, // <-- Use the correct service here
+    private route: ActivatedRoute,
   ) {
     console.log('constructor')
     this.material.opacity = 0.8
     this.cube.receiveShadow = true
   }
 
-  ngAfterViewInit() {
+  public ngAfterViewInit(): void {
     console.log('ngAfterViewInit')
     // this.loadDevices()
     // this.loadDevices2()
@@ -236,6 +239,13 @@ export class CubeComponent implements OnInit, AfterViewInit {
     console.log('loadModels')
     return this.modelsService.GetModels().subscribe((data: Model[]): void => {
       this.modelList = data
+    })
+  }
+
+  loadConnections() {
+    console.log('loadConnections')
+    return this.connectionsService.GetConnections().subscribe((data: Connection[]): void => {
+      this.connectionList = data
     })
   }
 
