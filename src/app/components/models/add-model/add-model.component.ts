@@ -2,6 +2,7 @@ import { environment } from 'src/environments/environment'
 
 import { CommonModule } from '@angular/common'
 import { Component, NgZone, OnInit } from '@angular/core'
+import { take } from 'rxjs/operators'
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
@@ -27,6 +28,8 @@ export class ModelAddComponent implements OnInit {
   deviceCategoryDict = new DeviceCategoryDict()
   isSubmitDisabled: boolean = false
   isProduction: boolean = environment.production
+  component = 'models'
+  componentName = 'Models'
 
   constructor(
     private readonly ngZone: NgZone,
@@ -112,18 +115,20 @@ export class ModelAddComponent implements OnInit {
 
   submitForm() {
     console.log('Submit Model: ' + JSON.stringify(this.addModelForm.value))
-    const createModelReturn = this.modelsService.CreateModel(this.addModelForm.value).subscribe((res) => {
-      console.log('Model created: ' + JSON.stringify(res, null, 2))
-      this.logService
-        .CreateLog({
-          message: this.addModelForm.value,
-          objectId: (res as any).insertedId ? (res as any).insertedId : (res as any).id,
-          operation: 'Create',
-          component: 'Model',
-        })
-        .subscribe(() => {
-          this.ngZone.run(() => this.router.navigateByUrl('models-list'))
-        })
-    })
+    this.modelsService
+      .CreateModel(this.addModelForm.value)
+      .pipe()
+      .subscribe((res) => {
+        this.logService
+          .CreateLog({
+            message: this.addModelForm.value,
+            objectId: (res as any).insertedId ? (res as any).insertedId : (res as any).id,
+            operation: 'Create',
+            component: this.component,
+          })
+          .subscribe(() => {
+            this.ngZone.run(() => this.router.navigateByUrl('models-list'))
+          })
+      })
   }
 }

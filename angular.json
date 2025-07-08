@@ -100,6 +100,16 @@
             }
           },
           "defaultConfiguration": "development"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ],
+            "eslintConfig": "src/eslint.config.js"
+          }
         }
       }
     }
@@ -110,6 +120,7 @@
       "enabled": false
     },
     "schematicCollections": [
+      "angular-eslint",
       "@angular-eslint/schematics"
     ]
   },

@@ -1,7 +1,6 @@
 import { Linter } from "eslint"
 import angularEslintPlugin from "@angular-eslint/eslint-plugin"
 import angularEslintTemplatePlugin from "@angular-eslint/eslint-plugin-template"
-import jestPlugin from "eslint-plugin-jest"
 import typescriptEslintPlugin from "@typescript-eslint/eslint-plugin"
 import typescriptParser from "@typescript-eslint/parser"
 
@@ -30,9 +29,6 @@ export default /** @type {Linter.FlatConfig[]} */ ([
       "src/**/*.spec.ts", // Exclude test files if needed
       "src/index.html", // Exclude index.html
     ],
-    plugins: {
-      jest: jestPlugin,
-    },
     rules: {},
   },
   {
