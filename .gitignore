@@ -57,3 +57,4 @@ out/
 package-lock.json
 src/environments/environment.prod.ts
 src/environments/environment.ts
+.venv

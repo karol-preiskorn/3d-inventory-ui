@@ -36,9 +36,9 @@ RUN chown -R nginx:nginx /usr/share/nginx/html && \
   chmod 600 /etc/ssl/private/localhost.key
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:80/ || exit 1
+# HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+#   CMD curl -f https://localhost:443/ || exit 1
 
-EXPOSE 80 443
+EXPOSE 8080
 
 CMD ["nginx", "-g", "daemon off;"]
