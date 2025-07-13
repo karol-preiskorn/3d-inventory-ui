@@ -27,6 +27,7 @@ export class ConnectionService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
+    withCredentials: true,
   }
 
   /**

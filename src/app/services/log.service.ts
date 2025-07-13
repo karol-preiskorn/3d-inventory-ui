@@ -7,7 +7,7 @@
 
 import { catchError, Observable, of, retry, throwError } from 'rxjs'
 
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
+import { provideHttpClient, withFetch, HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 
 import { environment } from '../../environments/environment'
@@ -51,6 +51,9 @@ export interface LogIn {
 
 @Injectable({
   providedIn: 'root',
+  useFactory: () => {
+    return provideHttpClient(withFetch())
+  },
 })
 export class LogService {
   baseurl = environment.baseurl

@@ -3,7 +3,6 @@
 if [[ -r .env ]]; then
   source .env
 else
-
   exit 1
 fi
 
@@ -31,11 +30,10 @@ VERSION=$(node -p "require('path').join(process.env.SCRIPT_DIR || '$SCRIPT_DIR',
 
 docker rm -f 3d-inventory-ui 2>/dev/null
 
-docker build -t 3d-inventory-ui .
+docker build --target cloudrun-t 3d-inventory-ui .
 
 # docker tag 3d-inventory-ui ghcr.io/$GH_USERNAME/3d-inventory-ui:${VERSION}
 docker tag 3d-inventory-ui ghcr.io/$GH_USERNAME/3d-inventory-ui:latest
-
 # docker push ghcr.io/$GH_USERNAME/3d-inventory-ui:${VERSION}
 docker push ghcr.io/$GH_USERNAME/3d-inventory-ui:latest
 
@@ -54,15 +52,16 @@ if docker ps -q --filter "network=3d-inventory-network" | xargs docker inspect -
   exit 1
 fi
 
-
 docker run --rm -d --network 3d-inventory-network --ip 172.20.0.2 -p ${EXPOSED_PORT}:${EXPOSED_PORT}/tcp 3d-inventory-ui:latest
-
 
 gcloud run deploy d-inventory-ui \
   --image gcr.io/d-inventory-406007/3d-inventory-ui:latest \
   --platform managed \
   --region europe-west1 \
   --allow-unauthenticated \
-  --port 433 \
+  --port ${EXPOSED_PORT} \
   --memory 512Mi \
   --cpu 1
+
+echo "Deployment completed successfully!"
+echo "Service URL: $(gcloud run services describe d-inventory-ui --region europe-west1 --format 'value(status.url)')"
