@@ -33,8 +33,8 @@ docker rm -f 3d-inventory-ui 2>/dev/null
 docker build --target cloudrun-t 3d-inventory-ui .
 
 # docker tag 3d-inventory-ui ghcr.io/$GH_USERNAME/3d-inventory-ui:${VERSION}
-docker tag 3d-inventory-ui ghcr.io/$GH_USERNAME/3d-inventory-ui:latest
 # docker push ghcr.io/$GH_USERNAME/3d-inventory-ui:${VERSION}
+docker tag 3d-inventory-ui ghcr.io/$GH_USERNAME/3d-inventory-ui:latest
 docker push ghcr.io/$GH_USERNAME/3d-inventory-ui:latest
 
 docker tag 3d-inventory-ui gcr.io/d-inventory-406007/3d-inventory-ui:latest
