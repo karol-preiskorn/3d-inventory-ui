@@ -30,7 +30,7 @@ VERSION=$(node -p "require('path').join(process.env.SCRIPT_DIR || '$SCRIPT_DIR',
 
 docker rm -f 3d-inventory-ui 2>/dev/null
 
-docker build --target cloudrun-t 3d-inventory-ui .
+docker build -t 3d-inventory-ui .
 
 # docker tag 3d-inventory-ui ghcr.io/$GH_USERNAME/3d-inventory-ui:${VERSION}
 # docker push ghcr.io/$GH_USERNAME/3d-inventory-ui:${VERSION}
