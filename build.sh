@@ -24,6 +24,8 @@ if [[ -z "$GH_USERNAME" ]]; then
 fi
 
 echo $GHCR_PAT | docker login ghcr.io -u $GH_USERNAME --password-stdin
+gcloud auth configure-docker europe-west1-docker.pkg.dev
+
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 VERSION=$(node -p "require('path').join(process.env.SCRIPT_DIR || '$SCRIPT_DIR', 'package.json'); require(require('path').join(process.env.SCRIPT_DIR || '$SCRIPT_DIR', 'package.json')).version")
@@ -37,6 +39,7 @@ docker build -t 3d-inventory-ui .
 docker tag 3d-inventory-ui ghcr.io/$GH_USERNAME/3d-inventory-ui:latest
 docker push ghcr.io/$GH_USERNAME/3d-inventory-ui:latest
 
+# GCP
 docker tag 3d-inventory-ui gcr.io/d-inventory-406007/3d-inventory-ui:latest
 docker push gcr.io/d-inventory-406007/3d-inventory-ui:latest
 
@@ -52,7 +55,7 @@ if docker ps -q --filter "network=3d-inventory-network" | xargs docker inspect -
   exit 1
 fi
 
-docker run --rm -d --network 3d-inventory-network --ip 172.20.0.2 -p ${EXPOSED_PORT}:${EXPOSED_PORT}/tcp 3d-inventory-ui:latest
+# docker run --rm -d --network 3d-inventory-network --ip 172.20.0.2 -p ${EXPOSED_PORT}:${EXPOSED_PORT}/tcp 3d-inventory-ui:latest
 
 gcloud run deploy d-inventory-ui \
   --image gcr.io/d-inventory-406007/3d-inventory-ui:latest \
