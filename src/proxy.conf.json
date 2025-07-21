@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://172.20.0.3:3001",
+    "target": "https://3d-inventory-api.ultimasolution.pl",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"

@@ -6,11 +6,10 @@ else
   exit 1
 fi
 
-trap 'docker ps -a --format "{{.Names}}" | grep -q "^3d-inventory-ui$" && docker rm -f 3d-inventory-ui 2>/dev/null' EXIT
 # Ensure any existing container is removed on exit or error
 trap 'docker rm -f 3d-inventory-ui 2>/dev/null' EXIT
 
-docker ps --filter "name=3d-inventory-ui" --format "{{.ID}}" | xargs docker stop
+docker ps --filter "name=3d-inventory-ui" --format "{{.ID}}" | xargs -r docker stop
 docker ps -a --filter "name=3d-inventory-ui" --format "{{.ID}}" | xargs docker rm
 
 if [[ -z "$GHCR_PAT" ]]; then
@@ -24,12 +23,12 @@ if [[ -z "$GH_USERNAME" ]]; then
 fi
 
 echo $GHCR_PAT | docker login ghcr.io -u $GH_USERNAME --password-stdin
-gcloud auth configure-docker europe-west1-docker.pkg.dev
+
+gcloud auth configure-docker gcr.io
 
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-VERSION=$(node -p "require('path').join(process.env.SCRIPT_DIR || '$SCRIPT_DIR', 'package.json'); require(require('path').join(process.env.SCRIPT_DIR || '$SCRIPT_DIR', 'package.json')).version")
-
+VERSION=$(node -p "require(require('path').join(process.env.SCRIPT_DIR || '$SCRIPT_DIR', 'package.json')).version")
 docker rm -f 3d-inventory-ui 2>/dev/null
 
 docker build -t 3d-inventory-ui .
@@ -50,7 +49,7 @@ if ! docker network ls --format '{{.Name}}' | grep -q '^3d-inventory-network$'; 
 fi
 
 # Check if the IP is already in use
-if docker ps -q --filter "network=3d-inventory-network" | xargs docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' | grep -q '^172.20.0.2$'; then
+if docker ps -q --filter "network=3d-inventory-network" | xargs -r docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' | grep -q '^172.20.0.2$'; then
   echo "Error: IP address 172.20.0.2 is already in use on 3d-inventory-network."
   exit 1
 fi

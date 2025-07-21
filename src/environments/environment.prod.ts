@@ -1,4 +1,7 @@
 export const environment = {
   production: true,
-  baseurl: 'http://localhost:8080',
+  baseurl: 'https://3d-inventory-api.ultimasolution.pl',
 }
+
+
+
