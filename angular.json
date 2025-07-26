@@ -139,7 +139,7 @@
         "typeSeparator": "."
       },
       "optimization": {
-        "optimization": true,
+        "optimization": {"styles": {"minify": true, "inlineCritical": false}},
         "extractLicenses": true,
         "sourceMap": false,
         "namedChunks": false

@@ -11,7 +11,9 @@ COPY . /usr/src/app
 
 RUN apk update && apk upgrade
 RUN apk add --no-cache openssl
-RUN npm install && npx ng build
+COPY package.json package-lock.json .npmrc ./
+RUN npm ci
+RUN npx ng build
 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /usr/src/app/localhost.key -out /usr/src/app/localhost.crt -subj "/CN=localhost" -addext "subjectAltName=DNS:localhost,IP:127.0.0.1"
 

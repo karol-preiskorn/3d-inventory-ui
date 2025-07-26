@@ -10,7 +10,7 @@ fi
 trap 'docker rm -f 3d-inventory-ui 2>/dev/null' EXIT
 
 docker ps --filter "name=3d-inventory-ui" --format "{{.ID}}" | xargs -r docker stop
-docker ps -a --filter "name=3d-inventory-ui" --format "{{.ID}}" | xargs docker rm
+docker ps -a --filter "name=3d-inventory-ui" --format "{{.ID}}" | xargs -r docker rm -f
 
 if [[ -z "$GHCR_PAT" ]]; then
   echo "Error: GHCR_PAT environment variable is not set."

@@ -7,5 +7,7 @@
 			"path": "../3d-inventory-mongo-api"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"codeQL.createQuery.qlPackLocation": "/home/karol/GitHub/3d-inventory-angular-ui"
+	}
 }

@@ -24,8 +24,8 @@ export class AttributeDictionaryService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
+      // 'Access-Control-Allow-Origin': '*',
+      // 'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
     }),
   }
   /**
@@ -34,7 +34,7 @@ export class AttributeDictionaryService {
    */
   GetAttributeDictionaries(): Observable<AttributesDictionary[]> {
     return this.http
-      .get<AttributesDictionary[]>(environment.baseurl + '/attributesDictionary/')
+      .get<AttributesDictionary[]>(environment.baseurl + '/attributesDictionary/', this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandler))
   }
 
