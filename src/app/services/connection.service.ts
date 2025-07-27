@@ -1,11 +1,9 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Inject, Injectable, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
 import { Observable, of, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
-import { v4 as uuidv4 } from 'uuid' // Import the uuidv4 function
-
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Injectable, NgZone } from '@angular/core'
-import { Router } from '@angular/router'
-
+import { v4 as uuidv4 } from 'uuid'; // Import the uuidv4 function
 import { environment } from '../../environments/environment'
 import { Connection } from '../shared/connection'
 import { LogService } from './log.service'
@@ -17,7 +15,7 @@ export class ConnectionService {
   baseurl = environment.baseurl
 
   constructor(
-    private http: HttpClient,
+    @Inject(HttpClient) private http: HttpClient,
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router,

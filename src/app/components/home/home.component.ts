@@ -1,8 +1,8 @@
+import { CommonModule } from '@angular/common'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Component, OnInit } from '@angular/core'
+import { Component, Inject, OnInit } from '@angular/core'
 import { Converter } from 'showdown'
 import { environment } from '../../../environments/environment'
-import { CommonModule } from '@angular/common'
 
 /**
  * Represents a GitHub issue as returned by the GitHub Issues API.
@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common'
   styleUrls: ['./home.component.scss'],
   imports: [CommonModule],
   standalone: true,
+  providers: []
 })
 export class HomeComponent implements OnInit {
   md: string = ''
@@ -34,7 +35,7 @@ export class HomeComponent implements OnInit {
     this.isDebugMode = !this.isDebugMode
   }
 
-  constructor(private readonly http: HttpClient) {
+  constructor(@Inject(HttpClient) private readonly http: HttpClient) {
     console.log('Markdown constructor: ' + JSON.stringify(this.md, null, ' '))
     this.http.get('/assets/README.md', { responseType: 'text' }).subscribe(
       (data: string) => {
@@ -57,7 +58,7 @@ export class HomeComponent implements OnInit {
         const html = converter.makeHtml(data)
         this.md = html
       },
-      (err) => {
+      (err: any) => {
         console.error('Error fetching Markdown:', err)
       },
       () => {
@@ -70,7 +71,7 @@ export class HomeComponent implements OnInit {
         this.issues = data
         this.issuesJson = JSON.stringify(data, null, 2)
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Error fetching issues:', error)
       }
     })
@@ -82,15 +83,15 @@ export class HomeComponent implements OnInit {
     // Removed invalid renderer event binding as 'on' does not exist on '_Renderer'
   }
 
-  onLoad(data: unknown) {
+  onLoad(_data: unknown) {
     console.log('onLoad: ' + this.md)
   }
 
-  onError(data: unknown) {
+  onError(_data: unknown) {
     console.log('onError: ' + this.md)
   }
 
-  onSuccess(data: unknown) {
+  onSuccess(_data: unknown) {
     console.log('onSuccess: ' + this.md)
   }
 }
