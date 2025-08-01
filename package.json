@@ -98,7 +98,7 @@
     "@types/eslint": "^9.6.1",
     "@types/eslint__js": "^9.14.0",
     "@types/jasmine": "~5.1.8",
-    "@types/jest": "^29.0.0",
+    "@types/jest": "^30.0.0",
     "@types/karma-coverage": "^2.0.3",
     "@types/karma-jasmine": "^4.0.5",
     "@types/karma-jsdom-launcher": "^8.0.5",
