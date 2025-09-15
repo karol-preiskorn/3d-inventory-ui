@@ -46,20 +46,46 @@
         <ul class="nav nav-pills">
           <li class="nav-item dropdown">
             <button class="nav-link dropdown-toggle" data-bs-toggle="dropdown" type="button" aria-expanded="false"
-              (keydown)="handleKeyDown($event)">
-              Users
+              (keydown)="handleKeyDown($event)" [class.text-success]="isAuthenticated()"
+              [class.text-warning]="!isAuthenticated()">
+              <i class="bi bi-people"></i> Admin
+              <span *ngIf="isAuthenticated()" class="badge bg-success ms-1">●</span>
             </button>
 
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Users</a></li>
-              <li><a class="dropdown-item" href="#">Roles</a></li>
-              <li><a class="dropdown-item" href="#">Permissions</a></li>
-              <li>
+              <li *ngIf="isAuthenticated()">
+                <h6 class="dropdown-header">
+                  <i class="bi bi-shield-check me-2"></i>Admin Panel
+                </h6>
+              </li>
+              <li *ngIf="isAuthenticated()">
+                <a class="dropdown-item" routerLink="/admin/users" routerLinkActive="active" aria-current="page">
+                  <i class="bi bi-people-fill me-2"></i>User Management
+                </a>
+              </li>
+              <li *ngIf="isAuthenticated()">
+                <a class="dropdown-item" routerLink="/admin" aria-current="page">
+                  <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                </a>
+              </li>
+              <li *ngIf="isAuthenticated()">
                 <hr class="dropdown-divider" />
               </li>
-              <li><a class="dropdown-item" href="#">Login</a></li>
-              <li><a class="dropdown-item" href="#">Logout</a></li>
-              <li><a class="dropdown-item" href="#">Register</a></li>
+              <li *ngIf="!isAuthenticated()">
+                <h6 class="dropdown-header">
+                  <i class="bi bi-person-x me-2"></i>Not Authenticated
+                </h6>
+              </li>
+              <li *ngIf="!isAuthenticated()">
+                <a class="dropdown-item" (click)="goToLogin()" style="cursor: pointer;">
+                  <i class="bi bi-box-arrow-in-right me-2"></i>Login to Admin
+                </a>
+              </li>
+              <li *ngIf="isAuthenticated()">
+                <a class="dropdown-item text-danger" (click)="logout()" style="cursor: pointer;">
+                  <i class="bi bi-box-arrow-right me-2"></i>Logout
+                </a>
+              </li>
             </ul>
           </li>
         </ul>

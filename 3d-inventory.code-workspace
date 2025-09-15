@@ -1,9 +1,11 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"name": "3d-inventory-api",
+			"path": "../3d-inventory-api"
 		},
 		{
+			"name": "3d-inventory-mongo-api",
 			"path": "../3d-inventory-mongo-api"
 		}
 	],

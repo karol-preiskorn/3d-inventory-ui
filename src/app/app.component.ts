@@ -1,20 +1,56 @@
 import { Component } from '@angular/core'
-import { RouterModule } from '@angular/router'
+import { CommonModule } from '@angular/common'
+import { RouterModule, Router } from '@angular/router'
 
+import { AuthenticationService } from './services/authentication.service'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [RouterModule],
+  imports: [CommonModule, RouterModule],
 })
 export class AppComponent {
   public myTheme: string = 'light'
 
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router
+  ) { }
+
   ngOnInit() {
     this.myTheme = localStorage.getItem('theme') ?? 'light'
     this.changeTheme(this.myTheme)
+  }
+
+  /**
+   * Check if user is authenticated
+   */
+  isAuthenticated(): boolean {
+    return this.authService.isAuthenticated()
+  }
+
+  /**
+   * Navigate to login page
+   */
+  goToLogin(): void {
+    this.router.navigate(['/login'])
+  }
+
+  /**
+   * Logout user and redirect to home
+   */
+  logout(): void {
+    this.authService.logout()
+    this.router.navigate(['/'])
+  }
+
+  /**
+   * Navigate to admin users page
+   */
+  goToAdminUsers(): void {
+    this.router.navigate(['/admin/users'])
   }
 
   themeSwitch() {

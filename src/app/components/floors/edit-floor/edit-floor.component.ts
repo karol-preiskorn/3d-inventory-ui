@@ -56,7 +56,7 @@ export class FloorEditComponent implements OnInit {
     private readonly router: Router,
     private readonly floorService: FloorService,
     private readonly logService: LogService,
-  ) {}
+  ) { }
 
   ngOnInit() {
     console.log('--------------- Edit-Floor ----------------')
@@ -227,7 +227,7 @@ export class FloorEditComponent implements OnInit {
     this.dimension.push(fg)
   }
 
-  addAllFillDimensions() {}
+  addAllFillDimensions() { }
 
   deleteDimension(i: number) {
     this.dimension.removeAt(i)
@@ -274,7 +274,7 @@ export class FloorEditComponent implements OnInit {
       component: 'floors',
       objectId: this.floorForm.value.id as string,
     }
-    this.logService.CreateLog(log).subscribe(() => {})
+    this.logService.CreateLog(log).subscribe(() => { })
     const id = this.floorForm.value.id || ''
     this.floorService.UpdateFloor(id, this.floorForm.getRawValue() as never).subscribe(() => {
       console.log('Floor updated!')

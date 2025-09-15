@@ -1,11 +1,17 @@
 // @ts-check
-import tseslint from "typescript-eslint";
-import rootConfig from "../eslint.config.js";
+import tseslint from "typescript-eslint"
+import rootConfig from "../eslint.config.js"
 
-export default tseslint.config(
+export default tseslint.config([
   ...rootConfig,
   {
     files: ["**/*.ts"],
+    languageOptions: {
+      parserOptions: {
+        project: "./tsconfig.json",
+        tsconfigRootDir: __dirname,
+      },
+    },
     rules: {
       "@angular-eslint/directive-selector": [
         "error",
@@ -29,4 +35,4 @@ export default tseslint.config(
     files: ["**/*.html"],
     rules: {},
   }
-);
+])

@@ -57,9 +57,9 @@ export class DeviceEditComponent implements OnInit {
     })
   }
 
-  attributeComponent: string
-  attributeComponentObject: string
-  component: string
+  attributeComponent: string = ''
+  attributeComponentObject: string = ''
+  component: string = ''
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -68,7 +68,7 @@ export class DeviceEditComponent implements OnInit {
     private readonly logService: LogService,
     private readonly modelsService: ModelsService,
     private formBuilder: FormBuilder,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Initialize the form group first

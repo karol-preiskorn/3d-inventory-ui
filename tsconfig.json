@@ -1,4 +1,4 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */ {
+{
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "esModuleInterop": true,
@@ -10,7 +10,6 @@
     "strictPropertyInitialization": false,
     "strictTemplates": true
   },
-  "compileOnSave": true,
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
@@ -26,7 +25,7 @@
       "dom"
     ],
     "module": "ES2022",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node", // recommended for Angular
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "outDir": "./dist/out-tsc",
@@ -34,7 +33,9 @@
     "strict": true,
     "strictPropertyInitialization": false,
     "target": "ES2022",
-    "types": []
+    "types": [
+      "node"
+    ]
   },
   "exclude": [
     "src/**/*.spec.ts",
@@ -42,5 +43,6 @@
   ],
   "include": [
     "src/**/*.ts"
+    // Avoid including files outside the project unless necessary
   ]
 }

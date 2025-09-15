@@ -1,0 +1,230 @@
+<div class="user-list-container">
+  <!-- Header -->
+  <div class="user-list-header">
+    <div class="header-title">
+      <h2>User Management</h2>
+      <p class="text-muted">Manage system users and their permissions</p>
+    </div>
+    <div class="header-actions">
+      <button *ngIf="canCreateUser" class="btn btn-primary" routerLink="/admin/users/new">
+        <i class="fas fa-plus"></i> Add User
+      </button>
+      <button class="btn btn-outline-secondary" (click)="refresh()" [disabled]="loading">
+        <i class="fas fa-sync-alt" [class.fa-spin]="loading"></i> Refresh
+      </button>
+    </div>
+  </div>
+
+  <!-- Filters and Search -->
+  <div class="filters-section">
+    <div class="row">
+      <!-- Search -->
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="search">Search Users</label>
+          <input id="search" type="text" class="form-control" placeholder="Search by name or email..."
+            [(ngModel)]="searchQuery" (input)="onSearchChange($event.target.value || '')">
+        </div>
+      </div>
+
+      <!-- Role Filter -->
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="roleFilter">Filter by Role</label>
+          <select id="roleFilter" class="form-control" [(ngModel)]="selectedRole" (change)="applyFiltersAndSort()">
+            <option value="">All Roles</option>
+            <option *ngFor="let role of roles" [value]="role.id">
+              {{ role.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Results Count -->
+      <div class="col-md-3">
+        <div class="results-info">
+          <span class="badge badge-info">
+            {{ totalUsers }} user{{ totalUsers !== 1 ? 's' : '' }} found
+          </span>
+        </div>
+      </div>
+
+      <!-- Clear Filters -->
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>&nbsp;</label>
+          <button class="btn btn-outline-secondary btn-block" (click)="clearFilters()"
+            [disabled]="!searchQuery && !selectedRole">
+            Clear Filters
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="error" class="alert alert-danger">
+    <i class="fas fa-exclamation-triangle"></i>
+    {{ error }}
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="loading && !users.length" class="text-center py-4">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <p class="mt-2">Loading users...</p>
+  </div>
+
+  <!-- Users Table -->
+  <div *ngIf="!loading || users.length" class="users-table-container">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th class="sortable" (click)="sort('name')">
+              Name {{ getSortIcon('name') }}
+            </th>
+            <th class="sortable" (click)="sort('email')">
+              Email {{ getSortIcon('email') }}
+            </th>
+            <th class="sortable" (click)="sort('role')">
+              Role {{ getSortIcon('role') }}
+            </th>
+            <th>Permissions</th>
+            <th>Status</th>
+            <th *ngIf="canUpdateUser || canDeleteUser">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of getPaginatedUsers(); trackBy: trackByUserId"
+            [class.current-user]="isCurrentUser(user)">
+            <!-- Name -->
+            <td>
+              <div class="user-name">
+                {{ user.name }}
+                <span *ngIf="isCurrentUser(user)" class="badge badge-success ml-2">You</span>
+              </div>
+            </td>
+
+            <!-- Email -->
+            <td>{{ user.email }}</td>
+
+            <!-- Role -->
+            <td>
+              <span class="badge" [ngClass]="getUserRoleBadgeClass(user)">
+                {{ getUserRoleDisplay(user) }}
+              </span>
+            </td>
+
+            <!-- Permissions -->
+            <td>
+              <span class="permission-count">
+                {{ getUserPermissionCount(user) }} permission{{ getUserPermissionCount(user) !== 1 ? 's' : '' }}
+              </span>
+              <button *ngIf="getUserPermissionCount(user) > 0" class="btn btn-sm btn-outline-info ml-2"
+                [title]="'View permissions for ' + user.name" data-toggle="tooltip">
+                <i class="fas fa-eye"></i>
+              </button>
+            </td>
+
+            <!-- Status -->
+            <td>
+              <span class="badge badge-success">Active</span>
+            </td>
+
+            <!-- Actions -->
+            <td *ngIf="canUpdateUser || canDeleteUser">
+              <div class="btn-group btn-group-sm" role="group">
+                <button *ngIf="canUpdateUser" class="btn btn-outline-primary"
+                  [routerLink]="['/admin/users/edit', user._id]" [title]="'Edit ' + user.name"
+                  data-toggle="tooltip">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button *ngIf="canDeleteUser && !isCurrentUser(user)" class="btn btn-outline-danger"
+                  (click)="deleteUser(user)" [title]="'Delete ' + user.name" data-toggle="tooltip">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!loading && filteredUsers.length === 0" class="empty-state text-center py-5">
+      <i class="fas fa-users fa-3x text-muted mb-3"></i>
+      <h4>No users found</h4>
+      <p class="text-muted">
+        <span *ngIf="searchQuery || selectedRole">
+          Try adjusting your search criteria or filters.
+        </span>
+        <span *ngIf="!searchQuery && !selectedRole">
+          There are no users in the system yet.
+        </span>
+      </p>
+      <button *ngIf="canCreateUser && !searchQuery && !selectedRole" class="btn btn-primary"
+        routerLink="/admin/users/new">
+        <i class="fas fa-plus"></i> Add First User
+      </button>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <nav *ngIf="totalPages > 1" class="pagination-nav">
+    <ul class="pagination justify-content-center">
+      <!-- Previous Page -->
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <button class="page-link" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+          <i class="fas fa-chevron-left"></i> Previous
+        </button>
+      </li>
+
+      <!-- First Page -->
+      <li *ngIf="currentPage > 3" class="page-item">
+        <button class="page-link" (click)="changePage(1)">1</button>
+      </li>
+
+      <!-- Ellipsis -->
+      <li *ngIf="currentPage > 4" class="page-item disabled">
+        <span class="page-link">...</span>
+      </li>
+
+      <!-- Page Numbers -->
+      <li *ngFor="let page of getPageNumbers()" class="page-item" [class.active]="page === currentPage">
+        <button class="page-link" (click)="changePage(page)">
+          {{ page }}
+        </button>
+      </li>
+
+      <!-- Ellipsis -->
+      <li *ngIf="currentPage < totalPages - 3" class="page-item disabled">
+        <span class="page-link">...</span>
+      </li>
+
+      <!-- Last Page -->
+      <li *ngIf="currentPage < totalPages - 2" class="page-item">
+        <button class="page-link" (click)="changePage(totalPages)">
+          {{ totalPages }}
+        </button>
+      </li>
+
+      <!-- Next Page -->
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <button class="page-link" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
+          Next <i class="fas fa-chevron-right"></i>
+        </button>
+      </li>
+    </ul>
+
+    <!-- Page Info -->
+    <div class="pagination-info text-center mt-2">
+      <small class="text-muted">
+        Showing {{ (currentPage - 1) * pageSize + 1 }} to
+        {{ getPageEnd() }} of
+        {{ totalUsers }} users
+      </small>
+    </div>
+  </nav>
+</div>

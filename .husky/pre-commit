@@ -1,10 +1,8 @@
 #!/usr/bin/bash
-# File:        /.husky/pre-commit
-# Description: lint and increase path version
-# 2023-11-26  C2RLO    Initial
 
 . "$(dirname "$0")/_/husky.sh"
 
-npm --no-git-tag-version version minor
+npm --no-git-tag-version version minor --allow-same-version
+node ./scripts/yarn-lock.js
 git add .
-# npx lint-staged
+npx lint-staged

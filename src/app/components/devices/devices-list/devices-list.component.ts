@@ -38,7 +38,7 @@ export class DeviceListComponent implements OnInit {
     private readonly router: Router,
     private readonly ngZone: NgZone,
     private readonly route: ActivatedRoute,
-  ) {}
+  ) { }
 
   loadDevices() {
     return this.devicesService.GetDevices().subscribe((data: Device[]) => {

@@ -22,7 +22,7 @@ import { NgbPagination } from '@ng-bootstrap/ng-bootstrap'
 import { Subscription } from 'rxjs'
 
 import { CommonModule } from '@angular/common'
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, OnInit, OnDestroy } from '@angular/core'
 
 import { AttributeDictionaryService } from '../../services/attribute-dictionary.service'
 import { AttributeService } from '../../services/attribute.service'
@@ -45,23 +45,26 @@ import { Model } from '../../shared/model'
   standalone: true,
   imports: [CommonModule, NgbPagination],
 })
-export class LogComponent implements OnInit {
+export class LogComponent implements OnInit, OnDestroy {
   LogList: Log[] = []
   logListPage = 1 // Current page
   pageSize = 5 // Number of items per page
   totalItems = 0 // Total number of items
+
+  private componentLogSubscription: Subscription | null = null
+  private logsByIdSubscription: Subscription | null = null
 
   @Input() component: string
   @Input() isComponent: boolean
   @Input() componentName: string
   @Input() attributeComponentObject: Device = new Device()
 
-  deviceList: Device[]
-  modelList: Model[]
-  connectionList: Connection[]
-  attributeDictionaryList: AttributesDictionary[]
-  attributeList: Attribute[]
-  floorList: Floors[]
+  deviceList: Device[] = []
+  modelList: Model[] = []
+  connectionList: Connection[] = []
+  attributeDictionaryList: AttributesDictionary[] = []
+  attributeList: Attribute[] = []
+  floorList: Floors[] = []
 
   deviceListGet = false
   modelListGet = false
@@ -76,14 +79,14 @@ export class LogComponent implements OnInit {
   preLoader = false
 
   constructor(
-    public logService: LogService,
+    private logService: LogService,
     private attributeService: AttributeService,
     private deviceService: DeviceService,
     private modelService: ModelsService,
     private connectionService: ConnectionService,
     private attributeDictionaryService: AttributeDictionaryService,
-    private floorService: FloorService,
-  ) {}
+    // private floorService: FloorService,
+  ) { }
 
   /**
    * Loads the log for the specified context.
@@ -94,15 +97,21 @@ export class LogComponent implements OnInit {
   loadLog(context: string) {
     console.log(
       `[log.components.loadLog]
-  Context: ${context}
-  component: ${this.component ?? ''}
-  componentName: ${this.componentName ?? ''}
-  isComponent: ${this.isComponent ?? false}
-  attributeComponentObject: ${JSON.stringify(this.attributeComponentObject)}`,
+      Context: ${context}
+      component: ${this.component ?? ''}
+      componentName: ${this.componentName ?? ''}
+      isComponent: ${this.isComponent ?? false}
+      attributeComponentObject: ${JSON.stringify(this.attributeComponentObject)}`,
     )
-    if (this.isComponent == true) {
-      this.loadComponentLog(this.component)
+    if (this.isComponent === true) {
+      if (this.component) {
+        console.info(`[log.components.loadLog] this.component is defined, loading logs by component ${this.component}.`)
+        this.loadComponentLog(this.component)
+      } else {
+        console.warn('[log.components.loadLog] this.component is undefined, cannot load logs by id.')
+      }
     } else {
+      console.info('[log.components.loadLog] Load logs by id {this.component}.')
       this.loadLogsById(this.component)
     }
   }
@@ -112,13 +121,17 @@ export class LogComponent implements OnInit {
    * This method is called after the component has been created and initialized.
    */
   ngOnInit() {
+    console.log('LogService instance:', this.logService);
+    console.log('GetComponentLogs method:', this.logService.GetComponentLogs);
+    console.log('Available methods:', Object.getOwnPropertyNames(Object.getPrototypeOf(this.logService)));
+
     this.loadLog('ngOnInit')
   }
 
   /**
    * Called whenever one or more input properties of the component change.
    */
-  OnChanges() {
+  onChanges() {
     this.loadLog('ngOnChanges')
   }
 
@@ -127,24 +140,41 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the log entry to delete.
    * @returns An Observable that emits the deleted log entry.
    */
-  DeleteLog(id: string) {
+  deleteLog(id: string) {
     return this.logService.DeleteLog(id).subscribe((data: Log) => {
       console.log(data)
-      this.OnChanges()
-      // this.router.navigate(['/log-list/'])
+      return this.logService.GetComponentLogs(id).subscribe((data: Log[]) => {
+        console.log('[log.components.loadComponentLog(' + id + ')]: ')
+        this.LogList = data
+        this.totalItems = this.LogList.length // Update totalItems for pagination
+      })
     })
   }
 
   /**
    * Loads the component logs for the specified ID.
+   * Unsubscribes from any previous subscription to avoid memory leaks.
+   * Updates the LogList and totalItems for pagination.
+   * Logs detailed debug information for troubleshooting.
    * @param id - The ID of the component.
-   * @returns A subscription object for the log data.
    */
-  loadComponentLog(id: string): Subscription {
-    return this.logService.GetComponentLogs(id).subscribe((data: Log[]) => {
-      console.log('[log.components.loadComponentLog(' + id + ')]: ' /* + JSON.stringify(data, null, ' ') */)
-      this.LogList = data
-      this.totalItems = this.LogList.length // Update totalItems for pagination
+  loadComponentLog(id: string): void {
+    if (this.componentLogSubscription) {
+      this.componentLogSubscription.unsubscribe()
+      this.componentLogSubscription = null
+    }
+    console.debug(`[LogComponent] Loading component logs for ID: ${id}`)
+    this.componentLogSubscription = this.logService.GetComponentLogs(id).subscribe({
+      next: (data: Log[]) => {
+        console.debug(`[LogComponent] Received ${data.length} logs for component ID: ${id}`, data)
+        this.LogList = data
+        this.totalItems = data.length
+      },
+      error: (error: unknown) => {
+        console.error(`[LogComponent] Error loading logs for component ID: ${id}`, error)
+        this.LogList = []
+        this.totalItems = 0
+      }
     })
   }
 
@@ -153,8 +183,11 @@ export class LogComponent implements OnInit {
    * @param id - The ID of the object.
    * @returns A Subscription object representing the subscription to the log data.
    */
-  loadLogsById(id: string): Subscription {
-    return this.logService.GetLogsById(id).subscribe((data: Log[]) => {
+  loadLogsById(id: string): void {
+    if (this.logsByIdSubscription) {
+      this.logsByIdSubscription.unsubscribe()
+    }
+    this.logsByIdSubscription = this.logService.GetLogsById(id).subscribe((data: Log[]) => {
       console.log('[log.component] LogComponent.loadLogsById(' + id + '): ' /* + JSON.stringify(data, null, ' ') */)
       this.LogList = data
       this.totalItems = this.LogList.length // Update totalItems for pagination
@@ -179,7 +212,7 @@ export class LogComponent implements OnInit {
     } catch (error: unknown) {
       console.error(
         `[log.component] findNameInLogMessage: JSON.parse(JSON.stringify(${String(log.message)}) is not a JSON string` +
-          String(error),
+        String(error),
       )
       return JSON.stringify(log.message)
     }
@@ -194,12 +227,12 @@ export class LogComponent implements OnInit {
           (logMessageAttribute as Partial<Attribute>).connectionId !== undefined
         ) {
           this.getConnectionList()
-          ;(findConnectionNameValue = this.findConnectionName(
-            (logMessageAttribute as Partial<Attribute>).connectionId ?? '',
-          )),
-            console.log(
-              `[[log.component] findNameInLogMessage: Find ConnectionName for Attribute (${(logMessageAttribute as Partial<Attribute>)?.connectionId ?? 'Unknown'}): ${findConnectionNameValue}`,
-            )
+            ; (findConnectionNameValue = this.findConnectionName(
+              (logMessageAttribute as Partial<Attribute>).connectionId ?? '',
+            )),
+              console.log(
+                `[[log.component] findNameInLogMessage: Find ConnectionName for Attribute (${(logMessageAttribute as Partial<Attribute>)?.connectionId ?? 'Unknown'}): ${findConnectionNameValue}`,
+              )
           return 'Connection ' + findConnectionNameValue
         }
         if (
@@ -283,34 +316,29 @@ export class LogComponent implements OnInit {
    * Logs an error message to the console if the request fails.
    */
   getConnectionList(): void {
-    this.connectionService.GetConnections().subscribe(
-      (data) => {
+    if (this.connectionListGet === true) return
+    this.connectionService.GetConnections().subscribe({
+      next: (data) => {
         this.connectionList = data
+        this.connectionListGet = true
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching connection list:', error)
-      },
-    )
+      }
+    })
   }
 
   /**
    * Finds the connection name based on the provided ID.
-   * @param id - The ID of the connection.
-   * @returns The name of the connection if found, otherwise undefined.
+   * @param connectionId - The ID of the connection.
+   * @returns The name of the connection if found, otherwise 'Unknown Connection'.
    */
   findConnectionName(connectionId: string): string {
     if (!this.connectionList || this.connectionList.length === 0) {
-      console.warn('Connection list is empty or not initialized')
       return 'Unknown Connection'
     }
-
     const connection = this.connectionList.find((conn) => conn._id === connectionId)
-    if (!connection) {
-      console.warn(`No connection found for ID: ${connectionId}`)
-      return 'Unknown Connection'
-    }
-
-    return connection.name
+    return connection ? connection.name : 'Unknown Connection'
   }
 
   /**
@@ -320,9 +348,8 @@ export class LogComponent implements OnInit {
   getAttributeDictionaryList() {
     if (this.attributeDictionaryListGet == true) return null
     return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributesDictionary[]) => {
-      data.forEach((item) => {
-        this.attributeDictionaryList.push(item)
-      })
+      this.attributeDictionaryList = [...data]
+      this.attributeDictionaryListGet = true
     })
   }
 
@@ -388,5 +415,16 @@ export class LogComponent implements OnInit {
   // Add this method to your LogComponent class
   trackLog(index: number, log: any): any {
     return log && log._id ? log._id : index
+  }
+
+  ngOnDestroy(): void {
+    if (this.componentLogSubscription) {
+      this.componentLogSubscription.unsubscribe()
+      this.componentLogSubscription = null
+    }
+    if (this.logsByIdSubscription) {
+      this.logsByIdSubscription.unsubscribe()
+      this.logsByIdSubscription = null
+    }
   }
 }

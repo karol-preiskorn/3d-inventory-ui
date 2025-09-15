@@ -8,6 +8,75 @@
     }
   }
 
+  // Admin dropdown styling
+  .nav-item.dropdown {
+    .nav-link.dropdown-toggle {
+      transition: all 0.3s ease;
+
+      &.text-success {
+        border-color: rgba(25, 135, 84, 0.3);
+
+        &:hover {
+          background-color: rgba(25, 135, 84, 0.1);
+          border-color: rgba(25, 135, 84, 0.5);
+        }
+      }
+
+      &.text-warning {
+        border-color: rgba(255, 193, 7, 0.3);
+
+        &:hover {
+          background-color: rgba(255, 193, 7, 0.1);
+          border-color: rgba(255, 193, 7, 0.5);
+        }
+      }
+
+      .badge {
+        animation: pulse 2s infinite;
+      }
+    }
+
+    .dropdown-menu {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border: none;
+      border-radius: 0.5rem;
+
+      .dropdown-header {
+        color: #495057;
+        font-weight: 600;
+        font-size: 0.875rem;
+      }
+
+      .dropdown-item {
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        margin: 0.1rem 0.5rem;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background-color: #f8f9fa;
+          transform: translateX(2px);
+        }
+
+        &.text-danger:hover {
+          background-color: #f8d7da;
+          color: #721c24 !important;
+        }
+
+        i {
+          width: 1.2rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  @keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+  }
+
   .theme {
     .slider {
       position: absolute;

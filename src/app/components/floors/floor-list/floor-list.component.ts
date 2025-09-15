@@ -50,7 +50,7 @@ export class FloorListComponent implements OnInit, OnDestroy {
     private readonly logService: LogService,
     private readonly router: Router,
     private readonly ngZone: NgZone,
-  ) {}
+  ) { }
 
   loadFloors() {
     this.floorService

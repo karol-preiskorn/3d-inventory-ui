@@ -1,38 +1,35 @@
-import { Linter } from "eslint"
 import angularEslintPlugin from "@angular-eslint/eslint-plugin"
 import angularEslintTemplatePlugin from "@angular-eslint/eslint-plugin-template"
 import typescriptEslintPlugin from "@typescript-eslint/eslint-plugin"
 import typescriptParser from "@typescript-eslint/parser"
+import { fileURLToPath } from "url"
+import { dirname } from "path"
 
-export default /** @type {Linter.FlatConfig[]} */ ([
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+/** @type {import("eslint").Linter.FlatConfig[]} */
+export default [
   {
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "module",
       globals: {
         jasmine: false,
-        jest: true,
         "jest/globals": true,
         mongo: true,
-        node: true,
       },
       parserOptions: {
-        project: "./tsconfig.json", // Ensure this points to the correct tsconfig file
-        tsconfigRootDir: ".",
       },
+      ignores: [
+        "node_modules/**/*",
+        "node_modules/**/.*.json",
+        "documentation/**/*",
+        ".git/**/*",
+        "dist/**/*",
+        "src/index.html",
+      ],
     },
-    ignores: [
-      "./node_modules/**/*",
-      "./documentation/**/*",
-      ".git/**/*",
-      "./dist/**/*",
-      "src/**/*.spec.ts", // Exclude test files if needed
-      "src/index.html", // Exclude index.html
-    ],
-    rules: {},
-  },
-  {
-    files: ["src/**/*/*.ts"],
+    files: ["src/**/*.ts"],
     plugins: {
       "@typescript-eslint": typescriptEslintPlugin,
       "@angular-eslint": angularEslintPlugin,
@@ -43,38 +40,20 @@ export default /** @type {Linter.FlatConfig[]} */ ([
     rules: {
       "@angular-eslint/component-selector": [
         "error",
-        {
-          prefix: "app",
-          style: "kebab-case",
-          type: "element",
-        },
+        { prefix: "app", style: "kebab-case", type: "element" },
       ],
       "@angular-eslint/directive-selector": [
         "error",
-        {
-          prefix: "app",
-          style: "camelCase",
-          type: "attribute",
-        },
+        { prefix: "app", style: "camelCase", type: "attribute" },
       ],
       "@angular-eslint/no-input-rename": "off",
     },
   },
   {
-    files: ["./src/*.html"],
+    files: ["src/**/*.html"],
     plugins: {
       "@angular-eslint/template": angularEslintTemplatePlugin,
     },
-    rules: {
-      // Add template-specific rules here
-    },
-    ignores: [
-      "./node_modules/**/*",
-      "./documentation/**/*",
-      ".git/**/*",
-      "./dist/**/*",
-      "src/**/*.spec.ts", // Exclude test files if needed
-      "src/index.html", // Exclude index.html
-    ],
-  },
-])
+    rules: {}
+  }
+]

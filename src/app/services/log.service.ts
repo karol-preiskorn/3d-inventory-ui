@@ -51,15 +51,15 @@ export interface LogIn {
 
 @Injectable({
   providedIn: 'root',
-  useFactory: () => {
-    return provideHttpClient(withFetch())
-  },
+  // useFactory: () => {
+  //   return provideHttpClient(withFetch())
+  // },
 })
 export class LogService {
   baseurl = environment.baseurl
   attributeComponentId?: string
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -80,9 +80,19 @@ export class LogService {
    * @param component - The component name.
    * @returns An Observable that emits an array of Log objects.
    */
+  // GetComponentLogs(component: string): Observable<Log[]> {
+  //   const url = environment.baseurl + '/logs/component/' + component
+  //   console.log('[log.service.GetComponentLogs(' + component + ')]: ' + url)
+  //   return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
+  // }
+  /**
+   * Retrieves logs for a specific component.
+   * @param component - The component name.
+   * @returns An Observable that emits an array of Log objects.
+   */
   GetComponentLogs(component: string): Observable<Log[]> {
-    const url = environment.baseurl + '/logs/component/' + component
-    console.log('[log.service.GetComponentLogs(' + component + ')]: ' + url)
+    const url = `${environment.baseurl}/logs/component/${encodeURIComponent(component)}`
+    console.log(`[LogService.GetComponentLogs] Fetching logs for component: ${component} from ${url}`)
     return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
   }
 

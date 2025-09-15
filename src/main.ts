@@ -1,4 +1,11 @@
-import { HttpHandlerFn, HttpInterceptorFn, HttpRequest, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http'
+import {
+  HttpHandlerFn,
+  HttpInterceptorFn,
+  HttpRequest,
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http'
 import { enableProdMode } from '@angular/core'
 import { bootstrapApplication } from '@angular/platform-browser'
 import { provideRouter } from '@angular/router'
@@ -11,23 +18,17 @@ const credentialsInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, ne
   const credentialsReq = req.clone({
     setHeaders: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-  });
+      Accept: 'application/json',
+    },
+  })
 
-  return next(credentialsReq);
-};
+  return next(credentialsReq)
+}
 
 if (environment.production) {
   enableProdMode()
 }
 
 bootstrapApplication(AppComponent, {
-  providers: [
-    provideRouter(routes),
-    provideHttpClient(
-      withFetch(),
-      withInterceptors([credentialsInterceptor])
-    )
-  ],
+  providers: [provideRouter(routes), provideHttpClient(withFetch(), withInterceptors([credentialsInterceptor]))],
 }).catch((err: unknown) => console.error(err))

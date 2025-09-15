@@ -3,12 +3,14 @@ import { Title } from '@angular/platform-browser'
 import { RouterModule, RouterStateSnapshot, Routes, TitleStrategy } from '@angular/router'
 
 import { CubeComponent } from './components/3d/3d.component'
+import { AdminLayoutComponent } from './components/admin/admin-layout.component'
 import { AttributeDictionaryAddComponent } from './components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component'
 import { AttributeDictionaryListComponent } from './components/attribute-dictionary/attribute-dictionary-list/attribute-dictionary-list.component'
 import { AttributeDictionaryEditComponent } from './components/attribute-dictionary/edit-attribute-dictionary/edit-attribute-dictionary.component'
 import { AttributeAddComponent } from './components/attribute/add-attribute/add-attribute.component'
 import { AttributeListComponent } from './components/attribute/attribute-list/attribute-list.component'
 import { AttributeEditComponent } from './components/attribute/edit-attribute/edit-attribute.component'
+import { LoginComponent } from './components/auth/login.component'
 import { ConnectionAddComponent } from './components/connection/add-connection/add-connection.component'
 import { ConnectionListComponent } from './components/connection/connection-list/connection-list.component'
 import { ConnectionEditComponent } from './components/connection/edit-connection/edit-connection.component'
@@ -22,6 +24,9 @@ import { HomeComponent } from './components/home/home.component'
 import { ModelAddComponent } from './components/models/add-model/add-model.component'
 import { ModelEditComponent } from './components/models/edit-model/edit-model.component'
 import { ModelsListComponent } from './components/models/model-list/model-list.component'
+import { UserListComponent } from './components/users/user-list.component'
+import { UserFormComponent } from './components/users/user-form.component'
+import { AuthGuard } from './guards/auth.guard'
 import { ResolverDevice } from './resolverDevice'
 import { ResolverModel } from './resolverModel'
 
@@ -42,12 +47,28 @@ export class TemplatePageTitleStrategy extends TitleStrategy {
 export const routes: Routes = [
   { path: '', component: HomeComponent, title: 'Home' },
   { path: 'home', component: HomeComponent, title: 'Home' },
+  { path: 'login', component: LoginComponent, title: 'Login' },
   {
     path: '3d',
     component: CubeComponent,
     title: '3d',
     resolve: { resolveDeviceList: ResolverDevice, resolveModelList: ResolverModel },
   },
+
+  // Admin routes - protected by AuthGuard
+  {
+    path: 'admin',
+    component: AdminLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', redirectTo: 'users', pathMatch: 'full' },
+      { path: 'users', component: UserListComponent, title: 'User Management' },
+      { path: 'users/new', component: UserFormComponent, title: 'Add User' },
+      { path: 'users/edit/:id', component: UserFormComponent, title: 'Edit User' },
+    ]
+  },
+
+  // Existing routes
   { path: 'device-list', component: DeviceListComponent, title: 'Device List' },
   { path: 'edit-device/:id', component: DeviceEditComponent, title: 'Edit Device' },
   { path: 'add-device', component: DeviceAddComponent, title: 'Add Device' },
@@ -74,10 +95,13 @@ export const routes: Routes = [
   { path: 'floor-list', component: FloorListComponent, title: 'Floor List' },
   { path: 'add-floor', component: FloorAddComponent, title: 'Add Floor' },
   { path: 'edit-floor/:id', component: FloorEditComponent, title: 'Edit Floor' },
+
+  // Wildcard route - should be last
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

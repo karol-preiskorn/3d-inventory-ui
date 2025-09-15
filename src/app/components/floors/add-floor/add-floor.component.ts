@@ -55,7 +55,7 @@ export class FloorAddComponent implements OnInit {
     private floorService: FloorService,
     private logService: LogService,
     private ngZone: NgZone,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Initialization logic can go here if needed
@@ -76,29 +76,29 @@ export class FloorAddComponent implements OnInit {
   }
 
   changeDescription(i: number, e: Event) {
-    ;(this.dimension.at(i) as FormGroup)
+    ; (this.dimension.at(i) as FormGroup)
       .get('description')
       ?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeX(i: number, e: Event) {
-    ;(this.dimension.at(i) as FormGroup).get('x')?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    ; (this.dimension.at(i) as FormGroup).get('x')?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeY(i: number, e: Event) {
-    ;(this.dimension.at(i) as FormGroup).get('y')?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    ; (this.dimension.at(i) as FormGroup).get('y')?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeXpos(i: number, e: Event) {
-    ;(this.dimension.at(i) as FormGroup).get('xPos')?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    ; (this.dimension.at(i) as FormGroup).get('xPos')?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeYpos(i: number, e: Event) {
-    ;(this.dimension.at(i) as FormGroup).get('yPos')?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    ; (this.dimension.at(i) as FormGroup).get('yPos')?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   changeHPos(i: number, e: Event) {
-    ;(this.dimension.at(i) as FormGroup).get('hPos')?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
+    ; (this.dimension.at(i) as FormGroup).get('hPos')?.setValue((e.target as HTMLInputElement).value, { onlySelf: true })
   }
 
   get _id() {
