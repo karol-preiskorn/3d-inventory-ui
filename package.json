@@ -1,6 +1,6 @@
 {
   "name": "3d-inventory-angular-ui",
-  "version": "0.59.0",
+  "version": "0.59.1",
   "private": true,
   "type": "module",
   "browser": {
@@ -18,7 +18,7 @@
     "clear": "rimraf dist documentation nyc_output node_modules package-lock.json target",
     "compodoc:serve": "compodoc -p tsconfig.doc.json -s",
     "cp": "cpx README.md src/assets",
-    "docker:build": "npm run version:patch && ./build.sh",
+    "gcp:build": "npm run version:patch && ./build.sh",
     "docker:run": "docker run -p 4200:433 3d-inventory-ui",
     "kill-ng-serve": "fkill --force \"ng serve\"",
     "lint": "ng lint",
@@ -29,7 +29,6 @@
     "prestart": "npx kill-port 4200 && npm version patch --no-git-tag-version",
     "start": "npm run cp && ng serve",
     "test": "jest",
-    "upgrade-full": "npm-check-updates -u && npm upgrade",
     "version:minor": "npm version minor --no-git-tag-version",
     "version:patch": "npm version patch --no-git-tag-version",
     "watch": "npm --no-git-tag-version version patch && ng serve --watch"

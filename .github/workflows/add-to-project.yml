@@ -1,0 +1,20 @@
+name: Auto Add to Project
+
+on:
+  pull_request:
+    types: [opened]
+  issues:
+    types: [opened]
+
+jobs:
+  add-to-project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add PR/Issue to Project
+        uses: actions/add-to-project@v0.5.0
+        with:
+          # Replace with your project URL
+          project-url: https://github.com/users/karol-preiskorn/projects/2
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Optional: Add labels
+          labeled: bug,enhancement,documentation

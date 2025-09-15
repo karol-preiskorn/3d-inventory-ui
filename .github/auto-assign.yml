@@ -1,0 +1,62 @@
+# Configuration for auto-assign action
+# https://github.com/kentaro-m/auto-assign-action
+
+# Set to true to add reviewers to pull requests
+addReviewers: true
+
+# Set to true to add assignees to pull requests
+addAssignees: true
+
+# Set to true to add labels to pull requests
+addLabels: true
+
+# A list of reviewers to be added to pull requests (GitHub user names)
+reviewers:
+  - karol-preiskorn
+
+# A list of assignees to be added to pull requests (GitHub user names)
+assignees:
+  - karol-preiskorn
+
+# A list of labels to be added to pull requests
+labels:
+  - "needs-review"
+  - "auto-assigned"
+
+# A number of reviewers added to the pull request
+numberOfReviewers: 1
+
+# A number of assignees added to the pull request
+numberOfAssignees: 1
+
+# A list of keywords to skip adding reviewers/assignees
+skipKeywords:
+  - wip
+  - draft
+
+# Reviewers to be added based on file changes
+reviewerGroups:
+  # Frontend changes
+  frontend:
+    - karol-preiskorn
+  # Backend changes
+  backend:
+    - karol-preiskorn
+  # Documentation changes
+  docs:
+    - karol-preiskorn
+
+# File patterns for reviewer groups
+filePatterns:
+  frontend:
+    - "**/*.ts"
+    - "**/*.html"
+    - "**/*.scss"
+    - "**/*.css"
+    - "src/**/*"
+  backend:
+    - "backend/**/*"
+    - "**/*.json"
+  docs:
+    - "**/*.md"
+    - "docs/**/*"
