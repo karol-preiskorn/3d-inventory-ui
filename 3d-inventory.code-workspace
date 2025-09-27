@@ -1,15 +1,17 @@
 {
-	"folders": [
-		{
-			"name": "3d-inventory-api",
-			"path": "../3d-inventory-api"
-		},
-		{
-			"name": "3d-inventory-mongo-api",
-			"path": "../3d-inventory-mongo-api"
-		}
-	],
-	"settings": {
-		"codeQL.createQuery.qlPackLocation": "/home/karol/GitHub/3d-inventory-angular-ui"
-	}
+  "folders": [
+    {
+      "name": "3d-inventory-api",
+      "path": "../3d-inventory-api"
+    },
+    {
+      "name": "3d-inventory-ui",
+      "path": "../3d-inventory-ui"
+    }
+  ],
+  "settings": {
+    "codeQL.createQuery.qlPackLocation": "/home/karol/GitHub/3d-inventory-ui",
+    "snyk.baseBranch": "main",
+    "git.defaultBranchName": "main"
+  }
 }

@@ -8,6 +8,7 @@ import { UserFormComponent } from './user-form.component';
 import { UserService } from '../../services/user.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { User, Permission } from '../../shared/user';
+import { generateTestPassword } from '../../testing/test-utils';
 
 describe('UserFormComponent', () => {
   let component: UserFormComponent;
@@ -132,10 +133,11 @@ describe('UserFormComponent', () => {
   });
 
   it('should validate password confirmation', () => {
+    const testPassword = generateTestPassword();
     component.userForm.patchValue({
       name: 'Test User',
       email: 'test@example.com',
-      password: 'password123',
+      password: testPassword,
       confirmPassword: 'different'
     });
 
@@ -146,11 +148,12 @@ describe('UserFormComponent', () => {
   });
 
   it('should require at least one permission', () => {
+    const testPassword = generateTestPassword();
     component.userForm.patchValue({
       name: 'Test User',
       email: 'test@example.com',
-      password: 'password123',
-      confirmPassword: 'password123'
+      password: testPassword,
+      confirmPassword: testPassword
     });
 
     // Ensure no permissions are selected
@@ -166,11 +169,12 @@ describe('UserFormComponent', () => {
     const createResponse = { insertedId: 'new-id' };
     userServiceSpy.createUser.and.returnValue(of(createResponse));
 
+    const testPassword = generateTestPassword();
     component.userForm.patchValue({
       name: 'New User',
       email: 'new@example.com',
-      password: 'password123',
-      confirmPassword: 'password123'
+      password: testPassword,
+      confirmPassword: testPassword
     });
 
     // Select at least one permission
@@ -206,11 +210,12 @@ describe('UserFormComponent', () => {
     const errorMessage = 'Email already exists';
     userServiceSpy.createUser.and.returnValue(throwError(() => new Error(errorMessage)));
 
+    const testPassword = generateTestPassword();
     component.userForm.patchValue({
       name: 'New User',
       email: 'existing@example.com',
-      password: 'password123',
-      confirmPassword: 'password123'
+      password: testPassword,
+      confirmPassword: testPassword
     });
 
     component.permissionsArray.at(0).setValue(true);

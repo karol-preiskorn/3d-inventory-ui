@@ -7,6 +7,7 @@ import { of, throwError } from 'rxjs';
 import { LoginComponent } from './login.component';
 import { AuthenticationService } from '../../services/authentication.service';
 import { LoginRequest, LoginResponse } from '../../shared/user';
+import { generateTestPassword } from '../../testing/test-utils';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -115,15 +116,16 @@ describe('LoginComponent', () => {
     const mockResponse: LoginResponse = { token: 'mock-token' };
     authServiceSpy.login.and.returnValue(of(mockResponse));
 
+    const testPassword = generateTestPassword();
     component.loginForm.patchValue({
       username: 'carlo',
-      password: 'password123'
+      password: testPassword
     });
     component.onSubmit();
 
     const expectedRequest: LoginRequest = {
       username: 'carlo',
-      password: 'password123'
+      password: testPassword
     };
 
     expect(authServiceSpy.login).toHaveBeenCalledWith(expectedRequest);

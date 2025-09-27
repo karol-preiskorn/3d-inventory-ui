@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UserService } from './user.service';
 import { AuthenticationService } from './authentication.service';
 import { User, CreateUserRequest, UpdateUserRequest, Permission } from '../shared/user';
+import { generateTestPassword } from '../testing/test-utils';
 
 describe('UserService', () => {
   let service: UserService;
@@ -102,7 +103,7 @@ describe('UserService', () => {
       const newUser: CreateUserRequest = {
         name: 'New User',
         email: 'new@example.com',
-        password: 'password123',
+        password: generateTestPassword(),
         permissions: [Permission.USER_READ]
       };
 
@@ -205,7 +206,7 @@ describe('UserService', () => {
       const validUser: CreateUserRequest = {
         name: 'Valid User',
         email: 'valid@example.com',
-        password: 'password123',
+        password: generateTestPassword(),
         permissions: [Permission.USER_READ]
       };
 

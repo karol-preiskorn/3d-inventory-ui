@@ -13,6 +13,22 @@
 
 import os
 import argparse
+import subprocess
+import shlex
+
+def validate_path(path):
+    """Validate and sanitize file paths to prevent path traversal attacks"""
+    if not path:
+        raise ValueError("Path cannot be empty")
+
+    # Resolve to absolute path and normalize
+    abs_path = os.path.abspath(path)
+
+    # Check for path traversal attempts
+    if '..' in path or abs_path != os.path.normpath(abs_path):
+        raise ValueError(f"Invalid path detected: {path}")
+
+    return abs_path
 
 def main():
     parser = argparse.ArgumentParser(description='Add watermarks to images in path')
@@ -24,9 +40,32 @@ def main():
 
     args = parser.parse_args()
 
+    # Validate and sanitize paths
+    try:
+        args.root = validate_path(args.root)
+        args.watermark = validate_path(args.watermark)
+
+        # Verify paths exist
+        if not os.path.exists(args.root):
+            raise ValueError(f"Root path does not exist: {args.root}")
+        if not os.path.exists(args.watermark):
+            raise ValueError(f"Watermark file does not exist: {args.watermark}")
+
+    except ValueError as e:
+        print(f"Error: {e}")
+        return 1
+
     files_processed = 0
     files_watermarked = 0
-    os.system('rm %s//*-watermark.png' % (args.root))
+
+    # Sanitize path and use safe subprocess call
+    safe_root = shlex.quote(args.root)
+    try:
+        subprocess.run(['rm', '-f'] + [f for f in os.listdir(args.root) if f.endswith('-watermark.png')],
+                      cwd=args.root, check=False)
+    except (OSError, subprocess.SubprocessError):
+        print("Warning: Could not clean existing watermark files")
+
     for dirName, subdirList, fileList in os.walk(args.root):
         if args.exclude is not None and args.exclude in dirName:
             continue
@@ -41,7 +80,19 @@ def main():
                 if not os.path.exists(new_name):
                     files_watermarked += 1
                     print('    Convert %s to %s' % (orig, new_name))
-                    os.system('composite -dissolve 25%% -gravity SouthEast -geometry +5+5 %s "%s" "%s"' % (args.watermark, orig, new_name))
+                    # Security fix: Use subprocess with proper argument escaping
+                    try:
+                        subprocess.run([
+                            'composite',
+                            '-dissolve', '25%',
+                            '-gravity', 'SouthEast',
+                            '-geometry', '+5+5',
+                            args.watermark,
+                            orig,
+                            new_name
+                        ], check=True, timeout=30)
+                    except (subprocess.CalledProcessError, subprocess.TimeoutExpired, FileNotFoundError) as e:
+                        print(f'    Error processing {orig}: {e}')
 
     print("Files Processed: %s" % "{:,}".format(files_processed))
     print("Files Watermarked: %s" % "{:,}".format(files_watermarked))
