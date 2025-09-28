@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
 import { ConnectionService } from '../../../services/connection.service'
@@ -14,6 +14,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
   selector: 'app-connection-list',
   templateUrl: './connection-list.component.html',
   styleUrls: ['./connection-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, LogComponent, NgbPaginationModule],
   standalone: true,
 })
@@ -75,13 +76,11 @@ export class ConnectionListComponent implements OnInit {
         operation: 'Delete',
         component: 'connections',
       })
-      .subscribe((data: LogIn) => {
-        console.log(data)
+      .subscribe((_data: LogIn) => {
         this.loadConnection()
         this.router.navigate(['/connection-list'])
       })
-    return this.ConnectionService.DeleteConnection(id).subscribe((data: Connection) => {
-      console.log(data)
+    return this.ConnectionService.DeleteConnection(id).subscribe((_data: Connection) => {
       this.loadConnection()
       this.router.navigate(['/connection-list'])
     })
@@ -92,7 +91,6 @@ export class ConnectionListComponent implements OnInit {
       console.error('Connection ID is required for cloning.')
       return
     }
-    console.log('Cloning connection with ID:', id)
     // Call the service to clone the connection
     const id_new = this.ConnectionService.CloneConnection(id);
     this.logService

@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 
@@ -14,6 +14,7 @@ import { Device } from '../../../shared/device'
   selector: 'app-add-connection',
   templateUrl: './add-connection.component.html',
   styleUrls: ['./add-connection.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
 })
@@ -84,7 +85,7 @@ export class ConnectionAddComponent implements OnInit {
     return JSON.stringify(data, null, 2)
   }
 
-  deviceListSubscription: any
+  deviceListSubscription: { unsubscribe: () => void } | undefined
 
   getDeviceList() {
     this.deviceListSubscription = this.deviceService.GetDevices().subscribe((data: Device[]) => {
@@ -106,13 +107,12 @@ export class ConnectionAddComponent implements OnInit {
 
   submitForm() {
     this.connectionService.CreateConnection(this.addConnectionForm.value as Connection).subscribe({
-      next: (connection: Connection | any) => {
-        console.log('Connection created:', connection)
+      next: (connection: Connection | Record<string, unknown>) => {
         const createdConnection = this.addConnectionForm.value
-        createdConnection._id = connection.insertedId || connection._id || ''
+        createdConnection._id = (connection as Record<string, unknown>).insertedId || (connection as Record<string, unknown>)._id || ''
         this.logService
           .CreateLog({
-            objectId: connection.insertedId || '',
+            objectId: ((connection as Record<string, unknown>).insertedId as string) || '',
             message: createdConnection,
             operation: 'Create',
             component: 'connections',

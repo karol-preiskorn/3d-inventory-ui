@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 
@@ -26,6 +26,7 @@ import { LogComponent } from '../../log/log.component'
   selector: 'app-edit-attribute',
   templateUrl: './edit-attribute.component.html',
   styleUrls: ['./edit-attribute.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, LogComponent],
 })
@@ -72,7 +73,6 @@ export class AttributeEditComponent implements OnInit {
   private getAttribute(id: string): Observable<Attribute> {
     return this.attributeService.GetAttribute(id).pipe(
       tap((data: Attribute) => {
-        console.log('AttributeEditComponent.getAttribute(' + id + ') => ' + JSON.stringify(data, null, 2))
         this.attribute = data
         this.editAttributeForm.patchValue({
           _id: data._id,

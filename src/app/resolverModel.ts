@@ -13,7 +13,7 @@ export class ResolverModel implements Resolve<Observable<Model[]>> {
   constructor(private modelsService: ModelsService) {}
 
   resolve(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<Model[]> {
-    console.log('ResolverModel')
+    // Resolving model data
     return this.modelsService.GetModels()
   }
 }

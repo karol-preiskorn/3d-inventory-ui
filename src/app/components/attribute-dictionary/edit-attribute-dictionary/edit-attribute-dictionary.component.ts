@@ -1,6 +1,6 @@
 import { Observable, tap } from 'rxjs'
 
-import { Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 
@@ -18,6 +18,7 @@ import { UnitDictionary } from '../../../shared/UnitDictionary'
   selector: 'app-edit-attribute-dictionary',
   templateUrl: './edit-attribute-dictionary.component.html',
   styleUrls: ['./edit-attribute-dictionary.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, LogComponent],
 })
@@ -34,7 +35,6 @@ export class AttributeDictionaryEditComponent implements OnInit {
 
   ngOnInit() {
     this.inputId = this.getInput() ?? ''
-    console.log('EditAttributeDictionaryComponent inputId: ' + this.inputId)
     this.getAttributeDictionary(this.inputId).subscribe((data: AttributesDictionary) => {
       this.attributeDictionary = data
     })
@@ -68,7 +68,6 @@ export class AttributeDictionaryEditComponent implements OnInit {
   private getAttributeDictionary(id: string): Observable<AttributesDictionary> {
     return this.attributeDictionaryService.GetAttributeDictionary(id).pipe(
       tap((data: AttributesDictionary) => {
-        console.log(`GetAttributeDictionary(${id}) =>`, data)
         this.attributeDictionary = data
         // Use patchValue to avoid errors if form controls are missing
         this.editAttributeDictionaryForm.patchValue({

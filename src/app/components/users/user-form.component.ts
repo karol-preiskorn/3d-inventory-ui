@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,7 +13,8 @@ import { AuthenticationService } from '../../services/authentication.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss']
+  styleUrls: ['./user-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserFormComponent implements OnInit, OnDestroy {
   userForm: FormGroup;
@@ -258,11 +259,11 @@ export class UserFormComponent implements OnInit, OnDestroy {
   /**
    * Create new user
    */
-  private createUser(formData: any, permissions: string[]): void {
+  private createUser(formData: Record<string, unknown>, permissions: string[]): void {
     const createRequest: CreateUserRequest = {
-      name: formData.name.trim(),
-      email: formData.email.trim().toLowerCase(),
-      password: formData.password,
+      name: (formData.name as string).trim(),
+      email: (formData.email as string).trim().toLowerCase(),
+      password: formData.password as string,
       permissions: permissions
     };
 
@@ -288,18 +289,18 @@ export class UserFormComponent implements OnInit, OnDestroy {
   /**
    * Update existing user
    */
-  private updateUser(formData: any, permissions: string[]): void {
+  private updateUser(formData: Record<string, unknown>, permissions: string[]): void {
     if (!this.userId) {return;}
 
     const updateRequest: UpdateUserRequest = {
-      name: formData.name.trim(),
-      email: formData.email.trim().toLowerCase(),
+      name: (formData.name as string).trim(),
+      email: (formData.email as string).trim().toLowerCase(),
       permissions: permissions
     };
 
     // Only include password if it's provided
-    if (formData.password && formData.password.trim()) {
-      updateRequest.password = formData.password;
+    if (formData.password && (formData.password as string).trim()) {
+      updateRequest.password = formData.password as string;
     }
 
     this.userService.updateUser(this.userId, updateRequest).pipe(

@@ -13,7 +13,7 @@ export class ResolverDevice implements Resolve<Observable<Device[]>> {
   constructor(private api: DeviceService) {}
 
   resolve(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<Device[]> {
-    console.log('Resolver')
+    // Resolving device data
     return this.api.GetDevices()
   }
 }

@@ -1,6 +1,6 @@
 import { lastValueFrom } from 'rxjs'
 
-import { Component, Input, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input, NgZone, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
 import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
@@ -22,6 +22,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
   selector: 'app-attribute-list',
   templateUrl: './attribute-list.component.html',
   styleUrls: ['./attribute-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [CommonModule, LogComponent, NgbPaginationModule],
 })
@@ -75,12 +76,8 @@ export class AttributeListComponent implements OnInit {
 
   private async LoadAttributes() {
     // @TODO: #62 show data depends of context attributeComponent and attributeComponentObject
-    console.log('-------------------<  LoadAttributes  >-------------------')
     if (this.attributeComponent === 'Device' && this.attributeComponentObject !== null) {
-      console.log(
-        'LoadAttributes.GetContextAttributes: ' + this.attributeComponent + ' ' + this.attributeComponentObject,
-      )
-      let parsedObject: any = this.attributeComponentObject
+      let parsedObject: string | Record<string, unknown> = this.attributeComponentObject
       if (typeof this.attributeComponentObject === 'string') {
         try {
           parsedObject = JSON.parse(this.attributeComponentObject)
@@ -89,9 +86,8 @@ export class AttributeListComponent implements OnInit {
           parsedObject = this.attributeComponentObject // fallback to original string
         }
       }
-      this.attributeList = await this.attributeService.GetContextAttributes(this.attributeComponent, parsedObject)
+      this.attributeList = await this.attributeService.GetContextAttributes(this.attributeComponent, parsedObject as string)
     } else {
-      console.log('LoadAttributes.attributeService.GetAttributesSync()')
       this.attributeList = await this.attributeService.GetAttributesSync()
       this.totalItems = this.attributeList.length // Set total items
     }
@@ -119,8 +115,7 @@ export class AttributeListComponent implements OnInit {
           component: this.component,
         }),
       )
-      const data: Attribute = await lastValueFrom(this.attributeService.DeleteAttribute(id))
-      console.log(data)
+      await lastValueFrom(this.attributeService.DeleteAttribute(id))
       await this.LoadAttributes()
       await this.navigateToAttributeList()
     } catch (error) {

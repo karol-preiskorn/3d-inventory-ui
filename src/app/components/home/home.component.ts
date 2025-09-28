@@ -8,6 +8,19 @@ import { environment } from '../../../environments/environment'
  * Represents a GitHub issue as returned by the GitHub Issues API.
  * Only a subset of fields is included here for demonstration.
  */
+interface GitHubIssue {
+  id: number;
+  title: string;
+  state: string;
+  number: number;
+  body?: string;
+  html_url?: string;
+  user?: {
+    login: string;
+    avatar_url?: string;
+    html_url?: string;
+  };
+}
 
 @Component({
   selector: 'app-home',
@@ -22,7 +35,7 @@ export class HomeComponent implements OnInit {
   md: string = ''
 
   baseUrl = 'https://api.github.com'
-  issues: any[] = []
+  issues: GitHubIssue[] = []
   issuesJson: string = ''
   isDebugMode: boolean = false
 
@@ -59,7 +72,7 @@ export class HomeComponent implements OnInit {
         const html = converter.makeHtml(data)
         this.md = html
       },
-      (err: any) => {
+      (err: unknown) => {
         console.error('Error fetching Markdown:', err)
       },
       () => {
@@ -68,11 +81,11 @@ export class HomeComponent implements OnInit {
     )
 
     this.http.get<[]>(environment.baseurl + '/github/issues', this.httpOptions).subscribe({
-      next: (data: any[]) => {
+      next: (data: GitHubIssue[]) => {
         this.issues = data
         this.issuesJson = JSON.stringify(data, null, 2)
       },
-      error: (error: any) => {
+      error: (error: unknown) => {
         console.error('Error fetching issues:', error)
       }
     })

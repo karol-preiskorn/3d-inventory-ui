@@ -6,7 +6,7 @@
 import { firstValueFrom, Observable, tap } from 'rxjs'
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 
-import { Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 
 import { ConnectionService } from '../../../services/connection.service'
@@ -21,6 +21,7 @@ import { LogComponent } from '../../log/log.component'
 @Component({
   selector: 'app-edit-connection',
   templateUrl: './edit-connection.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, CommonModule, LogComponent],
 })
 export class ConnectionEditComponent implements OnInit {

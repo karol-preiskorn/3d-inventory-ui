@@ -1,6 +1,6 @@
 import { Subscription, take } from 'rxjs'
 
-import { Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
@@ -26,6 +26,7 @@ import { CommonModule } from '@angular/common'
   selector: 'app-add-attribute',
   templateUrl: './add-attribute.component.html',
   styleUrls: ['./add-attribute.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
 })
@@ -171,9 +172,9 @@ export class AttributeAddComponent implements OnInit {
 
   generateAttributeDictionary() {
     // Randomly select deviceId, modelId, connectionId, and attributeDictionaryId if available
-    const getRandomId = (arr: any[]) =>
+    const getRandomId = (arr: Array<{ _id: unknown }>) =>
       arr && arr.length > 1 ? arr[Math.floor(Math.random() * (arr.length - 1)) + 1]._id : ''
-    const getRandomAttrDictId = (arr: any[]) =>
+    const getRandomAttrDictId = (arr: Array<{ _id: unknown }>) =>
       arr && arr.length > 0 ? arr[Math.floor(Math.random() * arr.length)]._id : ''
 
     const randomDeviceId = getRandomId(this.deviceDictionary)
@@ -189,38 +190,33 @@ export class AttributeAddComponent implements OnInit {
   }
 
   // Add this method to support trackBy in *ngFor for models
-  trackModelObj(_index: number, item: any): any {
+  trackModelObj(_index: number, item: { _id: unknown }): unknown {
     return item._id
   }
 
-  trackDeviceObj(index: number, deviceObj: any): any {
+  trackDeviceObj(index: number, deviceObj: { _id?: unknown }): unknown {
     return deviceObj?._id ?? index
   }
 
-  trackConnectionObj(index: number, item: any): any {
+  trackConnectionObj(index: number, item: { _id?: unknown }): unknown {
     return item?._id
   }
 
-  trackAttributeDictionaryObj(index: number, item: any): any {
+  trackAttributeDictionaryObj(index: number, item: { _id: unknown }): unknown {
     return item._id
   }
 
   submitForm(): void {
     this.isSubmitted = true
     if (this.addAttributeForm.invalid) {
-      console.log(
-        `submitForm: invalid: ${this.addAttributeForm.invalid}, value: ${this.addAttributeForm.value}, valid: ${this.addAttributeForm.valid}`,
-      )
       return
     }
     this.attributeService
       .CreateAttribute(this.addAttributeForm.value as Attribute)
       .pipe(take(1))
       .subscribe((res) => {
-        const insertedId = (res as any)._id
-        console.log('Attribute response: ' + JSON.stringify(res, null, 2))
+        const insertedId = (res as unknown as Record<string, unknown>)._id as string
         this.isSubmitted = true
-        console.log('Inserted ID: ' + insertedId)
         const formData = this.addAttributeForm.value
         formData._id = insertedId // Ensure the formData has the _id field set
         this.logService

@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
 import { firstValueFrom } from 'rxjs'
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 
@@ -17,6 +17,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
   styleUrls: ['./devices-list.component.scss'],
   standalone: true,
   imports: [CommonModule, NgbPaginationModule, LogComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DeviceListComponent implements OnInit {
   deviceList: Device[] = []
@@ -75,7 +76,7 @@ export class DeviceListComponent implements OnInit {
 
     try {
       await firstValueFrom(this.devicesService.DeleteDevice(id))
-      console.log(`${id} deleted`)
+      // Device deleted successfully
       this.loadDevices()
       this.loadModels()
       await this.router.navigate(['/device-list/'], { relativeTo: this.route, skipLocationChange: true })
@@ -92,7 +93,7 @@ export class DeviceListComponent implements OnInit {
    */
   async CloneDevice(id: string) {
     const idNew = this.devicesService.CloneDevice(id) as Device
-    console.info(`Cloned device id: ${id} to result CloneDevice id: ${JSON.stringify(idNew)}`)
+    // Device cloned successfully
     this.logService.CreateLog({
       message: { id: id, idNew: idNew },
       operation: 'Clone',
