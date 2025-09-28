@@ -1,0 +1,151 @@
+<div class="container-fluid">
+  <h3><i class="bi bi-hdd"></i> Edit Device</h3>
+  <form [formGroup]="editDeviceForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
+    <div class="row">
+      <div class="col">
+        <label for="id" class="form-label">Id</label>
+        <input type="text" class="form-control" placeholder="Id" aria-label="id" formControlName="_id" id="id"
+          readonly [ngClass]="{
+            'is-invalid': editDeviceForm.controls._id.status !== 'VALID',
+            'is-valid': editDeviceForm.controls._id.status === 'VALID',
+          }" />
+        @if (editDeviceForm.get('_id')?.errors) {
+        <div class="invalid-feedback">
+          @if (editDeviceForm.controls._id.errors?.required) {
+          <div>Id is required</div>
+          }
+        </div>
+        }
+      </div>
+      <div class="col">
+        <div class="form-group mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" placeholder="Device's name" aria-label="name"
+            [formControlName]="'name'" minlength="4" id="name" required maxlength="255" [ngClass]="{
+              'is-invalid': editDeviceForm.controls.name.status !== 'VALID',
+              'is-valid': editDeviceForm.controls.name.status === 'VALID',
+            }" />
+          @if (editDeviceForm.controls.name.errors) {
+          <div class="invalid-feedback">
+            @if (editDeviceForm.controls.name.errors.required) {
+            <div>Name is required</div>
+            }
+            @if (editDeviceForm.controls.name.errors.minlength) {
+            <div>Name must be at least 4 characters</div>
+            }
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="row border" formGroupName="position">
+      <div class="row">Position</div>
+      <div class="col">
+        <div class="form-group mb-3">
+          <label for="x" class="form-label">x</label>
+          <input type="number" formControlName="x" class="form-control" id="x" aria-label="x" placeholder="x"
+            required [ngClass]="{
+                  'is-invalid': editDeviceForm.get('position.x') && editDeviceForm.get('position.x')?.status !== 'VALID',
+                  'is-valid': editDeviceForm.get('position.x')?.status === 'VALID',
+                }" />
+        </div>
+        @if (editDeviceForm.get('position.x') && editDeviceForm.get('position.x')?.errors) {
+        <div class="invalid-feedback">
+          @if (editDeviceForm.get('position.x')?.errors?.required) {
+          <div>x is required</div>
+          }
+          @if (editDeviceForm.get('position.x')?.errors?.minlength) {
+          <div>x must be at least 4 characters</div>
+          }
+          @if (editDeviceForm.get('position.x')?.errors?.maxlength) {
+          <div>x must be at most 255 characters</div>
+          }
+        </div>
+        }
+      </div>
+      <div class="col">
+        <div class="form-group mb-3">
+          <label for="y" class="form-label">y</label>
+          <input type="number" formControlName="y" aria-label="y" placeholder="y" class="form-control" id="y"
+            required [ngClass]="{
+                  'is-invalid': editDeviceForm.get('position.y')?.status !== 'VALID',
+                  'is-valid': editDeviceForm.get('position.y')?.status === 'VALID',
+                }" />
+        </div>
+        @if (editDeviceForm.get('position.y')?.errors) {
+        <div class="invalid-feedback">
+          @if (editDeviceForm.get('position.y')?.errors?.required) {
+          <div>y is required</div>
+          }
+        </div>
+        }
+      </div>
+      <div class="col">
+        <div class="form-group mb-3">
+          <label for="h" class="form-label">h</label>
+          <input type="number" formControlName="h" class="form-control" id="h" aria-label="h" placeholder="h"
+            required [ngClass]="{
+                  'is-invalid': editDeviceForm.get('position.h')?.status !== 'VALID',
+                  'is-valid': editDeviceForm.get('position.h')?.status === 'VALID',
+                }" />
+        </div>
+        @if (editDeviceForm.get('position.h')?.errors) {
+        <div class="invalid-feedback">
+          @if (editDeviceForm.get('position.h')?.errors?.required) {
+          <div>h is required</div>
+          }
+        </div>
+        }
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group mb-3">
+          <label for="modelId" class="form-label">Model</label>
+          <select formControlName="modelId" class="form-control" id="modelId" required [ngClass]="{
+              'is-invalid': editDeviceForm.controls.modelId.status !== 'VALID',
+              'is-valid': editDeviceForm.controls.modelId.status === 'VALID',
+            }">
+            @for (modelObj of modelList; track modelObj; let i = $index) {
+            <option value="{{ modelObj._id }}">
+              {{ modelObj.name }}
+            </option>
+            }
+          </select>
+          @if (editDeviceForm.controls.modelId.errors) {
+          <div class="invalid-feedback">
+            @if (editDeviceForm.controls.modelId.errors.required) {
+            <div>Name is required</div>
+            }
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <button type="submit" [disabled]="!(editDeviceForm.valid && editDeviceForm.touched)" class="btn btn-primary"
+        [ngClass]="{
+          'is-invalid': !(editDeviceForm.valid && editDeviceForm.touched),
+          'is-valid': editDeviceForm.valid && editDeviceForm.touched,
+        }">
+        <i class="bi bi-floppy"></i> Update
+      </button>
+
+      @if (!(editDeviceForm.invalid && editDeviceForm.touched)) {
+      <div class="invalid-feedback">
+        editDeviceForm is invalid or untouched
+      </div>
+      }
+      @if (!(editDeviceForm.valid && editDeviceForm.touched)) {
+      <div class="valid-feedback">
+        editDeviceForm is valid and touched
+      </div>
+      }
+    </div>
+  </form>
+</div>
+
+<app-attribute-list [attributeComponent]="attributeComponent"
+  [attributeComponentObject]="attributeComponentObject"></app-attribute-list>
+
+<app-log [component]="component"></app-log>

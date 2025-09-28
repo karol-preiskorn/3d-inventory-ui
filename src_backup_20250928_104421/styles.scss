@@ -1,0 +1,70 @@
+/* You can add global styles to this file, and also import other style files */
+
+.log-message {
+  margin-top: 4px;
+  color: #9a9aa7;
+  font-size: small;
+}
+
+.error-message {
+  margin-top: 4px;
+  font-size: 0.875em;
+  color: var(--bs-form-invalid-color);
+}
+
+.border {
+  padding: 1rem;
+  margin-right: 0;
+  margin-left: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-width: 1px;
+  border-radius: 8px;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+[data-theme='light'] {
+  --header-background-color: #ffffff;
+  --header-border-color: #e5e8ea;
+  --header-menu-item-color: #231f20;
+  --header-theme-switch-background-color: #cccccc;
+  --header-theme-switch-before-background-color: #ffffff;
+  --header-theme-switch-checked-background-color: #2196f3;
+
+  --main-content-background-color: #ffffff;
+  --main-content-text-color: #231f20;
+}
+
+[data-theme='dark'] {
+  --header-background-color: #2c3c93;
+  --header-border-color: #e5e8ea;
+  --header-menu-item-color: #ffffff;
+  --header-theme-switch-background-color: #cccccc;
+  --header-theme-switch-before-background-color: #ffffff;
+  --header-theme-switch-checked-background-color: #2196f3;
+
+  --main-content-background-color: #231f20;
+  --main-content-border-color: #e5e8ea;
+  body {
+    display: flex;
+    flex-direction: column;
+    background-color: #231f20;
+  }
+
+  main {
+    flex: 1;
+    padding: 20px;
+  }
+  --main-content-text-color: #ffffff;
+  --bs-background-color: #231f20;
+}
+
+.deviceid {
+  color: #9a9aa7;
+  font-size: small;
+}

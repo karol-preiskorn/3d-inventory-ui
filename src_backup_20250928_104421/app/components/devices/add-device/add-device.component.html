@@ -1,0 +1,137 @@
+<div class="container-fluid">
+  <h3><i class="bi bi-hdd"></i> Add Device</h3>
+  <form [formGroup]="addDeviceForm" (ngSubmit)="submitForm()" class="g-3 needs-validation" novalidate>
+    <div class="form-group mb-3">
+      <label for="name" class="form-label">Name</label>
+      <textarea formControlName="name" rows="2" required [ngClass]="{
+          'is-invalid': addDeviceForm.controls.name.status !== 'VALID',
+          'is-valid': addDeviceForm.controls.name.status === 'VALID',
+          'form-control': true,
+        }"></textarea>
+      @if (addDeviceForm.controls.name.errors) {
+        <div class="invalid-feedback">
+          @if (addDeviceForm.controls.name.errors.required) {
+            <div>Name is required</div>
+          }
+          @if (addDeviceForm.controls.name.errors.minlength) {
+            <div>Name must be at least 4 characters</div>
+          }
+        </div>
+      }
+    </div>
+    <div formGroupName="position">
+      <div class="row">
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="x" class="form-label">x</label>
+            <input type="number" formControlName="x" class="form-control" id="x" aria-label="x" placeholder="x"
+              required [ngClass]="{
+                  'is-invalid': addDeviceForm.get('position.x') && addDeviceForm.get('position.x')?.status !== 'VALID',
+                  'is-valid': addDeviceForm.get('position.x')?.status === 'VALID',
+                }" />
+            @if (addDeviceForm.get('position.x')?.errors) {
+              <div class="invalid-feedback">
+                @if (addDeviceForm.get('position.x')?.errors?.required) {
+                  <div>X is required</div>
+                }
+                @if (addDeviceForm.get('position.x')?.errors?.min || addDeviceForm.get('position.x')?.errors?.max) {
+                  <div
+                    >
+                    X must be at bettween -20 and 20
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="y" class="form-label">y</label>
+            <input type="number" formControlName="y" class="form-control" id="y" aria-label="y" placeholder="y"
+              required [ngClass]="{
+                  'is-invalid': addDeviceForm.get('position.y') && addDeviceForm.get('position.y')?.status !== 'VALID',
+                  'is-valid': addDeviceForm.get('position.y')?.status === 'VALID',
+                }" />
+            @if (addDeviceForm.get('position.y')?.errors) {
+              <div class="invalid-feedback">
+                @if (addDeviceForm.get('position.y')?.errors?.required) {
+                  <div>Y is required</div>
+                }
+                @if (addDeviceForm.get('position.y')?.errors?.min || addDeviceForm.get('position.y')?.errors?.max) {
+                  <div
+                    >
+                    X must be at bettween -20 and 20
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group mb-3">
+            <label for="h" class="form-label">h</label>
+            <input type="number" formControlName="h" class="form-control" id="h" aria-label="h" placeholder="h"
+              required [ngClass]="{
+                  'is-invalid': addDeviceForm.get('position.h') && addDeviceForm.get('position.h')?.status !== 'VALID',
+                  'is-valid': addDeviceForm.get('position.h')?.status === 'VALID',
+                }" />
+            @if (addDeviceForm.get('position.h')?.errors) {
+              <div class="invalid-feedback">
+                @if (addDeviceForm.get('position.h')?.errors?.required) {
+                  <div>H is required
+                  </div>
+                }
+                @if (addDeviceForm.get('position.h')?.errors?.min || addDeviceForm.get('position.h')?.errors?.max) {
+                  <div
+                    >
+                    H must be at bettween -20 and 20
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group mb-3">
+          <label for="modelId" class="form-label">Model</label>
+          <select (change)="changeModelId($event)" formControlName="modelId" class="form-select" id="modelId"
+            required [ngClass]="{
+              'is-invalid': addDeviceForm.controls.modelId.status !== 'VALID',
+              'is-valid': addDeviceForm.controls.modelId.status === 'VALID',
+              'form-select': true,
+            }">
+            @for (modelObj of modelList; track modelObj; let i = $index) {
+              <option value="{{ modelObj._id }}">
+                {{ modelObj.name }}
+              </option>
+            }
+          </select>
+          @if (addDeviceForm.controls.modelId.errors) {
+            <div class="invalid-feedback">
+              @if (addDeviceForm.controls.modelId.errors.required) {
+                <div>Name is required</div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+    <p>Form Status: {{ addDeviceForm.status }}</p>
+    <div class="d-flex p-2">
+      <div class="p-1 g-col-1">
+        <button type="submit" [disabled]="!(addDeviceForm.valid && addDeviceForm.touched)"
+          class="btn btn-primary mb-3">
+          <i class="bi bi-file-earmark-plus"></i> Add
+        </button>
+      </div>
+      <div class="p-1 g-col-1">
+        <button type="button" (click)="generateDevice()" class="btn btn-debug">
+          <i class="bi bi-bookmark-plus"></i> Generate random data
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

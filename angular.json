@@ -20,7 +20,12 @@
             "allowedCommonJsDependencies": [
               "showdown"
             ],
-            "sourceMap": true,
+            "sourceMap": {
+              "scripts": true,
+              "styles": true,
+              "hidden": false,
+              "vendor": false
+            },
             "outputPath": "dist",
             "index": "./src/index.html",
             "polyfills": [
@@ -47,7 +52,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "./node_modules/bootstrap/dist/js/bootstrap.bundle.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "./node_modules/marked/marked.min.js",
               "./node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js"
             ]
@@ -57,8 +62,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "6mb",
-                  "maximumError": "8mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "6mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -78,8 +83,12 @@
                 "styles": {
                   "minify": true,
                   "inlineCritical": false
-                }
-              }
+                },
+                "fonts": true
+              },
+              "extractLicenses": true,
+              "sourceMap": false,
+              "namedChunks": false
             },
             "development": {
               "optimization": false,

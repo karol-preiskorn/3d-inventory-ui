@@ -1,0 +1,185 @@
+<div class="user-form-container">
+  <!-- Header -->
+  <div class="form-header">
+    <div class="header-content">
+      <h2>{{ isEditMode ? 'Edit User' : 'Add New User' }}</h2>
+      <p class="text-muted">
+        {{ isEditMode ? 'Update user information and permissions' : 'Create a new user account with appropriate
+        permissions' }}
+      </p>
+    </div>
+    <div class="header-actions">
+      <button type="button" class="btn btn-outline-secondary" (click)="onCancel()">
+        <i class="fas fa-arrow-left"></i> Back to Users
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="text-center py-5">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <p class="mt-2">Loading user data...</p>
+  </div>
+
+  <!-- Main Form -->
+  <div *ngIf="!loading" class="form-content">
+    <!-- Success Message -->
+    <div *ngIf="success" class="alert alert-success">
+      <i class="fas fa-check-circle"></i>
+      {{ success }}
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="error" class="alert alert-danger">
+      <i class="fas fa-exclamation-triangle"></i>
+      {{ error }}
+    </div>
+
+    <!-- Validation Errors -->
+    <div *ngIf="validationErrors.length > 0" class="alert alert-warning">
+      <h6><i class="fas fa-exclamation-triangle"></i> Please fix the following errors:</h6>
+      <ul class="mb-0">
+        <li *ngFor="let error of validationErrors">{{ error }}</li>
+      </ul>
+    </div>
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="row">
+        <!-- Basic Information -->
+        <div class="col-lg-6">
+          <div class="form-section">
+            <h4>Basic Information</h4>
+
+            <!-- Name -->
+            <div class="form-group">
+              <label for="name" class="required">Full Name</label>
+              <input id="name" type="text" class="form-control" [class.is-invalid]="hasFieldError('name')"
+                formControlName="name" placeholder="Enter full name" maxlength="100">
+              <div *ngIf="hasFieldError('name')" class="invalid-feedback">
+                {{ getFieldError('name') }}
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="email" class="required">Email Address</label>
+              <input id="email" type="email" class="form-control" [class.is-invalid]="hasFieldError('email')"
+                formControlName="email" placeholder="Enter email address" maxlength="255">
+              <div *ngIf="hasFieldError('email')" class="invalid-feedback">
+                {{ getFieldError('email') }}
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+              <label for="password" [class.required]="!isEditMode">
+                Password
+                <small *ngIf="isEditMode" class="text-muted">(leave empty to keep current)</small>
+              </label>
+              <input id="password" type="password" class="form-control"
+                [class.is-invalid]="hasFieldError('password')" formControlName="password"
+                placeholder="Enter password" maxlength="255">
+              <div *ngIf="hasFieldError('password')" class="invalid-feedback">
+                {{ getFieldError('password') }}
+              </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+              <label for="confirmPassword" [class.required]="!isEditMode">
+                Confirm Password
+              </label>
+              <input id="confirmPassword" type="password" class="form-control"
+                [class.is-invalid]="userForm.errors?.['passwordMismatch'] && userForm.get('confirmPassword')?.touched"
+                formControlName="confirmPassword" placeholder="Confirm password" maxlength="255">
+              <div *ngIf="userForm.errors?.['passwordMismatch'] && userForm.get('confirmPassword')?.touched"
+                class="invalid-feedback">
+                Passwords do not match
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Permissions -->
+        <div class="col-lg-6">
+          <div class="form-section">
+            <h4>Permissions & Roles</h4>
+
+            <!-- Quick Role Selection -->
+            <div class="form-group">
+              <label for="roleSelect">Quick Role Assignment</label>
+              <select id="roleSelect" class="form-control" [(ngModel)]="selectedRole" (change)="onRoleChange()"
+                [ngModelOptions]="{ standalone: true }">
+                <option value="">Select a predefined role...</option>
+                <option *ngFor="let role of predefinedRoles" [value]="role.id">
+                  {{ role.name }} - {{ role.description }}
+                </option>
+              </select>
+              <small class="form-text text-muted">
+                Select a role to automatically assign permissions, or manually select permissions below.
+              </small>
+            </div>
+
+            <!-- Individual Permissions -->
+            <div class="permissions-section">
+              <label class="section-label required">Individual Permissions</label>
+              <div class="permissions-grid">
+                <ng-container *ngFor="let category of getGroupedPermissions() | keyvalue">
+                  <div class="permission-category">
+                    <h6 class="category-title">{{ category.key }}</h6>
+                    <div class="permission-items">
+                      <div *ngFor="let permission of category.value; let i = index; trackBy: trackByPermission"
+                        class="permission-item">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" [id]="'perm-' + i"
+                            [checked]="isPermissionChecked(availablePermissions.indexOf(permission))"
+                            (change)="togglePermission(availablePermissions.indexOf(permission))">
+                          <label class="custom-control-label" [for]="'perm-' + i">
+                            {{ getPermissionDisplayName(permission) }}
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <div class="action-buttons">
+          <button type="submit" class="btn btn-primary" [disabled]="saving">
+            <span *ngIf="saving" class="spinner-border spinner-border-sm mr-2" role="status">
+              <span class="sr-only">Saving...</span>
+            </span>
+            <i *ngIf="!saving" class="fas fa-save"></i>
+            {{ saving ? 'Saving...' : (isEditMode ? 'Update User' : 'Create User') }}
+          </button>
+
+          <button type="button" class="btn btn-outline-secondary" (click)="onReset()" [disabled]="saving">
+            <i class="fas fa-undo"></i>
+            Reset
+          </button>
+
+          <button type="button" class="btn btn-outline-dark" (click)="onCancel()" [disabled]="saving">
+            <i class="fas fa-times"></i>
+            Cancel
+          </button>
+        </div>
+
+        <!-- Form Status -->
+        <div class="form-status">
+          <small class="text-muted">
+            <i class="fas fa-info-circle"></i>
+            Fields marked with <span class="text-danger">*</span> are required
+          </small>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
