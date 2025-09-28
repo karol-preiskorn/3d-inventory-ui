@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
@@ -7,14 +7,14 @@ import { of, throwError } from 'rxjs';
 import { UserFormComponent } from './user-form.component';
 import { UserService } from '../../services/user.service';
 import { AuthenticationService } from '../../services/authentication.service';
-import { User, Permission } from '../../shared/user';
+import { Permission, User } from '../../shared/user';
 import { generateTestPassword } from '../../testing/test-utils';
 
 describe('UserFormComponent', () => {
   let component: UserFormComponent;
   let fixture: ComponentFixture<UserFormComponent>;
   let userServiceSpy: jasmine.SpyObj<UserService>;
-  let authServiceSpy: jasmine.SpyObj<AuthenticationService>;
+  let _authServiceSpy: jasmine.SpyObj<AuthenticationService>;
   let routerSpy: jasmine.SpyObj<Router>;
 
   const mockUser: User = {
@@ -63,7 +63,7 @@ describe('UserFormComponent', () => {
     fixture = TestBed.createComponent(UserFormComponent);
     component = fixture.componentInstance;
     userServiceSpy = TestBed.inject(UserService) as jasmine.SpyObj<UserService>;
-    authServiceSpy = TestBed.inject(AuthenticationService) as jasmine.SpyObj<AuthenticationService>;
+    _authServiceSpy = TestBed.inject(AuthenticationService) as jasmine.SpyObj<AuthenticationService>;
     routerSpy = TestBed.inject(Router) as jasmine.SpyObj<Router>;
 
     // Set up default mocks

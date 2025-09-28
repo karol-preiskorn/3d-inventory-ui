@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
 import {
-  User,
-  LoginRequest,
-  LoginResponse,
   AuthState,
   JwtPayload,
-  ApiError
+  LoginRequest,
+  LoginResponse,
+  User
 } from '../shared/user';
 
 @Injectable({
@@ -234,7 +233,7 @@ export class AuthenticationService {
 
       const currentTime = Math.floor(Date.now() / 1000);
       return payload.exp < currentTime;
-    } catch (error) {
+    } catch (_error) {
       return true; // If we can't decode, consider it expired
     }
   }

@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 
 import { LoginRequest } from '../../shared/user';
@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.login(loginRequest).pipe(
       takeUntil(this.destroy$)
     ).subscribe({
-      next: (response) => {
+      next: (_response) => {
         this.loading = false;
 
         // Navigate to return URL or default

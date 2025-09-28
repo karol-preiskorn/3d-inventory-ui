@@ -176,7 +176,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
       `createDevice3d parameters: box_x = ${box_x}, box_y = ${box_y}, box_z = ${box_z}, pos_x = ${pos_x}, pos_y = ${pos_y}, pos_z = ${pos_z}`,
     )
     const geometry = new THREE.BoxGeometry(box_x, box_y, box_z)
-    let color = this.getRandomNaturalColor()
+    const color = this.getRandomNaturalColor()
     // Compute a contrasting color (black or white) for the given color
 
     const colorText = this.getContrastColor(color.getHex())
@@ -287,7 +287,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
   addWalls() {
     const geometry = new THREE.BoxGeometry(51, 10, 1)
     const geometry2 = new THREE.BoxGeometry(1, 10, 51)
-    let color = this.getRandomNaturalColor()
+    const color = this.getRandomNaturalColor()
     const object1 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: color }))
     const object2 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: color }))
     const object3 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: color }))

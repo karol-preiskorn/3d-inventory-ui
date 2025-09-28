@@ -8,7 +8,7 @@ import { Router } from '@angular/router'
 
 import { environment } from '../../environments/environment'
 import { Floors } from '../shared/floors'
-import { Log, LogService } from './log.service'
+import { LogService } from './log.service'
 
 @Injectable({
   providedIn: 'root',

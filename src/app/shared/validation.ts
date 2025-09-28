@@ -47,13 +47,13 @@ export default class Validation {
    */
   atLeastOneValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     let i = 0
-    if (control.get('deviceId')?.value != '') i++
-    if (control.get('modelId')?.value != '') i++
-    if (control.get('connectionId')?.value != '') i++
+    if (control.get('deviceId')?.value !== '') {i++}
+    if (control.get('modelId')?.value !== '') {i++}
+    if (control.get('connectionId')?.value !== '') {i++}
     console.log('count Ids => ' + i)
-    if (i > 1 || i == 0) {
+    if (i > 1 || i === 0) {
       return { atLeastOneValidator: true }
-    } else if (i == 1) {
+    } else if (i === 1) {
       return null
     } else {
       return { atLeastOneValidator: true }

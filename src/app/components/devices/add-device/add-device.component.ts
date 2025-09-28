@@ -2,7 +2,6 @@ import { Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
-import { switchMap } from 'rxjs'
 
 import { CommonModule } from '@angular/common'
 import { DeviceService } from '../../../services/device.service'

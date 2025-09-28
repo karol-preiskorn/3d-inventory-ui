@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { UserService } from './user.service';
 import { AuthenticationService } from './authentication.service';
-import { User, CreateUserRequest, UpdateUserRequest, Permission } from '../shared/user';
+import { CreateUserRequest, Permission, UpdateUserRequest, User } from '../shared/user';
 import { generateTestPassword } from '../testing/test-utils';
 
 describe('UserService', () => {

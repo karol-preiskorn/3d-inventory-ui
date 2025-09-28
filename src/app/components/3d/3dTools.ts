@@ -9,7 +9,7 @@ import { faker } from '@faker-js/faker'
 import { Device } from '../../shared/device'
 import { Model } from '../../shared/model'
 
-class Tools3D {
+class _Tools3D {
   private racks: Array<Device> = []
   private deviceList: Device[] = []
   private modelList: Model[] = []
@@ -23,7 +23,7 @@ class Tools3D {
     let y = this.getRandomY()
     let distance = true
     let counter = 0
-    while (distance == true && counter < 10) {
+    while (distance === true && counter < 10) {
       this.racks.forEach((element) => {
         // console.log('Generate rack (' + x + ', ' + y + ') ' + Math.sqrt(Math.pow(Math.abs(x - element.x), 2) + Math.pow(Math.abs(y - element.y), 2)))
         if (
@@ -33,7 +33,7 @@ class Tools3D {
         }
         counter = counter + 1
       })
-      if (distance == (false as boolean)) {
+      if (distance === (false as boolean)) {
         x = this.getRandomX()
         y = this.getRandomY()
         // distance = true

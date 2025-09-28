@@ -12,7 +12,7 @@ import { Model } from './shared/model';
 export class ResolverModel implements Resolve<Observable<Model[]>> {
   constructor(private modelsService: ModelsService) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Model[]> {
+  resolve(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<Model[]> {
     console.log('ResolverModel')
     return this.modelsService.GetModels()
   }

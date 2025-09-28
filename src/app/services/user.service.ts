@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 import {
-  User,
+  ApiError,
   CreateUserRequest,
-  UpdateUserRequest,
   Permission,
-  Role,
   PREDEFINED_ROLES,
-  ApiError
+  Role,
+  UpdateUserRequest,
+  User
 } from '../shared/user';
 import { AuthenticationService } from './authentication.service';
 

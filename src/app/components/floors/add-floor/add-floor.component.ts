@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { Component, NgZone, OnInit } from '@angular/core'
-import { ReactiveFormsModule } from '@angular/forms'
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
 import { firstValueFrom } from 'rxjs'
@@ -259,7 +258,7 @@ export class FloorAddComponent implements OnInit {
     console.log('Overall form valid:', this.floorForm.valid)
   }
 
-  trackByFn(index: number, item: any): number {
+  trackByFn(index: number, _item: any): number {
     return index
   }
 

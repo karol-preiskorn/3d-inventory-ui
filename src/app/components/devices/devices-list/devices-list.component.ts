@@ -1,6 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core'
 import { firstValueFrom } from 'rxjs'
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router'
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 
 import { DeviceService } from '../../../services/device.service'
 import { LogService } from '../../../services/log.service'

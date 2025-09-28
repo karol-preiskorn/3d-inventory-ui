@@ -2,7 +2,6 @@ import { environment } from 'src/environments/environment'
 
 import { CommonModule } from '@angular/common'
 import { Component, NgZone, OnInit } from '@angular/core'
-import { take } from 'rxjs/operators'
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'

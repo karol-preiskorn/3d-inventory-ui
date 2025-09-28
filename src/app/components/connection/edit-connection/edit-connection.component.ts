@@ -4,10 +4,9 @@
  **/
 
 import { firstValueFrom, Observable, tap } from 'rxjs'
-import { ReactiveFormsModule } from '@angular/forms'
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 
 import { Component, NgZone, OnInit } from '@angular/core'
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 
 import { ConnectionService } from '../../../services/connection.service'

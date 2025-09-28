@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray, FormsModule } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 
-import { User, CreateUserRequest, UpdateUserRequest, Permission, Role } from '../../shared/user';
+import { CreateUserRequest, Permission, Role, UpdateUserRequest, User } from '../../shared/user';
 import { UserService } from '../../services/user.service';
 import { AuthenticationService } from '../../services/authentication.service';
 
@@ -118,7 +118,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
    * Load existing user for editing
    */
   private loadUser(): void {
-    if (!this.userId) return;
+    if (!this.userId) {return;}
 
     this.loading = true;
     this.error = null;
@@ -173,7 +173,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
    * Handle role selection
    */
   onRoleChange(): void {
-    if (!this.selectedRole) return;
+    if (!this.selectedRole) {return;}
 
     const rolePermissions = this.userService.getPermissionsForRole(this.selectedRole);
 
@@ -269,7 +269,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
     this.userService.createUser(createRequest).pipe(
       takeUntil(this.destroy$)
     ).subscribe({
-      next: (response) => {
+      next: (_response) => {
         this.success = 'User created successfully';
         this.saving = false;
 
@@ -289,7 +289,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
    * Update existing user
    */
   private updateUser(formData: any, permissions: string[]): void {
-    if (!this.userId) return;
+    if (!this.userId) {return;}
 
     const updateRequest: UpdateUserRequest = {
       name: formData.name.trim(),
@@ -305,7 +305,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
     this.userService.updateUser(this.userId, updateRequest).pipe(
       takeUntil(this.destroy$)
     ).subscribe({
-      next: (response) => {
+      next: (_response) => {
         this.success = 'User updated successfully';
         this.saving = false;
 

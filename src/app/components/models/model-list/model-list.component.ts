@@ -1,7 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { Router } from '@angular/router'
-import { of, Observable } from 'rxjs'
+import { Observable, of } from 'rxjs'
 
 import { LogService } from '../../../services/log.service'
 import { ModelsService } from '../../../services/models.service'

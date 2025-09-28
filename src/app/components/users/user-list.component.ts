@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { Subject, takeUntil, debounceTime, distinctUntilChanged } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 
-import { User, Permission, Role } from '../../shared/user';
+import { Permission, Role, User } from '../../shared/user';
 import { UserService } from '../../services/user.service';
 import { AuthenticationService } from '../../services/authentication.service';
 
@@ -116,7 +116,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   /**
    * Perform search
    */
-  private performSearch(query: string): void {
+  private performSearch(_query: string): void {
     this.currentPage = 1; // Reset to first page on search
     this.applyFiltersAndSort();
   }
@@ -207,7 +207,7 @@ export class UserListComponent implements OnInit, OnDestroy {
    * Get sort icon for column
    */
   getSortIcon(column: string): string {
-    if (this.sortBy !== column) return '';
+    if (this.sortBy !== column) {return '';}
     return this.sortDirection === 'asc' ? '↑' : '↓';
   }
 
@@ -248,7 +248,7 @@ export class UserListComponent implements OnInit, OnDestroy {
    */
   getUserRoleBadgeClass(user: User): string {
     const role = this.userService.getUserRole(user);
-    if (!role) return 'badge-secondary';
+    if (!role) {return 'badge-secondary';}
 
     switch (role.id) {
       case 'system-admin': return 'badge-danger';

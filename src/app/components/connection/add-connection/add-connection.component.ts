@@ -108,7 +108,7 @@ export class ConnectionAddComponent implements OnInit {
     this.connectionService.CreateConnection(this.addConnectionForm.value as Connection).subscribe({
       next: (connection: Connection | any) => {
         console.log('Connection created:', connection)
-        let createdConnection = this.addConnectionForm.value
+        const createdConnection = this.addConnectionForm.value
         createdConnection._id = connection.insertedId || connection._id || ''
         this.logService
           .CreateLog({

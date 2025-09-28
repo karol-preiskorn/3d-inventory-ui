@@ -5,7 +5,7 @@ import { faker } from '@faker-js/faker'
 
 import { FloorService } from '../../../services/floor.service'
 import { LogIn, LogService } from '../../../services/log.service'
-import { Floors, FloorDimension } from '../../../shared/floors'
+import { FloorDimension, Floors } from '../../../shared/floors'
 import Validation from '../../../shared/validation'
 import { LogComponent } from '../../log/log.component'
 import { CommonModule } from '@angular/common'

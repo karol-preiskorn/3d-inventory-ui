@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs'
 
 import { CommonModule } from '@angular/common'
-import { Component, Input, NgZone, OnInit } from '@angular/core'
+import { Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 

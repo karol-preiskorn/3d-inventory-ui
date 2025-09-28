@@ -12,7 +12,7 @@ import { Device } from './shared/device'
 export class ResolverDevice implements Resolve<Observable<Device[]>> {
   constructor(private api: DeviceService) {}
 
-  resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<Device[]> {
+  resolve(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<Device[]> {
     console.log('Resolver')
     return this.api.GetDevices()
   }

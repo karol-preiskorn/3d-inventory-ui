@@ -1,4 +1,4 @@
-import { Observable, of, throwError } from 'rxjs'
+import { Observable, throwError } from 'rxjs'
 import { catchError, map, retry } from 'rxjs/operators'
 
 import { HttpClient, HttpHeaders } from '@angular/common/http'

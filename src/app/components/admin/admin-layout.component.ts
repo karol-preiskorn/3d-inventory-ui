@@ -97,7 +97,7 @@ export class AdminLayoutComponent implements OnInit {
    * Check if user has permission to see a navigation item
    */
   hasPermission(permission: string): boolean {
-    if (!this.currentUser) return false;
+    if (!this.currentUser) {return false;}
     return this.userService.userHasPermission(this.currentUser, permission as any);
   }
 

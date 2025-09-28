@@ -7,7 +7,7 @@
 
 import { catchError, Observable, of, retry, throwError } from 'rxjs'
 
-import { provideHttpClient, withFetch, HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 
 import { environment } from '../../environments/environment'

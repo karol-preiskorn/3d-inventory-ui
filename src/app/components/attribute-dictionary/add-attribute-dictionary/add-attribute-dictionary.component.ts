@@ -1,6 +1,6 @@
 import { Component, Inject, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
-import { Router, Resolve } from '@angular/router'
+import { Router } from '@angular/router'
 
 import { CommonModule } from '@angular/common'
 import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'

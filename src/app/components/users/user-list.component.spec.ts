@@ -6,7 +6,7 @@ import { of, throwError } from 'rxjs';
 import { UserListComponent } from './user-list.component';
 import { UserService } from '../../services/user.service';
 import { AuthenticationService } from '../../services/authentication.service';
-import { User, Permission } from '../../shared/user';
+import { Permission, User } from '../../shared/user';
 
 describe('UserListComponent', () => {
   let component: UserListComponent;

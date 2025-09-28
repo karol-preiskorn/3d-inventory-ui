@@ -22,13 +22,12 @@ import { NgbPagination } from '@ng-bootstrap/ng-bootstrap'
 import { Subscription } from 'rxjs'
 
 import { CommonModule } from '@angular/common'
-import { Component, Input, OnInit, OnDestroy } from '@angular/core'
+import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 
 import { AttributeDictionaryService } from '../../services/attribute-dictionary.service'
 import { AttributeService } from '../../services/attribute.service'
 import { ConnectionService } from '../../services/connection.service'
 import { DeviceService } from '../../services/device.service'
-import { FloorService } from '../../services/floor.service'
 import { Log, LogService } from '../../services/log.service'
 import { ModelsService } from '../../services/models.service'
 import { Attribute } from '../../shared/attribute'
@@ -216,7 +215,7 @@ export class LogComponent implements OnInit, OnDestroy {
       )
       return JSON.stringify(log.message)
     }
-    if (log.component == 'Attribute') {
+    if (log.component === 'Attribute') {
       const logMessageAttribute: Partial<Attribute> = log.message as Partial<Attribute>
       console.log(
         '[log.component] findNameInLogMessage: logMessageAttribute: ' + JSON.stringify(logMessageAttribute, null, ' '),
@@ -263,7 +262,7 @@ export class LogComponent implements OnInit, OnDestroy {
    * @returns An Observable that emits the device list.
    */
   getDeviceList() {
-    if (this.deviceListGet == true) return null
+    if (this.deviceListGet === true) {return null}
     return this.deviceService.GetDevices().subscribe((data: Device[]) => {
       const tmp = new Device()
       data.unshift(tmp)
@@ -288,7 +287,7 @@ export class LogComponent implements OnInit, OnDestroy {
    * @returns An Observable that emits the model list.
    */
   getModelList() {
-    if (this.modelListGet == true) return null
+    if (this.modelListGet === true) {return null}
     return this.modelService.GetModels().subscribe((data: Model[]) => {
       // Specify the correct type for the data parameter
       const tmp = new Model()
@@ -316,7 +315,7 @@ export class LogComponent implements OnInit, OnDestroy {
    * Logs an error message to the console if the request fails.
    */
   getConnectionList(): void {
-    if (this.connectionListGet === true) return
+    if (this.connectionListGet === true) {return}
     this.connectionService.GetConnections().subscribe({
       next: (data) => {
         this.connectionList = data
@@ -346,7 +345,7 @@ export class LogComponent implements OnInit, OnDestroy {
    * @returns An Observable that emits the attribute dictionary list.
    */
   getAttributeDictionaryList() {
-    if (this.attributeDictionaryListGet == true) return null
+    if (this.attributeDictionaryListGet === true) {return null}
     return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributesDictionary[]) => {
       this.attributeDictionaryList = [...data]
       this.attributeDictionaryListGet = true
@@ -367,7 +366,7 @@ export class LogComponent implements OnInit, OnDestroy {
    * @returns An observable that emits the attribute list.
    */
   getAttributeList(): void {
-    if (this.attributeListGet == true) return
+    if (this.attributeListGet === true) {return}
     this.attributeService.GetAttributes().subscribe((data: Attribute[]) => {
       // Specify the correct type for the data parameter
       const tmp = new Attribute()
@@ -395,7 +394,7 @@ export class LogComponent implements OnInit, OnDestroy {
    */
   getFloorList() {
     // Implementation goes here
-    if (this.attributeListGet == true) return null
+    if (this.attributeListGet === true) {return null}
     return this.attributeService.GetAttributes().subscribe((data: Attribute | Attribute[]) => {
       const tmp = new Attribute()
       if (Array.isArray(data)) {

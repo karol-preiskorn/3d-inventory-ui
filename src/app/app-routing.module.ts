@@ -30,7 +30,9 @@ import { AuthGuard } from './guards/auth.guard'
 import { ResolverDevice } from './resolverDevice'
 import { ResolverModel } from './resolverModel'
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TemplatePageTitleStrategy extends TitleStrategy {
   constructor(private readonly title: Title) {
     super()

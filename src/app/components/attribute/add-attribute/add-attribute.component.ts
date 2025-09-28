@@ -1,7 +1,7 @@
 import { Subscription, take } from 'rxjs'
 
 import { Component, NgZone, OnInit } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
 

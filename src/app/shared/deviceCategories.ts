@@ -35,7 +35,7 @@ export class DeviceCategoryDict {
   }
 
   findCategory(deviceCategory: DeviceCategory, searchCategory: string) {
-    return deviceCategory.name == searchCategory
+    return deviceCategory.name === searchCategory
   }
 
   public getRandom(): DeviceCategory {

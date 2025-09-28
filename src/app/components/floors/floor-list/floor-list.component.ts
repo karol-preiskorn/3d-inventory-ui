@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { Component, NgZone, OnInit, OnDestroy } from '@angular/core'
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
 import { FloorService } from '../../../services/floor.service'

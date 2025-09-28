@@ -1,7 +1,7 @@
-import { Observable, of, throwError, firstValueFrom } from 'rxjs'
+import { firstValueFrom, Observable, of, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
 import { Injectable, NgZone } from '@angular/core'
 import { Router } from '@angular/router'
 
@@ -239,7 +239,7 @@ export class AttributeService {
    * @param result - optional value to return as the observable result
    */
   private handleErrorTemplate<T>(operation = 'operation', result?: T) {
-    return (error: HttpErrorResponse): Observable<T> => {
+    return (_error: HttpErrorResponse): Observable<T> => {
       if (result === undefined || result === null) {
         console.warn(`attribute.service.handleErrorTemplate: ${operation} returned a null or undefined result.`)
       }
