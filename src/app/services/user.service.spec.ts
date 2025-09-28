@@ -7,6 +7,7 @@ import { AuthenticationService } from './authentication.service';
 import { CreateUserRequest, Permission, UpdateUserRequest, User } from '../shared/user';
 import { generateTestPassword } from '../testing/test-utils';
 
+// eslint-disable-next-line max-lines-per-function
 describe('UserService', () => {
   let service: UserService;
   let httpMock: HttpTestingController;
@@ -46,7 +47,7 @@ describe('UserService', () => {
 
     // Set up default auth headers mock
     authServiceSpy.getAuthHeaders.and.returnValue(
-      new Headers({ 'Authorization': 'Bearer test-token', 'Content-Type': 'application/json' }) as any
+      new Headers({ 'Authorization': 'Bearer test-token', 'Content-Type': 'application/json' }) as Headers
     );
   });
 
@@ -219,7 +220,7 @@ describe('UserService', () => {
         name: 'A', // Too short
         email: 'invalid-email', // Invalid format
         password: '123', // Too short
-        permissions: ['invalid-permission'] as any // Invalid permission
+        permissions: ['invalid-permission'] as string[] // Invalid permission
       };
 
       const errors = service.validateUserData(invalidUser);

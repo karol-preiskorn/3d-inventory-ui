@@ -8,6 +8,7 @@ import { Router } from '@angular/router'
 import { environment } from '../../environments/environment'
 import { Model } from '../shared/model'
 import { LogService } from './log.service'
+import { DebugService } from './debug.service'
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ export class ModelsService {
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router,
+    private debugService: DebugService,
   ) {}
 
   httpOptions = {
@@ -68,7 +70,7 @@ export class ModelsService {
    * @returns An Observable that emits the created model.
    */
   CreateModel(data: Model): Observable<{ acknowledged: boolean; insertedId: string } | Model> {
-    console.log('Service.CreateModel: ' + JSON.stringify(data, null, ' '))
+    this.debugService.api('POST', '/models', data)
     return this.http
       .post<Model>(environment.baseurl + '/models/', JSON.stringify(data, null, ' '), this.httpOptions)
       .pipe(
@@ -85,13 +87,13 @@ export class ModelsService {
    * @returns The UUID of the cloned model.
    */
   CloneModel(id: string): string {
-    console.log(`ModelService.CloneModel: ${JSON.stringify(id, null, ' ')}`)
+    this.debugService.debug('CloneModel called with id:', id)
     let idConed = ''
     this.GetModel(id).subscribe((value: Model) => {
-      console.log('Get Model: ' + JSON.stringify(value, null, ' '))
+      this.debugService.debug('Get Model:', value)
       this.CreateModel(value).subscribe(
         (v: Model | { acknowledged: boolean; insertedId: string }) => {
-          console.log('Create Model: ' + JSON.stringify(v, null, ' '))
+          this.debugService.debug('Create Model:', v)
           if ('_id' in v) {
             idConed = String(v._id) // Convert 'ObjectId' to string
           } else if ('insertedId' in v) {
@@ -99,14 +101,14 @@ export class ModelsService {
           }
           this.ngZone.run(() => this.router.navigateByUrl('models-list'))
         },
-        (err: any) => {
-          console.error(err)
+        (err: Error | unknown) => {
+          this.debugService.error('CloneModel error:', err)
           catchError(this.handleErrorTemplate<Model>('CloneModel', value))
         },
         () => this.ngZone.run(() => this.router.navigateByUrl('models-list')),
       )
     })
-    console.log('Get after Model: ' + JSON.stringify(this.model, null, ' '))
+    this.debugService.debug('Get after Model:', this.model)
     return idConed
   }
 
@@ -132,11 +134,11 @@ export class ModelsService {
    * @template T - The type of the result expected from the operation
    */
   private handleErrorTemplate<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(
-        `ModelsService.handleErrorTemplate: ${operation} failed: ${error.message}, Status: ${(error as any)?.status || 'N/A'}, Stack: ${error.stack || 'N/A'}`,
+    return (error: Error & { status?: number; message: string }): Observable<T> => {
+      this.debugService.error(
+        `ModelsService.handleErrorTemplate: ${operation} failed: ${error.message}, Status: ${error.status || 'N/A'}, Stack: ${error.stack || 'N/A'}`
       )
-      console.error(`ModelsService.handleErrorTemplate: ${operation} failed: ${error.message}`)
+      this.debugService.error(`ModelsService.handleErrorTemplate: ${operation} failed: ${error.message}`)
       return of(result as T)
     }
   }

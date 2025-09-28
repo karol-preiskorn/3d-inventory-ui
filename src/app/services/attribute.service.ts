@@ -144,9 +144,9 @@ export class AttributeService {
     } catch (error) {
       console.error('SyncRequestClient().get<Attribute[]>: ' + url_device + ' ' + error)
     }
-    console.log('device.id: ' + device._id + ' ' + url_device)
-    console.log('device.modelId: ' + device.modelId + ' ' + url_model)
-    console.log('GetContextAttributes.attributes: ' + attributes)
+    // console.log('device.id: ' + device._id + ' ' + url_device)
+    // console.log('device.modelId: ' + device.modelId + ' ' + url_model)
+    // console.log('GetContextAttributes.attributes: ' + attributes)
     return attributes
   }
 
@@ -191,10 +191,10 @@ export class AttributeService {
    */
   CloneAttribute(id: string): string {
     this.GetAttribute(id).subscribe((value: Attribute) => {
-      console.log('Get attribute: ' + JSON.stringify(value, null, ' '))
+      // console.log('Get attribute: ' + JSON.stringify(value, null, ' '))
       this.CreateAttribute(value).subscribe({
-        next: (v) => {
-          console.log('Create attribute: ' + JSON.stringify(v, null, ' '))
+        next: (_v) => {
+          // console.log('Create attribute: ' + JSON.stringify(v, null, ' '))
           this.ngZone.run(() => this.router.navigateByUrl('attribute-list'))
         },
         complete: () => this.ngZone.run(() => this.router.navigateByUrl('attribute-list')),

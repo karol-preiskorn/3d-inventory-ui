@@ -1,7 +1,7 @@
 import { lastValueFrom } from 'rxjs'
 
 import { CommonModule } from '@angular/common'
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import {
   AbstractControl,
   FormBuilder,
@@ -28,6 +28,7 @@ import { LogComponent } from '../../log/log.component'
   templateUrl: './edit-device.component.html',
   styleUrls: ['./edit-device.component.scss'],
   imports: [ReactiveFormsModule, CommonModule, NgbPaginationModule, LogComponent, AttributeListComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DeviceEditComponent implements OnInit {
   device: Device = new Device()
@@ -123,7 +124,7 @@ export class DeviceEditComponent implements OnInit {
 
   async submitForm() {
     if (this.editDeviceForm.valid && this.editDeviceForm.touched) {
-      console.log('DeviceEditComponent.submitForm(): ' + JSON.stringify(this.editDeviceForm.value, null, 2))
+      // console.log('DeviceEditComponent.submitForm(): ' + JSON.stringify(this.editDeviceForm.value, null, 2))
       const { _id } = this.editDeviceForm.value
       const log: LogIn = {
         message: this.editDeviceForm.value,

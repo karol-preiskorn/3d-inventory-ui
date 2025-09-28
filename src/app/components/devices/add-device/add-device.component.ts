@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
@@ -19,6 +19,7 @@ import Validation from '../../../shared/validation'
   styleUrls: ['./add-device.component.scss'],
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DeviceAddComponent implements OnInit {
   device: Device
@@ -158,15 +159,16 @@ export class DeviceAddComponent implements OnInit {
     if (this.addDeviceForm.invalid) {
       return
     }
-    console.log('Submit Form Add Device: ' + JSON.stringify(this.addDeviceForm.value))
+    // console.log('Submit Form Add Device: ' + JSON.stringify(this.addDeviceForm.value))
     this.devicesService.CreateDevice(this.addDeviceForm.value).subscribe((res) => {
-      console.log('Device response: ' + JSON.stringify(res, null, 2))
+      // console.log('Device response: ' + JSON.stringify(res, null, 2))
       this.isSubmitted = true
-      const insertedId = (res as any).insertedId ? (res as any).insertedId : (res as any).id
+      const response = res as { insertedId?: string; id?: string }
+      const insertedId = response.insertedId ? response.insertedId : response.id
       let device = this.addDeviceForm.value as Device
       device = { ...device, _id: insertedId || '' } // Ensure _id is set
       this.device = device
-      console.log('Device with _id ' + insertedId + ' created: ' + JSON.stringify(device, null, 2))
+      // console.log('Device with _id ' + insertedId + ' created: ' + JSON.stringify(device, null, 2))
       this.logService
         .CreateLog({
           message: device,

@@ -1,8 +1,9 @@
-import { Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { Router } from '@angular/router'
 import { Observable, of } from 'rxjs'
 
+import { DebugService } from '../../../services/debug.service'
 import { LogService } from '../../../services/log.service'
 import { ModelsService } from '../../../services/models.service'
 import { Model } from '../../../shared/model'
@@ -15,12 +16,13 @@ import { NgbPagination } from '@ng-bootstrap/ng-bootstrap'
   styleUrls: ['./model-list.component.scss'],
   standalone: true,
   imports: [CommonModule, NgbPagination, LogComponent], // Add LogComponent to imports
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModelsListComponent implements OnInit {
   modelListPage: number = 1
   pageSize = 10 // Number of items per page
   totalItems = 0 // Total number of items
-  ModelsList: Array<any> = []
+  ModelsList: Array<Model> = []
   component: string = 'models'
   componentName: string = 'Models'
   selectedModel: Model | null = null // Declare selectedModel property
@@ -30,6 +32,7 @@ export class ModelsListComponent implements OnInit {
     private readonly ngZone: NgZone,
     public modelsService: ModelsService,
     private readonly logService: LogService,
+    private readonly debugService: DebugService,
   ) {}
 
   /**
@@ -47,7 +50,7 @@ export class ModelsListComponent implements OnInit {
     this.loadModels().subscribe((data: Model[]) => {
       this.ModelsList = data
     })
-    console.log(`ModelsListComponent initialized with component: ${this.component}`)
+    this.debugService.debug(`ModelsListComponent initialized with component: ${this.component}`);
   }
 
   /**
@@ -57,7 +60,7 @@ export class ModelsListComponent implements OnInit {
   DeleteModel(id: string) {
     this.logService.CreateLog({ message: { id: id }, objectId: id, operation: 'Delete', component: this.component })
     return this.modelsService.DeleteModel(id).subscribe(() => {
-      console.log(id + ' deleted')
+      this.debugService.info(id + ' deleted');
       this.ngOnInit()
       this.router.navigate(['/models-list/'])
     })
@@ -76,7 +79,7 @@ export class ModelsListComponent implements OnInit {
         .CreateLog({ message: { id, new_id: clonedId }, operation: 'Clone', component: this.component })
         .subscribe({
           next: () => {
-            console.log(`Model cloned with new ID: ${clonedId}`)
+            this.debugService.info(`Model cloned with new ID: ${clonedId}`);
             this.loadModels().subscribe((data: Model[]) => {
               this.ModelsList = data
             })

@@ -1,11 +1,12 @@
 import { Subscription } from 'rxjs'
 
 import { CommonModule } from '@angular/common'
-import { Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 
 import { LogService } from '../../../services/log.service'
+import { DebugService } from '../../../services/debug.service'
 import { ModelsService } from '../../../services/models.service'
 import { Model } from '../../../shared/model'
 import { LogComponent } from '../../log/log.component' // Import the standalone app-log component
@@ -16,6 +17,7 @@ import { LogComponent } from '../../log/log.component' // Import the standalone 
   styleUrls: ['./edit-model.component.scss'],
   providers: [CommonModule, LogComponent],
   imports: [CommonModule, ReactiveFormsModule, LogComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModelEditComponent implements OnInit {
   attributeComponent: string = ''
@@ -34,6 +36,7 @@ export class ModelEditComponent implements OnInit {
     private ngZone: NgZone,
     private router: Router,
     private logService: LogService,
+    private debugService: DebugService,
   ) {}
 
   ngOnInit() {
@@ -70,7 +73,7 @@ export class ModelEditComponent implements OnInit {
 
   private getModel(): Subscription {
     return this.modelsService.GetModel(this.inputId).subscribe((data: Model) => {
-      console.log('GetModel ' + JSON.stringify(data, null, ' '))
+      this.debugService.api('GET', `/models/${this.inputId}`, data)
       this.model = data
       this.editModelForm.setValue({
         id: data._id,
@@ -93,7 +96,7 @@ export class ModelEditComponent implements OnInit {
 
   onChange(event: Event) {
     const newValue = (event.target as HTMLInputElement).value
-    console.log('Input value changed:', newValue)
+    this.debugService.debug('Input value changed:', newValue)
   }
 
   get id() {
@@ -127,7 +130,7 @@ export class ModelEditComponent implements OnInit {
         objectId: this.editModelForm.value.id,
       }
       this.logService.CreateLog(log).subscribe(() => {
-        console.log('logService.CreateLog(log): ' + JSON.stringify(log))
+        this.debugService.debug('Log created:', log)
       })
       this.modelsService
         .UpdateModel(this.inputId.toString(), this.editModelForm.value as unknown as Model)

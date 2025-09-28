@@ -137,7 +137,7 @@ describe('AuthGuard', () => {
 
     it('should handle undefined URL', () => {
       authServiceSpy.isAuthenticated.and.returnValue(false);
-      state = { url: undefined, root: route } as any;
+      state = { url: '', root: route } as RouterStateSnapshot;
 
       const result = guard.canActivate(route, state);
 

@@ -15,6 +15,7 @@ import Validation from '../../../shared/validation'
   templateUrl: './add-floor.component.html',
   styleUrls: ['./add-floor.component.scss'],
   imports: [CommonModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FloorAddComponent implements OnInit {
   floor: Floors
@@ -148,7 +149,7 @@ export class FloorAddComponent implements OnInit {
     try {
       return JSON.stringify(data, null, ' ')
     } catch (error) {
-      console.error('Error stringify data:', error)
+      this.debugService.error('Error stringify data:', error)
       return '[Unable to display data]'
     }
   }
@@ -173,7 +174,7 @@ export class FloorAddComponent implements OnInit {
       }
       return control
     } catch (error) {
-      console.error('getDimension error:', error)
+      this.debugService.error('getDimension error:', error)
       return null
     }
   }
@@ -194,7 +195,7 @@ export class FloorAddComponent implements OnInit {
       }
       return control.valid
     } catch (error) {
-      console.error('isControlValid error:', error)
+      this.debugService.error('isControlValid error:', error)
       return false
     }
   }
@@ -212,7 +213,7 @@ export class FloorAddComponent implements OnInit {
       })
       this.dimension.push(fg)
     } catch (error) {
-      console.error('Error adding dimension:', error)
+      this.debugService.error('Error adding dimension:', error)
       // Optionally, show a user-friendly message or handle UI state
       // e.g., this.isSubmitDisabled = true;
     }
@@ -232,9 +233,9 @@ export class FloorAddComponent implements OnInit {
     // Check validity after generating values
     this.floorForm.updateValueAndValidity()
     if (this.floorForm.valid) {
-      console.log('The entire floor form is valid.')
+      this.debugService.debug('The entire floor form is valid.')
     } else {
-      console.log('The floor form is invalid:', this.floorForm.errors)
+      this.debugService.debug('The floor form is invalid:', this.floorForm.errors)
     }
   }
 
@@ -253,31 +254,31 @@ export class FloorAddComponent implements OnInit {
 
     // Example usage: check if the 'description' control in the dimension array at index i is valid
     const isDescriptionValid = group.get('description')?.valid
-    console.log(`Dimension[${i}] description valid:`, isDescriptionValid)
-    console.log(`Dimension[${i}] group valid:`, group.valid)
-    console.log('Overall form valid:', this.floorForm.valid)
+    this.debugService.debug(`Dimension[${i}] description valid:`, isDescriptionValid)
+    this.debugService.debug(`Dimension[${i}] group valid:`, group.valid)
+    this.debugService.debug('Overall form valid:', this.floorForm.valid)
   }
 
-  trackByFn(index: number, _item: any): number {
+  trackByFn(index: number, _item: unknown): number {
     return index
   }
 
   async onSubmit() {
     this.isSubmitted = true
     if (this.floorForm.invalid) {
-      console.error('Form is invalid:', this.floorForm.errors)
+      this.debugService.error('Form is invalid:', this.floorForm.errors)
       return
     }
     this.isSubmitDisabled = true
     try {
       const floorData: Floors = this.floorForm.value as Floors
-      console.info('Floor Data to Submit:', JSON.stringify(floorData, null, ' '))
+      this.debugService.info('Floor Data to Submit:', JSON.stringify(floorData, null, ' '))
       const returnValue = await firstValueFrom(this.floorService.CreateFloor(floorData))
-      console.info(`Floor created successfully:  ${returnValue._id}`)
+      this.debugService.info(`Floor created successfully:  ${returnValue._id}`)
       this.floorForm.get('_id')?.setValue(returnValue._id) // Ensure the form control is updated with the new ID
       this.floorForm.markAsPristine() // Mark the form as pristine after submission
       this.isSubmitDisabled = false // Re-enable the submit button
-      console.info('Form submitted successfully:', this.floorForm.value)
+      this.debugService.info('Form submitted successfully:', this.floorForm.value)
 
       this.logService
         .CreateLog({
@@ -290,11 +291,11 @@ export class FloorAddComponent implements OnInit {
           this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
         })
 
-      console.info('Log created successfully')
+      this.debugService.info('Log created successfully')
       this.router.navigateByUrl('floor-list')
       return
     } catch (error) {
-      console.error('Error submitting form:', error)
+      this.debugService.error('Error submitting form:', error)
       this.isSubmitDisabled = false
     }
   }

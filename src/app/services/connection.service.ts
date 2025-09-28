@@ -80,11 +80,11 @@ export class ConnectionService {
   CloneConnection(id: string): string {
     const id_uuid = uuidv4().toString().substr(6, 36) // Call the uuidv4 function
     this.GetConnection(id).subscribe((value: Connection) => {
-      console.log('Get Connections: ' + JSON.stringify(value))
+      // console.log('Get Connections: ' + JSON.stringify(value))
       value._id = id_uuid
       this.CreateConnection(value).subscribe({
-        next: (v) => {
-          console.log('Create Connections: ' + JSON.stringify(v))
+        next: (_v) => {
+          // console.log('Create Connections: ' + JSON.stringify(v))
           this.ngZone.run(() => this.router.navigateByUrl('connections-list'))
         },
         complete: () => this.ngZone.run(() => this.router.navigateByUrl('connections-list')),
@@ -117,7 +117,7 @@ export class ConnectionService {
     } else {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`
     }
-    console.log(JSON.stringify(errorMessage))
+    console.error(JSON.stringify(errorMessage))
 
     return throwError(() => {
       return errorMessage

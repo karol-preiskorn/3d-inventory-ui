@@ -21,7 +21,7 @@ describe('UnitDictionary', () => {
 
     it('should return items with required structure', () => {
       const items = dictionary.getAllUnits();
-      items.forEach((item: any) => {
+      items.forEach((item: UnitDictionaryItem) => {
         expect(item.name).toBeDefined();
         expect(item.description).toBeDefined();
         expect(typeof item.name).toBe('string');
@@ -31,7 +31,7 @@ describe('UnitDictionary', () => {
 
     it('should include length units', () => {
       const items = dictionary.getAllUnits();
-      const names = items.map((item: any) => item.name);
+      const names = items.map((item: UnitDictionaryItem) => item.name);
       expect(names).toContain('m');
       expect(names).toContain('cm');
       expect(names).toContain('mm');
@@ -40,7 +40,7 @@ describe('UnitDictionary', () => {
 
     it('should include mass units', () => {
       const items = dictionary.getAllUnits();
-      const names = items.map((item: any) => item.name);
+      const names = items.map((item: UnitDictionaryItem) => item.name);
       expect(names).toContain('g');
       expect(names).toContain('kg');
       expect(names).toContain('mg');
@@ -48,14 +48,14 @@ describe('UnitDictionary', () => {
 
     it('should include volume units', () => {
       const items = dictionary.getAllUnits();
-      const names = items.map((item: any) => item.name);
+      const names = items.map((item: UnitDictionaryItem) => item.name);
       expect(names).toContain('l');
       expect(names).toContain('ml');
     });
 
     it('should include time units', () => {
       const items = dictionary.getAllUnits();
-      const names = items.map((item: any) => item.name);
+      const names = items.map((item: UnitDictionaryItem) => item.name);
       expect(names).toContain('s');
       expect(names).toContain('min');
       expect(names).toContain('h');
@@ -63,7 +63,7 @@ describe('UnitDictionary', () => {
 
     it('should include data size units', () => {
       const items = dictionary.getAllUnits();
-      const names = items.map((item: any) => item.name);
+      const names = items.map((item: UnitDictionaryItem) => item.name);
       expect(names).toContain('B');
       expect(names).toContain('KB');
       expect(names).toContain('MB');
@@ -83,7 +83,7 @@ describe('UnitDictionary', () => {
       const allItems = dictionary.getAllUnits();
       const randomItem = dictionary.getRandomUnit();
 
-      const found = allItems.find((item: any) =>
+      const found = allItems.find((item: UnitDictionaryItem) =>
         item.name === randomItem.name &&
         item.description === randomItem.description
       );
@@ -99,7 +99,7 @@ describe('UnitDictionary', () => {
 
     it('should return a name from available units', () => {
       const allItems = dictionary.getAllUnits();
-      const allNames = allItems.map((item: any) => item.name);
+      const allNames = allItems.map((item: UnitDictionaryItem) => item.name);
       const randomName = dictionary.getRandomUnitName();
       expect(allNames).toContain(randomName);
     });

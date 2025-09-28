@@ -241,7 +241,7 @@ export class AuthenticationService {
   /**
    * Handle HTTP errors
    */
-  private handleError = (error: any): Observable<never> => {
+  private handleError = (error: { error?: { message: string } | ErrorEvent; status?: number; message?: string }): Observable<never> => {
     let errorMessage = 'An unknown error occurred';
 
     if (error.error instanceof ErrorEvent) {
@@ -249,7 +249,7 @@ export class AuthenticationService {
       errorMessage = error.error.message;
     } else {
       // Server-side error
-      if (error.error && error.error.message) {
+      if (error.error && 'message' in error.error) {
         errorMessage = error.error.message;
       } else if (error.message) {
         errorMessage = error.message;

@@ -2,12 +2,13 @@ import { Observable, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 import { v4 as uuidv4 } from 'uuid'
 
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
 import { Injectable, NgZone } from '@angular/core'
 import { Router } from '@angular/router'
 
 import { environment } from '../../environments/environment'
 import { Floors } from '../shared/floors'
+import { DebugService } from './debug.service'
 import { LogService } from './log.service'
 
 @Injectable({
@@ -20,6 +21,7 @@ export class FloorService {
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router,
+    private readonly debugService: DebugService,
   ) {}
 
   httpOptions = {
@@ -120,13 +122,13 @@ export class FloorService {
    * @param error - The error object containing the error message and status.
    * @returns An Observable that emits the error message.
    */
-  errorHandl(error: any): Observable<never> {
+  errorHandl(error: HttpErrorResponse): Observable<never> {
     const errorMessage = this.formatErrorMessage(error)
-    console.error(errorMessage)
+    this.debugService.error('FloorService error:', errorMessage)
     return throwError(() => new Error(errorMessage))
   }
 
-  private formatErrorMessage(error: any): string {
+  private formatErrorMessage(error: HttpErrorResponse): string {
     if (error.error instanceof ErrorEvent) {
       return error.error.message
     }

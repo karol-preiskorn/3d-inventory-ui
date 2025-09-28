@@ -11,6 +11,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core'
 
 import { environment } from '../../environments/environment'
+import { DebugService } from './debug.service'
 
 /**
  * Represents the parameters for retrieving logs.
@@ -29,7 +30,7 @@ export interface Log {
   objectId?: string
   operation: string // [create, update, delete, clone]
   component: string // [device, model, category, floor]
-  message: Record<string, any> // object json
+  message: Record<string, unknown> // object json
 }
 
 /**
@@ -59,7 +60,7 @@ export class LogService {
   baseurl = environment.baseurl
   attributeComponentId?: string
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private debugService: DebugService) { }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -92,7 +93,7 @@ export class LogService {
    */
   GetComponentLogs(component: string): Observable<Log[]> {
     const url = `${environment.baseurl}/logs/component/${encodeURIComponent(component)}`
-    console.log(`[LogService.GetComponentLogs] Fetching logs for component: ${component} from ${url}`)
+    this.debugService.debug(`[LogService.GetComponentLogs] Fetching logs for component: ${component} from ${url}`);
     return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
   }
 
@@ -103,7 +104,7 @@ export class LogService {
    */
   GetDeviceLogs(id: string): Observable<Log[]> {
     const url = environment.baseurl + '/logs/devices/' + id
-    console.log('LogComponent.GetDeviceLogs(' + id + ') ' + url)
+    this.debugService.debug('LogComponent.GetDeviceLogs(' + id + ') ' + url);
     return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
   }
 
@@ -114,7 +115,7 @@ export class LogService {
    */
   GetAttributeLogs(id: string): Observable<Log[]> {
     const url = environment.baseurl + '/logs/attributes/' + id
-    console.log('LogComponent.GetAttributeLogs(' + id + ') ' + url)
+    this.debugService.debug('LogComponent.GetAttributeLogs(' + id + ') ' + url);
     return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
   }
 
@@ -150,7 +151,7 @@ export class LogService {
    * @returns An Observable that emits the created Log object.
    */
   CreateLog(data: LogIn): Observable<Log> {
-    console.log('LogService.CreateLog: ' + JSON.stringify(data, null, 2))
+    this.debugService.debug('LogService.CreateLog: ' + JSON.stringify(data, null, 2));
     return this.http.post<Log>(this.getLogsUrl(), data, this.httpOptions).pipe(retry(1), catchError(this.handleError))
   }
 
@@ -160,7 +161,7 @@ export class LogService {
    * @param data - The updated log data.
    * @returns An Observable that emits a Log object.
    */
-  UpdateLog(id: string | null, data: any): Observable<Log | LogIn | null> {
+  UpdateLog(id: string | null, data: LogIn): Observable<Log | LogIn | null> {
     const sData = JSON.stringify(data, null, 2)
     return this.http
       .put<Log | LogIn>(environment.baseurl + '/logs/' + id, sData, this.httpOptions)

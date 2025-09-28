@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common'
-import { Component, NgZone, OnDestroy, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, NgZone, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
+import { DebugService } from '../../../services/debug.service'
 import { FloorService } from '../../../services/floor.service'
 import { LogService } from '../../../services/log.service'
 import { Floors } from '../../../shared/floors'
@@ -16,6 +17,7 @@ import { Subject, takeUntil } from 'rxjs'
   styleUrls: ['./floor-list.component.scss'],
   standalone: true,
   imports: [CommonModule, NgbPaginationModule, LogComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FloorListComponent implements OnInit, OnDestroy {
   floorList: Floors[] = []
@@ -50,6 +52,7 @@ export class FloorListComponent implements OnInit, OnDestroy {
     private readonly logService: LogService,
     private readonly router: Router,
     private readonly ngZone: NgZone,
+    private readonly debugService: DebugService,
   ) { }
 
   loadFloors() {
@@ -62,7 +65,7 @@ export class FloorListComponent implements OnInit, OnDestroy {
   }
 
   deleteFloor(id: string) {
-    console.info('[deleteFloor] delete floor:', id || 'undefined')
+    this.debugService.info('[deleteFloor] delete floor:', id || 'undefined');
     this.logService
       .CreateLog({
         message: { id },
@@ -84,7 +87,7 @@ export class FloorListComponent implements OnInit, OnDestroy {
             complete: () => {
               // Optionally, you can call this.loadFloors() here if you want to refresh from backend
               this.loadFloors()
-              console.log('[deleteFloor] Floor deleted successfully:', id)
+              this.debugService.info('[deleteFloor] Floor deleted successfully:', id);
             },
           })
         },

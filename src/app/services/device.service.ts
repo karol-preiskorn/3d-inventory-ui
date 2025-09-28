@@ -66,23 +66,23 @@ export class DeviceService {
       isDebugMode: false,
     }
     this.getDeviceSynchronize(id).subscribe((value: Device) => {
-      console.info('Get Device: ' + JSON.stringify(value, null, ' '))
+      // console.info('Get Device: ' + JSON.stringify(value, null, ' '))
       const deviceToCreate = value
       if (deviceToCreate._id !== undefined) {
         delete (deviceToCreate as { _id?: string })._id
       }
-      console.info('Clone DeviceCreate: ' + JSON.stringify(deviceToCreate, null, ' '))
+      // console.info('Clone DeviceCreate: ' + JSON.stringify(deviceToCreate, null, ' '))
       deviceToCreate.name += ' (Clone)'
       this.CreateDevice(deviceToCreate).subscribe((createdDevice: Device) => {
         result = createdDevice
-        console.info('Create Cloned Device: ' + JSON.stringify(createdDevice, null, ' '))
+        // console.info('Create Cloned Device: ' + JSON.stringify(createdDevice, null, ' '))
         const log: LogIn = {
           objectId: result._id,
           operation: 'Clone',
           component: 'Device',
           message: deviceToCreate,
         }
-        console.log('LogService.CreateLog: ' + JSON.stringify(log, null, ' '))
+        // console.log('LogService.CreateLog: ' + JSON.stringify(log, null, ' '))
         this.http
           .post<Log | LogIn>(`${environment.baseurl}/logs/`, log, this.httpOptions)
           .pipe(retry(1), catchError(this.handleErrorTemplate<LogIn>('CreateLog', log)))
@@ -93,14 +93,14 @@ export class DeviceService {
   }
 
   UpdateDevice(data: Device): Observable<Device> {
-    console.log(
-      'device.service.updateDevice: PUT ' +
-        environment.baseurl +
-        '/devices/' +
-        data._id +
-        '  ' +
-        JSON.stringify(data, null, ' '),
-    )
+    // console.log(
+    //   'device.service.updateDevice: PUT ' +
+    //     environment.baseurl +
+    //     '/devices/' +
+    //     data._id +
+    //     '  ' +
+    //     JSON.stringify(data, null, ' '),
+    // )
     const requestData = JSON.stringify(data, null, ' ')
     return this.http
       .put<Device>(environment.baseurl + '/devices/' + data._id, requestData, this.httpOptions)

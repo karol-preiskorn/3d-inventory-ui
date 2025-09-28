@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
@@ -13,6 +13,20 @@ import {
   User
 } from '../shared/user';
 import { AuthenticationService } from './authentication.service';
+
+// Response interfaces for API calls
+interface UserResponse {
+  acknowledged?: boolean;
+  insertedId?: string;
+  modifiedCount?: number;
+  deletedCount?: number;
+  message?: string;
+}
+
+interface PermissionResponse {
+  success: boolean;
+  message?: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -73,8 +87,8 @@ export class UserService {
   /**
    * Create new user
    */
-  createUser(userRequest: CreateUserRequest): Observable<any> {
-    return this.http.post(`${this.API_URL}${this.USERS_ENDPOINT}`, userRequest, {
+  createUser(userRequest: CreateUserRequest): Observable<UserResponse> {
+    return this.http.post<UserResponse>(`${this.API_URL}${this.USERS_ENDPOINT}`, userRequest, {
       headers: this.authService.getAuthHeaders()
     }).pipe(
       catchError(this.handleError)
@@ -84,8 +98,8 @@ export class UserService {
   /**
    * Update existing user
    */
-  updateUser(id: string, userRequest: UpdateUserRequest): Observable<any> {
-    return this.http.put(`${this.API_URL}${this.USERS_ENDPOINT}/${id}`, userRequest, {
+  updateUser(id: string, userRequest: UpdateUserRequest): Observable<UserResponse> {
+    return this.http.put<UserResponse>(`${this.API_URL}${this.USERS_ENDPOINT}/${id}`, userRequest, {
       headers: this.authService.getAuthHeaders()
     }).pipe(
       catchError(this.handleError)
@@ -95,8 +109,8 @@ export class UserService {
   /**
    * Delete user by ID
    */
-  deleteUser(id: string): Observable<any> {
-    return this.http.delete(`${this.API_URL}${this.USERS_ENDPOINT}/${id}`, {
+  deleteUser(id: string): Observable<UserResponse> {
+    return this.http.delete<UserResponse>(`${this.API_URL}${this.USERS_ENDPOINT}/${id}`, {
       headers: this.authService.getAuthHeaders()
     }).pipe(
       catchError(this.handleError)
@@ -106,7 +120,7 @@ export class UserService {
   /**
    * Delete all users (admin only)
    */
-  deleteAllUsers(): Observable<any> {
+  deleteAllUsers(): Observable<UserResponse> {
     return this.http.delete(`${this.API_URL}${this.USERS_ENDPOINT}`, {
       headers: this.authService.getAuthHeaders()
     }).pipe(
@@ -117,8 +131,8 @@ export class UserService {
   /**
    * Add permission to user
    */
-  addPermissionToUser(userId: string, permission: string): Observable<any> {
-    return this.http.post(`${this.API_URL}${this.USERS_ENDPOINT}/user/${userId}/right/${permission}`, {}, {
+  addPermissionToUser(userId: string, permission: string): Observable<PermissionResponse> {
+    return this.http.post<PermissionResponse>(`${this.API_URL}${this.USERS_ENDPOINT}/user/${userId}/right/${permission}`, {}, {
       headers: this.authService.getAuthHeaders()
     }).pipe(
       catchError(this.handleError)
@@ -128,8 +142,8 @@ export class UserService {
   /**
    * Remove permission from user
    */
-  removePermissionFromUser(userId: string, permission: string): Observable<any> {
-    return this.http.delete(`${this.API_URL}${this.USERS_ENDPOINT}/user/${userId}/right/${permission}`, {
+  removePermissionFromUser(userId: string, permission: string): Observable<PermissionResponse> {
+    return this.http.delete<PermissionResponse>(`${this.API_URL}${this.USERS_ENDPOINT}/user/${userId}/right/${permission}`, {
       headers: this.authService.getAuthHeaders()
     }).pipe(
       catchError(this.handleError)
@@ -139,7 +153,7 @@ export class UserService {
   /**
    * Update user permissions
    */
-  updateUserPermissions(userId: string, permissions: string[]): Observable<any> {
+  updateUserPermissions(userId: string, permissions: string[]): Observable<UserResponse> {
     const updateRequest: UpdateUserRequest = {
       permissions: permissions
     };
@@ -172,7 +186,7 @@ export class UserService {
   /**
    * Assign role to user (replaces current permissions)
    */
-  assignRoleToUser(userId: string, roleId: string): Observable<any> {
+  assignRoleToUser(userId: string, roleId: string): Observable<UserResponse> {
     const permissions = this.getPermissionsForRole(roleId);
     return this.updateUserPermissions(userId, permissions);
   }
@@ -313,7 +327,7 @@ export class UserService {
   /**
    * Handle HTTP errors
    */
-  private handleError = (error: any): Observable<never> => {
+  private handleError = (error: HttpErrorResponse): Observable<never> => {
     let errorMessage = 'An unknown error occurred';
 
     if (error.error instanceof ErrorEvent) {

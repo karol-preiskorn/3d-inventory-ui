@@ -128,12 +128,13 @@ export class AttributeDictionaryService {
    * @param error - The error object containing the error message and status.
    * @returns An Observable that emits the error message.
    */
-  private errorHandler(error: any) {
+  private errorHandler(error: { error?: { message?: string } | ErrorEvent; status?: number; message?: string }) {
     let errorMessage: string
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message
     } else {
-      const detailedMessage = error.message || error.error?.message || 'Unknown error'
+      const errorMsg = error.error && 'message' in error.error ? error.error.message : 'Unknown error'
+      const detailedMessage = error.message || errorMsg
       errorMessage = `Error Code: ${error.status} | Message: ${detailedMessage}`
     }
     console.error(errorMessage)

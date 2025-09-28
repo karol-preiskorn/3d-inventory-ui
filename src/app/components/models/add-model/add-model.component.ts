@@ -1,12 +1,13 @@
 import { environment } from 'src/environments/environment'
 
 import { CommonModule } from '@angular/common'
-import { Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
 
 import { LogService } from '../../../services/log.service'
+import { DebugService } from '../../../services/debug.service'
 import { ModelsService } from '../../../services/models.service'
 import { DeviceCategoryDict } from '../../../shared/deviceCategories'
 import { DeviceTypeDict } from '../../../shared/DeviceTypes'
@@ -18,6 +19,7 @@ import { Model } from '../../../shared/model'
   styleUrls: ['./add-model.component.scss'],
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModelAddComponent implements OnInit {
   addModelForm: FormGroup
@@ -36,6 +38,7 @@ export class ModelAddComponent implements OnInit {
     public modelsService: ModelsService,
     private readonly logService: LogService,
     private readonly formBuilder: FormBuilder,
+    private readonly debugService: DebugService,
   ) {}
 
   ngOnInit(): void {
@@ -113,15 +116,16 @@ export class ModelAddComponent implements OnInit {
   }
 
   submitForm() {
-    console.log('Submit Model: ' + JSON.stringify(this.addModelForm.value))
+    this.debugService.debug('Submit Model:', this.addModelForm.value)
     this.modelsService
       .CreateModel(this.addModelForm.value)
       .pipe()
       .subscribe((res) => {
+        const response = res as { insertedId?: string; id?: string }
         this.logService
           .CreateLog({
             message: this.addModelForm.value,
-            objectId: (res as any).insertedId ? (res as any).insertedId : (res as any).id,
+            objectId: response.insertedId ? response.insertedId : response.id,
             operation: 'Create',
             component: this.component,
           })

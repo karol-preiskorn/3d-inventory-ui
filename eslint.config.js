@@ -21,20 +21,10 @@ export default [
       "src/assets/**/*" // Ignore asset files
     ]
   },
+  // Configuration for regular TypeScript files (non-spec)
   {
-    languageOptions: {
-      ecmaVersion: 2022,
-      sourceType: "module",
-      globals: {
-        jasmine: false,
-        "jest/globals": true,
-        mongo: true,
-        console: false,
-        window: false,
-        document: false,
-      },
-    },
     files: ["src/**/*.ts"],
+    ignores: ["src/**/*.spec.ts", "src/**/*.test.ts"], // Exclude spec files from this config
     plugins: {
       "@typescript-eslint": typescriptEslintPlugin,
       "@angular-eslint": angularEslintPlugin,
@@ -44,6 +34,13 @@ export default [
       parserOptions: {
         ecmaVersion: 2022,
         sourceType: "module",
+        project: ["./tsconfig.json"], // Use main tsconfig for regular files
+        tsconfigRootDir: __dirname,
+      },
+      globals: {
+        console: false,
+        window: false,
+        document: false,
       },
     },
     rules: {
@@ -62,7 +59,7 @@ export default [
       "@angular-eslint/no-conflicting-lifecycle": "error",
       "@angular-eslint/prefer-on-push-component-change-detection": "warn",
 
-      // TypeScript rules (without type information requirements)
+      // TypeScript rules
       "@typescript-eslint/no-unused-vars": ["error", {
         "argsIgnorePattern": "^_",
         "varsIgnorePattern": "^_"
@@ -90,6 +87,40 @@ export default [
         "ignoreDeclarationSort": true,
         "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
       }],
+    },
+  },
+  // Configuration for spec/test files
+  {
+    files: ["src/**/*.spec.ts", "src/**/*.test.ts"],
+    plugins: {
+      "@typescript-eslint": typescriptEslintPlugin,
+    },
+    languageOptions: {
+      parser: typescriptParser,
+      parserOptions: {
+        ecmaVersion: 2022,
+        sourceType: "module",
+        project: ["./tsconfig.spec.json"], // Use spec tsconfig for test files
+        tsconfigRootDir: __dirname,
+      },
+      globals: {
+        jasmine: false,
+        jest: true,
+        console: false,
+        window: false,
+        document: false,
+      },
+    },
+    rules: {
+      // Relaxed rules for test files
+      "@typescript-eslint/no-unused-vars": ["error", {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }],
+      "@typescript-eslint/no-explicit-any": "warn", // Allow any in tests but warn
+      "no-console": ["warn", { "allow": ["warn", "error"] }],
+      "max-lines-per-function": ["warn", { "max": 200, "skipBlankLines": true, "skipComments": true }], // Longer functions allowed in tests
+      "complexity": ["warn", { "max": 20 }], // Higher complexity allowed in tests
     },
   },
 ]

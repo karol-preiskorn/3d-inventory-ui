@@ -1,8 +1,9 @@
-import { Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
 
+import { DebugService } from '../../../services/debug.service'
 import { FloorService } from '../../../services/floor.service'
 import { LogIn, LogService } from '../../../services/log.service'
 import { FloorDimension, Floors } from '../../../shared/floors'
@@ -15,6 +16,7 @@ import { CommonModule } from '@angular/common'
   templateUrl: './edit-floor.component.html',
   styleUrls: ['./edit-floor.component.scss'],
   imports: [CommonModule, ReactiveFormsModule, LogComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FloorEditComponent implements OnInit {
   floor: Floors
@@ -56,10 +58,11 @@ export class FloorEditComponent implements OnInit {
     private readonly router: Router,
     private readonly floorService: FloorService,
     private readonly logService: LogService,
+    private readonly debugService: DebugService,
   ) { }
 
   ngOnInit() {
-    console.log('--------------- Edit-Floor ----------------')
+    this.debugService.debug('--------------- Edit-Floor ----------------');
     const id: string = this.activatedRoute.snapshot.paramMap.get('id') || ''
     this.inputId = id
     this.component = this.inputId
@@ -67,10 +70,10 @@ export class FloorEditComponent implements OnInit {
     this.floorService.getFloorSynchronize(id).subscribe((floor: Floors) => {
       this.floor = floor
       this.attributeComponentObject = JSON.stringify(this.floor)
-      console.log('edit-device.attributeComponent = ' + this.attributeComponent)
-      console.log('edit-device.attributeComponentObject = ' + this.attributeComponentObject)
+      this.debugService.debug('edit-device.attributeComponent = ' + this.attributeComponent);
+      this.debugService.debug('edit-device.attributeComponentObject = ' + this.attributeComponentObject);
       // TODO: one line mapping for this.floorForm.setValue(this.floor)
-      console.log(this.floor.dimension.map((d: FloorDimension) => this.createDimensionGroup(d)))
+      this.debugService.debug('Floor dimension mapping:', JSON.stringify(this.floor.dimension));
       this.floorForm.controls.id.setValue(id)
       this.floorForm.controls.name.setValue(this.floor.name)
       this.floorForm.controls.address.controls.street.setValue(this.floor.address.street)
@@ -277,7 +280,7 @@ export class FloorEditComponent implements OnInit {
     this.logService.CreateLog(log).subscribe(() => { })
     const id = this.floorForm.value.id || ''
     this.floorService.UpdateFloor(id, this.floorForm.getRawValue() as never).subscribe(() => {
-      console.log('Floor updated!')
+      this.debugService.info('Floor updated!');
       this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
     })
   }

@@ -10,6 +10,7 @@ import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/cor
 import { ActivatedRoute, Router } from '@angular/router'
 
 import { ConnectionService } from '../../../services/connection.service'
+import { DebugService } from '../../../services/debug.service'
 import { DeviceService } from '../../../services/device.service'
 import { LogService } from '../../../services/log.service'
 import { ComponentDictionary } from '../../../shared/ComponentDictionary'
@@ -41,6 +42,7 @@ export class ConnectionEditComponent implements OnInit {
     private connectionService: ConnectionService,
     private deviceService: DeviceService,
     private logService: LogService,
+    private debugService: DebugService,
   ) {
     this.form = this.createFormGroup()
   }
@@ -52,7 +54,7 @@ export class ConnectionEditComponent implements OnInit {
       this.connection = data
       this.component = this.inputId
       this.form = this.createFormGroup()
-      console.log('ConnectionEditComponent.ngOnInit() => ' + JSON.stringify(this.connection, null, ' '))
+      this.debugService.lifecycle('ConnectionEditComponent', 'ngOnInit', this.connection)
       this.form.patchValue({
         _id: this.connection._id,
         name: this.connection.name,
@@ -132,9 +134,7 @@ export class ConnectionEditComponent implements OnInit {
   private getConnection(id: string): Observable<Connection> {
     return this.connectionService.GetConnection(id).pipe(
       tap((data: Connection) => {
-        console.log(
-          'ConnectionEditComponent.connectionService.GetConnection(' + id + ') => ' + JSON.stringify(data, null, ' '),
-        )
+        this.debugService.api('GET', `/connections/${id}`, data)
         this.connection = data
       }),
     )
