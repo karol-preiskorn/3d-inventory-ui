@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Component, Inject, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core'
 import { Converter } from 'showdown'
 import { environment } from '../../../environments/environment'
 
@@ -15,7 +15,8 @@ import { environment } from '../../../environments/environment'
   styleUrls: ['./home.component.scss'],
   imports: [CommonModule],
   standalone: true,
-  providers: []
+  providers: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
   md: string = ''
@@ -36,7 +37,7 @@ export class HomeComponent implements OnInit {
   }
 
   constructor(@Inject(HttpClient) private readonly http: HttpClient) {
-    console.log('Markdown constructor: ' + JSON.stringify(this.md, null, ' '))
+    // Initialize markdown converter
     this.http.get('/assets/README.md', { responseType: 'text' }).subscribe(
       (data: string) => {
         data = data.replace(/src\//g, '')
@@ -62,7 +63,7 @@ export class HomeComponent implements OnInit {
         console.error('Error fetching Markdown:', err)
       },
       () => {
-        console.log('Markdown fetch completed.')
+        // Markdown fetch completed successfully
       },
     )
 
@@ -78,20 +79,20 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Markdown ngOnInit: ' + JSON.stringify(this.md))
+    // Markdown component initialized
     // No need to set renderer here; bind [data]="md" in your template
     // Removed invalid renderer event binding as 'on' does not exist on '_Renderer'
   }
 
   onLoad(_data: unknown) {
-    console.log('onLoad: ' + this.md)
+    // Markdown loaded successfully
   }
 
   onError(_data: unknown) {
-    console.log('onError: ' + this.md)
+    // Markdown loading error occurred
   }
 
   onSuccess(_data: unknown) {
-    console.log('onSuccess: ' + this.md)
+    // Markdown rendered successfully
   }
 }

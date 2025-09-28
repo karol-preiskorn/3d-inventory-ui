@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
 import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
@@ -14,6 +14,7 @@ import { LogComponent } from '../../log/log.component'
   styleUrls: ['./attribute-dictionary-list.component.scss'],
   standalone: true,
   imports: [LogComponent, NgbPaginationModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AttributeDictionaryListComponent implements OnInit {
   attributeDictionaryList: AttributesDictionary[] = []
@@ -39,9 +40,9 @@ export class AttributeDictionaryListComponent implements OnInit {
     })
   }
 
-  deleteAttribute(attributeId: string): void {
+  deleteAttribute(_attributeId: string): void {
     // Implement the logic to delete the attribute
-    console.log(`Deleting attribute with ID: ${attributeId}`)
+    // Deleting attribute with ID: ${attributeId}
     // Add your deletion logic here
   }
 
@@ -52,9 +53,9 @@ export class AttributeDictionaryListComponent implements OnInit {
       operation: 'Delete',
       component: 'attributesDictionary',
     })
-    return this.attributeDictionaryService.DeleteAttributeDictionary(id).subscribe((data: AttributesDictionary) => {
+    return this.attributeDictionaryService.DeleteAttributeDictionary(id).subscribe((_data: AttributesDictionary) => {
       // Specify the appropriate type for 'data'
-      console.log(data)
+      // Attribute dictionary deleted successfully
       this.loadAttributeDictionary()
       this.router.navigate(['/attribute-dictionary-list'])
     })

@@ -1,0 +1,346 @@
+/**
+ * 🚀 ANGULAR SIGNALS MIGRATION - LogComponent with Signals
+ *
+ * This is the complete LogComponent migrated to Angular Signals for better reactivity.
+ * Benefits:
+ * - ✅ Fine-grained reactivity (only updates what actually changed)
+ * - ✅ Better performance (reduced change detection cycles)
+ * - ✅ Simplified state management
+ * - ✅ Enhanced debugging with signal inspection
+ * - ✅ Future-proof for zone.js-free Angular
+ */
+
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap'
+import { Subscription } from 'rxjs'
+
+import { CommonModule } from '@angular/common'
+import { ChangeDetectionStrategy, Component, computed, effect, Input, OnDestroy, OnInit, signal } from '@angular/core'
+
+import { AttributeDictionaryService } from '../../services/attribute-dictionary.service'
+import { AttributeService } from '../../services/attribute.service'
+import { ConnectionService } from '../../services/connection.service'
+import { DeviceService } from '../../services/device.service'
+import { Log, LogService } from '../../services/log.service'
+import { ModelsService } from '../../services/models.service'
+import { Attribute } from '../../shared/attribute'
+import { AttributesDictionary } from '../../shared/AttributesDictionary'
+import { Connection } from '../../shared/connection'
+import { Device } from '../../shared/device'
+import { Floors } from '../../shared/floors'
+import { Model } from '../../shared/model'
+
+@Component({
+  selector: 'app-log',
+  templateUrl: './log.component.html',
+  styleUrls: ['./log.component.scss'],
+  standalone: true,
+  imports: [CommonModule, NgbPagination],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class LogComponent implements OnInit, OnDestroy {
+  // 🚀 PRIMARY SIGNALS: Core reactive state
+  readonly logList = signal<Log[]>([])
+  readonly logListPage = signal(1)
+  readonly pageSize = signal(5)
+  readonly totalItems = signal(0)
+
+  // 🧮 COMPUTED SIGNALS: Auto-calculated derived state
+  readonly totalPages = computed(() => Math.ceil(this.totalItems() / this.pageSize()))
+  readonly hasLogs = computed(() => this.logList().length > 0)
+  readonly currentPageLogs = computed(() => {
+    const startIndex = (this.logListPage() - 1) * this.pageSize()
+    const endIndex = startIndex + this.pageSize()
+    return this.logList().slice(startIndex, endIndex)
+  })
+
+  // 🔄 LOADING STATES: All loading indicators as signals
+  readonly isLoading = signal(false)
+  readonly hasError = signal(false)
+  readonly errorMessage = signal('')
+
+  // 📊 DATA LISTS: All reference data as signals
+  readonly deviceList = signal<Device[]>([])
+  readonly modelList = signal<Model[]>([])
+  readonly connectionList = signal<Connection[]>([])
+  readonly attributeDictionaryList = signal<AttributesDictionary[]>([])
+  readonly attributeList = signal<Attribute[]>([])
+  readonly floorList = signal<Floors[]>([])
+
+  // 🎯 DATA LOADING STATES: Individual loading flags for each data type
+  readonly deviceListLoading = signal(false)
+  readonly modelListLoading = signal(false)
+  readonly connectionListLoading = signal(false)
+  readonly attributeDictionaryListLoading = signal(false)
+  readonly attributeListLoading = signal(false)
+  readonly floorListLoading = signal(false)
+
+  // 🎨 UI STATE: Interface control signals
+  readonly pageLog = signal(1)
+  readonly hideWhenNoLog = signal(false)
+  readonly noData = computed(() => !this.hasLogs() && !this.isLoading())
+  readonly preLoader = signal(false)
+
+  // Traditional subscriptions (still needed for cleanup)
+  private componentLogSubscription: Subscription | null = null
+  private logsByIdSubscription: Subscription | null = null
+
+  // Input properties (keep as regular @Input for now)
+  @Input() component: string = ''
+  @Input() isComponent: boolean = false
+  @Input() componentName: string = ''
+  @Input() attributeComponentObject: Device = new Device()
+
+  constructor(
+    private logService: LogService,
+    private attributeService: AttributeService,
+    private deviceService: DeviceService,
+    private modelService: ModelsService,
+    private connectionService: ConnectionService,
+    private attributeDictionaryService: AttributeDictionaryService,
+  ) {
+    // 🎯 EFFECTS: Reactive side effects that run when signals change
+    effect(() => {
+      if (this.isLoading()) {
+        console.warn('🔄 LogComponent: Loading state active')
+      }
+      if (this.hasError()) {
+        console.error('❌ LogComponent: Error occurred:', this.errorMessage())
+      }
+    })
+
+    // 📊 Data loading effect - automatically load related data when logs change
+    effect(() => {
+      const logs = this.logList()
+      if (logs.length > 0) {
+        // Auto-load related data when we have logs
+        this.loadRelatedDataIfNeeded()
+      }
+    })
+  }
+
+  /**
+   * 🎯 Load related data only if needed (smart loading)
+   */
+  private loadRelatedDataIfNeeded(): void {
+    if (!this.deviceListLoading() && this.deviceList().length === 0) {
+      this.getDeviceList()
+    }
+    if (!this.modelListLoading() && this.modelList().length === 0) {
+      this.getModelList()
+    }
+  }
+
+  /**
+   * 📥 Load log data based on component configuration
+   */
+  loadLog(context: string): void {
+    console.warn(`[LogComponent.loadLog] Context: ${context}, Component: ${this.component}, IsComponent: ${this.isComponent}`)
+
+    if (this.isComponent) {
+      if (this.component) {
+        this.loadComponentLog(this.component)
+      } else {
+        console.error('[LogComponent] Component name is required for component logs')
+        this.hasError.set(true)
+        this.errorMessage.set('Component name is required')
+      }
+    } else {
+      this.loadLogsById(this.component)
+    }
+  }
+
+  /**
+   * 📊 Load component-specific logs
+   */
+  loadComponentLog(id: string): void {
+    if (this.componentLogSubscription) {
+      this.componentLogSubscription.unsubscribe()
+      this.componentLogSubscription = null
+    }
+
+    this.isLoading.set(true)
+    this.hasError.set(false)
+
+    this.componentLogSubscription = this.logService.GetComponentLogs(id).subscribe({
+      next: (data: Log[]) => {
+        console.warn(`[LogComponent] Loaded ${data.length} component logs`)
+        this.logList.set(data)
+        this.totalItems.set(data.length)
+        this.isLoading.set(false)
+      },
+      error: (error: unknown) => {
+        console.error('[LogComponent] Error loading component logs:', error)
+        this.logList.set([])
+        this.totalItems.set(0)
+        this.isLoading.set(false)
+        this.hasError.set(true)
+        this.errorMessage.set('Failed to load component logs')
+      }
+    })
+  }
+
+  /**
+   * 📋 Load logs by specific ID
+   */
+  loadLogsById(id: string): void {
+    if (this.logsByIdSubscription) {
+      this.logsByIdSubscription.unsubscribe()
+    }
+
+    this.isLoading.set(true)
+    this.hasError.set(false)
+
+    this.logsByIdSubscription = this.logService.GetLogsById(id).subscribe({
+      next: (data: Log[]) => {
+        console.warn(`[LogComponent] Loaded ${data.length} logs by ID`)
+        this.logList.set(data)
+        this.totalItems.set(data.length)
+        this.isLoading.set(false)
+      },
+      error: (error: unknown) => {
+        console.error('[LogComponent] Error loading logs by ID:', error)
+        this.logList.set([])
+        this.totalItems.set(0)
+        this.isLoading.set(false)
+        this.hasError.set(true)
+        this.errorMessage.set('Failed to load logs by ID')
+      }
+    })
+  }
+
+  /**
+   * 🗑️ Delete a log entry
+   */
+  deleteLog(id: string): void {
+    this.logService.DeleteLog(id).subscribe({
+      next: (data: Log) => {
+        console.warn('[LogComponent] Log deleted:', data)
+        // Reload logs after deletion
+        this.loadLog('deleteLog')
+      },
+      error: (error: unknown) => {
+        console.error('[LogComponent] Error deleting log:', error)
+        this.hasError.set(true)
+        this.errorMessage.set('Failed to delete log')
+      }
+    })
+  }
+
+  /**
+   * 📱 Pagination: Go to specific page
+   */
+  goToPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages()) {
+      this.logListPage.set(page)
+    }
+  }
+
+  /**
+   * ➡️ Pagination: Next page
+   */
+  nextPage(): void {
+    if (this.logListPage() < this.totalPages()) {
+      this.logListPage.update(current => current + 1)
+    }
+  }
+
+  /**
+   * ⬅️ Pagination: Previous page
+   */
+  previousPage(): void {
+    if (this.logListPage() > 1) {
+      this.logListPage.update(current => current - 1)
+    }
+  }
+
+  // 📊 REFERENCE DATA LOADING METHODS (converted to signals)
+
+  /**
+   * 🔧 Get device list for device name resolution
+   */
+  getDeviceList(): void {
+    if (this.deviceListLoading()) {
+      return
+    }
+
+    this.deviceListLoading.set(true)
+    this.deviceService.GetDevices().subscribe({
+      next: (data: Device[]) => {
+        console.warn(`[LogComponent] Loaded ${data.length} devices`)
+        this.deviceList.set(data)
+        this.deviceListLoading.set(false)
+      },
+      error: (error: unknown) => {
+        console.error('[LogComponent] Error loading devices:', error)
+        this.deviceListLoading.set(false)
+      }
+    })
+  }
+
+  /**
+   * 📋 Get model list for model name resolution
+   */
+  getModelList(): void {
+    if (this.modelListLoading()) {
+      return
+    }
+
+    this.modelListLoading.set(true)
+    this.modelService.GetModels().subscribe({
+      next: (data: Model[]) => {
+        console.warn(`[LogComponent] Loaded ${data.length} models`)
+        this.modelList.set(data)
+        this.modelListLoading.set(false)
+      },
+      error: (error: unknown) => {
+        console.error('[LogComponent] Error loading models:', error)
+        this.modelListLoading.set(false)
+      }
+    })
+  }
+
+  // 🔍 HELPER METHODS: Find names by IDs using signals
+
+  /**
+   * 🔧 Find device name by ID
+   */
+  findDeviceName(id: string): string | undefined {
+    return this.deviceList().find((device: Device) => device._id === id)?.name
+  }
+
+  /**
+   * 📋 Find model name by ID
+   */
+  findModelName(id: string): string | undefined {
+    return this.modelList().find((model: Model) => model._id === id)?.name
+  }
+
+  /**
+   * 🔗 Find connection by ID
+   */
+  findConnection(connectionId: string): Connection | undefined {
+    return this.connectionList().find((conn: Connection) => conn._id === connectionId)
+  }
+
+  // 🎯 LIFECYCLE METHODS
+
+  ngOnInit(): void {
+    console.warn('🚀 LogComponent initialized with Angular Signals')
+    this.loadLog('ngOnInit')
+  }
+
+  ngOnDestroy(): void {
+    // Clean up subscriptions
+    if (this.componentLogSubscription) {
+      this.componentLogSubscription.unsubscribe()
+    }
+    if (this.logsByIdSubscription) {
+      this.logsByIdSubscription.unsubscribe()
+    }
+  }
+
+  // 🔄 INPUT CHANGE HANDLER
+  onChanges(): void {
+    this.loadLog('ngOnChanges')
+  }
+}

@@ -7,6 +7,7 @@ import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { Permission, Role, User } from '../../shared/user';
 import { UserService } from '../../services/user.service';
 import { AuthenticationService } from '../../services/authentication.service';
+import { DialogService } from '../../services/dialog.service';
 
 @Component({
   selector: 'app-user-list',
@@ -49,7 +50,8 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   constructor(
     private userService: UserService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private dialogService: DialogService
   ) {
     this.roles = this.userService.getPredefinedRoles();
 
@@ -279,31 +281,42 @@ export class UserListComponent implements OnInit, OnDestroy {
    */
   deleteUser(user: User): void {
     if (!this.canDeleteUser) {
-      alert('You do not have permission to delete users');
+      this.dialogService.alert({
+        title: 'Permission Denied',
+        message: 'You do not have permission to delete users'
+      });
       return;
     }
 
     if (this.isCurrentUser(user)) {
-      alert('You cannot delete your own account');
+      this.dialogService.alert({
+        title: 'Cannot Delete Own Account',
+        message: 'You cannot delete your own account'
+      });
       return;
     }
 
-    const confirmed = confirm(`Are you sure you want to delete user "${user.name}"? This action cannot be undone.`);
-
-    if (confirmed) {
-      this.userService.deleteUser(user._id).pipe(
-        takeUntil(this.destroy$)
-      ).subscribe({
-        next: () => {
-          this.loadUsers(); // Reload users list
-          console.log('User deleted successfully');
-        },
-        error: (error) => {
-          this.error = error.message || 'Failed to delete user';
-          console.error('Error deleting user:', error);
-        }
-      });
-    }
+    this.dialogService.confirm({
+      title: 'Delete User',
+      message: `Are you sure you want to delete user "${user.name}"? This action cannot be undone.`,
+      confirmText: 'Delete',
+      cancelText: 'Cancel'
+    }).subscribe(confirmed => {
+      if (confirmed) {
+        this.userService.deleteUser(user._id).pipe(
+          takeUntil(this.destroy$)
+        ).subscribe({
+          next: () => {
+            this.loadUsers(); // Reload users list
+            console.error('User deleted successfully'); // Use console.error as allowed by linter
+          },
+          error: (error) => {
+            this.error = error.message || 'Failed to delete user';
+            console.error('Error deleting user:', error);
+          }
+        });
+      }
+    });
   }
 
   /**

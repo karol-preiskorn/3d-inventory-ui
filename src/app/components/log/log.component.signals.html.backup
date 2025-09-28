@@ -1,0 +1,216 @@
+<!-- 🚀 ANGULAR SIGNALS TEMPLATE - LogComponent with Signals -->
+<!-- This template demonstrates how to use Angular Signals in templates -->
+
+<div class="log-component">
+
+  <!-- 🎯 HEADER: Component status display -->
+  <div class="log-header mb-3">
+    <h4 class="d-flex align-items-center">
+      <i class="fas fa-clipboard-list me-2"></i>
+      Logs
+      @if (isLoading()) {
+      <div class="spinner-border spinner-border-sm ms-2" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      }
+      @if (hasError()) {
+      <i class="fas fa-exclamation-triangle text-warning ms-2"></i>
+      }
+    </h4>
+
+    <!-- 📊 Status info with signal values -->
+    <div class="log-stats text-muted small">
+      Total: {{ totalItems() }} |
+      Page: {{ logListPage() }}/{{ totalPages() }} |
+      Per page: {{ pageSize() }}
+      @if (isLoading()) {
+      <span class="text-primary"> | Loading...</span>
+      }
+    </div>
+  </div>
+
+  <!-- ❌ ERROR STATE -->
+  @if (hasError()) {
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <i class="fas fa-exclamation-triangle me-2"></i>
+    <strong>Error:</strong> {{ errorMessage() }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+  }
+
+  <!-- 🔄 LOADING STATE -->
+  @if (isLoading()) {
+  <div class="loading-container text-center p-4">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading logs...</span>
+    </div>
+    <p class="mt-2 text-muted">Loading logs...</p>
+  </div>
+  }
+
+  <!-- 📝 NO DATA STATE -->
+  @if (noData()) {
+  <div class="no-data-container text-center p-4">
+    <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+    <h5 class="text-muted">No logs found</h5>
+    <p class="text-muted">No log entries are available for this component.</p>
+  </div>
+  }
+
+  <!-- 📋 LOGS LIST -->
+  @if (hasLogs() && !isLoading()) {
+  <div class="logs-container">
+
+    <!-- 📑 LOG ENTRIES using computed signal for current page -->
+    <div class="log-entries">
+      @for (log of currentPageLogs(); track log._id) {
+      <div class="log-entry card mb-2">
+        <div class="card-body">
+
+          <!-- 🏷️ Log header with timestamp and level -->
+          <div class="log-header d-flex justify-content-between align-items-start mb-2">
+            <div class="log-meta">
+              <span class="badge bg-primary me-2">{{ log.level || 'INFO' }}</span>
+              <small class="text-muted">
+                <i class="fas fa-clock me-1"></i>
+                {{ log.timestamp | date:'medium' }}
+              </small>
+            </div>
+
+            <!-- 🗑️ Delete button -->
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteLog(log._id)"
+              title="Delete log entry">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+
+          <!-- 📝 Log message -->
+          <div class="log-message mb-2">
+            <p class="mb-1">{{ log.message }}</p>
+          </div>
+
+          <!-- 🔗 Related information using signal-based lookups -->
+          <div class="log-details">
+            @if (log.device_id) {
+            <div class="log-detail-item">
+              <small class="text-muted">
+                <i class="fas fa-server me-1"></i>
+                Device:
+                <span class="fw-bold">
+                  {{ findDeviceName(log.device_id) || 'Unknown Device' }}
+                </span>
+                <code class="ms-1">({{ log.device_id }})</code>
+              </small>
+            </div>
+            }
+
+            @if (log.model_id) {
+            <div class="log-detail-item">
+              <small class="text-muted">
+                <i class="fas fa-cube me-1"></i>
+                Model:
+                <span class="fw-bold">
+                  {{ findModelName(log.model_id) || 'Unknown Model' }}
+                </span>
+                <code class="ms-1">({{ log.model_id }})</code>
+              </small>
+            </div>
+            }
+
+            @if (log.component) {
+            <div class="log-detail-item">
+              <small class="text-muted">
+                <i class="fas fa-puzzle-piece me-1"></i>
+                Component: <code>{{ log.component }}</code>
+              </small>
+            </div>
+            }
+          </div>
+
+        </div>
+      </div>
+      } @empty {
+      <div class="alert alert-info">
+        <i class="fas fa-info-circle me-2"></i>
+        No logs found for the current page.
+      </div>
+      }
+    </div>
+
+    <!-- 📄 PAGINATION using computed signals -->
+    @if (totalPages() > 1) {
+    <nav aria-label="Log pagination" class="mt-3">
+      <ngb-pagination [(page)]="logListPage" [pageSize]="pageSize()" [collectionSize]="totalItems()" [maxSize]="5"
+        [rotate]="true" [boundaryLinks]="true" class="d-flex justify-content-center">
+      </ngb-pagination>
+
+      <!-- 📊 Pagination info -->
+      <div class="pagination-info text-center text-muted small mt-2">
+        Showing {{ ((logListPage() - 1) * pageSize()) + 1 }} to
+        {{ Math.min(logListPage() * pageSize(), totalItems()) }} of
+        {{ totalItems() }} entries
+      </div>
+    </nav>
+    }
+
+  </div>
+  }
+
+  <!-- 🔧 LOADING INDICATORS for reference data -->
+  @if (deviceListLoading() || modelListLoading()) {
+  <div class="reference-data-loading mt-3">
+    <div class="alert alert-info d-flex align-items-center">
+      <div class="spinner-border spinner-border-sm me-2"></div>
+      <small>Loading reference data...</small>
+    </div>
+  </div>
+  }
+
+  <!-- 🛠️ DEBUG INFO (development only) -->
+  @if (false) {
+  <div class="debug-info mt-4 p-3 bg-light border rounded">
+    <h6>🔍 Debug Info (Signals)</h6>
+    <ul class="list-unstyled small">
+      <li><strong>Total Items:</strong> {{ totalItems() }}</li>
+      <li><strong>Current Page:</strong> {{ logListPage() }}</li>
+      <li><strong>Total Pages:</strong> {{ totalPages() }}</li>
+      <li><strong>Has Logs:</strong> {{ hasLogs() }}</li>
+      <li><strong>Is Loading:</strong> {{ isLoading() }}</li>
+      <li><strong>Has Error:</strong> {{ hasError() }}</li>
+      <li><strong>No Data:</strong> {{ noData() }}</li>
+      <li><strong>Device List Count:</strong> {{ deviceList().length }}</li>
+      <li><strong>Model List Count:</strong> {{ modelList().length }}</li>
+    </ul>
+  </div>
+  }
+
+</div>
+
+<!-- 🎨 CUSTOM STYLES -->
+<style>
+  .log-entry {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .log-entry:hover {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    transform: translateY(-1px);
+  }
+
+  .log-detail-item {
+    margin-bottom: 0.25rem;
+  }
+
+  .pagination-info {
+    font-size: 0.875rem;
+  }
+
+  .loading-container,
+  .no-data-container {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

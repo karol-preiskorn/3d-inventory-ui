@@ -233,7 +233,7 @@ export class AuthenticationService {
 
       const currentTime = Math.floor(Date.now() / 1000);
       return payload.exp < currentTime;
-    } catch (_error) {
+    } catch {
       return true; // If we can't decode, consider it expired
     }
   }

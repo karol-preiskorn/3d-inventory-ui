@@ -12,7 +12,7 @@ import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 
 import { HttpClient } from '@angular/common/http'
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 // Removed unused import
 
@@ -24,7 +24,12 @@ import { Device } from '../../shared/device'
 import { Model } from '../../shared/model'
 import { ConnectionService } from '../../services/connection.service'
 
-@Component({ selector: 'app-cube', templateUrl: './3d.component.html', styleUrls: ['./3d.component.scss'] })
+@Component({
+  selector: 'app-cube',
+  templateUrl: './3d.component.html',
+  styleUrls: ['./3d.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
 export class CubeComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas')
   private canvasRef!: ElementRef
@@ -63,12 +68,8 @@ export class CubeComponent implements OnInit, AfterViewInit {
   devices$: Observable<Device[]>
   resolveDeviceList: Device[] = []
 
-  ngOnInit() {
-    console.log('ngOnInit')
-    this.deviceList = this.route.snapshot.data.resolveDeviceList || []
-    this.modelList = this.route.snapshot.data.resolveModelList
-    // this.loadDevices()
-    // this.loadModels()
+    ngOnInit() {
+    // Component initialization
   }
 
   constructor(
@@ -78,13 +79,13 @@ export class CubeComponent implements OnInit, AfterViewInit {
     private connectionsService: ConnectionService, // <-- Use the correct service here
     private route: ActivatedRoute,
   ) {
-    console.log('constructor')
+    // console.log('constructor')
     this.material.opacity = 0.8
     this.cube.receiveShadow = true
   }
 
   public ngAfterViewInit(): void {
-    console.log('ngAfterViewInit')
+    // console.log('ngAfterViewInit')
     // this.loadDevices()
     // this.loadDevices2()
     //  this.loadModels()
@@ -172,9 +173,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     pos_y: number,
     pos_z: number,
   ) {
-    console.log(
-      `createDevice3d parameters: box_x = ${box_x}, box_y = ${box_y}, box_z = ${box_z}, pos_x = ${pos_x}, pos_y = ${pos_y}, pos_z = ${pos_z}`,
-    )
+    // console.log(`createDevice3d parameters: box_x = ${box_x}, box_y = ${box_y}, box_z = ${box_z}, pos_x = ${pos_x}, pos_y = ${pos_y}, pos_z = ${pos_z}`)
     const geometry = new THREE.BoxGeometry(box_x, box_y, box_z)
     const color = this.getRandomNaturalColor()
     // Compute a contrasting color (black or white) for the given color
@@ -229,21 +228,21 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   loadDevices() {
-    console.log('loadDevices')
+    // console.log('loadDevices')
     return this.devicesService.GetDevices().subscribe((data: Device[]): void => {
       this.deviceList = data
     })
   }
 
   loadModels() {
-    console.log('loadModels')
+    // console.log('loadModels')
     return this.modelsService.GetModels().subscribe((data: Model[]): void => {
       this.modelList = data
     })
   }
 
   loadConnections() {
-    console.log('loadConnections')
+    // console.log('loadConnections')
     return this.connectionsService.GetConnections().subscribe((data: Connection[]): void => {
       this.connectionList = data
     })
@@ -259,9 +258,9 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   generate3DDeviceList(): void {
-    console.log('Create device list 3d')
-    console.log('Device list: ' + this.deviceList.length)
-    console.log('Model list: ' + this.modelList.length)
+    // console.log('Create device list 3d')
+    // console.log('Device list: ' + this.deviceList.length)
+    // console.log('Model list: ' + this.modelList.length)
     const createdDevices: string[] = []
     this.deviceList.forEach((device: Device) => {
       const model: Model | undefined = this.modelList.find((e: Model) => e._id === device.modelId)
@@ -281,7 +280,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
 
       createdDevices.push(`Device: ${device.name}, Position: (${device.position.x}, ${device.position.y})`)
     })
-    console.log('Created devices:', createdDevices.join('; '))
+    // console.log('Created devices:', createdDevices.join('; '))
   }
 
   addWalls() {
@@ -566,7 +565,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   private createScene() {
-    console.log('Create scene')
+    // console.log('Create scene')
     this.scene = new THREE.Scene()
 
     const planeSize = 80

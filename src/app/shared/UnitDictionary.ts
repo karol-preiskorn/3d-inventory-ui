@@ -61,7 +61,7 @@ export class UnitDictionary {
   logUnitIfExists(name: string): void {
     const item = this.findUnitByName(name)
     if (item) {
-      console.log('-->', name)
+      // Unit found - could be logged to a service in production
     }
   }
 }

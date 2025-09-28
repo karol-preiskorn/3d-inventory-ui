@@ -1,48 +1,35 @@
-/**
- * Represents the LogComponent, which is responsible for managing and displaying logs
- * related to various components and objects in the application.
- *
- * This component interacts with multiple services to fetch and display logs, as well as
- * retrieve related data such as devices, models, connections, attributes, and floors.
- * It provides methods for loading logs, deleting logs, and finding related information
- * based on log messages.
- *
- * @remarks
- * - The component uses Angular',s `OnInit` lifecycle hook to initialize and load logs.
- * - It also listens for changes in input properties to reload logs dynamically.
- * - The component relies on various services to fetch data and manage logs.
- *
- * @example
- * <app-log [component]="'Devices'" [attributeComponentObject]="deviceObject"></app-log>
- *
- * @see {@link LogService}, {@link AttributeService}, {@link DeviceService}, {@link ModelsService}, {@link ConnectionService}, {@link AttributeDictionaryService}, {@link FloorService}
- */
-
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, signal } from '@angular/core'
+import { CommonModule } from '@angular/common'
 import { NgbPagination } from '@ng-bootstrap/ng-bootstrap'
 import { Subscription } from 'rxjs'
-
-import { CommonModule } from '@angular/common'
-import { Component, Input, OnDestroy, OnInit } from '@angular/core'
-
-import { AttributeDictionaryService } from '../../services/attribute-dictionary.service'
-import { AttributeService } from '../../services/attribute.service'
-import { ConnectionService } from '../../services/connection.service'
-import { DeviceService } from '../../services/device.service'
 import { Log, LogService } from '../../services/log.service'
+import { DeviceService } from '../../services/device.service'
 import { ModelsService } from '../../services/models.service'
+import { ConnectionService } from '../../services/connection.service'
+import { AttributeService } from '../../services/attribute.service'
+import { AttributeDictionaryService } from '../../services/attribute-dictionary.service'
+import { FloorService } from '../../services/floor.service'
+import { Device } from '../../shared/device'
+import { Model } from '../../shared/model'
+import { Connection } from '../../shared/connection'
 import { Attribute } from '../../shared/attribute'
 import { AttributesDictionary } from '../../shared/AttributesDictionary'
-import { Connection } from '../../shared/connection'
-import { Device } from '../../shared/device'
 import { Floors } from '../../shared/floors'
-import { Model } from '../../shared/model'
 
+/**
+ * LogComponent - Displays application logs with filtering and pagination
+ * Modernized with Angular Signals for reactive state management
+ */
 @Component({
   selector: 'app-log',
-  templateUrl: './log.component.html',
-  styleUrls: ['./log.component.scss'],
   standalone: true,
-  imports: [CommonModule, NgbPagination],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    CommonModule,
+    NgbPagination
+  ],
+  templateUrl: './log.component.html',
+  styleUrls: ['./log.component.scss']
 })
 export class LogComponent implements OnInit, OnDestroy {
   LogList: Log[] = []
@@ -53,9 +40,9 @@ export class LogComponent implements OnInit, OnDestroy {
   private componentLogSubscription: Subscription | null = null
   private logsByIdSubscription: Subscription | null = null
 
-  @Input() component: string
-  @Input() isComponent: boolean
-  @Input() componentName: string
+  @Input() component: string = ''
+  @Input() isComponent: boolean = false
+  @Input() componentName: string = ''
   @Input() attributeComponentObject: Device = new Device()
 
   deviceList: Device[] = []
@@ -72,10 +59,9 @@ export class LogComponent implements OnInit, OnDestroy {
   attributeListGet = false
   floorListGet = false
 
-  pageLog = 1
-  hideWhenNoLog = false
-  noData = false
-  preLoader = false
+  // Signals for reactive state management
+  private isLoading = signal(true)
+  private errorMessage = signal<string | null>(null)
 
   constructor(
     private logService: LogService,
@@ -84,346 +70,331 @@ export class LogComponent implements OnInit, OnDestroy {
     private modelService: ModelsService,
     private connectionService: ConnectionService,
     private attributeDictionaryService: AttributeDictionaryService,
-    // private floorService: FloorService,
+    private floorService: FloorService,
   ) { }
+
+  ngOnInit(): void {
+    this.loadLog('ngOnInit')
+  }
 
   /**
    * Loads the log for the specified context.
-   * This method determines whether to load component logs or object logs based on the component name.
-   * If the component name is an API name, it loads component logs; otherwise, it loads object logs.
-   * @param component - The component for which the log is being loaded.
    */
-  loadLog(context: string) {
-    console.log(
-      `[log.components.loadLog]
-      Context: ${context}
-      component: ${this.component ?? ''}
-      componentName: ${this.componentName ?? ''}
-      isComponent: ${this.isComponent ?? false}
-      attributeComponentObject: ${JSON.stringify(this.attributeComponentObject)}`,
-    )
+  loadLog(_context: string): void {
+    // Debug logging removed for production
+
     if (this.isComponent === true) {
       if (this.component) {
-        console.info(`[log.components.loadLog] this.component is defined, loading logs by component ${this.component}.`)
+        // Loading logs by component
         this.loadComponentLog(this.component)
       } else {
-        console.warn('[log.components.loadLog] this.component is undefined, cannot load logs by id.')
+        console.warn('[log.components.loadLog] Component is undefined, cannot load logs.')
       }
     } else {
-      console.info('[log.components.loadLog] Load logs by id {this.component}.')
+      // Loading logs by id
       this.loadLogsById(this.component)
     }
   }
 
   /**
-   * Initializes the component.
-   * This method is called after the component has been created and initialized.
+   * Deletes a log entry
    */
-  ngOnInit() {
-    console.log('LogService instance:', this.logService);
-    console.log('GetComponentLogs method:', this.logService.GetComponentLogs);
-    console.log('Available methods:', Object.getOwnPropertyNames(Object.getPrototypeOf(this.logService)));
-
-    this.loadLog('ngOnInit')
-  }
-
-  /**
-   * Called whenever one or more input properties of the component change.
-   */
-  onChanges() {
-    this.loadLog('ngOnChanges')
-  }
-
-  /**
-   * Deletes a log entry with the specified ID.
-   * @param id - The ID of the log entry to delete.
-   * @returns An Observable that emits the deleted log entry.
-   */
-  deleteLog(id: string) {
-    return this.logService.DeleteLog(id).subscribe((data: Log) => {
-      console.log(data)
-      return this.logService.GetComponentLogs(id).subscribe((data: Log[]) => {
-        console.log('[log.components.loadComponentLog(' + id + ')]: ')
-        this.LogList = data
-        this.totalItems = this.LogList.length // Update totalItems for pagination
-      })
+  deleteLog(id: string): void {
+    this.logService.DeleteLog(id).subscribe((_data: Log) => {
+      // Log deleted successfully
+      this.loadLog('deleteLog')
     })
   }
 
   /**
-   * Loads the component logs for the specified ID.
-   * Unsubscribes from any previous subscription to avoid memory leaks.
-   * Updates the LogList and totalItems for pagination.
-   * Logs detailed debug information for troubleshooting.
-   * @param id - The ID of the component.
+   * Loads component logs for the specified ID
    */
   loadComponentLog(id: string): void {
     if (this.componentLogSubscription) {
       this.componentLogSubscription.unsubscribe()
       this.componentLogSubscription = null
     }
-    console.debug(`[LogComponent] Loading component logs for ID: ${id}`)
+
+    // Loading component logs for specified ID
+    this.isLoading.set(true)
+
     this.componentLogSubscription = this.logService.GetComponentLogs(id).subscribe({
       next: (data: Log[]) => {
-        console.debug(`[LogComponent] Received ${data.length} logs for component ID: ${id}`, data)
+        // Received logs successfully
         this.LogList = data
         this.totalItems = data.length
+        this.isLoading.set(false)
+        this.errorMessage.set(null)
       },
       error: (error: unknown) => {
         console.error(`[LogComponent] Error loading logs for component ID: ${id}`, error)
         this.LogList = []
         this.totalItems = 0
+        this.isLoading.set(false)
+        this.errorMessage.set('Failed to load logs')
       }
     })
   }
 
   /**
-   * Loads the objects log for the specified ID.
-   * @param id - The ID of the object.
-   * @returns A Subscription object representing the subscription to the log data.
+   * Loads logs by object ID
    */
   loadLogsById(id: string): void {
     if (this.logsByIdSubscription) {
       this.logsByIdSubscription.unsubscribe()
     }
-    this.logsByIdSubscription = this.logService.GetLogsById(id).subscribe((data: Log[]) => {
-      console.log('[log.component] LogComponent.loadLogsById(' + id + '): ' /* + JSON.stringify(data, null, ' ') */)
-      this.LogList = data
-      this.totalItems = this.LogList.length // Update totalItems for pagination
+
+    this.isLoading.set(true)
+
+    this.logsByIdSubscription = this.logService.GetLogsById(id).subscribe({
+      next: (data: Log[]) => {
+        // Logs loaded successfully
+        this.LogList = data
+        this.totalItems = data.length
+        this.isLoading.set(false)
+        this.errorMessage.set(null)
+      },
+      error: (error: unknown) => {
+        console.error(`[LogComponent] Error loading logs by ID: ${id}`, error)
+        this.LogList = []
+        this.totalItems = 0
+        this.isLoading.set(false)
+        this.errorMessage.set('Failed to load logs')
+      }
     })
   }
 
   /**
-   * Depends on type log find usable information selector: 'app-log', from log.message.
-   * @param log - The log object containing the message.
-   * @returns The name found in the log message.
+   * Get component name from log message
    */
   findNameInLogMessage(log: Log): string {
-    let jLog: Log
-    let findConnectionNameValue: string
-
-    if (!log) {
-      console.error('[log.component] findNameInLogMessage: Log message is undefined')
-      return ''
-    }
     try {
-      jLog = JSON.parse(JSON.stringify(log.message)) as Log
-    } catch (error: unknown) {
-      console.error(
-        `[log.component] findNameInLogMessage: JSON.parse(JSON.stringify(${String(log.message)}) is not a JSON string` +
-        String(error),
-      )
-      return JSON.stringify(log.message)
+      const logMessage = typeof log.message === 'string' ? JSON.parse(log.message) : log.message
+      const componentType = log.component?.toLowerCase()
+
+      switch (componentType) {
+        case 'device':
+          return this.handleDeviceComponent(logMessage)
+        case 'model':
+          return this.handleModelComponent(logMessage)
+        case 'attribute':
+          return this.handleAttributeComponent(log)
+        case 'connection':
+          return this.handleConnectionComponent(log)
+        case 'floor':
+          return this.handleFloorComponent(logMessage)
+        default:
+          return `${log.component || 'Unknown'} Component`
+      }
+    } catch {
+      return `${log.component || 'Unknown'} Component`
     }
-    if (log.component === 'Attribute') {
-      const logMessageAttribute: Partial<Attribute> = log.message as Partial<Attribute>
-      console.log(
-        '[log.component] findNameInLogMessage: logMessageAttribute: ' + JSON.stringify(logMessageAttribute, null, ' '),
-      )
-      if (!logMessageAttribute) {
-        if (
-          (logMessageAttribute as Partial<Attribute>).connectionId !== null &&
-          (logMessageAttribute as Partial<Attribute>).connectionId !== undefined
-        ) {
+  }
+
+  private handleDeviceComponent(logMessage: Record<string, unknown>): string {
+    if (!this.deviceListGet) {
+      this.getDeviceList()
+    }
+    const deviceName = this.findDeviceName((logMessage.deviceId as string) || (logMessage._id as string) || '')
+    return deviceName ? `Device ${deviceName}` : 'Device Component'
+  }
+
+  private handleModelComponent(logMessage: Record<string, unknown>): string {
+    if (!this.modelListGet) {
+      this.getModelList()
+    }
+    const modelName = this.findModelName((logMessage.modelId as string) || (logMessage._id as string) || '')
+    return modelName ? `Model ${modelName}` : 'Model Component'
+  }
+
+  private handleFloorComponent(logMessage: Record<string, unknown>): string {
+    const floorName = this.findFloor((logMessage.floorId as string) || (logMessage._id as string) || '')
+    return floorName ? `Floor ${floorName}` : 'Floor Component'
+  }
+
+  private handleConnectionComponent(log: Log): string {
+    let findConnectionNameValue = ''
+    try {
+      const logMessage = typeof log.message === 'string' ? JSON.parse(log.message) : log.message
+      const logMessageAttribute = logMessage as Partial<Attribute>
+
+      if (logMessageAttribute.connectionId) {
+        if (!this.connectionListGet) {
           this.getConnectionList()
-            ; (findConnectionNameValue = this.findConnectionName(
-              (logMessageAttribute as Partial<Attribute>).connectionId ?? '',
-            )),
-              console.log(
-                `[[log.component] findNameInLogMessage: Find ConnectionName for Attribute (${(logMessageAttribute as Partial<Attribute>)?.connectionId ?? 'Unknown'}): ${findConnectionNameValue}`,
-              )
-          return 'Connection ' + findConnectionNameValue
         }
-        if (
-          (logMessageAttribute as Attribute).modelId !== null &&
-          (logMessageAttribute as Attribute).modelId !== undefined
-        ) {
+        findConnectionNameValue = this.findConnectionName(logMessageAttribute.connectionId)
+        return 'Connection ' + findConnectionNameValue
+      } else if (logMessageAttribute.modelId) {
+        if (!this.modelListGet) {
           this.getModelList()
-          if ((logMessageAttribute as Partial<Attribute>).connectionId !== null) {
-            return 'Model ' + this.findModelName((logMessageAttribute as Partial<Attribute>).modelId ?? '')
-          }
         }
-        if (
-          (logMessageAttribute as Attribute).deviceId !== null &&
-          (logMessageAttribute as Attribute).deviceId !== undefined
-        ) {
-          this.getDeviceList()
-          return 'Device ' + this.findDeviceName((logMessageAttribute as Partial<Attribute>).deviceId ?? '')
-        }
+        return 'Model ' + this.findModelName(logMessageAttribute.modelId)
       }
+    } catch (error) {
+      console.error('[log.component] Error parsing log message:', error)
     }
-    return JSON.stringify(jLog, null, ' ')
+
+    if (!this.deviceListGet) {
+      this.getDeviceList()
+    }
+    return 'Device ' + this.findDeviceName('')
+  }
+
+  private handleAttributeComponent(log: Log): string {
+    let findConnectionNameValue = ''
+    try {
+      const logMessage = typeof log.message === 'string' ? JSON.parse(log.message) : log.message
+      const logMessageAttribute = logMessage as Partial<Attribute>
+
+      if (logMessageAttribute.connectionId) {
+        if (!this.connectionListGet) {
+          this.getConnectionList()
+        }
+        findConnectionNameValue = this.findConnectionName(
+          logMessageAttribute.connectionId ?? ''
+        )
+        return 'Connection ' + findConnectionNameValue
+      } else if (logMessageAttribute.modelId) {
+        if (!this.modelListGet) {
+          this.getModelList()
+        }
+        return 'Model ' + this.findModelName(logMessageAttribute.modelId ?? '')
+      }
+    } catch (error) {
+      console.error('[log.component] Error parsing attribute log message:', error)
+    }
+
+    if (!this.deviceListGet) {
+      this.getDeviceList()
+    }
+    return 'Device ' + this.findDeviceName('')
   }
 
   /**
-   * Retrieves the device list from the device service.
-   * If the device list has already been retrieved, returns null.
-   * Otherwise, subscribes to the GetDevices method of the device service and updates the device list.
-   * @returns An Observable that emits the device list.
+   * Format log message as pretty JSON
    */
-  getDeviceList() {
-    if (this.deviceListGet === true) {return null}
-    return this.deviceService.GetDevices().subscribe((data: Device[]) => {
-      const tmp = new Device()
-      data.unshift(tmp)
-      this.deviceList = data
-      this.deviceListGet = true
-    })
+  formatLogMessage(log: Log): string {
+    try {
+      const jLog = typeof log.message === 'string' ? JSON.parse(log.message) : log.message
+      return JSON.stringify(jLog, null, 2)
+    } catch {
+      return typeof log.message === 'string' ? log.message : JSON.stringify(log.message)
+    }
   }
 
-  /**
-   * Finds the device name based on the provided ID.
-   * @param id - The ID of the device.
-   * @returns The name of the device if found, otherwise undefined.
-   */
-  findDeviceName(id: string) {
-    return this.deviceList.find((e) => e._id === id)?.name
+  private getDeviceList(): void {
+    if (this.deviceListGet) {
+      return
+    }
+
+    this.deviceService.GetDevices().subscribe(
+      (devices: Device[]) => {
+        this.deviceList = devices
+        this.deviceListGet = true
+      }
+    )
   }
 
-  /**
-   * Retrieves the model list from the model service.
-   * If the model list has already been fetched, it returns null.
-   * Otherwise, it subscribes to the GetModels() method of the model service and updates the model list.
-   * @returns An Observable that emits the model list.
-   */
-  getModelList() {
-    if (this.modelListGet === true) {return null}
-    return this.modelService.GetModels().subscribe((data: Model[]) => {
-      // Specify the correct type for the data parameter
-      const tmp = new Model()
-      data.unshift(tmp)
-      this.modelList = data
-      this.modelListGet = true
-    })
+  private findDeviceName(id: string): string {
+    const device = this.deviceList.find((d: Device) => d._id === id)
+    return device?.name || 'Unknown Device'
   }
 
-  /**
-   * Finds the model name based on the provided ID.
-   * @param id - The ID of the model.
-   * @returns The name of the model if found, otherwise undefined.
-   */
-  findModelName(id: string) {
-    return this.modelList.find((e) => e._id === id)?.name
+  private getModelList(): void {
+    if (this.modelListGet) {
+      return
+    }
+
+    this.modelService.GetModels().subscribe(
+      (models: Model[]) => {
+        this.modelList = models
+        this.modelListGet = true
+      }
+    )
   }
 
-  /**
-   * Retrieves the connection list from the connection service.
-   * If the connection list has already been fetched, it returns null.
-   * Otherwise, it subscribes to the GetConnections() method of the connection service and updates the connection list.
-   * @returns An Observable that emits the connection list.
-   * Fetches the list of connections from the connection service and assigns it to the `connectionList` property.
-   * Logs an error message to the console if the request fails.
-   */
-  getConnectionList(): void {
-    if (this.connectionListGet === true) {return}
-    this.connectionService.GetConnections().subscribe({
-      next: (data) => {
-        this.connectionList = data
+  private findModelName(id: string): string {
+    const model = this.modelList.find((m: Model) => m._id === id)
+    return model?.name || 'Unknown Model'
+  }
+
+  private getConnectionList(): void {
+    if (this.connectionListGet) {
+      return
+    }
+
+    this.connectionService.GetConnections().subscribe(
+      (connections: Connection[]) => {
+        this.connectionList = connections
         this.connectionListGet = true
-      },
-      error: (error) => {
-        console.error('Error fetching connection list:', error)
       }
-    })
+    )
   }
 
-  /**
-   * Finds the connection name based on the provided ID.
-   * @param connectionId - The ID of the connection.
-   * @returns The name of the connection if found, otherwise 'Unknown Connection'.
-   */
-  findConnectionName(connectionId: string): string {
-    if (!this.connectionList || this.connectionList.length === 0) {
-      return 'Unknown Connection'
+  private findConnectionName(connectionId: string): string {
+    const connection = this.connectionList.find((c: Connection) => c._id === connectionId)
+    if (connection) {
+      return connection.name || 'Unknown Connection'
     }
-    const connection = this.connectionList.find((conn) => conn._id === connectionId)
-    return connection ? connection.name : 'Unknown Connection'
+    return 'Connection not found'
   }
 
-  /**
-   * Retrieves the attribute dictionary list.
-   * @returns An Observable that emits the attribute dictionary list.
-   */
-  getAttributeDictionaryList() {
-    if (this.attributeDictionaryListGet === true) {return null}
-    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributesDictionary[]) => {
-      this.attributeDictionaryList = [...data]
-      this.attributeDictionaryListGet = true
-    })
-  }
-
-  /**
-   * Finds the name of the attribute dictionary with the given ID.
-   * @param id - The ID of the attribute dictionary.
-   * @returns The name of the attribute dictionary, or undefined if not found.
-   */
-  findAttributeDictionaryName(id: string) {
-    return this.attributeDictionaryList.find((e) => e._id === id)?.name
-  }
-
-  /**
-   * Retrieves the attribute list.
-   * @returns An observable that emits the attribute list.
-   */
-  getAttributeList(): void {
-    if (this.attributeListGet === true) {return}
-    this.attributeService.GetAttributes().subscribe((data: Attribute[]) => {
-      // Specify the correct type for the data parameter
-      const tmp = new Attribute()
-      data.unshift(tmp)
-      this.attributeList = data
-      this.attributeListGet = true
-    })
-  }
-
-  /**
-   * Finds an attribute in the attribute list based on the given ID.
-   * @param id - The ID of the attribute to find.
-   * @returns The attribute object if found, or undefined if not found.
-   */
-  findAttribute(id: string) {
-    return this.attributeList.find((e) => e._id === id)
-  }
-
-  /**
-   * Retrieves the Floors list from the attribute service.
-   * If the attribute list has already been retrieved, returns null.
-   * Otherwise, subscribes to the GetAttributes method of the attribute service
-   * and updates the attribute list with the retrieved data.
-   * @returns An Observable that emits the retrieved attribute list.
-   */
-  getFloorList() {
-    // Implementation goes here
-    if (this.attributeListGet === true) {return null}
-    return this.attributeService.GetAttributes().subscribe((data: Attribute | Attribute[]) => {
-      const tmp = new Attribute()
-      if (Array.isArray(data)) {
-        data.unshift(tmp)
-        this.attributeList = data
-      } else {
-        this.attributeList = [tmp, data]
+  private getAttributeDictionaryList(): void {
+    this.attributeDictionaryService.GetAttributeDictionaries().subscribe(
+      (attributeDictionaries: AttributesDictionary[]) => {
+        this.attributeDictionaryList = attributeDictionaries
+        this.attributeDictionaryListGet = true
       }
-      this.attributeListGet = true
-    })
+    )
   }
 
-  findFloor(id: string) {
-    return this.floorList.find((e) => e._id === id)
+  private findAttributeDictionaryName(id: string): string {
+    const attributeDictionary = this.attributeDictionaryList.find((a: AttributesDictionary) => a._id === id)
+    return attributeDictionary?.name || 'Unknown Attribute Dictionary'
   }
 
-  // Add this method to your LogComponent class
-  trackLog(index: number, log: any): any {
-    return log && log._id ? log._id : index
+  private getAttributeList(): void {
+    if (this.attributeListGet) {
+      return
+    }
+
+    this.attributeService.GetAttributes().subscribe(
+      (attributes: Attribute[]) => {
+        this.attributeList = attributes
+        this.attributeListGet = true
+      }
+    )
+  }
+
+  private findAttribute(id: string): Attribute | undefined {
+    return this.attributeList.find((a: Attribute) => a._id === id)
+  }
+
+  private getFloorList(): void {
+    this.floorService.GetFloors().subscribe(
+      (floors: Floors[]) => {
+        this.floorList = floors
+        this.floorListGet = true
+      }
+    )
+  }
+
+  private findFloor(id: string): string {
+    const floor = this.floorList.find((f: Floors) => f._id === id)
+    return floor?.name || 'Unknown Floor'
+  }
+
+  trackLog(_index: number, log: Log): string {
+    return log._id || _index.toString()
   }
 
   ngOnDestroy(): void {
     if (this.componentLogSubscription) {
       this.componentLogSubscription.unsubscribe()
-      this.componentLogSubscription = null
     }
+
     if (this.logsByIdSubscription) {
       this.logsByIdSubscription.unsubscribe()
-      this.logsByIdSubscription = null
     }
   }
 }

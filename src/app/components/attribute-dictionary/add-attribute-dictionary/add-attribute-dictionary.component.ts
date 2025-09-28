@@ -1,4 +1,4 @@
-import { Component, Inject, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Inject, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 
@@ -17,6 +17,7 @@ import { UnitDictionary } from 'src/app/shared/UnitDictionary'
   styleUrls: ['./add-attribute-dictionary.component.scss'],
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AttributeDictionaryAddComponent implements OnInit {
   addAttributeDictionaryForm: FormGroup<{

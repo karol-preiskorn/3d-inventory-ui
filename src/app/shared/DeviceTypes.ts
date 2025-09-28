@@ -68,7 +68,7 @@ export class DeviceTypeDict {
   public logTypeByName(name: string): void {
     const found = this.list.find((e) => e.name === name)
     if (found) {
-      console.log('-->', name)
+      // Device type found - could be logged to a service in production
     }
   }
 }

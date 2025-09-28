@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { Router, RouterModule } from '@angular/router'
 
@@ -10,6 +10,7 @@ import { AuthenticationService } from './services/authentication.service'
   styleUrls: ['./app.component.scss'],
   standalone: true,
   imports: [CommonModule, RouterModule],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   public myTheme: string = 'light'
@@ -55,10 +56,10 @@ export class AppComponent {
 
   themeSwitch() {
     if (this.myTheme === 'light') {
-      console.log('theme dark')
+      // console.log('theme dark')
       this.myTheme = 'dark'
     } else {
-      console.log('theme light')
+      // console.log('theme light')
       this.myTheme = 'light'
     }
   }
@@ -72,9 +73,9 @@ export class AppComponent {
     body.setAttribute('data-bs-theme', theme)
   }
 
-  public handleKeyDown(event: KeyboardEvent): void {
+  public handleKeyDown(_event: KeyboardEvent): void {
     // Add your logic here, for example:
-    console.log('Key pressed:', event.key)
+    // console.log('Key pressed:', _event.key)
   }
 
   public openLink(url: string): void {

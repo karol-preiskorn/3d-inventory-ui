@@ -1,6 +1,6 @@
 {
   "name": "3d-inventory-angular-ui",
-  "version": "0.59.3",
+  "version": "0.59.4",
   "private": true,
   "type": "module",
   "browser": {
@@ -59,11 +59,13 @@
     ]
   },
   "dependencies": {
-    "@angular/animations": "^20.3.0",
+    "@angular/animations": "^20.3.2",
+    "@angular/cdk": "^20.2.5",
     "@angular/common": "^20.3.0",
     "@angular/compiler": "^20.3.0",
     "@angular/core": "^20.3.0",
     "@angular/forms": "^20.3.0",
+    "@angular/material": "^20.2.5",
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
     "@compodoc/compodoc": "^1.1.30",

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 
 import { AuthenticationService } from '../../services/authentication.service';
 import { UserService } from '../../services/user.service';
-import { User } from '../../shared/user';
+import { Permission, User } from '../../shared/user';
 
 /**
  * Admin Layout Component
@@ -20,7 +20,8 @@ import { User } from '../../shared/user';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './admin-layout.component.html',
-  styleUrls: ['./admin-layout.component.scss']
+  styleUrls: ['./admin-layout.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminLayoutComponent implements OnInit {
   currentUser: User | null = null;
@@ -98,7 +99,7 @@ export class AdminLayoutComponent implements OnInit {
    */
   hasPermission(permission: string): boolean {
     if (!this.currentUser) {return false;}
-    return this.userService.userHasPermission(this.currentUser, permission as any);
+    return this.userService.userHasPermission(this.currentUser, permission as Permission);
   }
 
   /**
@@ -135,7 +136,7 @@ export class AdminLayoutComponent implements OnInit {
    */
   goToProfile(): void {
     // Placeholder for user profile functionality
-    console.log('Navigate to user profile');
+    // console.log('Navigate to user profile');
   }
 
   /**

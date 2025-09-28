@@ -38,7 +38,7 @@ export class ComponentDictionary {
   logIfExists(name: string): void {
     const item = this.findByName(name)
     if (item) {
-      console.log('-->', name)
+      // Component found - could be logged to a service in production
     }
   }
 }
