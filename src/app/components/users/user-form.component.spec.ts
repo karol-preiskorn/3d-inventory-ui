@@ -10,6 +10,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { Permission, User } from '../../shared/user';
 import { generateTestPassword } from '../../testing/test-utils';
 
+// eslint-disable-next-line max-lines-per-function
 describe('UserFormComponent', () => {
   let component: UserFormComponent;
   let fixture: ComponentFixture<UserFormComponent>;
