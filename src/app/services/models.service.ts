@@ -1,5 +1,5 @@
 import { Observable, of } from 'rxjs'
-import { catchError, retry } from 'rxjs/operators'
+import { catchError, map, retry } from 'rxjs/operators'
 
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable, NgZone } from '@angular/core'
@@ -9,6 +9,16 @@ import { environment } from '../../environments/environment'
 import { Model } from '../shared/model'
 import { LogService } from './log.service'
 import { DebugService } from './debug.service'
+
+// API Response interfaces
+interface ApiResponse<T> {
+  success: boolean
+  data: T
+  meta?: {
+    timestamp: string
+    version: string
+  }
+}
 
 @Injectable({
   providedIn: 'root',
@@ -35,9 +45,17 @@ export class ModelsService {
    * @returns An Observable that emits an array of Model objects.
    */
   GetModels(): Observable<Model[]> {
+    console.warn('🚀 ModelsService: Calling API:', `${this.baseurl}/models`);
     return this.http
-      .get<Model[]>(`${this.baseurl}/models`, this.httpOptions)
-      .pipe(retry(1), catchError(this.handleErrorTemplate<Model[]>('GetModels', [])))
+      .get<ApiResponse<Model[]>>(`${this.baseurl}/models`, this.httpOptions)
+      .pipe(
+        map(response => {
+          console.warn('✅ ModelsService: API returned', response.data?.length || 0, 'models');
+          return response.data;
+        }), // Extract data from API response
+        retry(1),
+        catchError(this.handleErrorTemplate<Model[]>('GetModels', []))
+      )
   }
   /**
    * Retrieves a model by its ID.
