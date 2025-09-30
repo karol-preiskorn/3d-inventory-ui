@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core'
 import { firstValueFrom } from 'rxjs'
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 
@@ -27,6 +27,9 @@ export class DeviceListComponent implements OnInit {
   componentName = 'Devices'
   deviceListPage = 1
 
+  // Make Object available in template
+  Object = Object
+
   ngOnInit() {
     this.loadDevices()
     this.loadModels()
@@ -39,22 +42,38 @@ export class DeviceListComponent implements OnInit {
     private readonly router: Router,
     private readonly ngZone: NgZone,
     private readonly route: ActivatedRoute,
+    private readonly cdr: ChangeDetectorRef,
   ) { }
 
   loadDevices() {
-    return this.devicesService.GetDevices().subscribe((data: Device[]) => {
-      this.deviceList = data
-      // Reset page if current page is out of range
-      const maxPage = Math.ceil(this.deviceList.length / 5) || 1
-      if (this.deviceListPage > maxPage) {
-        this.deviceListPage = maxPage
+    return this.devicesService.GetDevices().subscribe({
+      next: (data: Device[]) => {
+        console.warn('✅ Loaded', data.length, 'devices from API');
+        this.deviceList = data
+        // Reset page if current page is out of range
+        const maxPage = Math.ceil(this.deviceList.length / 5) || 1
+        if (this.deviceListPage > maxPage) {
+          this.deviceListPage = maxPage
+        }
+        // Trigger change detection since we're using OnPush strategy
+        this.cdr.detectChanges()
+      },
+      error: (error) => {
+        console.error('❌ Error loading devices:', error);
       }
     })
   }
 
   loadModels() {
-    return this.modelsService.GetModels().subscribe((data: Model[]): void => {
-      this.modelList = data
+    return this.modelsService.GetModels().subscribe({
+      next: (data: Model[]): void => {
+        console.warn('✅ Loaded', data.length, 'models');
+        this.modelList = data
+        this.cdr.detectChanges()
+      },
+      error: (error) => {
+        console.error('❌ Error loading models:', error);
+      }
     })
   }
 
@@ -124,7 +143,6 @@ export class DeviceListComponent implements OnInit {
   }
 
   FindModelName(id: string): string {
-    // console.info('[FindModelName] try find model name by id: ' + id)
     let model = this.modelList.find((e: Model) => e._id === id)?.name as string
     model ??= 'Unknown'
     return model
@@ -136,5 +154,12 @@ export class DeviceListComponent implements OnInit {
 
   getDeviceList(): Device[] {
     return this.deviceList
+  }
+
+  // Manual reload method for debugging
+  manualReload() {
+    console.warn('DeviceListComponent: Manual reload triggered');
+    this.loadDevices();
+    this.loadModels();
   }
 }

@@ -11,17 +11,31 @@ export interface Position {
 }
 
 /**
+ * Represents a device attribute.
+ * @property key - The attribute key/name.
+ * @property value - The attribute value.
+ */
+export interface Attribute {
+  key: string
+  value: string
+}
+
+/**
  * Interface for a device object.
  * @property _id - The unique identifier of the device.
  * @property name - The name of the device.
  * @property modelId - The model identifier associated with the device.
  * @property position - The position of the device in 3D space.
+ * @property attributes - Optional array of device attributes.
+ * @property isDebugMode - Optional UI-specific debug mode flag.
  */
 export interface DeviceInterface {
   _id: string
   name: string
   modelId: string
   position: Position
+  attributes?: Attribute[]
+  isDebugMode?: boolean
 }
 
 /**
@@ -49,20 +63,32 @@ export class Device {
   position: Position = { x: 0, y: 0, h: 0 }
 
   /**
-   * Indicates whether debug mode is enabled.
+   * Optional array of device attributes.
    */
-  isDebugMode: boolean = false
+  attributes?: Attribute[] = []
+
+  /**
+   * Indicates whether debug mode is enabled (UI-specific).
+   */
+  isDebugMode?: boolean = false
 
   /**
    * Creates an instance of the Device class.
    * @param name - The name of the device. Defaults to an empty string.
    * @param modelId - The model identifier of the device. Defaults to an empty string.
    * @param position - The position of the device in 3D space. Defaults to { x: 0, y: 0, h: 0 }.
+   * @param attributes - Optional array of device attributes. Defaults to empty array.
    */
-  constructor(name: string = '', modelId: string = '', position: Position = { x: 0, y: 0, h: 0 }) {
+  constructor(
+    name: string = '',
+    modelId: string = '',
+    position: Position = { x: 0, y: 0, h: 0 },
+    attributes: Attribute[] = []
+  ) {
     this.name = name
     this.modelId = modelId
     this.position = position
+    this.attributes = attributes
   }
 
   /**

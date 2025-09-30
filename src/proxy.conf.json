@@ -1,7 +1,7 @@
 {
-  "/api": {
-    "target": "http://localhost:3000",
-    "secure": false,
+  "/api/*": {
+    "target": "https://3d-inventory-api.ultimasolution.pl",
+    "secure": true,
     "changeOrigin": true,
     "logLevel": "debug",
     "pathRewrite": {

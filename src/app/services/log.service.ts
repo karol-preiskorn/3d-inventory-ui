@@ -5,13 +5,21 @@
  * @version 2024-03-14 C2RLO - Initial
  **/
 
-import { catchError, Observable, of, retry, throwError } from 'rxjs'
+import { catchError, map, Observable, of, retry, throwError } from 'rxjs'
 
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 
 import { environment } from '../../environments/environment'
 import { DebugService } from './debug.service'
+
+// API Response interfaces for logs
+interface ApiResponse<T> {
+  success?: boolean
+  data: T
+  count?: number
+  message?: string
+}
 
 /**
  * Represents the parameters for retrieving logs.
@@ -73,7 +81,16 @@ export class LogService {
    * @returns An Observable that emits an array of Log objects.
    */
   GetLogs(): Observable<Log[]> {
-    return this.http.get<Log[]>(environment.baseurl + '/logs').pipe(retry(1), catchError(this.handleError))
+    const url = `${environment.baseurl}/logs`
+    this.debugService.debug(`[LogService.GetLogs] Fetching all logs from ${url}`)
+    return this.http.get<ApiResponse<Log[]>>(url).pipe(
+      map(response => {
+        this.debugService.debug(`✅ LogService: API returned ${response.data?.length ?? 0} logs`)
+        return response.data || []
+      }),
+      retry(1),
+      catchError(this.handleError)
+    )
   }
 
   /**
@@ -94,7 +111,14 @@ export class LogService {
   GetComponentLogs(component: string): Observable<Log[]> {
     const url = `${environment.baseurl}/logs/component/${encodeURIComponent(component)}`
     this.debugService.debug(`[LogService.GetComponentLogs] Fetching logs for component: ${component} from ${url}`);
-    return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
+    return this.http.get<ApiResponse<Log[]>>(url).pipe(
+      map(response => {
+        this.debugService.debug(`✅ LogService: API returned ${response.data?.length ?? 0} logs for component ${component}`)
+        return response.data || []
+      }),
+      retry(1),
+      catchError(this.handleError)
+    )
   }
 
   /**
@@ -105,7 +129,14 @@ export class LogService {
   GetDeviceLogs(id: string): Observable<Log[]> {
     const url = environment.baseurl + '/logs/devices/' + id
     this.debugService.debug('LogComponent.GetDeviceLogs(' + id + ') ' + url);
-    return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
+    return this.http.get<ApiResponse<Log[]>>(url).pipe(
+      map(response => {
+        this.debugService.debug(`✅ LogService: API returned ${response.data?.length ?? 0} logs for device ${id}`)
+        return response.data || []
+      }),
+      retry(1),
+      catchError(this.handleError)
+    )
   }
 
   /**
@@ -116,7 +147,14 @@ export class LogService {
   GetAttributeLogs(id: string): Observable<Log[]> {
     const url = environment.baseurl + '/logs/attributes/' + id
     this.debugService.debug('LogComponent.GetAttributeLogs(' + id + ') ' + url);
-    return this.http.get<Log[]>(url).pipe(retry(1), catchError(this.handleError))
+    return this.http.get<ApiResponse<Log[]>>(url).pipe(
+      map(response => {
+        this.debugService.debug(`✅ LogService: API returned ${response.data?.length ?? 0} logs for attribute ${id}`)
+        return response.data || []
+      }),
+      retry(1),
+      catchError(this.handleError)
+    )
   }
 
   /**
@@ -125,9 +163,18 @@ export class LogService {
    * @returns An Observable that emits a Log object.
    */
   GetLogsById(id: string): Observable<Log[]> {
+    const url = `${environment.baseurl}/logs/${id}`
+    this.debugService.debug(`[LogService.GetLogsById] Fetching logs by id: ${id}`)
     return this.http
-      .get<Log[]>(environment.baseurl + '/logs/' + id, this.httpOptions)
-      .pipe(retry(1), catchError(this.handleError))
+      .get<ApiResponse<Log[]>>(url, this.httpOptions)
+      .pipe(
+        map(response => {
+          this.debugService.debug(`✅ LogService: API returned ${response.data?.length ?? 0} logs for id ${id}`)
+          return response.data || []
+        }),
+        retry(1),
+        catchError(this.handleError)
+      )
   }
 
   /**

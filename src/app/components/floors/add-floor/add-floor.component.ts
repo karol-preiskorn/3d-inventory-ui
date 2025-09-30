@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common'
-import { Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
 import { firstValueFrom } from 'rxjs'
 
+import { DebugService } from '../../../services/debug.service'
 import { FloorService } from '../../../services/floor.service'
 import { LogService } from '../../../services/log.service'
 import { Floors } from '../../../shared/floors'
@@ -55,6 +56,7 @@ export class FloorAddComponent implements OnInit {
     private floorService: FloorService,
     private logService: LogService,
     private ngZone: NgZone,
+    private readonly debugService: DebugService,
   ) { }
 
   ngOnInit(): void {

@@ -16,8 +16,10 @@ import { ConnectionListComponent } from './components/connection/connection-list
 import { ConnectionEditComponent } from './components/connection/edit-connection/edit-connection.component'
 import { DeviceAddComponent } from './components/devices/add-device/add-device.component'
 import { DeviceListComponent } from './components/devices/devices-list/devices-list.component'
+import { DeviceTestComponent } from './components/device-test.component'
 import { DeviceEditComponent } from './components/devices/edit-device/edit-device.component'
-import { FloorAddComponent } from './components/floors/add-floor/add-floor.component'
+import { LogTestComponent } from './components/log-test/log-test.component'
+import { AddFloorComponent } from './components/floors/add-floor/add-floor.component'
 import { FloorEditComponent } from './components/floors/edit-floor/edit-floor.component'
 import { FloorListComponent } from './components/floors/floor-list/floor-list.component'
 import { HomeComponent } from './components/home/home.component'
@@ -71,6 +73,8 @@ export const routes: Routes = [
   },
 
   // Existing routes
+  { path: 'device-test', component: DeviceTestComponent, title: 'Device API Test' },
+  { path: 'log-test', component: LogTestComponent, title: 'Log API Test' },
   { path: 'device-list', component: DeviceListComponent, title: 'Device List' },
   { path: 'edit-device/:id', component: DeviceEditComponent, title: 'Edit Device' },
   { path: 'add-device', component: DeviceAddComponent, title: 'Add Device' },
@@ -95,7 +99,7 @@ export const routes: Routes = [
   { path: 'add-connection', component: ConnectionAddComponent, title: 'Add Connections' },
   { path: 'edit-connection/:id', component: ConnectionEditComponent, title: 'Edit Connections' },
   { path: 'floor-list', component: FloorListComponent, title: 'Floor List' },
-  { path: 'add-floor', component: FloorAddComponent, title: 'Add Floor' },
+  { path: 'add-floor', component: AddFloorComponent, title: 'Add Floor' },
   { path: 'edit-floor/:id', component: FloorEditComponent, title: 'Edit Floor' },
 
   // Wildcard route - should be last

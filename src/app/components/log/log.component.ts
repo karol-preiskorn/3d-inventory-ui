@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, signal } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, signal } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { NgbPagination } from '@ng-bootstrap/ng-bootstrap'
 import { Subscription } from 'rxjs'
@@ -15,6 +15,7 @@ import { Connection } from '../../shared/connection'
 import { Attribute } from '../../shared/attribute'
 import { AttributesDictionary } from '../../shared/AttributesDictionary'
 import { Floors } from '../../shared/floors'
+import { DebugService } from '../../services/debug.service'
 
 /**
  * LogComponent - Displays application logs with filtering and pagination
@@ -71,6 +72,8 @@ export class LogComponent implements OnInit, OnDestroy {
     private connectionService: ConnectionService,
     private attributeDictionaryService: AttributeDictionaryService,
     private floorService: FloorService,
+    private cdr: ChangeDetectorRef,
+    private debugService: DebugService,
   ) { }
 
   ngOnInit(): void {
@@ -103,6 +106,7 @@ export class LogComponent implements OnInit, OnDestroy {
     this.logService.DeleteLog(id).subscribe((_data: Log) => {
       // Log deleted successfully
       this.loadLog('deleteLog')
+      this.cdr.detectChanges()
     })
   }
 
@@ -121,17 +125,51 @@ export class LogComponent implements OnInit, OnDestroy {
     this.componentLogSubscription = this.logService.GetComponentLogs(id).subscribe({
       next: (data: Log[]) => {
         // Received logs successfully
+        console.warn('✅ Loaded', data.length, 'logs for component', id);
+
+        // If no component-specific logs found, load all logs as fallback
+        if (data.length === 0) {
+          console.warn('No component-specific logs found, loading all logs as fallback');
+          this.loadAllLogsAsFallback();
+          return;
+        }
+
         this.LogList = data
         this.totalItems = data.length
         this.isLoading.set(false)
         this.errorMessage.set(null)
+        // Trigger change detection since we're using OnPush strategy
+        this.cdr.detectChanges()
       },
       error: (error: unknown) => {
         console.error(`[LogComponent] Error loading logs for component ID: ${id}`, error)
+        // Try to load all logs as fallback when component query fails
+        console.warn('Component query failed, trying to load all logs as fallback');
+        this.loadAllLogsAsFallback();
+      }
+    })
+  }
+
+  /**
+   * Loads all logs as fallback when component-specific logs are not available
+   */
+  private loadAllLogsAsFallback(): void {
+    this.logService.GetLogs().subscribe({
+      next: (data: Log[]) => {
+        console.warn('✅ Fallback: Loaded', data.length, 'total logs');
+        this.LogList = data
+        this.totalItems = data.length
+        this.isLoading.set(false)
+        this.errorMessage.set(null)
+        this.cdr.detectChanges()
+      },
+      error: (error: unknown) => {
+        console.error(`[LogComponent] Error loading all logs as fallback:`, error)
         this.LogList = []
         this.totalItems = 0
         this.isLoading.set(false)
         this.errorMessage.set('Failed to load logs')
+        this.cdr.detectChanges()
       }
     })
   }
@@ -149,10 +187,12 @@ export class LogComponent implements OnInit, OnDestroy {
     this.logsByIdSubscription = this.logService.GetLogsById(id).subscribe({
       next: (data: Log[]) => {
         // Logs loaded successfully
+        console.warn('✅ Loaded', data.length, 'logs for object ID', id);
         this.LogList = data
         this.totalItems = data.length
         this.isLoading.set(false)
         this.errorMessage.set(null)
+        this.cdr.detectChanges()
       },
       error: (error: unknown) => {
         console.error(`[LogComponent] Error loading logs by ID: ${id}`, error)
@@ -160,6 +200,7 @@ export class LogComponent implements OnInit, OnDestroy {
         this.totalItems = 0
         this.isLoading.set(false)
         this.errorMessage.set('Failed to load logs')
+        this.cdr.detectChanges()
       }
     })
   }
