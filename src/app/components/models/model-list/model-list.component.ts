@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { Router } from '@angular/router'
 import { Observable, of } from 'rxjs'
@@ -33,23 +33,33 @@ export class ModelsListComponent implements OnInit {
     public modelsService: ModelsService,
     private readonly logService: LogService,
     private readonly debugService: DebugService,
+    private readonly cdr: ChangeDetectorRef,
   ) {}
 
   /**
    * Loads the models by calling the GetModels method of the models service.
-   * @returns An Observable that emits the loaded models data.
    */
-  loadModels(): Observable<Model[]> {
-    return this.modelsService.GetModels()
+  loadModels(): void {
+    this.modelsService.GetModels().subscribe({
+      next: (data: Model[]) => {
+        console.warn('✅ Loaded', data.length, 'models from API');
+        this.ModelsList = data
+        this.totalItems = data.length
+        // Trigger change detection since we're using OnPush strategy
+        this.cdr.detectChanges()
+      },
+      error: (error) => {
+        console.error('❌ Error loading models:', error);
+        this.debugService.error('Error loading models:', error);
+      }
+    })
   }
 
   /**
    * Initializes the component.
    */
   ngOnInit(): void {
-    this.loadModels().subscribe((data: Model[]) => {
-      this.ModelsList = data
-    })
+    this.loadModels()
     this.debugService.debug(`ModelsListComponent initialized with component: ${this.component}`);
   }
 
@@ -80,9 +90,7 @@ export class ModelsListComponent implements OnInit {
         .subscribe({
           next: () => {
             this.debugService.info(`Model cloned with new ID: ${clonedId}`);
-            this.loadModels().subscribe((data: Model[]) => {
-              this.ModelsList = data
-            })
+            this.loadModels()
             this.ngZone.run(() => this.router.navigateByUrl('models-list'))
           },
           error: (err) => {

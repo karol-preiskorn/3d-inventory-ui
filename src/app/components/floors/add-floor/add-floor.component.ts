@@ -18,7 +18,7 @@ import Validation from '../../../shared/validation'
   imports: [CommonModule, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FloorAddComponent implements OnInit {
+export class AddFloorComponent implements OnInit {
   floor: Floors
   isSubmitted = false
   valid: Validation = new Validation()
@@ -151,7 +151,7 @@ export class FloorAddComponent implements OnInit {
     try {
       return JSON.stringify(data, null, ' ')
     } catch (error) {
-      this.debugService.error('Error stringify data:', error)
+            this.debugService.error('Error stringify data:', error)
       return '[Unable to display data]'
     }
   }
@@ -176,7 +176,7 @@ export class FloorAddComponent implements OnInit {
       }
       return control
     } catch (error) {
-      this.debugService.error('getDimension error:', error)
+      this.debugService?.error('getDimension error:', error);
       return null
     }
   }
@@ -197,7 +197,7 @@ export class FloorAddComponent implements OnInit {
       }
       return control.valid
     } catch (error) {
-      this.debugService.error('isControlValid error:', error)
+      this.debugService?.error('isControlValid error:', error);
       return false
     }
   }
@@ -215,7 +215,7 @@ export class FloorAddComponent implements OnInit {
       })
       this.dimension.push(fg)
     } catch (error) {
-      this.debugService.error('Error adding dimension:', error)
+      this.debugService.error('Error adding dimension:', error);
       // Optionally, show a user-friendly message or handle UI state
       // e.g., this.isSubmitDisabled = true;
     }
@@ -232,7 +232,7 @@ export class FloorAddComponent implements OnInit {
     this.floorForm.get('address.country')?.setValue(faker.location.country())
     this.floorForm.get('address.postcode')?.setValue(faker.location.zipCode())
 
-    // Check validity after generating values
+        // Check validity after generating values
     this.floorForm.updateValueAndValidity()
     if (this.floorForm.valid) {
       this.debugService.debug('The entire floor form is valid.')
@@ -254,7 +254,7 @@ export class FloorAddComponent implements OnInit {
     group.get('yPos')?.setValue(String(faker.number.int({ min: 2, max: 100 })))
     group.get('hPos')?.setValue(String(faker.number.int({ min: 2, max: 100 })))
 
-    // Example usage: check if the 'description' control in the dimension array at index i is valid
+        // Example usage: check if the 'description' control in the dimension array at index i is valid
     const isDescriptionValid = group.get('description')?.valid
     this.debugService.debug(`Dimension[${i}] description valid:`, isDescriptionValid)
     this.debugService.debug(`Dimension[${i}] group valid:`, group.valid)
@@ -268,15 +268,15 @@ export class FloorAddComponent implements OnInit {
   async onSubmit() {
     this.isSubmitted = true
     if (this.floorForm.invalid) {
-      this.debugService.error('Form is invalid:', this.floorForm.errors)
+      this.debugService.error('Form is invalid:', this.floorForm.errors);
       return
     }
     this.isSubmitDisabled = true
     try {
       const floorData: Floors = this.floorForm.value as Floors
-      this.debugService.info('Floor Data to Submit:', JSON.stringify(floorData, null, ' '))
+              this.debugService.info('Floor Data to Submit:', JSON.stringify(floorData, null, ' '))
       const returnValue = await firstValueFrom(this.floorService.CreateFloor(floorData))
-      this.debugService.info(`Floor created successfully:  ${returnValue._id}`)
+              this.debugService.info(`Floor created successfully:  ${returnValue._id}`)
       this.floorForm.get('_id')?.setValue(returnValue._id) // Ensure the form control is updated with the new ID
       this.floorForm.markAsPristine() // Mark the form as pristine after submission
       this.isSubmitDisabled = false // Re-enable the submit button
@@ -293,11 +293,11 @@ export class FloorAddComponent implements OnInit {
           this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
         })
 
-      this.debugService.info('Log created successfully')
+            this.debugService.info('Log created successfully')
       this.router.navigateByUrl('floor-list')
       return
     } catch (error) {
-      this.debugService.error('Error submitting form:', error)
+      this.debugService.error('Error submitting form:', error);
       this.isSubmitDisabled = false
     }
   }
