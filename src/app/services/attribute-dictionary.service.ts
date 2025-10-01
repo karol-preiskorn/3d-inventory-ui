@@ -7,6 +7,7 @@ import { Router } from '@angular/router'
 
 import { environment } from '../../environments/environment'
 import { AttributesDictionary } from '../shared/AttributesDictionary'
+import { AuthenticationService } from './authentication.service'
 import { LogService } from './log.service'
 
 @Injectable({
@@ -19,6 +20,7 @@ export class AttributeDictionaryService {
     private logService: LogService,
     private ngZone: NgZone,
     private router: Router,
+    private authService: AuthenticationService,
   ) {}
   httpOptions = {
     headers: new HttpHeaders({
@@ -34,7 +36,9 @@ export class AttributeDictionaryService {
    */
   GetAttributeDictionaries(): Observable<AttributesDictionary[]> {
     return this.http
-      .get<AttributesDictionary[]>(environment.baseurl + '/attributesDictionary/', this.httpOptions)
+      .get<AttributesDictionary[]>(environment.baseurl + '/attributesDictionary/', {
+        headers: this.authService.getAuthHeaders()
+      })
       .pipe(retry(1), catchError(this.errorHandler))
   }
 
@@ -48,7 +52,9 @@ export class AttributeDictionaryService {
       return throwError(() => new Error('Attribute dictionary ID is required.'))
     }
     const url = `${environment.baseurl}/attributesDictionary/${encodeURIComponent(id)}`
-    return this.http.get<AttributesDictionary>(url, this.httpOptions).pipe(retry(1), catchError(this.errorHandler))
+    return this.http.get<AttributesDictionary>(url, {
+      headers: this.authService.getAuthHeaders()
+    }).pipe(retry(1), catchError(this.errorHandler))
   }
 
   /**
@@ -61,7 +67,9 @@ export class AttributeDictionaryService {
       return throwError(() => new Error('Attribute dictionary ID is required for deletion.'))
     }
     const url = `${environment.baseurl}/attributesDictionary/${encodeURIComponent(id)}`
-    return this.http.delete<AttributesDictionary>(url, this.httpOptions).pipe(retry(1), catchError(this.errorHandler))
+    return this.http.delete<AttributesDictionary>(url, {
+      headers: this.authService.getAuthHeaders()
+    }).pipe(retry(1), catchError(this.errorHandler))
   }
 
   /**
@@ -79,7 +87,9 @@ export class AttributeDictionaryService {
       return throwError(() => new Error('Missing required attribute dictionary fields.'));
     }
     return this.http
-      .post<AttributesDictionary>(`${this.baseurl}/attributesDictionary/`, data, this.httpOptions)
+      .post<AttributesDictionary>(`${this.baseurl}/attributesDictionary/`, data, {
+        headers: this.authService.getAuthHeaders()
+      })
       .pipe(retry(1), catchError(this.errorHandler));
   }
 
@@ -119,7 +129,9 @@ export class AttributeDictionaryService {
       return throwError(() => new Error('Attribute dictionary ID is required for update.'))
     }
     return this.http
-      .put<AttributesDictionary>(`${environment.baseurl}/attributesDictionary/${id}`, data, this.httpOptions)
+      .put<AttributesDictionary>(`${environment.baseurl}/attributesDictionary/${id}`, data, {
+        headers: this.authService.getAuthHeaders()
+      })
       .pipe(retry(1), catchError(this.errorHandler))
   }
 

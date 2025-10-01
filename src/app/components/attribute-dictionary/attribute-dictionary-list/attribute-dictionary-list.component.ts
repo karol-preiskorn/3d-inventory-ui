@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
 import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
@@ -33,10 +33,17 @@ export class AttributeDictionaryListComponent implements OnInit {
     private logService: LogService,
     private router: Router,
     private ngZone: NgZone,
+    private readonly cdr: ChangeDetectorRef,
   ) {}
   loadAttributeDictionary() {
-    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributesDictionary[]) => {
-      this.attributeDictionaryList = data
+    return this.attributeDictionaryService.GetAttributeDictionaries().subscribe({
+      next: (data: AttributesDictionary[]) => {
+        this.attributeDictionaryList = data
+        this.cdr.detectChanges()
+      },
+      error: (error) => {
+        console.error('[loadAttributeDictionary] Error loading attributes dictionary:', error)
+      }
     })
   }
 

@@ -1,6 +1,6 @@
 import { lastValueFrom } from 'rxjs'
 
-import { ChangeDetectionStrategy, Component, Input, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgZone, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
 import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
@@ -60,6 +60,7 @@ export class AttributeListComponent implements OnInit {
     private modelService: ModelsService,
     private connectionService: ConnectionService,
     private attributeDictionaryService: AttributeDictionaryService,
+    private readonly cdr: ChangeDetectorRef,
   ) {}
 
   public toString(str: string | number | boolean | object | null | undefined) {
@@ -75,21 +76,26 @@ export class AttributeListComponent implements OnInit {
   }
 
   private async LoadAttributes() {
-    // @TODO: #62 show data depends of context attributeComponent and attributeComponentObject
-    if (this.attributeComponent === 'Device' && this.attributeComponentObject !== null) {
-      let parsedObject: string | Record<string, unknown> = this.attributeComponentObject
-      if (typeof this.attributeComponentObject === 'string') {
-        try {
-          parsedObject = JSON.parse(this.attributeComponentObject)
-        } catch (e) {
-          console.error('Failed to parse attributeComponentObject as JSON:', e)
-          parsedObject = this.attributeComponentObject // fallback to original string
+    try {
+      // @TODO: #62 show data depends of context attributeComponent and attributeComponentObject
+      if (this.attributeComponent === 'Device' && this.attributeComponentObject !== null) {
+        let parsedObject: string | Record<string, unknown> = this.attributeComponentObject
+        if (typeof this.attributeComponentObject === 'string') {
+          try {
+            parsedObject = JSON.parse(this.attributeComponentObject)
+          } catch (e) {
+            console.error('Failed to parse attributeComponentObject as JSON:', e)
+            parsedObject = this.attributeComponentObject // fallback to original string
+          }
         }
+        this.attributeList = await this.attributeService.GetContextAttributes(this.attributeComponent, parsedObject as string)
+      } else {
+        this.attributeList = await this.attributeService.GetAttributesSync()
+        this.totalItems = this.attributeList.length // Set total items
       }
-      this.attributeList = await this.attributeService.GetContextAttributes(this.attributeComponent, parsedObject as string)
-    } else {
-      this.attributeList = await this.attributeService.GetAttributesSync()
-      this.totalItems = this.attributeList.length // Set total items
+      this.cdr.detectChanges()
+    } catch (error) {
+      console.error('[LoadAttributes] Error loading attributes:', error)
     }
   }
 

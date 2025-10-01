@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { ChangeDetectionStrategy, Component, NgZone, OnDestroy, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
 import { DebugService } from '../../../services/debug.service'
@@ -53,14 +53,23 @@ export class FloorListComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly ngZone: NgZone,
     private readonly debugService: DebugService,
+    private readonly cdr: ChangeDetectorRef,
   ) { }
 
   loadFloors() {
+    this.debugService.info('[loadFloors] Loading floors...')
     this.floorService
       .GetFloors()
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((data: Floors[]) => {
-        this.floorList = data
+      .subscribe({
+        next: (data: Floors[]) => {
+          this.debugService.info('[loadFloors] Floors loaded successfully:', data.length)
+          this.floorList = data
+          this.cdr.detectChanges()
+        },
+        error: (error) => {
+          this.debugService.error('[loadFloors] Error loading floors:', error)
+        }
       })
   }
 
