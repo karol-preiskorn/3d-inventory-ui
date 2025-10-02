@@ -1,20 +1,20 @@
 <div class="container-fluid">
   <h2><i class="bi bi-grid-3x3-gap"></i> Add Attribute Dictionary</h2>
-  
+
   @if (!authService.isAuthenticated()) {
-    <div class="alert alert-warning" role="alert">
-      <i class="bi bi-exclamation-triangle"></i>
-      <strong>Authentication Required:</strong> You must be logged in to create an attribute dictionary.
-      <a href="/login" class="alert-link">Please log in first.</a>
-    </div>
+  <div class="alert alert-warning" role="alert">
+    <i class="bi bi-exclamation-triangle"></i>
+    <strong>Authentication Required:</strong> You must be logged in to create an attribute dictionary.
+    <a href="/login" class="alert-link">Please log in first.</a>
+  </div>
   } @else {
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <i class="bi bi-check-circle"></i>
-      <strong>Authenticated:</strong> You are logged in and can create attribute dictionaries.
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="bi bi-check-circle"></i>
+    <strong>Authenticated:</strong> You are logged in and can create attribute dictionaries.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
   }
-  
+
   <form [formGroup]="addAttributeDictionaryForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
     <div class="form-group mb-3">
       <label for="name" class="form-label">Name</label>

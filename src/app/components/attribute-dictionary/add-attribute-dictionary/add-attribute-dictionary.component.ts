@@ -153,7 +153,7 @@ export class AttributeDictionaryAddComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error creating attribute dictionary:', error)
-          
+
           // Handle specific authentication errors
           if (error.message && error.message.includes('401')) {
             console.error('Authentication failed. Session may have expired. Redirecting to login...')
@@ -161,7 +161,7 @@ export class AttributeDictionaryAddComponent implements OnInit {
           } else {
             console.error('Failed to create attribute dictionary:', error.message)
           }
-          
+
           this.cdr.detectChanges()
         }
       })
