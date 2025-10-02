@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, Inject, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 
 import { CommonModule } from '@angular/common'
 import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
+import { AuthenticationService } from '../../../services/authentication.service'
 import { LogService } from '../../../services/log.service'
 import { AttributesDictionary } from '../../../shared/AttributesDictionary'
 import { ComponentDictionary } from '../../../shared/ComponentDictionary'
@@ -37,6 +38,11 @@ export class AttributeDictionaryAddComponent implements OnInit {
 
   ngOnInit() {
     this.formAttributeDictionary()
+    // Check if user is authenticated
+    if (!this.authService.isAuthenticated()) {
+      console.warn('User is not authenticated, redirecting to login')
+      this.router.navigate(['/login'])
+    }
   }
 
   constructor(
@@ -45,6 +51,8 @@ export class AttributeDictionaryAddComponent implements OnInit {
     private router: Router,
     public attributeDictionaryService: AttributeDictionaryService,
     private logService: LogService,
+    public authService: AuthenticationService,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   formAttributeDictionary() {
@@ -109,21 +117,53 @@ export class AttributeDictionaryAddComponent implements OnInit {
   }
 
   submitForm() {
+    // Check authentication before submitting
+    if (!this.authService.isAuthenticated()) {
+      console.error('User is not authenticated - redirecting to login')
+      this.router.navigate(['/login'])
+      return
+    }
+
+    // Debug authentication state
+    const token = this.authService.getCurrentToken()
+    console.warn('Authentication state:', {
+      isAuthenticated: this.authService.isAuthenticated(),
+      hasToken: !!token,
+      tokenLength: token?.length || 0,
+      tokenStart: token?.substring(0, 20) + '...' || 'No token'
+    })
+
     this.attributeDictionaryService
       .CreateAttributeDictionary(this.addAttributeDictionaryForm.value as unknown as AttributesDictionary)
-      .subscribe((createdAttribute) => {
-        const _id = createdAttribute._id
-        this.logService
-          .CreateLog({
-            objectId: _id,
-            message: this.addAttributeDictionaryForm.getRawValue(),
-            operation: 'Create',
-            component: 'attributesDictionary',
-          })
-          .subscribe(() => {
-            this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))
-            this.router.navigate(['attribute-dictionary-list'])
-          })
+      .subscribe({
+        next: (createdAttribute) => {
+          console.warn('Successfully created attribute dictionary:', createdAttribute)
+          const _id = createdAttribute._id
+          this.logService
+            .CreateLog({
+              objectId: _id,
+              message: this.addAttributeDictionaryForm.getRawValue(),
+              operation: 'Create',
+              component: 'attributesDictionaries',
+            })
+            .subscribe(() => {
+              this.ngZone.run(() => this.router.navigateByUrl('attribute-dictionary-list'))
+              this.router.navigate(['attribute-dictionary-list'])
+            })
+        },
+        error: (error) => {
+          console.error('Error creating attribute dictionary:', error)
+          
+          // Handle specific authentication errors
+          if (error.message && error.message.includes('401')) {
+            console.error('Authentication failed. Session may have expired. Redirecting to login...')
+            this.router.navigate(['/login'])
+          } else {
+            console.error('Failed to create attribute dictionary:', error.message)
+          }
+          
+          this.cdr.detectChanges()
+        }
       })
   }
 }

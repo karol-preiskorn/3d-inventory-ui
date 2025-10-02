@@ -1,5 +1,20 @@
 <div class="container-fluid">
   <h2><i class="bi bi-grid-3x3-gap"></i> Add Attribute Dictionary</h2>
+  
+  @if (!authService.isAuthenticated()) {
+    <div class="alert alert-warning" role="alert">
+      <i class="bi bi-exclamation-triangle"></i>
+      <strong>Authentication Required:</strong> You must be logged in to create an attribute dictionary.
+      <a href="/login" class="alert-link">Please log in first.</a>
+    </div>
+  } @else {
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <i class="bi bi-check-circle"></i>
+      <strong>Authenticated:</strong> You are logged in and can create attribute dictionaries.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  }
+  
   <form [formGroup]="addAttributeDictionaryForm" (ngSubmit)="submitForm()" class="needs-validation" novalidate>
     <div class="form-group mb-3">
       <label for="name" class="form-label">Name</label>
@@ -9,16 +24,16 @@
           'form-control': true,
         }" formControlName="name" id="name" required></textarea>
       @if (this.addAttributeDictionaryForm.controls.name.errors) {
-        <div class="invalid-feedback">
-          @if (this.addAttributeDictionaryForm.controls.name.errors.required) {
-            <div>Attribute name is required</div>
-          }
-          @if (this.addAttributeDictionaryForm.controls.name.errors.minlength) {
-            <div>
-              Attribute name must be at least 6 characters
-            </div>
-          }
+      <div class="invalid-feedback">
+        @if (this.addAttributeDictionaryForm.controls.name.errors.required) {
+        <div>Attribute name is required</div>
+        }
+        @if (this.addAttributeDictionaryForm.controls.name.errors.minlength) {
+        <div>
+          Attribute name must be at least 6 characters
         </div>
+        }
+      </div>
       }
     </div>
     <div class="row">
@@ -31,17 +46,17 @@
               'form-select': true,
             }" id="type">
             @for (typeObj of deviceTypeDict['list']; track typeObj; let i = $index) {
-              <option>
-                {{ typeObj.name }}
-              </option>
+            <option>
+              {{ typeObj.name }}
+            </option>
             }
           </select>
           @if (this.addAttributeDictionaryForm.controls.type.errors) {
-            <div class="invalid-feedback">
-              @if (this.addAttributeDictionaryForm.controls.type.errors.required) {
-                <div>Category is required</div>
-              }
-            </div>
+          <div class="invalid-feedback">
+            @if (this.addAttributeDictionaryForm.controls.type.errors.required) {
+            <div>Category is required</div>
+            }
+          </div>
           }
           <div>
             {{ this.toString(this.addAttributeDictionaryForm.controls.type.dirty) }}
@@ -58,19 +73,19 @@
               'form-select': true,
             }">
             @for (componentObj of componentDictionary.getAll(); track componentObj; let i = $index) {
-              <option>
-                {{ componentObj.name }}
-              </option>
+            <option>
+              {{ componentObj.name }}
+            </option>
             }
           </select>
           @if (this.addAttributeDictionaryForm.controls.componentName.errors) {
-            <div class="invalid-feedback">
-              @if (this.addAttributeDictionaryForm.controls.componentName.errors.required) {
-                <div>Component Name is
-                  required
-                </div>
-              }
+          <div class="invalid-feedback">
+            @if (this.addAttributeDictionaryForm.controls.componentName.errors.required) {
+            <div>Component Name is
+              required
             </div>
+            }
+          </div>
           }
         </div>
       </div>
@@ -83,18 +98,18 @@
               'form-select': true,
             }" id="unit">
             @for (componentObj of unitDictionary.getAllUnits(); track componentObj; let i = $index) {
-              <option>
-                {{ componentObj.name }}
-              </option>
+            <option>
+              {{ componentObj.name }}
+            </option>
             }
           </select>
           @if (this.addAttributeDictionaryForm.controls.unit.errors) {
-            <div class="invalid-feedback">
-              @if (this.addAttributeDictionaryForm.controls.unit.errors.required) {
-                <div>Unit is required
-                </div>
-              }
+          <div class="invalid-feedback">
+            @if (this.addAttributeDictionaryForm.controls.unit.errors.required) {
+            <div>Unit is required
             </div>
+            }
+          </div>
           }
         </div>
       </div>
@@ -109,23 +124,23 @@
               'form-control': true,
             }">{{ this.addAttributeDictionaryForm.value.description }}</textarea>
           @if (this.addAttributeDictionaryForm.controls.description.errors) {
-            <div class="invalid-feedback">
-              @if (this.addAttributeDictionaryForm.controls.description.errors.required) {
-                <div>Description is
-                required</div>
-              }
-            </div>
+          <div class="invalid-feedback">
+            @if (this.addAttributeDictionaryForm.controls.description.errors.required) {
+            <div>Description is
+              required</div>
+            }
+          </div>
           }
         </div>
       </div>
       <div class="form-group mb-3">
         <button type="submit" [disabled]="isFormInvalid" class="btn btn-primary">
-          Add model
+          Add Attribute Dictionary
         </button>
         @if (isFormInvalid) {
-          <div class="form-error-message">
-            Form is invalid
-          </div>
+        <div class="form-error-message">
+          Form is invalid
+        </div>
         }
       </div>
     </div>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authentication Debug</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .token { word-break: break-all; background: #f0f0f0; padding: 10px; margin: 10px 0; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .authenticated { background: #d4edda; color: #155724; }
+        .not-authenticated { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>3D Inventory Authentication Debug</h1>
+    <div id="status"></div>
+    <h2>Token Details:</h2>
+    <div id="token"></div>
+    <h2>User Details:</h2>
+    <div id="user"></div>
+    
+    <script>
+        const token = localStorage.getItem('auth_token');
+        const user = localStorage.getItem('auth_user');
+        
+        const statusDiv = document.getElementById('status');
+        const tokenDiv = document.getElementById('token');
+        const userDiv = document.getElementById('user');
+        
+        if (token) {
+            statusDiv.innerHTML = '<div class="status authenticated">✅ Token found in localStorage</div>';
+            tokenDiv.innerHTML = '<div class="token"><strong>Token:</strong><br>' + token + '</div>';
+            
+            // Try to decode JWT payload
+            try {
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                const now = Date.now() / 1000;
+                const expired = payload.exp < now;
+                
+                tokenDiv.innerHTML += '<h3>Token Payload:</h3><pre>' + JSON.stringify(payload, null, 2) + '</pre>';
+                statusDiv.innerHTML += '<div class="status ' + (expired ? 'not-authenticated' : 'authenticated') + '">' +
+                    (expired ? '❌ Token is EXPIRED' : '✅ Token is VALID') + '<br>' +
+                    'Expires: ' + new Date(payload.exp * 1000).toLocaleString() + '</div>';
+            } catch (e) {
+                tokenDiv.innerHTML += '<div class="status not-authenticated">❌ Cannot decode token</div>';
+            }
+        } else {
+            statusDiv.innerHTML = '<div class="status not-authenticated">❌ No token found in localStorage</div>';
+        }
+        
+        if (user) {
+            userDiv.innerHTML = '<pre>' + user + '</pre>';
+        } else {
+            userDiv.innerHTML = '<div class="status not-authenticated">❌ No user found in localStorage</div>';
+        }
+    </script>
+</body>
+</html>
