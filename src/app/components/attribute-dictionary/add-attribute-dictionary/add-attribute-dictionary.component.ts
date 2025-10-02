@@ -116,7 +116,37 @@ export class AttributeDictionaryAddComponent implements OnInit {
     return JSON.stringify(data, null, 2)
   }
 
+  // Debug method to test authentication
+  debugAuth() {
+    const token = this.authService.getCurrentToken()
+    console.warn('=== AUTHENTICATION DEBUG ===')
+    console.warn('isAuthenticated():', this.authService.isAuthenticated())
+    console.warn('Token exists:', !!token)
+    console.warn('Token length:', token?.length || 0)
+    console.warn('Token preview:', token ? token.substring(0, 50) + '...' : 'No token')
+    console.warn('localStorage auth_token:', localStorage.getItem('auth_token'))
+    console.warn('localStorage auth_user:', localStorage.getItem('auth_user'))
+
+    // Test token expiration
+    if (token) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]))
+        const now = Date.now() / 1000
+        const expired = payload.exp < now
+        console.warn('Token payload:', payload)
+        console.warn('Token expired:', expired)
+        console.warn('Expires at:', new Date(payload.exp * 1000).toLocaleString())
+      } catch (e) {
+        console.error('Cannot decode token:', e)
+      }
+    }
+    console.warn('=== END DEBUG ===')
+  }
+
   submitForm() {
+    // Debug authentication first
+    this.debugAuth()
+
     // Check authentication before submitting
     if (!this.authService.isAuthenticated()) {
       console.error('User is not authenticated - redirecting to login')
