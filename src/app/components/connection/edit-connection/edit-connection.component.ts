@@ -219,6 +219,22 @@ export class ConnectionEditComponent implements OnInit {
     this.connectionService.UpdateConnection(this.inputId, testData as Connection).subscribe({
       next: (result) => {
         console.warn('API Test Success:', JSON.stringify(result, null, 2))
+
+        // Create a log entry for this test
+        this.logService.CreateLog({
+          component: 'connections',
+          objectId: this.inputId,
+          operation: 'Test Update',
+          message: { testData, result, timestamp: new Date().toISOString() }
+        }).subscribe({
+          next: (logResult) => {
+            console.warn('Test Log Created:', JSON.stringify(logResult, null, 2))
+          },
+          error: (logError) => {
+            console.error('Error creating test log:', logError)
+          }
+        })
+
         // Reload the connection to see the update
         this.getConnection(this.inputId).subscribe((data: Connection) => {
           this.connection = data
@@ -233,6 +249,41 @@ export class ConnectionEditComponent implements OnInit {
       },
       error: (error) => {
         console.error('API Test Error:', error)
+
+        // Create a log entry for the error
+        this.logService.CreateLog({
+          component: 'connections',
+          objectId: this.inputId,
+          operation: 'Test Update Error',
+          message: { error: error.message || error, timestamp: new Date().toISOString() }
+        }).subscribe()
+      }
+    })
+  }
+
+  testLogCreation() {
+    console.warn('=== Testing Log Creation ===')
+    const testLogData = {
+      component: 'connections',
+      objectId: this.inputId,
+      operation: 'Debug Test',
+      message: {
+        connection: this.connection,
+        deviceFrom: this.deviceFrom,
+        deviceTo: this.deviceTo,
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent
+      }
+    }
+
+    this.logService.CreateLog(testLogData).subscribe({
+      next: (result) => {
+        console.warn('✅ Test Log Created Successfully:', JSON.stringify(result, null, 2))
+        // Force the log component to refresh by calling a direct refresh if needed
+        window.location.reload()
+      },
+      error: (error) => {
+        console.error('❌ Test Log Creation Failed:', error)
       }
     })
   }
