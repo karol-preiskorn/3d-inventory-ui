@@ -6,35 +6,29 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="name" class="form-label">Name</label>
-          <input
-            formControlName="name"
-            (change)="changeName($event)"
-            id="name"
-            class="form-control"
-            [ngClass]="{
+          <input formControlName="name" (change)="changeName($event)" id="name" class="form-control" [ngClass]="{
               'is-invalid': this.form.controls.name.status !== 'VALID',
               'is-valid': this.form.controls.name.status === 'VALID',
               'form-control': true,
-            }"
-            value="{{ this.form.value.name }}" />
+            }" value="{{ this.form.value.name }}" />
           <div class="fs-7 fw-lighter">{{ this.form.value._id }}</div>
           <div class="valid-feedback">Looks good!</div>
           <div class="invalid-feedback">Please choose a name 6 char len.</div>
 
           @if (form.get('name')?.invalid) {
-            <div>
-              @if (form.get('name')?.errors?.['required']) {
-                <div>Name is required.</div>
-              }
-              @if (form.get('name')?.errors?.['minlength']) {
-                <div>Name must be at least 6 characters long.</div>
-              }
-            </div>
+          <div>
+            @if (form.get('name')?.errors?.['required']) {
+            <div>Name is required.</div>
+            }
+            @if (form.get('name')?.errors?.['minlength']) {
+            <div>Name must be at least 6 characters long.</div>
+            }
+          </div>
           }
           @if ((form.get('name')?.dirty || form.get('name')?.touched) && form.get('name')?.invalid) {
-            <div>
-              Please provide connection name.
-            </div>
+          <div>
+            Please provide connection name.
+          </div>
           }
         </div>
       </div>
@@ -43,30 +37,23 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="deviceIdFrom" class="form-label">Device From</label>
-          <select
-            (change)="changeDeviceFrom($event)"
-            formControlName="deviceIdFrom"
-            [ngClass]="{
+          <select (change)="changeDeviceFrom($event)" formControlName="deviceIdFrom" [ngClass]="{
               'is-invalid': this.form.controls.deviceIdFrom.status !== 'VALID',
               'is-valid': this.form.controls.deviceIdFrom.status === 'VALID',
               'form-select': true,
-            }"
-            id="deviceIdFrom"
-            ng-class="this.form.controls.deviceIdFrom.status ? 'error' : ''">
+            }" id="deviceIdFrom" ng-class="this.form.controls.deviceIdFrom.status ? 'error' : ''">
             @for (deviceFromObj of deviceList; track deviceFromObj; let i = $index) {
-              <option
-                [value]="deviceFromObj._id"
-                [selected]="deviceFromObj._id === this.connection.deviceIdFrom">
-                {{ deviceFromObj.name }}
-              </option>
+            <option [value]="deviceFromObj._id" [selected]="deviceFromObj._id === this.connection.deviceIdFrom">
+              {{ deviceFromObj.name }}
+            </option>
             }
           </select>
           @if (this.form.controls.deviceIdFrom.errors) {
-            <div class="invalid-feedback">
-              @if (this.form.controls.deviceIdFrom.errors.required) {
-                <div>attributeDictionaryId is required</div>
-              }
-            </div>
+          <div class="invalid-feedback">
+            @if (this.form.controls.deviceIdFrom.errors.required) {
+            <div>Device From is required</div>
+            }
+          </div>
           }
           <div class="log-message">
             {{ this.toString(this.form.controls.deviceIdFrom.value) }}
@@ -76,29 +63,23 @@
       <div class="col">
         <div class="form-group mb-3">
           <label for="deviceIdTo" class="form-label">Device To</label>
-          <select
-            (change)="changeDeviceFrom($event)"
-            formControlName="deviceIdTo"
-            [ngClass]="{
+          <select (change)="changeDeviceFrom($event)" formControlName="deviceIdTo" [ngClass]="{
               'is-invalid': this.form.controls.deviceIdTo.status !== 'VALID',
               'is-valid': this.form.controls.deviceIdTo.status === 'VALID',
               'form-select': true,
-            }"
-            id="deviceIdTo">
+            }" id="deviceIdTo">
             @for (deviceToObj of deviceList; track deviceToObj; let i = $index) {
-              <option
-                [value]="deviceToObj._id"
-                [selected]="deviceToObj._id === this.connection.deviceIdTo">
-                {{ deviceToObj.name }}
-              </option>
+            <option [value]="deviceToObj._id" [selected]="deviceToObj._id === this.connection.deviceIdTo">
+              {{ deviceToObj.name }}
+            </option>
             }
           </select>
           @if (this.form.controls.deviceIdTo.errors) {
-            <div class="invalid-feedback">
-              @if (this.form.controls.deviceIdTo.errors.required) {
-                <div>attributeDictionaryId is required</div>
-              }
-            </div>
+          <div class="invalid-feedback">
+            @if (this.form.controls.deviceIdTo.errors.required) {
+            <div>Device To is required</div>
+            }
+          </div>
           }
           <div class="log-message">
             {{ this.toString(this.form.controls.deviceIdTo.value) }}
@@ -107,24 +88,162 @@
       </div>
     </div>
     <div class="form-group mb-3">
-      <button
-        type="submit"
-        [disabled]="!this.form.valid"
-        class="btn btn-primary"
-        [ngClass]="{
+      <button type="submit" [disabled]="!this.form.valid" class="btn btn-primary me-2" [ngClass]="{
           'is-invalid': !form.valid,
           'is-valid': form.valid,
           'form-control': true,
         }">
         <i class="bi bi-pencil-square"></i> Update
       </button>
+      <button type="button" (click)="debugConnectionData()" class="btn btn-info me-2">
+        <i class="bi bi-bug"></i> Debug
+      </button>
+      <button type="button" (click)="testUpdateAPI()" class="btn btn-warning me-2">
+        <i class="bi bi-wrench"></i> Test API
+      </button>
       @if (!this.form.valid) {
-        <div class="invalid-feedback">Form is invalid</div>
+      <div class="invalid-feedback">Form is invalid</div>
       }
       @if (this.form.valid) {
-        <div class="valid-feedback">Form is valid</div>
+      <div class="valid-feedback">Form is valid</div>
       }
     </div>
   </form>
+
+  <!-- Device Details and Attributes Section -->
+  <div class="row mt-4">
+    <div class="col">
+      <h4><i class="bi bi-info-circle"></i> Device Information & Attributes</h4>
+
+      <div class="row">
+        <!-- Device From Details -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h5><i class="bi bi-device-hdd"></i> Device From</h5>
+            </div>
+            <div class="card-body">
+              @if (deviceFrom) {
+              <p><strong>Name:</strong> {{ deviceFrom.name }}</p>
+              <p><strong>ID:</strong> {{ deviceFrom._id }}</p>
+              <p><strong>Model ID:</strong> {{ deviceFrom.modelId }}</p>
+              <p><strong>Position:</strong> X:{{ deviceFrom.position.x }}, Y:{{ deviceFrom.position.y }}, H:{{
+                deviceFrom.position.h }}</p>
+
+              @if (deviceFrom.attributes && deviceFrom.attributes.length > 0) {
+              <h6><i class="bi bi-tags"></i> Attributes:</h6>
+              <div class="table-responsive">
+                <table class="table table-sm table-striped">
+                  <thead>
+                    <tr>
+                      <th>Attribute</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (attr of deviceFrom.attributes; track attr.key) {
+                    <tr>
+                      <td>{{ getAttributeDictionaryName(attr.key) }}</td>
+                      <td>{{ attr.value }}</td>
+                    </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              } @else {
+              <p class="text-muted">No attributes assigned</p>
+              }
+              } @else {
+              <p class="text-muted">Loading device information...</p>
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- Device To Details -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h5><i class="bi bi-device-hdd"></i> Device To</h5>
+            </div>
+            <div class="card-body">
+              @if (deviceTo) {
+              <p><strong>Name:</strong> {{ deviceTo.name }}</p>
+              <p><strong>ID:</strong> {{ deviceTo._id }}</p>
+              <p><strong>Model ID:</strong> {{ deviceTo.modelId }}</p>
+              <p><strong>Position:</strong> X:{{ deviceTo.position.x }}, Y:{{ deviceTo.position.y }}, H:{{
+                deviceTo.position.h }}</p>
+
+              @if (deviceTo.attributes && deviceTo.attributes.length > 0) {
+              <h6><i class="bi bi-tags"></i> Attributes:</h6>
+              <div class="table-responsive">
+                <table class="table table-sm table-striped">
+                  <thead>
+                    <tr>
+                      <th>Attribute</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (attr of deviceTo.attributes; track attr.key) {
+                    <tr>
+                      <td>{{ getAttributeDictionaryName(attr.key) }}</td>
+                      <td>{{ attr.value }}</td>
+                    </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              } @else {
+              <p class="text-muted">No attributes assigned</p>
+              }
+              } @else {
+              <p class="text-muted">Loading device information...</p>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Attributes Dictionary Information -->
+      <div class="row mt-3">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <h5><i class="bi bi-book"></i> Available Attributes Dictionary</h5>
+            </div>
+            <div class="card-body">
+              @if (attributesDictionary && attributesDictionary.length > 0) {
+              <div class="table-responsive">
+                <table class="table table-sm table-striped">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Unit</th>
+                      <th>Component</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (dict of attributesDictionary; track dict._id) {
+                    <tr>
+                      <td>{{ dict.name }}</td>
+                      <td><span class="badge bg-secondary">{{ dict.type }}</span></td>
+                      <td>{{ dict.unit || 'N/A' }}</td>
+                      <td><span class="badge bg-info">{{ dict.componentName }}</span></td>
+                    </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              } @else {
+              <p class="text-muted">Loading attributes dictionary...</p>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<app-log [component]="component" ></app-log>
+<app-log [component]="component"></app-log>

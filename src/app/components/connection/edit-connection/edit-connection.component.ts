@@ -6,16 +6,18 @@
 import { firstValueFrom, Observable, tap } from 'rxjs'
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 
-import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 
 import { ConnectionService } from '../../../services/connection.service'
 import { DebugService } from '../../../services/debug.service'
 import { DeviceService } from '../../../services/device.service'
 import { LogService } from '../../../services/log.service'
+import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
 import { ComponentDictionary } from '../../../shared/ComponentDictionary'
 import { Connection } from '../../../shared/connection'
 import { Device } from '../../../shared/device'
+import { AttributesDictionary } from '../../../shared/AttributesDictionary'
 import { CommonModule } from '@angular/common'
 import { LogComponent } from '../../log/log.component'
 
@@ -33,6 +35,9 @@ export class ConnectionEditComponent implements OnInit {
   isSubmitted = false
   componentDictionary: ComponentDictionary = new ComponentDictionary()
   component: string
+  attributesDictionary: AttributesDictionary[] = []
+  deviceFrom: Device | null = null
+  deviceTo: Device | null = null
 
   constructor(
     public formBuilder: FormBuilder,
@@ -43,12 +48,15 @@ export class ConnectionEditComponent implements OnInit {
     private deviceService: DeviceService,
     private logService: LogService,
     private debugService: DebugService,
+    private attributeDictionaryService: AttributeDictionaryService,
+    private cdr: ChangeDetectorRef,
   ) {
     this.form = this.createFormGroup()
   }
 
   ngOnInit() {
     this.getDeviceList()
+    this.getAttributesDictionary()
     this.inputId = this.activatedRoute.snapshot.paramMap.get('id') ?? ''
     this.getConnection(this.inputId).subscribe((data: Connection) => {
       this.connection = data
@@ -61,6 +69,9 @@ export class ConnectionEditComponent implements OnInit {
         deviceIdTo: this.connection.deviceIdTo,
         deviceIdFrom: this.connection.deviceIdFrom,
       })
+      // Load detailed device information
+      this.loadDeviceDetails()
+      this.cdr.detectChanges()
     })
     this.component = this.inputId
     this.connection = new Connection()
@@ -128,6 +139,7 @@ export class ConnectionEditComponent implements OnInit {
       const tmp = new Device()
       data.unshift(tmp)
       this.deviceList = data
+      this.cdr.detectChanges()
     })
   }
 
@@ -140,18 +152,120 @@ export class ConnectionEditComponent implements OnInit {
     )
   }
 
+  getAttributesDictionary() {
+    this.attributeDictionaryService.GetAttributeDictionaries().subscribe((data: AttributesDictionary[]) => {
+      this.attributesDictionary = data
+      this.debugService.api('GET', '/attributes-dictionary', data)
+      this.cdr.detectChanges()
+    })
+  }
+
+  loadDeviceDetails() {
+    if (this.connection.deviceIdFrom) {
+      this.deviceService.getDeviceSynchronize(this.connection.deviceIdFrom).subscribe((device: Device) => {
+        this.deviceFrom = device
+        this.debugService.api('GET', `/devices/${this.connection.deviceIdFrom}`, device)
+        this.cdr.detectChanges()
+      })
+    }
+
+    if (this.connection.deviceIdTo) {
+      this.deviceService.getDeviceSynchronize(this.connection.deviceIdTo).subscribe((device: Device) => {
+        this.deviceTo = device
+        this.debugService.api('GET', `/devices/${this.connection.deviceIdTo}`, device)
+        this.cdr.detectChanges()
+      })
+    }
+  }  getAttributeForDevice(device: Device | null, attributeKey: string): string {
+    if (!device || !device.attributes) {
+      return 'N/A'
+    }
+    const attribute = device.attributes.find(attr => attr.key === attributeKey)
+    return attribute ? attribute.value : 'N/A'
+  }
+
+  getAttributeDictionaryName(attributeName: string): string {
+    const attrDict = this.attributesDictionary.find(dict => dict.name === attributeName)
+    return attrDict ? attrDict.name : attributeName
+  }
+
+  debugConnectionData() {
+    console.warn('=== Connection Debug Info ===')
+    console.warn('Connection:', JSON.stringify(this.connection, null, 2))
+    console.warn('Device From:', JSON.stringify(this.deviceFrom, null, 2))
+    console.warn('Device To:', JSON.stringify(this.deviceTo, null, 2))
+    console.warn('Attributes Dictionary:', JSON.stringify(this.attributesDictionary, null, 2))
+    console.warn('Form Value:', JSON.stringify(this.form.value, null, 2))
+    console.warn('Form Valid:', this.form.valid)
+    this.debugService.api('DEBUG', 'Connection Edit Debug', {
+      connection: this.connection,
+      deviceFrom: this.deviceFrom,
+      deviceTo: this.deviceTo,
+      attributesDictionary: this.attributesDictionary,
+      formValue: this.form.value,
+      formValid: this.form.valid
+    })
+  }
+
+  testUpdateAPI() {
+    console.warn('=== Testing Update API ===')
+    const testData = {
+      name: `${this.connection.name}-api-test-${Date.now()}`,
+      deviceIdFrom: this.connection.deviceIdFrom,
+      deviceIdTo: this.connection.deviceIdTo
+    }
+    console.warn('Test Data:', JSON.stringify(testData, null, 2))
+
+    this.connectionService.UpdateConnection(this.inputId, testData as Connection).subscribe({
+      next: (result) => {
+        console.warn('API Test Success:', JSON.stringify(result, null, 2))
+        // Reload the connection to see the update
+        this.getConnection(this.inputId).subscribe((data: Connection) => {
+          this.connection = data
+          this.form.patchValue({
+            _id: this.connection._id,
+            name: this.connection.name,
+            deviceIdTo: this.connection.deviceIdTo,
+            deviceIdFrom: this.connection.deviceIdFrom,
+          })
+          this.cdr.detectChanges()
+        })
+      },
+      error: (error) => {
+        console.error('API Test Error:', error)
+      }
+    })
+  }
+
   async submitForm() {
-    const formValue = this.form.value as unknown as Connection
-    await firstValueFrom(this.connectionService.UpdateConnection(this.inputId, this.form.value as Connection))
-    await firstValueFrom(
-      this.logService.CreateLog({
-        component: 'connections',
-        objectId: formValue._id,
-        operation: 'Update',
-        message: this.form.value as Connection,
-      }),
-    )
-    await this.ngZone.run(() => this.router.navigateByUrl('connection-list')).catch(() => {})
-    await this.router.navigate(['connection-list']).catch(() => {})
+    try {
+      console.warn('=== Submitting Connection Form ===')
+      console.warn('Form Value:', JSON.stringify(this.form.value, null, 2))
+      console.warn('Input ID:', this.inputId)
+      console.warn('Form Valid:', this.form.valid)
+
+      const formValue = this.form.value as unknown as Connection
+
+      // Update the connection
+      const updateResult = await firstValueFrom(this.connectionService.UpdateConnection(this.inputId, this.form.value as Connection))
+      console.warn('Update Result:', JSON.stringify(updateResult, null, 2))
+
+      // Log the operation
+      await firstValueFrom(
+        this.logService.CreateLog({
+          component: 'connections',
+          objectId: formValue._id,
+          operation: 'Update',
+          message: this.form.value as Connection,
+        }),
+      )
+
+      console.warn('Form submission successful, navigating to connection list')
+      await this.ngZone.run(() => this.router.navigateByUrl('connection-list')).catch(() => {})
+      await this.router.navigate(['connection-list']).catch(() => {})
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      // Don't navigate on error
+    }
   }
 }

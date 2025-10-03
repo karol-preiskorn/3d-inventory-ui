@@ -1,5 +1,20 @@
 <div class="container-fluid">
   <h2><i class="bi bi-ethernet"></i> Connections</h2>
+
+  @if (isLoading) {
+  <div class="alert alert-info" role="alert">
+    <i class="bi bi-hourglass-split"></i>
+    <strong>Loading:</strong> Fetching connections data...
+  </div>
+  }
+
+  @if (error) {
+  <div class="alert alert-danger" role="alert">
+    <i class="bi bi-exclamation-triangle"></i>
+    <strong>Error:</strong> {{ error }}
+  </div>
+  }
+
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -9,6 +24,16 @@
       </tr>
     </thead>
     <tbody>
+      @if (connectionList.length === 0 && !isLoading) {
+      <tr>
+        <td colspan="4" class="text-center">
+          <div class="alert alert-info" role="alert">
+            <i class="bi bi-info-circle"></i>
+            No connections found. <a href="/add-connection" class="alert-link">Create your first connection</a>.
+          </div>
+        </td>
+      </tr>
+      }
       @for (
       connectionObj of connectionList
       | slice: (connectionListPage - 1) * pageSize : connectionListPage * pageSize
@@ -51,8 +76,14 @@
       }
     </tbody>
   </table>
-  <button type="button" class="btn btn-success btn-sm move-right mb-3" (click)="AddForm()">
+  <button type="button" class="btn btn-success btn-sm move-right mb-3 me-2" (click)="AddForm()">
     <i class="bi bi-plus-lg"></i> Add
+  </button>
+  <button type="button" class="btn btn-secondary btn-sm mb-3 me-2" (click)="debugConnectionAPI()">
+    <i class="bi bi-bug"></i> Debug API
+  </button>
+  <button type="button" class="btn btn-info btn-sm mb-3" (click)="loadConnection()">
+    <i class="bi bi-arrow-clockwise"></i> Refresh
   </button>
   <ngb-pagination class="float-end me-2" [(page)]="connectionListPage" [pageSize]="pageSize"
     [collectionSize]="connectionList.length" [maxSize]="5" [boundaryLinks]="true"
