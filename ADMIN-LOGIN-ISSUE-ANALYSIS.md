@@ -2,10 +2,12 @@
 
 ## 📋 **Current Status**
 
-### **Issue:** 
+### **Issue:**
+
 Admin account is locked due to too many failed login attempts.
 
 **Error Response:**
+
 ```json
 {
   "error": "Locked",
@@ -15,6 +17,7 @@ Admin account is locked due to too many failed login attempts.
 ```
 
 ### **Working Alternative:** ✅ Carlo Account
+
 ```bash
 # WORKING CREDENTIALS:
 Username: carlo
@@ -24,6 +27,7 @@ Status: ✅ ACTIVE
 ```
 
 **Carlo Login Response:**
+
 ```json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
@@ -33,7 +37,7 @@ Status: ✅ ACTIVE
     "role": "user",
     "permissions": [
       "read:devices",
-      "write:devices", 
+      "write:devices",
       "read:models",
       "write:models",
       "read:connections",
@@ -48,17 +52,19 @@ Status: ✅ ACTIVE
 ## 🔍 **Root Cause Analysis**
 
 ### **Account Lockout Mechanism:**
+
 1. **Admin account** is locked due to multiple failed login attempts
 2. **Lockout duration:** ~119 minutes (2 hours)
 3. **IP rate limiting** is also active due to repeated attempts
 
 ### **Available Test Accounts:**
+
 ```javascript
 const testCredentials = [
   { username: 'admin', password: 'admin123!', status: '🔒 LOCKED' },
   { username: 'user', password: 'user123!', status: '❌ Invalid' },
   { username: 'carlo', password: 'carlo123!', status: '✅ WORKING' },
-  { username: 'viewer', password: 'viewer123!', status: '🔒 Rate Limited' }
+  { username: 'viewer', password: 'viewer123!', status: '🔒 Rate Limited' },
 ]
 ```
 
@@ -67,15 +73,17 @@ const testCredentials = [
 ### **Solution 1: Use Carlo Account (Recommended)**
 
 **For testing and development:**
+
 ```javascript
 // Use these working credentials in your Angular app:
 const loginData = {
   username: 'carlo',
-  password: 'carlo123!'
-};
+  password: 'carlo123!',
+}
 ```
 
 **Carlo Account Capabilities:**
+
 - ✅ **Authentication** works perfectly
 - ✅ **Device management** (read/write)
 - ✅ **Model management** (read/write)
@@ -86,6 +94,7 @@ const loginData = {
 ### **Solution 2: Wait for Admin Unlock**
 
 **Admin account will be unlocked:**
+
 - **Time remaining:** ~119 minutes from last attempt
 - **Then you can try:** `admin` / `admin123!`
 
@@ -115,6 +124,7 @@ npm run cleanup-and-reinit
    - ✅ Most features will work (except admin-only features)
 
 ### **Test Results Expected:**
+
 ```javascript
 // Successful login response:
 {
@@ -130,12 +140,14 @@ npm run cleanup-and-reinit
 ## 🔧 **Long-term Solutions**
 
 ### **For Production:**
+
 1. **Review lockout policies** - Consider adjusting lockout duration
 2. **Add account unlock endpoint** for admins
 3. **Implement better rate limiting** by user vs IP
 4. **Add forgot password functionality**
 
 ### **For Development:**
+
 1. **Use carlo account** for regular testing
 2. **Reserve admin account** for admin-specific testing
 3. **Implement test data seeding** with known credentials
@@ -143,16 +155,19 @@ npm run cleanup-and-reinit
 ## 📋 **Action Items**
 
 ### **Immediate (Today):**
+
 1. ✅ **Use carlo/carlo123! for login testing**
 2. ✅ **Verify authentication flow works**
 3. ✅ **Test user management features** (will show role limitations)
 
 ### **Short-term:**
+
 1. **Wait for admin unlock** (~119 minutes)
 2. **Test admin features** when available
 3. **Document working credentials** for team
 
 ### **Long-term:**
+
 1. **Review authentication policies**
 2. **Implement admin unlock mechanism**
 3. **Add better error messages** for locked accounts
