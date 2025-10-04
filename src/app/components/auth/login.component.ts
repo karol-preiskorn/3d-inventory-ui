@@ -70,6 +70,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.error = null;
 
+    // Disable form controls while loading
+    this.loginForm.disable();
+
     const loginRequest: LoginRequest = {
       username: this.loginForm.get('username')?.value.trim()
     };
@@ -85,12 +88,17 @@ export class LoginComponent implements OnInit, OnDestroy {
     ).subscribe({
       next: (_response) => {
         this.loading = false;
+        // Re-enable form (though we'll navigate away)
+        this.loginForm.enable();
 
         // Navigate to return URL or default
         this.router.navigate([this.returnUrl]);
       },
       error: (error) => {
         this.loading = false;
+        // Re-enable form controls after error
+        this.loginForm.enable();
+
         this.error = error.message || 'Login failed. Please try again.';
         console.error('Login error:', error);
 

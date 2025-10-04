@@ -30,8 +30,7 @@
             Username
           </label>
           <input id="username" type="text" class="form-control" [class.is-invalid]="hasFieldError('username')"
-            formControlName="username" placeholder="Enter your username" autocomplete="username"
-            [disabled]="loading">
+            formControlName="username" placeholder="Enter your username" autocomplete="username">
           <div *ngIf="hasFieldError('username')" class="invalid-feedback">
             {{ getFieldError('username') }}
           </div>
@@ -45,8 +44,7 @@
             <small class="text-muted">(optional)</small>
           </label>
           <input id="password" type="password" class="form-control" [class.is-invalid]="hasFieldError('password')"
-            formControlName="password" placeholder="Enter your password" autocomplete="current-password"
-            [disabled]="loading">
+            formControlName="password" placeholder="Enter your password" autocomplete="current-password">
           <div *ngIf="hasFieldError('password')" class="invalid-feedback">
             {{ getFieldError('password') }}
           </div>
