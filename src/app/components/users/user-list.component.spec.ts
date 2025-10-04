@@ -6,13 +6,15 @@ import { of, throwError } from 'rxjs';
 import { UserListComponent } from './user-list.component';
 import { UserService } from '../../services/user.service';
 import { AuthenticationService } from '../../services/authentication.service';
+import { DialogService } from '../../services/dialog.service';
 import { Permission, User } from '../../shared/user';
 
 describe('UserListComponent', () => {
   let component: UserListComponent;
   let fixture: ComponentFixture<UserListComponent>;
-  let userServiceSpy: jasmine.SpyObj<UserService>;
-  let authServiceSpy: jasmine.SpyObj<AuthenticationService>;
+  let userServiceSpy: jest.Mocked<UserService>;
+  let authServiceSpy: jest.Mocked<AuthenticationService>;
+  let dialogServiceSpy: jest.Mocked<DialogService>;
 
   const mockUsers: User[] = [
     {
@@ -36,37 +38,45 @@ describe('UserListComponent', () => {
   ];
 
   beforeEach(async () => {
-    const userSpy = jasmine.createSpyObj('UserService', [
-      'getUsers',
-      'deleteUser',
-      'getUserRole',
-      'getPredefinedRoles',
-      'userHasPermission'
-    ]);
-    const authSpy = jasmine.createSpyObj('AuthenticationService', [
-      'hasPermission',
-      'getCurrentUser'
-    ]);
+    const userSpy = {
+      getUsers: jest.fn(),
+      deleteUser: jest.fn(),
+      getUserRole: jest.fn(),
+      getPredefinedRoles: jest.fn(),
+      userHasPermission: jest.fn()
+    } as Partial<jest.Mocked<UserService>>;
+
+    const authSpy = {
+      hasPermission: jest.fn(),
+      getCurrentUser: jest.fn()
+    } as Partial<jest.Mocked<AuthenticationService>>;
+
+    const dialogSpy = {
+      alert: jest.fn(),
+      confirm: jest.fn()
+    } as Partial<jest.Mocked<DialogService>>;
 
     await TestBed.configureTestingModule({
       imports: [UserListComponent, RouterTestingModule, FormsModule],
       providers: [
         { provide: UserService, useValue: userSpy },
-        { provide: AuthenticationService, useValue: authSpy }
+        { provide: AuthenticationService, useValue: authSpy },
+        { provide: DialogService, useValue: dialogSpy }
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(UserListComponent);
     component = fixture.componentInstance;
-    userServiceSpy = TestBed.inject(UserService) as jasmine.SpyObj<UserService>;
-    authServiceSpy = TestBed.inject(AuthenticationService) as jasmine.SpyObj<AuthenticationService>;
+    userServiceSpy = TestBed.inject(UserService) as jest.Mocked<UserService>;
+    authServiceSpy = TestBed.inject(AuthenticationService) as jest.Mocked<AuthenticationService>;
+    dialogServiceSpy = TestBed.inject(DialogService) as jest.Mocked<DialogService>;
 
     // Set up default mocks
-    userServiceSpy.getUsers.and.returnValue(of(mockUsers));
-    userServiceSpy.getPredefinedRoles.and.returnValue([]);
-    userServiceSpy.getUserRole.and.returnValue({ id: 'viewer', name: 'Viewer', description: '', permissions: [] });
-    authServiceSpy.hasPermission.and.returnValue(true);
-    authServiceSpy.getCurrentUser.and.returnValue(mockUsers[0]);
+    userServiceSpy.getUsers.mockReturnValue(of(mockUsers));
+    userServiceSpy.getPredefinedRoles.mockReturnValue([]);
+    userServiceSpy.getUserRole.mockReturnValue({ id: 'viewer', name: 'Viewer', description: '', permissions: [] });
+    authServiceSpy.hasPermission.mockReturnValue(true);
+    authServiceSpy.getCurrentUser.mockReturnValue(mockUsers[0]);
   });
 
   it('should create', () => {
@@ -83,7 +93,7 @@ describe('UserListComponent', () => {
 
   it('should handle error when loading users', () => {
     const errorMessage = 'Failed to load users';
-    userServiceSpy.getUsers.and.returnValue(throwError(() => new Error(errorMessage)));
+    userServiceSpy.getUsers.mockReturnValue(throwError(() => new Error(errorMessage)));
 
     component.ngOnInit();
 
@@ -146,41 +156,46 @@ describe('UserListComponent', () => {
   });
 
   it('should identify current user correctly', () => {
-    authServiceSpy.getCurrentUser.and.returnValue(mockUsers[0]);
+    authServiceSpy.getCurrentUser.mockReturnValue(mockUsers[0]);
 
     expect(component.isCurrentUser(mockUsers[0])).toBeTruthy();
     expect(component.isCurrentUser(mockUsers[1])).toBeFalsy();
   });
 
   it('should delete user with confirmation', () => {
-    spyOn(window, 'confirm').and.returnValue(true);
-    userServiceSpy.deleteUser.and.returnValue(of({ deletedCount: 1 }));
-    authServiceSpy.getCurrentUser.and.returnValue(mockUsers[0]);
+    dialogServiceSpy.confirm.mockReturnValue(of(true));
+    userServiceSpy.deleteUser.mockReturnValue(of({ deletedCount: 1 }));
+    authServiceSpy.getCurrentUser.mockReturnValue(mockUsers[0]);
     component.canDeleteUser = true;
 
     component.deleteUser(mockUsers[1]);
 
+    expect(dialogServiceSpy.confirm).toHaveBeenCalled();
     expect(userServiceSpy.deleteUser).toHaveBeenCalledWith('2');
   });
 
   it('should not delete current user', () => {
-    spyOn(window, 'alert');
-    authServiceSpy.getCurrentUser.and.returnValue(mockUsers[0]);
+    authServiceSpy.getCurrentUser.mockReturnValue(mockUsers[0]);
     component.canDeleteUser = true;
 
     component.deleteUser(mockUsers[0]);
 
-    expect(window.alert).toHaveBeenCalledWith('You cannot delete your own account');
+    expect(dialogServiceSpy.alert).toHaveBeenCalledWith({
+      title: 'Cannot Delete Own Account',
+      message: 'You cannot delete your own account'
+    });
     expect(userServiceSpy.deleteUser).not.toHaveBeenCalled();
   });
 
   it('should not delete user without permission', () => {
-    spyOn(window, 'alert');
     component.canDeleteUser = false;
 
     component.deleteUser(mockUsers[1]);
 
-    expect(window.alert).toHaveBeenCalledWith('You do not have permission to delete users');
+    expect(dialogServiceSpy.alert).toHaveBeenCalledWith({
+      title: 'Permission Denied',
+      message: 'You do not have permission to delete users'
+    });
     expect(userServiceSpy.deleteUser).not.toHaveBeenCalled();
   });
 

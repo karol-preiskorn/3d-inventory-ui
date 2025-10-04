@@ -93,6 +93,7 @@
     "@angular/cli": "^20.3.3",
     "@angular/compiler-cli": "^20.3.2",
     "@angular/localize": "^20.3.2",
+    "@angular/platform-browser-dynamic": "^20.3.3",
     "@babel/preset-env": "^7.28.3",
     "@babel/preset-typescript": "^7.27.1",
     "@eslint/eslintrc": "^3.3.1",

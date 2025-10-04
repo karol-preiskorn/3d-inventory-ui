@@ -1,12 +1,12 @@
 /**
- * Simplified Jest configuration for Angular testing
+ * Jest configuration for Angular testing with TestBed support
  * @type {import('jest').Config}
  */
 
 const config: import('jest').Config = {
-  preset: 'ts-jest',
-  testEnvironment: 'jsdom',
+  preset: 'jest-preset-angular',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  testEnvironment: 'jsdom',
   testTimeout: 30000,
   verbose: true,
 
@@ -32,21 +32,26 @@ const config: import('jest').Config = {
     },
   },
 
-  // Test file patterns
+  // Test file patterns - include all tests
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.(test|spec).ts',
     '<rootDir>/src/**/*.(test|spec).ts'
   ],
 
-  // Module resolution
-  moduleFileExtensions: ['ts', 'js', 'html', 'json'],
-  transform: {
-    '^.+\\.ts$': ['ts-jest', {
-      tsconfig: 'tsconfig.spec.json'
-    }]
+  // Module resolution (handled by jest-preset-angular)
+  moduleFileExtensions: ['ts', 'html', 'js', 'json', 'mjs'],
+
+  // Transform configuration for Angular (jest-preset-angular handles this)
+  globals: {
+    'ts-jest': {
+      tsconfig: 'tsconfig.spec.json',
+      stringifyContentPathRegex: '\\.(html|svg)$'
+    }
   },
+
+  // Allow Angular modules to be transformed
   transformIgnorePatterns: [
-    'node_modules/(?!.*\\.mjs$)'
+    'node_modules/(?!(@angular|@ngrx|ngx-pagination|rxjs|tslib|zone.js)/.*)'
   ],
 
   // Module name mapping for Angular
