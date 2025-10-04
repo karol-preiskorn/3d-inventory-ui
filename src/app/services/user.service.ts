@@ -13,6 +13,7 @@ import {
   User
 } from '../shared/user';
 import { AuthenticationService } from './authentication.service';
+import { environment } from '../../environments/environment';
 
 // Response interfaces for API calls
 interface UserResponse {
@@ -32,8 +33,8 @@ interface PermissionResponse {
   providedIn: 'root'
 })
 export class UserService {
-  private readonly API_URL = 'http://localhost:8080'; // Update based on your API URL
-  private readonly USERS_ENDPOINT = '/users';
+  private readonly API_URL = environment.baseurl; // Use environment configuration
+  private readonly USERS_ENDPOINT = '/user-management';
 
   constructor(
     private http: HttpClient,
