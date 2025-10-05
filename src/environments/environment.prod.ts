@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseurl: 'https://3d-inventory-api.ultimasolution.pl'
+  baseurl: 'https://d-inventory-api-wzwe3odv7q-ew.a.run.app'
 }

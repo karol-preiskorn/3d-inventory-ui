@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common'
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core'
 import { Converter } from 'showdown'
 import { environment } from '../../../environments/environment'
+import { AuthenticationService } from '../../services/authentication.service'
 
 /**
  * Represents a GitHub issue as returned by the GitHub Issues API.
@@ -39,17 +40,14 @@ export class HomeComponent implements OnInit {
   issuesJson: string = ''
   isDebugMode: boolean = false
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  }
-
   toggleDebugMode() {
     this.isDebugMode = !this.isDebugMode
   }
 
-  constructor(@Inject(HttpClient) private readonly http: HttpClient) {
+  constructor(
+    @Inject(HttpClient) private readonly http: HttpClient,
+    private authService: AuthenticationService
+  ) {
     // Initialize markdown converter
     this.http.get('/assets/README.md', { responseType: 'text' }).subscribe(
       (data: string) => {
@@ -80,13 +78,31 @@ export class HomeComponent implements OnInit {
       },
     )
 
-    this.http.get<[]>(environment.baseurl + '/github/issues', this.httpOptions).subscribe({
+    // Debug authentication state
+    const isAuthenticated = this.authService.isAuthenticated()
+    const token = this.authService.getCurrentToken()
+    const headers = this.authService.getAuthHeaders()
+
+    console.warn('🔒 Authentication Debug:', {
+      isAuthenticated,
+      hasToken: !!token,
+      tokenLength: token?.length,
+      headers: headers.keys()
+    })
+
+    this.http.get<GitHubIssue[]>(environment.baseurl + '/github/issues', {
+      headers: this.authService.getAuthHeaders()
+    }).subscribe({
       next: (data: GitHubIssue[]) => {
         this.issues = data
         this.issuesJson = JSON.stringify(data, null, 2)
+        console.warn('✅ GitHub issues loaded successfully:', data.length)
       },
       error: (error: unknown) => {
-        console.error('Error fetching issues:', error)
+        console.error('❌ Error fetching issues:', error)
+        if (!isAuthenticated) {
+          console.warn('⚠️ User is not authenticated. Please login first.')
+        }
       }
     })
   }
