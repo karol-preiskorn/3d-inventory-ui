@@ -127,7 +127,7 @@ export class LogService {
    * @returns An Observable that emits an array of Log objects.
    */
   GetDeviceLogs(id: string): Observable<Log[]> {
-    const url = environment.baseurl + '/logs/devices/' + id
+    const url = environment.baseurl + '/logs/' + id
     this.debugService.debug('LogComponent.GetDeviceLogs(' + id + ') ' + url);
     return this.http.get<ApiResponse<Log[]>>(url).pipe(
       map(response => {
@@ -145,7 +145,7 @@ export class LogService {
    * @returns An Observable that emits an array of Log objects.
    */
   GetAttributeLogs(id: string): Observable<Log[]> {
-    const url = environment.baseurl + '/logs/attributes/' + id
+    const url = environment.baseurl + '/logs/' + id
     this.debugService.debug('LogComponent.GetAttributeLogs(' + id + ') ' + url);
     return this.http.get<ApiResponse<Log[]>>(url).pipe(
       map(response => {
