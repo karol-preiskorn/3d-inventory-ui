@@ -1,0 +1,310 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "Coverage Monitoring Configuration",
+  "description": "Automated coverage monitoring and quality gate configuration for CI/CD pipeline",
+  "coverageThresholds": {
+    "global": {
+      "statements": 80,
+      "branches": 75,
+      "functions": 85,
+      "lines": 80
+    },
+    "critical": {
+      "statements": 90,
+      "branches": 85,
+      "functions": 95,
+      "lines": 90
+    },
+    "pathPatterns": {
+      "**/services/**": {
+        "statements": 90,
+        "branches": 85,
+        "functions": 95,
+        "lines": 90
+      },
+      "**/components/**": {
+        "statements": 85,
+        "branches": 80,
+        "functions": 90,
+        "lines": 85
+      },
+      "**/guards/**": {
+        "statements": 95,
+        "branches": 90,
+        "functions": 100,
+        "lines": 95
+      },
+      "**/shared/**": {
+        "statements": 90,
+        "branches": 85,
+        "functions": 95,
+        "lines": 90
+      }
+    }
+  },
+  "qualityGates": {
+    "blocking": {
+      "description": "These conditions will block PR merge",
+      "conditions": [
+        {
+          "metric": "coverage.overall",
+          "operator": ">=",
+          "threshold": 80,
+          "error": "Overall coverage below 80%"
+        },
+        {
+          "metric": "coverage.functions",
+          "operator": ">=",
+          "threshold": 85,
+          "error": "Function coverage below 85%"
+        },
+        {
+          "metric": "tests.failing",
+          "operator": "=",
+          "threshold": 0,
+          "error": "Tests failing"
+        },
+        {
+          "metric": "build.status",
+          "operator": "=",
+          "threshold": "success",
+          "error": "Build failed"
+        }
+      ]
+    },
+    "warning": {
+      "description": "These conditions will generate warnings",
+      "conditions": [
+        {
+          "metric": "coverage.branches",
+          "operator": ">=",
+          "threshold": 75,
+          "warning": "Branch coverage below 75%"
+        },
+        {
+          "metric": "coverage.lines",
+          "operator": ">=",
+          "threshold": 80,
+          "warning": "Line coverage below 80%"
+        },
+        {
+          "metric": "bundle.size",
+          "operator": "<=",
+          "threshold": 2048,
+          "warning": "Bundle size exceeds 2MB"
+        }
+      ]
+    }
+  },
+  "monitoring": {
+    "coverage": {
+      "trending": {
+        "enabled": true,
+        "windowDays": 30,
+        "alertOnDecline": 5
+      },
+      "reporting": {
+        "formats": [
+          "lcov",
+          "html",
+          "text",
+          "json"
+        ],
+        "includeUncoveredFiles": true,
+        "outputDirectory": "coverage"
+      },
+      "badges": {
+        "enabled": true,
+        "style": "flat-square",
+        "colorScheme": {
+          "excellent": "#4c1",
+          "good": "#97ca00",
+          "fair": "#dfb317",
+          "poor": "#fe7d37",
+          "critical": "#e05d44"
+        },
+        "thresholds": {
+          "excellent": 90,
+          "good": 80,
+          "fair": 70,
+          "poor": 60
+        }
+      }
+    },
+    "performance": {
+      "metrics": {
+        "testExecutionTime": {
+          "warning": 300,
+          "error": 600
+        },
+        "buildTime": {
+          "warning": 180,
+          "error": 300
+        },
+        "bundleSize": {
+          "warning": 2048,
+          "error": 5120
+        }
+      },
+      "lighthouse": {
+        "enabled": true,
+        "thresholds": {
+          "performance": 80,
+          "accessibility": 90,
+          "bestPractices": 80,
+          "seo": 70
+        }
+      }
+    }
+  },
+  "notifications": {
+    "channels": {
+      "pullRequest": {
+        "enabled": true,
+        "template": "coverage-pr-comment",
+        "includeDetails": true,
+        "includeTrend": true
+      },
+      "slack": {
+        "enabled": false,
+        "webhook": "${SLACK_WEBHOOK_URL}",
+        "channel": "#ci-cd-notifications",
+        "events": [
+          "coverage-decline",
+          "quality-gate-failure"
+        ]
+      },
+      "email": {
+        "enabled": false,
+        "recipients": [
+          "team-lead@company.com"
+        ],
+        "events": [
+          "critical-failure",
+          "security-vulnerability"
+        ]
+      }
+    },
+    "templates": {
+      "coverage-pr-comment": {
+        "title": "📊 Test Coverage Report",
+        "sections": [
+          "summary",
+          "detailed-metrics",
+          "quality-gate-status",
+          "coverage-trend",
+          "recommendations"
+        ]
+      }
+    }
+  },
+  "integrations": {
+    "codecov": {
+      "enabled": true,
+      "token": "${CODECOV_TOKEN}",
+      "flags": "unittests",
+      "failOnError": false
+    },
+    "coveralls": {
+      "enabled": false,
+      "token": "${COVERALLS_TOKEN}"
+    },
+    "sonarqube": {
+      "enabled": false,
+      "host": "${SONAR_HOST_URL}",
+      "token": "${SONAR_TOKEN}",
+      "projectKey": "3d-inventory-ui"
+    }
+  },
+  "excludePatterns": [
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/test-setup.ts",
+    "**/testing/**",
+    "**/*.module.ts",
+    "**/main.ts",
+    "**/polyfills.ts",
+    "**/environment*.ts",
+    "**/*.config.ts",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/coverage/**"
+  ],
+  "includePatterns": [
+    "src/app/**/*.ts"
+  ],
+  "reports": {
+    "formats": {
+      "lcov": {
+        "enabled": true,
+        "outputFile": "coverage/lcov.info"
+      },
+      "html": {
+        "enabled": true,
+        "outputDirectory": "coverage/html",
+        "openInBrowser": false
+      },
+      "json": {
+        "enabled": true,
+        "outputFile": "coverage/coverage-final.json"
+      },
+      "text": {
+        "enabled": true,
+        "outputToConsole": true
+      },
+      "cobertura": {
+        "enabled": true,
+        "outputFile": "coverage/cobertura-coverage.xml"
+      }
+    },
+    "archiving": {
+      "enabled": true,
+      "retentionDays": 30,
+      "compressionLevel": 6
+    }
+  },
+  "automation": {
+    "schedules": {
+      "daily": {
+        "enabled": true,
+        "time": "02:00",
+        "timezone": "UTC",
+        "tasks": [
+          "full-test-suite",
+          "coverage-analysis",
+          "security-scan"
+        ]
+      },
+      "weekly": {
+        "enabled": true,
+        "day": "sunday",
+        "time": "01:00",
+        "timezone": "UTC",
+        "tasks": [
+          "performance-audit",
+          "dependency-analysis",
+          "cleanup"
+        ]
+      }
+    },
+    "triggers": {
+      "pullRequest": {
+        "enabled": true,
+        "requiredChecks": [
+          "coverage-check",
+          "quality-gate"
+        ]
+      },
+      "push": {
+        "branches": [
+          "main",
+          "develop"
+        ],
+        "enabled": true,
+        "tasks": [
+          "full-pipeline"
+        ]
+      }
+    }
+  }
+}

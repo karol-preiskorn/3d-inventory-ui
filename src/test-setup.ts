@@ -2,6 +2,9 @@
 import 'zone.js';
 import 'zone.js/testing';
 
+// Add $localize polyfill for Angular i18n support
+import '@angular/localize/init';
+
 import { getTestBed } from '@angular/core/testing';
 import {
   BrowserDynamicTestingModule,

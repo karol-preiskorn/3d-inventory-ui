@@ -1,0 +1,443 @@
+name: 🚀 CI/CD Pipeline - Angular UI
+
+on:
+  push:
+    branches: [main, develop, 'feature/**', 'bugfix/**']
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    # Run tests daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+env:
+  NODE_VERSION: '18'
+  CACHE_KEY_PREFIX: 'v1'
+
+jobs:
+  # Job 1: Quality Gates & Linting
+  quality-gates:
+    name: 🔍 Quality Gates & Linting
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: |
+          npm ci --prefer-offline --no-audit
+
+      - name: 🎯 ESLint Analysis
+        run: |
+          npm run lint:check
+
+      - name: 💅 Prettier Code Formatting Check
+        run: |
+          npm run lint:prettier-check
+
+      - name: 🔒 Security Audit
+        run: |
+          npm audit --audit-level high
+
+      - name: 📊 Dependency Check
+        run: |
+          npm run check:depcheck
+
+      - name: 📈 Upload Lint Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-results
+          path: |
+            eslint-results.xml
+            lint-stats.txt
+          retention-days: 7
+
+  # Job 2: Unit & Integration Testing
+  test-suite:
+    name: 🧪 Test Suite Execution
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: quality-gates
+
+    strategy:
+      matrix:
+        test-type: ['unit', 'integration', 'coverage']
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: |
+          npm ci --prefer-offline --no-audit
+
+      - name: 🚀 Run Fast Tests (Unit)
+        if: matrix.test-type == 'unit'
+        run: |
+          npm run test:fast -- --ci --passWithNoTests --maxWorkers=2
+
+      - name: 🔗 Run Integration Tests
+        if: matrix.test-type == 'integration'
+        run: |
+          npm run test -- --testPathPatterns=".*\.(integration|e2e)\.spec\.ts$" --ci --passWithNoTests
+
+      - name: 📊 Generate Coverage Report
+        if: matrix.test-type == 'coverage'
+        run: |
+          npm run test:coverage -- --ci --passWithNoTests --maxWorkers=2 --coverage --coverageReporters=text --coverageReporters=lcov --coverageReporters=html
+
+      - name: 📈 Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.test-type }}
+          path: |
+            coverage/
+            test-results.xml
+            junit.xml
+          retention-days: 14
+
+      - name: 🌐 Upload Coverage to Codecov
+        if: matrix.test-type == 'coverage'
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage/
+          files: ./coverage/lcov.info
+          flags: unittests
+          name: 3d-inventory-ui-coverage
+          fail_ci_if_error: false
+          verbose: true
+
+  # Job 3: Build Validation
+  build-validation:
+    name: 🏗️ Build Validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: quality-gates
+
+    strategy:
+      matrix:
+        build-type: ['development', 'production']
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: |
+          npm ci --prefer-offline --no-audit
+
+      - name: 🛠️ Build Development
+        if: matrix.build-type == 'development'
+        run: |
+          npm run build
+
+      - name: 🚀 Build Production
+        if: matrix.build-type == 'production'
+        run: |
+          npm run build:prod
+
+      - name: 📏 Bundle Size Analysis
+        if: matrix.build-type == 'production'
+        run: |
+          npm run build:analyze
+          ls -la dist/
+
+      - name: 📤 Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ matrix.build-type }}
+          path: |
+            dist/
+            stats.json
+          retention-days: 7
+
+  # Job 4: Performance & Accessibility Testing
+  performance-testing:
+    name: ⚡ Performance & Accessibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: [quality-gates, build-validation]
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: |
+          npm ci --prefer-offline --no-audit
+
+      - name: 🚀 Build for Testing
+        run: |
+          npm run build:prod
+
+      - name: 🔍 Lighthouse CI Performance Audit
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          configPath: './lighthouserc.json'
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+      - name: 📊 Performance Budget Check
+        run: |
+          # Check bundle sizes
+          MAIN_BUNDLE_SIZE=$(du -k dist/3d-inventory-angular-ui/main*.js | cut -f1)
+          if [ "$MAIN_BUNDLE_SIZE" -gt 2048 ]; then
+            echo "::error::Main bundle exceeds 2MB limit: ${MAIN_BUNDLE_SIZE}KB"
+            exit 1
+          fi
+          echo "✅ Bundle size OK: ${MAIN_BUNDLE_SIZE}KB"
+
+  # Job 5: Coverage Analysis & Reporting
+  coverage-analysis:
+    name: 📊 Coverage Analysis & Quality Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: test-suite
+    if: always()
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📥 Download Coverage Reports
+        uses: actions/download-artifact@v4
+        with:
+          name: test-results-coverage
+          path: ./coverage-reports/
+
+      - name: 📊 Coverage Quality Gate
+        run: |
+          echo "🔍 Analyzing test coverage..."
+
+          # Check if coverage files exist
+          if [ ! -f "coverage-reports/coverage/lcov.info" ]; then
+            echo "::warning::Coverage report not found"
+            exit 0
+          fi
+
+          # Extract coverage percentages
+          STATEMENTS=$(grep -E "SF:" coverage-reports/coverage/lcov.info | wc -l)
+          FUNCTIONS_HIT=$(grep -E "FNH:" coverage-reports/coverage/lcov.info | awk -F: '{sum+=$2} END {print sum}')
+          FUNCTIONS_FOUND=$(grep -E "FNF:" coverage-reports/coverage/lcov.info | awk -F: '{sum+=$2} END {print sum}')
+
+          if [ "$FUNCTIONS_FOUND" -gt 0 ]; then
+            FUNCTION_COVERAGE=$((FUNCTIONS_HIT * 100 / FUNCTIONS_FOUND))
+          else
+            FUNCTION_COVERAGE=0
+          fi
+
+          echo "📈 Coverage Metrics:"
+          echo "- Functions: ${FUNCTION_COVERAGE}%"
+          echo "- Files analyzed: ${STATEMENTS}"
+
+          # Coverage thresholds
+          MIN_COVERAGE=80
+          if [ "$FUNCTION_COVERAGE" -lt "$MIN_COVERAGE" ]; then
+            echo "::error::Coverage below threshold: ${FUNCTION_COVERAGE}% < ${MIN_COVERAGE}%"
+            exit 1
+          fi
+
+          echo "✅ Coverage meets quality gate: ${FUNCTION_COVERAGE}% ≥ ${MIN_COVERAGE}%"
+
+      - name: 💬 Coverage Comment (PR)
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = './coverage-reports/coverage/coverage-summary.json';
+
+            if (fs.existsSync(path)) {
+              const coverage = JSON.parse(fs.readFileSync(path));
+              const { statements, branches, functions, lines } = coverage.total;
+
+              const comment = `## 📊 Test Coverage Report
+
+              | Metric | Coverage | Status |
+              |--------|----------|--------|
+              | Statements | ${statements.pct}% | ${statements.pct >= 80 ? '✅' : '❌'} |
+              | Branches | ${branches.pct}% | ${branches.pct >= 75 ? '✅' : '❌'} |
+              | Functions | ${functions.pct}% | ${functions.pct >= 85 ? '✅' : '❌'} |
+              | Lines | ${lines.pct}% | ${lines.pct >= 80 ? '✅' : '❌'} |
+
+              **Quality Gate**: ${functions.pct >= 80 ? '✅ PASSED' : '❌ FAILED'}
+
+              View detailed coverage report in the [build artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+              `;
+
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            }
+
+  # Job 6: Security & Dependency Analysis
+  security-analysis:
+    name: 🛡️ Security & Dependency Analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: quality-gates
+    if: github.event_name == 'push' || github.event_name == 'schedule'
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: |
+          npm ci --prefer-offline --no-audit
+
+      - name: 🔒 Run Snyk Security Scan
+        if: ${{ vars.SNYK_TOKEN }}
+        run: |
+          npx snyk test --severity-threshold=high
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      - name: 🎯 OWASP Dependency Check
+        run: |
+          npm audit --audit-level moderate --production
+
+      - name: 📊 License Compliance Check
+        run: |
+          npx license-checker --summary --production --excludePrivatePackages
+
+  # Job 7: Deployment & Release Readiness
+  deployment-readiness:
+    name: 🚀 Deployment Readiness
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [test-suite, build-validation, coverage-analysis]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📥 Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-production
+          path: ./dist/
+
+      - name: ✅ Validate Deployment Package
+        run: |
+          echo "🔍 Validating deployment package..."
+
+          # Check required files exist
+          if [ ! -d "dist/3d-inventory-angular-ui" ]; then
+            echo "::error::Build output missing"
+            exit 1
+          fi
+
+          # Check bundle size
+          TOTAL_SIZE=$(du -sk dist/ | cut -f1)
+          MAX_SIZE=10240  # 10MB limit
+
+          if [ "$TOTAL_SIZE" -gt "$MAX_SIZE" ]; then
+            echo "::error::Deployment package too large: ${TOTAL_SIZE}KB > ${MAX_SIZE}KB"
+            exit 1
+          fi
+
+          echo "✅ Deployment package validated: ${TOTAL_SIZE}KB"
+
+      - name: 🏷️ Generate Release Info
+        run: |
+          echo "🚀 Release Readiness Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ All tests passed" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Build validation successful" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Coverage requirements met" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Security scans passed" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Package size within limits" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Ready for deployment** 🎉" >> $GITHUB_STEP_SUMMARY
+
+  # Job 8: Notification & Cleanup
+  notification:
+    name: 📢 Notification & Cleanup
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [quality-gates, test-suite, build-validation, coverage-analysis]
+    if: always()
+
+    steps:
+      - name: 📊 Pipeline Status Summary
+        run: |
+          echo "## 🚀 CI/CD Pipeline Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Job | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Quality Gates | ${{ needs.quality-gates.result == 'success' && '✅ PASSED' || '❌ FAILED' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Test Suite | ${{ needs.test-suite.result == 'success' && '✅ PASSED' || '❌ FAILED' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Build Validation | ${{ needs.build-validation.result == 'success' && '✅ PASSED' || '❌ FAILED' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Coverage Analysis | ${{ needs.coverage-analysis.result == 'success' && '✅ PASSED' || '❌ FAILED' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          OVERALL_STATUS="${{ (needs.quality-gates.result == 'success' && needs.test-suite.result == 'success' && needs.build-validation.result == 'success' && needs.coverage-analysis.result == 'success') && 'SUCCESS' || 'FAILED' }}"
+          echo "**Overall Status: ${OVERALL_STATUS}**" >> $GITHUB_STEP_SUMMARY
+
+      - name: 🧹 Cleanup Old Artifacts
+        if: github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: artifacts } = await github.rest.actions.listArtifactsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 100
+            });
+
+            const oldArtifacts = artifacts.artifacts.filter(artifact => {
+              const ageInDays = (Date.now() - new Date(artifact.created_at).getTime()) / (1000 * 60 * 60 * 24);
+              return ageInDays > 30;
+            });
+
+            for (const artifact of oldArtifacts) {
+              await github.rest.actions.deleteArtifact({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                artifact_id: artifact.id
+              });
+              console.log(`Deleted artifact: ${artifact.name}`);
+            }

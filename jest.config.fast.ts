@@ -1,37 +1,18 @@
 /**
- * Jest configuration for Angular testing with TestBed support
- * @type {import('jest').Config}
+ * Fast Jest configuration for development testing
+ * Optimized for performance during development
  */
 
 const config: import('jest').Config = {
   preset: 'jest-preset-angular',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   testEnvironment: 'jsdom',
-  testTimeout: 15000, // Reduced timeout for faster failure detection
-  verbose: false, // Reduced verbosity for performance
+  testTimeout: 10000, // Faster timeout
+  verbose: false,
   silent: false,
 
-  // Coverage settings
-  collectCoverage: true,
-  coverageDirectory: 'coverage',
-  coverageReporters: ['text', 'lcov', 'html'],
-  collectCoverageFrom: [
-    'src/**/*.ts',
-    '!src/**/*.d.ts',
-    '!src/main.ts',
-    '!src/polyfills.ts',
-    '!src/test-setup.ts',
-    '!src/**/*.module.ts',
-    '!src/**/*.routing.ts'
-  ],
-  coverageThreshold: {
-    global: {
-      branches: 5,
-      functions: 5,
-      lines: 5,
-      statements: 5,
-    },
-  },
+  // NO coverage for faster execution
+  collectCoverage: false,
 
   // Test file patterns - include all tests
   testMatch: [
@@ -68,7 +49,7 @@ const config: import('jest').Config = {
 
   // Performance optimizations
   maxWorkers: '50%', // Use 50% of available cores
-  workerIdleMemoryLimit: '1GB',
+  workerIdleMemoryLimit: '512MB',
   cacheDirectory: '<rootDir>/.jest-cache',
   clearMocks: true,
   restoreMocks: true,

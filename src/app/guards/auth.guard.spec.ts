@@ -6,12 +6,16 @@ import { AuthenticationService } from '../services/authentication.service';
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;
-  let authServiceSpy: jasmine.SpyObj<AuthenticationService>;
-  let routerSpy: jasmine.SpyObj<Router>;
+  let authServiceSpy: jest.Mocked<AuthenticationService>;
+  let routerSpy: jest.Mocked<Router>;
 
   beforeEach(() => {
-    const authSpy = jasmine.createSpyObj('AuthenticationService', ['isAuthenticated']);
-    const routerSpyObj = jasmine.createSpyObj('Router', ['navigate']);
+    const authSpy = {
+      isAuthenticated: jest.fn()
+    };
+    const routerSpyObj = {
+      navigate: jest.fn()
+    };
 
     TestBed.configureTestingModule({
       providers: [
@@ -22,8 +26,8 @@ describe('AuthGuard', () => {
     });
 
     guard = TestBed.inject(AuthGuard);
-    authServiceSpy = TestBed.inject(AuthenticationService) as jasmine.SpyObj<AuthenticationService>;
-    routerSpy = TestBed.inject(Router) as jasmine.SpyObj<Router>;
+    authServiceSpy = TestBed.inject(AuthenticationService) as jest.Mocked<AuthenticationService>;
+    routerSpy = TestBed.inject(Router) as jest.Mocked<Router>;
   });
 
   it('should be created', () => {
@@ -40,7 +44,7 @@ describe('AuthGuard', () => {
     });
 
     it('should return true if user is authenticated', () => {
-      authServiceSpy.isAuthenticated.and.returnValue(true);
+      authServiceSpy.isAuthenticated.mockReturnValue(true);
 
       const result = guard.canActivate(route, state);
 
@@ -49,7 +53,7 @@ describe('AuthGuard', () => {
     });
 
     it('should return false and redirect to login if user is not authenticated', () => {
-      authServiceSpy.isAuthenticated.and.returnValue(false);
+      authServiceSpy.isAuthenticated.mockReturnValue(false);
 
       const result = guard.canActivate(route, state);
 
@@ -60,7 +64,7 @@ describe('AuthGuard', () => {
     });
 
     it('should handle root path correctly', () => {
-      authServiceSpy.isAuthenticated.and.returnValue(false);
+      authServiceSpy.isAuthenticated.mockReturnValue(false);
       state = { url: '/', root: route } as RouterStateSnapshot;
 
       const result = guard.canActivate(route, state);
@@ -72,7 +76,7 @@ describe('AuthGuard', () => {
     });
 
     it('should handle complex URLs with query params', () => {
-      authServiceSpy.isAuthenticated.and.returnValue(false);
+      authServiceSpy.isAuthenticated.mockReturnValue(false);
       state = { url: '/admin/users?search=test&page=2', root: route } as RouterStateSnapshot;
 
       const result = guard.canActivate(route, state);
@@ -94,7 +98,7 @@ describe('AuthGuard', () => {
     });
 
     it('should return true if user is authenticated', () => {
-      authServiceSpy.isAuthenticated.and.returnValue(true);
+      authServiceSpy.isAuthenticated.mockReturnValue(true);
 
       const result = guard.canActivateChild(childRoute, state);
 
@@ -103,7 +107,7 @@ describe('AuthGuard', () => {
     });
 
     it('should return false and redirect to login if user is not authenticated', () => {
-      authServiceSpy.isAuthenticated.and.returnValue(false);
+      authServiceSpy.isAuthenticated.mockReturnValue(false);
 
       const result = guard.canActivateChild(childRoute, state);
 
@@ -114,7 +118,7 @@ describe('AuthGuard', () => {
     });
 
     it('should handle nested child routes', () => {
-      authServiceSpy.isAuthenticated.and.returnValue(false);
+      authServiceSpy.isAuthenticated.mockReturnValue(false);
       state = { url: '/admin/users/edit/123', root: childRoute } as RouterStateSnapshot;
 
       const result = guard.canActivateChild(childRoute, state);
@@ -136,19 +140,19 @@ describe('AuthGuard', () => {
     });
 
     it('should handle undefined URL', () => {
-      authServiceSpy.isAuthenticated.and.returnValue(false);
+      authServiceSpy.isAuthenticated.mockReturnValue(false);
       state = { url: '', root: route } as RouterStateSnapshot;
 
       const result = guard.canActivate(route, state);
 
       expect(result).toBe(false);
       expect(routerSpy.navigate).toHaveBeenCalledWith(['/login'], {
-        queryParams: { returnUrl: undefined }
+        queryParams: { returnUrl: '' }
       });
     });
 
     it('should handle empty URL', () => {
-      authServiceSpy.isAuthenticated.and.returnValue(false);
+      authServiceSpy.isAuthenticated.mockReturnValue(false);
       state = { url: '', root: route } as RouterStateSnapshot;
 
       const result = guard.canActivate(route, state);
@@ -160,7 +164,7 @@ describe('AuthGuard', () => {
     });
 
     it('should work with multiple consecutive calls', () => {
-      authServiceSpy.isAuthenticated.and.returnValue(false);
+      authServiceSpy.isAuthenticated.mockReturnValue(false);
 
       guard.canActivate(route, state);
       guard.canActivate(route, state);
@@ -170,12 +174,12 @@ describe('AuthGuard', () => {
 
     it('should work when authentication state changes', () => {
       // First call - not authenticated
-      authServiceSpy.isAuthenticated.and.returnValue(false);
+      authServiceSpy.isAuthenticated.mockReturnValue(false);
       let result = guard.canActivate(route, state);
       expect(result).toBe(false);
 
       // Second call - authenticated
-      authServiceSpy.isAuthenticated.and.returnValue(true);
+      authServiceSpy.isAuthenticated.mockReturnValue(true);
       result = guard.canActivate(route, state);
       expect(result).toBe(true);
     });

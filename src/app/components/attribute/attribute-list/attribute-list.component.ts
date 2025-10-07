@@ -1,8 +1,8 @@
-import { lastValueFrom } from 'rxjs'
-
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgZone, OnInit } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
+import { lastValueFrom } from 'rxjs'
 import { AttributeDictionaryService } from '../../../services/attribute-dictionary.service'
 import { AttributeService } from '../../../services/attribute.service'
 import { ConnectionService } from '../../../services/connection.service'
@@ -14,9 +14,7 @@ import { AttributesDictionary } from '../../../shared/AttributesDictionary'
 import { Connection } from '../../../shared/connection'
 import { Device } from '../../../shared/device'
 import { Model } from '../../../shared/model'
-import { CommonModule } from '@angular/common'
 import { LogComponent } from '../../log/log.component'
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-attribute-list',
@@ -55,7 +53,7 @@ export class AttributeListComponent implements OnInit {
     public attributeService: AttributeService,
     private logService: LogService,
     private router: Router,
-    private ngZone: NgZone,
+    // private ngZone: NgZone, // Removed unused property
     private deviceService: DeviceService,
     private modelService: ModelsService,
     private connectionService: ConnectionService,
@@ -133,14 +131,14 @@ export class AttributeListComponent implements OnInit {
     try {
       // Clone the attribute and get the new attribute's ID
       const newId = this.attributeService.CloneAttribute(id)
-      await this.logService
-        .CreateLog({
+      await lastValueFrom(
+        this.logService.CreateLog({
           message: { id, id_new: newId },
           operation: 'Clone',
           component: this.component,
         })
-        .toPromise()
-      this.LoadAttributes()
+      )
+      await this.LoadAttributes()
       await this.router.navigateByUrl('attributes-list')
     } catch (error) {
       console.error('Error cloning attribute:', error)
@@ -201,16 +199,16 @@ export class AttributeListComponent implements OnInit {
   }
 
   getConnectionList() {
-    return this.connectionService.GetConnections().subscribe(
-      (data: Connection[]) => {
+    return this.connectionService.GetConnections().subscribe({
+      next: (data: Connection[]) => {
         const tmp = new Connection()
         data.unshift(tmp)
         this.connectionDictionary = data
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching connections:', error)
       },
-    )
+    })
   }
 
   findConnectionName(id: string): string {

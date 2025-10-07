@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { UserService } from './user.service';
@@ -11,7 +12,7 @@ import { generateTestPassword } from '../testing/test-utils';
 describe('UserService', () => {
   let service: UserService;
   let httpMock: HttpTestingController;
-  let authServiceSpy: jasmine.SpyObj<AuthenticationService>;
+  let authServiceSpy: jest.Mocked<AuthenticationService>;
 
   const mockUsers: User[] = [
     {
@@ -29,8 +30,12 @@ describe('UserService', () => {
   ];
 
   beforeEach(() => {
-    const authSpy = jasmine.createSpyObj('AuthenticationService', ['getAuthHeaders']);
-    const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+    const authSpy = {
+      getAuthHeaders: jest.fn()
+    };
+    const routerSpy = {
+      navigate: jest.fn()
+    };
 
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -43,11 +48,11 @@ describe('UserService', () => {
 
     service = TestBed.inject(UserService);
     httpMock = TestBed.inject(HttpTestingController);
-    authServiceSpy = TestBed.inject(AuthenticationService) as jasmine.SpyObj<AuthenticationService>;
+    authServiceSpy = TestBed.inject(AuthenticationService) as jest.Mocked<AuthenticationService>;
 
     // Set up default auth headers mock
-    authServiceSpy.getAuthHeaders.and.returnValue(
-      new Headers({ 'Authorization': 'Bearer test-token', 'Content-Type': 'application/json' }) as Headers
+    authServiceSpy.getAuthHeaders.mockReturnValue(
+      new HttpHeaders({ 'Authorization': 'Bearer test-token', 'Content-Type': 'application/json' })
     );
   });
 
@@ -66,7 +71,7 @@ describe('UserService', () => {
         expect(users.length).toBe(2);
       });
 
-      const req = httpMock.expectOne('http://localhost:8080/users');
+      const req = httpMock.expectOne('http://localhost:8080/user-management');
       expect(req.request.method).toBe('GET');
       req.flush(mockUsers);
     });
@@ -79,7 +84,7 @@ describe('UserService', () => {
         }
       });
 
-      const req = httpMock.expectOne('http://localhost:8080/users');
+      const req = httpMock.expectOne('http://localhost:8080/user-management');
       req.flush('Error', { status: 500, statusText: 'Internal Server Error' });
     });
   });
@@ -93,7 +98,7 @@ describe('UserService', () => {
         expect(user).toEqual(expectedUser);
       });
 
-      const req = httpMock.expectOne(`http://localhost:8080/users/${userId}`);
+      const req = httpMock.expectOne(`http://localhost:8080/user-management/${userId}`);
       expect(req.request.method).toBe('GET');
       req.flush(expectedUser);
     });
@@ -114,7 +119,7 @@ describe('UserService', () => {
         expect(response).toEqual(mockResponse);
       });
 
-      const req = httpMock.expectOne('http://localhost:8080/users');
+      const req = httpMock.expectOne('http://localhost:8080/user-management');
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(newUser);
       req.flush(mockResponse);
@@ -135,7 +140,7 @@ describe('UserService', () => {
         expect(response).toEqual(mockResponse);
       });
 
-      const req = httpMock.expectOne(`http://localhost:8080/users/${userId}`);
+      const req = httpMock.expectOne(`http://localhost:8080/user-management/${userId}`);
       expect(req.request.method).toBe('PUT');
       expect(req.request.body).toEqual(updateData);
       req.flush(mockResponse);
@@ -151,7 +156,7 @@ describe('UserService', () => {
         expect(response).toEqual(mockResponse);
       });
 
-      const req = httpMock.expectOne(`http://localhost:8080/users/${userId}`);
+      const req = httpMock.expectOne(`http://localhost:8080/user-management/${userId}`);
       expect(req.request.method).toBe('DELETE');
       req.flush(mockResponse);
     });
@@ -238,7 +243,7 @@ describe('UserService', () => {
         expect(users[0].name).toBe('John Doe');
       });
 
-      const req = httpMock.expectOne('http://localhost:8080/users');
+      const req = httpMock.expectOne('http://localhost:8080/user-management');
       req.flush(mockUsers);
     });
 
@@ -249,7 +254,7 @@ describe('UserService', () => {
         expect(result.users[0]).toEqual(mockUsers[0]);
       });
 
-      const req = httpMock.expectOne('http://localhost:8080/users');
+      const req = httpMock.expectOne('http://localhost:8080/user-management');
       req.flush(mockUsers);
     });
   });

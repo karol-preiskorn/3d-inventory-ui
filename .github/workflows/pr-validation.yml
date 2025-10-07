@@ -1,0 +1,445 @@
+name: 🔄 Pull Request Validation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches: [main, develop]
+  pull_request_review:
+    types: [submitted]
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  # Job 1: Quick validation for draft PRs
+  quick-validation:
+    name: 🚀 Quick Validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: github.event.pull_request.draft == true
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: 🎯 Quick Lint Check
+        run: npm run lint:check
+
+      - name: 🚀 Fast Tests
+        run: npm run test:fast -- --passWithNoTests
+
+      - name: 💬 Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🚀 Quick Validation Complete
+
+              ✅ Linting passed
+              ✅ Fast tests passed
+
+              **Draft PR Status**: Ready for development
+
+              Convert to ready for review when complete for full validation.`
+            })
+
+  # Job 2: Full validation for ready PRs
+  full-validation:
+    name: 🔍 Full PR Validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: 🎯 ESLint Validation
+        run: npm run lint:check
+
+      - name: 💅 Prettier Check
+        run: npm run lint:prettier-check
+
+      - name: 🧪 Full Test Suite with Coverage
+        run: npm run test:ci
+
+      - name: 📊 Quality Gate Validation
+        run: npm run quality:gate
+
+      - name: 🏗️ Production Build Test
+        run: npm run build:prod
+
+      - name: 📤 Upload Coverage Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report-pr-${{ github.event.number }}
+          path: coverage/
+          retention-days: 7
+
+      - name: 🌐 Upload to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage/
+          flags: pr-validation
+          name: pr-${{ github.event.number }}
+          fail_ci_if_error: false
+
+  # Job 3: Coverage Analysis & PR Comment
+  coverage-analysis:
+    name: 📊 Coverage Analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: full-validation
+    if: github.event.pull_request.draft == false && always()
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 📥 Download Coverage Report
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage-report-pr-${{ github.event.number }}
+          path: ./coverage/
+
+      - name: 📊 Generate Coverage Badges
+        run: |
+          if [ -f "coverage/coverage-summary.json" ]; then
+            # Extract coverage data
+            STATEMENTS=$(cat coverage/coverage-summary.json | grep -o '"statements":{"total":[0-9]*,"covered":[0-9]*,"skipped":[0-9]*,"pct":[0-9.]*' | grep -o 'pct":[0-9.]*' | cut -d: -f2 | head -1)
+            BRANCHES=$(cat coverage/coverage-summary.json | grep -o '"branches":{"total":[0-9]*,"covered":[0-9]*,"skipped":[0-9]*,"pct":[0-9.]*' | grep -o 'pct":[0-9.]*' | cut -d: -f2 | head -1)
+            FUNCTIONS=$(cat coverage/coverage-summary.json | grep -o '"functions":{"total":[0-9]*,"covered":[0-9]*,"skipped":[0-9]*,"pct":[0-9.]*' | grep -o 'pct":[0-9.]*' | cut -d: -f2 | head -1)
+            LINES=$(cat coverage/coverage-summary.json | grep -o '"lines":{"total":[0-9]*,"covered":[0-9]*,"skipped":[0-9]*,"pct":[0-9.]*' | grep -o 'pct":[0-9.]*' | cut -d: -f2 | head -1)
+
+            echo "COVERAGE_STATEMENTS=$STATEMENTS" >> $GITHUB_ENV
+            echo "COVERAGE_BRANCHES=$BRANCHES" >> $GITHUB_ENV
+            echo "COVERAGE_FUNCTIONS=$FUNCTIONS" >> $GITHUB_ENV
+            echo "COVERAGE_LINES=$LINES" >> $GITHUB_ENV
+          else
+            echo "COVERAGE_STATEMENTS=0" >> $GITHUB_ENV
+            echo "COVERAGE_BRANCHES=0" >> $GITHUB_ENV
+            echo "COVERAGE_FUNCTIONS=0" >> $GITHUB_ENV
+            echo "COVERAGE_LINES=0" >> $GITHUB_ENV
+          fi
+
+      - name: 💬 Update PR with Coverage Report
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            // Get coverage data from environment
+            const statements = process.env.COVERAGE_STATEMENTS || '0';
+            const branches = process.env.COVERAGE_BRANCHES || '0';
+            const functions = process.env.COVERAGE_FUNCTIONS || '0';
+            const lines = process.env.COVERAGE_LINES || '0';
+
+            // Calculate overall score (weighted average)
+            const overall = Math.round((
+              parseFloat(statements) * 0.3 +
+              parseFloat(branches) * 0.2 +
+              parseFloat(functions) * 0.3 +
+              parseFloat(lines) * 0.2
+            ));
+
+            // Generate status emojis
+            const getStatus = (value, threshold) => value >= threshold ? '✅' : '❌';
+            const getColor = (value) => {
+              if (value >= 90) return 'brightgreen';
+              if (value >= 80) return 'green';
+              if (value >= 70) return 'yellow';
+              if (value >= 60) return 'orange';
+              return 'red';
+            };
+
+            // Generate badge URLs
+            const badgeStyle = 'flat-square';
+            const overallBadge = `https://img.shields.io/badge/Overall-${overall}%25-${getColor(overall)}?style=${badgeStyle}`;
+            const statementsBadge = `https://img.shields.io/badge/Statements-${statements}%25-${getColor(statements)}?style=${badgeStyle}`;
+            const branchesBadge = `https://img.shields.io/badge/Branches-${branches}%25-${getColor(branches)}?style=${badgeStyle}`;
+            const functionsBadge = `https://img.shields.io/badge/Functions-${functions}%25-${getColor(functions)}?style=${badgeStyle}`;
+            const linesBadge = `https://img.shields.io/badge/Lines-${lines}%25-${getColor(lines)}?style=${badgeStyle}`;
+
+            // Determine quality gate status
+            const qualityGate = (
+              parseFloat(statements) >= 80 &&
+              parseFloat(branches) >= 75 &&
+              parseFloat(functions) >= 85 &&
+              parseFloat(lines) >= 80
+            ) ? '✅ PASSED' : '❌ FAILED';
+
+            const comment = `## 📊 Test Coverage Report
+
+            ![Overall Coverage](${overallBadge})
+            ![Statements](${statementsBadge})
+            ![Branches](${branchesBadge})
+            ![Functions](${functionsBadge})
+            ![Lines](${linesBadge})
+
+            | Metric | Coverage | Threshold | Status |
+            |--------|----------|-----------|--------|
+            | **Overall** | **${overall}%** | **≥80%** | **${getStatus(overall, 80)}** |
+            | Statements | ${statements}% | ≥80% | ${getStatus(statements, 80)} |
+            | Branches | ${branches}% | ≥75% | ${getStatus(branches, 75)} |
+            | Functions | ${functions}% | ≥85% | ${getStatus(functions, 85)} |
+            | Lines | ${lines}% | ≥80% | ${getStatus(lines, 80)} |
+
+            ### 🎯 Quality Gate: ${qualityGate}
+
+            ${qualityGate.includes('FAILED') ?
+              '⚠️ **Action Required**: Coverage below thresholds. Please add tests to meet minimum requirements.' :
+              '🎉 **Great work!** All coverage thresholds met.'
+            }
+
+            ---
+
+            📈 **Coverage Trends**: View detailed coverage report in [build artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+
+            <details>
+            <summary>📋 Quality Checklist</summary>
+
+            - [${getStatus(statements, 80) === '✅' ? 'x' : ' '}] Statement coverage ≥80%
+            - [${getStatus(branches, 75) === '✅' ? 'x' : ' '}] Branch coverage ≥75%
+            - [${getStatus(functions, 85) === '✅' ? 'x' : ' '}] Function coverage ≥85%
+            - [${getStatus(lines, 80) === '✅' ? 'x' : ' '}] Line coverage ≥80%
+            - [${qualityGate.includes('PASSED') ? 'x' : ' '}] Quality gate passed
+
+            </details>
+
+            *Coverage report generated at ${new Date().toISOString()}*
+            `;
+
+            // Look for existing coverage comment to update
+            const { data: comments } = await github.rest.issues.listComments({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+
+            const existingComment = comments.find(comment =>
+              comment.body.includes('## 📊 Test Coverage Report')
+            );
+
+            if (existingComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                comment_id: existingComment.id,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            }
+
+  # Job 4: Performance Analysis
+  performance-analysis:
+    name: ⚡ Performance Analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: full-validation
+    if: github.event.pull_request.draft == false && success()
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: 🏗️ Build for Analysis
+        run: npm run build:prod
+
+      - name: 📏 Bundle Size Analysis
+        run: |
+          BUNDLE_SIZE=$(du -sk dist/ | cut -f1)
+          MAX_SIZE=2048
+
+          echo "BUNDLE_SIZE=$BUNDLE_SIZE" >> $GITHUB_ENV
+          echo "MAX_SIZE=$MAX_SIZE" >> $GITHUB_ENV
+
+          if [ "$BUNDLE_SIZE" -le "$MAX_SIZE" ]; then
+            echo "BUNDLE_STATUS=✅ PASSED" >> $GITHUB_ENV
+          else
+            echo "BUNDLE_STATUS=❌ FAILED" >> $GITHUB_ENV
+          fi
+
+      - name: 💬 Performance Comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const bundleSize = process.env.BUNDLE_SIZE;
+            const maxSize = process.env.MAX_SIZE;
+            const status = process.env.BUNDLE_STATUS;
+
+            const comment = `## ⚡ Performance Analysis
+
+            | Metric | Value | Limit | Status |
+            |--------|-------|--------|--------|
+            | Bundle Size | ${bundleSize} KB | ${maxSize} KB | ${status} |
+
+            ${status.includes('FAILED') ?
+              '⚠️ **Bundle size exceeds limit**. Consider code splitting or removing unused dependencies.' :
+              '✅ **Bundle size within limits**. Great job keeping it lean!'
+            }
+            `;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  # Job 5: Security Check
+  security-check:
+    name: 🔒 Security Analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: full-validation
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: 🔒 Security Audit
+        run: |
+          if npm audit --audit-level high --production; then
+            echo "SECURITY_STATUS=✅ No high-severity vulnerabilities" >> $GITHUB_ENV
+          else
+            echo "SECURITY_STATUS=❌ Security vulnerabilities found" >> $GITHUB_ENV
+          fi
+
+      - name: 💬 Security Status Comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const status = process.env.SECURITY_STATUS;
+
+            const comment = `## 🔒 Security Analysis
+
+            **Status**: ${status}
+
+            ${status.includes('❌') ?
+              '⚠️ **Action Required**: Please run `npm audit fix` to resolve security issues.' :
+              '✅ **Security check passed**. No high-severity vulnerabilities found.'
+            }
+            `;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  # Job 6: PR Status Check
+  pr-status-check:
+    name: 🎯 PR Status Summary
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    needs: [full-validation, coverage-analysis, performance-analysis, security-check]
+    if: always() && github.event.pull_request.draft == false
+
+    steps:
+      - name: 📊 Determine Overall Status
+        run: |
+          VALIDATION_STATUS="${{ needs.full-validation.result }}"
+          COVERAGE_STATUS="${{ needs.coverage-analysis.result }}"
+          PERFORMANCE_STATUS="${{ needs.performance-analysis.result }}"
+          SECURITY_STATUS="${{ needs.security-check.result }}"
+
+          echo "Validation: $VALIDATION_STATUS"
+          echo "Coverage: $COVERAGE_STATUS"
+          echo "Performance: $PERFORMANCE_STATUS"
+          echo "Security: $SECURITY_STATUS"
+
+          if [[ "$VALIDATION_STATUS" == "success" && "$COVERAGE_STATUS" == "success" ]]; then
+            echo "OVERALL_STATUS=✅ READY FOR REVIEW" >> $GITHUB_ENV
+            echo "STATUS_COLOR=28a745" >> $GITHUB_ENV
+          else
+            echo "OVERALL_STATUS=❌ NEEDS WORK" >> $GITHUB_ENV
+            echo "STATUS_COLOR=dc3545" >> $GITHUB_ENV
+          fi
+
+      - name: 🏷️ Update PR Labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const status = process.env.OVERALL_STATUS;
+
+            // Remove existing status labels
+            const { data: labels } = await github.rest.issues.listLabelsOnIssue({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+
+            const statusLabels = labels.filter(label =>
+              label.name.includes('✅') || label.name.includes('❌')
+            );
+
+            for (const label of statusLabels) {
+              await github.rest.issues.removeLabel({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: label.name
+              });
+            }
+
+            // Add new status label
+            const newLabel = status.includes('✅') ? '✅ ready-for-review' : '❌ needs-work';
+
+            await github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: [newLabel]
+            });

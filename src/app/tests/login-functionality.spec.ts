@@ -12,7 +12,7 @@ import { environment } from '../../environments/environment';
 describe('Login Functionality Tests', () => {
   let service: AuthenticationService;
   let httpMock: HttpTestingController;
-  let routerSpy: jasmine.SpyObj<Router>;
+  let routerSpy: jest.Mocked<Router>;
 
   // Test credentials based on API analysis
   const testCredentials = [
@@ -25,7 +25,9 @@ describe('Login Functionality Tests', () => {
   ];
 
   beforeEach(() => {
-    const routerSpyObj = jasmine.createSpyObj('Router', ['navigate']);
+    const routerSpyObj = {
+      navigate: jest.fn()
+    };
 
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -37,7 +39,7 @@ describe('Login Functionality Tests', () => {
 
     service = TestBed.inject(AuthenticationService);
     httpMock = TestBed.inject(HttpTestingController);
-    routerSpy = TestBed.inject(Router) as jasmine.SpyObj<Router>;
+    routerSpy = TestBed.inject(Router) as jest.Mocked<Router>;
   });
 
   afterEach(() => {

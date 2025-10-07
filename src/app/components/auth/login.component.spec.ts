@@ -12,12 +12,17 @@ import { generateTestPassword } from '../../testing/test-utils';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let authServiceSpy: jasmine.SpyObj<AuthenticationService>;
-  let routerSpy: jasmine.SpyObj<Router>;
+  let authServiceSpy: jest.Mocked<AuthenticationService>;
+  let routerSpy: jest.Mocked<Router>;
 
   beforeEach(async () => {
-    const authSpy = jasmine.createSpyObj('AuthenticationService', ['login', 'isAuthenticated']);
-    const routerSpyObj = jasmine.createSpyObj('Router', ['navigate']);
+    const authSpy = {
+      login: jest.fn(),
+      isAuthenticated: jest.fn()
+    };
+    const routerSpyObj = {
+      navigate: jest.fn()
+    };
 
     await TestBed.configureTestingModule({
       imports: [
@@ -41,11 +46,14 @@ describe('LoginComponent', () => {
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
-    authServiceSpy = TestBed.inject(AuthenticationService) as jasmine.SpyObj<AuthenticationService>;
-    routerSpy = TestBed.inject(Router) as jasmine.SpyObj<Router>;
+    authServiceSpy = TestBed.inject(AuthenticationService) as jest.Mocked<AuthenticationService>;
+    routerSpy = TestBed.inject(Router) as jest.Mocked<Router>;
 
     // Default mocks
-    authServiceSpy.isAuthenticated.and.returnValue(false);
+    authServiceSpy.isAuthenticated.mockReturnValue(false);
+
+    // Trigger component initialization
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -53,7 +61,7 @@ describe('LoginComponent', () => {
   });
 
   it('should redirect if already authenticated', () => {
-    authServiceSpy.isAuthenticated.and.returnValue(true);
+    authServiceSpy.isAuthenticated.mockReturnValue(true);
 
     component.ngOnInit();
 
@@ -102,7 +110,7 @@ describe('LoginComponent', () => {
 
   it('should login successfully with username only', () => {
     const mockResponse: LoginResponse = { token: 'mock-token' };
-    authServiceSpy.login.and.returnValue(of(mockResponse));
+    authServiceSpy.login.mockReturnValue(of(mockResponse));
 
     component.loginForm.patchValue({ username: 'carlo' });
     component.onSubmit();
@@ -114,7 +122,7 @@ describe('LoginComponent', () => {
 
   it('should login successfully with username and password', () => {
     const mockResponse: LoginResponse = { token: 'mock-token' };
-    authServiceSpy.login.and.returnValue(of(mockResponse));
+    authServiceSpy.login.mockReturnValue(of(mockResponse));
 
     const testPassword = generateTestPassword();
     component.loginForm.patchValue({
@@ -133,7 +141,7 @@ describe('LoginComponent', () => {
 
   it('should handle login error', () => {
     const errorMessage = 'Invalid credentials';
-    authServiceSpy.login.and.returnValue(throwError(() => new Error(errorMessage)));
+    authServiceSpy.login.mockReturnValue(throwError(() => new Error(errorMessage)));
 
     component.loginForm.patchValue({ username: 'invalid' });
     component.onSubmit();
@@ -146,7 +154,7 @@ describe('LoginComponent', () => {
   it('should navigate to custom return URL after login', () => {
     component.returnUrl = '/admin/dashboard';
     const mockResponse: LoginResponse = { token: 'mock-token' };
-    authServiceSpy.login.and.returnValue(of(mockResponse));
+    authServiceSpy.login.mockReturnValue(of(mockResponse));
 
     component.loginForm.patchValue({ username: 'carlo' });
     component.onSubmit();
@@ -163,7 +171,7 @@ describe('LoginComponent', () => {
   });
 
   it('should handle Enter key press', () => {
-    spyOn(component, 'onSubmit');
+    jest.spyOn(component, 'onSubmit');
     const event = new KeyboardEvent('keypress', { key: 'Enter' });
 
     component.onKeyPress(event);
@@ -172,7 +180,7 @@ describe('LoginComponent', () => {
   });
 
   it('should not submit on Enter when loading', () => {
-    spyOn(component, 'onSubmit');
+    jest.spyOn(component, 'onSubmit');
     component.loading = true;
     const event = new KeyboardEvent('keypress', { key: 'Enter' });
 
@@ -189,7 +197,7 @@ describe('LoginComponent', () => {
 
   it('should trim whitespace from username', () => {
     const mockResponse: LoginResponse = { token: 'mock-token' };
-    authServiceSpy.login.and.returnValue(of(mockResponse));
+    authServiceSpy.login.mockReturnValue(of(mockResponse));
 
     component.loginForm.patchValue({ username: '  carlo  ' });
     component.onSubmit();
@@ -199,7 +207,7 @@ describe('LoginComponent', () => {
 
   it('should not include empty password in request', () => {
     const mockResponse: LoginResponse = { token: 'mock-token' };
-    authServiceSpy.login.and.returnValue(of(mockResponse));
+    authServiceSpy.login.mockReturnValue(of(mockResponse));
 
     component.loginForm.patchValue({
       username: 'carlo',

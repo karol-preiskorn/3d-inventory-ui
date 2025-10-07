@@ -27,7 +27,7 @@ describe('DeviceService', () => {
       // Define your test devices here
     ]
 
-    spyOn(service['http'], 'get').and.returnValue(of(devices))
+    jest.spyOn(service['http'], 'get').mockReturnValue(of(devices))
 
     service.GetDevices().subscribe((result) => {
       expect(result).toEqual(devices)

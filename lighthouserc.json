@@ -1,0 +1,132 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "./dist/3d-inventory-angular-ui",
+      "numberOfRuns": 3,
+      "settings": {
+        "chromeFlags": "--no-sandbox --disable-dev-shm-usage"
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage",
+      "outputDir": "./lighthouse-results"
+    },
+    "assert": {
+      "preset": "lighthouse:recommended",
+      "assertions": {
+        "categories:performance": [
+          "error",
+          {
+            "minScore": 0.8
+          }
+        ],
+        "categories:accessibility": [
+          "error",
+          {
+            "minScore": 0.9
+          }
+        ],
+        "categories:best-practices": [
+          "error",
+          {
+            "minScore": 0.8
+          }
+        ],
+        "categories:seo": [
+          "warn",
+          {
+            "minScore": 0.7
+          }
+        ],
+        "first-contentful-paint": [
+          "warn",
+          {
+            "maxNumericValue": 2000
+          }
+        ],
+        "largest-contentful-paint": [
+          "error",
+          {
+            "maxNumericValue": 4000
+          }
+        ],
+        "cumulative-layout-shift": [
+          "error",
+          {
+            "maxNumericValue": 0.1
+          }
+        ],
+        "first-meaningful-paint": [
+          "warn",
+          {
+            "maxNumericValue": 2500
+          }
+        ],
+        "speed-index": [
+          "warn",
+          {
+            "maxNumericValue": 3000
+          }
+        ],
+        "interactive": [
+          "error",
+          {
+            "maxNumericValue": 5000
+          }
+        ],
+        "max-potential-fid": [
+          "warn",
+          {
+            "maxNumericValue": 130
+          }
+        ],
+        "total-blocking-time": [
+          "warn",
+          {
+            "maxNumericValue": 300
+          }
+        ],
+        "uses-webp-images": "off",
+        "uses-optimized-images": "warn",
+        "unused-css-rules": "warn",
+        "modern-image-formats": "warn",
+        "offscreen-images": "warn",
+        "render-blocking-resources": "warn",
+        "unminified-css": "error",
+        "unminified-javascript": "error",
+        "unused-javascript": "warn",
+        "uses-long-cache-ttl": "off",
+        "uses-rel-preconnect": "warn",
+        "font-display": "warn",
+        "aria-allowed-attr": "error",
+        "aria-hidden-body": "error",
+        "aria-hidden-focus": "error",
+        "aria-valid-attr": "error",
+        "aria-valid-attr-value": "error",
+        "button-name": "error",
+        "bypass": "error",
+        "color-contrast": "error",
+        "duplicate-id-aria": "error",
+        "form-field-multiple-labels": "error",
+        "frame-title": "error",
+        "heading-order": "warn",
+        "html-has-lang": "error",
+        "html-lang-valid": "error",
+        "image-alt": "error",
+        "input-image-alt": "error",
+        "label": "error",
+        "link-name": "error",
+        "list": "error",
+        "listitem": "error",
+        "meta-refresh": "error",
+        "meta-viewport": "error",
+        "object-alt": "error",
+        "tabindex": "error",
+        "td-headers-attr": "error",
+        "th-has-data-cells": "error",
+        "valid-lang": "error",
+        "video-caption": "error"
+      }
+    }
+  }
+}
