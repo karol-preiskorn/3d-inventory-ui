@@ -43,6 +43,12 @@ export class AttributeDictionaryListComponent implements OnInit {
       },
       error: (error) => {
         console.error('[loadAttributeDictionary] Error loading attributes dictionary:', error)
+
+        // Redirect to login if unauthorized
+        if (error.status === 401) {
+          console.warn('[loadAttributeDictionary] Unauthorized - redirecting to login')
+          this.router.navigate(['/login'])
+        }
       }
     })
   }
@@ -55,7 +61,7 @@ export class AttributeDictionaryListComponent implements OnInit {
 
   deleteAttributeDictionary(id: string) {
     this.logService.CreateLog({
-      message: { id },
+      message: JSON.stringify({ id, action: 'Delete attribute dictionary' }),
       objectId: id.toString(),
       operation: 'Delete',
       component: 'attributesDictionary',
@@ -73,10 +79,7 @@ export class AttributeDictionaryListComponent implements OnInit {
       const id_new: string = cloned._id
       this.logService
         .CreateLog({
-          message: {
-            id: id,
-            id_new: id_new,
-          },
+          message: JSON.stringify({ originalId: id, clonedId: id_new, action: 'Clone attribute dictionary' }),
           operation: 'Clone',
           component: 'attributesDictionary',
         })

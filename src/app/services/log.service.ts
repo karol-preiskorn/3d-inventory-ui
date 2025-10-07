@@ -38,7 +38,7 @@ export interface Log {
   objectId?: string
   operation: string // [create, update, delete, clone]
   component: string // [device, model, category, floor]
-  message: Record<string, unknown> // object json
+  message: string // JSON string representation of log details
 }
 
 /**
@@ -49,13 +49,13 @@ export interface Log {
  * @property objectId - (Optional) The ID of the related object.
  * @property operation - The operation performed (e.g., create, update, delete, clone).
  * @property component - The component associated with the log (e.g., device, model, category, floor).
- * @property message - The log message as a JSON object.
+ * @property message - The log message as a JSON string (use JSON.stringify() for objects).
  */
 export interface LogIn {
   objectId?: string
   operation: string
   component: string
-  message: object
+  message: string
 }
 
 @Injectable({

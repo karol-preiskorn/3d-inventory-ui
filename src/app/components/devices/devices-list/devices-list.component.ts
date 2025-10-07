@@ -81,7 +81,7 @@ export class DeviceListComponent implements OnInit {
     try {
       await firstValueFrom(
         this.logService.CreateLog({
-          message: { id },
+          message: JSON.stringify({ id, action: 'Delete device' }),
           objectId: id,
           operation: 'Delete',
           component: this.component,
@@ -114,7 +114,7 @@ export class DeviceListComponent implements OnInit {
     const idNew = this.devicesService.CloneDevice(id) as Device
     // Device cloned successfully
     this.logService.CreateLog({
-      message: { id: id, idNew: idNew },
+      message: JSON.stringify({ originalId: id, clonedId: idNew, action: 'Clone device' }),
       operation: 'Clone',
       component: this.component,
     })

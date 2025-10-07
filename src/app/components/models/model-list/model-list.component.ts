@@ -68,7 +68,7 @@ export class ModelsListComponent implements OnInit {
    * @param id The ID of the model to delete.
    */
   DeleteModel(id: string) {
-    this.logService.CreateLog({ message: { id: id }, objectId: id, operation: 'Delete', component: this.component })
+    this.logService.CreateLog({ message: JSON.stringify({ id, action: 'Delete model' }), objectId: id, operation: 'Delete', component: this.component })
     return this.modelsService.DeleteModel(id).subscribe(() => {
       this.debugService.info(id + ' deleted');
       this.ngOnInit()
@@ -86,7 +86,7 @@ export class ModelsListComponent implements OnInit {
     try {
       const clonedId = this.modelsService.CloneModel(id)
       this.logService
-        .CreateLog({ message: { id, new_id: clonedId }, operation: 'Clone', component: this.component })
+        .CreateLog({ message: JSON.stringify({ originalId: id, clonedId, action: 'Clone model' }), operation: 'Clone', component: this.component })
         .subscribe({
           next: () => {
             this.debugService.info(`Model cloned with new ID: ${clonedId}`);
