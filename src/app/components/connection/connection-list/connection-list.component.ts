@@ -103,7 +103,7 @@ export class ConnectionListComponent implements OnInit {
         console.warn('Connection deleted successfully:', data)
         this.logService
           .CreateLog({
-            message: { id: id, deletedConnection: data },
+            message: JSON.stringify({ id, deletedConnection: data, action: 'Delete connection' }),
             objectId: id,
             operation: 'Delete',
             component: 'connections',
@@ -133,7 +133,7 @@ export class ConnectionListComponent implements OnInit {
 
     this.logService
       .CreateLog({
-        message: { id: id, id_new: id_new },
+        message: JSON.stringify({ id, id_new, action: 'Clone connection' }),
         operation: 'Clone',
         component: 'connections',
       })

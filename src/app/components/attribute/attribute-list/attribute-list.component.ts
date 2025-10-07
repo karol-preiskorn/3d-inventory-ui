@@ -113,7 +113,7 @@ export class AttributeListComponent implements OnInit {
     try {
       await lastValueFrom(
         this.logService.CreateLog({
-          message: { _id: id },
+          message: JSON.stringify({ id, action: 'Delete attribute' }),
           objectId: id,
           operation: 'Delete',
           component: this.component,
@@ -133,7 +133,7 @@ export class AttributeListComponent implements OnInit {
       const newId = this.attributeService.CloneAttribute(id)
       await lastValueFrom(
         this.logService.CreateLog({
-          message: { id, id_new: newId },
+          message: JSON.stringify({ id, id_new: newId, action: 'Clone attribute' }),
           operation: 'Clone',
           component: this.component,
         })

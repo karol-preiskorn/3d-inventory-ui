@@ -125,9 +125,14 @@ export class DeviceEditComponent implements OnInit {
   async submitForm() {
     if (this.editDeviceForm.valid && this.editDeviceForm.touched) {
       // console.log('DeviceEditComponent.submitForm(): ' + JSON.stringify(this.editDeviceForm.value, null, 2))
-      const { _id } = this.editDeviceForm.value
+      const { _id, name, modelId } = this.editDeviceForm.value
       const log: LogIn = {
-        message: this.editDeviceForm.value,
+        message: JSON.stringify({
+          id: _id,
+          name,
+          modelId,
+          action: 'Update device'
+        }),
         operation: 'Update',
         component: 'devices',
         objectId: _id as string,

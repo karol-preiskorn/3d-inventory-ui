@@ -197,7 +197,7 @@ export class AttributeEditComponent implements OnInit {
         this.logService
           .CreateLog({
             objectId: '',
-            message: { error: `Error fetching models: ${err?.message || err}` },
+            message: JSON.stringify({ error: `Error fetching models: ${err?.message || err}` }),
             operation: 'Fetch',
             component: 'models',
           })
@@ -217,7 +217,7 @@ export class AttributeEditComponent implements OnInit {
         this.logService
           .CreateLog({
             objectId: '',
-            message: { error: `Error fetching connections: ${error.message}` },
+            message: JSON.stringify({ error: `Error fetching connections: ${error.message}` }),
             operation: 'Fetch',
             component: 'connections',
           })
@@ -237,7 +237,7 @@ export class AttributeEditComponent implements OnInit {
         this.logService
           .CreateLog({
             objectId: '',
-            message: { error: `Error fetching attribute dictionaries: ${error.message}` },
+            message: JSON.stringify({ error: `Error fetching attribute dictionaries: ${error.message}` }),
             operation: 'Fetch',
             component: 'attributesDictionary',
           })
@@ -256,10 +256,11 @@ export class AttributeEditComponent implements OnInit {
 
     this.attributeService.UpdateAttribute(this.inputId, attributeValue).subscribe({
       next: () => {
+        const { _id, value } = attributeValue
         this.logService
           .CreateLog({
-            objectId: attributeValue._id,
-            message: attributeValue,
+            objectId: _id,
+            message: JSON.stringify({ id: _id, value, action: 'Update attribute' }),
             operation: 'Update',
             component: 'attributes',
           })
@@ -276,7 +277,7 @@ export class AttributeEditComponent implements OnInit {
         this.logService
           .CreateLog({
             objectId: attributeValue._id,
-            message: { error: error.message },
+            message: JSON.stringify({ error: error.message }),
             operation: 'Error',
             component: 'attributes',
           })

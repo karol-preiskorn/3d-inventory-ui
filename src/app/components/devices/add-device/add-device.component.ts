@@ -171,7 +171,8 @@ export class DeviceAddComponent implements OnInit {
       // console.log('Device with _id ' + insertedId + ' created: ' + JSON.stringify(device, null, 2))
       this.logService
         .CreateLog({
-          message: device,
+          // Serialize device to comply with LogIn.message: string
+          message: JSON.stringify(device),
           objectId: insertedId,
           operation: 'Create',
           component: 'Device',

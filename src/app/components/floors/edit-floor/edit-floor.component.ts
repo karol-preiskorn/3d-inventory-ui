@@ -271,14 +271,19 @@ export class FloorEditComponent implements OnInit {
     if (this.floorForm.invalid) {
       return
     }
+    const floorValue = this.floorForm.value
     const log: LogIn = {
-      message: this.floorForm.value,
+      message: JSON.stringify({
+        id: floorValue.id,
+        name: floorValue.name,
+        action: 'Update floor'
+      }),
       operation: 'Update',
       component: 'floors',
-      objectId: this.floorForm.value.id as string,
+      objectId: floorValue.id as string,
     }
     this.logService.CreateLog(log).subscribe(() => { })
-    const id = this.floorForm.value.id || ''
+    const id = floorValue.id || ''
     this.floorService.UpdateFloor(id, this.floorForm.getRawValue() as never).subscribe(() => {
       this.debugService.info('Floor updated!');
       this.ngZone.run(() => this.router.navigateByUrl('floor-list'))

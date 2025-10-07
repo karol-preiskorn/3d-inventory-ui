@@ -285,7 +285,8 @@ export class AddFloorComponent implements OnInit {
       this.logService
         .CreateLog({
           objectId: returnValue._id,
-          message: this.floorForm.value as Floors,
+          // Store floor data as JSON string per LogIn.message: string contract
+          message: JSON.stringify(this.floorForm.value),
           operation: 'Create',
           component: 'floors',
         })

@@ -77,7 +77,7 @@ export class FloorListComponent implements OnInit, OnDestroy {
     this.debugService.info('[deleteFloor] delete floor:', id || 'undefined');
     this.logService
       .CreateLog({
-        message: { id },
+        message: JSON.stringify({ id, action: 'Delete floor' }),
         objectId: id,
         operation: 'Delete',
         component: this.component,
@@ -110,7 +110,7 @@ export class FloorListComponent implements OnInit, OnDestroy {
     this.floorService.CloneFloor(id).subscribe((id_new: string) => {
       this.logService
         .CreateLog({
-          message: { id: id, id_new: id_new },
+          message: JSON.stringify({ id, id_new, action: 'Clone floor' }),
           operation: 'Clone',
           component: this.component,
         })

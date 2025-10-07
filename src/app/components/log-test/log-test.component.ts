@@ -109,11 +109,11 @@ export class LogTestComponent {
     const testLogData = {
       operation: 'Test',
       component: 'devices',
-      message: {
+      message: JSON.stringify({
         test: true,
         timestamp: new Date().toISOString(),
         source: 'log-test-component'
-      }
+      })
     };
 
     this.logService.CreateLog(testLogData).subscribe({

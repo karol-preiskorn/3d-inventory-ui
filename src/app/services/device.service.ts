@@ -126,7 +126,8 @@ export class DeviceService {
           objectId: result._id,
           operation: 'Clone',
           component: 'Device',
-          message: deviceToCreate,
+          // Serialize cloned device to comply with LogIn.message: string
+          message: JSON.stringify(deviceToCreate),
         }
         this.http
           .post<ApiResponse<Log | LogIn>>(`${environment.baseurl}/logs`, log, this.httpOptions)

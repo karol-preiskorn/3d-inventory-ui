@@ -172,7 +172,8 @@ export class AttributeDictionaryAddComponent implements OnInit {
           this.logService
             .CreateLog({
               objectId: _id,
-              message: this.addAttributeDictionaryForm.getRawValue(),
+              // Serialize form value to comply with LogIn.message: string
+              message: JSON.stringify(this.addAttributeDictionaryForm.getRawValue()),
               operation: 'Create',
               component: 'attributesDictionaries',
             })

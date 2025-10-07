@@ -153,11 +153,16 @@ export class AttributeDictionaryEditComponent implements OnInit {
       .UpdateAttributeDictionary(this.inputId, this.editAttributeDictionaryForm.value as AttributesDictionary)
       .subscribe({
         next: () => {
-          const { _id } = this.editAttributeDictionaryForm.value
+          const { _id, name, type } = this.editAttributeDictionaryForm.value
           this.logService
             .CreateLog({
               objectId: _id,
-              message: this.editAttributeDictionaryForm.value,
+              message: JSON.stringify({
+                id: _id,
+                name,
+                type,
+                action: 'Update attribute dictionary'
+              }),
               operation: 'Update',
               component: 'attributesDictionary',
             })
@@ -168,9 +173,16 @@ export class AttributeDictionaryEditComponent implements OnInit {
         },
         error: (err) => {
           console.error('Error updating attribute dictionary:', err)
+          const { _id, name, type } = this.editAttributeDictionaryForm.value
           this.logService.CreateLog({
-            objectId: this.editAttributeDictionaryForm.value._id,
-            message: this.editAttributeDictionaryForm.value,
+            objectId: _id,
+            message: JSON.stringify({
+              id: _id,
+              name,
+              type,
+              action: 'Update attribute dictionary (failed)',
+              error: err.message || 'Unknown error'
+            }),
             operation: 'Update',
             component: 'attributesDictionary',
           })

@@ -108,11 +108,12 @@ export class ModelEditComponent implements OnInit {
   }
 
   deleteForm() {
+    const { id, name } = this.editModelForm.value
     this.logService.CreateLog({
-      objectId: this.editModelForm.value.id,
+      objectId: id,
       operation: 'Delete',
       component: 'models',
-      message: { id: this.editModelForm.value },
+      message: JSON.stringify({ id, name, action: 'Delete model from edit form' }),
     })
     this.modelsService.DeleteModel(this.inputId).subscribe(() => {
       this.ngZone.run(() => this.router.navigateByUrl('models-list'))
@@ -123,8 +124,14 @@ export class ModelEditComponent implements OnInit {
     this.submitted = true
     if (this.editModelForm.valid && this.editModelForm.touched) {
       this.ngZone.run(() => this.router.navigateByUrl('models-list'))
+      const { id, name, brand } = this.editModelForm.value
       const log = {
-        message: { model: this.editModelForm.value },
+        message: JSON.stringify({
+          id,
+          name,
+          brand,
+          action: 'Update model'
+        }),
         operation: 'Update',
         component: 'models',
         objectId: this.editModelForm.value.id,

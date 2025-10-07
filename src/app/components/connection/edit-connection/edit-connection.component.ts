@@ -225,7 +225,7 @@ export class ConnectionEditComponent implements OnInit {
           component: 'connections',
           objectId: this.inputId,
           operation: 'Test Update',
-          message: { testData, result, timestamp: new Date().toISOString() }
+          message: JSON.stringify({ testData, result, timestamp: new Date().toISOString() })
         }).subscribe({
           next: (logResult) => {
             console.warn('Test Log Created:', JSON.stringify(logResult, null, 2))
@@ -255,7 +255,7 @@ export class ConnectionEditComponent implements OnInit {
           component: 'connections',
           objectId: this.inputId,
           operation: 'Test Update Error',
-          message: { error: error.message || error, timestamp: new Date().toISOString() }
+          message: JSON.stringify({ error: error.message || error, timestamp: new Date().toISOString() })
         }).subscribe()
       }
     })
@@ -267,13 +267,13 @@ export class ConnectionEditComponent implements OnInit {
       component: 'connections',
       objectId: this.inputId,
       operation: 'Debug Test',
-      message: {
+      message: JSON.stringify({
         connection: this.connection,
         deviceFrom: this.deviceFrom,
         deviceTo: this.deviceTo,
         timestamp: new Date().toISOString(),
         userAgent: navigator.userAgent
-      }
+      })
     }
 
     this.logService.CreateLog(testLogData).subscribe({
@@ -295,10 +295,10 @@ export class ConnectionEditComponent implements OnInit {
       console.warn('Input ID:', this.inputId)
       console.warn('Form Valid:', this.form.valid)
 
-      const formValue = this.form.value as unknown as Connection
+      const formValue = this.form.value as Connection
 
       // Update the connection
-      const updateResult = await firstValueFrom(this.connectionService.UpdateConnection(this.inputId, this.form.value as Connection))
+      const updateResult = await firstValueFrom(this.connectionService.UpdateConnection(this.inputId, formValue))
       console.warn('Update Result:', JSON.stringify(updateResult, null, 2))
 
       // Log the operation
@@ -307,7 +307,13 @@ export class ConnectionEditComponent implements OnInit {
           component: 'connections',
           objectId: formValue._id,
           operation: 'Update',
-          message: this.form.value as Connection,
+          message: JSON.stringify({
+            id: formValue._id,
+            name: formValue.name,
+            deviceIdTo: formValue.deviceIdTo,
+            deviceIdFrom: formValue.deviceIdFrom,
+            action: 'Update connection'
+          }),
         }),
       )
 
