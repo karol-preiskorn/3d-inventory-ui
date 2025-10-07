@@ -55,7 +55,7 @@ const config: import('jest').Config = {
 
   // Allow Angular modules to be transformed (optimized for performance)
   transformIgnorePatterns: [
-    'node_modules/(?!(@angular|@ngrx|ngx-pagination|rxjs|tslib|zone.js|@ng-bootstrap|uuid)/.*)'
+    'node_modules/(?!(@angular|@ngrx|ngx-pagination|rxjs|tslib|zone.js|@ng-bootstrap|uuid|@faker-js)/.*)'
   ],
 
   // Module name mapping for Angular
