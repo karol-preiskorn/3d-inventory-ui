@@ -6,6 +6,22 @@ import { LoginRequest, LoginResponse } from '../shared/user';
 import { environment } from '../../environments/environment';
 
 /**
+ * Helper function to create a mock JWT token with the specified username
+ */
+function createMockJWT(username: string, role: string, id: string = '67df7602b09dff310dbed764'): string {
+  const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
+  const payload = btoa(JSON.stringify({
+    id: id,
+    username: username,
+    role: role,
+    iat: 1697724000,
+    exp: Math.floor(Date.now() / 1000) + 3600 // 1 hour from now
+  }));
+  const signature = 'test-signature';
+  return `${header}.${payload}.${signature}`;
+}
+
+/**
  * Comprehensive Login Functionality Tests
  * Tests both admin and user login scenarios
  */
@@ -70,11 +86,11 @@ describe('Login Functionality Tests', () => {
           };
 
           const mockResponse: LoginResponse = {
-            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZGY3NjAyYjA5ZGZmMzEwZGJlZDc2MyIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTc3MjQwMDB9.test-signature'
+            token: createMockJWT(cred.username, cred.role)
           };
 
           let loginResult: LoginResponse | null = null;
-          let loginError: any = null;
+          let loginError: unknown = null;
 
           service.login(loginRequest).subscribe({
             next: (response) => {
@@ -109,7 +125,7 @@ describe('Login Functionality Tests', () => {
           };
 
           let loginResult: LoginResponse | null = null;
-          let loginError: any = null;
+          let loginError: unknown = null;
 
           service.login(loginRequest).subscribe({
             next: (response) => {
@@ -149,7 +165,7 @@ describe('Login Functionality Tests', () => {
           };
 
           const mockResponse: LoginResponse = {
-            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZGY3NjAyYjA5ZGZmMzEwZGJlZDc2NCIsInVzZXJuYW1lIjoidXNlciIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjk3NzI0MDAwfQ.test-signature'
+            token: createMockJWT(cred.username, cred.role)
           };
 
           let loginResult: LoginResponse | null = null;
@@ -183,7 +199,7 @@ describe('Login Functionality Tests', () => {
         };
 
         const mockResponse: LoginResponse = {
-          token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZGY3NjAyYjA5ZGZmMzEwZGJlZDc2NSIsInVzZXJuYW1lIjoidmlld2VyIiwicm9sZSI6InZpZXdlciIsImlhdCI6MTY5NzcyNDAwMH0.test-signature'
+          token: createMockJWT(viewerCred.username, viewerCred.role)
         };
 
         let loginResult: LoginResponse | null = null;
@@ -214,7 +230,7 @@ describe('Login Functionality Tests', () => {
       };
 
       const mockResponse: LoginResponse = {
-        token: 'test-jwt-token'
+        token: createMockJWT('admin', 'admin')
       };
 
       service.login(loginRequest).subscribe();
@@ -246,10 +262,11 @@ describe('Login Functionality Tests', () => {
         password: 'wrong-password'
       };
 
-      let loginError: any = null;
+      let loginError: unknown = null;
 
       service.login(loginRequest).subscribe({
-        error: (error) => {
+        next: () => {},
+        error: (error: Error) => {
           loginError = error;
         }
       });
@@ -265,7 +282,7 @@ describe('Login Functionality Tests', () => {
       );
 
       expect(loginError).toBeTruthy();
-      expect(loginError.status).toBe(429);
+      expect((loginError as Error).message).toContain('Too many login attempts');
     });
   });
 
