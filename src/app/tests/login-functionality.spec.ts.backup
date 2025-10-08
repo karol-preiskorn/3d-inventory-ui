@@ -1,0 +1,630 @@
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
+import { LoginRequest, LoginResponse } from '../shared/user';
+import { environment } from '../../environments/environment';
+
+/**
+ * Helper function to create a mock JWT token with the specified username
+ */
+function createMockJWT(username: string, role: string, id: string = '67df7602b09dff310dbed764'): string {
+  const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
+  const payload = btoa(JSON.stringify({
+    id: id,
+    username: username,
+    role: role,
+    iat: 1697724000,
+    exp: Math.floor(Date.now() / 1000) + 3600 // 1 hour from now
+  }));
+  const signature = 'test-signature';
+  return `${header}.${payload}.${signature}`;
+}
+
+/**
+ * Comprehensive Login Functionality Tests
+ * Tests both admin and user login scenarios
+ */
+describe('Login Functionality Tests', () => {
+  let service: AuthenticationService;
+  let httpMock: HttpTestingController;
+  let routerSpy: jest.Mocked<Router>;
+
+  // Test credentials based on API analysis
+  const testCredentials = [
+    { username: 'admin', password: 'admin123!', role: 'admin', description: 'Admin user with default password' },
+    { username: 'user', password: 'user123!', role: 'user', description: 'Regular user with default password' },
+    { username: 'carlo', password: 'carlo123!', role: 'user', description: 'Carlo user with default password' },
+    { username: 'viewer', password: 'viewer123!', role: 'viewer', description: 'Viewer user with default password' },
+    { username: 'admin', password: 'admin', role: 'admin', description: 'Admin with simple password' },
+    { username: 'user', password: 'user', role: 'user', description: 'User with simple password' }
+  ];
+
+  beforeEach(() => {
+    const routerSpyObj = {
+      navigate: jest.fn()
+    };
+
+    TestBed.configureTestingModule({
+      providers: [
+        AuthenticationService,
+        { provide: Router, useValue: routerSpyObj },
+        provideHttpClientTesting()
+      ]
+    });
+
+    service = TestBed.inject(AuthenticationService);
+    httpMock = TestBed.inject(HttpTestingController);
+    routerSpy = TestBed.inject(Router) as jest.Mocked<Router>;
+  });
+
+  afterEach(() => {
+    httpMock.verify();
+    localStorage.clear();
+  });
+
+  describe('Authentication Service', () => {
+    it('should be created', () => {
+      expect(service).toBeTruthy();
+    });
+
+    it('should initialize with no authentication', () => {
+      expect(service.isAuthenticated()).toBeFalsy();
+      expect(service.getCurrentUser()).toBeNull();
+      expect(service.getCurrentToken()).toBeNull();
+    });
+  });
+
+  describe('Admin Login Tests', () => {
+    const adminCreds = testCredentials.filter(cred => cred.role === 'admin');
+    for (const cred of adminCreds) {
+      it(`should login successfully as ${cred.description}`, () => {
+        const loginRequest: LoginRequest = { username: cred.username, password: cred.password };
+        const mockResponse: LoginResponse = { token: createMockJWT(cred.username, cred.role) };
+
+        let loginResult: LoginResponse | null = null;
+        let loginError: unknown = null;
+
+        service.login(loginRequest).subscribe({
+          next: (res) => { loginResult = res; },
+          error: (err) => { loginError = err; }
+        });
+
+        const req = httpMock.expectOne(`${environment.baseurl}/login`);
+        expect(req.request.method).toBe('POST');
+        expect(req.request.body).toEqual(loginRequest);
+        req.flush(mockResponse);
+
+        /**
+         * Helper function to create a mock JWT token with the specified username
+         */
+        function createMockJWT(username: string, role: string, id: string = '67df7602b09dff310dbed764'): string {
+          const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
+          const payload = btoa(JSON.stringify({
+            id: id,
+            username: username,
+            role: role,
+            iat: 1697724000,
+            exp: Math.floor(Date.now() / 1000) + 3600 // 1 hour from now
+          }));
+          const signature = 'test-signature';
+          return `${header}.${payload}.${signature}`;
+        }
+
+        /**
+         * Comprehensive Login Functionality Tests
+         * Tests both admin and user login scenarios
+         */
+        describe('Login Functionality Tests', () => {
+          let service: AuthenticationService;
+          let httpMock: HttpTestingController;
+          let routerSpy: jest.Mocked<Router>;
+
+          // Test credentials based on API analysis
+          const testCredentials = [
+            { username: 'admin', password: 'admin123!', role: 'admin', description: 'Admin user with default password' },
+            { username: 'user', password: 'user123!', role: 'user', description: 'Regular user with default password' },
+            { username: 'carlo', password: 'carlo123!', role: 'user', description: 'Carlo user with default password' },
+            { username: 'viewer', password: 'viewer123!', role: 'viewer', description: 'Viewer user with default password' },
+            { username: 'admin', password: 'admin', role: 'admin', description: 'Admin with simple password' },
+            { username: 'user', password: 'user', role: 'user', description: 'User with simple password' }
+          ];
+
+          beforeEach(() => {
+            const routerSpyObj = {
+              navigate: jest.fn()
+            };
+
+            TestBed.configureTestingModule({
+              providers: [
+                AuthenticationService,
+                { provide: Router, useValue: routerSpyObj },
+                provideHttpClientTesting()
+              ]
+            });
+
+            service = TestBed.inject(AuthenticationService);
+            httpMock = TestBed.inject(HttpTestingController);
+            routerSpy = TestBed.inject(Router) as jest.Mocked<Router>;
+          });
+
+          afterEach(() => {
+            httpMock.verify();
+            localStorage.clear();
+          });
+
+          describe('Authentication Service', () => {
+            it('should be created', () => {
+              expect(service).toBeTruthy();
+            });
+
+            it('should initialize with no authentication', () => {
+              expect(service.isAuthenticated()).toBeFalsy();
+              expect(service.getCurrentUser()).toBeNull();
+              expect(service.getCurrentToken()).toBeNull();
+            });
+          });
+
+          describe('Admin Login Tests', () => {
+            const adminCreds = testCredentials.filter(cred => cred.role === 'admin');
+
+            adminCreds.forEach((cred, index) => {
+              it(`should login successfully as ${cred.description} (test ${index + 1})`, () => {
+                const loginRequest: LoginRequest = { username: cred.username, password: cred.password };
+                const mockResponse: LoginResponse = { token: createMockJWT(cred.username, cred.role) };
+
+                let loginResult: LoginResponse | null = null;
+                let loginError: unknown = null;
+
+                service.login(loginRequest).subscribe({
+                  next: (res) => { loginResult = res; },
+                  error: (err) => { loginError = err; }
+                });
+
+                const req = httpMock.expectOne(`${environment.baseurl}/login`);
+                expect(req.request.method).toBe('POST');
+                expect(req.request.body).toEqual(loginRequest);
+                req.flush(mockResponse);
+
+                // Fixed: Properly validate the response structure
+                expect(loginResult).toBeTruthy();
+                expect(loginResult?.token).toBe(mockResponse.token);
+                expect(loginError).toBeNull();
+                expect(service.isAuthenticated()).toBeTruthy();
+                expect(service.getCurrentToken()).toBe(mockResponse.token);
+                expect(service.getCurrentUser()?.name).toBe(cred.username);
+              });
+
+              it(`should handle failed login for ${cred.description} with wrong password (test ${index + 1})`, () => {
+                const loginRequest: LoginRequest = { username: cred.username, password: 'wrong-password' };
+                let loginError: unknown = null;
+
+                service.login(loginRequest).subscribe({
+                  next: () => fail('Expected error'),
+                  error: (err) => { loginError = err; }
+                });
+
+                const req = httpMock.expectOne(`${environment.baseurl}/login`);
+                expect(req.request.method).toBe('POST');
+                req.flush(
+                  { error: 'Unauthorized', message: 'Invalid credentials' },
+                  { status: 401, statusText: 'Unauthorized' }
+                );
+
+                expect(loginError).toBeTruthy();
+                expect(service.isAuthenticated()).toBeFalsy();
+                expect(service.getCurrentToken()).toBeNull();
+              });
+            });
+          });
+
+          describe('User Login Tests', () => {
+            const userCreds = testCredentials.filter(cred => cred.role === 'user');
+
+            userCreds.forEach((cred, index) => {
+              it(`should login successfully as ${cred.description} (test ${index + 1})`, () => {
+                const loginRequest: LoginRequest = { username: cred.username, password: cred.password };
+                const mockResponse: LoginResponse = { token: createMockJWT(cred.username, cred.role) };
+
+                let loginResult: LoginResponse | null = null;
+                let loginError: unknown = null;
+
+                service.login(loginRequest).subscribe({
+                  next: (res) => { loginResult = res; },
+                  error: (err) => { loginError = err; }
+                });
+
+                const req = httpMock.expectOne(`${environment.baseurl}/login`);
+                expect(req.request.method).toBe('POST');
+                expect(req.request.body).toEqual(loginRequest);
+                req.flush(mockResponse);
+
+                expect(loginResult).toBeTruthy();
+                expect(loginResult?.token).toBe(mockResponse.token);
+                expect(loginError).toBeNull();
+                expect(service.isAuthenticated()).toBeTruthy();
+                expect(service.getCurrentUser()?.name).toBe(cred.username);
+              });
+            });
+          });
+
+          describe('Viewer Login Tests', () => {
+            const viewerCreds = testCredentials.filter(cred => cred.role === 'viewer');
+
+            viewerCreds.forEach((cred, index) => {
+              it(`should login successfully as ${cred.description} (test ${index + 1})`, () => {
+                const loginRequest: LoginRequest = { username: cred.username, password: cred.password };
+                const mockResponse: LoginResponse = { token: createMockJWT(cred.username, cred.role) };
+
+                let loginResult: LoginResponse | null = null;
+                let loginError: unknown = null;
+
+                service.login(loginRequest).subscribe({
+                  next: (res) => { loginResult = res; },
+                  error: (err) => { loginError = err; }
+                });
+
+                const req = httpMock.expectOne(`${environment.baseurl}/login`);
+                expect(req.request.method).toBe('POST');
+                expect(req.request.body).toEqual(loginRequest);
+                req.flush(mockResponse);
+
+                expect(loginResult).toBeTruthy();
+                expect(loginResult?.token).toBe(mockResponse.token);
+                expect(loginError).toBeNull();
+                expect(service.isAuthenticated()).toBeTruthy();
+                expect(service.getCurrentUser()?.name).toBe(cred.username);
+              });
+            });
+          });
+
+          describe('Authentication State Management', () => {
+            it('should persist authentication state in localStorage', () => {
+              const loginRequest: LoginRequest = { username: 'admin', password: 'admin123!' };
+              const mockResponse: LoginResponse = { token: createMockJWT('admin', 'admin') };
+
+              service.login(loginRequest).subscribe();
+
+              const req = httpMock.expectOne(`${environment.baseurl}/login`);
+              req.flush(mockResponse);
+
+              expect(localStorage.getItem('token')).toBe(mockResponse.token);
+              expect(service.isAuthenticated()).toBeTruthy();
+            });
+
+            it('should clear authentication state on logout', () => {
+              const loginRequest: LoginRequest = { username: 'admin', password: 'admin123!' };
+              const mockResponse: LoginResponse = { token: createMockJWT('admin', 'admin') };
+
+              // Login first
+              service.login(loginRequest).subscribe();
+              const req = httpMock.expectOne(`${environment.baseurl}/login`);
+              req.flush(mockResponse);
+
+              expect(service.isAuthenticated()).toBeTruthy();
+
+              // Then logout
+              service.logout();
+
+              expect(service.isAuthenticated()).toBeFalsy();
+              expect(service.getCurrentUser()).toBeNull();
+              expect(service.getCurrentToken()).toBeNull();
+              expect(localStorage.getItem('token')).toBeNull();
+            });
+          });
+
+          describe('Error Handling', () => {
+            it('should handle rate limiting errors', () => {
+              const loginRequest: LoginRequest = { username: 'admin', password: 'admin123!' };
+              let loginError: unknown = null;
+
+              service.login(loginRequest).subscribe({
+                next: () => fail('Expected error'),
+                error: (err) => { loginError = err; }
+              });
+
+              const req = httpMock.expectOne(`${environment.baseurl}/login`);
+              req.flush(
+                {
+                  error: 'Too Many Login Attempts',
+                  message: 'Too many login attempts from this IP, please try again later.',
+                  retryAfter: 900
+                },
+                { status: 429, statusText: 'Too Many Requests' }
+              );
+
+              expect(loginError).toBeTruthy();
+              expect((loginError as Error).message).toContain('Too many login attempts');
+            });
+
+            it('should handle network errors', () => {
+              const loginRequest: LoginRequest = { username: 'admin', password: 'admin123!' };
+              let loginError: unknown = null;
+
+              service.login(loginRequest).subscribe({
+                next: () => fail('Expected error'),
+                error: (err) => { loginError = err; }
+              });
+
+              const req = httpMock.expectOne(`${environment.baseurl}/login`);
+              req.error(new ProgressEvent('Network error'), { status: 0, statusText: 'Unknown Error' });
+
+              expect(loginError).toBeTruthy();
+            });
+          });
+
+          describe('Token Validation', () => {
+            it('should validate JWT token structure', () => {
+              const validToken = createMockJWT('test', 'user');
+              const parts = validToken.split('.');
+
+              expect(parts).toHaveLength(3);
+              expect(parts[0]).toBeTruthy(); // header
+              expect(parts[1]).toBeTruthy(); // payload
+              expect(parts[2]).toBeTruthy(); // signature
+            });
+
+            it('should decode token payload correctly', () => {
+              const token = createMockJWT('testuser', 'admin', 'test-id-123');
+              const parts = token.split('.');
+              const payload = JSON.parse(atob(parts[1]));
+
+              expect(payload.username).toBe('testuser');
+              expect(payload.role).toBe('admin');
+              expect(payload.id).toBe('test-id-123');
+            });
+          });
+        });
+
+        /**
+         * Integration Test Helper Functions
+         */
+        export class LoginTestHelper {
+          /**
+           * Test login with multiple credential combinations
+           */
+          static async testMultipleCredentials(authService: AuthenticationService): Promise<void> {
+            const testCredentials = [
+              { username: 'admin', password: 'admin123!' },
+              { username: 'user', password: 'user123!' },
+              { username: 'carlo', password: 'carlo123!' },
+              { username: 'viewer', password: 'viewer123!' }
+            ];
+
+            console.log('🧪 Testing multiple login credentials...');
+
+            for (const cred of testCredentials) {
+              try {
+                console.log(`Testing ${cred.username}...`);
+
+                const result = await new Promise<boolean>((resolve, reject) => {
+                  authService.login(cred).subscribe({
+                    next: (response) => {
+                      console.log(`✅ ${cred.username} login successful`);
+                      resolve(true);
+                    },
+                    error: (error) => {
+                      console.log(`❌ ${cred.username} login failed:`, error.message);
+                      resolve(false);
+                    }
+                  });
+
+                  // Timeout after 5 seconds
+                  setTimeout(() => reject(new Error('Timeout')), 5000);
+                });
+
+                if (result) {
+                  console.log(`🎉 Found working credentials: ${cred.username}`);
+                  break;
+                }
+              } catch (error) {
+                console.log(`⚠️ Error testing ${cred.username}:`, error);
+              }
+
+              // Wait between attempts to avoid rate limiting
+              await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+          }
+        }
+        expect(loginError).toBeNull();
+        expect(service.isAuthenticated()).toBeTruthy();
+        expect(service.getCurrentToken()).toBe(mockResponse.token);
+        expect(service.getCurrentUser()?.name).toBe(cred.username);
+      });
+
+      it(`should handle failed login for ${cred.description} with wrong password`, () => {
+        const loginRequest: LoginRequest = { username: cred.username, password: 'wrong-password' };
+        let loginError: unknown = null;
+
+        service.login(loginRequest).subscribe({
+          next: () => fail('Expected error'),
+          error: (err) => { loginError = err; }
+        });
+
+        const req = httpMock.expectOne(`${environment.baseurl}/login`);
+        expect(req.request.method).toBe('POST');
+        req.flush(
+          { error: 'Unauthorized', message: 'Invalid credentials' },
+          { status: 401, statusText: 'Unauthorized' }
+        );
+
+        expect(loginError).toBeTruthy();
+        expect(service.isAuthenticated()).toBeFalsy();
+        expect(service.getCurrentToken()).toBeNull();
+      });
+    }
+  });
+
+  describe('User Login Tests', () => {
+    testCredentials
+      .filter(cred => cred.role === 'user')
+      .forEach(cred => {
+        it(`should login successfully as ${cred.description}`, () => {
+          const loginRequest: LoginRequest = {
+            username: cred.username,
+            password: cred.password
+          };
+
+          const mockResponse: LoginResponse = {
+            token: createMockJWT(cred.username, cred.role)
+          };
+
+          let loginResult: LoginResponse | null = null;
+
+          service.login(loginRequest).subscribe({
+            next: (response) => {
+              loginResult = response;
+            }
+          });
+
+          const req = httpMock.expectOne(`${environment.baseurl}/login`);
+          req.flush(mockResponse);
+
+          expect(loginResult).toEqual(mockResponse);
+          expect(service.isAuthenticated()).toBeTruthy();
+
+          const currentUser = service.getCurrentUser();
+  describe('User Login Tests', () => {
+    for (const cred of testCredentials.filter(c => c.role === 'user')) {
+      it(`should login successfully as ${cred.description}`, () => {
+        const loginRequest: LoginRequest = { username: cred.username, password: cred.password };
+        const mockResponse: LoginResponse = { token: createMockJWT(cred.username, cred.role) };
+        let loginResult: LoginResponse | null = null;
+
+        service.login(loginRequest).subscribe(res => { loginResult = res; });
+
+        const req = httpMock.expectOne(`${environment.baseurl}/login`);
+        req.flush(mockResponse);
+
+        expect(loginResult).toEqual(mockResponse);
+        expect(service.isAuthenticated()).toBeTruthy();
+        expect(service.getCurrentUser()?.name).toBe(cred.username);
+      });
+    }
+  });
+        const currentUser = service.getCurrentUser();
+        expect(currentUser?.name).toBe(viewerCred.username);
+      });
+    }
+  });
+
+  describe('Authentication State Management', () => {
+    it('should persist authentication state in localStorage', () => {
+      const loginRequest: LoginRequest = {
+        username: 'admin',
+        password: 'admin123!'
+      };
+
+      const mockResponse: LoginResponse = {
+        token: createMockJWT('admin', 'admin')
+      };
+  describe('Viewer Login Tests', () => {
+    const viewerCred = testCredentials.find(cred => cred.role === 'viewer');
+    if (viewerCred) {
+      it(`should login successfully as ${viewerCred.description}`, () => {
+        const loginRequest: LoginRequest = { username: viewerCred.username, password: viewerCred.password };
+        const mockResponse: LoginResponse = { token: createMockJWT(viewerCred.username, viewerCred.role) };
+        let loginResult: LoginResponse | null = null;
+
+        service.login(loginRequest).subscribe(res => { loginResult = res; });
+
+        const req = httpMock.expectOne(`${environment.baseurl}/login`);
+        req.flush(mockResponse);
+
+        expect(loginResult).toEqual(mockResponse);
+        expect(service.isAuthenticated()).toBeTruthy();
+        expect(service.getCurrentUser()?.name).toBe(viewerCred.username);
+      });
+    }
+  });
+        next: () => {},
+        error: (error: Error) => {
+          loginError = error;
+        }
+      });
+
+      const req = httpMock.expectOne(`${environment.baseurl}/login`);
+      req.flush(
+        {
+          error: 'Too Many Login Attempts',
+          message: 'Too many login attempts from this IP, please try again later.',
+          retryAfter: 900
+        },
+        { status: 429, statusText: 'Too Many Requests' }
+      );
+
+      expect(loginError).toBeTruthy();
+      expect((loginError as Error).message).toContain('Too many login attempts');
+    });
+  });
+
+  describe('Token Validation', () => {
+    it('should validate JWT token format', () => {
+      const validToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMyIsInVzZXJuYW1lIjoidGVzdCJ9.signature';
+      const invalidToken = 'invalid-token';
+
+      // This would need to be implemented in the service
+      // expect(service.isValidTokenFormat(validToken)).toBeTruthy();
+      // expect(service.isValidTokenFormat(invalidToken)).toBeFalsy();
+    });
+
+    it('should check token expiration', () => {
+      // Mock an expired token
+      const expiredToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMyIsImV4cCI6MTY5NzcyNDAwMH0.signature';
+
+      // This would need to be implemented in the service
+      // expect(service.isTokenExpired(expiredToken)).toBeTruthy();
+    });
+  });
+});
+
+/**
+ * Integration Test Helper Functions
+ */
+export class LoginTestHelper {
+  /**
+   * Test login with multiple credential combinations
+   */
+  static async testMultipleCredentials(authService: AuthenticationService): Promise<void> {
+    const testCredentials = [
+      { username: 'admin', password: 'admin123!' },
+      { username: 'user', password: 'user123!' },
+      { username: 'carlo', password: 'carlo123!' },
+      { username: 'viewer', password: 'viewer123!' }
+    ];
+
+    console.log('🧪 Testing multiple login credentials...');
+
+    for (const cred of testCredentials) {
+      try {
+        console.log(`Testing ${cred.username}...`);
+
+        const result = await new Promise<boolean>((resolve, reject) => {
+          authService.login(cred).subscribe({
+            next: (response) => {
+              console.log(`✅ ${cred.username} login successful`);
+              resolve(true);
+            },
+            error: (error) => {
+              console.log(`❌ ${cred.username} login failed:`, error.message);
+              resolve(false);
+            }
+          });
+
+          // Timeout after 5 seconds
+          setTimeout(() => reject(new Error('Timeout')), 5000);
+        });
+
+        if (result) {
+          console.log(`🎉 Found working credentials: ${cred.username}`);
+          break;
+        }
+      } catch (error) {
+        console.log(`⚠️ Error testing ${cred.username}:`, error);
+      }
+
+      // Wait between attempts to avoid rate limiting
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+  }
+}

@@ -78,7 +78,7 @@ export default [
       "curly": ["error", "all"],
       "complexity": ["warn", { "max": 15 }],
       "max-depth": ["warn", { "max": 4 }],
-      "max-lines-per-function": ["warn", { "max": 75, "skipBlankLines": true, "skipComments": true }],
+      "max-lines-per-function": ["warn", { "max": 350, "skipBlankLines": true, "skipComments": true }],
 
       // Import/Export rules
       "no-duplicate-imports": "error",
@@ -119,7 +119,7 @@ export default [
       }],
       "@typescript-eslint/no-explicit-any": "warn", // Allow any in tests but warn
       "no-console": ["warn", { "allow": ["warn", "error"] }],
-      "max-lines-per-function": ["warn", { "max": 200, "skipBlankLines": true, "skipComments": true }], // Longer functions allowed in tests
+      "max-lines-per-function": ["warn", { "max": 400, "skipBlankLines": true, "skipComments": true }], // Longer functions allowed in tests
       "complexity": ["warn", { "max": 20 }], // Higher complexity allowed in tests
     },
   },

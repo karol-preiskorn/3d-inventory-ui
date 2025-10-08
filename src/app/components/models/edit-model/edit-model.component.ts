@@ -59,11 +59,11 @@ export class ModelEditComponent implements OnInit {
         ],
       }),
       texture: this.formBuilder.group({
-        front: ['', null],
-        back: ['', null],
-        side: ['', null],
-        top: ['', null],
-        bottom: ['', null],
+        front: ['', [Validators.required, Validators.minLength(1)]],
+        back: ['', [Validators.required, Validators.minLength(1)]],
+        side: ['', [Validators.required, Validators.minLength(1)]],
+        top: ['', [Validators.required, Validators.minLength(1)]],
+        bottom: ['', [Validators.required, Validators.minLength(1)]],
       }),
     })
 
@@ -126,8 +126,28 @@ export class ModelEditComponent implements OnInit {
   submitForm() {
     this.submitted = true
     if (this.editModelForm.valid && this.editModelForm.touched) {
-      this.ngZone.run(() => this.router.navigateByUrl('models-list'))
-      const { id, name } = this.editModelForm.value
+      const formValue = this.editModelForm.value
+      const { id, name, dimension, texture } = formValue
+
+      // Prepare the update payload - exclude 'id' field and ensure proper types
+      const updatePayload: Model = {
+        _id: id, // Keep _id for the Model interface but won't be sent in HTTP body
+        name: name,
+        dimension: {
+          width: Number(dimension.width),
+          height: Number(dimension.height),
+          depth: Number(dimension.depth)
+        },
+        texture: {
+          front: texture.front,
+          back: texture.back,
+          side: texture.side,
+          top: texture.top,
+          bottom: texture.bottom
+        }
+      }
+
+      // Create log entry
       const log = {
         message: JSON.stringify({
           id,
@@ -136,16 +156,26 @@ export class ModelEditComponent implements OnInit {
         }),
         operation: 'Update',
         component: 'models',
-        objectId: this.editModelForm.value.id,
+        objectId: id,
       }
+
       this.logService.CreateLog(log).subscribe(() => {
         this.debugService.debug('Log created:', log)
       })
+
+      // Update the model
       this.modelsService
-        .UpdateModel(this.inputId.toString(), this.editModelForm.value as unknown as Model)
-        .subscribe(() => {
-          this.cdr.markForCheck()
-          this.router.navigate(['edit-model/', this.model._id])
+        .UpdateModel(this.inputId.toString(), updatePayload)
+        .subscribe({
+          next: () => {
+            this.cdr.markForCheck()
+            this.debugService.debug('Model updated successfully')
+            this.ngZone.run(() => this.router.navigateByUrl('models-list'))
+          },
+          error: (error) => {
+            this.debugService.error('Error updating model:', error)
+            this.cdr.markForCheck()
+          }
         })
     }
   }

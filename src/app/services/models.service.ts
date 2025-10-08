@@ -137,8 +137,13 @@ export class ModelsService {
    * @returns An Observable that emits the updated model.
    */
   UpdateModel(id: string, data: Model): Observable<Model> {
+    // Exclude _id from the request body since it's in the URL
+    const { _id, ...updateData } = data
+
+    this.debugService.api('PUT', `/models/${id}`, updateData)
+
     return this.http
-      .put<Model>(`${this.baseurl}/models/${id}`, data, this.httpOptions)
+      .put<Model>(`${this.baseurl}/models/${id}`, updateData, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleErrorTemplate<Model>('UpdateModel', {} as Model))

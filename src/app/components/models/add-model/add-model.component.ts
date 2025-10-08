@@ -61,11 +61,11 @@ export class ModelAddComponent implements OnInit {
         ],
       }),
       texture: this.formBuilder.group({
-        front: ['', []],
-        back: ['', []],
-        side: ['', []],
-        top: ['', []],
-        bottom: ['', []],
+        front: ['', [Validators.required, Validators.minLength(1)]],
+        back: ['', [Validators.required, Validators.minLength(1)]],
+        side: ['', [Validators.required, Validators.minLength(1)]],
+        top: ['', [Validators.required, Validators.minLength(1)]],
+        bottom: ['', [Validators.required, Validators.minLength(1)]],
       }),
     })
   }
