@@ -39,14 +39,12 @@ export class ModelsListComponent implements OnInit {
   /**
    * Loads the models by calling the GetModels method of the models service.
    */
-  loadModels(): void {
+  loadModels() {
     this.modelsService.GetModels().subscribe({
       next: (data: Model[]) => {
-        console.warn('✅ Loaded', data.length, 'models from API');
-        this.ModelsList = data
-        this.totalItems = data.length
-        // Trigger change detection since we're using OnPush strategy
-        this.cdr.detectChanges()
+        this.ModelsList = data.sort((a, b) => a.name.localeCompare(b.name))
+        this.cdr.markForCheck()
+        this.debugService.debug('✅ Models loaded successfully:', this.ModelsList.length)
       },
       error: (error) => {
         console.error('❌ Error loading models:', error);
@@ -71,6 +69,7 @@ export class ModelsListComponent implements OnInit {
     this.logService.CreateLog({ message: JSON.stringify({ id, action: 'Delete model' }), objectId: id, operation: 'Delete', component: this.component })
     return this.modelsService.DeleteModel(id).subscribe(() => {
       this.debugService.info(id + ' deleted');
+      this.cdr.markForCheck()
       this.ngOnInit()
       this.router.navigate(['/models-list/'])
     })
@@ -90,6 +89,7 @@ export class ModelsListComponent implements OnInit {
         .subscribe({
           next: () => {
             this.debugService.info(`Model cloned with new ID: ${clonedId}`);
+            this.cdr.markForCheck()
             this.loadModels()
             this.ngZone.run(() => this.router.navigateByUrl('models-list'))
           },

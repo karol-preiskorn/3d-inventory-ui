@@ -5,7 +5,6 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import {
   AbstractControl,
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
   ValidationErrors,
@@ -19,7 +18,6 @@ import { LogIn, LogService } from '../../../services/log.service'
 import { ModelsService } from '../../../services/models.service'
 import { Device } from '../../../shared/device'
 import { Model } from '../../../shared/model'
-import Validation from '../../../shared/validation'
 import { AttributeListComponent } from '../../attribute/attribute-list/attribute-list.component'
 import { LogComponent } from '../../log/log.component'
 
@@ -33,7 +31,6 @@ import { LogComponent } from '../../log/log.component'
 export class DeviceEditComponent implements OnInit {
   device: Device = new Device()
   modelList: Model[]
-  valid: Validation = new Validation()
   editDeviceForm: FormGroup // Declare the editDeviceForm property
 
   // Arrow function for number validation
@@ -43,19 +40,6 @@ export class DeviceEditComponent implements OnInit {
       return { invalidNumber: true }
     }
     return null
-  }
-
-  createFormGroup = () => {
-    return new FormGroup({
-      _id: new FormControl('', Validators.required),
-      name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      modelId: new FormControl('', Validators.required),
-      position: new FormGroup({
-        x: new FormControl(0, [Validators.required, this.numberValidator, Validators.min(-20), Validators.max(20)]),
-        y: new FormControl(0, [Validators.required, this.numberValidator]),
-        h: new FormControl(0, [Validators.required, this.numberValidator]),
-      }),
-    })
   }
 
   attributeComponent: string = ''

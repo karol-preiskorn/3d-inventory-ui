@@ -51,11 +51,14 @@
               'is-valid': editModelForm.get('dimension.width')?.status === 'VALID',
             }" />
           @if (editModelForm.get('dimension.width')?.errors) {
-          <div class="invalid-feedback"></div>
-          }
-          <div>Width is required and must be at least 1 number</div>
-          @if (editModelForm.get('dimension.width')?.errors?.maxlength) {
-          <div>Width must be less than 6 numbers
+          <div class="invalid-feedback">
+            @if (editModelForm.get('dimension.width')?.errors?.required ||
+            editModelForm.get('dimension.width')?.errors?.minlength) {
+            <div>Width is required and must be at least 1 number</div>
+            }
+            @if (editModelForm.get('dimension.width')?.errors?.maxlength) {
+            <div>Width must be less than 6 numbers</div>
+            }
           </div>
           }
         </div>

@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs'
 
 import { CommonModule } from '@angular/common'
-import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 
@@ -15,7 +15,7 @@ import { LogComponent } from '../../log/log.component' // Import the standalone 
   selector: 'app-edit-model',
   templateUrl: './edit-model.component.html',
   styleUrls: ['./edit-model.component.scss'],
-  providers: [CommonModule, LogComponent],
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, LogComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -37,6 +37,7 @@ export class ModelEditComponent implements OnInit {
     private router: Router,
     private logService: LogService,
     private debugService: DebugService,
+    private readonly cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -91,6 +92,7 @@ export class ModelEditComponent implements OnInit {
           bottom: data.texture.bottom,
         },
       })
+      this.cdr.markForCheck()
     })
   }
 
@@ -116,6 +118,7 @@ export class ModelEditComponent implements OnInit {
       message: JSON.stringify({ id, name, action: 'Delete model from edit form' }),
     })
     this.modelsService.DeleteModel(this.inputId).subscribe(() => {
+      this.cdr.markForCheck()
       this.ngZone.run(() => this.router.navigateByUrl('models-list'))
     })
   }
@@ -124,12 +127,11 @@ export class ModelEditComponent implements OnInit {
     this.submitted = true
     if (this.editModelForm.valid && this.editModelForm.touched) {
       this.ngZone.run(() => this.router.navigateByUrl('models-list'))
-      const { id, name, brand } = this.editModelForm.value
+      const { id, name } = this.editModelForm.value
       const log = {
         message: JSON.stringify({
           id,
           name,
-          brand,
           action: 'Update model'
         }),
         operation: 'Update',
@@ -142,6 +144,7 @@ export class ModelEditComponent implements OnInit {
       this.modelsService
         .UpdateModel(this.inputId.toString(), this.editModelForm.value as unknown as Model)
         .subscribe(() => {
+          this.cdr.markForCheck()
           this.router.navigate(['edit-model/', this.model._id])
         })
     }

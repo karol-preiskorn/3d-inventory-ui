@@ -21,7 +21,7 @@
         <div class="form-group mb-3">
           <label for="name" class="form-label">Name</label>
           <input type="text" class="form-control" placeholder="Device's name" aria-label="name"
-            [formControlName]="'name'" minlength="4" id="name" required maxlength="255" [ngClass]="{
+            formControlName="name" minlength="4" id="name" required maxlength="255" [ngClass]="{
               'is-invalid': editDeviceForm.controls.name.status !== 'VALID',
               'is-valid': editDeviceForm.controls.name.status === 'VALID',
             }" />
@@ -54,11 +54,11 @@
           @if (editDeviceForm.get('position.x')?.errors?.required) {
           <div>x is required</div>
           }
-          @if (editDeviceForm.get('position.x')?.errors?.minlength) {
-          <div>x must be at least 4 characters</div>
+          @if (editDeviceForm.get('position.x')?.errors?.min) {
+          <div>x must be at least -20</div>
           }
-          @if (editDeviceForm.get('position.x')?.errors?.maxlength) {
-          <div>x must be at most 255 characters</div>
+          @if (editDeviceForm.get('position.x')?.errors?.max) {
+          <div>x must be at most 20</div>
           }
         </div>
         }
@@ -77,6 +77,12 @@
           @if (editDeviceForm.get('position.y')?.errors?.required) {
           <div>y is required</div>
           }
+          @if (editDeviceForm.get('position.y')?.errors?.min) {
+          <div>y must be at least -20</div>
+          }
+          @if (editDeviceForm.get('position.y')?.errors?.max) {
+          <div>y must be at most 20</div>
+          }
         </div>
         }
       </div>
@@ -93,6 +99,12 @@
         <div class="invalid-feedback">
           @if (editDeviceForm.get('position.h')?.errors?.required) {
           <div>h is required</div>
+          }
+          @if (editDeviceForm.get('position.h')?.errors?.min) {
+          <div>h must be at least -20</div>
+          }
+          @if (editDeviceForm.get('position.h')?.errors?.max) {
+          <div>h must be at most 20</div>
           }
         </div>
         }
@@ -115,7 +127,7 @@
           @if (editDeviceForm.controls.modelId.errors) {
           <div class="invalid-feedback">
             @if (editDeviceForm.controls.modelId.errors.required) {
-            <div>Name is required</div>
+            <div>Model is required</div>
             }
           </div>
           }
@@ -131,14 +143,14 @@
         <i class="bi bi-floppy"></i> Update
       </button>
 
-      @if (!(editDeviceForm.invalid && editDeviceForm.touched)) {
-      <div class="invalid-feedback">
-        editDeviceForm is invalid or untouched
+      @if (editDeviceForm.invalid && editDeviceForm.touched) {
+      <div class="invalid-feedback d-block">
+        Form is invalid or has untouched required fields
       </div>
       }
-      @if (!(editDeviceForm.valid && editDeviceForm.touched)) {
-      <div class="valid-feedback">
-        editDeviceForm is valid and touched
+      @if (editDeviceForm.valid && editDeviceForm.touched) {
+      <div class="valid-feedback d-block">
+        Form is valid and ready to submit
       </div>
       }
     </div>

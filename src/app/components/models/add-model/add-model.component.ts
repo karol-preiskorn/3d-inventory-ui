@@ -1,7 +1,7 @@
 import { environment } from 'src/environments/environment'
 
 import { CommonModule } from '@angular/common'
-import { ChangeDetectionStrategy, Component, NgZone, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { faker } from '@faker-js/faker'
@@ -39,6 +39,7 @@ export class ModelAddComponent implements OnInit {
     private readonly logService: LogService,
     private readonly formBuilder: FormBuilder,
     private readonly debugService: DebugService,
+    private readonly cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -109,6 +110,7 @@ export class ModelAddComponent implements OnInit {
     if (this.addModelForm.controls.category) {
       this.addModelForm.controls.category.setValue(this.deviceCategoryDict.getRandomName())
     }
+    this.cdr.markForCheck()
   }
 
   getFormValues(): string {
@@ -130,6 +132,7 @@ export class ModelAddComponent implements OnInit {
             component: this.component,
           })
           .subscribe(() => {
+            this.cdr.markForCheck()
             this.ngZone.run(() => this.router.navigateByUrl('models-list'))
           })
       })

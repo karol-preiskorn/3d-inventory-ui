@@ -14,20 +14,14 @@
                 'form-control': true,
               }" formControlName="name" minlength="4" id="name" maxlength="255" />
             @if (this.addModelForm.controls.name.errors) {
-              <div class="invalid-feedback">
-                @if (this.addModelForm.controls.name.errors.required) {
-                  <div>Name is required</div>
-                }
-                @if (this.addModelForm.controls.name.errors.minlength) {
-                  <div>Name must be at least 4 characters
-                  </div>
-                }
-                @if (this.addModelForm.get('texture.bottom')?.errors?.minlength) {
-                  <div>
-                    Bottom must be at least 2 characters long
-                  </div>
-                }
-              </div>
+            <div class="invalid-feedback">
+              @if (this.addModelForm.controls.name.errors.required) {
+              <div>Name is required</div>
+              }
+              @if (this.addModelForm.controls.name.errors.minlength) {
+              <div>Name must be at least 4 characters</div>
+              }
+            </div>
             }
           </div>
         </div>
@@ -44,24 +38,17 @@
                 'form-control': true,
               }" />
             @if (this.addModelForm.get('dimension.width')?.errors) {
-              <div class="invalid-feedback">
-                @if (this.addModelForm.get('dimension.width')?.errors?.required) {
-                  <div>Width is required</div>
-                }
-                @if (this.addModelForm.get('dimension.width')?.errors?.minlength) {
-                  <div>
-                    Width must be at least 1 number
-                  </div>
-                }
-                @if (this.addModelForm.get('dimension.width')?.errors?.pattern) {
-                  <div>
-                    Width must be a number
-                  </div>
-                }
-                @if (addModelForm.get('dimension.width')?.errors?.pattern) {
-                  <p class="text-danger">Number Only</p>
-                }
-              </div>
+            <div class="invalid-feedback">
+              @if (this.addModelForm.get('dimension.width')?.errors?.required) {
+              <div>Width is required</div>
+              }
+              @if (this.addModelForm.get('dimension.width')?.errors?.minlength) {
+              <div>Width must be at least 1 number</div>
+              }
+              @if (this.addModelForm.get('dimension.width')?.errors?.pattern) {
+              <div>Width must be a number</div>
+              }
+            </div>
             }
           </div>
         </div>
@@ -75,16 +62,16 @@
                 'form-control': true,
               }" />
             @if (this.addModelForm.get('dimension.height')?.errors) {
-              <div class="invalid-feedback">
-                @if (this.addModelForm.get('dimension.height')?.errors?.required) {
-                  <div>Height is required</div>
-                }
-                @if (this.addModelForm.get('dimension.height')?.errors?.minlength) {
-                  <div>
-                    Height must be at least 1 number
-                  </div>
-                }
+            <div class="invalid-feedback">
+              @if (this.addModelForm.get('dimension.height')?.errors?.required) {
+              <div>Height is required</div>
+              }
+              @if (this.addModelForm.get('dimension.height')?.errors?.minlength) {
+              <div>
+                Height must be at least 1 number
               </div>
+              }
+            </div>
             }
           </div>
         </div>
@@ -100,16 +87,16 @@
                 'form-control': true,
               }" />
             @if (this.addModelForm.get('dimension.depth')?.errors) {
-              <div class="invalid-feedback">
-                @if (this.addModelForm.get('dimension.depth')?.errors?.required) {
-                  <div>Depth is required</div>
-                }
-                @if (this.addModelForm.get('dimension.depth')?.errors?.minlength) {
-                  <div>
-                    Depth must be at least 1 number
-                  </div>
-                }
+            <div class="invalid-feedback">
+              @if (this.addModelForm.get('dimension.depth')?.errors?.required) {
+              <div>Depth is required</div>
+              }
+              @if (this.addModelForm.get('dimension.depth')?.errors?.minlength) {
+              <div>
+                Depth must be at least 1 number
               </div>
+              }
+            </div>
             }
           </div>
         </div>
@@ -126,17 +113,17 @@
                 'form-control': true,
               }" />
             @if (this.addModelForm.get('texture')?.get('front')?.errors) {
-              <div class="invalid-feedback">
-                @if (this.addModelForm.get('texture')?.get('front')?.errors?.required) {
-                  <div>Front is required
-                  </div>
-                }
-                @if (this.addModelForm.get('texture')?.get('front')?.errors?.minlength) {
-                  <div>
-                    Front must be at least 1 number.
-                  </div>
-                }
+            <div class="invalid-feedback">
+              @if (this.addModelForm.get('texture')?.get('front')?.errors?.required) {
+              <div>Front is required
               </div>
+              }
+              @if (this.addModelForm.get('texture')?.get('front')?.errors?.minlength) {
+              <div>
+                Front must be at least 1 number.
+              </div>
+              }
+            </div>
             }
           </div>
         </div>
@@ -151,16 +138,16 @@
                 'form-control': true,
               }" />
             @if (this.addModelForm.get('texture')?.get('back')?.errors) {
-              <div class="invalid-feedback">
-                @if (this.addModelForm.get('texture')?.get('back')?.errors?.required) {
-                  <div>Back is required</div>
-                }
-                @if (this.addModelForm.get('texture')?.get('back')?.errors?.minlength) {
-                  <div>
-                    Back must be at least 1 character
-                  </div>
-                }
+            <div class="invalid-feedback">
+              @if (this.addModelForm.get('texture')?.get('back')?.errors?.required) {
+              <div>Back is required</div>
+              }
+              @if (this.addModelForm.get('texture')?.get('back')?.errors?.minlength) {
+              <div>
+                Back must be at least 1 character
               </div>
+              }
+            </div>
             }
           </div>
         </div>
@@ -175,16 +162,16 @@
                 'form-control': true,
               }" />
             @if (this.addModelForm.get('texture.side')?.errors) {
-              <div class="invalid-feedback">
-                @if (this.addModelForm.get('texture.side')?.errors?.required) {
-                  <div>Side is required</div>
-                }
-                @if (this.addModelForm.get('texture.side')?.errors?.minlength) {
-                  <div>
-                    Side must be at least 1 character
-                  </div>
-                }
+            <div class="invalid-feedback">
+              @if (this.addModelForm.get('texture.side')?.errors?.required) {
+              <div>Side is required</div>
+              }
+              @if (this.addModelForm.get('texture.side')?.errors?.minlength) {
+              <div>
+                Side must be at least 1 character
               </div>
+              }
+            </div>
             }
           </div>
         </div>
@@ -199,16 +186,16 @@
                 'form-control': true,
               }" />
             @if (this.addModelForm.get('texture.top')?.errors) {
-              <div class="invalid-feedback">
-                @if (this.addModelForm.get('texture')?.get('top')?.errors?.required) {
-                  <div>Top is required</div>
-                }
-                @if (this.addModelForm.get('texture')?.get('top')?.errors?.minlength) {
-                  <div>
-                    Top must be at least 1 character
-                  </div>
-                }
+            <div class="invalid-feedback">
+              @if (this.addModelForm.get('texture')?.get('top')?.errors?.required) {
+              <div>Top is required</div>
+              }
+              @if (this.addModelForm.get('texture')?.get('top')?.errors?.minlength) {
+              <div>
+                Top must be at least 1 character
               </div>
+              }
+            </div>
             }
           </div>
         </div>
@@ -223,21 +210,21 @@
                 'form-control': true,
               }" />
             @if (this.addModelForm.get('texture.bottom')?.errors) {
-              <div class="invalid-feedback">
-                @if (this.addModelForm.get('texture.bottom')?.errors?.required) {
-                  <div>Bottom is required</div>
-                }
-                @if (this.addModelForm.get('texture.bottom')?.errors?.minlength) {
-                  <div>
-                    Bottom must be at least 2 characters.
-                  </div>
-                }
-                @if (addModelForm.get('texture.bottom')?.errors?.minlength) {
-                  <div>Bottom must be at least 2
-                    characters...
-                  </div>
-                }
+            <div class="invalid-feedback">
+              @if (this.addModelForm.get('texture.bottom')?.errors?.required) {
+              <div>Bottom is required</div>
+              }
+              @if (this.addModelForm.get('texture.bottom')?.errors?.minlength) {
+              <div>
+                Bottom must be at least 2 characters.
               </div>
+              }
+              @if (addModelForm.get('texture.bottom')?.errors?.minlength) {
+              <div>Bottom must be at least 2
+                characters...
+              </div>
+              }
+            </div>
             }
           </div>
         </div>
@@ -256,12 +243,12 @@
             </button>
           </div>
           @if (!isProduction) {
-            <!-- Debug information is displayed only when not in production mode -->
-            <pre class="bg-light p-2 border rounded">{{ getFormValues() }}</pre>
-            <p class="text-secondary fw-bold">Current Form Values:</p>
-            @if (!isProduction) {
-              <pre class="bg-light p-2 border rounded">{{ addModelForm.value | json }}</pre>
-            }
+          <!-- Debug information is displayed only when not in production mode -->
+          <pre class="bg-light p-2 border rounded">{{ getFormValues() }}</pre>
+          <p class="text-secondary fw-bold">Current Form Values:</p>
+          @if (!isProduction) {
+          <pre class="bg-light p-2 border rounded">{{ addModelForm.value | json }}</pre>
+          }
           }
         </div>
       </div>
