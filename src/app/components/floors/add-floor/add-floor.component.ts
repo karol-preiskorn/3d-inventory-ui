@@ -273,7 +273,22 @@ export class AddFloorComponent implements OnInit {
     }
     this.isSubmitDisabled = true
     try {
-      const floorData: Floors = this.floorForm.value as Floors
+      const floorValue = this.floorForm.getRawValue()
+
+      // Convert dimension numeric fields from strings to numbers before sending to API
+      if (floorValue.dimension && Array.isArray(floorValue.dimension)) {
+        floorValue.dimension = floorValue.dimension.map((dim) => ({
+          description: dim.description,
+          x: Number(dim.x),
+          y: Number(dim.y),
+          h: Number(dim.h),
+          xPos: Number(dim.xPos),
+          yPos: Number(dim.yPos),
+          hPos: Number(dim.hPos)
+        })) as never
+      }
+
+      const floorData: Floors = floorValue as Floors
               this.debugService.info('Floor Data to Submit:', JSON.stringify(floorData, null, ' '))
       const returnValue = await firstValueFrom(this.floorService.CreateFloor(floorData))
               this.debugService.info(`Floor created successfully:  ${returnValue._id}`)

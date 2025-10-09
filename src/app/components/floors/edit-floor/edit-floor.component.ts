@@ -89,12 +89,12 @@ export class FloorEditComponent implements OnInit {
   createDimensionGroup(dimension: FloorDimension) {
     return new FormGroup({
       description: new FormControl(dimension.description, [Validators.required, Validators.minLength(4)]),
-      x: new FormControl(dimension.x, [Validators.required, this.valid.numberValidator]),
-      y: new FormControl(dimension.y, [Validators.required, this.valid.numberValidator]),
-      h: new FormControl(dimension.h, [Validators.required, this.valid.numberValidator]),
-      xPos: new FormControl(dimension.xPos, [Validators.required, this.valid.numberValidator]),
-      yPos: new FormControl(dimension.yPos, [Validators.required, this.valid.numberValidator]),
-      hPos: new FormControl(dimension.hPos, [Validators.required, this.valid.numberValidator]),
+      x: new FormControl(String(dimension.x), [Validators.required, this.valid.numberValidator]),
+      y: new FormControl(String(dimension.y), [Validators.required, this.valid.numberValidator]),
+      h: new FormControl(String(dimension.h), [Validators.required, this.valid.numberValidator]),
+      xPos: new FormControl(String(dimension.xPos), [Validators.required, this.valid.numberValidator]),
+      yPos: new FormControl(String(dimension.yPos), [Validators.required, this.valid.numberValidator]),
+      hPos: new FormControl(String(dimension.hPos), [Validators.required, this.valid.numberValidator]),
     })
   }
 
@@ -271,7 +271,21 @@ export class FloorEditComponent implements OnInit {
     if (this.floorForm.invalid) {
       return
     }
-    const floorValue = this.floorForm.value
+    const floorValue = this.floorForm.getRawValue()
+
+    // Convert dimension numeric fields from strings to numbers before sending to API
+    if (floorValue.dimension && Array.isArray(floorValue.dimension)) {
+      floorValue.dimension = floorValue.dimension.map((dim) => ({
+        description: dim.description,
+        x: Number(dim.x),
+        y: Number(dim.y),
+        h: Number(dim.h),
+        xPos: Number(dim.xPos),
+        yPos: Number(dim.yPos),
+        hPos: Number(dim.hPos)
+      })) as never
+    }
+
     const log: LogIn = {
       message: JSON.stringify({
         id: floorValue.id,
@@ -284,7 +298,7 @@ export class FloorEditComponent implements OnInit {
     }
     this.logService.CreateLog(log).subscribe(() => { })
     const id = floorValue.id || ''
-    this.floorService.UpdateFloor(id, this.floorForm.getRawValue() as never).subscribe(() => {
+    this.floorService.UpdateFloor(id, floorValue as never).subscribe(() => {
       this.debugService.info('Floor updated!');
       this.ngZone.run(() => this.router.navigateByUrl('floor-list'))
     })

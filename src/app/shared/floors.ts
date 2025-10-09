@@ -7,12 +7,12 @@
 
 export interface FloorDimension {
   description: string
-  x: string
-  y: string
-  h: string
-  xPos: string
-  yPos: string
-  hPos: string
+  x: string | number  // Form sends strings, API expects numbers
+  y: string | number
+  h: string | number
+  xPos: string | number
+  yPos: string | number
+  hPos: string | number
 }
 
 export interface Floors {
@@ -26,5 +26,3 @@ export interface Floors {
   }
   dimension: [FloorDimension]
 }
-
-

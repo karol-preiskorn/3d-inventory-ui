@@ -204,7 +204,7 @@
                 <div class="col">
                   <div class="form-group mb-3">
                     <label for="xPos-{{i}}" class="form-label">X position</label>
-                    <input type="text" id="xPos-{{i}}" formControlName="xPos" required [ngClass]="{
+                    <input type="number" id="xPos-{{i}}" formControlName="xPos" required [ngClass]="{
                   'form-control': true,
                   'is-invalid': getDimension(i, 'xPos')?.invalid && (getDimension(i, 'xPos')?.touched || getDimension(i, 'xPos')?.dirty),
                   'is-valid': getDimension(i, 'xPos')?.valid && (getDimension(i, 'xPos')?.touched || getDimension(i, 'xPos')?.dirty)
@@ -237,7 +237,7 @@
                 <div class="col">
                   <div class="form-group mb-3">
                     <label for="yPos-{{i}}" class="form-label">Y position</label>
-                    <input type="text" id="yPos-{{i}}" formControlName="yPos" required [ngClass]="{
+                    <input type="number" id="yPos-{{i}}" formControlName="yPos" required [ngClass]="{
                       'form-control': true,
                       'is-invalid': getDimension(i, 'yPos')?.invalid && (getDimension(i, 'yPos')?.touched || getDimension(i, 'yPos')?.dirty),
                       'is-valid': getDimension(i, 'yPos')?.valid && (getDimension(i, 'yPos')?.touched || getDimension(i, 'yPos')?.dirty)
@@ -273,7 +273,7 @@
                 <div class="col">
                   <div class="form-group mb-3">
                     <label for="hPos-{{i}}" class="form-label">H position</label>
-                    <input type="text" id="hPos-{{i}}" formControlName="hPos" required [ngClass]="{
+                    <input type="number" id="hPos-{{i}}" formControlName="hPos" required [ngClass]="{
                       'form-control': true,
                       'is-invalid': getDimension(i, 'hPos')?.invalid && (getDimension(i, 'hPos')?.touched || getDimension(i, 'hPos')?.dirty),
                       'is-valid': getDimension(i, 'hPos')?.valid && (getDimension(i, 'hPos')?.touched || getDimension(i, 'hPos')?.dirty)
@@ -311,7 +311,7 @@
                 <div class="col">
                   <div class="form-group mb-3">
                     <label for="dimension-x-{{i}}" class="form-label">X</label>
-                    <input type="text" id="dimension-x-{{i}}" formControlName="x" required [ngClass]="{
+                    <input type="number" id="dimension-x-{{i}}" formControlName="x" required [ngClass]="{
                       'form-control': true,
                       'is-invalid': getDimension(i, 'x')?.invalid && (getDimension(i, 'x')?.touched || getDimension(i, 'x')?.dirty),
                       'is-valid': getDimension(i, 'x')?.valid && (getDimension(i, 'x')?.touched || getDimension(i, 'x')?.dirty)
@@ -347,7 +347,7 @@
                 <div class="col">
                   <div class="form-group mb-3">
                     <label for="dimension-y-{{i}}" class="form-label">Y</label>
-                    <input type="text" id="dimension-y-{{i}}" formControlName="y" required [ngClass]="{
+                    <input type="number" id="dimension-y-{{i}}" formControlName="y" required [ngClass]="{
                       'form-control': true,
                       'is-invalid': getDimension(i, 'y')?.invalid && (getDimension(i, 'y')?.touched || getDimension(i, 'y')?.dirty),
                       'is-valid': getDimension(i, 'y')?.valid && (getDimension(i, 'y')?.touched || getDimension(i, 'y')?.dirty)

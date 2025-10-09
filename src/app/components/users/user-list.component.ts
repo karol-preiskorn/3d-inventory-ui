@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -52,7 +52,8 @@ export class UserListComponent implements OnInit, OnDestroy {
   constructor(
     private userService: UserService,
     private authService: AuthenticationService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private cdr: ChangeDetectorRef
   ) {
     this.roles = this.userService.getPredefinedRoles();
 
@@ -91,6 +92,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   loadUsers(): void {
     this.loading = true;
     this.error = null;
+    this.cdr.markForCheck();
 
     this.userService.getUsers().pipe(
       takeUntil(this.destroy$)
@@ -99,10 +101,12 @@ export class UserListComponent implements OnInit, OnDestroy {
         this.users = users;
         this.applyFiltersAndSort();
         this.loading = false;
+        this.cdr.markForCheck();
       },
       error: (error) => {
         this.error = error.message || 'Failed to load users';
         this.loading = false;
+        this.cdr.markForCheck();
         console.error('Error loading users:', error);
       }
     });
@@ -182,6 +186,8 @@ export class UserListComponent implements OnInit, OnDestroy {
     if (this.currentPage > this.totalPages && this.totalPages > 0) {
       this.currentPage = this.totalPages;
     }
+
+    this.cdr.markForCheck();
   }
 
   /**
@@ -220,6 +226,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   changePage(page: number): void {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
+      this.cdr.markForCheck();
     }
   }
 
@@ -313,6 +320,7 @@ export class UserListComponent implements OnInit, OnDestroy {
           },
           error: (error) => {
             this.error = error.message || 'Failed to delete user';
+            this.cdr.markForCheck();
             console.error('Error deleting user:', error);
           }
         });
