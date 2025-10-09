@@ -45,9 +45,10 @@ export class UserService {
    * Get all users
    */
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.API_URL}${this.USERS_ENDPOINT}`, {
+    return this.http.get<{ users: User[], message: string, count: number }>(`${this.API_URL}${this.USERS_ENDPOINT}`, {
       headers: this.authService.getAuthHeaders()
     }).pipe(
+      map(response => response.users || []),
       catchError(this.handleError)
     );
   }

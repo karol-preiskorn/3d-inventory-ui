@@ -98,12 +98,15 @@ export class UserListComponent implements OnInit, OnDestroy {
       takeUntil(this.destroy$)
     ).subscribe({
       next: (users) => {
-        this.users = users;
+        // Ensure users is always an array
+        this.users = Array.isArray(users) ? users : [];
         this.applyFiltersAndSort();
         this.loading = false;
         this.cdr.markForCheck();
       },
       error: (error) => {
+        this.users = []; // Reset to empty array on error
+        this.filteredUsers = [];
         this.error = error.message || 'Failed to load users';
         this.loading = false;
         this.cdr.markForCheck();
@@ -132,6 +135,12 @@ export class UserListComponent implements OnInit, OnDestroy {
    * Apply filters and sorting
    */
   applyFiltersAndSort(): void {
+    // Ensure this.users is an array
+    if (!Array.isArray(this.users)) {
+      console.warn('Users is not an array, initializing as empty array:', this.users);
+      this.users = [];
+    }
+
     let filtered = [...this.users];
 
     // Apply search filter
