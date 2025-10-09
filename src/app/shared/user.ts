@@ -38,7 +38,7 @@ export interface UpdateUserRequest {
  */
 export interface LoginRequest {
   username: string;
-  password?: string; // Optional as API currently only checks username
+  password: string; // Required - API requires both username and password
 }
 
 /**

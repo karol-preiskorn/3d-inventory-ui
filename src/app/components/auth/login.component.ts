@@ -53,8 +53,8 @@ export class LoginComponent implements OnInit, OnDestroy {
    */
   private createForm(): FormGroup {
     return this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(2)]],
-      password: [''] // API currently doesn't require password, just username
+      username: ['', [Validators.required, Validators.minLength(4)]],
+      password: ['', [Validators.required, Validators.minLength(6)]] // Password is required by API
     });
   }
 
@@ -74,14 +74,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginForm.disable();
 
     const loginRequest: LoginRequest = {
-      username: this.loginForm.get('username')?.value.trim()
+      username: this.loginForm.get('username')?.value.trim(),
+      password: this.loginForm.get('password')?.value.trim()
     };
-
-    // Add password if provided (for future API compatibility)
-    const passwordValue = this.loginForm.get('password')?.value;
-    if (passwordValue && passwordValue.trim()) {
-      loginRequest.password = passwordValue.trim();
-    }
 
     this.authService.login(loginRequest).pipe(
       takeUntil(this.destroy$)

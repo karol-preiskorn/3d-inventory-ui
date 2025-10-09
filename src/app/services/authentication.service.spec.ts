@@ -42,7 +42,7 @@ describe('AuthenticationService', () => {
 
   describe('login', () => {
     it('should login successfully and update auth state', () => {
-      const loginRequest: LoginRequest = { username: 'carlo' };
+      const loginRequest: LoginRequest = { username: 'carlo', password: 'carlo123!' };
       // Create a proper JWT token structure for testing
       const validPayload = { id: 1, username: 'carlo', exp: Math.floor(Date.now() / 1000) + 3600 };
       const mockToken = `header.${btoa(JSON.stringify(validPayload))}.signature`;
@@ -69,7 +69,7 @@ describe('AuthenticationService', () => {
     });
 
     it('should handle login error', () => {
-      const loginRequest: LoginRequest = { username: 'invalid' };
+      const loginRequest: LoginRequest = { username: 'invalid', password: 'wrong' };
 
       service.login(loginRequest).subscribe({
         next: () => fail('Should have failed'),
@@ -102,7 +102,7 @@ describe('AuthenticationService', () => {
     it('should return false when user has no permissions (as per current implementation)', () => {
       // Current service implementation sets permissions to empty array after login
       // Permissions are expected to be populated separately from user service
-      const loginRequest: LoginRequest = { username: 'testuser' };
+      const loginRequest: LoginRequest = { username: 'testuser', password: 'testpass' };
       const validPayload = {
         id: 1,
         username: 'testuser',
@@ -170,7 +170,7 @@ describe('AuthenticationService', () => {
   describe('getAuthHeaders', () => {
     it('should return headers with Bearer token when authenticated', () => {
       // Setup authenticated state by simulating a login
-      const loginRequest: LoginRequest = { username: 'testuser' };
+      const loginRequest: LoginRequest = { username: 'testuser', password: 'testpass' };
       const validPayload = { id: 1, username: 'testuser', exp: Math.floor(Date.now() / 1000) + 3600 };
       const mockToken = `header.${btoa(JSON.stringify(validPayload))}.signature`;
       const mockResponse: LoginResponse = {
