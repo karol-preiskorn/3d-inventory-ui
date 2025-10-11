@@ -1,0 +1,212 @@
+<div class="user-profile-container">
+  <!-- Debug Info (TEMPORARY - Remove after fixing) -->
+  <div class="alert alert-info"
+    style="margin: 10px; font-family: monospace; font-size: 12px; white-space: pre-wrap;">
+    <strong>🔧 Debug Info:</strong><br>
+    loading: {{ loading }}<br>
+    currentUser exists: {{ !!currentUser }}<br>
+    currentUser type: {{ currentUser ? (typeof currentUser) : 'null' }}<br>
+    error: {{ error }}<br>
+    <div *ngIf="currentUser">
+      <strong>CurrentUser object:</strong><br>
+      {{ currentUser | json }}<br>
+      <strong>Individual properties:</strong><br>
+      currentUser._id: {{ currentUser._id }}<br>
+      currentUser.username: {{ currentUser.username }}<br>
+      currentUser.name: {{ currentUser.name }}<br>
+      currentUser.email: {{ currentUser.email }}<br>
+    </div>
+    <strong>Form values:</strong><br>
+    Form value: {{ profileForm.value | json }}<br>
+    Form raw value: {{ profileForm.getRawValue() | json }}
+  </div>
+
+  <!-- Header -->
+  <div class="profile-header">
+    <div class="header-title">
+      <h2><i class="fas fa-user-circle"></i> My Profile</h2>
+      <p class="text-muted">Manage your account settings and preferences</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-outline-secondary" (click)="cancel()">
+        <i class="fas fa-arrow-left"></i> Back
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <p class="mt-3">Loading profile...</p>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="error && !loading" class="alert alert-danger" role="alert">
+    <i class="fas fa-exclamation-triangle"></i> {{ error }}
+  </div>
+
+  <!-- Success Message -->
+  <div *ngIf="successMessage && !loading" class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="fas fa-check-circle"></i> {{ successMessage }}
+    <button type="button" class="close" (click)="successMessage = null" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <!-- Profile Content -->
+  <div *ngIf="!loading" class="profile-content">
+    <div class="row">
+      <!-- User Info Card -->
+      <div class="col-md-4">
+        <div class="card user-info-card">
+          <div class="card-body text-center">
+            <div class="user-avatar">
+              <i class="fas fa-user-circle fa-5x text-primary"></i>
+            </div>
+            <h4 class="mt-3" *ngIf="currentUser">{{ currentUser.username || currentUser.name }}</h4>
+            <h4 class="mt-3 text-muted" *ngIf="!currentUser">No User Data</h4>
+            <p class="text-muted" *ngIf="currentUser">{{ currentUser.email }}</p>
+
+            <div class="user-role mt-3" *ngIf="currentUser">
+              <span class="badge badge-lg" [ngClass]="getUserRoleDisplay() === 'Admin' ? 'badge-danger' :
+                                                      getUserRoleDisplay() === 'Editor' ? 'badge-warning' :
+                                                      'badge-info'">
+                <i class="fas fa-shield-alt"></i> {{ getUserRoleDisplay() }}
+              </span>
+            </div>
+
+            <div class="user-stats mt-4">
+              <div class="stat-item">
+                <i class="fas fa-key text-muted"></i>
+                <strong>{{ getUserPermissionCount() }}</strong>
+                <span class="text-muted">Permissions</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Settings -->
+      <div class="col-md-8">
+        <!-- Profile Information Form -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h5><i class="fas fa-user-edit"></i> Profile Information</h5>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmitProfile()">
+              <!-- Username (Read-only) -->
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input id="username" type="text" class="form-control" formControlName="username" readonly>
+                <small class="form-text text-muted">Username cannot be changed</small>
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="email" class="required">Email Address</label>
+                <input id="email" type="email" class="form-control" formControlName="email"
+                  placeholder="Enter email address" [class.is-invalid]="hasFieldError(profileForm, 'email')">
+                <div *ngIf="hasFieldError(profileForm, 'email')" class="invalid-feedback">
+                  {{ getFieldError(profileForm, 'email') }}
+                </div>
+              </div>
+
+              <!-- Current Password (Required for changes) -->
+              <div class="form-group">
+                <label for="currentPassword" class="required">Current Password</label>
+                <input id="currentPassword" type="password" class="form-control" formControlName="currentPassword"
+                  placeholder="Enter your current password to save changes"
+                  [class.is-invalid]="hasFieldError(profileForm, 'currentPassword')">
+                <small class="form-text text-muted">Enter your current password to confirm changes</small>
+                <div *ngIf="hasFieldError(profileForm, 'currentPassword')" class="invalid-feedback">
+                  {{ getFieldError(profileForm, 'currentPassword') }}
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid || saving">
+                  <span *ngIf="saving" class="spinner-border spinner-border-sm mr-2" role="status"></span>
+                  <i *ngIf="!saving" class="fas fa-save"></i>
+                  {{ saving ? 'Saving...' : 'Save Changes' }}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Change Password Section -->
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5><i class="fas fa-lock"></i> Security Settings</h5>
+            <button class="btn btn-sm btn-outline-primary" (click)="togglePasswordChange()">
+              <i class="fas" [ngClass]="showPasswordChange ? 'fa-times' : 'fa-key'"></i>
+              {{ showPasswordChange ? 'Cancel' : 'Change Password' }}
+            </button>
+          </div>
+
+          <div class="card-body" *ngIf="showPasswordChange">
+            <form [formGroup]="passwordForm" (ngSubmit)="onSubmitPassword()">
+              <!-- Current Password -->
+              <div class="form-group">
+                <label for="currentPasswordChange" class="required">Current Password</label>
+                <input id="currentPasswordChange" type="password" class="form-control"
+                  formControlName="currentPassword" placeholder="Enter your current password"
+                  [class.is-invalid]="hasFieldError(passwordForm, 'currentPassword')">
+                <div *ngIf="hasFieldError(passwordForm, 'currentPassword')" class="invalid-feedback">
+                  {{ getFieldError(passwordForm, 'currentPassword') }}
+                </div>
+              </div>
+
+              <!-- New Password -->
+              <div class="form-group">
+                <label for="newPassword" class="required">New Password</label>
+                <input id="newPassword" type="password" class="form-control" formControlName="newPassword"
+                  placeholder="Enter new password (min. 8 characters)"
+                  [class.is-invalid]="hasFieldError(passwordForm, 'newPassword')">
+                <div *ngIf="hasFieldError(passwordForm, 'newPassword')" class="invalid-feedback">
+                  {{ getFieldError(passwordForm, 'newPassword') }}
+                </div>
+              </div>
+
+              <!-- Confirm Password -->
+              <div class="form-group">
+                <label for="confirmPassword" class="required">Confirm New Password</label>
+                <input id="confirmPassword" type="password" class="form-control" formControlName="confirmPassword"
+                  placeholder="Re-enter new password"
+                  [class.is-invalid]="hasFieldError(passwordForm, 'confirmPassword') || passwordForm.hasError('passwordMismatch')">
+                <div *ngIf="hasFieldError(passwordForm, 'confirmPassword')" class="invalid-feedback">
+                  {{ getFieldError(passwordForm, 'confirmPassword') }}
+                </div>
+                <div
+                  *ngIf="passwordForm.hasError('passwordMismatch') && passwordForm.get('confirmPassword')?.touched"
+                  class="invalid-feedback d-block">
+                  Passwords do not match
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary" [disabled]="passwordForm.invalid || saving">
+                  <span *ngIf="saving" class="spinner-border spinner-border-sm mr-2" role="status"></span>
+                  <i *ngIf="!saving" class="fas fa-lock"></i>
+                  {{ saving ? 'Changing...' : 'Change Password' }}
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card-body" *ngIf="!showPasswordChange">
+            <p class="text-muted mb-0">
+              <i class="fas fa-info-circle"></i>
+              Click "Change Password" to update your password
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

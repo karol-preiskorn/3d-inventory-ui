@@ -70,11 +70,12 @@ export class UserFormComponent implements OnInit, OnDestroy {
    */
   private createForm(): FormGroup {
     return this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+      username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
       password: ['', [Validators.minLength(6), Validators.maxLength(255)]],
       confirmPassword: [''],
-      permissions: this.fb.array([])
+      permissions: this.fb.array([]),
+      role: ['']
     }, {
       validators: this.passwordMatchValidator
     });
@@ -145,11 +146,17 @@ export class UserFormComponent implements OnInit, OnDestroy {
    */
   private populateForm(user: User): void {
     this.userForm.patchValue({
-      name: user.name,
-      email: user.email
+      username: user.username || user.name,
+      email: user.email,
+      role: user.role || ''
     });
 
     this.initializePermissions(user.permissions);
+
+    // Set selected role if user has one
+    if (user.role) {
+      this.selectedRole = user.role;
+    }
   }
 
   /**
@@ -174,15 +181,18 @@ export class UserFormComponent implements OnInit, OnDestroy {
    * Handle role selection
    */
   onRoleChange(): void {
-    if (!this.selectedRole) {return;}
+    const selectedRole = this.userForm.get('role')?.value;
+    if (!selectedRole) {return;}
 
-    const rolePermissions = this.userService.getPermissionsForRole(this.selectedRole);
+    const rolePermissions = this.userService.getPermissionsForRole(selectedRole);
 
     // Update permissions array based on selected role
     this.availablePermissions.forEach((permission, index) => {
       const shouldBeChecked = rolePermissions.includes(permission);
       this.permissionsArray.at(index).setValue(shouldBeChecked);
     });
+
+    this.selectedRole = selectedRole;
   }
 
   /**
@@ -207,8 +217,8 @@ export class UserFormComponent implements OnInit, OnDestroy {
     this.validationErrors = [];
 
     if (this.userForm.invalid) {
-      if (this.userForm.get('name')?.errors) {
-        this.validationErrors.push('Name is required and must be at least 2 characters');
+      if (this.userForm.get('username')?.errors) {
+        this.validationErrors.push('Username is required and must be at least 2 characters');
       }
       if (this.userForm.get('email')?.errors) {
         this.validationErrors.push('Please enter a valid email address');
@@ -261,10 +271,11 @@ export class UserFormComponent implements OnInit, OnDestroy {
    */
   private createUser(formData: Record<string, unknown>, permissions: string[]): void {
     const createRequest: CreateUserRequest = {
-      name: (formData.name as string).trim(),
+      username: (formData.username as string).trim(),
       email: (formData.email as string).trim().toLowerCase(),
       password: formData.password as string,
-      permissions: permissions
+      permissions: permissions,
+      role: formData.role as string || undefined
     };
 
     this.userService.createUser(createRequest).pipe(
@@ -293,9 +304,10 @@ export class UserFormComponent implements OnInit, OnDestroy {
     if (!this.userId) {return;}
 
     const updateRequest: UpdateUserRequest = {
-      name: (formData.name as string).trim(),
+      username: (formData.username as string).trim(),
       email: (formData.email as string).trim().toLowerCase(),
-      permissions: permissions
+      permissions: permissions,
+      role: formData.role as string || undefined
     };
 
     // Only include password if it's provided

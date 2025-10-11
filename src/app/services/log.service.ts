@@ -12,6 +12,7 @@ import { Injectable } from '@angular/core'
 
 import { environment } from '../../environments/environment'
 import { DebugService } from './debug.service'
+import { AuthenticationService } from './authentication.service'
 
 // API Response interfaces for logs
 interface ApiResponse<T> {
@@ -39,6 +40,8 @@ export interface Log {
   operation: string // [create, update, delete, clone]
   component: string // [device, model, category, floor]
   message: string // JSON string representation of log details
+  userId?: string // User ID who performed the action
+  username?: string // Username who performed the action
 }
 
 /**
@@ -50,12 +53,16 @@ export interface Log {
  * @property operation - The operation performed (e.g., create, update, delete, clone).
  * @property component - The component associated with the log (e.g., device, model, category, floor).
  * @property message - The log message as a JSON string (use JSON.stringify() for objects).
+ * @property userId - (Optional) The ID of the user performing the action.
+ * @property username - (Optional) The username of the user performing the action.
  */
 export interface LogIn {
   objectId?: string
   operation: string
   component: string
   message: string
+  userId?: string
+  username?: string
 }
 
 @Injectable({
@@ -68,7 +75,11 @@ export class LogService {
   baseurl = environment.baseurl
   attributeComponentId?: string
 
-  constructor(private http: HttpClient, private debugService: DebugService) { }
+  constructor(
+    private http: HttpClient,
+    private debugService: DebugService,
+    private authService: AuthenticationService
+  ) { }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -194,12 +205,21 @@ export class LogService {
 
   /**
    * Creates a new log entry.
+   * Automatically includes current user information if available.
    * @param data - The log data to create.
    * @returns An Observable that emits the created Log object.
    */
   CreateLog(data: LogIn): Observable<Log> {
-    this.debugService.debug('LogService.CreateLog: ' + JSON.stringify(data, null, 2));
-    return this.http.post<Log>(this.getLogsUrl(), data, this.httpOptions).pipe(retry(1), catchError(this.handleError))
+    // Automatically add user information if not provided
+    const currentUser = this.authService.getCurrentUser();
+    const enrichedData: LogIn = {
+      ...data,
+      userId: data.userId || currentUser?._id,
+      username: data.username || currentUser?.username
+    };
+
+    this.debugService.debug('LogService.CreateLog: ' + JSON.stringify(enrichedData, null, 2));
+    return this.http.post<Log>(this.getLogsUrl(), enrichedData, this.httpOptions).pipe(retry(1), catchError(this.handleError))
   }
 
   /**

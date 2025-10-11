@@ -214,22 +214,48 @@ export class AttributeAddComponent implements OnInit {
     this.attributeService
       .CreateAttribute(this.addAttributeForm.value as Attribute)
       .pipe(take(1))
-      .subscribe((res) => {
-        const insertedId = (res as unknown as Record<string, unknown>)._id as string
-        this.isSubmitted = true
-        const formData = this.addAttributeForm.value
-        formData._id = insertedId // Ensure the formData has the _id field set
-        this.logService
-          .CreateLog({
-            objectId: insertedId,
-            message: formData,
-            operation: 'Create',
-            component: this.component,
-          })
-          .pipe(take(1))
-          .subscribe(() => {
-            this.ngZone.run(() => this.router.navigateByUrl('attribute-list'))
-          })
+      .subscribe({
+        next: (res) => {
+          // Validate response structure
+          if (!res) {
+            console.error('Attribute creation failed: No response from server')
+            return
+          }
+
+          const insertedId = (res as unknown as Record<string, unknown>)._id as string
+
+          if (!insertedId) {
+            console.error('Attribute creation failed: No ID returned from server', res)
+            return
+          }
+
+          this.isSubmitted = true
+          const formData = this.addAttributeForm.value
+          formData._id = insertedId // Ensure the formData has the _id field set
+
+          this.logService
+            .CreateLog({
+              objectId: insertedId,
+              message: formData,
+              operation: 'Create',
+              component: this.component,
+            })
+            .pipe(take(1))
+            .subscribe({
+              next: () => {
+                this.ngZone.run(() => this.router.navigateByUrl('attribute-list'))
+              },
+              error: (error) => {
+                console.error('Failed to create log entry:', error)
+                // Still navigate even if logging fails
+                this.ngZone.run(() => this.router.navigateByUrl('attribute-list'))
+              }
+            })
+        },
+        error: (error) => {
+          console.error('Error creating attribute:', error)
+          // Optionally show user feedback
+        }
       })
   }
 }

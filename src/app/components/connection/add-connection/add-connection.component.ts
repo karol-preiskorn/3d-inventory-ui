@@ -108,17 +108,39 @@ export class ConnectionAddComponent implements OnInit {
   submitForm() {
     this.connectionService.CreateConnection(this.addConnectionForm.value as Connection).subscribe({
       next: (connection: Connection | Record<string, unknown>) => {
+        // Validate response structure
+        if (!connection) {
+          console.error('Connection creation failed: No response from server')
+          return
+        }
+
+        const connectionRecord = connection as Record<string, unknown>
+        const insertedId = (connectionRecord.insertedId as string) || (connectionRecord._id as string) || ''
+
+        if (!insertedId) {
+          console.error('Connection creation failed: No ID returned from server', connection)
+          return
+        }
+
         const createdConnection = this.addConnectionForm.value
-        createdConnection._id = (connection as Record<string, unknown>).insertedId || (connection as Record<string, unknown>)._id || ''
+        createdConnection._id = insertedId
+
         this.logService
           .CreateLog({
-            objectId: ((connection as Record<string, unknown>).insertedId as string) || '',
+            objectId: insertedId,
             message: createdConnection,
             operation: 'Create',
             component: 'connections',
           })
-          .subscribe(() => {
-            this.ngZone.run(() => this.router.navigateByUrl('connection-list'))
+          .subscribe({
+            next: () => {
+              this.ngZone.run(() => this.router.navigateByUrl('connection-list'))
+            },
+            error: (error) => {
+              console.error('Failed to create log entry:', error)
+              // Still navigate even if logging fails
+              this.ngZone.run(() => this.router.navigateByUrl('connection-list'))
+            }
           })
       },
       error: (error) => {

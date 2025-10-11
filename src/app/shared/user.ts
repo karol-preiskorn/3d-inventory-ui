@@ -4,33 +4,39 @@
  */
 export interface User {
   _id: string;
-  name: string;
+  username: string;  // Changed from 'name' to match API
+  name?: string;     // Optional alias for username (for backwards compatibility)
   email: string;
   password?: string; // Optional for security - don't send back from API
   token?: string; // JWT token
   permissions: string[];
+  role?: string; // User role (admin, user, viewer, editor)
+  isActive?: boolean; // User active status
   createdAt?: Date;
   updatedAt?: Date;
+  lastLogin?: Date;
 }
 
 /**
  * User creation interface - used when creating new users
  */
 export interface CreateUserRequest {
-  name: string;
+  username: string;  // Changed from 'name' to match API
   email: string;
   password: string;
   permissions: string[];
+  role?: string; // User role
 }
 
 /**
  * User update interface - used when updating existing users
  */
 export interface UpdateUserRequest {
-  name?: string;
+  username?: string;  // Changed from 'name' to match API
   email?: string;
   password?: string;
   permissions?: string[];
+  role?: string;
 }
 
 /**

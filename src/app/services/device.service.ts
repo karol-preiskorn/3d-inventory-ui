@@ -98,9 +98,8 @@ export class DeviceService {
 
   CreateDevice(data: Device): Observable<Device> {
     return this.http
-      .post<ApiResponse<Device>>(this.buildUrl(), JSON.stringify(data, null, 2), this.getAuthenticatedOptions())
+      .post<Device>(this.buildUrl(), JSON.stringify(data, null, 2), this.getAuthenticatedOptions())
       .pipe(
-        map(response => response.data), // Extract data from API response
         retry(1),
         catchError(this.handleErrorTemplate<Device>('CreateDevice', data))
       )

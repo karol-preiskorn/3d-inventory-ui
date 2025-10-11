@@ -5,6 +5,7 @@
       <tr>
         <th>Date</th>
         <th>Operation<br>Component</th>
+        <th>User</th>
         <th>Object</th>
         <th></th>
       </tr>
@@ -17,6 +18,10 @@
           {{ log.operation }} <br>
           {{ log.component }}
           <span *ngIf="log.objectId" class="deviceid">{{ log.objectId }}</span>
+        </td>
+        <td>
+          <span *ngIf="log.username" class="badge bg-primary">{{ log.username }}</span>
+          <span *ngIf="!log.username" class="text-muted">-</span>
         </td>
         <td class="log-message">{{ findNameInLogMessage(log) }}</td>
         <td>

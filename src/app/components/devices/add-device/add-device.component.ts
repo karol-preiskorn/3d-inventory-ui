@@ -160,26 +160,52 @@ export class DeviceAddComponent implements OnInit {
       return
     }
     // console.log('Submit Form Add Device: ' + JSON.stringify(this.addDeviceForm.value))
-    this.devicesService.CreateDevice(this.addDeviceForm.value).subscribe((res) => {
-      // console.log('Device response: ' + JSON.stringify(res, null, 2))
-      this.isSubmitted = true
-      const response = res as { insertedId?: string; id?: string }
-      const insertedId = response.insertedId ? response.insertedId : response.id
-      let device = this.addDeviceForm.value as Device
-      device = { ...device, _id: insertedId || '' } // Ensure _id is set
-      this.device = device
-      // console.log('Device with _id ' + insertedId + ' created: ' + JSON.stringify(device, null, 2))
-      this.logService
-        .CreateLog({
-          // Serialize device to comply with LogIn.message: string
-          message: JSON.stringify(device),
-          objectId: insertedId,
-          operation: 'Create',
-          component: 'Device',
-        })
-        .subscribe(() => {
-          this.ngZone.run(() => this.router.navigateByUrl('device-list'))
-        })
+    this.devicesService.CreateDevice(this.addDeviceForm.value).subscribe({
+      next: (res) => {
+        // Validate response structure
+        if (!res) {
+          console.error('Device creation failed: No response from server')
+          return
+        }
+
+        // console.log('Device response: ' + JSON.stringify(res, null, 2))
+        this.isSubmitted = true
+        const response = res as { insertedId?: string; id?: string }
+        const insertedId = response.insertedId || response.id
+
+        if (!insertedId) {
+          console.error('Device creation failed: No ID returned from server', response)
+          return
+        }
+
+        let device = this.addDeviceForm.value as Device
+        device = { ...device, _id: insertedId } // Ensure _id is set
+        this.device = device
+        // console.log('Device with _id ' + insertedId + ' created: ' + JSON.stringify(device, null, 2))
+
+        this.logService
+          .CreateLog({
+            // Serialize device to comply with LogIn.message: string
+            message: JSON.stringify(device),
+            objectId: insertedId,
+            operation: 'Create',
+            component: 'Device',
+          })
+          .subscribe({
+            next: () => {
+              this.ngZone.run(() => this.router.navigateByUrl('device-list'))
+            },
+            error: (error) => {
+              console.error('Failed to create log entry:', error)
+              // Still navigate even if logging fails
+              this.ngZone.run(() => this.router.navigateByUrl('device-list'))
+            }
+          })
+      },
+      error: (error) => {
+        console.error('Error creating device:', error)
+        // Optionally show user feedback
+      }
     })
   }
 }

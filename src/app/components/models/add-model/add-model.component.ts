@@ -122,19 +122,48 @@ export class ModelAddComponent implements OnInit {
     this.modelsService
       .CreateModel(this.addModelForm.value)
       .pipe()
-      .subscribe((res) => {
-        const response = res as { insertedId?: string; id?: string }
-        this.logService
-          .CreateLog({
-            message: this.addModelForm.value,
-            objectId: response.insertedId ? response.insertedId : response.id,
-            operation: 'Create',
-            component: this.component,
-          })
-          .subscribe(() => {
-            this.cdr.markForCheck()
-            this.ngZone.run(() => this.router.navigateByUrl('models-list'))
-          })
+      .subscribe({
+        next: (res) => {
+          // Validate response structure
+          if (!res) {
+            this.debugService.error('Model creation failed: No response from server')
+            return
+          }
+
+          const response = res as { insertedId?: string; id?: string }
+          const modelId = response.insertedId || response.id
+
+          if (!modelId) {
+            this.debugService.error('Model creation failed: No ID returned from server', response)
+            return
+          }
+
+          this.debugService.debug('Model created successfully with ID:', modelId)
+
+          this.logService
+            .CreateLog({
+              message: this.addModelForm.value,
+              objectId: modelId,
+              operation: 'Create',
+              component: this.component,
+            })
+            .subscribe({
+              next: () => {
+                this.cdr.markForCheck()
+                this.ngZone.run(() => this.router.navigateByUrl('models-list'))
+              },
+              error: (error) => {
+                this.debugService.error('Failed to create log entry:', error)
+                // Still navigate even if logging fails
+                this.cdr.markForCheck()
+                this.ngZone.run(() => this.router.navigateByUrl('models-list'))
+              }
+            })
+        },
+        error: (error) => {
+          this.debugService.error('Error creating model:', error)
+          // Optionally show user feedback
+        }
       })
   }
 }

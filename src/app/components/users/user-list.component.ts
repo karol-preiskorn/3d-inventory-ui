@@ -43,6 +43,17 @@ export class UserListComponent implements OnInit, OnDestroy {
   // Data
   roles: Role[] = [];
 
+  // Permission viewing
+  showPermissionsModal = false;
+  selectedUserForPermissions: User | null = null;
+
+  // Role/Permission editing
+  showEditRoleModal = false;
+  selectedUserForEdit: User | null = null;
+  selectedRoleForEdit: string = '';
+  selectedPermissionsForEdit: string[] = [];
+  savingRoleChanges = false;
+
   // Expose Math to the template
   Math = Math;
 
@@ -147,40 +158,58 @@ export class UserListComponent implements OnInit, OnDestroy {
     if (this.searchQuery.trim()) {
       const query = this.searchQuery.toLowerCase();
       filtered = filtered.filter(user =>
-        user.name.toLowerCase().includes(query) ||
-        user.email.toLowerCase().includes(query)
+        (user.username?.toLowerCase().includes(query) ||
+         user.name?.toLowerCase().includes(query) ||
+         user.email?.toLowerCase().includes(query))
       );
     }
 
     // Apply role filter
     if (this.selectedRole) {
       filtered = filtered.filter(user => {
+        // Try multiple approaches to match the role
         const userRole = this.userService.getUserRole(user);
-        return userRole?.id === this.selectedRole;
+
+        // Match by role ID (from getUserRole)
+        if (userRole?.id === this.selectedRole) {
+          return true;
+        }
+
+        // Match by user.role property (direct role string)
+        if (user.role === this.selectedRole) {
+          return true;
+        }
+
+        // Match by role name (case-insensitive)
+        if (user.role?.toLowerCase() === this.selectedRole.toLowerCase()) {
+          return true;
+        }
+
+        return false;
       });
     }
 
-    // Apply sorting
+    // Apply sorting with safe property access
     filtered.sort((a, b) => {
       let aValue: string;
       let bValue: string;
 
       switch (this.sortBy) {
         case 'name':
-          aValue = a.name;
-          bValue = b.name;
+          aValue = a.username || a.name || a.email || '';
+          bValue = b.username || b.name || b.email || '';
           break;
         case 'email':
-          aValue = a.email;
-          bValue = b.email;
+          aValue = a.email || '';
+          bValue = b.email || '';
           break;
         case 'role':
           aValue = this.userService.getUserRole(a)?.name || '';
           bValue = this.userService.getUserRole(b)?.name || '';
           break;
         default:
-          aValue = a.name;
-          bValue = b.name;
+          aValue = a.username || a.name || a.email || '';
+          bValue = b.username || b.name || b.email || '';
       }
 
       const comparison = aValue.localeCompare(bValue);
@@ -315,7 +344,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
     this.dialogService.confirm({
       title: 'Delete User',
-      message: `Are you sure you want to delete user "${user.name}"? This action cannot be undone.`,
+      message: `Are you sure you want to delete user "${user.username || user.name}"? This action cannot be undone.`,
       confirmText: 'Delete',
       cancelText: 'Cancel'
     }).subscribe(confirmed => {
@@ -366,5 +395,171 @@ export class UserListComponent implements OnInit, OnDestroy {
    */
   getPageEnd(): number {
     return Math.min(this.currentPage * this.pageSize, this.totalUsers);
+  }
+
+  /**
+   * Show permissions for a user
+   */
+  viewUserPermissions(user: User): void {
+    this.selectedUserForPermissions = user;
+    this.showPermissionsModal = true;
+    this.cdr.markForCheck();
+  }
+
+  /**
+   * Close permissions modal
+   */
+  closePermissionsModal(): void {
+    this.showPermissionsModal = false;
+    this.selectedUserForPermissions = null;
+    this.cdr.markForCheck();
+  }
+
+  /**
+   * Get permission display name
+   */
+  getPermissionDisplayName(permission: string): string {
+    return permission.replace(/[_:]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  }
+
+  /**
+   * Get permission category
+   */
+  getPermissionCategory(permission: string): string {
+    const parts = permission.split(':');
+    return parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
+  }
+
+  /**
+   * Group permissions by category
+   */
+  getGroupedPermissions(permissions: string[]): { [category: string]: string[] } {
+    const grouped: { [category: string]: string[] } = {};
+
+    permissions.forEach(permission => {
+      const category = this.getPermissionCategory(permission);
+      if (!grouped[category]) {
+        grouped[category] = [];
+      }
+      grouped[category].push(permission);
+    });
+
+    return grouped;
+  }
+
+  /**
+   * Open role/permission edit modal for a user (admin only)
+   */
+  editUserRole(user: User): void {
+    if (!this.canUpdateUser) {
+      return;
+    }
+
+    this.selectedUserForEdit = user;
+    this.selectedPermissionsForEdit = [...(user.permissions || [])];
+
+    // Determine current role
+    const currentRole = this.userService.getUserRole(user);
+    this.selectedRoleForEdit = currentRole?.id || '';
+
+    this.showEditRoleModal = true;
+    this.cdr.markForCheck();
+  }
+
+  /**
+   * Close role/permission edit modal
+   */
+  closeEditRoleModal(): void {
+    this.showEditRoleModal = false;
+    this.selectedUserForEdit = null;
+    this.selectedRoleForEdit = '';
+    this.selectedPermissionsForEdit = [];
+    this.savingRoleChanges = false;
+    this.cdr.markForCheck();
+  }
+
+  /**
+   * Handle role selection change
+   */
+  onRoleChange(roleId: string): void {
+    this.selectedRoleForEdit = roleId;
+    if (roleId) {
+      // Update permissions based on selected role
+      const rolePermissions = this.userService.getPermissionsForRole(roleId);
+      this.selectedPermissionsForEdit = rolePermissions.map(p => p.toString());
+    }
+    this.cdr.markForCheck();
+  }
+
+  /**
+   * Toggle permission selection
+   */
+  togglePermission(permission: string): void {
+    const index = this.selectedPermissionsForEdit.indexOf(permission);
+    if (index > -1) {
+      this.selectedPermissionsForEdit.splice(index, 1);
+    } else {
+      this.selectedPermissionsForEdit.push(permission);
+    }
+    this.cdr.markForCheck();
+  }
+
+  /**
+   * Check if permission is selected
+   */
+  isPermissionSelected(permission: string): boolean {
+    return this.selectedPermissionsForEdit.includes(permission);
+  }
+
+  /**
+   * Get all available permissions
+   */
+  getAllPermissions(): Permission[] {
+    return Object.values(Permission);
+  }
+
+  /**
+   * Get all permissions as strings
+   */
+  getAllPermissionsAsStrings(): string[] {
+    return this.getAllPermissions().map(p => p.toString());
+  }
+
+  /**
+   * Save role and permission changes
+   */
+  saveRoleChanges(): void {
+    if (!this.selectedUserForEdit || !this.canUpdateUser) {
+      return;
+    }
+
+    this.savingRoleChanges = true;
+    this.error = null;
+    this.cdr.markForCheck();
+
+    const updateData = {
+      permissions: this.selectedPermissionsForEdit,
+      role: this.selectedRoleForEdit
+    };
+
+    this.userService.updateUser(this.selectedUserForEdit._id, updateData).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: () => {
+        this.dialogService.alert({
+          title: 'Success',
+          message: 'User role and permissions updated successfully'
+        }).subscribe(() => {
+          this.closeEditRoleModal();
+          this.loadUsers(); // Reload to show updated data
+        });
+      },
+      error: (error) => {
+        this.error = error.message || 'Failed to update user role and permissions';
+        this.savingRoleChanges = false;
+        this.cdr.markForCheck();
+        console.error('Error updating user role:', error);
+      }
+    });
   }
 }

@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 import { AuthenticationService } from '../../services/authentication.service';
 import { UserService } from '../../services/user.service';
@@ -23,10 +24,12 @@ import { Permission, User } from '../../shared/user';
   styleUrls: ['./admin-layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AdminLayoutComponent implements OnInit {
+export class AdminLayoutComponent implements OnInit, OnDestroy {
   currentUser: User | null = null;
   sidebarCollapsed = false;
   mobileMenuOpen = false;
+
+  private destroy$ = new Subject<void>();
 
   navigationItems = [
     {
@@ -77,21 +80,25 @@ export class AdminLayoutComponent implements OnInit {
     this.loadCurrentUser();
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   /**
    * Load current user information
    */
   private loadCurrentUser(): void {
-    // In a real app, you might get user info from a service
-    // For now, we'll create a mock user based on the token
-    if (this.authService.isAuthenticated()) {
-      // This would typically come from decoding the JWT token or an API call
-      this.currentUser = {
-        _id: 'current-user',
-        name: 'Admin User',
-        email: 'admin@3d-inventory.com',
-        permissions: ['user_read', 'user_write', 'device_read', 'model_read', 'attribute_read', 'connection_read', 'floor_read']
-      };
-    }
+    // Get user info from authentication service
+    this.authService.authState$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(authState => {
+      if (authState.isAuthenticated && authState.user) {
+        this.currentUser = authState.user;
+      } else {
+        this.currentUser = null;
+      }
+    });
   }
 
   /**
@@ -132,11 +139,10 @@ export class AdminLayoutComponent implements OnInit {
   }
 
   /**
-   * Navigate to user profile (placeholder)
+   * Navigate to user profile
    */
   goToProfile(): void {
-    // Placeholder for user profile functionality
-    // console.log('Navigate to user profile');
+    this.router.navigate(['/admin/profile']);
   }
 
   /**

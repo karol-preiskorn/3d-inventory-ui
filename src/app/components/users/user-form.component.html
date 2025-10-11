@@ -52,13 +52,13 @@
           <div class="form-section">
             <h4>Basic Information</h4>
 
-            <!-- Name -->
+            <!-- Username -->
             <div class="form-group">
-              <label for="name" class="required">Full Name</label>
-              <input id="name" type="text" class="form-control" [class.is-invalid]="hasFieldError('name')"
-                formControlName="name" placeholder="Enter full name" maxlength="100">
-              <div *ngIf="hasFieldError('name')" class="invalid-feedback">
-                {{ getFieldError('name') }}
+              <label for="username" class="required">Username</label>
+              <input id="username" type="text" class="form-control" [class.is-invalid]="hasFieldError('username')"
+                formControlName="username" placeholder="Enter username" maxlength="100">
+              <div *ngIf="hasFieldError('username')" class="invalid-feedback">
+                {{ getFieldError('username') }}
               </div>
             </div>
 
@@ -110,8 +110,7 @@
             <!-- Quick Role Selection -->
             <div class="form-group">
               <label for="roleSelect">Quick Role Assignment</label>
-              <select id="roleSelect" class="form-control" [(ngModel)]="selectedRole" (change)="onRoleChange()"
-                [ngModelOptions]="{ standalone: true }">
+              <select id="roleSelect" class="form-control" formControlName="role" (change)="onRoleChange()">
                 <option value="">Select a predefined role...</option>
                 <option *ngFor="let role of predefinedRoles" [value]="role.id">
                   {{ role.name }} - {{ role.description }}

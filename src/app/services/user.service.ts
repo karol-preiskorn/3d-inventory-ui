@@ -57,9 +57,10 @@ export class UserService {
    * Get user by ID
    */
   getUserById(id: string): Observable<User> {
-    return this.http.get<User>(`${this.API_URL}${this.USERS_ENDPOINT}/${id}`, {
+    return this.http.get<{ message: string; user: User }>(`${this.API_URL}${this.USERS_ENDPOINT}/${id}`, {
       headers: this.authService.getAuthHeaders()
     }).pipe(
+      map(response => response.user), // Extract user from wrapped response
       catchError(this.handleError)
     );
   }
@@ -263,9 +264,9 @@ export class UserService {
   validateUserData(userData: CreateUserRequest | UpdateUserRequest): string[] {
     const errors: string[] = [];
 
-    if ('name' in userData && userData.name) {
-      if (userData.name.trim().length < 2) {
-        errors.push('Name must be at least 2 characters long');
+    if ('username' in userData && userData.username) {
+      if (userData.username.trim().length < 2) {
+        errors.push('Username must be at least 2 characters long');
       }
     }
 
@@ -302,8 +303,9 @@ export class UserService {
   searchUsers(query: string): Observable<User[]> {
     return this.getUsers().pipe(
       map(users => users.filter(user =>
-        user.name.toLowerCase().includes(query.toLowerCase()) ||
-        user.email.toLowerCase().includes(query.toLowerCase())
+        (user.username?.toLowerCase().includes(query.toLowerCase()) ||
+         user.name?.toLowerCase().includes(query.toLowerCase()) ||
+         user.email?.toLowerCase().includes(query.toLowerCase()))
       )),
       catchError(this.handleError)
     );

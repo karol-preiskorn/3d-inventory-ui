@@ -28,6 +28,7 @@ import { ModelEditComponent } from './components/models/edit-model/edit-model.co
 import { ModelsListComponent } from './components/models/model-list/model-list.component'
 import { UserListComponent } from './components/users/user-list.component'
 import { UserFormComponent } from './components/users/user-form.component'
+import { UserProfileComponent } from './components/users/user-profile.component'
 import { AuthGuard } from './guards/auth.guard'
 import { ResolverDevice } from './resolverDevice'
 import { ResolverModel } from './resolverModel'
@@ -69,6 +70,7 @@ export const routes: Routes = [
       { path: 'users', component: UserListComponent, title: 'User Management' },
       { path: 'users/new', component: UserFormComponent, title: 'Add User' },
       { path: 'users/edit/:id', component: UserFormComponent, title: 'Edit User' },
+      { path: 'profile', component: UserProfileComponent, title: 'My Profile' },
     ]
   },
 

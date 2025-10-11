@@ -70,7 +70,7 @@ export class AuthenticationService {
             const payload = this.decodeToken(response.token);
             const user: User = {
               _id: payload.id.toString(),
-              name: payload.username,
+              username: payload.username,
               email: `${payload.username}@example.com`, // API doesn't return email
               permissions: [], // Will be populated from user service if needed
               token: response.token
