@@ -5,22 +5,20 @@
  *   [ ] add cube from Angular
  */
 
+import { HttpClient } from '@angular/common/http'
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
 import { Observable } from 'rxjs'
+import { Connection } from 'src/app/shared/connection'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
-
-import { HttpClient } from '@angular/common/http'
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
-
-import { Connection } from 'src/app/shared/connection'
 import { environment } from '../../../environments/environment'
+import { ConnectionService } from '../../services/connection.service'
 import { DeviceService } from '../../services/device.service'
 import { ModelsService } from '../../services/models.service'
 import { Device } from '../../shared/device'
 import { Model } from '../../shared/model'
-import { ConnectionService } from '../../services/connection.service'
 
 @Component({
   selector: 'app-cube',
@@ -29,8 +27,21 @@ import { ConnectionService } from '../../services/connection.service'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CubeComponent implements OnInit, AfterViewInit {
+  private static readonly SHADOW_BIAS = -0.0001
+
   @ViewChild('canvas')
   private canvasRef!: ElementRef
+
+  // Wall geometry and position constants
+  private readonly WALL_WIDTH = 51
+  private readonly WALL_HEIGHT = 10
+  private readonly WALL_DEPTH = 1
+  private readonly WALL_LONG_DEPTH = 51
+  private readonly WALL_Y = 5
+  private readonly WALL_Z_FRONT = 25
+  private readonly WALL_Z_BACK = -25
+  private readonly WALL_X_RIGHT = 25
+  private readonly WALL_X_LEFT = -25
 
   @Input() public rotationSpeedX = 0.1
   @Input() public rotationSpeedY = 0.1
@@ -66,8 +77,16 @@ export class CubeComponent implements OnInit, AfterViewInit {
   devices$: Observable<Device[]>
   resolveDeviceList: Device[] = []
 
-    ngOnInit() {
+  private devicesSubscription?: import('rxjs').Subscription
+
+  ngOnInit() {
     // Component initialization
+  }
+
+  ngOnDestroy(): void {
+    if (this.devicesSubscription) {
+      this.devicesSubscription.unsubscribe()
+    }
   }
 
   constructor(
@@ -153,6 +172,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
   /**
    * Creates a 3D device object and adds it to the scene.
    *
+   * @param device_name - The name of the device to display as text label.
    * @param box_x - The width of the 3D box geometry.
    * @param box_y - The height of the 3D box geometry.
    * @param box_z - The depth of the 3D box geometry.
@@ -160,7 +180,6 @@ export class CubeComponent implements OnInit, AfterViewInit {
    * @param pos_y - The y-coordinate position of the 3D object in the scene.
    * @param pos_z - The z-coordinate position of the 3D object in the scene.
    */
-
   createDevice3d(
     device_name: string,
     box_x: number,
@@ -169,79 +188,101 @@ export class CubeComponent implements OnInit, AfterViewInit {
     pos_x: number,
     pos_y: number,
     pos_z: number,
-  ) {
-    // console.log(`createDevice3d parameters: box_x = ${box_x}, box_y = ${box_y}, box_z = ${box_z}, pos_x = ${pos_x}, pos_y = ${pos_y}, pos_z = ${pos_z}`)
+  ): void {
+    // Create device geometry and material
     const geometry = new THREE.BoxGeometry(box_x, box_y, box_z)
     const color = this.getRandomNaturalColor()
-    // Compute a contrasting color (black or white) for the given color
-
     const colorText = this.getContrastColor(color.getHex())
-    this.material.color = new THREE.Color(color)
-    const sphereMaterial = new THREE.MeshStandardMaterial({ color: color })
-    this.material.depthTest = false
-    this.material.depthWrite = false
-    this.material.needsUpdate = true
-    this.material.opacity = 0.5
-    this.material.side = THREE.DoubleSide
-    this.material.transparent = true
-    this.material.wireframe = true
 
-    const object = new THREE.Mesh(geometry, sphereMaterial)
+    const deviceMaterial = new THREE.MeshStandardMaterial({ color: color })
+
+    // Create and position the device mesh
+    const object = new THREE.Mesh(geometry, deviceMaterial)
     object.position.x = pos_x
     object.position.y = pos_z + box_y / 2
     object.position.z = pos_y
     object.receiveShadow = true
-    object.castShadow = true // Enable shadow casting
+    object.castShadow = true
     this.scene.add(object)
 
+    // Load font and create text label
     const loader = new FontLoader()
     this.http
       .get('/assets/fonts/FiraCode_Retina_Regular.json', { responseType: 'text' })
-      .subscribe((fontData: string) => {
-        const font = loader.parse(JSON.parse(fontData))
-        const textGeo = new TextGeometry(device_name, {
-          font: font,
-          size: 1,
-          depth: 0.1,
-          curveSegments: 22,
-          bevelThickness: 0.1,
-          bevelSize: 0.1,
-          bevelEnabled: true,
-        })
+      .subscribe({
+        next: (fontData: string) => {
+          const font = loader.parse(JSON.parse(fontData))
+          const textGeo = new TextGeometry(device_name, {
+            font: font,
+            size: 1,
+            depth: 0.1,
+            curveSegments: 22,
+            bevelThickness: 0.1,
+            bevelSize: 0.1,
+            bevelEnabled: true,
+          })
 
-        const material = new THREE.MeshBasicMaterial({ color: colorText })
-        const textMesh = new THREE.Mesh(textGeo, material)
-        textMesh.position.x = pos_x - (device_name.length * 0.85) / 2
-        textMesh.position.y = pos_z + box_y
-        textMesh.position.z = pos_y
+          const textMaterial = new THREE.MeshBasicMaterial({ color: colorText })
+          const textMesh = new THREE.Mesh(textGeo, textMaterial)
+          textMesh.position.x = pos_x - (device_name.length * 0.85) / 2
+          textMesh.position.y = pos_z + box_y
+          textMesh.position.z = pos_y
 
-        textMesh.rotation.x = 0
-        textMesh.rotation.y = 0
-        textMesh.rotation.z = Math.PI * 2
-        textMesh.castShadow = true // Enable shadow casting for text
-        textMesh.receiveShadow = true // Enable shadow receiving for text
-        this.scene.add(textMesh)
+          textMesh.rotation.x = 0
+          textMesh.rotation.y = 0
+          textMesh.rotation.z = Math.PI * 2
+          textMesh.castShadow = true
+          textMesh.receiveShadow = true
+          this.scene.add(textMesh)
+        },
+        error: (err) => {
+          console.error(`Error loading font for device ${device_name}:`, err)
+        }
       })
   }
 
   loadDevices() {
     // console.log('loadDevices')
-    return this.devicesService.GetDevices().subscribe((data: Device[]): void => {
-      this.deviceList = data
+    this.devicesSubscription = this.devicesService.GetDevices().subscribe({
+      next: (data: Device[]) => {
+        this.deviceList = data
+      },
+      error: (err) => {
+        console.error('Error loading devices:', err)
+      },
+      complete: () => {
+        console.log('Device loading completed.')
+      }
     })
   }
 
   loadModels() {
     // console.log('loadModels')
-    return this.modelsService.GetModels().subscribe((data: Model[]): void => {
-      this.modelList = data
+    return this.modelsService.GetModels().subscribe({
+      next: (data: Model[]): void => {
+        this.modelList = data
+      },
+      error: (err) => {
+        console.error('Error loading models:', err)
+      },
+      complete: () => {
+        console.log('Model loading completed.')
+      }
     })
   }
 
   loadConnections() {
     // console.log('loadConnections')
-    return this.connectionsService.GetConnections().subscribe((data: Connection[]): void => {
-      this.connectionList = data
+    return this.connectionsService.GetConnections().subscribe({
+      next: (data: Connection[]): void => {
+        this.connectionList = data
+      },
+      error: (err) => {
+        console.error('Error loading connections:', err)
+      },
+      complete: () => {
+        console.log('Connection loading completed.')
+      }
     })
   }
 
@@ -254,40 +295,61 @@ export class CubeComponent implements OnInit, AfterViewInit {
     return model
   }
 
+  /**
+   * Generates and adds 3D device objects to the scene based on the current device and model lists.
+   * Iterates through each device, finds its corresponding model, and creates a 3D representation using model dimensions and device position.
+   * Skips devices if their model is not found or has invalid dimensions.
+   * Side effects: Adds meshes to the Three.js scene and logs warnings for missing or invalid models.
+   */
   generate3DDeviceList(): void {
     // console.log('Create device list 3d')
     // console.log('Device list: ' + this.deviceList.length)
     // console.log('Model list: ' + this.modelList.length)
-    const createdDevices: string[] = []
-    this.deviceList.forEach((device: Device) => {
-      const model: Model | undefined = this.modelList.find((e: Model) => e._id === device.modelId)
-      if (!model) {
-        console.warn(`Model with id ${device.modelId} not found. Skipping device ${device.name}.`)
-        return
-      }
-      this.createDevice3d(
-        device.name,
-        model.dimension.width,
-        model.dimension.height,
-        model.dimension.depth,
-        device.position.x,
-        device.position.y,
-        device.position.h,
-      )
+    const _createdDevices: string[] = this.deviceList
+      .map((device: Device) => {
+        const model: Model | undefined = this.modelList.find((e: Model) => e._id === device.modelId)
+        if (!model) {
+          console.warn(`Model with id ${device.modelId} not found. Skipping device ${device.name}.`)
+          return null
+        }
 
-      createdDevices.push(`Device: ${device.name}, Position: (${device.position.x}, ${device.position.y})`)
-    })
-    // console.log('Created devices:', createdDevices.join('; '))
+        if (
+          !model.dimension ||
+          typeof model.dimension.width !== 'number' ||
+          typeof model.dimension.height !== 'number' ||
+          typeof model.dimension.depth !== 'number'
+        ) {
+          console.warn(`Model ${model._id} has invalid or missing dimension properties. Skipping device ${device.name}.`)
+          return null
+        }
+
+        this.createDevice3d(
+          device.name,
+          model.dimension.width,
+          model.dimension.height,
+          model.dimension.depth,
+          device.position.x, // three.js x
+          device.position.y, // three.js y
+          device.position.h !== undefined ? device.position.h : device.position.h, // three.js z
+        )
+        return `Device: ${device.name}, Position: (${device.position.x}, ${device.position.y})`
+      })
+      .filter((entry): entry is string => entry !== null)
+    // console.log('Created devices:', _createdDevices.join('; '))
   }
 
   addWalls() {
-    const geometry = new THREE.BoxGeometry(51, 10, 1)
-    const geometry2 = new THREE.BoxGeometry(1, 10, 51)
-    const color = this.getRandomNaturalColor()
-    const object1 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: color }))
-    const object2 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: color }))
-    const object3 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: color }))
-    const object4 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: color }))
+    const geometry = new THREE.BoxGeometry(this.WALL_WIDTH, this.WALL_HEIGHT, this.WALL_DEPTH)
+    const geometry2 = new THREE.BoxGeometry(this.WALL_DEPTH, this.WALL_HEIGHT, this.WALL_LONG_DEPTH)
+    // Generate a unique color for each wall
+    const color1 = this.getRandomNaturalColor()
+    const color2 = this.getRandomNaturalColor()
+    const color3 = this.getRandomNaturalColor()
+    const color4 = this.getRandomNaturalColor()
+    const object1 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: color1 }))
+    const object2 = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color: color2 }))
+    const object3 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: color3 }))
+    const object4 = new THREE.Mesh(geometry2, new THREE.MeshLambertMaterial({ color: color4 }))
 
     object1.receiveShadow = true
     object1.castShadow = true
@@ -298,17 +360,17 @@ export class CubeComponent implements OnInit, AfterViewInit {
     object4.receiveShadow = true
     object4.castShadow = true
 
-    object1.position.set(0, 5, 25)
+    object1.position.set(0, this.WALL_Y, this.WALL_Z_FRONT)
     this.scene.add(object1)
-    object2.position.set(0, 5, -25)
+    object2.position.set(0, this.WALL_Y, this.WALL_Z_BACK)
     this.scene.add(object2)
-    object3.position.set(25, 5, 0)
+    object3.position.set(this.WALL_X_RIGHT, this.WALL_Y, 0)
     this.scene.add(object3)
-    object4.position.set(-25, 5, 0)
+    object4.position.set(this.WALL_X_LEFT, this.WALL_Y, 0)
     this.scene.add(object4)
   }
 
-  addLight() {
+  addMainDirectionalLight() {
     // Create a directional light with white color and intensity 2
     const light = new THREE.DirectionalLight(0xffffff, 2)
     light.position.set(30, 50, 50)
@@ -323,28 +385,29 @@ export class CubeComponent implements OnInit, AfterViewInit {
     light.shadow.camera.right = 50
     light.shadow.camera.top = 50
     light.shadow.camera.bottom = -50
-    light.shadow.bias = -0.0001 // Reduce shadow artifacts
-
     this.scene.add(light)
 
-    // Add a helper to visualize the light and its shadow camera
-    const lightHelper = new THREE.DirectionalLightHelper(light, 8)
-    this.scene.add(lightHelper)
-    const shadowCameraHelper = new THREE.CameraHelper(light.shadow.camera)
-    this.scene.add(shadowCameraHelper)
+    // Add helpers only in development mode to avoid performance impact in production
+    if (!environment.production) {
+      const lightHelper = new THREE.DirectionalLightHelper(light, 8)
+      this.scene.add(lightHelper)
+      const shadowCameraHelper = new THREE.CameraHelper(light.shadow.camera)
+      this.scene.add(shadowCameraHelper)
+    }
   }
 
   addDirectionalLight1() {
-    let fogNear = 1
-    if (this.scene.fog instanceof THREE.Fog) {
-      fogNear = this.scene.fog.near
-    }
-    const lightIntensity = Math.min(2, Math.max(0.5, 1 / fogNear)) // Adjust intensity dynamically
+    const fogNear = (this.scene.fog instanceof THREE.Fog) ? this.scene.fog.near : 1
+
+    /**
+     * Dynamically adjust light intensity based on fogNear value.
+     * - If fogNear is small (close to 0), 1/fogNear can be very large, so we clamp the value between 0.5 and 2.
+     * - Typical fogNear values should be >= 1 to avoid excessive intensity.
+     * - This ensures the light is neither too dim nor too bright, maintaining scene visibility.
+     */
+    const lightIntensity = Math.min(2, Math.max(0.5, 1 / fogNear))
     const light2 = new THREE.DirectionalLight(0xffffff, lightIntensity)
     light2.position.set(30, 30, 50)
-
-    // Enable shadows for this light
-    light2.castShadow = true
 
     // Configure shadow camera for better shadow quality and coverage
     light2.shadow.camera.near = 0.5
@@ -359,7 +422,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     light2.shadow.mapSize.height = 2048
 
     // Optional: tweak shadow bias to reduce artifacts
-    light2.shadow.bias = -0.0001
+    light2.shadow.bias = CubeComponent.SHADOW_BIAS
 
     this.scene.add(light2)
 
@@ -390,7 +453,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     light3.shadow.camera.right = 50
     light3.shadow.camera.top = 50
     light3.shadow.camera.bottom = -50
-    light3.shadow.bias = -0.0001
+    light3.shadow.bias = CubeComponent.SHADOW_BIAS
 
     this.scene.add(light3)
 
@@ -405,6 +468,11 @@ export class CubeComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Adds an ambient light to the scene to provide global illumination.
+   * Ambient light helps soften shadows and ensures objects are visible from all angles.
+   * Side effects: Adds a THREE.AmbientLight to the scene.
+   */
   addAmbientLight() {
     const color = 0xafffff
     const intensity = 0.5 // Lower intensity for ambient light to avoid washing out shadows
@@ -413,16 +481,17 @@ export class CubeComponent implements OnInit, AfterViewInit {
     this.scene.add(lightAmbient)
   }
 
-  private animateCube() {
+  private animateMainCube() {
     this.cube.rotation.x += this.rotationSpeedX
     this.cube.rotation.y += this.rotationSpeedY
   }
 
-  private shadowCube() {
-    this.cube.castShadow = true
-    this.cube.receiveShadow = true
-  }
-
+  /**
+   * Adds a textured plane to the scene, typically used as the ground or floor.
+   * The plane uses a checkerboard texture and is sized according to the provided parameter.
+   * Shadows are enabled for realistic rendering.
+   * @param planeSize - The size (width and height) of the plane to be added.
+   */
   addPlane(planeSize: number) {
     const loader = new THREE.TextureLoader()
     const texture = loader.load('https://threejs.org/manual/examples/resources/images/checker.png')
@@ -433,7 +502,7 @@ export class CubeComponent implements OnInit, AfterViewInit {
     texture.repeat.set(repeats, repeats)
 
     const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize)
-    const planeMat = new THREE.MeshStandardMaterial({ color: 0xffffff })
+    const planeMat = new THREE.MeshStandardMaterial({ map: texture })
 
     const mesh = new THREE.Mesh(planeGeo, planeMat)
     mesh.receiveShadow = true
@@ -441,12 +510,6 @@ export class CubeComponent implements OnInit, AfterViewInit {
     mesh.rotation.x = Math.PI * -0.5
     this.scene.add(mesh)
   }
-
-  materials = [
-    new THREE.MeshStandardMaterial({ color: 0xffffff, flatShading: true }), // front
-    new THREE.MeshStandardMaterial({ color: 0xffffff }), // side
-  ]
-
   textMesh1: THREE.Mesh
   group = new THREE.Group()
 
@@ -633,7 +696,22 @@ export class CubeComponent implements OnInit, AfterViewInit {
   private render() {
     requestAnimationFrame(this.render)
     this.animateCube()
-    this.shadowCube()
+    this.enableCubeShadow()
     this.renderer.render(this.scene, this.camera)
+  }
+
+  private animateCube() {
+    // Cube animation logic - rotate the cube
+    if (this.cube) {
+      this.cube.rotation.x += 0.01
+      this.cube.rotation.y += 0.01
+    }
+  }
+
+  private enableCubeShadow() {
+    // If you had logic in shadowCube, move it here.
+    // Example placeholder:
+    // this.cube.castShadow = true;
+    // this.cube.receiveShadow = true;
   }
 }

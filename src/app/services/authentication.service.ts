@@ -134,16 +134,31 @@ export class AuthenticationService {
 
   /**
    * Check if user has specific permission
+   * Admin role automatically has all permissions
    */
   hasPermission(permission: string): boolean {
     const user = this.getCurrentUser();
+
+    // Admin role has all permissions
+    if (user?.role === 'admin') {
+      return true;
+    }
+
     return user?.permissions?.includes(permission) || false;
   }
 
   /**
    * Check if user has any of the specified permissions
+   * Admin role automatically has all permissions
    */
   hasAnyPermission(permissions: string[]): boolean {
+    const user = this.getCurrentUser();
+
+    // Admin role has all permissions
+    if (user?.role === 'admin') {
+      return true;
+    }
+
     return permissions.some(permission => this.hasPermission(permission));
   }
 

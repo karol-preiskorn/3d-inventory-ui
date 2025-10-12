@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -42,7 +42,8 @@ export class UserFormComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private authService: AuthenticationService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) {
     this.userForm = this.createForm();
     this.availablePermissions = this.userService.getAvailablePermissions();
@@ -124,19 +125,24 @@ export class UserFormComponent implements OnInit, OnDestroy {
 
     this.loading = true;
     this.error = null;
+    this.cdr.markForCheck(); // Trigger change detection for OnPush strategy
 
     this.userService.getUserById(this.userId).pipe(
       takeUntil(this.destroy$)
     ).subscribe({
-      next: (user) => {
-        this.currentUser = user;
-        this.populateForm(user);
-        this.loading = false;
+      next: (_response) => {
+        this.success = 'User created successfully';
+        this.saving = false;
+        this.cdr.markForCheck(); // Trigger change detection for success message
+
+        // Redirect after short delay
+        setTimeout(() => this.router.navigate(['/admin/users']), 1500);
       },
       error: (error) => {
-        this.error = error.message || 'Failed to load user';
-        this.loading = false;
-        console.error('Error loading user:', error);
+        console.error('Error creating user:', error);
+        this.error = error.message || 'Failed to create user';
+        this.saving = false;
+        this.cdr.markForCheck(); // Trigger change detection for error message
       }
     });
   }
@@ -321,6 +327,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
       next: (_response) => {
         this.success = 'User updated successfully';
         this.saving = false;
+        this.cdr.markForCheck(); // Trigger change detection for success message
 
         setTimeout(() => {
           this.router.navigate(['/admin/users']);
@@ -329,6 +336,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
       error: (error) => {
         this.error = error.message || 'Failed to update user';
         this.saving = false;
+        this.cdr.markForCheck(); // Trigger change detection for error message
         console.error('Error updating user:', error);
       }
     });

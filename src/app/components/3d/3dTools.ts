@@ -3,64 +3,88 @@
  */
 
 import { v4 as uuidv4 } from 'uuid'
-
 import { faker } from '@faker-js/faker'
-
 import { Device } from '../../shared/device'
 import { Model } from '../../shared/model'
 
-class _Tools3D {
+export class Tools3D {
   private racks: Array<Device> = []
   private deviceList: Device[] = []
   private modelList: Model[] = []
 
-  getRandomX = () => Math.round(Math.random() * 40 - 20)
-  getRandomY = () => Math.round(Math.random() * 40 - 20)
-  getRandomH = () => Math.round(Math.random() * 10)
+  constructor(modelList: Model[] = []) {
+    this.modelList = modelList
+  }
 
-  checkDistanceInDeviceList() {
+  private getRandomX(): number {
+    return Math.random() * 100 - 50
+  }
+
+  private getRandomY(): number {
+    return Math.random() * 100 - 50
+  }
+
+  private getRandomH(): number {
+    return Math.floor(Math.random() * 10) + 1
+  }
+
+  private checkDistanceInDeviceList(): { x: number; y: number } {
     let x = this.getRandomX()
     let y = this.getRandomY()
-    let distance = true
+    let isTooClose = true
     let counter = 0
-    while (distance === true && counter < 10) {
-      this.racks.forEach((element) => {
-        // console.log('Generate rack (' + x + ', ' + y + ') ' + Math.sqrt(Math.pow(Math.abs(x - element.x), 2) + Math.pow(Math.abs(y - element.y), 2)))
-        if (
-          Math.sqrt(Math.pow(Math.abs(x - element.position.x), 2) + Math.pow(Math.abs(y - element.position.y), 2)) < 8
-        ) {
-          distance = false
+    const maxAttempts = 100
+
+    while (isTooClose && counter < maxAttempts) {
+      isTooClose = false
+      for (const element of this.racks) {
+        const distance = Math.sqrt(
+          Math.pow(Math.abs(x - element.position.x), 2) + Math.pow(Math.abs(y - element.position.y), 2)
+        )
+        if (distance < 8) {
+          isTooClose = true
+          break
         }
-        counter = counter + 1
-      })
-      if (distance === (false as boolean)) {
+      }
+
+      if (isTooClose) {
         x = this.getRandomX()
         y = this.getRandomY()
-        // distance = true
       }
-      counter = counter + 1
+      counter++
     }
+
+    return { x, y }
   }
 
-  generateRandomDeviceRack(): Device {
+  private generateRandomDeviceRack(x: number, y: number): Device {
+    if (this.modelList.length === 0) {
+      throw new Error('Model list is empty. Cannot generate device rack.')
+    }
+
     return {
-      _id: uuidv4.toString(),
+      _id: uuidv4(),
       name: faker.company.name() + ' - ' + faker.company.buzzPhrase(),
       position: {
-        x: this.getRandomX(),
-        y: this.getRandomY(),
+        x: x,
+        y: y,
         h: this.getRandomH(),
       },
-      // modelId: this.modelList[Math.floor(Math.random() * this.modelList.length)].id
       modelId: this.modelList[Math.floor(Math.random() * this.modelList.length)]._id,
-    } as Device
+    }
   }
 
-  generateRacksList(count: number) {
+  public generateRacksList(count: number): Device[] {
+    this.racks = []
     for (let i = 0; i < count; i++) {
-      this.checkDistanceInDeviceList()
-      this.racks.push(this.generateRandomDeviceRack())
+      const position = this.checkDistanceInDeviceList()
+      this.racks.push(this.generateRandomDeviceRack(position.x, position.y))
     }
+    return this.racks
+  }
+
+  public getRacks(): Device[] {
+    return this.racks
   }
 
   // createRacksList3d(): void {
