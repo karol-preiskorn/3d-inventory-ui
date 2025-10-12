@@ -138,7 +138,8 @@ export interface Role {
 }
 
 /**
- * Predefined roles
+ * Predefined roles - MUST match API's UserRole enum values
+ * API expects: 'admin', 'user', 'viewer' (lowercase)
  */
 export const PREDEFINED_ROLES: Role[] = [
   {
@@ -156,8 +157,8 @@ export const PREDEFINED_ROLES: Role[] = [
     ]
   },
   {
-    id: 'editor',
-    name: 'Editor',
+    id: 'user',
+    name: 'User',
     description: 'Can view and edit most data except users',
     permissions: [
       Permission.USER_READ,
@@ -212,14 +213,9 @@ export const PREDEFINED_ROLES: Role[] = [
       Permission.LOG_READ,
       Permission.LOG_CREATE,
       Permission.LOG_DELETE,
-      Permission.ADMIN_FULL
+      Permission.ADMIN_FULL,
+      Permission.SYSTEM_ADMIN
     ]
-  },
-  {
-    id: 'system-admin',
-    name: 'System Administrator',
-    description: 'Complete system access including system administration',
-    permissions: [Permission.SYSTEM_ADMIN]
   }
 ];
 

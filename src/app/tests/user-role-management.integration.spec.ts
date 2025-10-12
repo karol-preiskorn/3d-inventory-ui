@@ -11,14 +11,13 @@ import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { of, throwError } from 'rxjs';
+import { of } from 'rxjs';
 
 import { UserFormComponent } from '../components/users/user-form.component';
 import { UserService } from '../services/user.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { AdminGuard } from '../guards/admin.guard';
 import { PREDEFINED_ROLES } from '../shared/user';
-import { environment } from '../../environments/environment';
 
 describe('User Role Management - Integration Verification', () => {
   let userService: UserService;

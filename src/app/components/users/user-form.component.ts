@@ -7,11 +7,12 @@ import { Subject, takeUntil } from 'rxjs';
 import { CreateUserRequest, Permission, Role, UpdateUserRequest, User } from '../../shared/user';
 import { UserService } from '../../services/user.service';
 import { AuthenticationService } from '../../services/authentication.service';
+import { LoginLogsComponent } from '../login-logs/login-logs.component';
 
 @Component({
   selector: 'app-user-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, LoginLogsComponent],
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

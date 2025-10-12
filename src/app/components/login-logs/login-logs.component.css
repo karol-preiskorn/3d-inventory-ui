@@ -1,0 +1,94 @@
+.login-logs-container {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table-responsive {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.text-nowrap {
+  white-space: nowrap;
+}
+
+code {
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+  background-color: #e9ecef;
+  border-radius: 4px;
+}
+
+.badge {
+  font-size: 0.75rem;
+  padding: 0.35rem 0.65rem;
+}
+
+.spinner-border {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Status badge colors */
+.badge.bg-success {
+  background-color: #28a745 !important;
+}
+
+.badge.bg-danger {
+  background-color: #dc3545 !important;
+}
+
+.badge.bg-warning {
+  background-color: #ffc107 !important;
+  color: #212529;
+}
+
+.badge.bg-info {
+  background-color: #17a2b8 !important;
+}
+
+.badge.bg-secondary {
+  background-color: #6c757d !important;
+}
+
+/* Table row highlighting */
+.table-hover tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+.table-danger {
+  background-color: #f8d7da !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .login-logs-container {
+    padding: 1rem;
+  }
+
+  .table {
+    font-size: 0.875rem;
+  }
+
+  .table td,
+  .table th {
+    padding: 0.5rem;
+  }
+}

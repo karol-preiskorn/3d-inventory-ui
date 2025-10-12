@@ -310,3 +310,8 @@
 <!-- Modal Backdrop -->
 <div class="modal-backdrop fade" [class.show]="showPermissionsModal" *ngIf="showPermissionsModal"
   (click)="closePermissionsModal()"></div>
+
+<!-- Login History Section -->
+<div *ngIf="currentUser && currentUser._id" class="mt-4">
+  <app-login-logs [userId]="currentUser._id" [limit]="30"></app-login-logs>
+</div>

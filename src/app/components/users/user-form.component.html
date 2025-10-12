@@ -180,5 +180,10 @@
         </div>
       </div>
     </form>
+
+    <!-- Login History Section (only shown in edit mode) -->
+    <div *ngIf="isEditMode && userId" class="mt-5">
+      <app-login-logs [userId]="userId" [limit]="30"></app-login-logs>
+    </div>
   </div>
 </div>

@@ -1,0 +1,95 @@
+<!-- Login Logs Component Template -->
+<div class="login-logs-container">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">
+      <i class="bi bi-clock-history me-2"></i>
+      Login History
+      <span class="badge bg-secondary ms-2" *ngIf="!loading">{{ loginLogs.length }}</span>
+    </h5>
+    <button class="btn btn-sm btn-outline-primary" (click)="refresh()" [disabled]="loading" type="button">
+      <i class="bi bi-arrow-clockwise"></i>
+      Refresh
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="text-center py-4">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="text-muted mt-2">Loading login history...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !loading" class="alert alert-danger" role="alert">
+    <i class="bi bi-exclamation-triangle me-2"></i>
+    {{ error }}
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && !error && loginLogs.length === 0" class="alert alert-info" role="alert">
+    <i class="bi bi-info-circle me-2"></i>
+    No login history found.
+  </div>
+
+  <!-- Login Logs Table -->
+  <div *ngIf="!loading && !error && loginLogs.length > 0" class="table-responsive">
+    <table class="table table-hover table-striped">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">Date & Time</th>
+          <th scope="col">Status</th>
+          <th scope="col">IP Address</th>
+          <th scope="col">Browser</th>
+          <th scope="col">OS</th>
+          <th scope="col">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entry of loginLogs" [class.table-danger]="!entry.success">
+          <td class="text-nowrap">
+            <small>{{ formatDate(entry.date) }}</small>
+          </td>
+          <td>
+            <span [class]="getStatusBadgeClass(entry)">
+              {{ getStatusText(entry) }}
+            </span>
+          </td>
+          <td>
+            <code class="text-dark">{{ entry.ip }}</code>
+          </td>
+          <td>
+            <i class="bi bi-browser-chrome me-1"></i>
+            {{ getBrowserFromUserAgent(entry.userAgent) }}
+          </td>
+          <td>
+            <i class="bi bi-laptop me-1"></i>
+            {{ getOSFromUserAgent(entry.userAgent) }}
+          </td>
+          <td>
+            <div *ngIf="entry.success && entry.role" class="small">
+              <span class="badge bg-info">{{ entry.role }}</span>
+              <span class="text-muted ms-1" *ngIf="entry.permissions">
+                ({{ entry.permissions }} perms)
+              </span>
+            </div>
+            <div *ngIf="!entry.success && entry.reason" class="small text-danger">
+              {{ entry.reason }}
+            </div>
+            <div *ngIf="entry.action === 'login_error'" class="small text-warning">
+              System error occurred
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Show More Button -->
+  <div *ngIf="!loading && loginLogs.length >= limit" class="text-center mt-3">
+    <p class="text-muted small">
+      <i class="bi bi-info-circle me-1"></i>
+      Showing {{ limit }} most recent login attempts. Increase limit to see more.
+    </p>
+  </div>
+</div>

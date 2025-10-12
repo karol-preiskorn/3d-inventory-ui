@@ -199,6 +199,46 @@ export class LogService {
       .pipe(retry(1), catchError(this.handleError))
   }
 
+  /**
+   * Retrieves login logs for a specific username.
+   * This includes both successful and failed login attempts.
+   * @param username - The username to get login history for.
+   * @param limit - Maximum number of logs to retrieve (default: 50).
+   * @returns An Observable that emits an array of Log objects containing login attempts.
+   */
+  GetLoginLogsByUsername(username: string, limit: number = 50): Observable<Log[]> {
+    const url = `${environment.baseurl}/logs/login/username/${encodeURIComponent(username)}?limit=${limit}`
+    this.debugService.debug(`[LogService.GetLoginLogsByUsername] Fetching login logs for username: ${username} from ${url}`)
+    return this.http.get<ApiResponse<Log[]>>(url).pipe(
+      map(response => {
+        this.debugService.debug(`✅ LogService: API returned ${response.data?.length ?? 0} login logs for username ${username}`)
+        return response.data || []
+      }),
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  /**
+   * Retrieves login logs for a specific user ID.
+   * This only includes successful login attempts (failed logins don't have userId).
+   * @param userId - The user ID to get login history for.
+   * @param limit - Maximum number of logs to retrieve (default: 50).
+   * @returns An Observable that emits an array of Log objects containing successful login attempts.
+   */
+  GetLoginLogsByUserId(userId: string, limit: number = 50): Observable<Log[]> {
+    const url = `${environment.baseurl}/logs/login/user/${encodeURIComponent(userId)}?limit=${limit}`
+    this.debugService.debug(`[LogService.GetLoginLogsByUserId] Fetching login logs for userId: ${userId} from ${url}`)
+    return this.http.get<ApiResponse<Log[]>>(url).pipe(
+      map(response => {
+        this.debugService.debug(`✅ LogService: API returned ${response.data?.length ?? 0} login logs for userId ${userId}`)
+        return response.data || []
+      }),
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
   private getLogsUrl(): string {
     return `${environment.baseurl}/logs`
   }

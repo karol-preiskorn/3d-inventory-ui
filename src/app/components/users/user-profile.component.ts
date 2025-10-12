@@ -9,11 +9,12 @@ import { UserService } from '../../services/user.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { DialogService } from '../../services/dialog.service';
 import { environment } from '../../../environments/environment';
+import { LoginLogsComponent } from '../login-logs/login-logs.component';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, LoginLogsComponent],
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

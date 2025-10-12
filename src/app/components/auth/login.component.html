@@ -9,7 +9,11 @@
           <h1>3D Inventory</h1>
         </div>
         <h2>Welcome Back</h2>
-        <p class="text-muted">Sign in to access the admin panel</p>
+        <p class="text-muted">Sign in to manage your 3D inventory system</p>
+        <p class="subtitle-info">
+          <i class="fas fa-users-cog"></i>
+          Multiple user roles available - see accounts below
+        </p>
       </div>
 
       <!-- Error Message -->
@@ -67,10 +71,90 @@
       <!-- Additional Info -->
       <div class="login-footer">
         <div class="demo-info">
-          <small class="text-muted">
+          <div class="demo-header">
             <i class="fas fa-info-circle"></i>
-            Demo Account: Use username <strong>"carlo"</strong> to login
-          </small>
+            <strong>Available Test Accounts</strong>
+          </div>
+
+          <div class="demo-accounts">
+            <!-- Administrator Account -->
+            <div class="account-item admin-account">
+              <div class="account-header">
+                <i class="fas fa-user-shield"></i>
+                <strong>Administrator</strong>
+              </div>
+              <div class="account-details">
+                <div class="credential">
+                  <span class="label">Username:</span>
+                  <code>admin</code>
+                </div>
+                <div class="credential">
+                  <span class="label">Password:</span>
+                  <code>admin123!</code>
+                </div>
+                <div class="permissions">
+                  <small class="text-muted">
+                    <i class="fas fa-check-circle"></i> Full system access (28 permissions)
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Normal User Accounts -->
+            <div class="account-item user-account">
+              <div class="account-header">
+                <i class="fas fa-user"></i>
+                <strong>Normal Users</strong>
+              </div>
+              <div class="account-details">
+                <div class="user-option">
+                  <div class="credential">
+                    <span class="label">Username:</span>
+                    <code>user</code> or <code>carlo</code>
+                  </div>
+                  <div class="credential">
+                    <span class="label">Password:</span>
+                    <code>user123!</code> or <code>carlo123!</code>
+                  </div>
+                </div>
+                <div class="permissions">
+                  <small class="text-muted">
+                    <i class="fas fa-edit"></i> Can view and edit most data (12 permissions)
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Viewer Account -->
+            <div class="account-item viewer-account">
+              <div class="account-header">
+                <i class="fas fa-eye"></i>
+                <strong>Viewer (Read-Only)</strong>
+              </div>
+              <div class="account-details">
+                <div class="credential">
+                  <span class="label">Username:</span>
+                  <code>viewer</code>
+                </div>
+                <div class="credential">
+                  <span class="label">Password:</span>
+                  <code>viewer123!</code>
+                </div>
+                <div class="permissions">
+                  <small class="text-muted">
+                    <i class="fas fa-book-reader"></i> Read-only access (7 permissions)
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="account-note">
+            <small class="text-muted">
+              <i class="fas fa-lightbulb"></i>
+              <strong>Tip:</strong> Different roles have different menu options and permissions
+            </small>
+          </div>
         </div>
 
         <div class="links">

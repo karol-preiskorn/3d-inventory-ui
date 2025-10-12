@@ -4,6 +4,7 @@ import { RouterModule, RouterStateSnapshot, Routes, TitleStrategy } from '@angul
 
 import { CubeComponent } from './components/3d/3d.component'
 import { AdminLayoutComponent } from './components/admin/admin-layout.component'
+import { ActivityLogsComponent } from './components/admin/activity-logs.component'
 import { AttributeDictionaryAddComponent } from './components/attribute-dictionary/add-attribute-dictionary/add-attribute-dictionary.component'
 import { AttributeDictionaryListComponent } from './components/attribute-dictionary/attribute-dictionary-list/attribute-dictionary-list.component'
 import { AttributeDictionaryEditComponent } from './components/attribute-dictionary/edit-attribute-dictionary/edit-attribute-dictionary.component'
@@ -73,6 +74,7 @@ export const routes: Routes = [
       { path: 'users/new', component: UserFormComponent, title: 'Add User' },
       { path: 'users/edit/:id', component: UserFormComponent, title: 'Edit User' },
       { path: 'profile', component: UserProfileComponent, title: 'My Profile' },
+      { path: 'activity-logs', component: ActivityLogsComponent, title: 'Activity Logs' },
     ]
   },
 

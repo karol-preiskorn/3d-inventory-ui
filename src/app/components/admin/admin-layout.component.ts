@@ -36,37 +36,50 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
       path: '/admin/users',
       icon: 'fas fa-users',
       label: 'User Management',
-      permission: 'user_read'
+      permission: 'user:read',
+      description: 'Manage users, roles, and permissions'
     },
     {
       path: '/device-list',
       icon: 'fas fa-server',
       label: 'Devices',
-      permission: 'device_read'
+      permission: 'device:read',
+      description: 'View and manage network devices'
     },
     {
       path: '/models-list',
       icon: 'fas fa-cube',
-      label: 'Models',
-      permission: 'model_read'
+      label: '3D Models',
+      permission: 'model:read',
+      description: 'Manage device models and templates'
     },
     {
       path: '/attribute-dictionary-list',
       icon: 'fas fa-book',
       label: 'Attributes',
-      permission: 'attribute_read'
+      permission: 'attribute:read',
+      description: 'Define custom device attributes'
     },
     {
       path: '/connection-list',
       icon: 'fas fa-network-wired',
       label: 'Connections',
-      permission: 'connection_read'
+      permission: 'connection:read',
+      description: 'Track device relationships'
     },
     {
       path: '/floor-list',
       icon: 'fas fa-building',
       label: 'Floors',
-      permission: 'floor_read'
+      permission: 'floor:read',
+      description: 'Manage building floors and layouts'
+    },
+    {
+      path: '/admin/activity-logs',
+      icon: 'fas fa-clipboard-list',
+      label: 'Activity Logs',
+      permission: 'log:read',
+      description: 'View system activity and changes'
     }
   ];
 
@@ -157,5 +170,56 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
    */
   isRouteActive(path: string): boolean {
     return this.router.url === path;
+  }
+
+  /**
+   * Get user role CSS class for styling
+   */
+  getUserRoleClass(): string {
+    if (!this.currentUser || !this.currentUser.role) {return 'role-user';}
+
+    const role = this.currentUser.role.toLowerCase();
+
+    switch (role) {
+      case 'admin':
+        return 'role-admin';
+      case 'viewer':
+        return 'role-viewer';
+      default:
+        return 'role-user';
+    }
+  }
+
+  /**
+   * Get icon for user role
+   */
+  getUserRoleIcon(): string {
+    if (!this.currentUser || !this.currentUser.role) {return 'fas fa-user';}
+
+    const role = this.currentUser.role.toLowerCase();
+
+    switch (role) {
+      case 'admin':
+        return 'fas fa-user-shield';
+      case 'viewer':
+        return 'fas fa-eye';
+      default:
+        return 'fas fa-user';
+    }
+  }
+
+  /**
+   * Get count of user permissions
+   */
+  getPermissionCount(): number {
+    if (!this.currentUser || !this.currentUser.permissions) {return 0;}
+    return this.currentUser.permissions.length;
+  }
+
+  /**
+   * Get count of visible navigation items
+   */
+  getVisibleItemsCount(): number {
+    return this.navigationItems.filter(item => this.hasPermission(item.permission)).length;
   }
 }

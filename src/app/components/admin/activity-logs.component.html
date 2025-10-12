@@ -1,0 +1,240 @@
+<!-- Activity Logs Component Template -->
+<div class="activity-logs-container">
+  <!-- Header -->
+  <div class="logs-header">
+    <div class="header-content">
+      <h2>
+        <i class="bi bi-journal-text me-2"></i>
+        System Activity Logs
+      </h2>
+      <p class="text-muted">Monitor all system activities and user actions</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-outline-primary me-2" (click)="refresh()" [disabled]="loading" type="button">
+        <i class="bi bi-arrow-clockwise"></i> Refresh
+      </button>
+      <button class="btn btn-outline-success" (click)="exportLogs()" [disabled]="filteredLogs.length === 0"
+        type="button">
+        <i class="bi bi-download"></i> Export JSON
+      </button>
+    </div>
+  </div>
+
+  <!-- Filters Section -->
+  <div class="filters-section card mb-4">
+    <div class="card-header">
+      <h5 class="mb-0">
+        <i class="bi bi-funnel me-2"></i>
+        Filters
+      </h5>
+    </div>
+    <div class="card-body">
+      <div class="row g-3">
+        <!-- Component Filter -->
+        <div class="col-md-3">
+          <label for="componentFilter" class="form-label">Component</label>
+          <select id="componentFilter" class="form-select" [(ngModel)]="filter.component"
+            (change)="applyFilters()">
+            <option value="">All Components</option>
+            <option *ngFor="let comp of availableComponents" [value]="comp">{{ comp }}</option>
+          </select>
+        </div>
+
+        <!-- Operation Filter -->
+        <div class="col-md-3">
+          <label for="operationFilter" class="form-label">Operation</label>
+          <select id="operationFilter" class="form-select" [(ngModel)]="filter.operation"
+            (change)="applyFilters()">
+            <option value="">All Operations</option>
+            <option *ngFor="let op of availableOperations" [value]="op">{{ op }}</option>
+          </select>
+        </div>
+
+        <!-- Date From Filter -->
+        <div class="col-md-3">
+          <label for="dateFromFilter" class="form-label">Date From</label>
+          <input type="date" id="dateFromFilter" class="form-control" [(ngModel)]="filter.dateFrom"
+            (change)="applyFilters()">
+        </div>
+
+        <!-- Date To Filter -->
+        <div class="col-md-3">
+          <label for="dateToFilter" class="form-label">Date To</label>
+          <input type="date" id="dateToFilter" class="form-control" [(ngModel)]="filter.dateTo"
+            (change)="applyFilters()">
+        </div>
+
+        <!-- Search Text Filter -->
+        <div class="col-md-9">
+          <label for="searchFilter" class="form-label">Search (message, objectId, username)</label>
+          <input type="text" id="searchFilter" class="form-control" [(ngModel)]="filter.searchText"
+            (input)="applyFilters()" placeholder="Enter search text...">
+        </div>
+
+        <!-- Clear Filters Button -->
+        <div class="col-md-3 d-flex align-items-end">
+          <button class="btn btn-outline-secondary w-100" (click)="clearFilters()" type="button">
+            <i class="bi bi-x-circle"></i> Clear Filters
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Summary -->
+  <div class="stats-summary mb-3">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="stat-card">
+          <i class="bi bi-files"></i>
+          <div class="stat-content">
+            <h4>{{ logs.length }}</h4>
+            <p>Total Logs</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-card">
+          <i class="bi bi-filter"></i>
+          <div class="stat-content">
+            <h4>{{ filteredLogs.length }}</h4>
+            <p>Filtered Logs</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-card">
+          <i class="bi bi-eye"></i>
+          <div class="stat-content">
+            <h4>{{ getPaginatedLogs().length }}</h4>
+            <p>Showing on Page {{ currentPage }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="text-muted mt-2">Loading activity logs...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !loading" class="alert alert-danger" role="alert">
+    <i class="bi bi-exclamation-triangle me-2"></i>
+    {{ error }}
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && !error && filteredLogs.length === 0" class="alert alert-info" role="alert">
+    <i class="bi bi-info-circle me-2"></i>
+    No activity logs found matching the current filters.
+  </div>
+
+  <!-- Logs Table -->
+  <div *ngIf="!loading && !error && filteredLogs.length > 0" class="logs-table-container">
+    <div class="table-responsive">
+      <table class="table table-hover table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col" style="width: 180px">Date & Time</th>
+            <th scope="col" style="width: 120px">Component</th>
+            <th scope="col" style="width: 120px">Operation</th>
+            <th scope="col" style="width: 150px">Object ID</th>
+            <th scope="col" style="width: 120px">User</th>
+            <th scope="col">Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let log of getPaginatedLogs()">
+            <td class="text-nowrap">
+              <small>{{ formatDate(log.date) }}</small>
+            </td>
+            <td>
+              <span [class]="getComponentBadgeClass(log.component)">
+                {{ log.component }}
+              </span>
+            </td>
+            <td>
+              <span [class]="getOperationBadgeClass(log.operation)">
+                {{ log.operation }}
+              </span>
+            </td>
+            <td>
+              <code class="text-dark small">{{ log.objectId || 'N/A' }}</code>
+            </td>
+            <td>
+              <span *ngIf="log.username" class="badge bg-info">
+                {{ log.username }}
+              </span>
+              <span *ngIf="!log.username" class="text-muted">System</span>
+            </td>
+            <td>
+              <div class="message-cell">
+                <!-- Show summary with expandable details -->
+                <div class="message-summary">
+                  <small>{{ getLogSummary(log) }}</small>
+                </div>
+
+                <!-- Expandable details -->
+                <div class="message-details mt-2" *ngIf="getLogDetails(log).length > 0">
+                  <button class="btn btn-sm btn-outline-secondary btn-toggle" type="button"
+                    [attr.data-bs-toggle]="'collapse'" [attr.data-bs-target]="'#details-' + log._id"
+                    [attr.aria-expanded]="false" [attr.aria-controls]="'details-' + log._id">
+                    <i class="bi bi-chevron-down"></i> Details
+                  </button>
+
+                  <div class="collapse mt-2" [id]="'details-' + log._id">
+                    <div class="card card-body bg-light">
+                      <dl class="row mb-0">
+                        <ng-container *ngFor="let detail of getLogDetails(log)">
+                          <dt class="col-sm-4 text-end">{{ detail.key }}:</dt>
+                          <dd class="col-sm-8">
+                            <code class="text-dark">{{ detail.value }}</code>
+                          </dd>
+                        </ng-container>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination-container" *ngIf="totalPages > 1">
+      <nav aria-label="Activity logs pagination">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <button class="page-link" (click)="previousPage()" [disabled]="currentPage === 1" type="button">
+              <i class="bi bi-chevron-left"></i> Previous
+            </button>
+          </li>
+
+          <li class="page-item" *ngFor="let page of getPageNumbers()" [class.active]="page === currentPage">
+            <button class="page-link" (click)="goToPage(page)" type="button">{{ page }}</button>
+          </li>
+
+          <li class="page-item" [class.disabled]="currentPage === totalPages">
+            <button class="page-link" (click)="nextPage()" [disabled]="currentPage === totalPages" type="button">
+              Next <i class="bi bi-chevron-right"></i>
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <div class="pagination-info text-center text-muted">
+        <small>
+          Showing {{ (currentPage - 1) * itemsPerPage + 1 }} -
+          {{ Math.min(currentPage * itemsPerPage, filteredLogs.length) }}
+          of {{ filteredLogs.length }} logs
+        </small>
+      </div>
+    </div>
+  </div>
+</div>

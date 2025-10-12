@@ -10,18 +10,13 @@
       </a>
 
       <!-- Mobile Menu Toggle -->
-      <button
-        class="navbar-toggler d-lg-none"
-        type="button"
-        (click)="toggleMobileMenu()"
+      <button class="navbar-toggler d-lg-none" type="button" (click)="toggleMobileMenu()"
         [attr.aria-expanded]="mobileMenuOpen">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <!-- Desktop Sidebar Toggle -->
-      <button
-        class="btn btn-outline-light d-none d-lg-block me-3"
-        (click)="toggleSidebar()"
+      <button class="btn btn-outline-light d-none d-lg-block me-3" (click)="toggleSidebar()"
         title="Toggle Sidebar">
         <i class="fas fa-bars"></i>
       </button>
@@ -29,13 +24,8 @@
       <!-- User Info and Actions -->
       <div class="navbar-nav ms-auto">
         <div class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle d-flex align-items-center"
-            href="#"
-            id="userDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fas fa-user-circle me-2"></i>
             <span class="d-none d-md-inline">{{ currentUser?.name || 'Admin' }}</span>
           </a>
@@ -46,7 +36,9 @@
                 {{ currentUser?.name || 'Admin User' }}
               </h6>
             </li>
-            <li><hr class="dropdown-divider"></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
             <li>
               <a class="dropdown-item" (click)="goToProfile()" style="cursor: pointer;">
                 <i class="fas fa-cog me-2"></i>
@@ -59,7 +51,9 @@
                 Back to Main Site
               </a>
             </li>
-            <li><hr class="dropdown-divider"></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
             <li>
               <a class="dropdown-item text-danger" (click)="logout()" style="cursor: pointer;">
                 <i class="fas fa-sign-out-alt me-2"></i>
@@ -74,16 +68,10 @@
 
   <div class="admin-content">
     <!-- Sidebar Navigation -->
-    <aside
-      class="sidebar"
-      [class.collapsed]="sidebarCollapsed"
-      [class.mobile-open]="mobileMenuOpen">
+    <aside class="sidebar" [class.collapsed]="sidebarCollapsed" [class.mobile-open]="mobileMenuOpen">
 
       <!-- Mobile Overlay -->
-      <div
-        class="mobile-overlay d-lg-none"
-        [class.show]="mobileMenuOpen"
-        (click)="closeMobileMenu()">
+      <div class="mobile-overlay d-lg-none" [class.show]="mobileMenuOpen" (click)="closeMobileMenu()">
       </div>
 
       <!-- Sidebar Content -->
@@ -96,29 +84,47 @@
           </h5>
         </div>
 
+        <!-- User Role Info -->
+        <div class="user-role-info" *ngIf="currentUser && !sidebarCollapsed">
+          <div class="role-badge" [ngClass]="getUserRoleClass()">
+            <i [class]="getUserRoleIcon()"></i>
+            <span>{{ (currentUser.role || 'User') | titlecase }}</span>
+          </div>
+          <small class="text-muted d-block text-center mt-1">
+            {{ getPermissionCount() }} permissions
+          </small>
+        </div>
+
         <!-- Navigation Menu -->
         <nav class="sidebar-nav">
           <ul class="nav flex-column">
             <li class="nav-item" *ngFor="let item of navigationItems">
-              <a
-                *ngIf="hasPermission(item.permission)"
-                [routerLink]="item.path"
-                routerLinkActive="active"
-                class="nav-link"
-                (click)="closeMobileMenu()"
-                [title]="item.label">
+              <a *ngIf="hasPermission(item.permission)" [routerLink]="item.path" routerLinkActive="active"
+                class="nav-link" (click)="closeMobileMenu()"
+                [title]="sidebarCollapsed ? item.label : item.description">
                 <i [class]="item.icon + ' nav-icon'"></i>
-                <span class="nav-text" [class.d-none]="sidebarCollapsed">{{ item.label }}</span>
+                <span class="nav-text" [class.d-none]="sidebarCollapsed">
+                  {{ item.label }}
+                  <small class="nav-description d-block" *ngIf="!sidebarCollapsed">
+                    {{ item.description }}
+                  </small>
+                </span>
               </a>
+            </li>
+
+            <!-- Show message if no items visible -->
+            <li class="nav-item" *ngIf="getVisibleItemsCount() === 0">
+              <div class="alert alert-info mx-2 mt-2" role="alert">
+                <i class="fas fa-info-circle me-2"></i>
+                <small>No menu items available for your role</small>
+              </div>
             </li>
           </ul>
         </nav>
 
         <!-- Sidebar Footer -->
         <div class="sidebar-footer">
-          <button
-            class="btn btn-outline-secondary btn-sm w-100 d-none d-lg-block"
-            (click)="toggleSidebar()"
+          <button class="btn btn-outline-secondary btn-sm w-100 d-none d-lg-block" (click)="toggleSidebar()"
             [title]="sidebarCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'">
             <i [class]="sidebarCollapsed ? 'fas fa-chevron-right' : 'fas fa-chevron-left'"></i>
             <span [class.d-none]="sidebarCollapsed" class="ms-2">
