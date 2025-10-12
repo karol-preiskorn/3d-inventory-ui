@@ -120,6 +120,7 @@ export enum Permission {
   // Log management
   LOG_READ = 'log:read',
   LOG_CREATE = 'log:create',
+  LOG_DELETE = 'log:delete',
 
   // Admin permissions
   ADMIN_FULL = 'admin:full',
