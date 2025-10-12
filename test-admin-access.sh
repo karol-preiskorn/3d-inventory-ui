@@ -70,21 +70,21 @@ LOGIN_RESPONSE=$(curl -s -X POST "$API_URL/login" \
 if echo "$LOGIN_RESPONSE" | grep -q "token"; then
     echo -e "${GREEN}✅ Login successful${NC}"
     echo ""
-    
+
     # Extract token
     TOKEN=$(echo "$LOGIN_RESPONSE" | grep -o '"token":"[^"]*"' | cut -d'"' -f4)
-    
+
     if [ -n "$TOKEN" ]; then
         echo "📋 Token received (length: ${#TOKEN} chars)"
         echo ""
-        
+
         # Decode JWT payload
         echo "🔍 JWT Payload Analysis:"
         echo "----------------------------------------"
-        
+
         # Extract payload (second part of JWT)
         PAYLOAD=$(echo "$TOKEN" | cut -d'.' -f2)
-        
+
         # Add padding if needed for base64 decode
         PADDING=$((${#PAYLOAD} % 4))
         if [ $PADDING -ne 0 ]; then
@@ -93,14 +93,14 @@ if echo "$LOGIN_RESPONSE" | grep -q "token"; then
                 PAYLOAD="${PAYLOAD}="
             done
         fi
-        
+
         # Decode and pretty print
         DECODED=$(echo "$PAYLOAD" | base64 -d 2>/dev/null)
-        
+
         if [ -n "$DECODED" ]; then
             echo "$DECODED" | python3 -m json.tool 2>/dev/null || echo "$DECODED"
             echo ""
-            
+
             # Check for role field
             if echo "$DECODED" | grep -q '"role"'; then
                 ROLE=$(echo "$DECODED" | grep -o '"role":"[^"]*"' | cut -d'"' -f4)
@@ -112,7 +112,7 @@ if echo "$LOGIN_RESPONSE" | grep -q "token"; then
             else
                 echo -e "${RED}❌ Role field MISSING in JWT payload${NC}"
             fi
-            
+
             # Check for permissions field
             if echo "$DECODED" | grep -q '"permissions"'; then
                 PERM_COUNT=$(echo "$DECODED" | grep -o '"permissions"' | wc -l)
@@ -171,7 +171,7 @@ if [ -d "dist" ]; then
     BUILD_TIME=$(stat -c %y dist 2>/dev/null || stat -f "%Sm" dist 2>/dev/null)
     echo -e "${GREEN}✅ Build directory exists${NC}"
     echo "   Last modified: $BUILD_TIME"
-    
+
     # Check if recent
     if [ -n "$BUILD_TIME" ]; then
         echo ""
