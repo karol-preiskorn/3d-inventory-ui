@@ -211,6 +211,7 @@ export const PREDEFINED_ROLES: Role[] = [
       Permission.FLOOR_DELETE,
       Permission.LOG_READ,
       Permission.LOG_CREATE,
+      Permission.LOG_DELETE,
       Permission.ADMIN_FULL
     ]
   },
