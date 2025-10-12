@@ -72,6 +72,43 @@ Relational data model is mapped to a NoSQL model in MongoDB.
 
 ## Application
 
+The 3D Inventory UI provides a comprehensive interface for managing inventory with spatial visualization and complete audit tracking.
+
+### Key Features
+
+#### 🎯 **Inventory Management**
+
+- **3D Visualization**: Interactive three.js-based 3D floor plans
+- **Device Management**: Create, edit, delete, and position devices on floor plans
+- **Model Management**: Define device types, categories, and specifications
+- **Connection Tracking**: Visualize and manage connections between devices
+- **Attribute System**: Flexible metadata management with attribute dictionaries
+
+#### 🔐 **User Management**
+
+- **Role-Based Access**: Admin, User, and Viewer permission levels
+- **User Profiles**: Personal profile management with login history
+- **Authentication**: Secure JWT-based authentication with password requirements
+- **Account Security**: Login attempt tracking and account protection
+
+#### 📊 **Activity Monitoring & Audit Logs**
+
+- **Activity Logs Dashboard** (Admin): Comprehensive audit trail for all system operations
+  - Filter by component (device, model, floor, user, connection, etc.)
+  - Filter by operation type (create, update, delete, clone)
+  - Filter by date range
+  - Search by username or object details
+- **Change Tracking**: Detailed before/after value tracking for all updates
+  - Field-level change detection (name, position, attributes, etc.)
+  - Visual before → after display for modified values
+  - Smart formatting for different data types (coordinates, arrays, objects)
+- **Login History**:
+  - View login attempts with success/failure status
+  - IP address and timestamp tracking
+  - Color-coded status indicators (success/failed/error)
+  - Available in user profile and admin user management
+- **User Context**: Every log entry includes who performed the action
+
 ### List devices
 
 <img title="List devices" src="src/assets/img/Screenshot%202023-07-14%20at%2008-48-50%203d%20inventory-watermark.png" style="border-radius: 1%;filter: drop-shadow(0 0 1rem black); border-radius: 1%;" width="80%"/>
@@ -105,6 +142,23 @@ Goto in browser [http://localhost:4200](http://localhost:4200)
 http://localhost:4200/
 
 ## Deploy
+
+The application is deployed to Google Cloud Run:
+
+- **Production URL**: https://d-inventory-ui-wzwe3odv7q-ew.a.run.app
+- **Current Revision**: d-inventory-ui-00110-q8s
+- **Backend API**: https://d-inventory-api-wzwe3odv7q-ew.a.run.app
+- **Backend Revision**: d-inventory-api-00108-pr2
+
+### Latest Features (October 12, 2025)
+
+- ✅ Device change tracking with before/after values
+- ✅ Activity Logs dashboard for administrators
+- ✅ Login history tracking with IP addresses
+- ✅ Enhanced audit trail for all CRUD operations
+- ✅ Smart value formatting in activity logs
+
+### Deployment Commands
 
 <https://angular.io/guide/deployment>
 
