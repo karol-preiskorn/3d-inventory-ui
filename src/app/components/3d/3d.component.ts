@@ -13,8 +13,6 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 
 import { HttpClient } from '@angular/common/http'
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
-// Removed unused import
 
 import { Connection } from 'src/app/shared/connection'
 import { environment } from '../../../environments/environment'
@@ -77,7 +75,6 @@ export class CubeComponent implements OnInit, AfterViewInit {
     private modelsService: ModelsService,
     private http: HttpClient,
     private connectionsService: ConnectionService, // <-- Use the correct service here
-    private route: ActivatedRoute,
   ) {
     // console.log('constructor')
     this.material.opacity = 0.8
