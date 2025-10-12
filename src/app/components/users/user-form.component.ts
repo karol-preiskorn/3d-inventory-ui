@@ -130,18 +130,16 @@ export class UserFormComponent implements OnInit, OnDestroy {
     this.userService.getUserById(this.userId).pipe(
       takeUntil(this.destroy$)
     ).subscribe({
-      next: (_response) => {
-        this.success = 'User created successfully';
-        this.saving = false;
-        this.cdr.markForCheck(); // Trigger change detection for success message
-
-        // Redirect after short delay
-        setTimeout(() => this.router.navigate(['/admin/users']), 1500);
+      next: (user) => {
+        this.currentUser = user;
+        this.populateForm(user);
+        this.loading = false;
+        this.cdr.markForCheck(); // Trigger change detection after loading user data
       },
       error: (error) => {
-        console.error('Error creating user:', error);
-        this.error = error.message || 'Failed to create user';
-        this.saving = false;
+        console.error('Error loading user:', error);
+        this.error = error.message || 'Failed to load user';
+        this.loading = false;
         this.cdr.markForCheck(); // Trigger change detection for error message
       }
     });
@@ -168,6 +166,9 @@ export class UserFormComponent implements OnInit, OnDestroy {
   /**
    * Initialize permissions checkboxes
    */
+  /**
+   * Initialize permission checkboxes based on user's current permissions
+   */
   private initializePermissions(userPermissions: string[] = []): void {
     const permissionsArray = this.permissionsArray;
 
@@ -176,8 +177,8 @@ export class UserFormComponent implements OnInit, OnDestroy {
       permissionsArray.removeAt(0);
     }
 
-    // Add controls for each permission
-    this.availablePermissions.forEach(permission => {
+    // Add controls for each available permission
+    this.availablePermissions.forEach((permission) => {
       const isChecked = userPermissions.includes(permission);
       permissionsArray.push(this.fb.control(isChecked));
     });
