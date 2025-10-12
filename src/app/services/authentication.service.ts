@@ -66,13 +66,14 @@ export class AuthenticationService {
           if (response.token) {
             this.setToken(response.token);
 
-            // Decode token to get user info
+            // Decode token to get user info including role and permissions
             const payload = this.decodeToken(response.token);
             const user: User = {
               _id: payload.id.toString(),
               username: payload.username,
-              email: `${payload.username}@example.com`, // API doesn't return email
-              permissions: [], // Will be populated from user service if needed
+              email: `${payload.username}@example.com`, // API doesn't return email in token
+              permissions: payload.permissions || [], // Extract permissions from JWT payload
+              role: payload.role, // Extract role from JWT payload (CRITICAL for AdminGuard!)
               token: response.token
             };
 

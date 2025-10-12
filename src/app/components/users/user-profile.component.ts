@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 
-import { User } from '../../shared/user';
+import { PREDEFINED_ROLES, User } from '../../shared/user';
 import { UserService } from '../../services/user.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { DialogService } from '../../services/dialog.service';
@@ -27,6 +27,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   error: string | null = null;
   successMessage: string | null = null;
   showPasswordChange = false;
+  showPermissionsModal = false; // For permissions modal
 
   private destroy$ = new Subject<void>();
 
@@ -60,6 +61,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     return this.fb.group({
       username: [{ value: '', disabled: true }],
       email: ['', [Validators.required, Validators.email]],
+      role: [{ value: '', disabled: true }], // Display user's application role
       currentPassword: ['', [Validators.required]],
     });
   }
@@ -155,10 +157,12 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     console.warn('📝 [Profile Debug] Populating form with user:', user);
     console.warn('📝 [Profile Debug] Username:', user.username || user.name);
     console.warn('📝 [Profile Debug] Email:', user.email);
+    console.warn('📝 [Profile Debug] Role:', user.role);
 
     // Use setValue for disabled controls to ensure they update
     const usernameControl = this.profileForm.get('username');
     const emailControl = this.profileForm.get('email');
+    const roleControl = this.profileForm.get('role');
 
     if (usernameControl) {
       usernameControl.setValue(user.username || user.name || '');
@@ -166,16 +170,38 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     if (emailControl) {
       emailControl.setValue(user.email || '');
     }
+    if (roleControl) {
+      roleControl.setValue(this.formatRoleName(user.role) || 'Not Assigned');
+    }
 
     console.warn('📝 [Profile Debug] Form controls after patch:', {
       username: this.profileForm.get('username')?.value,
       email: this.profileForm.get('email')?.value,
+      role: this.profileForm.get('role')?.value,
       usernameDisabled: this.profileForm.get('username')?.disabled,
-      emailDisabled: this.profileForm.get('email')?.disabled
+      emailDisabled: this.profileForm.get('email')?.disabled,
+      roleDisabled: this.profileForm.get('role')?.disabled
     });
 
     // Force change detection
     this.cdr.detectChanges();
+  }
+
+  /**
+   * Format role name for display
+   */
+  private formatRoleName(role?: string): string {
+    if (!role) {return 'Not Assigned';}
+
+    // Convert role ID to display name
+    const roleMap: Record<string, string> = {
+      'viewer': 'Viewer (Read-Only)',
+      'editor': 'Editor',
+      'admin': 'Administrator',
+      'system-admin': 'System Administrator'
+    };
+
+    return roleMap[role] || role.charAt(0).toUpperCase() + role.slice(1);
   }
 
   /**
@@ -350,5 +376,105 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     }
 
     return 'Invalid field';
+  }
+
+  /**
+   * Open permissions modal
+   */
+  openPermissionsModal(): void {
+    this.showPermissionsModal = true;
+    this.cdr.markForCheck();
+  }
+
+  /**
+   * Close permissions modal
+   */
+  closePermissionsModal(): void {
+    this.showPermissionsModal = false;
+    this.cdr.markForCheck();
+  }
+
+  /**
+   * Get role details with permissions
+   */
+  getRoleDetails(): { name: string; description: string; permissions: string[] } | null {
+    if (!this.currentUser || !this.currentUser.role) {
+      return null;
+    }
+
+    const role = PREDEFINED_ROLES.find(r => r.id === this.currentUser?.role);
+    if (role) {
+      return {
+        name: role.name,
+        description: role.description,
+        permissions: role.permissions
+      };
+    }
+
+    // If role not found in predefined roles, use user's actual permissions
+    return {
+      name: this.formatRoleName(this.currentUser.role),
+      description: 'Custom role with specific permissions',
+      permissions: this.currentUser.permissions || []
+    };
+  }
+
+  /**
+   * Format permission for display
+   */
+  formatPermission(permission: string): { category: string; action: string; icon: string; color: string } {
+    const parts = permission.split(':');
+    const category = parts[0] || 'unknown';
+    const action = parts[1] || 'unknown';
+
+    const categoryMap: Record<string, { label: string; icon: string; color: string }> = {
+      'user': { label: 'User Management', icon: 'fa-users', color: 'primary' },
+      'device': { label: 'Device Management', icon: 'fa-microchip', color: 'info' },
+      'model': { label: 'Model Management', icon: 'fa-cube', color: 'success' },
+      'connection': { label: 'Connection Management', icon: 'fa-link', color: 'warning' },
+      'attribute': { label: 'Attribute Management', icon: 'fa-tags', color: 'secondary' },
+      'floor': { label: 'Floor Management', icon: 'fa-building', color: 'info' },
+      'log': { label: 'Log Management', icon: 'fa-file-alt', color: 'dark' },
+      'admin': { label: 'Administration', icon: 'fa-shield-alt', color: 'danger' },
+      'system': { label: 'System Administration', icon: 'fa-cog', color: 'danger' }
+    };
+
+    const categoryInfo = categoryMap[category] || { label: category, icon: 'fa-question', color: 'secondary' };
+
+    return {
+      category: categoryInfo.label,
+      action: action.charAt(0).toUpperCase() + action.slice(1),
+      icon: categoryInfo.icon,
+      color: categoryInfo.color
+    };
+  }
+
+  /**
+   * Group permissions by category
+   */
+  getGroupedPermissions(): Map<string, Array<{ action: string; permission: string; icon: string; color: string }>> {
+    const roleDetails = this.getRoleDetails();
+    if (!roleDetails) {
+      return new Map();
+    }
+
+    const grouped = new Map<string, Array<{ action: string; permission: string; icon: string; color: string }>>();
+
+    roleDetails.permissions.forEach(permission => {
+      const formatted = this.formatPermission(permission);
+
+      if (!grouped.has(formatted.category)) {
+        grouped.set(formatted.category, []);
+      }
+
+      grouped.get(formatted.category)?.push({
+        action: formatted.action,
+        permission: permission,
+        icon: formatted.icon,
+        color: formatted.color
+      });
+    });
+
+    return grouped;
   }
 }

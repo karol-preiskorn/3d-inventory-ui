@@ -215,3 +215,153 @@
     }
   }
 }
+
+// Permissions Modal Styles
+.modal {
+  &.show {
+    display: block !important;
+    opacity: 1;
+  }
+
+  .modal-dialog {
+    margin-top: 50px;
+  }
+
+  .modal-header {
+    .modal-title {
+      font-weight: 600;
+      font-size: 1.25rem;
+
+      i {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 20px;
+
+    .permissions-list {
+      .permission-category {
+        .category-header {
+          font-weight: 600;
+          color: #495057;
+          padding: 10px 15px;
+          background-color: #f8f9fa;
+          border-left: 4px solid #007bff;
+          margin-bottom: 10px;
+          border-radius: 4px;
+
+          i {
+            margin-right: 8px;
+          }
+
+          .badge {
+            font-size: 0.75rem;
+          }
+        }
+
+        .list-group {
+          margin-bottom: 15px;
+
+          .list-group-item {
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+
+            &:hover {
+              background-color: #f8f9fa;
+              border-left-color: #007bff;
+              cursor: default;
+            }
+
+            i.fa-check-circle {
+              font-size: 1.1em;
+            }
+
+            strong {
+              color: #2c3e50;
+              font-size: 1rem;
+            }
+
+            small {
+              font-size: 0.85rem;
+              font-family: monospace;
+            }
+
+            .badge-pill {
+              font-size: 0.75rem;
+              padding: 5px 12px;
+            }
+          }
+        }
+      }
+    }
+
+    .alert {
+      margin-bottom: 20px;
+
+      h5 {
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      hr {
+        margin: 15px 0;
+      }
+    }
+  }
+
+  .modal-footer {
+    border-top: 2px solid #e9ecef;
+    padding: 15px 20px;
+
+    .btn {
+      font-weight: 500;
+
+      i {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+
+  &.show {
+    opacity: 0.5;
+  }
+}
+
+// Input group button styling
+.input-group {
+  .input-group-append {
+    .btn {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      font-weight: 500;
+
+      i {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+// Permission count link styling
+.text-info {
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: none;
+    color: #0056b3 !important;
+  }
+}

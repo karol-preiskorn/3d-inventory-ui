@@ -104,6 +104,28 @@
                 <small class="form-text text-muted">Username cannot be changed</small>
               </div>
 
+              <!-- Application Role (Read-only) with Permissions Button -->
+              <div class="form-group">
+                <label for="role">
+                  <i class="fas fa-shield-alt"></i> Application Role
+                </label>
+                <div class="input-group">
+                  <input id="role" type="text" class="form-control" formControlName="role" readonly>
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-info" (click)="openPermissionsModal()"
+                      title="View Permissions">
+                      <i class="fas fa-list-ul"></i> View Permissions
+                    </button>
+                  </div>
+                </div>
+                <small class="form-text text-muted">
+                  Your role determines your access permissions.
+                  <a href="javascript:void(0)" (click)="openPermissionsModal()" class="text-info">
+                    Click to view all {{ getUserPermissionCount() }} permissions
+                  </a>
+                </small>
+              </div>
+
               <!-- Email -->
               <div class="form-group">
                 <label for="email" class="required">Email Address</label>
@@ -210,3 +232,81 @@
     </div>
   </div>
 </div>
+
+<!-- Permissions Modal -->
+<div class="modal fade" [class.show]="showPermissionsModal"
+  [style.display]="showPermissionsModal ? 'block' : 'none'" tabindex="-1" role="dialog"
+  aria-labelledby="permissionsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title" id="permissionsModalLabel">
+          <i class="fas fa-shield-alt"></i> Role Permissions
+        </h5>
+        <button type="button" class="close text-white" (click)="closePermissionsModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="getRoleDetails() as roleDetails">
+          <!-- Role Information -->
+          <div class="alert alert-info">
+            <h5><i class="fas fa-info-circle"></i> {{ roleDetails.name }}</h5>
+            <p class="mb-0">{{ roleDetails.description }}</p>
+            <hr>
+            <p class="mb-0">
+              <strong>Total Permissions:</strong> {{ roleDetails.permissions.length }}
+            </p>
+          </div>
+
+          <!-- Permissions List Grouped by Category -->
+          <div class="permissions-list">
+            <div *ngFor="let category of getGroupedPermissions() | keyvalue" class="permission-category mb-4">
+              <h6 class="category-header">
+                <i class="fas" [ngClass]="category.value[0]?.icon ?? 'fa-question'"></i>
+                {{ category.key }}
+                <span class="badge badge-secondary ml-2">{{ category.value.length }}</span>
+              </h6>
+
+              <div class="list-group">
+                <div *ngFor="let perm of category.value"
+                  class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                  <div>
+                    <i class="fas fa-check-circle text-success mr-2"></i>
+                    <strong>{{ perm.action }}</strong>
+                    <br>
+                    <small class="text-muted">{{ perm.permission }}</small>
+                  </div>
+                  <span class="badge badge-pill" [ngClass]="'badge-' + perm.color">
+                    {{ perm.action }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- No Permissions Message -->
+          <div *ngIf="roleDetails.permissions.length === 0" class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            No permissions assigned to this role.
+          </div>
+        </div>
+
+        <!-- No Role Details Message -->
+        <div *ngIf="!getRoleDetails()" class="alert alert-warning">
+          <i class="fas fa-exclamation-triangle"></i>
+          No role information available.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closePermissionsModal()">
+          <i class="fas fa-times"></i> Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Backdrop -->
+<div class="modal-backdrop fade" [class.show]="showPermissionsModal" *ngIf="showPermissionsModal"
+  (click)="closePermissionsModal()"></div>

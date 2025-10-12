@@ -30,6 +30,7 @@ import { UserListComponent } from './components/users/user-list.component'
 import { UserFormComponent } from './components/users/user-form.component'
 import { UserProfileComponent } from './components/users/user-profile.component'
 import { AuthGuard } from './guards/auth.guard'
+import { AdminGuard } from './guards/admin.guard'
 import { ResolverDevice } from './resolverDevice'
 import { ResolverModel } from './resolverModel'
 
@@ -60,11 +61,12 @@ export const routes: Routes = [
     resolve: { resolveDeviceList: ResolverDevice, resolveModelList: ResolverModel },
   },
 
-  // Admin routes - protected by AuthGuard
+  // Admin routes - protected by AdminGuard for admin-only access
   {
     path: 'admin',
     component: AdminLayoutComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuard],
+    canActivateChild: [AdminGuard],
     children: [
       { path: '', redirectTo: 'users', pathMatch: 'full' },
       { path: 'users', component: UserListComponent, title: 'User Management' },

@@ -57,10 +57,13 @@ export interface LoginResponse {
 
 /**
  * JWT Token payload interface
+ * Must match the payload structure from 3d-inventory-api/src/middlewares/auth.ts
  */
 export interface JwtPayload {
-  id: number;
+  id: string; // Changed from number to string to match API
   username: string;
+  role?: string; // User role (admin, user, viewer, editor)
+  permissions?: string[]; // User permissions array
   iat?: number; // issued at
   exp?: number; // expires at
 }
