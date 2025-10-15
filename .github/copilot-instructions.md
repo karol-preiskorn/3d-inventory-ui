@@ -62,6 +62,40 @@ For detailed Angular patterns and examples, refer to:
 - **Testing**: See AGENTS.md "Testing Automation" section
 - **Forms**: See AGENTS.md "Form Development" section
 
+## 🧪 Testing Examples & References
+
+### Comprehensive Test Suites Available
+
+The project includes production-ready test examples:
+
+- **[authentication.service.spec.ts](../src/app/services/authentication.service.spec.ts)** - Comprehensive service testing
+  - 50+ test cases across 10 categories
+  - Covers login, logout, token validation, permissions, edge cases
+  - RBAC (Role-Based Access Control) testing
+  - Security scenario testing
+  - See **[AUTHENTICATION-SERVICE-TESTS-SUMMARY.md](../AUTHENTICATION-SERVICE-TESTS-SUMMARY.md)** for detailed documentation
+
+### Using Test Examples
+
+When generating new tests, reference existing patterns:
+
+```typescript
+// Example: Following authentication service test patterns
+"Using the test patterns from authentication.service.spec.ts,
+generate comprehensive tests for DeviceService with:
+- Happy path scenarios
+- Error handling
+- Edge cases
+- Security scenarios
+Apply #test_coverage_standards"
+```
+
+### Test Documentation
+
+- **[AUTHENTICATION-SERVICE-TESTS-SUMMARY.md](../AUTHENTICATION-SERVICE-TESTS-SUMMARY.md)** - Complete test documentation with 50+ test cases
+- **[AUTHENTICATION-TESTS-QUICK-START.md](../AUTHENTICATION-TESTS-QUICK-START.md)** - Quick reference and run commands
+- **Test Utilities**: Helper functions for creating mock tokens, users, and test data
+
 ## Code Quality Standards
 
 All code must adhere to the standards defined in:
@@ -96,6 +130,37 @@ Key practices:
 For the most recent feature implementations and updates, see:
 - **[AGENTS.md](../AGENTS.md)** - Complete feature history and implementation details
 - **[README.md](../README.md)** - User-facing feature documentation
+
+## 📝 Testing Best Practices
+
+### When Generating Tests
+
+1. **Reference Existing Patterns**: Use `authentication.service.spec.ts` as a template
+2. **Follow Test Categories**:
+   - Service Initialization
+   - Happy Path Scenarios
+   - Error Handling
+   - Edge Cases
+   - Security Scenarios
+3. **Use Helper Functions**: Create mock data generators like `createMockToken()` and `createMockUser()`
+4. **Apply Standards**: Always reference #test_coverage_standards (>80% minimum, >90% for services)
+5. **Document Tests**: Include JSDoc comments explaining what each test verifies
+
+### Example Test Generation Prompts
+
+```typescript
+// Service Testing
+"Following authentication.service.spec.ts patterns, generate tests for UserService
+with login validation, RBAC, and error handling. Apply #test_coverage_standards."
+
+// Component Testing
+"Following Angular component testing patterns from AGENTS.md, create tests for
+DeviceFormComponent with form validation and HTTP mocking."
+
+// Integration Testing
+"Create integration tests for the device management workflow following the
+comprehensive testing patterns in authentication.service.spec.ts."
+```
 
 ---
 
