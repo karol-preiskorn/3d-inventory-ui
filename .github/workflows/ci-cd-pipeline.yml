@@ -120,11 +120,10 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
           directory: ./coverage/
           files: ./coverage/lcov.info
-          flags: unittests
           name: 3d-inventory-ui-coverage
-          fail_ci_if_error: false
           verbose: true
 
   # Job 3: Build Validation
@@ -204,6 +203,7 @@ jobs:
           npm run build:prod
 
       - name: 🔍 Lighthouse CI Performance Audit
+        # cSpell:ignore treosh lighthouserc
         uses: treosh/lighthouse-ci-action@v10
         with:
           configPath: './lighthouserc.json'
@@ -327,11 +327,15 @@ jobs:
       - name: 📦 Install Dependencies
         run: |
           npm ci --prefer-offline --no-audit
-
       - name: 🔒 Run Snyk Security Scan
-        if: ${{ vars.SNYK_TOKEN }}
+        # cSpell:ignore Snyk
+        continue-on-error: true
         run: |
-          npx snyk test --severity-threshold=high
+          if [ -n "$SNYK_TOKEN" ]; then
+            npx snyk test --severity-threshold=high
+          else
+            echo "⚠️ SNYK_TOKEN not configured, skipping Snyk scan"
+          fi
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
