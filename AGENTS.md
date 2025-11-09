@@ -615,7 +615,7 @@ interface AngularQualityStandards {
 
 ### Testing Resources
 
-- **[AI Testing Integration](../3d-inventory-api/AI-TESTING-INTEGRATION.md)**: Cross-project testing strategy
+- **[AI Testing Integration](../3d-inventory-api/docs/troubleshooting/archive/AI-TESTING-INTEGRATION.md)**: Cross-project testing strategy
 - **test-login-functionality.js**: Browser-based login testing
 - **src/app/tests/**: Comprehensive Angular test suites
 - **Angular TestBed**: Component testing framework
