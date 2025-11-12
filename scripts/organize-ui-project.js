@@ -3,7 +3,7 @@
 /**
  * @file organize-ui-project.js
  * @description Automated file organization script for 3D Inventory UI project
- * 
+ *
  * This script organizes the UI project according to file-organization.instructions.md:
  * - Moves .sh scripts to /scripts/
  * - Moves test files to /scripts/testing/

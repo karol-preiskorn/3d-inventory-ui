@@ -12,22 +12,22 @@
  * 5. Configuration files are in config/ directory
  */
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const { readdirSync, statSync } = fs;
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const { readdirSync, statSync } = fs
 
-const ROOT_DIR = path.resolve(__dirname, '..');
+const ROOT_DIR = path.resolve(__dirname, '..')
 
 // Files that are allowed in the root directory for Angular UI
 const ALLOWED_ROOT_FILES = [
   'README.md',
   'LICENSE',
   'AGENTS.md',
-];
+]
 
 // Files that should be in specific directories
 const REQUIRED_LOCATIONS = {
@@ -57,14 +57,14 @@ const REQUIRED_LOCATIONS = {
       'karma.conf.js',
     ],
   },
-};
+}
 
-let hasErrors = false;
-let hasWarnings = false;
-let issues = [];
+let hasErrors = false
+let hasWarnings = false
+let issues = []
 
 // Check root directory
-console.log('🔍 Validating file organization...\n');
+console.log('🔍 Validating file organization...\n')
 
 // Get all markdown files in root
 const rootFiles = readdirSync(ROOT_DIR)
@@ -74,15 +74,15 @@ const rootFiles = readdirSync(ROOT_DIR)
       statSync(path.join(ROOT_DIR, f)).isFile() &&
       f !== '.npmrc' &&
       f !== '.prettierrc.json'
-  );
+  )
 
 // Check for disallowed markdown files
 const disallowedMdFiles = rootFiles.filter(
   (f) => !ALLOWED_ROOT_FILES.includes(f)
-);
+)
 
 if (disallowedMdFiles.length > 0) {
-  hasWarnings = true;
+  hasWarnings = true
   issues.push({
     type: 'warning',
     message: `⚠️  Disallowed markdown files in root: ${disallowedMdFiles.length} files`,
@@ -91,11 +91,11 @@ if (disallowedMdFiles.length > 0) {
      - Setup guides → docs/guides/
      - Troubleshooting → docs/troubleshooting/
      - Archive/Historical → docs/archive/`,
-  });
+  })
 }
 
 // Check for executable files in root that shouldn't be there
-const executableExtensions = ['.sh', '.ts', '.js', '.cjs', '.mjs'];
+const executableExtensions = ['.sh', '.ts', '.js', '.cjs', '.mjs']
 const rootExecutables = readdirSync(ROOT_DIR)
   .filter(
     (f) =>
@@ -104,41 +104,41 @@ const rootExecutables = readdirSync(ROOT_DIR)
       f !== '.prettierrc.json' &&
       f !== 'eslint.config.js' &&
       statSync(path.join(ROOT_DIR, f)).isFile()
-  );
+  )
 
 if (rootExecutables.length > 0) {
-  hasErrors = true;
+  hasErrors = true
   issues.push({
     type: 'error',
     message: `❌ Executable files found in root: ${rootExecutables.length} files`,
     suggestion: `Move these files to scripts/, config/, or appropriate subdirectories:
      ${rootExecutables.slice(0, 5).join(', ')}${rootExecutables.length > 5 ? ` and ${rootExecutables.length - 5} more...` : ''}`,
-  });
+  })
 }
 
 // Check for required files in proper locations
 for (const [directory, config] of Object.entries(REQUIRED_LOCATIONS)) {
-  const fullPath = path.join(ROOT_DIR, directory);
+  const fullPath = path.join(ROOT_DIR, directory)
 
   if (!fs.existsSync(fullPath)) {
-    hasErrors = true;
+    hasErrors = true
     issues.push({
       type: 'error',
       message: `❌ Directory ${directory}/ does not exist`,
       suggestion: `Create the directory: mkdir -p ${directory}`,
-    });
-    continue;
+    })
+    continue
   }
 
   // Skip pattern-based validation for now (they're just file extensions)
   if (config.type === 'pattern') {
-    continue;
+    continue
   }
 
   // Check specific files
-  const expectedFiles = config.files || [];
+  const expectedFiles = config.files || []
   for (const file of expectedFiles) {
-    const filePath = path.join(fullPath, file);
+    const filePath = path.join(fullPath, file)
     if (!fs.existsSync(filePath)) {
       // Don't warn about optional files
       // hasWarnings = true
@@ -147,16 +147,16 @@ for (const [directory, config] of Object.entries(REQUIRED_LOCATIONS)) {
 }
 
 // Check for unexpected files in scripts/ subdirectories
-const scriptDirs = ['testing'];
+const scriptDirs = ['testing']
 for (const subdir of scriptDirs) {
-  const fullPath = path.join(ROOT_DIR, 'scripts', subdir);
+  const fullPath = path.join(ROOT_DIR, 'scripts', subdir)
 
   if (fs.existsSync(fullPath)) {
-    const files = readdirSync(fullPath);
-    const expectedFiles = REQUIRED_LOCATIONS[`scripts/${subdir}`]?.files || [];
+    const files = readdirSync(fullPath)
+    const expectedFiles = REQUIRED_LOCATIONS[`scripts/${subdir}`]?.files || []
 
     for (const file of files) {
-      if (file.startsWith('.')) continue; // Skip hidden files
+      if (file.startsWith('.')) continue // Skip hidden files
 
       if (!expectedFiles.includes(file) && !file.endsWith('.md')) {
         // Optional warning for unexpected files
@@ -167,50 +167,50 @@ for (const subdir of scriptDirs) {
 
 // Print issues
 if (issues.length > 0) {
-  console.log('📋 Issues found:\n');
+  console.log('📋 Issues found:\n')
   issues.forEach((issue) => {
-    console.log(issue.message);
-    console.log(`   💡 ${issue.suggestion}\n`);
-  });
+    console.log(issue.message)
+    console.log(`   💡 ${issue.suggestion}\n`)
+  })
 }
 
 // Summary
-console.log('\n' + '='.repeat(70));
+console.log('\n' + '='.repeat(70))
 if (hasErrors) {
-  console.log('❌ VALIDATION FAILED - Critical errors found');
-  console.log('='.repeat(70));
-  process.exit(1);
+  console.log('❌ VALIDATION FAILED - Critical errors found')
+  console.log('='.repeat(70))
+  process.exit(1)
 } else if (hasWarnings) {
-  console.log('⚠️  VALIDATION PASSED WITH WARNINGS - Minor issues found');
-  console.log('='.repeat(70));
-  process.exit(0);
+  console.log('⚠️  VALIDATION PASSED WITH WARNINGS - Minor issues found')
+  console.log('='.repeat(70))
+  process.exit(0)
 } else {
-  console.log('✅ VALIDATION PASSED - File organization is correct');
-  console.log('='.repeat(70));
-  console.log('\n✨ Recommended root directory structure:');
-  console.log('  📁 Root/');
-  console.log('     ├─ README.md');
-  console.log('     ├─ LICENSE');
-  console.log('     ├─ angular.json');
-  console.log('     ├─ tsconfig.json');
-  console.log('     ├─ src/');
-  console.log('     │  ├─ app/');
-  console.log('     │  │  ├─ components/');
-  console.log('     │  │  ├─ services/');
-  console.log('     │  │  ├─ guards/');
-  console.log('     │  │  └─ ...');
-  console.log('     │  └─ assets/');
-  console.log('     ├─ scripts/');
-  console.log('     │  └─ testing/ (test utilities)');
-  console.log('     ├─ config/');
-  console.log('     │  ├─ jest.config.ts');
-  console.log('     │  ├─ eslint.config.js');
-  console.log('     │  └─ ...');
-  console.log('     ├─ docs/');
-  console.log('     │  ├─ features/');
-  console.log('     │  ├─ guides/');
-  console.log('     │  ├─ troubleshooting/');
-  console.log('     │  └─ archive/');
-  console.log('     └─ ... (other config files)\n');
-  process.exit(0);
+  console.log('✅ VALIDATION PASSED - File organization is correct')
+  console.log('='.repeat(70))
+  console.log('\n✨ Recommended root directory structure:')
+  console.log('  📁 Root/')
+  console.log('     ├─ README.md')
+  console.log('     ├─ LICENSE')
+  console.log('     ├─ angular.json')
+  console.log('     ├─ tsconfig.json')
+  console.log('     ├─ src/')
+  console.log('     │  ├─ app/')
+  console.log('     │  │  ├─ components/')
+  console.log('     │  │  ├─ services/')
+  console.log('     │  │  ├─ guards/')
+  console.log('     │  │  └─ ...')
+  console.log('     │  └─ assets/')
+  console.log('     ├─ scripts/')
+  console.log('     │  └─ testing/ (test utilities)')
+  console.log('     ├─ config/')
+  console.log('     │  ├─ jest.config.ts')
+  console.log('     │  ├─ eslint.config.js')
+  console.log('     │  └─ ...')
+  console.log('     ├─ docs/')
+  console.log('     │  ├─ features/')
+  console.log('     │  ├─ guides/')
+  console.log('     │  ├─ troubleshooting/')
+  console.log('     │  └─ archive/')
+  console.log('     └─ ... (other config files)\n')
+  process.exit(0)
 }

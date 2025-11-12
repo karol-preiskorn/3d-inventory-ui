@@ -5,7 +5,8 @@ This guide explains how to maintain proper file organization for the 3D Inventor
 ## Quick Reference
 
 ### Root Directory (3 files only)
-- `README.md` - Main project documentation  
+
+- `README.md` - Main project documentation
 - `LICENSE` - Project license
 - `AGENTS.md` - AI-assisted development patterns
 
@@ -23,6 +24,7 @@ scripts/
 ```
 
 ### Config Directory
+
 - `jest.config.ts` - Jest testing framework
 - `jest.config.fast.ts` - Fast Jest configuration
 - `eslint.config.js` - ESLint code quality rules
@@ -95,6 +97,7 @@ npm run check:file-organization
 ```
 
 This command validates:
+
 - ✅ Root directory contains only 3 essential files
 - ✅ Shell scripts in `/scripts/`
 - ✅ Test utilities in `/scripts/testing/`
@@ -105,11 +108,13 @@ This command validates:
 ### Validation Output
 
 **Success:**
+
 ```
 ✅ VALIDATION PASSED - File organization is correct
 ```
 
 **Failure:**
+
 ```
 ❌ VALIDATION FAILED - Critical errors found
    • Issue descriptions
@@ -123,6 +128,7 @@ This command validates:
 **Task:** Create tests for a new Angular service
 
 **Steps:**
+
 1. Create test file: `/src/app/services/new-service.spec.ts`
    - Test files should be in the same directory as the service
    - Use `.spec.ts` suffix for Angular tests
@@ -141,9 +147,11 @@ This command validates:
 **Task:** Add a new Jest configuration for integration tests
 
 **Steps:**
+
 1. Create file: `/config/jest.config.integration.ts`
 
 2. If referencing from `package.json`:
+
    ```json
    "test:integration": "jest --config=config/jest.config.integration.ts"
    ```
@@ -158,6 +166,7 @@ This command validates:
 **Task:** Document new authentication features
 
 **Steps:**
+
 1. Create file: `/docs/features/NEW-FEATURE-DOCUMENTATION.md`
 
 2. Link from related components if needed
@@ -174,6 +183,7 @@ This command validates:
 **Task:** Organize bug fix documentation
 
 **Steps:**
+
 1. Files with ERROR, FIX, BUG, ISSUE, PROBLEM in name
    → `/docs/troubleshooting/`
 
@@ -217,12 +227,15 @@ npm run lint
 **Cause:** Test or config files were created in root instead of subdirectories
 
 **Solution:**
+
 1. Identify problematic files:
+
    ```bash
    ls -la | grep -E "\.(js|cjs|sh|ts)$"
    ```
 
 2. Move to appropriate location:
+
    ```bash
    mv /filename.js scripts/testing/
    mv /jest.config.ts config/
@@ -237,12 +250,14 @@ npm run lint
 **Cause:** `angular.json` or `package.json` references old file location
 
 **Solution:**
+
 1. Update `package.json` scripts:
+
    ```json
    // OLD
    "test": "jest --config=jest.config.ts"
-   
-   // NEW  
+
+   // NEW
    "test": "jest --config=config/jest.config.ts"
    ```
 
@@ -255,11 +270,13 @@ npm run lint
 **Cause:** Links or references point to old location
 
 **Solution:**
+
 1. Update all links in documentation files
 
 2. Update `README.md` table of contents if applicable
 
 3. Search for old path:
+
    ```bash
    grep -r "old-path" docs/
    grep -r "old-filename" src/
@@ -322,6 +339,7 @@ npm run check:file-organization
 ### GitHub Actions
 
 Validation runs on:
+
 - Push to main branch
 - Pull requests
 
@@ -358,6 +376,7 @@ mv filename.sh scripts/
 ### Q: What if a file type isn't covered?
 
 **A:** Use priority order:
+
 1. Related to testing? → `/scripts/testing/`
 2. Build/deployment script? → `/scripts/`
 3. Configuration? → `/config/`
@@ -367,6 +386,7 @@ mv filename.sh scripts/
 ### Q: Can I create new documentation subdirectories?
 
 **A:** Only use the 4 established subdirectories:
+
 - `/docs/features/`
 - `/docs/guides/`
 - `/docs/troubleshooting/`
