@@ -227,16 +227,16 @@ Periodically:
 
 ## 📊 Statistics
 
-| Aspect | Details |
-|--------|---------|
-| **File Size** | 57 KB |
-| **Line Count** | 1,814 lines |
-| **Categories Covered** | 8 file types |
-| **Directories Documented** | 7 main directories |
-| **Examples Provided** | 50+ examples |
-| **Edge Cases Handled** | 4 specific procedures |
-| **Decision Points** | 8 major decision points |
-| **Quality Checks** | 5 standards + checklist |
+| Aspect                     | Details                 |
+| -------------------------- | ----------------------- |
+| **File Size**              | 57 KB                   |
+| **Line Count**             | 1,814 lines             |
+| **Categories Covered**     | 8 file types            |
+| **Directories Documented** | 7 main directories      |
+| **Examples Provided**      | 50+ examples            |
+| **Edge Cases Handled**     | 4 specific procedures   |
+| **Decision Points**        | 8 major decision points |
+| **Quality Checks**         | 5 standards + checklist |
 
 ---
 

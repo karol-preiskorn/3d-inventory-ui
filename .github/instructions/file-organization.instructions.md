@@ -10,25 +10,17 @@ applyTo: '**/*.md,**/*.sh,**/*.js,**/*.ts'applyTo: '**/*.md,**/*.sh,**/*.js,**/*
 
 description: File Organization Standards - Creating Files in Proper Locationsdescription: File Organization Standards - Creating Files in Proper Locations
 
-------
+---
 
-
+---
 
 # File Organization Instructions for GitHub Copilot# File Organization Instructions for GitHub Copilot
 
-
-
 This document ensures GitHub Copilot creates new files in the appropriate subdirectories rather than cluttering the root folder.This document ensures GitHub Copilot creates new files in the appropriate subdirectories rather than cluttering the root folder.
-
-
 
 ## 🎯 Root Directory Policy## 🎯 Root Directory Policy
 
-
-
 **Only these 4 files belong in root**:**Only these 4 files belong in root**:
-
-
 
 - `README.md` - Main project documentation- `README.md` - Main project documentation
 
@@ -38,33 +30,19 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - `SECURITY.md` - Security policies and guidelines- `SECURITY.md` - Security policies and guidelines
 
-
-
 **ALL other files must be created in appropriate subfolders**.**ALL other files must be created in appropriate subfolders**.
 
-
-
-------
-
-
+---
 
 ## 📁 Folder Structure and File Types## 📁 Folder Structure and File Types
 
-
-
 ### `/config/` - Configuration Files### `/config/` - Configuration Files
-
-
 
 **Purpose**: Non-standard configuration files and configuration variants**Purpose**: Non-standard configuration files and configuration variants
 
-
-
 **Files to create here**:**Files to create here**:
 
-
-
-- Alternative Jest configurations (jest-*.config.ts, jest-*.config.js)- Alternative Jest configurations (jest-*.config.ts, jest-*.config.js)
+- Alternative Jest configurations (jest-_.config.ts, jest-_.config.js)- Alternative Jest configurations (jest-_.config.ts, jest-_.config.js)
 
 - ESLint configuration files- ESLint configuration files
 
@@ -86,11 +64,7 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - Any config files that are variants or alternatives- Any config files that are variants or alternatives
 
-
-
 **Standard configs that stay in ROOT**:**Standard configs that stay in ROOT**:
-
-
 
 - `tsconfig.json` - TypeScript configuration (STAYS IN ROOT - required by build)- `tsconfig.json` - TypeScript configuration (STAYS IN ROOT - required by build)
 
@@ -104,11 +78,7 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - `.gitignore` - Git ignore (STAYS IN ROOT - required by Git)- `.gitignore` - Git ignore (STAYS IN ROOT - required by Git)
 
-
-
 **Examples**:**Examples**:
-
-
 
 - ✅ `config/jest.config.fast.ts` - Fast Jest variant- ✅ `config/jest.config.fast.ts` - Fast Jest variant
 
@@ -124,27 +94,15 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - ❌ `tsconfig.json` in config/ (WRONG - must stay in root)- ❌ `tsconfig.json` in config/ (WRONG - must stay in root)
 
-
-
 **Copilot Rule**: When asked to create a non-standard configuration file → Place in `/config/`**Copilot Rule**: When asked to create a non-standard configuration file → Place in `/config/`
 
-
-
-------
-
-
+---
 
 ### `/docs/guides/` - How-To and Setup Documentation### `/docs/guides/` - How-To and Setup Documentation
 
-
-
 **Purpose**: Step-by-step guides, tutorials, setup instructions, debugging guides**Purpose**: Step-by-step guides, tutorials, setup instructions, debugging guides
 
-
-
 **Files to create here**:**Files to create here**:
-
-
 
 - Setup guides and instructions- Setup guides and instructions
 
@@ -172,11 +130,7 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - IDE configuration guides- IDE configuration guides
 
-
-
 **File naming conventions**:**File naming conventions**:
-
-
 
 - `DESCRIPTIVE-GUIDE.md` (e.g., REACTIVE-FORMS-DISABLED-GUIDE.md)- `DESCRIPTIVE-GUIDE.md` (e.g., REACTIVE-FORMS-DISABLED-GUIDE.md)
 
@@ -190,11 +144,7 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - `TUTORIAL-NAME.md`- `TUTORIAL-NAME.md`
 
-
-
 **Examples**:**Examples**:
-
-
 
 - ✅ `docs/guides/DEBUG_SERVICE_GUIDE.md` - Service debugging tutorial- ✅ `docs/guides/DEBUG_SERVICE_GUIDE.md` - Service debugging tutorial
 
@@ -208,27 +158,15 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - ❌ `DEBUGGING-GUIDE.md` in root (belongs in /docs/guides/)- ❌ `DEBUGGING-GUIDE.md` in root (belongs in /docs/guides/)
 
-
-
 **Copilot Rule**: When asked to create setup guides, how-to instructions, or debugging documentation → Place in `/docs/guides/`**Copilot Rule**: When asked to create setup guides, how-to instructions, or debugging documentation → Place in `/docs/guides/`
 
-
-
-------
-
-
+---
 
 ### `/docs/features/` - Feature Specifications and Implementations### `/docs/features/` - Feature Specifications and Implementations
 
-
-
 **Purpose**: Feature specifications, implementation details, technical specifications, component documentation**Purpose**: Feature specifications, implementation details, technical specifications, component documentation
 
-
-
 **Files to create here**:**Files to create here**:
-
-
 
 - Feature specifications and requirements- Feature specifications and requirements
 
@@ -256,11 +194,7 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - Technical analysis documents- Technical analysis documents
 
-
-
 **File naming conventions**:**File naming conventions**:
-
-
 
 - `FEATURE-NAME.md` (e.g., ANGULAR_SIGNALS_MIGRATION.md)- `FEATURE-NAME.md` (e.g., ANGULAR_SIGNALS_MIGRATION.md)
 
@@ -274,11 +208,7 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - `API-SPECIFICATION.md`- `API-SPECIFICATION.md`
 
-
-
 **Examples**:**Examples**:
-
-
 
 - ✅ `docs/features/ANGULAR_SIGNALS_MIGRATION.md` - Feature migration guide- ✅ `docs/features/ANGULAR_SIGNALS_MIGRATION.md` - Feature migration guide
 
@@ -292,27 +222,15 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - ❌ `FEATURE-SPEC.md` in root (belongs in /docs/features/)- ❌ `FEATURE-SPEC.md` in root (belongs in /docs/features/)
 
-
-
 **Copilot Rule**: When asked to create feature specifications, implementation guides, or technical architecture documentation → Place in `/docs/features/`**Copilot Rule**: When asked to create feature specifications, implementation guides, or technical architecture documentation → Place in `/docs/features/`
 
-
-
-------
-
-
+---
 
 ### `/docs/testing/` - Test Coverage and CI/CD Documentation### `/docs/testing/` - Test Coverage and CI/CD Documentation
 
-
-
 **Purpose**: Test coverage reports, testing strategies, CI/CD status, testing methodology, quality reports**Purpose**: Test coverage reports, testing strategies, CI/CD status, testing methodology, quality reports
 
-
-
 **Files to create here**:**Files to create here**:
-
-
 
 - Test coverage reports and summaries- Test coverage reports and summaries
 
@@ -338,11 +256,7 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - Coverage analysis- Coverage analysis
 
-
-
 **File naming conventions**:**File naming conventions**:
-
-
 
 - `TEST-COVERAGE-SUMMARY.md`- `TEST-COVERAGE-SUMMARY.md`
 
@@ -358,11 +272,7 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - `COVERAGE-ANALYSIS.md`- `COVERAGE-ANALYSIS.md`
 
-
-
 **Examples**:**Examples**:
-
-
 
 - ✅ `docs/testing/AUTHENTICATION-SERVICE-TESTS-SUMMARY.md` - Test documentation- ✅ `docs/testing/AUTHENTICATION-SERVICE-TESTS-SUMMARY.md` - Test documentation
 
@@ -376,27 +286,15 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - ❌ `TEST-SUMMARY.md` in root (belongs in /docs/testing/)- ❌ `TEST-SUMMARY.md` in root (belongs in /docs/testing/)
 
-
-
 **Copilot Rule**: When asked to create test coverage reports, CI/CD documentation, or testing methodology files → Place in `/docs/testing/`**Copilot Rule**: When asked to create test coverage reports, CI/CD documentation, or testing methodology files → Place in `/docs/testing/`
 
-
-
-------
-
-
+---
 
 ### `/docs/deployment/` - Deployment and Release Documentation### `/docs/deployment/` - Deployment and Release Documentation
 
-
-
 **Purpose**: Deployment procedures, release notes, deployment guides, production documentation**Purpose**: Deployment procedures, release notes, deployment guides, production documentation
 
-
-
 **Files to create here**:**Files to create here**:
-
-
 
 - Deployment procedures and guides- Deployment procedures and guides
 
@@ -416,11 +314,7 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - Deployment strategies- Deployment strategies
 
-
-
 **File naming conventions**:**File naming conventions**:
-
-
 
 - `DEPLOYMENT-GUIDE.md`- `DEPLOYMENT-GUIDE.md`
 
@@ -432,11 +326,7 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - `DEPLOYMENT-CHECKLIST.md`- `DEPLOYMENT-CHECKLIST.md`
 
-
-
 **Examples**:**Examples**:
-
-
 
 - ✅ `docs/deployment/PRODUCTION-DEPLOYMENT-GUIDE.md` - Production deployment- ✅ `docs/deployment/PRODUCTION-DEPLOYMENT-GUIDE.md` - Production deployment
 
@@ -446,27 +336,15 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - ❌ `DEPLOYMENT-GUIDE.md` in root (belongs in /docs/deployment/)- ❌ `DEPLOYMENT-GUIDE.md` in root (belongs in /docs/deployment/)
 
-
-
 **Copilot Rule**: When asked to create deployment guides, release notes, or release procedures → Place in `/docs/deployment/`**Copilot Rule**: When asked to create deployment guides, release notes, or release procedures → Place in `/docs/deployment/`
 
-
-
-------
-
-
+---
 
 ### `/docs/archive/troubleshooting/` - Resolved Issues and Historical Documentation### `/docs/archive/troubleshooting/` - Resolved Issues and Historical Documentation
 
-
-
 **Purpose**: Archived issues, historical troubleshooting, resolved problems, reference material**Purpose**: Archived issues, historical troubleshooting, resolved problems, reference material
 
-
-
 **Files to create here**:**Files to create here**:
-
-
 
 - Resolved issue documentation- Resolved issue documentation
 
@@ -490,11 +368,7 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - Deprecated feature documentation- Deprecated feature documentation
 
-
-
 **File naming conventions**:**File naming conventions**:
-
-
 
 - Issue name with context (e.g., `ADMIN-ACCESS-FIX.md`)- Issue name with context (e.g., `ADMIN-ACCESS-FIX.md`)
 
@@ -504,11 +378,7 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - Problem type with solution (e.g., `CORS-FIX-SUMMARY.md`)- Problem type with solution (e.g., `CORS-FIX-SUMMARY.md`)
 
-
-
 **Examples**:**Examples**:
-
-
 
 - ✅ `docs/archive/troubleshooting/ADMIN-ACCESS-FIX.md` - Admin access issue resolution- ✅ `docs/archive/troubleshooting/ADMIN-ACCESS-FIX.md` - Admin access issue resolution
 
@@ -522,27 +392,15 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - ❌ `BUG-FIX.md` in root (belongs in /docs/archive/troubleshooting/)- ❌ `BUG-FIX.md` in root (belongs in /docs/archive/troubleshooting/)
 
-
-
 **Copilot Rule**: When asked to create documentation about resolved issues, past fixes, or historical troubleshooting → Place in `/docs/archive/troubleshooting/`**Copilot Rule**: When asked to create documentation about resolved issues, past fixes, or historical troubleshooting → Place in `/docs/archive/troubleshooting/`
 
-
-
-------
-
-
+---
 
 ### `/src/` - Application Source Code### `/src/` - Application Source Code
 
-
-
 **Purpose**: Main application code (already organized)**Purpose**: Main application code (already organized)
 
-
-
 **Structure**:**Structure**:
-
-
 
 - `src/app/` - Angular application components and services- `src/app/` - Angular application components and services
 
@@ -556,27 +414,15 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - `src/assets/` - Static assets- `src/assets/` - Static assets
 
-
-
 **Copilot Rule**: When asked to create application code, components, services, or models → Place in `/src/`**Copilot Rule**: When asked to create application code, components, services, or models → Place in `/src/`
 
-
-
-------
-
-
+---
 
 ### `/scripts/` - Automation and Utility Scripts### `/scripts/` - Automation and Utility Scripts
 
-
-
 **Purpose**: Development automation, build scripts, utility scripts (not in API project)**Purpose**: Development automation, build scripts, utility scripts (not in API project)
 
-
-
 **For 3d-inventory-ui**:**For 3d-inventory-ui**:
-
-
 
 - Build automation scripts- Build automation scripts
 
@@ -588,25 +434,15 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 - Git hook utilities- Git hook utilities
 
-
-
 **Copilot Rule**: When asked to create automation or utility scripts → Place in `/scripts/`**Copilot Rule**: When asked to create automation or utility scripts → Place in `/scripts/`
 
-
-
-------
-
-
+---
 
 ## ✅ File Creation Decision Tree## ✅ File Creation Decision Tree
 
-
-
 Use this flowchart to determine where a new file should be created:Use this flowchart to determine where a new file should be created:
 
-
-
-```text```
+`text`
 
 START: Creating a new fileSTART: Creating a new file
 
@@ -614,85 +450,85 @@ START: Creating a new fileSTART: Creating a new file
 
 ├─ Is it one of the 4 protected files?├─ Is it one of the 4 protected files?
 
-│  (README.md, DEVELOPMENT.md, AGENTS.md, SECURITY.md)│  (README.md, DEVELOPMENT.md, AGENTS.md, SECURITY.md)
+│ (README.md, DEVELOPMENT.md, AGENTS.md, SECURITY.md)│ (README.md, DEVELOPMENT.md, AGENTS.md, SECURITY.md)
 
-│  └─ YES → CREATE IN ROOT ✓│  └─ YES → CREATE IN ROOT ✓
+│ └─ YES → CREATE IN ROOT ✓│ └─ YES → CREATE IN ROOT ✓
 
 ││
 
 ├─ Is it a standard configuration file?├─ Is it a standard configuration file?
 
-│  (tsconfig.json, angular.json, package.json, .prettierrc, .editorconfig, .gitignore)│  (tsconfig.json, angular.json, package.json, .prettierrc, .editorconfig, .gitignore)
+│ (tsconfig.json, angular.json, package.json, .prettierrc, .editorconfig, .gitignore)│ (tsconfig.json, angular.json, package.json, .prettierrc, .editorconfig, .gitignore)
 
-│  └─ YES → CREATE IN ROOT ✓│  └─ YES → CREATE IN ROOT ✓
+│ └─ YES → CREATE IN ROOT ✓│ └─ YES → CREATE IN ROOT ✓
 
 ││
 
 ├─ Is it a non-standard or variant configuration?├─ Is it a non-standard or variant configuration?
 
-│  (jest-*.config.ts, eslint.config.js, karma.conf.js, cspell.json, etc.)│  (jest-*.config.ts, eslint.config.js, karma.conf.js, cspell.json, etc.)
+│ (jest-_.config.ts, eslint.config.js, karma.conf.js, cspell.json, etc.)│ (jest-_.config.ts, eslint.config.js, karma.conf.js, cspell.json, etc.)
 
-│  └─ YES → CREATE IN /config/ ✓│  └─ YES → CREATE IN /config/ ✓
+│ └─ YES → CREATE IN /config/ ✓│ └─ YES → CREATE IN /config/ ✓
 
 ││
 
 ├─ Is it a setup, how-to, debugging, or configuration guide?├─ Is it a setup, how-to, debugging, or configuration guide?
 
-│  (Tutorial, walkthrough, environment setup, debugging guide)│  (Tutorial, walkthrough, environment setup, debugging guide)
+│ (Tutorial, walkthrough, environment setup, debugging guide)│ (Tutorial, walkthrough, environment setup, debugging guide)
 
-│  └─ YES → CREATE IN /docs/guides/ ✓│  └─ YES → CREATE IN /docs/guides/ ✓
+│ └─ YES → CREATE IN /docs/guides/ ✓│ └─ YES → CREATE IN /docs/guides/ ✓
 
 ││
 
 ├─ Is it a feature specification or technical implementation?├─ Is it a feature specification or technical implementation?
 
-│  (Feature spec, component design, architecture, API docs)│  (Feature spec, component design, architecture, API docs)
+│ (Feature spec, component design, architecture, API docs)│ (Feature spec, component design, architecture, API docs)
 
-│  └─ YES → CREATE IN /docs/features/ ✓│  └─ YES → CREATE IN /docs/features/ ✓
+│ └─ YES → CREATE IN /docs/features/ ✓│ └─ YES → CREATE IN /docs/features/ ✓
 
 ││
 
 ├─ Is it a test report, coverage summary, or CI/CD documentation?├─ Is it a test report, coverage summary, or CI/CD documentation?
 
-│  (Test summary, coverage report, build status)│  (Test summary, coverage report, build status)
+│ (Test summary, coverage report, build status)│ (Test summary, coverage report, build status)
 
-│  └─ YES → CREATE IN /docs/testing/ ✓│  └─ YES → CREATE IN /docs/testing/ ✓
+│ └─ YES → CREATE IN /docs/testing/ ✓│ └─ YES → CREATE IN /docs/testing/ ✓
 
 ││
 
 ├─ Is it a deployment guide or release documentation?├─ Is it a deployment guide or release documentation?
 
-│  (Deployment procedure, release notes, rollback guide)│  (Deployment procedure, release notes, rollback guide)
+│ (Deployment procedure, release notes, rollback guide)│ (Deployment procedure, release notes, rollback guide)
 
-│  └─ YES → CREATE IN /docs/deployment/ ✓│  └─ YES → CREATE IN /docs/deployment/ ✓
+│ └─ YES → CREATE IN /docs/deployment/ ✓│ └─ YES → CREATE IN /docs/deployment/ ✓
 
 ││
 
 ├─ Is it documentation about a resolved issue or historical fix?├─ Is it documentation about a resolved issue or historical fix?
 
-│  (Past bug fix, admin issue resolution, deprecated feature)│  (Past bug fix, admin issue resolution, deprecated feature)
+│ (Past bug fix, admin issue resolution, deprecated feature)│ (Past bug fix, admin issue resolution, deprecated feature)
 
-│  └─ YES → CREATE IN /docs/archive/troubleshooting/ ✓│  └─ YES → CREATE IN /docs/archive/troubleshooting/ ✓
+│ └─ YES → CREATE IN /docs/archive/troubleshooting/ ✓│ └─ YES → CREATE IN /docs/archive/troubleshooting/ ✓
 
 ││
 
 ├─ Is it application code, component, or service?├─ Is it application code, component, or service?
 
-│  └─ YES → CREATE IN /src/ ✓│  └─ YES → CREATE IN /src/ ✓
+│ └─ YES → CREATE IN /src/ ✓│ └─ YES → CREATE IN /src/ ✓
 
 ││
 
 ├─ Is it an automation or development utility script?├─ Is it an automation or development utility script?
 
-│  └─ YES → CREATE IN /scripts/ ✓│  └─ YES → CREATE IN /scripts/ ✓
+│ └─ YES → CREATE IN /scripts/ ✓│ └─ YES → CREATE IN /scripts/ ✓
 
 ││
 
 └─ NOT SURE?└─ NOT SURE?
 
-   └─ ASK FOR CLARIFICATION OR PLACE IN MOST APPROPRIATE CATEGORY ✓   └─ ASK FOR CLARIFICATION OR PLACE IN MOST APPROPRIATE CATEGORY ✓
+└─ ASK FOR CLARIFICATION OR PLACE IN MOST APPROPRIATE CATEGORY ✓ └─ ASK FOR CLARIFICATION OR PLACE IN MOST APPROPRIATE CATEGORY ✓
 
-``````
+`````
 
 
 
@@ -1510,15 +1346,11 @@ typedoc.json                # TypeDocCOMPONENT-ARCHITECTURE.md
 
 jsdoc.json                  # JSDoc... and more feature documentation ...
 
-``````
-
-
+`````
 
 ### `/docs/guides/` - Setup, How-To, Debugging (15+ files)### `/docs/testing/` - Test Coverage, CI/CD (9+ files)
 
-
-
-```bash```
+`bash`
 
 DEBUG_SERVICE_GUIDE.mdAUTHENTICATION-SERVICE-TESTS-SUMMARY.md
 
@@ -1530,7 +1362,7 @@ SETUP-ENVIRONMENT.mdTEST-COVERAGE-SUMMARY.md
 
 TYPESCRIPT-STRICT-MODE-GUIDE.md... and more testing documentation ...
 
-``````
+````
 
 
 
@@ -1548,15 +1380,11 @@ PERMISSIONS-MODAL-FEATURE.mdRELEASE-NOTES-v1.0.md
 
 COMPONENT-ARCHITECTURE.md... and more deployment documentation ...
 
-``````
-
-
+````
 
 ### `/docs/testing/` - Test Coverage, CI/CD (9+ files)### `/docs/archive/troubleshooting/` - Resolved Issues (77+ files)
 
-
-
-```bash```
+`bash`
 
 AUTHENTICATION-SERVICE-TESTS-SUMMARY.mdADMIN-ACCESS-FIX.md
 
@@ -1566,7 +1394,7 @@ CI-CD-STATUS.md403-GITHUB-ISSUES-ERROR.md
 
 TEST-COVERAGE-SUMMARY.md... and more historical troubleshooting ...
 
-``````
+````
 
 
 
@@ -1812,3 +1640,4 @@ When you are asked to create ANY new file in the 3d-inventory-ui project:🚫 Do
 **Scope**: 3d-inventory-ui project
 **Applies To**: All `.md`, `.sh`, `.js`, `.ts` file creation
 **Compliance**: 100% - Prevents root directory sprawl, maintains organization, enables easy navigation
+````
