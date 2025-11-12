@@ -10,10 +10,6 @@ applyTo: '**/*.md,**/*.sh,**/*.js,**/*.ts'applyTo: '**/*.md,**/*.sh,**/*.js,**/*
 
 description: File Organization Standards - Creating Files in Proper Locationsdescription: File Organization Standards - Creating Files in Proper Locations
 
----
-
----
-
 # File Organization Instructions for GitHub Copilot# File Organization Instructions for GitHub Copilot
 
 This document ensures GitHub Copilot creates new files in the appropriate subdirectories rather than cluttering the root folder.This document ensures GitHub Copilot creates new files in the appropriate subdirectories rather than cluttering the root folder.
@@ -32,8 +28,6 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 **ALL other files must be created in appropriate subfolders**.**ALL other files must be created in appropriate subfolders**.
 
----
-
 ## 📁 Folder Structure and File Types## 📁 Folder Structure and File Types
 
 ### `/config/` - Configuration Files### `/config/` - Configuration Files
@@ -42,7 +36,7 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 **Files to create here**:**Files to create here**:
 
-- Alternative Jest configurations (jest-_.config.ts, jest-_.config.js)- Alternative Jest configurations (jest-_.config.ts, jest-_.config.js)
+- Alternative Jest configurations (jest-*.config.ts, jest-*.config.js)- Alternative Jest configurations (jest-*.config.ts, jest-*.config.js)
 
 - ESLint configuration files- ESLint configuration files
 
@@ -95,8 +89,6 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 - ❌ `tsconfig.json` in config/ (WRONG - must stay in root)- ❌ `tsconfig.json` in config/ (WRONG - must stay in root)
 
 **Copilot Rule**: When asked to create a non-standard configuration file → Place in `/config/`**Copilot Rule**: When asked to create a non-standard configuration file → Place in `/config/`
-
----
 
 ### `/docs/guides/` - How-To and Setup Documentation### `/docs/guides/` - How-To and Setup Documentation
 
@@ -160,8 +152,6 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 **Copilot Rule**: When asked to create setup guides, how-to instructions, or debugging documentation → Place in `/docs/guides/`**Copilot Rule**: When asked to create setup guides, how-to instructions, or debugging documentation → Place in `/docs/guides/`
 
----
-
 ### `/docs/features/` - Feature Specifications and Implementations### `/docs/features/` - Feature Specifications and Implementations
 
 **Purpose**: Feature specifications, implementation details, technical specifications, component documentation**Purpose**: Feature specifications, implementation details, technical specifications, component documentation
@@ -223,8 +213,6 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 - ❌ `FEATURE-SPEC.md` in root (belongs in /docs/features/)- ❌ `FEATURE-SPEC.md` in root (belongs in /docs/features/)
 
 **Copilot Rule**: When asked to create feature specifications, implementation guides, or technical architecture documentation → Place in `/docs/features/`**Copilot Rule**: When asked to create feature specifications, implementation guides, or technical architecture documentation → Place in `/docs/features/`
-
----
 
 ### `/docs/testing/` - Test Coverage and CI/CD Documentation### `/docs/testing/` - Test Coverage and CI/CD Documentation
 
@@ -288,8 +276,6 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 **Copilot Rule**: When asked to create test coverage reports, CI/CD documentation, or testing methodology files → Place in `/docs/testing/`**Copilot Rule**: When asked to create test coverage reports, CI/CD documentation, or testing methodology files → Place in `/docs/testing/`
 
----
-
 ### `/docs/deployment/` - Deployment and Release Documentation### `/docs/deployment/` - Deployment and Release Documentation
 
 **Purpose**: Deployment procedures, release notes, deployment guides, production documentation**Purpose**: Deployment procedures, release notes, deployment guides, production documentation
@@ -337,8 +323,6 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 - ❌ `DEPLOYMENT-GUIDE.md` in root (belongs in /docs/deployment/)- ❌ `DEPLOYMENT-GUIDE.md` in root (belongs in /docs/deployment/)
 
 **Copilot Rule**: When asked to create deployment guides, release notes, or release procedures → Place in `/docs/deployment/`**Copilot Rule**: When asked to create deployment guides, release notes, or release procedures → Place in `/docs/deployment/`
-
----
 
 ### `/docs/archive/troubleshooting/` - Resolved Issues and Historical Documentation### `/docs/archive/troubleshooting/` - Resolved Issues and Historical Documentation
 
@@ -394,8 +378,6 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 **Copilot Rule**: When asked to create documentation about resolved issues, past fixes, or historical troubleshooting → Place in `/docs/archive/troubleshooting/`**Copilot Rule**: When asked to create documentation about resolved issues, past fixes, or historical troubleshooting → Place in `/docs/archive/troubleshooting/`
 
----
-
 ### `/src/` - Application Source Code### `/src/` - Application Source Code
 
 **Purpose**: Main application code (already organized)**Purpose**: Main application code (already organized)
@@ -416,8 +398,6 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 
 **Copilot Rule**: When asked to create application code, components, services, or models → Place in `/src/`**Copilot Rule**: When asked to create application code, components, services, or models → Place in `/src/`
 
----
-
 ### `/scripts/` - Automation and Utility Scripts### `/scripts/` - Automation and Utility Scripts
 
 **Purpose**: Development automation, build scripts, utility scripts (not in API project)**Purpose**: Development automation, build scripts, utility scripts (not in API project)
@@ -435,8 +415,6 @@ This document ensures GitHub Copilot creates new files in the appropriate subdir
 - Git hook utilities- Git hook utilities
 
 **Copilot Rule**: When asked to create automation or utility scripts → Place in `/scripts/`**Copilot Rule**: When asked to create automation or utility scripts → Place in `/scripts/`
-
----
 
 ## ✅ File Creation Decision Tree## ✅ File Creation Decision Tree
 
@@ -466,7 +444,7 @@ START: Creating a new fileSTART: Creating a new file
 
 ├─ Is it a non-standard or variant configuration?├─ Is it a non-standard or variant configuration?
 
-│ (jest-_.config.ts, eslint.config.js, karma.conf.js, cspell.json, etc.)│ (jest-_.config.ts, eslint.config.js, karma.conf.js, cspell.json, etc.)
+│ (jest-*.config.ts, eslint.config.js, karma.conf.js, cspell.json, etc.)│ (jest-*.config.ts, eslint.config.js, karma.conf.js, cspell.json, etc.)
 
 │ └─ YES → CREATE IN /config/ ✓│ └─ YES → CREATE IN /config/ ✓
 
@@ -527,26 +505,13 @@ START: Creating a new fileSTART: Creating a new file
 └─ NOT SURE?└─ NOT SURE?
 
 └─ ASK FOR CLARIFICATION OR PLACE IN MOST APPROPRIATE CATEGORY ✓ └─ ASK FOR CLARIFICATION OR PLACE IN MOST APPROPRIATE CATEGORY ✓
-
 `````
-
-
-
-------
-
-
 
 ## 📋 File Type Detection Rules## 📋 File Type Detection Rules
 
-
-
 ### How Copilot Should Detect File Purpose### How Copilot Should Detect File Purpose
 
-
-
 #### Configuration Files#### Configuration Files
-
-
 
 **Indicators**:**Indicators**:
 
@@ -574,11 +539,10 @@ START: Creating a new fileSTART: Creating a new file
 
 1. **Setup/How-To Guide**
 
-1. **Setup/How-To Guide**   - Keywords: "setup", "install", "how-to", "guide", "tutorial", "debug", "troubleshoot", "configure"
-
+1. **Setup/How-To Guide** - Keywords: "setup", "install", "how-to", "guide", "tutorial", "debug", "troubleshoot", "configure"
    - Example: `DEBUG_SERVICE_GUIDE.md`, `SETUP-ENVIRONMENT.md`
 
-   - Keywords: "setup", "install", "how-to", "guide", "tutorial", "debug", "troubleshoot", "configure"   - Decision: → `/docs/guides/`
+   - Keywords: "setup", "install", "how-to", "guide", "tutorial", "debug", "troubleshoot", "configure" - Decision: → `/docs/guides/`
 
    - Example: `DEBUG_SERVICE_GUIDE.md`, `SETUP-ENVIRONMENT.md`
 
@@ -586,46 +550,38 @@ START: Creating a new fileSTART: Creating a new file
 
    - Keywords: "feature", "implementation", "component", "architecture", "specification", "schema", "design"
 
-2. **Feature Specification**   - Example: `ANGULAR_SIGNALS_MIGRATION.md`, `COMPONENT-ARCHITECTURE.md`
-
+1. **Feature Specification** - Example: `ANGULAR_SIGNALS_MIGRATION.md`, `COMPONENT-ARCHITECTURE.md`
    - Decision: → `/docs/features/`
 
    - Keywords: "feature", "implementation", "component", "architecture", "specification", "schema", "design"
 
    - Example: `ANGULAR_SIGNALS_MIGRATION.md`, `COMPONENT-ARCHITECTURE.md`3. **Test/Quality Report**
 
-   - Decision: → `/docs/features/`   - Keywords: "test", "coverage", "quality", "ci/cd", "status", "report", "authentication"
+   - Decision: → `/docs/features/` - Keywords: "test", "coverage", "quality", "ci/cd", "status", "report", "authentication"
 
    - Example: `TEST-COVERAGE-SUMMARY.md`, `CI-CD-STATUS.md`
 
-3. **Test/Quality Report**   - Decision: → `/docs/testing/`
-
-
-
+1. **Test/Quality Report** - Decision: → `/docs/testing/`
    - Keywords: "test", "coverage", "quality", "ci/cd", "status", "report", "authentication"4. **Deployment Documentation**
 
-   - Example: `TEST-COVERAGE-SUMMARY.md`, `CI-CD-STATUS.md`   - Keywords: "deployment", "release", "production", "rollout", "release-notes"
+   - Example: `TEST-COVERAGE-SUMMARY.md`, `CI-CD-STATUS.md` - Keywords: "deployment", "release", "production", "rollout", "release-notes"
 
-   - Decision: → `/docs/testing/`   - Example: `DEPLOYMENT-GUIDE.md`, `RELEASE-NOTES.md`
+   - Decision: → `/docs/testing/` - Example: `DEPLOYMENT-GUIDE.md`, `RELEASE-NOTES.md`
 
    - Decision: → `/docs/deployment/`
 
-4. **Deployment Documentation**
+1. **Deployment Documentation**
 
-5. **Historical Issue/Fix**
+1. **Historical Issue/Fix**
+   - Keywords: "deployment", "release", "production", "rollout", "release-notes" - Keywords: "fix", "resolved", "issue", "error", "problem", "bug", "deprecated"
 
-   - Keywords: "deployment", "release", "production", "rollout", "release-notes"   - Keywords: "fix", "resolved", "issue", "error", "problem", "bug", "deprecated"
+   - Example: `DEPLOYMENT-GUIDE.md`, `RELEASE-NOTES.md` - Pattern: `ISSUE-NAME-FIX.md`, `PROBLEM-RESOLUTION.md`
 
-   - Example: `DEPLOYMENT-GUIDE.md`, `RELEASE-NOTES.md`   - Pattern: `ISSUE-NAME-FIX.md`, `PROBLEM-RESOLUTION.md`
-
-   - Decision: → `/docs/deployment/`   - Content: Describes a past issue that has been resolved
+   - Decision: → `/docs/deployment/` - Content: Describes a past issue that has been resolved
 
    - Example: `ADMIN-ACCESS-FIX.md`, `CSRF-FIX-SUMMARY.md`
 
-5. **Historical Issue/Fix**   - Decision: → `/docs/archive/troubleshooting/`
-
-
-
+1. **Historical Issue/Fix** - Decision: → `/docs/archive/troubleshooting/`
    - Keywords: "fix", "resolved", "issue", "error", "problem", "bug", "deprecated"### Script Files
 
    - Pattern: `ISSUE-NAME-FIX.md`, `PROBLEM-RESOLUTION.md`
@@ -656,15 +612,9 @@ START: Creating a new fileSTART: Creating a new file
 
 **Decision**: → `/scripts/`- Angular component, service, model, or guard
 
-
-
 ### Application Code**Decision**: → `/src/`
 
-
-
 **Indicators**:---
-
-
 
 - TypeScript or JavaScript component/service## 🔍 Edge Cases and Special Rules
 
@@ -672,13 +622,11 @@ START: Creating a new fileSTART: Creating a new file
 
 - Angular component, service, model, or guard### Edge Case 1: File Could Fit Multiple Categories
 
-
-
 **Decision**: → `/src/`**Example**: `USER-AUTHENTICATION-TESTING-GUIDE.md`
 
+---
 
-
----**Resolution**:
+**Resolution**:
 
 - Primary purpose wins
 
@@ -688,15 +636,9 @@ START: Creating a new fileSTART: Creating a new file
 
 ### Edge Case 1: File Could Fit Multiple Categories- If primarily historical troubleshooting → `/docs/archive/troubleshooting/`
 
-
-
 **Example**: `USER-AUTHENTICATION-TESTING-GUIDE.md`**Rule**: Categorize by PRIMARY PURPOSE, not all purposes
 
-
-
 **Resolution**:### Edge Case 2: Configuration File That's Actually Documentation
-
-
 
 - Primary purpose wins**Example**: `eslint-rules-explanation.md`
 
@@ -732,11 +674,11 @@ START: Creating a new fileSTART: Creating a new file
 
 **Rule**: Determine actual file type (documentation vs configuration)4. If truly ambiguous:
 
-   - Place in `/docs/guides/` (most flexible)
+- Place in `/docs/guides/` (most flexible)
 
-### Edge Case 3: File Type Unknown   - Add comment explaining categorization
+### Edge Case 3: File Type Unknown - Add comment explaining categorization
 
-   - Flag for team review
+- Flag for team review
 
 **Example**: Copilot isn't sure which category a file fits
 
@@ -753,46 +695,35 @@ START: Creating a new fileSTART: Creating a new file
 3. Match PRIMARY PURPOSE to categories
 
 4. If truly ambiguous:**Resolution**:
-
    - Place in `/docs/guides/` (most flexible)- If it's strategic/organizational → Could be root (ask team)
 
    - Add comment explaining categorization- If it's procedural/technical → `/docs/guides/` or `/docs/features/`
 
    - Flag for team review- Default: Unless it's one of 4 protected files → Put in appropriate `/docs/` subdirectory
 
-
-
 **Rule**: Default to `/docs/guides/` if unsure (least risky choice)**Rule**: MOST documentation belongs in `/docs/` subdirectories
-
-
 
 ### Edge Case 4: File Seems Like Root Documentation---
 
-
-
 **Example**: `PERFORMANCE-OPTIMIZATION-PLAN.md`## 📝 Naming Conventions
 
-
-
 **Resolution**:### Standardized Naming Patterns
-
-
 
 - If it's strategic/organizational → Could be root (ask team)#### Configuration Files
 
 - If it's procedural/technical → `/docs/guides/` or `/docs/features/````
 
-- Default: Unless it's one of 4 protected files → Put in appropriate `/docs/` subdirectoryjest.config.ts                  - Standard format
+- Default: Unless it's one of 4 protected files → Put in appropriate `/docs/` subdirectoryjest.config.ts - Standard format
 
-jest-simple.config.ts           - Variant format (hyphen + descriptor)
+jest-simple.config.ts - Variant format (hyphen + descriptor)
 
-**Rule**: MOST documentation belongs in `/docs/` subdirectorieseslint.config.js                - Standard format
+**Rule**: MOST documentation belongs in `/docs/` subdirectorieseslint.config.js - Standard format
 
-.babelrc                        - Dot files (special configs)
+.babelrc - Dot files (special configs)
 
----cspell.json                     - Tool-specific naming
+---cspell.json - Tool-specific naming
 
-```
+````
 
 ## 📝 Naming Conventions
 
@@ -1056,27 +987,26 @@ CSRF-FIX-SUMMARY.md             # Technical fix format   - ✅ `CI-CD-STATUS.md`
 
    - Verify it won't interfere with standard configs   # Should return: 0
 
-   ```
+````
 
 4. **Update References**
-
    - Check if package.json needs script update2. **Verify directory structure**
 
-   - Suggest: `"test:fast": "jest --config config/jest-fast.config.ts"`   ```bash
+   - Suggest: `"test:fast": "jest --config config/jest-fast.config.ts"` ```bash
 
    # Count files in each directory
 
----   echo "Config files: $(ls -1 config/ | wc -l)"
+--- echo "Config files: $(ls -1 config/ | wc -l)"
 
-   echo "Docs files: $(find docs -type f | wc -l)"
+echo "Docs files: $(find docs -type f | wc -l)"
 
-## 🔄 Maintenance and Verification   echo "Guides: $(ls -1 docs/guides/ | wc -l)"
+## 🔄 Maintenance and Verification echo "Guides: $(ls -1 docs/guides/ | wc -l)"
 
-   echo "Features: $(ls -1 docs/features/ | wc -l)"
+echo "Features: $(ls -1 docs/features/ | wc -l)"
 
-### Regular Compliance Checks   echo "Testing: $(ls -1 docs/testing/ | wc -l)"
+### Regular Compliance Checks echo "Testing: $(ls -1 docs/testing/ | wc -l)"
 
-   ```
+````
 
 **Perform these checks periodically**:
 
@@ -1084,17 +1014,17 @@ CSRF-FIX-SUMMARY.md             # Technical fix format   - ✅ `CI-CD-STATUS.md`
 
 1. **Check for misplaced files**   ```bash
 
-   # Check for large or unusual files in root
+# Check for large or unusual files in root
 
-   ```bash   ls -lh | sort -k5 -h | tail -10
+```bash   ls -lh | sort -k5 -h | tail -10
 
-   cd /home/karol/GitHub/3d-inventory-ui   ```
+cd /home/karol/GitHub/3d-inventory-ui   ```
 
-   ls -1 *.md | grep -v "README\|AGENTS\|LICENSE\|SECURITY" | wc -l
+ls -1 *.md | grep -v "README\|AGENTS\|LICENSE\|SECURITY" | wc -l
 
-   # Should return: 0### When Files Go in Wrong Location
+# Should return: 0### When Files Go in Wrong Location
 
-   ```
+````
 
 **Recovery Procedure**:
 
@@ -1102,7 +1032,7 @@ CSRF-FIX-SUMMARY.md             # Technical fix format   - ✅ `CI-CD-STATUS.md`
 
 1. **Identify misplaced file**
 
-   ```bash   - File found in root that shouldn't be
+   ````bash - File found in root that shouldn't be
 
    echo "Config files: $(ls -1 config/ | wc -l)"   - Example: `NEW-FEATURE.md` in root
 
@@ -1116,38 +1046,34 @@ CSRF-FIX-SUMMARY.md             # Technical fix format   - ✅ `CI-CD-STATUS.md`
 
    ```   - Verify destination folder exists
 
+   ````
 
+1. **Identify any files that don't fit**3. **Move file to correct location**
 
-3. **Identify any files that don't fit**3. **Move file to correct location**
-
-   ```bash
+   ````bash
 
    ```bash   mv NEW-FEATURE.md docs/features/
 
    ls -lh | sort -k5 -h | tail -10   ```
 
-   ```
+   ````
 
-4. **Verify references updated**
+1. **Verify references updated**
 
-### When Files Go in Wrong Location   - Check if any links need updating
+### When Files Go in Wrong Location - Check if any links need updating
 
-   - Update import statements if needed
+- Update import statements if needed
 
-**Recovery Procedure**:   - Run linter/formatter
-
-
+**Recovery Procedure**: - Run linter/formatter
 
 1. **Identify misplaced file**5. **Commit change**
+   - File found in root that shouldn't be ```bash
 
-   - File found in root that shouldn't be   ```bash
-
-   - Example: `NEW-FEATURE.md` in root   git add NEW-FEATURE.md docs/features/
+   - Example: `NEW-FEATURE.md` in root git add NEW-FEATURE.md docs/features/
 
    git commit -m "docs: move NEW-FEATURE.md to proper location"
 
-2. **Determine correct location**   ```
-
+2. **Determine correct location** ```
    - Read filename and content
 
    - Apply decision tree---
@@ -1160,29 +1086,28 @@ CSRF-FIX-SUMMARY.md             # Technical fix format   - ✅ `CI-CD-STATUS.md`
 
 ### When Copilot Is Unsure
 
-   ```bash
+```bash
 
-   mv NEW-FEATURE.md docs/features/**Situation**: File doesn't clearly fit a category
+mv NEW-FEATURE.md docs/features/**Situation**: File doesn't clearly fit a category
 
-   ```
+```
 
 **Procedure**:
 
 4. **Verify references updated**
-
    - Check if any links need updating1. **Ask clarifying question**
 
-   - Update import statements if needed   - "Is this primarily a guide/tutorial or a specification?"
+   - Update import statements if needed - "Is this primarily a guide/tutorial or a specification?"
 
-   - Run linter/formatter   - "Is this a resolved issue or current documentation?"
+   - Run linter/formatter - "Is this a resolved issue or current documentation?"
 
    - "Is this a configuration file or documentation about configuration?"
 
 5. **Commit change**
 
-2. **Suggest most likely location**
+6. **Suggest most likely location**
 
-   ```bash   - Based on filename and partial content
+   ```bash - Based on filename and partial content
 
    git add NEW-FEATURE.md docs/features/   - Include reasoning
 
@@ -1190,31 +1115,24 @@ CSRF-FIX-SUMMARY.md             # Technical fix format   - ✅ `CI-CD-STATUS.md`
 
    ```
 
-3. **Allow user override**
+7. **Allow user override**
 
----   - Let user specify different location if needed
+--- - Let user specify different location if needed
 
-   - Accept user's categorization as authoritative
+- Accept user's categorization as authoritative
 
-## 📞 Questions and Override Procedures   - Remember pattern for future similar files
-
-
+## 📞 Questions and Override Procedures - Remember pattern for future similar files
 
 ### When Copilot Is Unsure### When User Explicitly Specifies Location
 
-
-
 **Situation**: File doesn't clearly fit a category**Procedure**:
-
-
 
 **Procedure**:1. **Honor user specification**
 
-   - If user says "Create at `/docs/testing/`" → Create there
+- If user says "Create at `/docs/testing/`" → Create there
 
-1. **Ask clarifying question**   - Don't second-guess user decision
-
-   - "Is this primarily a guide/tutorial or a specification?"   - Trust user's categorization knowledge
+1. **Ask clarifying question** - Don't second-guess user decision
+   - "Is this primarily a guide/tutorial or a specification?" - Trust user's categorization knowledge
 
    - "Is this a resolved issue or current documentation?"
 
@@ -1223,56 +1141,47 @@ CSRF-FIX-SUMMARY.md             # Technical fix format   - ✅ `CI-CD-STATUS.md`
    - "Creating at: `/docs/testing/FILE-NAME.md` ✓"
 
 2. **Suggest most likely location**
-
    - Based on filename and partial content3. **Learn from override**
 
-   - Include reasoning   - If user overrides decision, note the reason
+   - Include reasoning - If user overrides decision, note the reason
 
-   - Example: "Based on the keywords 'setup' and 'configuration', I suggest `/docs/guides/`"   - May indicate edge case or category extension
+   - Example: "Based on the keywords 'setup' and 'configuration', I suggest `/docs/guides/`" - May indicate edge case or category extension
 
    - Could inform future similar requests
 
 3. **Allow user override**
-
    - Let user specify different location if needed---
 
    - Accept user's categorization as authoritative
 
    - Remember pattern for future similar files## 📚 Complete File Organization Map
 
-
-
 ### When User Explicitly Specifies Location### Root Directory (Only 4 Protected Files + Required Build Configs)
-
-
 
 **Procedure**:```
 
-README.md                   ← Main documentation
+README.md ← Main documentation
 
-1. **Honor user specification**AGENTS.md                   ← AI automation guide
+1. **Honor user specification**AGENTS.md ← AI automation guide
+   - If user says "Create at `/docs/testing/`" → Create thereLICENSE ← Licensing information
 
-   - If user says "Create at `/docs/testing/`" → Create thereLICENSE                     ← Licensing information
-
-   - Don't second-guess user decisionSECURITY.md                 ← Security policies
+   - Don't second-guess user decisionSECURITY.md ← Security policies
 
    - Trust user's categorization knowledge
 
-tsconfig.json               ← TypeScript config (standard - REQUIRED)
+tsconfig.json ← TypeScript config (standard - REQUIRED)
 
-2. **Confirm understanding**angular.json                ← Angular config (standard - REQUIRED)
+2. **Confirm understanding**angular.json ← Angular config (standard - REQUIRED)
+   - "Creating at: `/docs/testing/FILE-NAME.md` ✓"package.json ← NPM config (standard - REQUIRED)
 
-   - "Creating at: `/docs/testing/FILE-NAME.md` ✓"package.json                ← NPM config (standard - REQUIRED)
+.prettierrc.json ← Prettier rules (standard - REQUIRED)
 
-.prettierrc.json            ← Prettier rules (standard - REQUIRED)
-
-3. **Learn from override**.editorconfig               ← Editor config (standard - REQUIRED)
-
-   - If user overrides decision, note the reason.gitignore                  ← Git ignore (standard - REQUIRED)
+3. **Learn from override**.editorconfig ← Editor config (standard - REQUIRED)
+   - If user overrides decision, note the reason.gitignore ← Git ignore (standard - REQUIRED)
 
    - May indicate edge case or category extension
 
-   - Could inform future similar requestsjest.config.ts              ← Jest config (in root OR /config/)
+   - Could inform future similar requestsjest.config.ts ← Jest config (in root OR /config/)
 
 ```
 
@@ -1284,11 +1193,11 @@ tsconfig.json               ← TypeScript config (standard - REQUIRED)
 
 ```
 
-### Root Directory (Only 4 Protected Files + Required Build Configs)jest.config.fast.ts         ← Jest variant
+### Root Directory (Only 4 Protected Files + Required Build Configs)jest.config.fast.ts ← Jest variant
 
-jest-simple.config.ts       ← Jest variant
+jest-simple.config.ts ← Jest variant
 
-```bashjest.config.js              ← Jest variant
+````bashjest.config.js ← Jest variant
 
 README.md                   # Main documentationeslint.config.js            ← ESLint config
 
@@ -1312,11 +1221,11 @@ package.json                # NPM config (standard - REQUIRED)```
 
 .gitignore                  # Git ignore (standard - REQUIRED)
 
-```
+````
 
-jest.config.ts              # Jest config (in root OR /config/)DEBUG_SERVICE_GUIDE.md
+jest.config.ts # Jest config (in root OR /config/)DEBUG_SERVICE_GUIDE.md
 
-```REACTIVE-FORMS-DISABLED-GUIDE.md
+````REACTIVE-FORMS-DISABLED-GUIDE.md
 
 CACHE-CLEAR-INSTRUCTIONS.md
 
@@ -1346,7 +1255,7 @@ typedoc.json                # TypeDocCOMPONENT-ARCHITECTURE.md
 
 jsdoc.json                  # JSDoc... and more feature documentation ...
 
-`````
+````
 
 ### `/docs/guides/` - Setup, How-To, Debugging (15+ files)### `/docs/testing/` - Test Coverage, CI/CD (9+ files)
 

@@ -58,13 +58,16 @@ def main():
     files_processed = 0
     files_watermarked = 0
 
-    # Sanitize path and use safe subprocess call
-    safe_root = shlex.quote(args.root)
+    # Safely clean existing watermark files using Python's os module instead of shell commands
     try:
-        subprocess.run(['rm', '-f'] + [f for f in os.listdir(args.root) if f.endswith('-watermark.png')],
-                      cwd=args.root, check=False)
-    except (OSError, subprocess.SubprocessError):
-        print("Warning: Could not clean existing watermark files")
+        for fname in os.listdir(args.root):
+            if fname.endswith('-watermark.png'):
+                watermark_file = os.path.join(args.root, fname)
+                # Validate the file path is within the root directory
+                if os.path.commonpath([args.root, watermark_file]) == args.root:
+                    os.remove(watermark_file)
+    except (OSError, PermissionError) as e:
+        print(f"Warning: Could not clean existing watermark files: {e}")
 
     for dirName, subdirList, fileList in os.walk(args.root):
         if args.exclude is not None and args.exclude in dirName:
