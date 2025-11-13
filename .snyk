@@ -1,0 +1,50 @@
+version: v1.25.0
+
+exclude:
+global: # Documentation - doesn't need security scanning - docs/**- /docs/** - '\*_/_.md'
+
+    # Build outputs and artifacts
+    - dist/**
+    - build/**
+    - coverage/**
+    - out-tsc/**
+
+    # Dependencies (handled by package.json)
+    - node_modules/**
+
+    # Angular-specific folders
+    - .angular/**
+    - src/test-setup.ts
+
+    # Test files and test-related folders
+    - '**/*.spec.ts'
+    - '**/*.test.ts'
+    - src/app/testing/**
+    - src/app/tests/**
+
+    # Archive and backup folders
+    - backups/**
+    - '**/*backup*'
+    - '**/*archive*'
+    - '**/*BACKUP*'
+    - '**/*ARCHIVE*'
+
+    # Temporary and cache folders
+    - .cache/**
+    - '**/.DS_Store'
+    - .idea/**
+    - .vscode/**
+
+# Ignore specific vulnerabilities (optional - add as needed)
+
+# Format: 'SNYK-VULN-ID': ['path/to/file']
+
+# ignore
+
+# SNYK-JS-LODASH-1018-1234567
+
+# - '\*\*/node_modules/lodash'
+
+# - reason: 'False positive - not using vulnerable function'
+
+# - expires: '2025-12-31'

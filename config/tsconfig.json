@@ -43,7 +43,7 @@
     "src/**/*.test.ts"
   ],
   "include": [
-    "src/**/*.ts"
-    // Avoid including files outside the project unless necessary
+    "src/**/*.ts",
+    "src/types/**/*.d.ts"
   ]
 }
