@@ -1,0 +1,175 @@
+# Dependency Updates Workflow
+name: 📦 Dependency Updates
+
+on:
+  schedule:
+    # Run weekly on Mondays at 9 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+    inputs:
+      update_type:
+        description: 'Type of update to perform'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+  pull-requests: write
+  checks: write
+
+jobs:
+  dependency-updates:
+    name: 🔄 Update Dependencies
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: 🔧 Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: 📦 Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: 🔍 Check for outdated packages
+        run: |
+          npm outdated --json > outdated.json || true
+          cat outdated.json
+
+      - name: 🔄 Update dependencies
+        id: update
+        run: |
+          UPDATE_TYPE="${{ inputs.update_type || 'patch' }}"
+
+          case $UPDATE_TYPE in
+            "patch")
+              echo "🔧 Updating patch versions..."
+              npx npm-check-updates -u --target patch
+              ;;
+            "minor")
+              echo "🔧 Updating minor versions..."
+              npx npm-check-updates -u --target minor
+              ;;
+            "major")
+              echo "🔧 Updating major versions (excluding breaking changes)..."
+              # Exclude Angular core packages and TypeScript from major updates
+              npx npm-check-updates -u --target latest \
+                --reject "@angular/*,typescript,@types/node,zone.js"
+              ;;
+          esac
+
+          # Check if package.json was modified
+          if git diff --quiet package.json; then
+            echo "ℹ️ No updates available"
+            echo "has_updates=false" >> $GITHUB_OUTPUT
+          else
+            echo "✅ Updates found"
+            echo "has_updates=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 📦 Install updated dependencies
+        if: steps.update.outputs.has_updates == 'true'
+        run: |
+          npm install
+          npm audit fix --audit-level=moderate || true
+
+      - name: 🧪 Run tests
+        if: steps.update.outputs.has_updates == 'true'
+        run: |
+          npm run test:ci
+          npm run lint:check
+
+      - name: 🏗️ Build validation
+        if: steps.update.outputs.has_updates == 'true'
+        run: npm run build:prod
+
+      - name: 📝 Generate update summary
+        if: steps.update.outputs.has_updates == 'true'
+        id: summary
+        run: |
+          echo "# Dependency Update Summary" > update-summary.md
+          echo "" >> update-summary.md
+          echo "## Updated Packages" >> update-summary.md
+          echo "" >> update-summary.md
+          
+          # Get diff of package.json
+          git diff package.json | grep "^[+-]" | grep -v "^[+-][+-]" | grep -v "version" >> update-summary.md || true
+
+      - name: 🚀 Create Pull Request
+        if: steps.update.outputs.has_updates == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore(deps): update dependencies [${{ inputs.update_type || 'patch' }}]'
+          branch: dependency-updates/${{ inputs.update_type || 'patch' }}
+          delete-branch: true
+          title: '🔄 Dependency Updates [${{ inputs.update_type || 'patch' }}]'
+          body-path: update-summary.md
+          labels: |
+            dependencies
+            automated-pr
+          assignees: karol-preiskorn
+          reviewers: karol-preiskorn
+
+  angular-updates:
+    name: 🅰️ Angular Framework Updates
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    if: github.event.inputs.update_type == 'major'
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: 🔍 Check Angular version
+        run: |
+          CURRENT_VERSION=$(npm list @angular/core --depth=0 --json | jq -r '.dependencies."@angular/core".version')
+          echo "Current Angular version: $CURRENT_VERSION"
+          
+          # Check for available updates
+          npm outdated @angular/core || true
+
+      - name: 💬 Comment on manual Angular update
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue_number = context.issue.number || 1;
+            github.rest.issues.createComment({
+              issue_number: issue_number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🅰️ Angular Framework Update Available
+              
+              Angular framework updates require manual intervention using:
+              \`\`\`bash
+              ng update @angular/core @angular/cli
+              \`\`\`
+              
+              Please review the [Angular Update Guide](https://update.angular.io/) before proceeding.`
+            })

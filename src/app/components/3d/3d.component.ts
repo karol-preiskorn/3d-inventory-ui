@@ -101,10 +101,9 @@ export class CubeComponent implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    // console.log('ngAfterViewInit')
-    // this.loadDevices()
-    // this.loadDevices2()
-    //  this.loadModels()
+    console.log('ngAfterViewInit')
+    this.loadDevices()
+    this.loadModels()
     this.createScene()
     this.startRenderingLoop()
   }

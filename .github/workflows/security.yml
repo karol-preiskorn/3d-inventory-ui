@@ -1,0 +1,172 @@
+# Security Scanning Workflow for Angular UI
+name: 🔒 Security Scanning
+
+on:
+  schedule:
+    # Run weekly on Mondays at 2 AM UTC
+    - cron: '0 2 * * 1'
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+jobs:
+  dependency-security:
+    name: 🔍 Dependency Security Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: 🔍 Run npm audit
+        run: |
+          npm audit --audit-level=moderate --json > audit-results.json || true
+          npm audit --audit-level=moderate
+
+      - name: 📤 Upload audit results
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-audit-results
+          path: audit-results.json
+          retention-days: 30
+
+      - name: 🛠️ Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: ⚠️ Check for high/critical vulnerabilities
+        env:
+          HIGH_VULN_THRESHOLD: ${{ vars.HIGH_VULN_THRESHOLD || 5 }}
+        run: |
+          HIGH_VULNS=$(npm audit --audit-level=high --json | jq '.metadata.vulnerabilities.high // 0')
+          CRITICAL_VULNS=$(npm audit --audit-level=critical --json | jq '.metadata.vulnerabilities.critical // 0')
+          THRESHOLD=${HIGH_VULN_THRESHOLD:-5}
+
+          echo "📊 Vulnerability Summary:"
+          echo "  - High vulnerabilities: $HIGH_VULNS"
+          echo "  - Critical vulnerabilities: $CRITICAL_VULNS"
+          echo "  - Threshold: $THRESHOLD"
+
+          if [ "$CRITICAL_VULNS" -gt 0 ]; then
+            echo "❌ Critical vulnerabilities found!"
+            exit 1
+          elif [ "$HIGH_VULNS" -gt "$THRESHOLD" ]; then
+            echo "⚠️ Too many high vulnerabilities found!"
+            exit 1
+          fi
+
+  snyk-security:
+    name: 🐍 Snyk Security Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: 🐍 Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+
+      - name: 📤 Upload Snyk results to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: snyk.sarif
+
+  container-security:
+    name: 🐳 Container Security Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐳 Build Docker image
+        run: docker build -t security-scan:latest .
+
+      - name: 🔍 Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: 'security-scan:latest'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+
+      - name: 📤 Upload Trivy scan results
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+  angular-security:
+    name: 🅰️ Angular-Specific Security Checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: 🔒 Check for XSS vulnerabilities in templates
+        run: |
+          echo "🔍 Scanning Angular templates for potential XSS vulnerabilities..."
+          
+          # Check for dangerous innerHTML usage
+          if grep -r "innerHTML" src/ --include="*.ts" --include="*.html" | grep -v "sanitize"; then
+            echo "⚠️ Warning: Potential XSS vulnerability - innerHTML usage without sanitization"
+          fi
+          
+          # Check for bypassSecurityTrust usage
+          if grep -r "bypassSecurityTrust" src/ --include="*.ts"; then
+            echo "⚠️ Warning: Security bypass detected - review usage carefully"
+          fi
+
+      - name: 🛡️ Check Angular security best practices
+        run: |
+          echo "✅ Angular security checks completed"
+          
+          # Check for strict mode in tsconfig
+          if ! grep -q '"strict": true' tsconfig.json; then
+            echo "⚠️ TypeScript strict mode is not enabled"
+            exit 1
+          fi

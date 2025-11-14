@@ -1,0 +1,102 @@
+# Release Management Workflow
+name: 📦 Release Management
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., v1.0.0)'
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  create-release:
+    name: 🚀 Create Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: 🧪 Run full test suite
+        run: npm run test:ci
+
+      - name: 🏗️ Build production
+        run: npm run build:prod
+
+      - name: 📊 Generate bundle analysis
+        run: |
+          npm run build:analyze
+          mv stats.json dist/bundle-stats.json
+
+      - name: 📝 Generate changelog
+        id: changelog
+        run: |
+          # Get the latest tag
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          CURRENT_TAG=${GITHUB_REF#refs/tags/}
+          
+          echo "# Release Notes for $CURRENT_TAG" > CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          
+          if [ -n "$PREVIOUS_TAG" ]; then
+            echo "## Changes since $PREVIOUS_TAG" >> CHANGELOG.md
+            echo "" >> CHANGELOG.md
+            
+            # Group commits by type
+            git log $PREVIOUS_TAG..HEAD --pretty=format:"%s" | \
+              grep -E "^(feat|fix|docs|style|refactor|perf|test|chore)" | \
+              sort > commits.txt
+            
+            # Features
+            echo "### ✨ Features" >> CHANGELOG.md
+            grep "^feat" commits.txt | sed 's/^feat: /- /' >> CHANGELOG.md || echo "- No new features" >> CHANGELOG.md
+            echo "" >> CHANGELOG.md
+            
+            # Bug fixes
+            echo "### 🐛 Bug Fixes" >> CHANGELOG.md
+            grep "^fix" commits.txt | sed 's/^fix: /- /' >> CHANGELOG.md || echo "- No bug fixes" >> CHANGELOG.md
+            echo "" >> CHANGELOG.md
+            
+            # Other changes
+            echo "### 🔧 Other Changes" >> CHANGELOG.md
+            grep -E "^(docs|style|refactor|perf|test|chore)" commits.txt | sed 's/^[^:]*: /- /' >> CHANGELOG.md || echo "- No other changes" >> CHANGELOG.md
+          fi
+
+      - name: 📤 Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: CHANGELOG.md
+          files: |
+            dist/**/*
+            dist/bundle-stats.json
+          draft: false
+          prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📊 Post release summary
+        run: |
+          echo "## 🎉 Release Published" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Version**: ${GITHUB_REF#refs/tags/}" >> $GITHUB_STEP_SUMMARY
+          echo "**Build**: Production" >> $GITHUB_STEP_SUMMARY
+          echo "**Tests**: All passed ✅" >> $GITHUB_STEP_SUMMARY
