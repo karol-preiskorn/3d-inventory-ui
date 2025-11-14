@@ -32,13 +32,15 @@ assignees: ['karol-preiskorn']
 ## 🌐 Environment
 
 **Browser:**
-- [ ] Chrome (version: ___)
-- [ ] Firefox (version: ___)
-- [ ] Safari (version: ___)
-- [ ] Edge (version: ___)
-- [ ] Other: ___
+
+- [ ] Chrome (version: \_\_\_)
+- [ ] Firefox (version: \_\_\_)
+- [ ] Safari (version: \_\_\_)
+- [ ] Edge (version: \_\_\_)
+- [ ] Other: \_\_\_
 
 **Operating System:**
+
 - [ ] Windows
 - [ ] macOS
 - [ ] Linux

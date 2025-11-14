@@ -9,9 +9,11 @@ This document outlines comprehensive improvements made to the `.github` director
 ### 1. **New GitHub Actions Workflows**
 
 #### ✨ Security Workflow (`.github/workflows/security.yml`)
+
 **Status**: ✅ Created
 
 **Features**:
+
 - Weekly automated security scanning (Mondays 2 AM UTC)
 - npm audit with high/critical vulnerability thresholds
 - Snyk security scanning integration
@@ -20,6 +22,7 @@ This document outlines comprehensive improvements made to the `.github` director
 - TypeScript strict mode validation
 
 **Benefits**:
+
 - Proactive vulnerability detection
 - Automated security compliance
 - SARIF results uploaded to GitHub Security tab
@@ -28,9 +31,11 @@ This document outlines comprehensive improvements made to the `.github` director
 ---
 
 #### 📦 Dependency Updates Workflow (`.github/workflows/dependency-updates.yml`)
+
 **Status**: ✅ Created
 
 **Features**:
+
 - Weekly automated dependency updates (Mondays 9 AM UTC)
 - Manual trigger with update type selection (patch/minor/major)
 - Automated PR creation with update summaries
@@ -39,6 +44,7 @@ This document outlines comprehensive improvements made to the `.github` director
 - Intelligent exclusion of breaking changes
 
 **Benefits**:
+
 - Reduces dependency technical debt
 - Automated security patch application
 - Safer major version updates
@@ -47,9 +53,11 @@ This document outlines comprehensive improvements made to the `.github` director
 ---
 
 #### 🚀 Release Management Workflow (`.github/workflows/release.yml`)
+
 **Status**: ✅ Created
 
 **Features**:
+
 - Automated releases on version tags
 - Changelog generation from commit history
 - Bundle analysis and artifact upload
@@ -57,6 +65,7 @@ This document outlines comprehensive improvements made to the `.github` director
 - Pre-release detection (alpha/beta/rc)
 
 **Benefits**:
+
 - Streamlined release process
 - Automatic documentation generation
 - Release artifact preservation
@@ -67,9 +76,11 @@ This document outlines comprehensive improvements made to the `.github` director
 ### 2. **New Instruction Files**
 
 #### 🔒 Security Rules (`.github/instructions/snyk_rules.instructions.md`)
+
 **Status**: ✅ Created
 
 **Content**:
+
 - Snyk integration and configuration
 - Angular-specific security patterns
 - XSS prevention guidelines
@@ -80,6 +91,7 @@ This document outlines comprehensive improvements made to the `.github` director
 - Vulnerability response procedures
 
 **Benefits**:
+
 - Clear security guidelines for developers
 - Consistent security patterns
 - AI agent security awareness
@@ -90,9 +102,11 @@ This document outlines comprehensive improvements made to the `.github` director
 ### 3. **Enhanced Issue Templates**
 
 #### 🐛 Bug Report Template
+
 **Status**: ✅ Created (`.github/ISSUE_TEMPLATE/bug_report.md`)
 
 **Improvements**:
+
 - Structured format with sections
 - Environment information collection
 - Console and network error sections
@@ -102,9 +116,11 @@ This document outlines comprehensive improvements made to the `.github` director
 ---
 
 #### ✨ Feature Request Template
+
 **Status**: ✅ Created (`.github/ISSUE_TEMPLATE/feature_request.md`)
 
 **Improvements**:
+
 - User story format
 - UI/UX mockup section
 - Testing strategy requirements
@@ -114,9 +130,11 @@ This document outlines comprehensive improvements made to the `.github` director
 ---
 
 #### 🔒 Security Vulnerability Template
+
 **Status**: ✅ Created (`.github/ISSUE_TEMPLATE/security_vulnerability.md`)
 
 **Improvements**:
+
 - Private reporting reminder
 - Severity classification
 - Impact assessment
@@ -300,8 +318,8 @@ assignees:
   - karol-preiskorn
 
 labels:
-  - "needs-review"
-  - "auto-assigned"
+  - 'needs-review'
+  - 'auto-assigned'
 
 numberOfReviewers: 1
 numberOfAssignees: 1
@@ -315,16 +333,16 @@ skipKeywords:
 filePatterns:
   - pattern: 'src/app/components/**/*.ts'
     labels: ['component', 'frontend']
-  
+
   - pattern: 'src/app/services/**/*.ts'
     labels: ['service', 'business-logic']
-  
+
   - pattern: '**/*.spec.ts'
     labels: ['tests']
-  
+
   - pattern: '.github/workflows/**'
     labels: ['ci-cd', 'infrastructure']
-  
+
   - pattern: 'src/app/services/authentication.service.ts'
     labels: ['security', 'critical']
 ```
@@ -335,16 +353,16 @@ filePatterns:
 
 ### Features Now Matching API Project:
 
-| Feature | API Project | UI Project (Before) | UI Project (After) |
-|---------|-------------|---------------------|-------------------|
-| Security Workflow | ✅ | ❌ | ✅ |
-| Dependency Updates | ✅ | ❌ | ✅ |
-| Release Management | ✅ | ❌ | ✅ |
-| Snyk Integration | ✅ | ❌ | ✅ |
-| Security Instructions | ✅ | ❌ | ✅ |
-| Issue Templates | ✅ | ⚠️ Basic | ✅ Enhanced |
-| Dependabot Config | ✅ Advanced | ⚠️ Basic | ⚠️ Needs update |
-| CODEOWNERS | ✅ Granular | ⚠️ Basic | ⚠️ Needs update |
+| Feature               | API Project | UI Project (Before) | UI Project (After) |
+| --------------------- | ----------- | ------------------- | ------------------ |
+| Security Workflow     | ✅          | ❌                  | ✅                 |
+| Dependency Updates    | ✅          | ❌                  | ✅                 |
+| Release Management    | ✅          | ❌                  | ✅                 |
+| Snyk Integration      | ✅          | ❌                  | ✅                 |
+| Security Instructions | ✅          | ❌                  | ✅                 |
+| Issue Templates       | ✅          | ⚠️ Basic            | ✅ Enhanced        |
+| Dependabot Config     | ✅ Advanced | ⚠️ Basic            | ⚠️ Needs update    |
+| CODEOWNERS            | ✅ Granular | ⚠️ Basic            | ⚠️ Needs update    |
 
 ---
 
@@ -411,7 +429,7 @@ filePatterns:
 ### GitHub Insights to Track:
 
 - Pull request review time
-- Issue resolution time  
+- Issue resolution time
 - Security alert response time
 - Dependency update lag
 
@@ -431,6 +449,7 @@ filePatterns:
 ## 📝 Summary
 
 The 3d-inventory-ui project now has:
+
 - **3 new GitHub Actions workflows** for security, dependencies, and releases
 - **1 new instruction file** for security and Snyk integration
 - **3 enhanced issue templates** for better bug reporting and feature requests

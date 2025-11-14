@@ -53,29 +53,29 @@ jobs:
           # Get the latest tag
           PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
           CURRENT_TAG=${GITHUB_REF#refs/tags/}
-          
+
           echo "# Release Notes for $CURRENT_TAG" > CHANGELOG.md
           echo "" >> CHANGELOG.md
-          
+
           if [ -n "$PREVIOUS_TAG" ]; then
             echo "## Changes since $PREVIOUS_TAG" >> CHANGELOG.md
             echo "" >> CHANGELOG.md
-            
+
             # Group commits by type
             git log $PREVIOUS_TAG..HEAD --pretty=format:"%s" | \
               grep -E "^(feat|fix|docs|style|refactor|perf|test|chore)" | \
               sort > commits.txt
-            
+
             # Features
             echo "### ✨ Features" >> CHANGELOG.md
             grep "^feat" commits.txt | sed 's/^feat: /- /' >> CHANGELOG.md || echo "- No new features" >> CHANGELOG.md
             echo "" >> CHANGELOG.md
-            
+
             # Bug fixes
             echo "### 🐛 Bug Fixes" >> CHANGELOG.md
             grep "^fix" commits.txt | sed 's/^fix: /- /' >> CHANGELOG.md || echo "- No bug fixes" >> CHANGELOG.md
             echo "" >> CHANGELOG.md
-            
+
             # Other changes
             echo "### 🔧 Other Changes" >> CHANGELOG.md
             grep -E "^(docs|style|refactor|perf|test|chore)" commits.txt | sed 's/^[^:]*: /- /' >> CHANGELOG.md || echo "- No other changes" >> CHANGELOG.md

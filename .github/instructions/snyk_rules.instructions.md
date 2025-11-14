@@ -58,7 +58,7 @@ snyk auth
 // ❌ INCORRECT - Direct innerHTML usage
 export class UnsafeComponent {
   userContent: string = '<script>alert("XSS")</script>'
-  
+
   ngOnInit() {
     document.getElementById('content')!.innerHTML = this.userContent
   }
@@ -69,7 +69,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 
 export class SafeComponent {
   constructor(private sanitizer: DomSanitizer) {}
-  
+
   get sanitizedContent(): SafeHtml {
     return this.sanitizer.sanitize(SecurityContext.HTML, this.userContent) || ''
   }
@@ -98,15 +98,15 @@ import { DomSanitizer } from '@angular/platform-browser'
 
 export class SecurityService {
   constructor(private sanitizer: DomSanitizer) {}
-  
+
   sanitizeHtml(value: string): string {
     return this.sanitizer.sanitize(SecurityContext.HTML, value) || ''
   }
-  
+
   sanitizeUrl(value: string): string {
     return this.sanitizer.sanitize(SecurityContext.URL, value) || ''
   }
-  
+
   sanitizeStyle(value: string): string {
     return this.sanitizer.sanitize(SecurityContext.STYLE, value) || ''
   }
@@ -118,8 +118,8 @@ export class SecurityService {
 #### Allowed Dependency Sources
 
 - **npm registry**: Official packages only
-- **@angular/***: Official Angular packages
-- **@types/***: Official TypeScript definitions
+- **@angular/\***: Official Angular packages
+- **@types/\***: Official TypeScript definitions
 
 #### Prohibited Practices
 
@@ -157,21 +157,18 @@ import { environment } from '@env/environment'
 @Injectable({ providedIn: 'root' })
 export class SecureApiService {
   private readonly apiUrl = environment.apiUrl
-  
+
   constructor(private http: HttpClient) {}
-  
+
   getData(): Observable<Data[]> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.getToken()}`
+      Authorization: `Bearer ${this.getToken()}`,
     })
-    
-    return this.http.get<Data[]>(`${this.apiUrl}/data`, { headers })
-      .pipe(
-        catchError(this.handleError)
-      )
+
+    return this.http.get<Data[]>(`${this.apiUrl}/data`, { headers }).pipe(catchError(this.handleError))
   }
-  
+
   private handleError(error: HttpErrorResponse): Observable<never> {
     // Don't expose internal error details to users
     console.error('API Error:', error)
@@ -189,7 +186,7 @@ export const corsOptions = {
   origin: environment.allowedOrigins,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  credentials: true,
 }
 ```
 
@@ -204,20 +201,20 @@ import { Injectable } from '@angular/core'
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly TOKEN_KEY = 'auth_token'
-  
+
   setToken(token: string): void {
     // Store in memory or sessionStorage for better security
     sessionStorage.setItem(this.TOKEN_KEY, token)
   }
-  
+
   getToken(): string | null {
     return sessionStorage.getItem(this.TOKEN_KEY)
   }
-  
+
   clearToken(): void {
     sessionStorage.removeItem(this.TOKEN_KEY)
   }
-  
+
   // Validate token expiration
   isTokenExpired(token: string): boolean {
     try {
@@ -243,13 +240,13 @@ describe('SecurityService', () => {
     expect(sanitized).not.toContain('<script>')
     expect(sanitized).toContain('<p>Safe</p>')
   })
-  
+
   it('should sanitize malicious URLs', () => {
     const maliciousUrl = 'javascript:alert("XSS")'
     const sanitized = securityService.sanitizeUrl(maliciousUrl)
     expect(sanitized).toBe('unsafe:javascript:alert("XSS")')
   })
-  
+
   it('should validate token expiration', () => {
     const expiredToken = createExpiredToken()
     expect(authService.isTokenExpired(expiredToken)).toBe(true)
@@ -291,6 +288,7 @@ echo "✅ Security checks passed"
 #### GitHub Actions Security Workflow
 
 Required workflows:
+
 - `security.yml` - Weekly security scanning
 - `dependency-updates.yml` - Automated dependency updates
 - Check for high/critical vulnerabilities before deployment

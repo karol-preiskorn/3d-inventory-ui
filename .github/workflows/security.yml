@@ -150,12 +150,12 @@ jobs:
       - name: 🔒 Check for XSS vulnerabilities in templates
         run: |
           echo "🔍 Scanning Angular templates for potential XSS vulnerabilities..."
-          
+
           # Check for dangerous innerHTML usage
           if grep -r "innerHTML" src/ --include="*.ts" --include="*.html" | grep -v "sanitize"; then
             echo "⚠️ Warning: Potential XSS vulnerability - innerHTML usage without sanitization"
           fi
-          
+
           # Check for bypassSecurityTrust usage
           if grep -r "bypassSecurityTrust" src/ --include="*.ts"; then
             echo "⚠️ Warning: Security bypass detected - review usage carefully"
@@ -164,7 +164,7 @@ jobs:
       - name: 🛡️ Check Angular security best practices
         run: |
           echo "✅ Angular security checks completed"
-          
+
           # Check for strict mode in tsconfig
           if ! grep -q '"strict": true' tsconfig.json; then
             echo "⚠️ TypeScript strict mode is not enabled"

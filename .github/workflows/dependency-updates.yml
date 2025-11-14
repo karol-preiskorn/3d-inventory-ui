@@ -108,7 +108,7 @@ jobs:
           echo "" >> update-summary.md
           echo "## Updated Packages" >> update-summary.md
           echo "" >> update-summary.md
-          
+
           # Get diff of package.json
           git diff package.json | grep "^[+-]" | grep -v "^[+-][+-]" | grep -v "version" >> update-summary.md || true
 
@@ -151,7 +151,7 @@ jobs:
         run: |
           CURRENT_VERSION=$(npm list @angular/core --depth=0 --json | jq -r '.dependencies."@angular/core".version')
           echo "Current Angular version: $CURRENT_VERSION"
-          
+
           # Check for available updates
           npm outdated @angular/core || true
 
@@ -165,11 +165,11 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: `## 🅰️ Angular Framework Update Available
-              
+
               Angular framework updates require manual intervention using:
               \`\`\`bash
               ng update @angular/core @angular/cli
               \`\`\`
-              
+
               Please review the [Angular Update Guide](https://update.angular.io/) before proceeding.`
             })
